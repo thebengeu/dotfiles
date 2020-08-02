@@ -1,0 +1,81 @@
+{:profiles {:Default {:default true
+                      :alone   150
+                      :delay   500
+                      ; $ defaults read -g InitialKeyRepeat
+                      :held    225
+                      :sim     50}}
+ :main [{:des "Layer 3"
+         :rules [[:##tab :!Sgrave_accent_and_tilde ["layer" 3]]
+                 [:##q :!S1 ["layer" 3]]
+                 [:##w :1 ["layer" 3]]
+                 [:##e :2 ["layer" 3]]
+                 [:##r :3 ["layer" 3]]
+                 [:##t :!S5 ["layer" 3]]
+                 [:##y :!S6 ["layer" 3]]
+                 [:##u :!S7 ["layer" 3]]
+                 [:##i :!S8 ["layer" 3]]
+                 [:##o :!S4 ["layer" 3]]
+                 [:##p :!Shyphen ["layer" 3]]
+                 [:##open_bracket :!Sequal_sign ["layer" 3]]
+                 [:##caps_lock :left_control ["layer" 3] {:alone :grave_accent_and_tilde}]
+                 [:##left_control :left_control ["layer" 3] {:alone :grave_accent_and_tilde}]
+                 [:##a :!S2 ["layer" 3]]
+                 [:##s :4 ["layer" 3]]
+                 [:##d :5 ["layer" 3]]
+                 [:##f :6 ["layer" 3]]
+                 [:##g :0 ["layer" 3]]
+                 [:##h :left_arrow ["layer" 3]]
+                 [:##j :down_arrow ["layer" 3]]
+                 [:##k :up_arrow ["layer" 3]]
+                 [:##l :right_arrow ["layer" 3]]
+                 [:##semicolon :hyphen ["layer" 3]]
+                 [:##quote :equal_sign ["layer" 3]]
+                 [:##z :!Sopen_bracket ["layer" 3]]
+                 [:##x :7 ["layer" 3]]
+                 [:##c :8 ["layer" 3]]
+                 [:##v :9 ["layer" 3]]
+                 [:##b :!S3 ["layer" 3]]
+                 [:##n :home ["layer" 3]]
+                 [:##m :page_down ["layer" 3]]
+                 [:##comma :page_up ["layer" 3]]
+                 [:##period :end ["layer" 3]]
+                 [:##slash :!Sclose_bracket ["layer" 3]]
+                 [:##left_shift :left_shift ["layer" 3] {:alone :open_bracket}]
+                 [:##right_shift :right_shift ["layer" 3] {:alone :close_bracket}]
+                 ]}
+        ;; {:des   "vk_none"
+        ;;  :rules [[:##grave_accent_and_tilde :vk_none]
+        ;;          [:##1 :vk_none]
+        ;;          [:##2 :vk_none]
+        ;;          [:##3 :vk_none]
+        ;;          [:##4 :vk_none]
+        ;;          [:##5 :vk_none]
+        ;;          [:##6 :vk_none]
+        ;;          [:##7 :vk_none]
+        ;;          [:##8 :vk_none]
+        ;;          [:##9 :vk_none]
+        ;;          [:##0 :vk_none]
+        ;;          [:##hyphen :vk_none]
+        ;;          [:##equal_sign :vk_none]
+        ;;          [:##open_bracket :vk_none]
+        ;;          [:##close_bracket :vk_none]
+        ;;          [:##backslash :vk_none]
+        ;;          ]}
+        {:des   "tab to control-command-option"
+         :rules [[:##tab :!TCleft_option nil {:alone :tab}]]}
+        {:des   "left_shift to ("
+         :rules [[:##left_shift :left_shift nil {:alone :!S9}]]}
+        {:des   "right_shift to )"
+         :rules [[:##right_shift :right_shift nil {:alone :!S0}]]}
+        {:des   "caps_lock to control and escape"
+         :rules [[:##caps_lock :left_control nil {:alone :escape}]]}
+        {:des   "left_control to control and escape"
+         :rules [[:##left_control :left_control nil {:alone :escape}]]}
+        ;; {:des   "left_option to delete_forward"
+        ;;  :rules [[:##left_option :left_option nil {:alone :delete_forward}]]}
+        ;; {:des   "left_command to backspace"
+        ;;  :rules [[:##left_command :left_command nil {:alone :delete_or_backspace}]]}
+        {:des   "right_command to layer 3"
+         :rules [[:##right_command ["layer" 3] nil {:afterup ["layer" 0] :alone :return_or_enter}]]}
+        {:des   "right_option to control-command-shift"
+         :rules [[:##right_option :!TCright_shift nil {:alone :backslash}]]}]}
