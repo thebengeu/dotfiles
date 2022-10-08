@@ -1,0 +1,4 @@
+- hosts: localhost
+  become: yes
+  tasks:
+  - ansible.builtin.include_tasks: "{{ ansible_distribution }}.yml"
