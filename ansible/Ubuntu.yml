@@ -17,6 +17,7 @@
     - fish
     - google-chrome-stable
     - make
+    - mosh
     - neovim
     - pipx
     - postgresql-client-14
