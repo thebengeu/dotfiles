@@ -1,28 +1,6 @@
-- community.general.sudoers:
-    commands: ALL
-    name: "{{ user }}"
-    user: "{{ user }}"
-- ansible.builtin.apt_key:
-    url: https://dl.google.com/linux/linux_signing_key.pub
-- ansible.builtin.apt_repository:
-    repo: deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main
-    filename: google-chrome
-- ansible.builtin.apt:
-    name:
-    - containerd.io
-    - docker-ce
-    - docker-ce-cli
-    - docker-compose-plugin
-    - emacs28-nativecomp
-    - fish
-    - google-chrome-stable
-    - make
-    - mosh
-    - neovim
-    - pipx
-    - postgresql-client-14
-    - ripgrep
-    - unzip
-    - xfce4
-    - xrdp
-    update_cache: yes
+- ansible.builtin.command:
+    cmd: chezmoi init --apply --ssh thebengeu
+    creates: ~/.local/share/chezmoi
+- ansible.builtin.command:
+    cmd: go install github.com/jesseduffield/lazygit@latest
+    creates: ~/go/bin/lazygit
