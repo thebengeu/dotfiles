@@ -9,6 +9,8 @@
 - ansible.builtin.apt_repository:
     repo: ppa:kelleyk/emacs
 - ansible.builtin.apt_repository:
+    repo: ppa:fish-shell/release-3
+- ansible.builtin.apt_repository:
     repo: ppa:longsleep/golang-backports
 - ansible.builtin.apt_key:
     url: https://dl.google.com/linux/linux_signing_key.pub
