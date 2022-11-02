@@ -31,6 +31,8 @@
     name:
     - awscli
     - containerd.io
+    - cargo
+    - cmake
     - docker-ce
     - docker-ce-cli
     - docker-compose-plugin
