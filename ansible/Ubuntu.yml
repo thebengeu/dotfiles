@@ -6,6 +6,9 @@
     creates: ~/go/bin/lazygit
 - community.general.homebrew:
     name: neovim
+- ansible.builtin.git:
+    repo: https://github.com/AstroNvim/AstroNvim
+    dest: ~/.config/nvim
 - community.general.git_config:
     name: user.email
     scope: global
