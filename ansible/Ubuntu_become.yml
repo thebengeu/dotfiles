@@ -35,6 +35,7 @@
     - docker-ce-cli
     - docker-compose-plugin
     - emacs28-nativecomp
+    - exa
     - fish
     - golang
     - google-chrome-stable

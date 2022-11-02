@@ -1,13 +1,15 @@
 - ansible.builtin.command:
     cmd: chezmoi init --apply --ssh thebengeu
     creates: ~/.local/share/chezmoi
-- ansible.builtin.command:
-    cmd: go install github.com/jesseduffield/lazygit@latest
-    creates: ~/go/bin/lazygit
 - community.general.homebrew:
     name:
+    - bat
     - cantino/mcfly/mcfly
     - fzf
+    - gh
+    - git-delta
+    - lazygit
+    - mosh
     - neovim
     - starship
     - zoxide
