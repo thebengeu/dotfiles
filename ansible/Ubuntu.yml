@@ -35,3 +35,5 @@
     name: user.name
     scope: global
     value: Beng Eu
+- community.general.pipx:
+    name: tusker
