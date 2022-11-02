@@ -10,6 +10,9 @@
     repo: https://github.com/AstroNvim/AstroNvim
     dest: ~/.config/nvim
 - ansible.builtin.git:
+    repo: https://github.com/plexus/chemacs2
+    dest: ~/.emacs.d
+- ansible.builtin.git:
     repo: https://github.com/doomemacs/doomemacs
     dest: ~/doomemacs
 - ansible.builtin.git:
