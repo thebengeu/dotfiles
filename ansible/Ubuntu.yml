@@ -4,6 +4,8 @@
 - ansible.builtin.command:
     cmd: go install github.com/jesseduffield/lazygit@latest
     creates: ~/go/bin/lazygit
+- community.general.homebrew:
+    name: neovim
 - community.general.git_config:
     name: user.email
     scope: global
