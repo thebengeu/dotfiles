@@ -32,28 +32,28 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
-     ;; ----------------------------------------------------------------
-     ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
-     ;; `M-m f e R' (Emacs style) to install them.
-     ;; ----------------------------------------------------------------
-     ;; auto-completion
-     ;; better-defaults
+   '(auto-completion
      emacs-lisp
-     ;; git
+     (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
+     (git :variables git-enable-magit-delta-plugin t)
      helm
-     ;; lsp
-     ;; markdown
+     (javascript :variables
+                 javascript-fmt-on-save t
+                 javascript-fmt-tool 'prettier
+                 javascript-import-tool 'import-js)
+     lsp
+     markdown
      multiple-cursors
-     ;; org
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
-     ;; spell-checking
-     ;; syntax-checking
-     ;; version-control
-     treemacs)
+     prettier
+     sql
+     syntax-checking
+     treemacs
+     (typescript :variables
+                 typescript-fmt-on-save t
+                 typescript-fmt-tool 'prettier)
+     version-control
+     (wakatime :variables wakatime-api-key "0e48df74-2682-4433-97ae-b8c04a856802")
+     yaml)
 
 
    ;; List of additional packages that will be installed without being wrapped
@@ -64,13 +64,17 @@ This function should only modify configuration layer settings."
    ;; `dotspacemacs/user-config'. To use a local version of a package, use the
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(deferred
+                                      doom-themes
+                                      format-all
+                                      solaire-mode)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(helm-git-grep
+                                    helm-ls-git)
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -237,8 +241,14 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
-                         spacemacs-light)
+   dotspacemacs-themes '(doom-gruvbox
+                         doom-oceanic-next
+                         doom-material
+                         doom-monokai-pro
+                         doom-nord
+                         doom-solarized-dark
+                         doom-solarized-light
+                         doom-zenburn)
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
    ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
@@ -420,7 +430,7 @@ It should only modify the values of Spacemacs settings."
    ;;   :size-limit-kb 1000)
    ;; When used in a plist, `visual' takes precedence over `relative'.
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers `relative
 
    ;; Code folding method. Possible values are `evil', `origami' and `vimish'.
    ;; (default 'evil)
@@ -447,7 +457,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil, start an Emacs server if one is not already running.
    ;; (default nil)
-   dotspacemacs-enable-server nil
+   dotspacemacs-enable-server t
 
    ;; Set the emacs server socket location.
    ;; If nil, uses whatever the Emacs default is, otherwise a directory path
@@ -458,7 +468,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil, advise quit functions to keep server open when quitting.
    ;; (default nil)
-   dotspacemacs-persistent-server nil
+   dotspacemacs-persistent-server t
 
    ;; List of search tool executable names. Spacemacs uses the first installed
    ;; tool of the list. Supported tools are `rg', `ag', `pt', `ack' and `grep'.
@@ -534,7 +544,7 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-home-shorten-agenda-source nil
 
    ;; If non-nil then byte-compile some of Spacemacs files.
-   dotspacemacs-byte-compile nil))
+   dotspacemacs-byte-compile t))
 
 (defun dotspacemacs/user-env ()
   "Environment variables setup.
@@ -568,6 +578,27 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  (setq js2-strict-missing-semi-warning nil)
+  (setq magit-delta-default-dark-theme "OneHalfDark")
+  (setq projectile-enable-caching t)
+  (fset 'for-of-to-promise-all
+        (kmacro-lambda-form [?: ?s ?/ ?f ?o ?r ?  ?\( ?c ?o ?n ?s ?t ?  ?\\ ?\( ?\[ ?^ ?  ?\] ?+ ?\\ ?\) ?  ?o ?f ?  ?\\ ?\( ?\[ ?^ ?  ?\] ?+ ?\\ ?\) ?\) ?/ ?a ?w ?a ?i ?t ?  ?P ?r ?o ?m ?i ?s ?e ?. ?a ?l ?l ?\( ?\\ ?2 ?. ?m ?a ?p ?\( ?a ?s ?y ?n ?c ?  ?\( ?\\ ?1 ?\) ?  ?= ?> ?/ ?\C-m ?$ ?% ?a ?\) ?\) escape ?% ?^] 0 "%d"))
+  (solaire-global-mode)
+  (require 'deferred)
+  (defun rename-tmux-window(ignored)
+    (deferred:$
+      (deferred:process "tmux" "display-message" "-p" "'#{window_index}'")
+      (deferred:nextc it
+        (lambda (window-index)
+          (setq window-index (replace-regexp-in-string "\'" ""
+                                                       (replace-regexp-in-string "\n\\'" "" window-index)))
+          (setq window-name
+                (replace-regexp-in-string "\*" ""
+                                          (buffer-file-name (window-buffer (minibuffer-selected-window)))))
+          (deferred:process "tmux" "rename-window" "-t" window-index window-name)))))
+  (add-hook 'window-buffer-change-functions 'rename-tmux-window)
+  (setq spaceline-buffer-encoding-abbrev-p nil)
+  (setq magit-refresh-status-buffer nil)
 )
 
 
