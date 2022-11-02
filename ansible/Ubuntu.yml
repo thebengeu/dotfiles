@@ -10,6 +10,12 @@
     repo: https://github.com/AstroNvim/AstroNvim
     dest: ~/.config/nvim
 - ansible.builtin.git:
+    repo: https://github.com/doomemacs/doomemacs
+    dest: ~/doomemacs
+- ansible.builtin.git:
+    repo: https://github.com/syl20bnr/spacemacs
+    dest: ~/spacemacs
+- ansible.builtin.git:
     repo: https://github.com/tmux-plugins/tpm
     dest: ~/.tmux/plugins/tpm
 - ansible.builtin.command:
