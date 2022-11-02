@@ -46,3 +46,10 @@
     update_cache: yes
 - ansible.builtin.apt:
     deb: https://github.com/twpayne/chezmoi/releases/download/v2.26.0/chezmoi_2.26.0_linux_amd64.deb
+- ansible.builtin.group:
+    name: docker
+- ansible.builtin.user:
+    append: yes
+    groups: docker
+    name: "{{ user }}"
+    shell: /usr/bin/fish
