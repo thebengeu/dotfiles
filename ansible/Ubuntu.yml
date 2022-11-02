@@ -7,7 +7,10 @@
 - community.general.homebrew:
     name:
     - cantino/mcfly/mcfly
+    - fzf
     - neovim
+    - starship
+    - zoxide
 - ansible.builtin.git:
     repo: https://github.com/AstroNvim/AstroNvim
     dest: ~/.config/nvim
@@ -29,8 +32,6 @@
 - ansible.builtin.command:
     cmd: ~/.tmux/plugins/tpm/bin/install_plugins
     creates: ~/.tmux/plugins/tmux-pain-control
-- community.general.cargo:
-    name: starship
 - community.general.git_config:
     name: user.email
     scope: global
