@@ -34,13 +34,5 @@
 - ansible.builtin.command:
     cmd: ~/.tmux/plugins/tpm/bin/install_plugins
     creates: ~/.tmux/plugins/tmux-pain-control
-- community.general.git_config:
-    name: user.email
-    scope: global
-    value: beng@bengeu.com
-- community.general.git_config:
-    name: user.name
-    scope: global
-    value: Beng Eu
 - community.general.pipx:
     name: tusker
