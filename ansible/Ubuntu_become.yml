@@ -57,3 +57,13 @@
     groups: docker
     name: "{{ user }}"
     shell: /usr/bin/fish
+- ansible.builtin.command:
+    cmd: ssh-keygen -A
+    creates: /etc/ssh/ssh_host_*
+- ansible.builtin.replace:
+    path: /etc/ssh/sshd_config
+    regexp: ^#(ListenAddress 0.0.0.0)$
+    replace: \1
+- ansible.builtin.service:
+    name: ssh
+    state: reloaded
