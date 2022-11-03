@@ -26,7 +26,7 @@ local config = {
   },
 
   -- Set colorscheme to use
-  colorscheme = "default_theme",
+  colorscheme = "gruvbox-material",
 
   -- Add highlight groups in any theme
   highlights = {
@@ -187,7 +187,24 @@ local config = {
       --     },
       --   },
       -- },
+      tsserver = {
+        on_attach = function(client)
+          astronvim.lsp.disable_formatting(client)
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            desc = "typescript.nvim",
+            pattern = "<buffer>",
+            callback = function()
+              local actions = require("typescript").actions
+              actions.removeUnused({ sync = true })
+              actions.addMissingImports({ sync = true })
+              actions.organizeImports({ sync = true })
+              vim.lsp.buf.formatting_sync()
+            end,
+          })
+        end
+      }
     },
+    skip_setup = { "tsserver" },
   },
 
   -- Mapping data with "desc" stored directly by vim.keymap.set().
@@ -218,6 +235,7 @@ local config = {
     init = {
       -- You can disable default plugins as follows:
       -- ["goolord/alpha-nvim"] = { disable = true },
+      ["declancm/cinnamon.nvim"] = { disable = true },
 
       -- You can also add new plugins here as well:
       -- Add plugins, the packer syntax without the "use"
@@ -229,6 +247,122 @@ local config = {
       --     require("lsp_signature").setup()
       --   end,
       -- },
+      {
+        "akinsho/git-conflict.nvim",
+        config = function()
+          require("git-conflict").setup()
+        end,
+      },
+      { "blankname/vim-fish" },
+      { "bluz71/vim-moonfly-colors" },
+      { "bluz71/vim-nightfly-guicolors" },
+      {
+        "catppuccin/nvim",
+        as = "catppuccin",
+        config = function()
+          require("catppuccin").setup({
+            integrations = {
+              lightspeed = true,
+              which_key = true,
+            },
+          })
+        end,
+      },
+      { "christoomey/vim-tmux-navigator" },
+      { "EdenEast/nightfox.nvim" },
+      { "ellisonleao/gruvbox.nvim" },
+      { "embark-theme/vim" },
+      { "fenetikm/falcon" },
+      { "fladson/vim-kitty" },
+      { "folke/tokyonight.nvim" },
+      -- {
+      --   "ggandor/leap.nvim",
+      --   config = function()
+      --     require("leap").set_default_keymaps()
+      --   end,
+      -- },
+      { "ggandor/lightspeed.nvim" },
+      -- { "github/copilot.vim" },
+      {
+        "jose-elias-alvarez/typescript.nvim",
+        after = "mason-lspconfig",
+        config = function()
+          require("typescript").setup({
+            server = astronvim.lsp.server_settings("tsserver"),
+          })
+        end,
+      },
+      { "marko-cerovac/material.nvim" },
+      {
+        "mcchrish/zenbones.nvim",
+        requires = "rktjmp/lush.nvim"
+      },
+      { "mg979/vim-visual-multi" },
+      {
+        "mrjones2014/legendary.nvim",
+        config = function()
+          require('legendary').setup({
+            autocmds = {
+              {
+                { "BufEnter", "FocusGained" },
+                'call system("tmux rename-window " . expand("%:p"))'
+              }
+            }
+          })
+        end,
+      },
+      { "navarasu/onedark.nvim" },
+      { "olimorris/onedarkpro.nvim" },
+      { "projekt0n/github-nvim-theme" },
+      { "rrethy/nvim-base16" },
+      { "rebelot/kanagawa.nvim" },
+      {
+        "ruifm/gitlinker.nvim",
+        requires = "nvim-lua/plenary.nvim",
+        config = function()
+          require("gitlinker").setup()
+        end,
+      },
+      { "sainnhe/edge" },
+      { "sainnhe/everforest" },
+      { "sainnhe/gruvbox-material" },
+      { "sainnhe/sonokai" },
+      { "shaunsingh/nord.nvim" },
+      {
+        "TimUntersberger/neogit",
+        requires = {
+          "nvim-lua/plenary.nvim",
+          "sindrets/diffview.nvim",
+        },
+        config = function()
+          require("neogit").setup({
+            integrations = {
+              diffview = true
+            },
+          })
+        end,
+      },
+      { "tpope/vim-fugitive" },
+      { "tpope/vim-repeat" },
+      { "tpope/vim-surround" },
+      { "tpope/vim-unimpaired" },
+      { "wakatime/vim-wakatime" },
+      {
+        "zbirenbaum/copilot-cmp",
+        module = "copilot_cmp",
+        config = function()
+          astronvim.add_user_cmp_source("copilot")
+        end,
+      },
+      {
+        "zbirenbaum/copilot.lua",
+        event = {"VimEnter"},
+        config = function()
+          vim.defer_fn(function()
+            require("copilot").setup()
+          end, 100)
+        end,
+      },
 
       -- We also support a key value style plugin definition similar to NvChad:
       -- ["ray-x/lsp_signature.nvim"] = {
@@ -241,7 +375,7 @@ local config = {
     -- All other entries override the require("<key>").setup({...}) call for default plugins
     ["null-ls"] = function(config) -- overrides `require("null-ls").setup(config)`
       -- config variable is the default configuration table for the setup function call
-      -- local null_ls = require "null-ls"
+      local null_ls = require "null-ls"
 
       -- Check supported formatters and linters
       -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
@@ -250,27 +384,42 @@ local config = {
         -- Set a formatter
         -- null_ls.builtins.formatting.stylua,
         -- null_ls.builtins.formatting.prettier,
+        null_ls.builtins.code_actions.eslint_d,
+        null_ls.builtins.diagnostics.eslint_d,
+        -- null_ls.builtins.formatting.pg_format,
+        null_ls.builtins.formatting.prettierd.with({
+          extra_filetypes = { "prisma" },
+        }),
+        -- null_ls.builtins.formatting.sql_formatter,
+        -- null_ls.builtins.formatting.sqlfluff.with({
+		--   extra_args = {"--dialect", "postgres"}
+	    -- }),
       }
       return config -- return final config table
     end,
     treesitter = { -- overrides `require("treesitter").setup(...)`
-      -- ensure_installed = { "lua" },
+      ensure_installed = { "lua" },
     },
     -- use mason-lspconfig to configure LSP installations
     ["mason-lspconfig"] = { -- overrides `require("mason-lspconfig").setup(...)`
-      -- ensure_installed = { "sumneko_lua" },
+      ensure_installed = { "sumneko_lua" },
     },
     -- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
     ["mason-null-ls"] = { -- overrides `require("mason-null-ls").setup(...)`
       -- ensure_installed = { "prettier", "stylua" },
     },
+    cmp = {
+      experimental = {
+        ghost_text = true,
+      }
+    }
   },
 
   -- LuaSnip Options
   luasnip = {
     -- Extend filetypes
     filetype_extend = {
-      -- javascript = { "javascriptreact" },
+      javascript = { "javascriptreact" },
     },
     -- Configure luasnip loaders (vscode, lua, and/or snipmate)
     vscode = {
