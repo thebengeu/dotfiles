@@ -285,7 +285,7 @@ local config = {
       -- { "github/copilot.vim" },
       {
         "jose-elias-alvarez/typescript.nvim",
-        after = "mason-lspconfig",
+        after = "mason-lspconfig.nvim",
         config = function()
           require("typescript").setup({
             server = astronvim.lsp.server_settings("tsserver"),
@@ -328,6 +328,10 @@ local config = {
       { "sainnhe/gruvbox-material" },
       { "sainnhe/sonokai" },
       { "shaunsingh/nord.nvim" },
+      {
+        "sindrets/diffview.nvim",
+        requires = "nvim-lua/plenary.nvim"
+      },
       {
         "TimUntersberger/neogit",
         requires = {
