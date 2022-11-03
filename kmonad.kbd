@@ -34,8 +34,8 @@
 
 (deflayer 1
   _    f1   f2   f3   f4   f5   f6   f7   f8   f9    f10  f11  f12  _
-  @~   S-1  1    2    3    S-5  S-6  S-7  S-8  S-4   S--  S-=  _    _
-  _    S-2  4    5    6    0    left down up   right -    =    _
-  @[   S-[  7    8    9    S-3  home pgdn pgup end   S-]  @]
+  @~   S-1  kp1  kp2  kp3  S-5  S-6  S-7  S-8  S-4   S--  S-=  _    _
+  _    S-2  kp4  kp5  kp6  kp0  left down up   right -    =    _
+  @[   S-[  kp7  kp8  kp9  S-3  home pgdn pgup end   S-]  @]
   @`   _    _              _              _    _     _
 )
