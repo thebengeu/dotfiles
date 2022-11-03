@@ -235,7 +235,6 @@ local config = {
     init = {
       -- You can disable default plugins as follows:
       -- ["goolord/alpha-nvim"] = { disable = true },
-      ["declancm/cinnamon.nvim"] = { disable = true },
 
       -- You can also add new plugins here as well:
       -- Add plugins, the packer syntax without the "use"
