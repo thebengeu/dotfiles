@@ -1,0 +1,40 @@
+- ansible.builtin.command:
+    cmd: curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
+    creates: ~/.config/fish/fish_plugins
+- ansible.builtin.command:
+    cmd: chezmoi init --apply --ssh thebengeu
+    creates: ~/.local/share/chezmoi
+- community.general.homebrew:
+    name:
+    - bat
+    - cantino/mcfly/mcfly
+    - fzf
+    - gh
+    - git-delta
+    - lazygit
+    - mosh
+    - neovim
+    - zoxide
+- ansible.builtin.git:
+    repo: https://github.com/AstroNvim/AstroNvim
+    dest: ~/.config/nvim
+- ansible.builtin.git:
+    repo: https://github.com/plexus/chemacs2
+    dest: ~/.emacs.d
+- ansible.builtin.git:
+    repo: https://github.com/doomemacs/doomemacs
+    dest: ~/doomemacs
+- ansible.builtin.git:
+    repo: https://github.com/syl20bnr/spacemacs
+    dest: ~/spacemacs
+- ansible.builtin.git:
+    repo: https://github.com/tmux-plugins/tpm
+    dest: ~/.tmux/plugins/tpm
+- ansible.builtin.command:
+   cmd: ~/doomemacs/bin/doom install --force
+   creates: ~/doomemacs/.local/straight
+- ansible.builtin.command:
+    cmd: ~/.tmux/plugins/tpm/bin/install_plugins
+    creates: ~/.tmux/plugins/tmux-pain-control
+- community.general.pipx:
+    name: tusker
