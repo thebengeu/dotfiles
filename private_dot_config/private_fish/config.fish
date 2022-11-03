@@ -5,7 +5,6 @@ fish_add_path ~/go/bin
 if status is-interactive
     set --export --global EDITOR nvim
     mcfly init fish | source
-    starship init fish | source
     zoxide init --cmd cd fish | source
     abbr --add bi 'brew install'
     abbr --add bui 'brew uninstall'
