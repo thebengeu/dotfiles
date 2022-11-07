@@ -34,7 +34,6 @@
     - fish
     - golang
     - make
-    - mosh
     - nodejs
     - pipx
     - postgresql-client
