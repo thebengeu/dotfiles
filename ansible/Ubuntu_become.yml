@@ -13,11 +13,6 @@
 - ansible.builtin.apt_repository:
     repo: ppa:longsleep/golang-backports
 - ansible.builtin.apt_key:
-    url: https://dl.google.com/linux/linux_signing_key.pub
-- ansible.builtin.apt_repository:
-    repo: deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main
-    filename: google-chrome
-- ansible.builtin.apt_key:
     url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
 - ansible.builtin.apt_repository:
     repo: deb https://deb.nodesource.com/node_19.x jammy main
@@ -38,7 +33,6 @@
     - exa
     - fish
     - golang
-    - google-chrome-stable
     - make
     - mosh
     - nodejs
@@ -46,8 +40,6 @@
     - postgresql-client
     - ripgrep
     - unzip
-    - xfce4
-    - xrdp
     update_cache: yes
 - ansible.builtin.apt:
     deb: https://github.com/twpayne/chezmoi/releases/download/v2.26.0/chezmoi_2.26.0_linux_amd64.deb
