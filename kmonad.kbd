@@ -13,12 +13,11 @@
 )
 
 (defalias
-  1   (layer-toggle 1)
   l   (tap-hold-next-release 200 S-9 lsft)
   r   (tap-hold-next-release 200 S-0 rsft)
   [   (tap-hold-next-release 200 [ lsft)
   ]   (tap-hold-next-release 200 ] rsft)
-  \   (tap-hold-next-release 200 \ rmet)
+  \   (tap-hold-next-release 200 \ (layer-toggle 1))
   `   (tap-hold-next-release 200 ` lctl)
   ~   (tap-hold-next-release 200 S-` tab)
   ctl (tap-hold-next-release 200 esc lctl)
@@ -27,9 +26,9 @@
 (deflayer 0
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
-  _    _    _    _    _    _    _    _    _    _    _    _    _
+  @ctl _    _    _    _    _    _    _    _    _    _    _    _
   @l   _    _    _    _    _    _    _    _    _    _    @r
-  @ctl _    _              _              @1   @\   _ 
+  @ctl _    _              _              @\   _    @\
 )
 
 (deflayer 1
