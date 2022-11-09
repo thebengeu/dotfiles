@@ -187,6 +187,11 @@ local config = {
       --     },
       --   },
       -- },
+      sumneko_lua = {
+        format = {
+          indent_size = "2",
+        }
+      },
       tsserver = {
         on_attach = function(client)
           astronvim.lsp.disable_formatting(client)
@@ -202,7 +207,7 @@ local config = {
             end,
           })
         end
-      }
+      },
     },
     skip_setup = { "tsserver" },
   },
@@ -359,7 +364,7 @@ local config = {
       },
       {
         "zbirenbaum/copilot.lua",
-        event = {"VimEnter"},
+        event = { "VimEnter" },
         config = function()
           vim.defer_fn(function()
             require("copilot").setup()
@@ -395,8 +400,8 @@ local config = {
         }),
         -- null_ls.builtins.formatting.sql_formatter,
         -- null_ls.builtins.formatting.sqlfluff.with({
-		--   extra_args = {"--dialect", "postgres"}
-	    -- }),
+        --   extra_args = { "--dialect", "postgres" }
+        -- }),
       }
       return config -- return final config table
     end,
