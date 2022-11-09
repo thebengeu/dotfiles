@@ -147,7 +147,7 @@ local config = {
           -- "go",
         },
         ignore_filetypes = { -- disable format on save for specified filetypes
-          -- "python",
+          "typescript",
         },
       },
       disabled = { -- disable formatting capabilities for the listed language servers
@@ -193,8 +193,7 @@ local config = {
         }
       },
       tsserver = {
-        on_attach = function(client)
-          astronvim.lsp.disable_formatting(client)
+        on_attach = function()
           vim.api.nvim_create_autocmd("BufWritePre", {
             desc = "typescript.nvim",
             pattern = "<buffer>",
@@ -203,7 +202,7 @@ local config = {
               actions.removeUnused({ sync = true })
               actions.addMissingImports({ sync = true })
               actions.organizeImports({ sync = true })
-              vim.lsp.buf.formatting_sync()
+              vim.lsp.buf.format()
             end,
           })
         end
