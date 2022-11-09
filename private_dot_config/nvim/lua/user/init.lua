@@ -410,11 +410,17 @@ local config = {
     },
     -- use mason-lspconfig to configure LSP installations
     ["mason-lspconfig"] = { -- overrides `require("mason-lspconfig").setup(...)`
-      ensure_installed = { "sumneko_lua" },
+      ensure_installed = {
+        "sumneko_lua",
+        "tsserver",
+      },
     },
     -- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
     ["mason-null-ls"] = { -- overrides `require("mason-null-ls").setup(...)`
-      -- ensure_installed = { "prettier", "stylua" },
+      ensure_installed = {
+        "eslint_d",
+        "prettierd",
+      },
     },
     cmp = {
       experimental = {
