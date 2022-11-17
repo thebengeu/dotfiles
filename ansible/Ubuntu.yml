@@ -6,16 +6,17 @@
     creates: ~/.local/share/chezmoi
 - community.general.homebrew:
     name:
-    - bat
-    - cantino/mcfly/mcfly
-    - fzf
-    - gh
-    - git-delta
-    - lazygit
-    - mosh
-    - neovim
-    - wakatime-cli
-    - zoxide
+      - bat
+      - cantino/mcfly/mcfly
+      - fd
+      - fzf
+      - gh
+      - git-delta
+      - lazygit
+      - mosh
+      - neovim
+      - wakatime-cli
+      - zoxide
 - ansible.builtin.git:
     repo: https://github.com/AstroNvim/AstroNvim
     dest: ~/.config/nvim
@@ -32,8 +33,8 @@
     repo: https://github.com/tmux-plugins/tpm
     dest: ~/.tmux/plugins/tpm
 - ansible.builtin.command:
-   cmd: ~/doomemacs/bin/doom install --force
-   creates: ~/doomemacs/.local/straight
+    cmd: ~/doomemacs/bin/doom install --force
+    creates: ~/doomemacs/.local/straight
 - ansible.builtin.command:
     cmd: ~/.tmux/plugins/tpm/bin/install_plugins
     creates: ~/.tmux/plugins/tmux-pain-control
