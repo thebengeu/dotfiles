@@ -13,6 +13,7 @@
       - mosh
       - neovim
       - wakatime-cli
+      - xh
       - zoxide
 - ansible.builtin.git:
     repo: https://github.com/AstroNvim/AstroNvim
