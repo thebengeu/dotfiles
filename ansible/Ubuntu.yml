@@ -45,11 +45,11 @@
 - ansible.builtin.command:
     cmd: ~/doomemacs/bin/doom install --force
     creates: ~/doomemacs/.local/straight
-- ansible.builtin.command:
-    cmd: ~/.tmux/plugins/tpm/bin/install_plugins
-    creates: ~/.tmux/plugins/tmux-pain-control
 - community.general.pipx:
     name: tusker
 - ansible.builtin.command:
     cmd: chezmoi init --apply --ssh thebengeu
     creates: ~/.local/share/chezmoi
+- ansible.builtin.command:
+    cmd: ~/.tmux/plugins/tpm/bin/install_plugins
+    creates: ~/.tmux/plugins/tmux-pain-control
