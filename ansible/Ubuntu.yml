@@ -33,6 +33,10 @@
     repo: https://github.com/doomemacs/doomemacs
     dest: ~/doomemacs
 - ansible.builtin.git:
+    repo: https://github.com/ryanoasis/nerd-fonts.git
+    depth: 1
+    dest: ~/nerd-fonts
+- ansible.builtin.git:
     repo: https://github.com/syl20bnr/spacemacs
     dest: ~/spacemacs
 - ansible.builtin.git:
