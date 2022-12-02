@@ -1,6 +1,11 @@
-- ansible.builtin.command:
+- ansible.builtin.shell:
     cmd: curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
-    creates: ~/.config/fish/fish_plugins
+    creates: ~/.config/fish/functions/fisher.fish
+    executable: /usr/bin/fish
+- ansible.builtin.shell:
+    cmd: yes | fisher install IlanCosman/tide@v5
+    creates: ~/.config/fish/functions/tide.fish
+    executable: /usr/bin/fish
 - ansible.builtin.shell:
     cmd: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     creates: /home/linuxbrew
