@@ -24,22 +24,22 @@
     repo: deb http://apt.postgresql.org/pub/repos/apt jammy-pgdg main
 - ansible.builtin.apt:
     name:
-    - awscli
-    - containerd.io
-    - docker-ce
-    - docker-ce-cli
-    - docker-compose-plugin
-    - emacs28-nativecomp
-    - exa
-    - fish
-    - golang
-    - make
-    - nodejs
-    - openssh-server
-    - pipx
-    - postgresql-client
-    - ripgrep
-    - unzip
+      - awscli
+      - containerd.io
+      - docker-ce
+      - docker-ce-cli
+      - docker-compose-plugin
+      - emacs28-nativecomp
+      - exa
+      - fish
+      - golang
+      - make
+      - nodejs
+      - openssh-server
+      - pipx
+      - postgresql-client
+      - ripgrep
+      - unzip
     update_cache: yes
 - ansible.builtin.apt:
     deb: https://github.com/twpayne/chezmoi/releases/download/v2.26.0/chezmoi_2.26.0_linux_amd64.deb
