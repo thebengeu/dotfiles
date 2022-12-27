@@ -62,3 +62,6 @@
 - ansible.builtin.service:
     name: ssh
     state: reloaded
+- community.general.npm:
+    name: npm-check-updates
+    global: true
