@@ -1,0 +1,15 @@
+[Match]
+Name=eth0
+
+[Network]
+Description=WSL_external
+DHCP=true
+IPv6AcceptRA=true
+MulticastDNS=true
+LLDP=true
+EmitLLDP=true
+
+[DHCP]
+CriticalConnection=true
+RouteMetric=10
+UseDomains=true
