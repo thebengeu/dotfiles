@@ -4,10 +4,9 @@
 - ansible.builtin.service:
     enabled: true
     name: systemd-networkd
-- ansible.builtin.file:
-    path: /etc/resolv.conf
-    src: /run/systemd/resolve/resolv.conf
-    state: link
+- ansible.builtin.copy:
+    dest: /etc/resolv.conf
+    src: resolv.conf
 - community.general.sudoers:
     commands: ALL
     name: "{{ user }}"
