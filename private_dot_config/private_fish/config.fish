@@ -16,6 +16,7 @@ if status is-interactive
     abbr --add gcm 'git commit -m'
     abbr --add gco 'git checkout'
     abbr --add gp 'git pull'
+    abbr --add gpom 'git push origin master'
     abbr --add grbc 'git rebase --continue'
     abbr --add gs 'git status'
     abbr --add gss 'git status -s'
