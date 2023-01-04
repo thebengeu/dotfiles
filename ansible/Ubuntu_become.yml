@@ -7,11 +7,7 @@
 - ansible.builtin.apt_repository:
     repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable
 - ansible.builtin.apt_repository:
-    repo: ppa:kelleyk/emacs
-- ansible.builtin.apt_repository:
     repo: ppa:fish-shell/release-3
-- ansible.builtin.apt_repository:
-    repo: ppa:longsleep/golang-backports
 - ansible.builtin.apt_key:
     url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
 - ansible.builtin.apt_repository:
@@ -29,7 +25,7 @@
       - docker-ce
       - docker-ce-cli
       - docker-compose-plugin
-      - emacs28-nativecomp
+      - emacs-nox
       - exa
       - fish
       - golang
