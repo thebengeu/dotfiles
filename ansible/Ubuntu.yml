@@ -45,6 +45,9 @@
 - ansible.builtin.command:
     cmd: ~/doomemacs/bin/doom install --force
     creates: ~/doomemacs/.local/straight
+- ansible.posix.authorized_key:
+    key: https://github.com/thebengeu.keys
+    user: "{{ user }}"
 - community.general.pipx:
     name: tusker
 - ansible.builtin.command:
