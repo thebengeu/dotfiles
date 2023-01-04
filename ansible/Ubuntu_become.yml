@@ -58,6 +58,10 @@
 - ansible.builtin.command:
     cmd: ssh-keygen -A
     creates: /etc/ssh/ssh_host_*
+- ansible.builtin.lineinfile:
+    line: PasswordAuthentication no
+    path: /etc/ssh/sshd_config
+    search_string: PasswordAuthentication
 - ansible.builtin.replace:
     path: /etc/ssh/sshd_config
     regexp: ^#(ListenAddress 0.0.0.0)$
