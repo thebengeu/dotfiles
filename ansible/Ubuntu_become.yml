@@ -22,6 +22,7 @@
     name:
       - awscli
       - containerd.io
+      - curl
       - docker-ce
       - docker-ce-cli
       - docker-compose-plugin
@@ -35,6 +36,7 @@
       - pipx
       - postgresql-client
       - ripgrep
+      - tmux
       - unzip
     update_cache: yes
 - ansible.builtin.apt:
