@@ -1,7 +1,11 @@
 - hosts: localhost
   tasks:
-  - ansible.builtin.include_tasks: "{{ ansible_distribution }}_become.yml"
-    args:
-      apply:
-        become: yes
-  - ansible.builtin.include_tasks: "{{ ansible_distribution }}.yml"
+    - ansible.builtin.include_tasks: "{{ ansible_distribution }}_become.yml"
+      args:
+        apply:
+          become: yes
+    - ansible.builtin.include_tasks: "{{ ansible_distribution }}.yml"
+    - ansible.builtin.include_tasks: "{{ ansible_distribution }}_desktop_become.yml"
+      args:
+        apply:
+          become: yes
