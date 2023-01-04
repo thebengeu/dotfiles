@@ -42,7 +42,7 @@
       - unzip
     update_cache: yes
 - ansible.builtin.apt:
-    deb: https://github.com/twpayne/chezmoi/releases/download/v2.26.0/chezmoi_2.26.0_linux_amd64.deb
+    deb: https://github.com/twpayne/chezmoi/releases/download/v2.29.1/chezmoi_2.29.1_linux_amd64.deb
 - ansible.builtin.apt:
     deb: http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.16_amd64.deb
 - ansible.builtin.group:
