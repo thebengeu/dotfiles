@@ -1,4 +1,9 @@
 - ansible.builtin.apt_key:
+    url: https://dl.google.com/linux/linux_signing_key.pub
+- ansible.builtin.apt_repository:
+    repo: deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main
+    filename: google-chrome
+- ansible.builtin.apt_key:
     url: https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg
 - ansible.builtin.apt_repository:
     repo: deb http://repository.spotify.com stable non-free
@@ -7,6 +12,7 @@
       - gnome-shell-extension-manager
       - gnome-shell-extensions
       - gnome-tweaks
+      - google-chrome-stable
       - spotify-client
 - ansible.builtin.lineinfile:
     line: Exec=spotify --force-device-scale-factor=2 %U
