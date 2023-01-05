@@ -1,5 +1,5 @@
 - ansible.builtin.shell:
-    cmd: curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+    cmd: curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin launch=n
     creates: ~/.local/kitty.app
 - ansible.builtin.file:
     dest: ~/.local/bin/kitty
