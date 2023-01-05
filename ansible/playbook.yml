@@ -9,3 +9,4 @@
       args:
         apply:
           become: yes
+    - ansible.builtin.include_tasks: "{{ ansible_distribution }}_desktop.yml"
