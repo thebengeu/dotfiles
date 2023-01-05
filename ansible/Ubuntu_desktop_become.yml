@@ -23,7 +23,7 @@
 - ansible.builtin.lineinfile:
     line: Exec=spotify --force-device-scale-factor=2 %U
     path: /usr/share/applications/spotify.desktop
-    regexp: ^Exec=spotify
+    regexp: ^Exec=
 - community.general.snap:
     name:
       - telegram-desktop
