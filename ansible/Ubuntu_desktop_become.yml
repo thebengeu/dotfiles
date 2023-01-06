@@ -2,6 +2,7 @@
     url: https://deb.beekeeperstudio.io/beekeeper.key
 - ansible.builtin.apt_repository:
     repo: deb https://deb.beekeeperstudio.io stable main
+    filename: beekeeper-studio-app
 - ansible.builtin.apt_key:
     url: https://dl.google.com/linux/linux_signing_key.pub
 - ansible.builtin.apt_repository:
@@ -10,7 +11,7 @@
 - ansible.builtin.apt_key:
     url: https://packages.microsoft.com/keys/microsoft.asc
 - ansible.builtin.apt_repository:
-    repo: deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main
+    repo: deb [arch=amd64] https://packages.microsoft.com/repos/edge/ stable main
     filename: microsoft-edge
 - ansible.builtin.apt_key:
     url: https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg
@@ -22,6 +23,7 @@
     url: https://repo.vivaldi.com/archive/linux_signing_key.pub
 - ansible.builtin.apt_repository:
     repo: deb [arch=amd64] https://repo.vivaldi.com/archive/deb/ stable main
+    filename: vivaldi
 - community.general.snap:
     name: firefox
     state: absent
