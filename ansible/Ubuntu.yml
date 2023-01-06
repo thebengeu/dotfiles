@@ -20,6 +20,7 @@
       - lazygit
       - mosh
       - neovim
+      - topgrade
       - wakatime-cli
       - xh
       - zoxide

@@ -39,6 +39,7 @@
       - nodejs
       - openssh-server
       - pipx
+      - postgresql
       - postgresql-client
       - python3-pip
       - ripgrep
