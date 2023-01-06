@@ -74,3 +74,6 @@
 - community.general.npm:
     name: npm-check-updates
     global: true
+- community.general.alternatives:
+    name: editor
+    path: /home/linuxbrew/.linuxbrew/bin/nvim
