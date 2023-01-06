@@ -22,9 +22,18 @@
     url: https://repo.vivaldi.com/archive/linux_signing_key.pub
 - ansible.builtin.apt_repository:
     repo: deb [arch=amd64] https://repo.vivaldi.com/archive/deb/ stable main
+- community.general.snap:
+    name: firefox
+    state: absent
+- ansible.builtin.copy:
+    dest: /etc/apt/preferences.d/firefox
+    src: firefox
+- ansible.builtin.apt_repository:
+    repo: ppa:mozillateam/ppa
 - ansible.builtin.apt:
     name:
       - beekeeper-studio
+      - firefox
       - flatpak
       - gnome-shell-extension-manager
       - gnome-shell-extensions
