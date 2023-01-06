@@ -1,4 +1,8 @@
 - ansible.builtin.apt_key:
+    url: https://deb.beekeeperstudio.io/beekeeper.key
+- ansible.builtin.apt_repository:
+    repo: deb https://deb.beekeeperstudio.io stable main
+- ansible.builtin.apt_key:
     url: https://dl.google.com/linux/linux_signing_key.pub
 - ansible.builtin.apt_repository:
     repo: deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main
@@ -20,6 +24,7 @@
     repo: deb [arch=amd64] https://repo.vivaldi.com/archive/deb/ stable main
 - ansible.builtin.apt:
     name:
+      - beekeeper-studio
       - flatpak
       - gnome-shell-extension-manager
       - gnome-shell-extensions
@@ -35,8 +40,12 @@
     regexp: ^Exec=
 - community.general.snap:
     name:
+      - raindrop
       - telegram-desktop
-      - todoist
+- community.general.snap:
+    classic: true
+    name:
+      - webstorm
 - community.general.flatpak_remote:
     flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
     name: flathub
