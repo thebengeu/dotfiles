@@ -27,3 +27,14 @@
   loop:
     - ~/.local/share/applications/kitty.desktop
     - ~/.local/share/applications/kitty-open.desktop
+- community.general.homebrew_tap:
+    name: linuxbrew/fonts
+- community.general.homebrew:
+    name:
+      - font-fira-code
+      - font-jetbrains-mono
+      - font-symbols-only-nerd-font
+- ansible.builtin.file:
+    dest: ~/.local/share/fonts/linuxbrew
+    src: /home/linuxbrew/.linuxbrew/share/fonts
+    state: link

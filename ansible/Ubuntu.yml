@@ -45,7 +45,7 @@
     repo: https://github.com/tmux-plugins/tpm
     dest: ~/.tmux/plugins/tpm
 - ansible.builtin.command:
-    cmd: ~/doomemacs/bin/doom install --force
+    cmd: ~/doomemacs/bin/doom install --force --no-fonts
     creates: ~/doomemacs/.local/straight
 - ansible.posix.authorized_key:
     key: https://github.com/thebengeu.keys
