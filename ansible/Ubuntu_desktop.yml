@@ -32,8 +32,10 @@
 - community.general.homebrew:
     name:
       - font-fira-code
+      - font-iosevka
       - font-jetbrains-mono
       - font-symbols-only-nerd-font
+      - font-victor-mono
 - ansible.builtin.file:
     dest: ~/.local/share/fonts/linuxbrew
     src: /home/linuxbrew/.linuxbrew/share/fonts
