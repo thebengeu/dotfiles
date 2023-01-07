@@ -51,6 +51,7 @@
       - microsoft-edge-stable
       - papirus-icon-theme
       - spotify-client
+      - steam
       - ulauncher
       - vivaldi-stable
 - ansible.builtin.apt:
