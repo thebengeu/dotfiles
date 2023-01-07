@@ -16,6 +16,8 @@
 - ansible.builtin.apt_repository:
     repo: deb [arch=amd64] https://packages.microsoft.com/repos/edge/ stable main
     filename: microsoft-edge
+- ansible.builtin.apt_repository:
+    repo: ppa:papirus/papirus
 - ansible.builtin.apt_key:
     url: https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg
 - ansible.builtin.apt_repository:
@@ -38,6 +40,7 @@
 - ansible.builtin.apt:
     name:
       - beekeeper-studio
+      - chrome-gnome-shell
       - code
       - firefox
       - flatpak
@@ -46,6 +49,7 @@
       - gnome-tweaks
       - google-chrome-stable
       - microsoft-edge-stable
+      - papirus-icon-theme
       - spotify-client
       - ulauncher
       - vivaldi-stable
