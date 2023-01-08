@@ -4,7 +4,9 @@
     user: "{{ user }}"
 - ansible.builtin.apt_key:
     url: https://downloads.1password.com/linux/keys/1password.asc
+    keyring: /usr/share/keyrings/1password-archive-keyring.gpg
 - ansible.builtin.apt_repository:
+    filename: 1password
     repo: deb [arch=amd64 signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/amd64 stable main
 - ansible.builtin.apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
