@@ -3,7 +3,7 @@
   pager = delta
 [delta]
   navigate = true
-  theme = gruvbox-light
+  theme = Catppuccin-mocha
 [diff]
   colorMoved = default
 [interactive]
