@@ -37,6 +37,7 @@ This function should only modify configuration layer settings."
      (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
      (git :variables git-enable-magit-delta-plugin t)
      helm
+     import-js
      (javascript :variables
                  javascript-fmt-on-save t
                  javascript-fmt-tool 'prettier
