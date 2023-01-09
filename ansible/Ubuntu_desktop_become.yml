@@ -54,6 +54,8 @@
       - ulauncher
       - vivaldi-stable
 - ansible.builtin.apt:
+    deb: https://cdn.manictime.com/setup/linux/v1_4_2_0/ManicTime.deb
+- ansible.builtin.apt:
     deb: https://github.com/wez/wezterm/releases/download/20221119-145034-49b9839f/wezterm-20221119-145034-49b9839f.Ubuntu22.04.deb
 - ansible.builtin.lineinfile:
     line: Exec=spotify --force-device-scale-factor=2 %U
