@@ -10,6 +10,7 @@ if status is-interactive
     zoxide init --cmd cd fish | source
     abbr --add bi 'brew install'
     abbr --add bui 'brew uninstall'
+    abbr --add ca 'chezmoi apply'
     abbr --add cat bat
     abbr --add e 'COLORTERM=truecolor emacs -nw'
     abbr --add g git
@@ -17,6 +18,7 @@ if status is-interactive
     abbr --add gcam 'git commit -a -m'
     abbr --add gcm 'git commit -m'
     abbr --add gco 'git checkout'
+    abbr --add gd 'git diff'
     abbr --add gp 'git pull'
     abbr --add gpom 'git push origin master'
     abbr --add grbc 'git rebase --continue'
@@ -24,6 +26,7 @@ if status is-interactive
     abbr --add gss 'git status -s'
     abbr --add ll 'exa --git --icons --long'
     abbr --add ls 'exa --icons'
+    abbr --add n nvim
     abbr --add pr 'gh pr create -f'
     abbr --add prr 'gh pr create -f -r'
     abbr --add vim nvim
