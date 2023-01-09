@@ -28,7 +28,9 @@
     - ~/.local/share/applications/kitty.desktop
     - ~/.local/share/applications/kitty-open.desktop
 - community.general.homebrew_tap:
-    name: linuxbrew/fonts
+    name:
+      - linuxbrew/fonts
+      - spicetify/homebrew-tap
 - community.general.homebrew:
     name:
       - font-fira-code
@@ -36,6 +38,7 @@
       - font-jetbrains-mono
       - font-symbols-only-nerd-font
       - font-victor-mono
+      - spicetify-cli
 - ansible.builtin.file:
     dest: ~/.local/share/fonts/linuxbrew
     src: /home/linuxbrew/.linuxbrew/share/fonts
