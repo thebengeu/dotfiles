@@ -16,6 +16,7 @@
 - community.general.homebrew:
     name:
       - bat
+      - broot
       - cantino/mcfly/mcfly
       - fd
       - fnm
