@@ -4,6 +4,7 @@ fish_add_path ~/.local/bin
 fish_add_path ~/go/bin
 if status is-interactive
     set --export --global EDITOR nvim
+    set --global fish_greeting
     fnm env --use-on-cd | source
     mcfly init fish | source
     zoxide init --cmd cd fish | source
