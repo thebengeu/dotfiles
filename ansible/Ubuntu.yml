@@ -22,6 +22,7 @@
       - fzf
       - gh
       - git-delta
+      - lazydocker
       - lazygit
       - mosh
       - neovim
