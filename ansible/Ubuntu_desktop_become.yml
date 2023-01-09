@@ -11,7 +11,7 @@
 - ansible.builtin.apt_key:
     url: https://packages.microsoft.com/keys/microsoft.asc
 - ansible.builtin.apt_repository:
-    repo: deb [arch=amd64,arm64,armhf] https://packages.microsoft.com/repos/code stable main
+    repo: deb [arch=amd64,arm64,armhf] http://packages.microsoft.com/repos/code stable main
     filename: vscode
 - ansible.builtin.apt_repository:
     repo: deb [arch=amd64] https://packages.microsoft.com/repos/edge/ stable main
