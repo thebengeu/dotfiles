@@ -1,0 +1,17 @@
+source ~/.intellimacs/spacemacs.vim
+source ~/.intellimacs/extra.vim
+source ~/.intellimacs/major.vim
+source ~/.intellimacs/which-key.vim
+let mapleader=","
+set number
+set relativenumber
+set NERDTree
+set commentary
+set easymotion
+set exchange
+set highlightedyank
+set ideajoin
+set matchit
+set sneak
+set textobj-indent
+set vim-paragraph-motion
