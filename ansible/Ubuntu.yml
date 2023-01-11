@@ -18,6 +18,7 @@
       - bat
       - broot
       - cantino/mcfly/mcfly
+      - emacs
       - fd
       - fnm
       - fzf

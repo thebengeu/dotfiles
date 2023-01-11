@@ -33,7 +33,6 @@
       - docker-ce
       - docker-ce-cli
       - docker-compose-plugin
-      - emacs-nox
       - exa
       - fish
       - golang
