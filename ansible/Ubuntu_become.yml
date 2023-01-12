@@ -27,6 +27,7 @@
 - ansible.builtin.apt:
     name:
       - 1password
+      - autoconf
       - awscli
       - containerd.io
       - curl
@@ -36,6 +37,8 @@
       - exa
       - fish
       - golang
+      - libgccjit-12-dev
+      - libncurses-dev
       - make
       - nodejs
       - openssh-server
@@ -44,6 +47,7 @@
       - postgresql-client
       - python3-pip
       - ripgrep
+      - texinfo
       - tmux
       - unzip
     update_cache: yes
