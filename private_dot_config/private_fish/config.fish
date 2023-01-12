@@ -12,6 +12,12 @@ if status is-interactive
     abbr --add bi 'brew install'
     abbr --add bui 'brew uninstall'
     abbr --add ca 'chezmoi apply'
+    abbr --add cgca 'chezmoi git -- commit --amend'
+    abbr --add cgcam 'chezmoi git -- commit -a -m'
+    abbr --add cgd 'chezmoi git diff'
+    abbr --add cgpom 'chezmoi git push origin master'
+    abbr --add cgs 'chezmoi git status'
+    abbr --add cgss 'chezmoi git -- status -s'
     abbr --add cat bat
     abbr --add e 'COLORTERM=truecolor emacs -nw'
     abbr --add g git
