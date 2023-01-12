@@ -603,7 +603,7 @@ before packages are loaded."
   (setq spaceline-buffer-encoding-abbrev-p nil)
   (setq magit-refresh-status-buffer nil)
   (use-package autothemer
-    :ehsure t)
+    :ensure t)
   (setq custom-theme-directory "~/catppuccin/emacs")
   (load-theme 'catppuccin-mocha t)
 )
