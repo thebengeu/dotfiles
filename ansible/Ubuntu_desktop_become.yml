@@ -50,6 +50,7 @@
       - google-chrome-stable
       - microsoft-edge-stable
       - papirus-icon-theme
+      - redshift-gtk
       - spotify-client
       - ulauncher
       - vivaldi-stable
