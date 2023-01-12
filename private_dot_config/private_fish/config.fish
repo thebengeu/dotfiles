@@ -16,6 +16,7 @@ if status is-interactive
     abbr --add e 'COLORTERM=truecolor emacs -nw'
     abbr --add g git
     abbr --add gaa 'git add -A'
+    abbr --add gca 'git commit --amend'
     abbr --add gcam 'git commit -a -m'
     abbr --add gcm 'git commit -m'
     abbr --add gco 'git checkout'
