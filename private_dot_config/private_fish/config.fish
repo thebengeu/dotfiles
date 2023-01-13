@@ -19,7 +19,7 @@ if status is-interactive
     abbr --add cgs 'chezmoi git status'
     abbr --add cgss 'chezmoi git -- status -s'
     abbr --add cat bat
-    abbr --add e 'COLORTERM=truecolor emacs -nw'
+    abbr --add e 'emacsclient -nw'
     abbr --add g git
     abbr --add gaa 'git add -A'
     abbr --add gca 'git commit --amend'
