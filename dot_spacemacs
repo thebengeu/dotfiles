@@ -66,8 +66,7 @@ This function should only modify configuration layer settings."
    ;; `dotspacemacs/user-config'. To use a local version of a package, use the
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(autothemer
-                                      deferred
+   dotspacemacs-additional-packages '(deferred
                                       doom-themes
                                       format-all
                                       solaire-mode)
@@ -602,10 +601,8 @@ before packages are loaded."
   (add-hook 'window-buffer-change-functions 'rename-tmux-window)
   (setq spaceline-buffer-encoding-abbrev-p nil)
   (setq magit-refresh-status-buffer nil)
-  (use-package autothemer
-    :ensure t)
-  (setq custom-theme-directory "~/catppuccin/emacs")
-  (load-theme 'catppuccin-mocha t)
+  (add-to-list 'custom-theme-load-path "~/catppuccin/emacs")
+  (load-theme 'catppuccin t)
 )
 
 
