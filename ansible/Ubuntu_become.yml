@@ -88,6 +88,9 @@
 - community.general.npm:
     name: prettier
     global: true
+- community.general.npm:
+    name: ts-node
+    global: true
 - community.general.alternatives:
     name: editor
     path: /home/linuxbrew/.linuxbrew/bin/nvim
