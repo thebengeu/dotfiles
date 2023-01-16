@@ -49,6 +49,5 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 
-(package! autothemer)
 (package! catppuccin
   :recipe (:host github :repo "catppuccin/emacs"))
