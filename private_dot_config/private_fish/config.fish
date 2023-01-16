@@ -9,6 +9,7 @@ if status is-interactive
     fnm env --use-on-cd | source
     mcfly init fish | source
     zoxide init --cmd cd fish | source
+    abbr --add b bat
     abbr --add bi 'brew install'
     abbr --add bui 'brew uninstall'
     abbr --add ca 'chezmoi apply'
@@ -18,6 +19,7 @@ if status is-interactive
     abbr --add cgpom 'chezmoi git push origin master'
     abbr --add cgs 'chezmoi git status'
     abbr --add cgss 'chezmoi git -- status -s'
+    abbr --add cr 'chezmoi re-add'
     abbr --add cat bat
     abbr --add e 'emacsclient -nw'
     abbr --add g git
