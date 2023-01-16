@@ -76,3 +76,16 @@
 ;; they are implemented.
 (setq which-key-idle-delay 0.1)
 (setq +format-with-lsp nil)
+(require 'deferred)
+(defun rename-tmux-window(ignored)
+  (deferred:$
+    (deferred:process "tmux" "display-message" "-p" "'#{window_index}'")
+    (deferred:nextc it
+      (lambda (window-index)
+        (setq window-index (replace-regexp-in-string "\'" ""
+                                                     (replace-regexp-in-string "\n\\'" "" window-index)))
+        (setq window-name
+              (replace-regexp-in-string "\*" ""
+                                        (buffer-file-name (window-buffer (minibuffer-selected-window)))))
+        (deferred:process "tmux" "rename-window" "-t" window-index window-name)))))
+(add-hook 'window-buffer-change-functions 'rename-tmux-window)
