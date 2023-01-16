@@ -42,6 +42,9 @@
     repo: https://github.com/doomemacs/doomemacs
     dest: ~/doomemacs
 - ansible.builtin.git:
+    repo: https://git.savannah.gnu.org/git/emacs.git
+    dest: ~/emacs
+- ansible.builtin.git:
     repo: https://github.com/ryanoasis/nerd-fonts.git
     depth: 1
     dest: ~/nerd-fonts
