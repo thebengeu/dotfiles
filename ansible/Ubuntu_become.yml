@@ -26,7 +26,7 @@
     repo: deb http://apt-archive.postgresql.org/pub/repos/apt {{ ansible_distribution_release }}-pgdg-archive main
 - ansible.builtin.apt:
     name:
-      - 1password
+      - 1password-cli
       - autoconf
       - awscli
       - containerd.io
@@ -40,6 +40,8 @@
       - libgccjit-12-dev
       - libncurses-dev
       - make
+      - moreutils
+      - msmtp-mta
       - nodejs
       - openssh-server
       - pipx

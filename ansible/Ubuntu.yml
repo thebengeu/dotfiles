@@ -19,6 +19,7 @@
       - broot
       - cantino/mcfly/mcfly
       - emacs
+      - eth-p/software/bat-extras-batman
       - fd
       - fnm
       - fzf

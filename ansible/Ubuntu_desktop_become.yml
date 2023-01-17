@@ -39,6 +39,7 @@
     repo: ppa:mozillateam/ppa
 - ansible.builtin.apt:
     name:
+      - 1password
       - beekeeper-studio
       - chrome-gnome-shell
       - code
