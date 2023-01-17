@@ -263,6 +263,15 @@ local config = {
                         --   end,
                         -- },
                         {
+                                "akinsho/bufferline.nvim",
+                                after = "catppucin",
+                                config = function()
+                                        require("bufferline").setup {
+                                                highlights = require("catppuccin.groups.integrations.bufferline").get()
+                                        }
+                                end,
+                        },
+                        {
                                 "akinsho/git-conflict.nvim",
                                 config = function()
                                         require("git-conflict").setup()
@@ -277,7 +286,29 @@ local config = {
                                 config = function()
                                         require("catppuccin").setup({
                                                 integrations = {
+                                                        aerial = true,
+                                                        cmp = true,
+                                                        dap = {
+                                                                enable_ui = true,
+                                                                enabled = true,
+                                                        },
+                                                        gitsigns = true,
+                                                        indent_blankline = {
+                                                                colored_indent_levels = true,
+                                                                enabled = true,
+                                                        },
+                                                        leap = true,
                                                         lightspeed = true,
+                                                        mason = true,
+                                                        native_lsp = {
+                                                                enabled = true,
+                                                        },
+                                                        neogit = true,
+                                                        neotree = true,
+                                                        notify = true,
+                                                        telescope = true,
+                                                        treesitter = true,
+                                                        ts_rainbow = true,
                                                         which_key = true,
                                                 },
                                         })
