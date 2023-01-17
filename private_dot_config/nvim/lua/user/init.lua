@@ -278,8 +278,8 @@ local config = {
                                 end,
                         },
                         { "blankname/vim-fish" },
-                        { "bluz71/vim-moonfly-colors" },
-                        { "bluz71/vim-nightfly-guicolors" },
+                        -- { "bluz71/vim-moonfly-colors" },
+                        -- { "bluz71/vim-nightfly-guicolors" },
                         {
                                 "catppuccin/nvim",
                                 as = "catppuccin",
@@ -315,12 +315,12 @@ local config = {
                                 end,
                         },
                         { "christoomey/vim-tmux-navigator" },
-                        { "EdenEast/nightfox.nvim" },
-                        { "ellisonleao/gruvbox.nvim" },
-                        { "embark-theme/vim" },
-                        { "fenetikm/falcon" },
+                        -- { "EdenEast/nightfox.nvim" },
+                        -- { "ellisonleao/gruvbox.nvim" },
+                        -- { "embark-theme/vim" },
+                        -- { "fenetikm/falcon" },
                         { "fladson/vim-kitty" },
-                        { "folke/tokyonight.nvim" },
+                        -- { "folke/tokyonight.nvim" },
                         -- {
                         --   "ggandor/leap.nvim",
                         --   config = function()
@@ -338,11 +338,11 @@ local config = {
                                         })
                                 end,
                         },
-                        { "marko-cerovac/material.nvim" },
-                        {
-                                "mcchrish/zenbones.nvim",
-                                requires = "rktjmp/lush.nvim"
-                        },
+                        -- { "marko-cerovac/material.nvim" },
+                        -- {
+                        --         "mcchrish/zenbones.nvim",
+                        --         requires = "rktjmp/lush.nvim"
+                        -- },
                         { "mg979/vim-visual-multi" },
                         {
                                 "mrjones2014/legendary.nvim",
@@ -357,11 +357,11 @@ local config = {
                                         })
                                 end,
                         },
-                        { "navarasu/onedark.nvim" },
-                        { "olimorris/onedarkpro.nvim" },
-                        { "projekt0n/github-nvim-theme" },
-                        { "rrethy/nvim-base16" },
-                        { "rebelot/kanagawa.nvim" },
+                        -- { "navarasu/onedark.nvim" },
+                        -- { "olimorris/onedarkpro.nvim" },
+                        -- { "projekt0n/github-nvim-theme" },
+                        -- { "rrethy/nvim-base16" },
+                        -- { "rebelot/kanagawa.nvim" },
                         {
                                 "ruifm/gitlinker.nvim",
                                 requires = "nvim-lua/plenary.nvim",
@@ -369,11 +369,11 @@ local config = {
                                         require("gitlinker").setup()
                                 end,
                         },
-                        { "sainnhe/edge" },
-                        { "sainnhe/everforest" },
-                        { "sainnhe/gruvbox-material" },
-                        { "sainnhe/sonokai" },
-                        { "shaunsingh/nord.nvim" },
+                        -- { "sainnhe/edge" },
+                        -- { "sainnhe/everforest" },
+                        -- { "sainnhe/gruvbox-material" },
+                        -- { "sainnhe/sonokai" },
+                        -- { "shaunsingh/nord.nvim" },
                         {
                                 "sindrets/diffview.nvim",
                                 requires = "nvim-lua/plenary.nvim"
