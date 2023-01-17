@@ -263,15 +263,6 @@ local config = {
                         --   end,
                         -- },
                         {
-                                "akinsho/bufferline.nvim",
-                                after = "catppucin",
-                                config = function()
-                                        require("bufferline").setup {
-                                                highlights = require("catppuccin.groups.integrations.bufferline").get()
-                                        }
-                                end,
-                        },
-                        {
                                 "akinsho/git-conflict.nvim",
                                 config = function()
                                         require("git-conflict").setup()
