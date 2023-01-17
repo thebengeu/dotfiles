@@ -89,3 +89,6 @@
                                         (buffer-file-name (window-buffer (minibuffer-selected-window)))))
         (deferred:process "tmux" "rename-window" "-t" window-index window-name)))))
 (add-hook 'window-buffer-change-functions 'rename-tmux-window)
+(use-package! tmux-pane
+  :config
+  (tmux-pane-mode))
