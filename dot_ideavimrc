@@ -1,7 +1,3 @@
-source ~/.intellimacs/spacemacs.vim
-source ~/.intellimacs/extra.vim
-source ~/.intellimacs/major.vim
-source ~/.intellimacs/which-key.vim
 let mapleader=","
 set number
 set relativenumber
