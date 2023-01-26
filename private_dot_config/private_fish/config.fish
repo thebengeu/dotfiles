@@ -34,6 +34,7 @@ if status is-interactive
     abbr --add grbc 'git rebase --continue'
     abbr --add gs 'git status'
     abbr --add gss 'git status -s'
+    abbr --add lg 'lazygit'
     abbr --add ll 'exa --git --icons --long'
     abbr --add ls 'exa --icons'
     abbr --add n nvim
