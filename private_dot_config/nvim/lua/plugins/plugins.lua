@@ -32,11 +32,12 @@ return {
   },
   {
     "zbirenbaum/copilot.lua",
-    event = "VimEnter",
+    event = "InsertEnter",
     config = function()
-      vim.defer_fn(function()
-        require("copilot").setup()
-      end, 100)
+      require("copilot").setup({
+        panel = { enabled = false },
+        suggestion = { enabled = false },
+      })
     end,
   },
   {
