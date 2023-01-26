@@ -118,6 +118,19 @@ if true then return {
       end,
     },
     { "mrjones2014/nvim-ts-rainbow" },
+    {
+      "danielfalk/smart-open.nvim",
+      config = function()
+        require("telescope").load_extension("smart_open")
+      end,
+      dependencies = { "kkharji/sqlite.lua" },
+    },
+    {
+      "nvim-telescope/telescope.nvim",
+      keys = {
+        { "<leader><space>", "<cmd>Telescope smart_open<cr>", desc = "Smart Open" },
+      },
+    },
     { "blankname/vim-fish" },
     { "tpope/vim-fugitive" },
     { "fladson/vim-kitty" },
