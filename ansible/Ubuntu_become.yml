@@ -39,6 +39,7 @@
       - golang
       - libgccjit-12-dev
       - libncurses-dev
+      - libsqlite3-dev
       - make
       - moreutils
       - msmtp-mta
@@ -49,6 +50,7 @@
       - postgresql-client
       - python3-pip
       - ripgrep
+      - sqlite3
       - texinfo
       - tmux
       - unzip
