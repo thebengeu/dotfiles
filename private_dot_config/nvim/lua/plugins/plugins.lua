@@ -58,6 +58,32 @@ return {
     },
   },
   {
+    "williamboman/mason.nvim",
+    opts = function(_, opts)
+      return {
+        ensure_installed = vim.list_extend(opts.ensure_installed, {
+          "eslint_d",
+          "prettierd",
+        }),
+      }
+    end,
+  },
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    opts = function(_, opts)
+      local nls = require("null-ls")
+      return {
+        sources = vim.list_extend(opts.sources, {
+          nls.builtins.code_actions.eslint_d,
+          nls.builtins.diagnostics.eslint_d,
+          nls.builtins.formatting.prettierd.with({
+            extra_filetypes = { "prisma" },
+          }),
+        }),
+      }
+    end,
+  },
+  {
     "neovim/nvim-lspconfig",
     dependencies = {
       "jose-elias-alvarez/typescript.nvim",
