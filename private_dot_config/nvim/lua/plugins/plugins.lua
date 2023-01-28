@@ -58,6 +58,19 @@ return {
     },
   },
   {
+    "mrjones2014/legendary.nvim",
+    config = function()
+      require("legendary").setup({
+        autocmds = {
+          {
+            { "BufEnter", "FocusGained" },
+            'call system("tmux rename-window " . expand("%:p"))',
+          },
+        },
+      })
+    end,
+  },
+  {
     "williamboman/mason.nvim",
     opts = function(_, opts)
       return {
