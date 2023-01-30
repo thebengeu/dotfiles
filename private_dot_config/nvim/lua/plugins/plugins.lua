@@ -173,6 +173,5 @@ return {
   { "tpope/vim-fugitive" },
   { "fladson/vim-kitty" },
   { "christoomey/vim-tmux-navigator" },
-  { "tpope/vim-unimpaired" },
   { "wakatime/vim-wakatime" },
 }
