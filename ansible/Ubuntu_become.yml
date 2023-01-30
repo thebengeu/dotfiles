@@ -84,6 +84,9 @@
     name: eslint
     global: true
 - community.general.npm:
+    name: eslint_d
+    global: true
+- community.general.npm:
     name: import-js
     global: true
 - community.general.npm:
