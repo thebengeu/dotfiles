@@ -139,6 +139,15 @@ return {
   },
   { "mrjones2014/nvim-ts-rainbow" },
   {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      rainbow = {
+        enable = true,
+        extended_mode = true,
+      },
+    },
+  },
+  {
     "danielfalk/smart-open.nvim",
     config = function()
       require("telescope").load_extension("smart_open")
