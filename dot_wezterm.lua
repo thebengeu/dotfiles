@@ -1,49 +1,49 @@
 local wezterm = require("wezterm")
 return {
-	adjust_window_size_when_changing_font_size = false,
-	color_scheme = "Catppuccin Mocha",
-	colors = {
-		tab_bar = {
-			active_tab = {
-				bg_color = "#cba6f7",
-				fg_color = "#11111b",
-			},
-			inactive_tab = {
-				bg_color = "#181825",
-				fg_color = "#cdd6f4",
-			},
-			inactive_tab_hover = {
-				bg_color = "#181825",
-				fg_color = "#cdd6f4",
-			},
-		},
-	},
-	-- default_domain = "WSL:Ubuntu",
-	default_prog = { "tmux", "new-session", "-A", "-s", "0" },
-	font = wezterm.font("MonoLisa Variable"),
-	font_rules = {
-		{
-			font = wezterm.font({
-				family = "MonoLisa Variable",
-				harfbuzz_features = { "ss02" },
-				style = "Italic",
-			}),
-			italic = true,
-		},
-	},
-	font_size = 11,
-	hide_tab_bar_if_only_one_tab = true,
-	show_new_tab_button_in_tab_bar = false,
-	show_tab_index_in_tab_bar = false,
-	skip_close_confirmation_for_processes_named = { "conhost.exe", "wsl.exe", "wslhost.exe" },
-	window_decorations = "RESIZE",
-	window_frame = {
-		active_titlebar_bg = "#1e1e2e",
-	},
-	window_padding = {
-		left = 0,
-		right = 0,
-		top = 0,
-		bottom = 0,
-	},
+  adjust_window_size_when_changing_font_size = false,
+  color_scheme = "Catppuccin Mocha",
+  colors = {
+    tab_bar = {
+      active_tab = {
+        bg_color = "#cba6f7",
+        fg_color = "#11111b",
+      },
+      inactive_tab = {
+        bg_color = "#181825",
+        fg_color = "#cdd6f4",
+      },
+      inactive_tab_hover = {
+        bg_color = "#181825",
+        fg_color = "#cdd6f4",
+      },
+    },
+  },
+  -- default_domain = "WSL:Ubuntu",
+  default_prog = { "tmux", "new-session", "-A", "-s", "0" },
+  font = wezterm.font("MonoLisa Variable"),
+  font_rules = {
+    {
+      font = wezterm.font({
+        family = "MonoLisa Variable",
+        harfbuzz_features = { "ss02" },
+        style = "Italic",
+      }),
+      italic = true,
+    },
+  },
+  font_size = 11,
+  hide_tab_bar_if_only_one_tab = true,
+  show_new_tab_button_in_tab_bar = false,
+  show_tab_index_in_tab_bar = false,
+  skip_close_confirmation_for_processes_named = { "conhost.exe", "tmux", "wsl.exe", "wslhost.exe" },
+  window_decorations = "RESIZE",
+  window_frame = {
+    active_titlebar_bg = "#1e1e2e",
+  },
+  window_padding = {
+    left = 0,
+    right = 0,
+    top = 0,
+    bottom = 0,
+  },
 }
