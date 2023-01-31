@@ -20,6 +20,7 @@ if status is-interactive
     abbr --add cgpr 'chezmoi git -- pull --rebase'
     abbr --add cgs 'chezmoi git status'
     abbr --add cgss 'chezmoi git -- status -s'
+    abbr --add clg 'lazygit --path ~/.local/share/chezmoi'
     abbr --add cr 'chezmoi re-add'
     abbr --add cat bat
     abbr --add e 'emacsclient -nw'
