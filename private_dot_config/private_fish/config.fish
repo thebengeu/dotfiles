@@ -17,7 +17,7 @@ if status is-interactive
     abbr --add cgcam 'chezmoi git -- commit -a -m'
     abbr --add cgd 'chezmoi git diff'
     abbr --add cgp 'chezmoi git push'
-    abbr --add cgpr 'chezmoi git pull --rebase'
+    abbr --add cgpr 'chezmoi git -- pull --rebase'
     abbr --add cgs 'chezmoi git status'
     abbr --add cgss 'chezmoi git -- status -s'
     abbr --add cr 'chezmoi re-add'
