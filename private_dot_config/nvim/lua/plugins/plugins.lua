@@ -48,10 +48,6 @@ return {
     end,
   },
   {
-    "sindrets/diffview.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-  },
-  {
     "LazyVim/LazyVim",
     opts = {
       colorscheme = "catppuccin",
@@ -132,20 +128,6 @@ return {
     },
   },
   {
-    "TimUntersberger/neogit",
-    dependencies = {
-      "sindrets/diffview.nvim",
-      "nvim-lua/plenary.nvim",
-    },
-    config = function()
-      require("neogit").setup({
-        integrations = {
-          diffview = true,
-        },
-      })
-    end,
-  },
-  {
     "hrsh7th/nvim-cmp",
     dependencies = { "zbirenbaum/copilot-cmp" },
     ---@param opts cmp.ConfigSchema
@@ -171,7 +153,6 @@ return {
   },
   { "blankname/vim-fish" },
   { "tpope/vim-fugitive" },
-  { "fladson/vim-kitty" },
   { "christoomey/vim-tmux-navigator" },
   { "wakatime/vim-wakatime" },
 }
