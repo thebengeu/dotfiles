@@ -17,6 +17,7 @@
     name:
       - bat
       - broot
+      - btop
       - cantino/mcfly/mcfly
       - emacs
       - eth-p/software/bat-extras-batman
