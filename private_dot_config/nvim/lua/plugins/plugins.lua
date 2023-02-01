@@ -9,6 +9,7 @@ return {
           enabled = true,
         },
         gitsigns = true,
+        illuminate = true,
         indent_blankline = {
           colored_indent_levels = true,
           enabled = true,
