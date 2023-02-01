@@ -1,5 +1,13 @@
 return {
   {
+    "akinsho/bufferline.nvim",
+    config = function()
+      require("bufferline").setup({
+        highlights = require("catppuccin.groups.integrations.bufferline").get(),
+      })
+    end,
+  },
+  {
     "catppuccin",
     opts = {
       integrations = {
@@ -16,14 +24,19 @@ return {
         },
         leap = true,
         mason = true,
+        mini = true,
         native_lsp = {
           enabled = true,
         },
-        neogit = true,
+        navic = {
+          enabled = true,
+        },
         neotree = true,
+        noice = true,
         notify = true,
         telescope = true,
         treesitter = true,
+        treesitter_context = true,
         ts_rainbow = true,
         which_key = true,
       },
@@ -60,6 +73,14 @@ return {
           { "BufEnter", "FocusGained" },
           'call system("tmux rename-window " . expand("%:p"))',
         },
+      },
+    },
+  },
+  {
+    "nvim-lualine/lualine.nvim",
+    opts = {
+      options = {
+        theme = "catppuccin",
       },
     },
   },
@@ -244,6 +265,9 @@ return {
     end,
     dependencies = { "mfussenegger/nvim-dap" },
   },
+  { "SmiteshP/nvim-navic", opts = {
+    highlight = true,
+  } },
   { "mrjones2014/nvim-ts-rainbow" },
   {
     "nvim-treesitter/nvim-treesitter",
