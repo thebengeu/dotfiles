@@ -5,6 +5,9 @@ fish_add_path ~/doomemacs/bin
 fish_add_path ~/go/bin
 if status is-interactive
     set --export --global EDITOR nvim
+    set --export --global MCFLY_DELETE_WITHOUT_CONFIRM TRUE
+    set --export --global MCFLY_DISABLE_MENU TRUE
+    set --export --global MCFLY_KEY_SCHEME vim
     set --global fish_greeting
     fnm env --use-on-cd | source
     mcfly init fish | source
