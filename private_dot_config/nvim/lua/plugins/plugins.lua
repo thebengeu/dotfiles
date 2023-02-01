@@ -294,6 +294,15 @@ return {
       { "<leader><space>", "<cmd>Telescope smart_open<cr>", desc = "Smart Open" },
     },
   },
+  {
+    "nvim-telescope/telescope-dap.nvim",
+    config = function()
+      require("telescope").load_extension("dap")
+    end,
+    keys = {
+      { "<leader>dl", "<cmd>Telescope dap list_breakpoints<cr>", desc = "List Breakpoints" },
+    },
+  },
   { "blankname/vim-fish" },
   { "tpope/vim-fugitive" },
   { "christoomey/vim-tmux-navigator" },
