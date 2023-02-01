@@ -68,6 +68,7 @@ return {
       return {
         ensure_installed = vim.list_extend(opts.ensure_installed, {
           "eslint_d",
+          "js-debug-adapter",
           "prettierd",
         }),
       }
@@ -132,6 +133,115 @@ return {
       opts.experimental = { ghost_text = true }
       opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "copilot" } }))
     end,
+  },
+  {
+    "mfussenegger/nvim-dap",
+    config = function()
+      require("dap")
+      vim.fn.sign_define("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = "" })
+      vim.fn.sign_define(
+        "DapBreakpointCondition",
+        { text = "●", texthl = "DapBreakpointCondition", linehl = "", numhl = "" }
+      )
+      vim.fn.sign_define("DapLogPoint", { text = "◆", texthl = "DapLogPoint", linehl = "", numhl = "" })
+      require("which-key").register({
+        ["<leader>d"] = { name = "+debug" },
+      })
+    end,
+    keys = {
+      {
+        "<leader>dc",
+        function()
+          require("dap").continue()
+        end,
+        desc = "Continue",
+      },
+      {
+        "<leader>dC",
+        function()
+          require("dap").run_to_cursor()
+        end,
+        desc = "Run to Cursor",
+      },
+      {
+        "<leader>di",
+        function()
+          require("dap").step_into()
+        end,
+        desc = "Step Into",
+      },
+      {
+        "<leader>do",
+        function()
+          require("dap").step_over()
+        end,
+        desc = "Step Over",
+      },
+      {
+        "<leader>dr",
+        function()
+          require("dap").repl.toggle()
+        end,
+        desc = "Toggle REPL",
+      },
+      {
+        "<leader>dt",
+        function()
+          require("dap").toggle_breakpoint()
+        end,
+        desc = "Toggle Breakpoint",
+      },
+      {
+        "<leader>du",
+        function()
+          require("dap").step_out()
+        end,
+        desc = "Step Out",
+      },
+      {
+        "<leader>dU",
+        function()
+          require("dapui").toggle()
+        end,
+        desc = "Toggle UI",
+      },
+    },
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    config = function()
+      require("dapui").setup()
+    end,
+    dependencies = { "mfussenegger/nvim-dap" },
+  },
+  {
+    "theHamsta/nvim-dap-virtual-text",
+    config = true,
+    dependencies = { "mfussenegger/nvim-dap" },
+  },
+  {
+    "mxsdev/nvim-dap-vscode-js",
+    config = function()
+      require("dap-vscode-js").setup({
+        adapters = { "pwa-node" },
+        -- debugger_path = require("mason-registry").get_package("js-debug-adapter"):get_install_path(),
+        debugger_path = os.getenv("HOME") .. "/vscode-js-debug",
+        -- log_file_level = vim.log.levels.DEBUG,
+        -- log_file_path = os.getenv("HOME") .. "/.cache/dap_vscode_js.log",
+      })
+      require("dap").configurations["typescript"] = {
+        {
+          console = "integratedTerminal",
+          cwd = "${workspaceFolder}",
+          name = "ts-node/esm/transpile-only",
+          program = "${file}",
+          request = "launch",
+          runtimeArgs = { "--loader", "ts-node/esm/transpile-only" },
+          type = "pwa-node",
+        },
+      }
+    end,
+    dependencies = { "mfussenegger/nvim-dap" },
   },
   { "mrjones2014/nvim-ts-rainbow" },
   {
