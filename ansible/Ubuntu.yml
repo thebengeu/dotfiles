@@ -25,6 +25,7 @@
       - fzf
       - gh
       - git-delta
+      - gitui
       - lazydocker
       - lazygit
       - mosh
