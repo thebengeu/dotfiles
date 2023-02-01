@@ -1,34 +1,32 @@
 return {
   {
-    "catppuccin/nvim",
-    config = function()
-      require("catppuccin").setup({
-        integrations = {
-          cmp = true,
-          dap = {
-            enable_ui = true,
-            enabled = true,
-          },
-          gitsigns = true,
-          indent_blankline = {
-            colored_indent_levels = true,
-            enabled = true,
-          },
-          leap = true,
-          mason = true,
-          native_lsp = {
-            enabled = true,
-          },
-          neogit = true,
-          neotree = true,
-          notify = true,
-          telescope = true,
-          treesitter = true,
-          ts_rainbow = true,
-          which_key = true,
+    "catppuccin",
+    opts = {
+      integrations = {
+        cmp = true,
+        dap = {
+          enable_ui = true,
+          enabled = true,
         },
-      })
-    end,
+        gitsigns = true,
+        indent_blankline = {
+          colored_indent_levels = true,
+          enabled = true,
+        },
+        leap = true,
+        mason = true,
+        native_lsp = {
+          enabled = true,
+        },
+        neogit = true,
+        neotree = true,
+        notify = true,
+        telescope = true,
+        treesitter = true,
+        ts_rainbow = true,
+        which_key = true,
+      },
+    },
   },
   {
     "zbirenbaum/copilot.lua",
@@ -55,16 +53,14 @@ return {
   },
   {
     "mrjones2014/legendary.nvim",
-    config = function()
-      require("legendary").setup({
-        autocmds = {
-          {
-            { "BufEnter", "FocusGained" },
-            'call system("tmux rename-window " . expand("%:p"))',
-          },
+    opts = {
+      autocmds = {
+        {
+          { "BufEnter", "FocusGained" },
+          'call system("tmux rename-window " . expand("%:p"))',
         },
-      })
-    end,
+      },
+    },
   },
   {
     "williamboman/mason.nvim",
