@@ -23,6 +23,7 @@ return {
           enabled = true,
         },
         leap = true,
+        lsp_trouble = true,
         mason = true,
         mini = true,
         native_lsp = {
@@ -34,6 +35,7 @@ return {
         neotree = true,
         noice = true,
         notify = true,
+        semantic_tokens = true,
         telescope = true,
         treesitter = true,
         treesitter_context = true,
