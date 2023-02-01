@@ -268,6 +268,7 @@ return {
   { "SmiteshP/nvim-navic", opts = {
     highlight = true,
   } },
+  { "nvim-treesitter/nvim-treesitter-context" },
   { "mrjones2014/nvim-ts-rainbow" },
   {
     "nvim-treesitter/nvim-treesitter",
