@@ -62,6 +62,22 @@ return {
     end,
   },
   {
+    "lukas-reineke/indent-blankline.nvim",
+    opts = {
+      char_highlight_list = {
+        "IndentBlanklineIndent1",
+        "IndentBlanklineIndent2",
+        "IndentBlanklineIndent3",
+        "IndentBlanklineIndent4",
+        "IndentBlanklineIndent5",
+        "IndentBlanklineIndent6",
+      },
+      show_current_context = true,
+      show_first_indent_level = false,
+      use_treesitter = true,
+    },
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
       colorscheme = "catppuccin",
