@@ -114,6 +114,7 @@ return {
       }
     end,
   },
+  { "karb94/neoscroll.nvim", config = true },
   {
     "jose-elias-alvarez/null-ls.nvim",
     opts = function(_, opts)
@@ -319,8 +320,17 @@ return {
       { "<leader>dl", "<cmd>Telescope dap list_breakpoints<cr>", desc = "List Breakpoints" },
     },
   },
+  { "axelvc/template-string.nvim", config = true },
+  {
+    "aserowy/tmux.nvim",
+    keys = { "<C-h>", "<C-j>", "<C-k>", "<C-l>" },
+    opts = {
+      resize = {
+        enable_default_keybindings = false,
+      },
+    },
+  },
   { "blankname/vim-fish" },
   { "tpope/vim-fugitive" },
-  { "christoomey/vim-tmux-navigator" },
   { "wakatime/vim-wakatime" },
 }
