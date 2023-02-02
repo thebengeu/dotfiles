@@ -195,41 +195,6 @@ return {
     end,
   },
   {
-    "neovim/nvim-lspconfig",
-    dependencies = {
-      "jose-elias-alvarez/typescript.nvim",
-      init = function()
-        require("lazyvim.util").on_attach(function(_, buffer)
-          vim.api.nvim_create_autocmd("BufWritePre", {
-            desc = "typescript.nvim",
-            pattern = "<buffer>",
-            callback = function()
-              local actions = require("typescript").actions
-              actions.removeUnused({ sync = true })
-              actions.addMissingImports({ sync = true })
-              actions.organizeImports({ sync = true })
-              vim.lsp.buf.format()
-            end,
-          })
-        end)
-      end,
-    },
-    ---@class PluginLspOpts
-    opts = {
-      ---@type lspconfig.options
-      servers = {
-        tsserver = {},
-      },
-      ---@type table<string, fun(server:string, opts:_.lspconfig.options):boolean?>
-      setup = {
-        tsserver = function(_, opts)
-          require("typescript").setup({ server = opts })
-          return true
-        end,
-      },
-    },
-  },
-  {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "zbirenbaum/copilot-cmp",
@@ -405,6 +370,29 @@ return {
         "g#",
         "g#<Cmd>lua require('hlslens').start()<CR>",
       },
+    },
+  },
+  {
+    "neovim/nvim-lspconfig",
+    dependencies = {
+      "jose-elias-alvarez/typescript.nvim",
+      init = function()
+        require("lazyvim.util").on_attach(function(client, buffer)
+          if client.name == "tsserver" then
+            vim.api.nvim_create_autocmd("BufWritePre", {
+              desc = "typescript.nvim",
+              pattern = "<buffer>",
+              callback = function()
+                local actions = require("typescript").actions
+                actions.removeUnused({ sync = true })
+                actions.addMissingImports({ sync = true })
+                actions.organizeImports({ sync = true })
+                vim.lsp.buf.format()
+              end,
+            })
+          end
+        end)
+      end,
     },
   },
   { "SmiteshP/nvim-navic", opts = {
