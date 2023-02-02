@@ -541,15 +541,6 @@ return {
   },
   { "blankname/vim-fish", event = "BufReadPost" },
   { "tpope/vim-fugitive", event = "BufReadPost" },
+  { "andymass/vim-matchup", event = "BufReadPost" },
   { "wakatime/vim-wakatime", event = "BufReadPost" },
-  {
-    "folke/which-key.nvim",
-    opts = {
-      plugins = {
-        presets = {
-          operators = false,
-        },
-      },
-    },
-  },
 }
