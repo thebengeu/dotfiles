@@ -337,6 +337,12 @@ return {
     },
   },
   {
+    "nvim-telescope/telescope.nvim",
+    keys = {
+      { "<leader><space>", "<cmd>Telescope smart_open<cr>", desc = "Smart Open" },
+    },
+  },
+  {
     "nvim-telescope/telescope-dap.nvim",
     config = function()
       require("telescope").load_extension("dap")
