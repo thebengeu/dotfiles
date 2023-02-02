@@ -55,6 +55,15 @@ return {
     event = "InsertEnter",
   },
   {
+    "ja-ford/delaytrain.nvim",
+    config = function()
+      require("delaytrain").setup({
+        grace_period = 2,
+      })
+    end,
+    keys = { "h", "j", "k", "l", "<Left>", "<Down>", "<Up>", "<Right>" },
+  },
+  {
     "lukas-reineke/indent-blankline.nvim",
     opts = {
       char_highlight_list = {
@@ -295,6 +304,25 @@ return {
       rainbow = {
         enable = true,
         extended_mode = true,
+      },
+    },
+  },
+  {
+    "cbochs/portal.nvim",
+    keys = {
+      {
+        "<leader>o",
+        function()
+          require("portal").jump_backward()
+        end,
+        desc = "Jump Backward",
+      },
+      {
+        "<leader>i",
+        function()
+          require("portal").jump_forward()
+        end,
+        desc = "Jump Forward",
       },
     },
   },
