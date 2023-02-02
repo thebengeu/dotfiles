@@ -295,7 +295,7 @@ return {
   { "SmiteshP/nvim-navic", opts = {
     highlight = true,
   } },
-  { "nvim-treesitter/nvim-treesitter-context", event = "BufReadPost" },
+  { "nvim-treesitter/nvim-treesitter-context", event = "VimEnter" },
   { "mrjones2014/nvim-ts-rainbow", event = "BufReadPost" },
   {
     "nvim-treesitter/nvim-treesitter",
