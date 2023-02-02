@@ -63,6 +63,7 @@ return {
     end,
     keys = { "h", "j", "k", "l", "<Left>", "<Down>", "<Up>", "<Right>" },
   },
+  { "jinh0/eyeliner.nvim", event = "BufReadPost" },
   {
     "lukas-reineke/indent-blankline.nvim",
     opts = {
@@ -116,6 +117,61 @@ return {
         }),
       }
     end,
+  },
+  -- {
+  --   "mawkler/modicator.nvim",
+  --   dependencies = "catppuccin",
+  --   config = function()
+  --     local C = require("catppuccin.palettes").get_palette()
+  --     require("modicator").setup({
+  --       highlights = {
+  --         modes = {
+  --           ["n"] = {
+  --             foreground = C.blue,
+  --           },
+  --           ["i"] = {
+  --             foreground = C.green,
+  --           },
+  --           ["v"] = {
+  --             foreground = C.mauve,
+  --           },
+  --           ["V"] = {
+  --             foreground = C.mauve,
+  --           },
+  --           ["�"] = {
+  --             foreground = C.mauve,
+  --           },
+  --           ["s"] = {
+  --             foreground = C.mauve,
+  --           },
+  --           ["S"] = {
+  --             foreground = C.mauve,
+  --           },
+  --           ["R"] = {
+  --             foreground = C.red,
+  --           },
+  --           ["c"] = {
+  --             foreground = C.peach,
+  --           },
+  --         },
+  --       },
+  --     })
+  --   end,
+  -- },
+  {
+    "mvllow/modes.nvim",
+    config = function()
+      local C = require("catppuccin.palettes").get_palette()
+      require("modes").setup({
+        colors = {
+          copy = C.blue,
+          delete = C.red,
+          insert = C.green,
+          visual = C.mauve,
+        },
+      })
+    end,
+    event = "BufReadPost",
   },
   {
     "jose-elias-alvarez/null-ls.nvim",
@@ -314,6 +370,37 @@ return {
       },
     },
   },
+  {
+    "kevinhwang91/nvim-hlslens",
+    config = true,
+    dependencies = { "romainl/vim-cool" },
+    keys = {
+      {
+        "n",
+        "<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>",
+      },
+      {
+        "N",
+        "<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>",
+      },
+      {
+        "*",
+        "*<Cmd>lua require('hlslens').start()<CR>",
+      },
+      {
+        "#",
+        "#<Cmd>lua require('hlslens').start()<CR>",
+      },
+      {
+        "g*",
+        "g*<Cmd>lua require('hlslens').start()<CR>",
+      },
+      {
+        "g#",
+        "g#<Cmd>lua require('hlslens').start()<CR>",
+      },
+    },
+  },
   { "SmiteshP/nvim-navic", opts = {
     highlight = true,
   } },
@@ -346,6 +433,13 @@ return {
     event = "BufReadPost",
   },
   {
+    "chrisgrieser/nvim-various-textobjs",
+    config = function()
+      require("various-textobjs").setup({ useDefaultKeymaps = true })
+    end,
+    event = "BufReadPost",
+  },
+  {
     "cbochs/portal.nvim",
     keys = {
       {
@@ -364,6 +458,7 @@ return {
       },
     },
   },
+  { "lewis6991/satellite.nvim", config = true, event = "BufReadPost" },
   {
     "danielfalk/smart-open.nvim",
     config = function()
@@ -372,6 +467,37 @@ return {
     dependencies = { "kkharji/sqlite.lua" },
     keys = {
       { "<leader><space>", "<cmd>Telescope smart_open<cr>", desc = "Smart Open" },
+    },
+  },
+  {
+    "gbprod/substitute.nvim",
+    event = "BufReadPost",
+    keys = {
+      {
+        "x",
+        function()
+          require("substitute").operator()
+        end,
+      },
+      {
+        "xx",
+        function()
+          require("substitute").line()
+        end,
+      },
+      {
+        "X",
+        function()
+          require("substitute").eol()
+        end,
+      },
+      {
+        "x",
+        function()
+          require("substitute").visual()
+        end,
+        mode = "x",
+      },
     },
   },
   {
@@ -402,4 +528,14 @@ return {
   { "blankname/vim-fish", event = "BufReadPost" },
   { "tpope/vim-fugitive", event = "BufReadPost" },
   { "wakatime/vim-wakatime", event = "BufReadPost" },
+  {
+    "folke/which-key.nvim",
+    opts = {
+      plugins = {
+        presets = {
+          operators = false,
+        },
+      },
+    },
+  },
 }
