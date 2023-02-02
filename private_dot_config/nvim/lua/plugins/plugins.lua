@@ -65,6 +65,7 @@ return {
     keys = { "h", "j", "k", "l", "<Left>", "<Down>", "<Up>", "<Right>" },
   },
   { "jinh0/eyeliner.nvim", event = "BufReadPost" },
+  { "rmagatti/goto-preview", event = "BufReadPost", opts = { default_mappings = true } },
   {
     "lukas-reineke/indent-blankline.nvim",
     opts = {
@@ -426,6 +427,7 @@ return {
     end,
     event = "BufReadPost",
   },
+  { "windwp/nvim-ts-autotag", config = true, event = "InsertEnter" },
   {
     "chrisgrieser/nvim-various-textobjs",
     config = function()
@@ -449,6 +451,23 @@ return {
           require("portal").jump_forward()
         end,
         desc = "Jump Forward",
+      },
+    },
+  },
+  {
+    "ahmedkhalf/project.nvim",
+    config = function()
+      require("project_nvim").setup()
+      require("telescope").load_extension("projects")
+    end,
+    event = "VeryLazy",
+    keys = {
+      {
+        "<leader>sp",
+        function()
+          require("telescope").extensions.projects.projects()
+        end,
+        desc = "Projects",
       },
     },
   },
