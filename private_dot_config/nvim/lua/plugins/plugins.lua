@@ -171,8 +171,10 @@ return {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "zbirenbaum/copilot-cmp",
-      config = true,
       dependencies = { "zbirenbaum/copilot.lua" },
+      opts = {
+        method = "getPanelCompletions",
+      },
     },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
@@ -184,6 +186,21 @@ return {
           select = false,
         }),
       })
+      opts.sorting = {
+        priority_weight = 2,
+        comparators = {
+          require("copilot_cmp.comparators").score,
+          cmp.config.compare.offset,
+          cmp.config.compare.exact,
+          cmp.config.compare.score,
+          cmp.config.compare.recently_used,
+          cmp.config.compare.locality,
+          cmp.config.compare.kind,
+          cmp.config.compare.sort_text,
+          cmp.config.compare.length,
+          cmp.config.compare.order,
+        },
+      }
       opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "copilot" } }))
     end,
   },
