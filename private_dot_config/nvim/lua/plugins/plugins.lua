@@ -516,8 +516,16 @@ return {
   },
   {
     "nvim-telescope/telescope.nvim",
+    config = function()
+      require("telescope").setup()
+      require("telescope").load_extension("undo")
+    end,
+    dependencies = {
+      "debugloop/telescope-undo.nvim",
+    },
     keys = {
       { "<leader><space>", "<cmd>Telescope smart_open<cr>", desc = "Smart Open" },
+      { "<leader>su", "<cmd>Telescope undo<cr>", desc = "Undo" },
     },
   },
   {
@@ -539,6 +547,7 @@ return {
       },
     },
   },
+  { "mbbill/undotree" },
   { "blankname/vim-fish", event = "BufReadPost" },
   { "tpope/vim-fugitive", event = "BufReadPost" },
   { "andymass/vim-matchup", event = "BufReadPost" },
