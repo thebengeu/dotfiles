@@ -344,8 +344,6 @@ return {
   },
   {
     "kevinhwang91/nvim-hlslens",
-    config = true,
-    dependencies = { "romainl/vim-cool" },
     keys = {
       {
         "n",
@@ -371,6 +369,9 @@ return {
         "g#",
         "g#<Cmd>lua require('hlslens').start()<CR>",
       },
+    },
+    opts = {
+      calm_down = true,
     },
   },
   {
