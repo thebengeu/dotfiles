@@ -178,6 +178,12 @@ return {
     opts = function(_, opts)
       local cmp = require("cmp")
       opts.experimental = { ghost_text = true }
+      opts.mapping = vim.tbl_extend("force", opts.mapping, {
+        ["<CR>"] = cmp.mapping.confirm({
+          behavior = cmp.ConfirmBehavior.Replace,
+          select = false,
+        }),
+      })
       opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "copilot" } }))
     end,
   },
