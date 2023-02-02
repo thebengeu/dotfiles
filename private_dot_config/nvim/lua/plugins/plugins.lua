@@ -44,6 +44,7 @@ return {
       },
     },
   },
+  { "alker0/chezmoi.vim" },
   {
     "zbirenbaum/copilot.lua",
     config = function()
@@ -94,6 +95,11 @@ return {
         {
           { "BufEnter", "FocusGained" },
           'call system("tmux rename-window " . expand("%:p"))',
+        },
+        {
+          "BufWritePost",
+          "!chezmoi apply --source-path <afile>",
+          opts = { pattern = "*/.local/share/chezmoi/*" },
         },
       },
     },
