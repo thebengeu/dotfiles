@@ -46,20 +46,13 @@ return {
   },
   {
     "zbirenbaum/copilot.lua",
-    event = "InsertEnter",
     config = function()
       require("copilot").setup({
         panel = { enabled = false },
         suggestion = { enabled = false },
       })
     end,
-  },
-  {
-    "zbirenbaum/copilot-cmp",
-    dependencies = { "zbirenbaum/copilot.lua" },
-    config = function()
-      require("copilot_cmp").setup()
-    end,
+    event = "InsertEnter",
   },
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -85,6 +78,7 @@ return {
   },
   {
     "mrjones2014/legendary.nvim",
+    event = "BufReadPost",
     opts = {
       autocmds = {
         {
@@ -114,7 +108,7 @@ return {
       }
     end,
   },
-  { "karb94/neoscroll.nvim", config = true },
+  { "karb94/neoscroll.nvim", config = true, event = "BufReadPost" },
   {
     "jose-elias-alvarez/null-ls.nvim",
     opts = function(_, opts)
@@ -167,7 +161,11 @@ return {
   },
   {
     "hrsh7th/nvim-cmp",
-    dependencies = { "zbirenbaum/copilot-cmp" },
+    dependencies = {
+      "zbirenbaum/copilot-cmp",
+      config = true,
+      dependencies = { "zbirenbaum/copilot.lua" },
+    },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       local cmp = require("cmp")
@@ -239,12 +237,34 @@ return {
         end,
         desc = "Step Out",
       },
+    },
+    dependencies = {
       {
-        "<leader>dU",
-        function()
-          require("dapui").toggle()
+        "theHamsta/nvim-dap-virtual-text",
+        config = true,
+      },
+      {
+        "mxsdev/nvim-dap-vscode-js",
+        config = function()
+          require("dap-vscode-js").setup({
+            adapters = { "pwa-node" },
+            -- debugger_path = require("mason-registry").get_package("js-debug-adapter"):get_install_path(),
+            debugger_path = os.getenv("HOME") .. "/vscode-js-debug",
+            -- log_file_level = vim.log.levels.DEBUG,
+            -- log_file_path = os.getenv("HOME") .. "/.cache/dap_vscode_js.log",
+          })
+          require("dap").configurations["typescript"] = {
+            {
+              console = "integratedTerminal",
+              cwd = "${workspaceFolder}",
+              name = "ts-node/esm/transpile-only",
+              program = "${file}",
+              request = "launch",
+              runtimeArgs = { "--loader", "ts-node/esm/transpile-only" },
+              type = "pwa-node",
+            },
+          }
         end,
-        desc = "Toggle UI",
       },
     },
   },
@@ -254,41 +274,21 @@ return {
       require("dapui").setup()
     end,
     dependencies = { "mfussenegger/nvim-dap" },
-  },
-  {
-    "theHamsta/nvim-dap-virtual-text",
-    config = true,
-    dependencies = { "mfussenegger/nvim-dap" },
-  },
-  {
-    "mxsdev/nvim-dap-vscode-js",
-    config = function()
-      require("dap-vscode-js").setup({
-        adapters = { "pwa-node" },
-        -- debugger_path = require("mason-registry").get_package("js-debug-adapter"):get_install_path(),
-        debugger_path = os.getenv("HOME") .. "/vscode-js-debug",
-        -- log_file_level = vim.log.levels.DEBUG,
-        -- log_file_path = os.getenv("HOME") .. "/.cache/dap_vscode_js.log",
-      })
-      require("dap").configurations["typescript"] = {
-        {
-          console = "integratedTerminal",
-          cwd = "${workspaceFolder}",
-          name = "ts-node/esm/transpile-only",
-          program = "${file}",
-          request = "launch",
-          runtimeArgs = { "--loader", "ts-node/esm/transpile-only" },
-          type = "pwa-node",
-        },
-      }
-    end,
-    dependencies = { "mfussenegger/nvim-dap" },
+    keys = {
+      {
+        "<leader>dU",
+        function()
+          require("dapui").toggle()
+        end,
+        desc = "Toggle UI",
+      },
+    },
   },
   { "SmiteshP/nvim-navic", opts = {
     highlight = true,
   } },
-  { "nvim-treesitter/nvim-treesitter-context" },
-  { "mrjones2014/nvim-ts-rainbow" },
+  { "nvim-treesitter/nvim-treesitter-context", event = "BufReadPost" },
+  { "mrjones2014/nvim-ts-rainbow", event = "BufReadPost" },
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
@@ -304,9 +304,6 @@ return {
       require("telescope").load_extension("smart_open")
     end,
     dependencies = { "kkharji/sqlite.lua" },
-  },
-  {
-    "nvim-telescope/telescope.nvim",
     keys = {
       { "<leader><space>", "<cmd>Telescope smart_open<cr>", desc = "Smart Open" },
     },
@@ -320,7 +317,7 @@ return {
       { "<leader>dl", "<cmd>Telescope dap list_breakpoints<cr>", desc = "List Breakpoints" },
     },
   },
-  { "axelvc/template-string.nvim", config = true },
+  { "axelvc/template-string.nvim", config = true, event = "InsertEnter" },
   {
     "aserowy/tmux.nvim",
     keys = { "<C-h>", "<C-j>", "<C-k>", "<C-l>" },
@@ -330,7 +327,7 @@ return {
       },
     },
   },
-  { "blankname/vim-fish" },
-  { "tpope/vim-fugitive" },
-  { "wakatime/vim-wakatime" },
+  { "blankname/vim-fish", event = "BufReadPost" },
+  { "tpope/vim-fugitive", event = "BufReadPost" },
+  { "wakatime/vim-wakatime", event = "BufReadPost" },
 }
