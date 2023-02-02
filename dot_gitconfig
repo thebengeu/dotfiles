@@ -13,3 +13,5 @@
 [user]
 	email = beng@bengeu.com
 	name = Beng Eu
+[pull]
+	rebase = true
