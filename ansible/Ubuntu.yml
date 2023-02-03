@@ -36,9 +36,6 @@
       - wakatime-cli
       - xh
       - zoxide
-- community.general.alternatives:
-    name: editor
-    path: /home/linuxbrew/.linuxbrew/bin/nvim
 - ansible.builtin.git:
     repo: https://github.com/plexus/chemacs2
     dest: ~/.emacs.d
