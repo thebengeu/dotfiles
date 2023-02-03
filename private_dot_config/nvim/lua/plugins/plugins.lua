@@ -46,16 +46,6 @@ return {
   },
   { "alker0/chezmoi.vim" },
   {
-    "zbirenbaum/copilot.lua",
-    config = function()
-      require("copilot").setup({
-        panel = { enabled = false },
-        suggestion = { enabled = false },
-      })
-    end,
-    event = "InsertEnter",
-  },
-  {
     "ja-ford/delaytrain.nvim",
     config = function()
       require("delaytrain").setup({
@@ -199,7 +189,15 @@ return {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "zbirenbaum/copilot-cmp",
-      dependencies = { "zbirenbaum/copilot.lua" },
+      dependencies = {
+        "zbirenbaum/copilot.lua",
+        config = function()
+          require("copilot").setup({
+            panel = { enabled = false },
+            suggestion = { enabled = false },
+          })
+        end,
+      },
       opts = {
         method = "getPanelCompletions",
       },
@@ -400,7 +398,7 @@ return {
   { "SmiteshP/nvim-navic", opts = {
     highlight = true,
   } },
-  { "nvim-treesitter/nvim-treesitter-context", event = "VimEnter" },
+  { "nvim-treesitter/nvim-treesitter-context", event = "BufReadPre" },
   { "mrjones2014/nvim-ts-rainbow", event = "BufReadPost" },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -555,7 +553,7 @@ return {
     },
   },
   { "mbbill/undotree", event = "BufReadPost" },
-  { "blankname/vim-fish", event = "BufReadPost" },
+  { "blankname/vim-fish", ft = "fish" },
   { "tpope/vim-fugitive", event = "BufReadPost" },
   { "andymass/vim-matchup", event = "BufReadPost" },
   { "wakatime/vim-wakatime", event = "BufReadPost" },
