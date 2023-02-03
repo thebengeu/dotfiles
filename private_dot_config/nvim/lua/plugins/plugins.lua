@@ -192,6 +192,7 @@ return {
     end,
     event = "BufReadPost",
   },
+  { "karb94/neoscroll.nvim", config = true, event = "BufReadPost" },
   {
     "jose-elias-alvarez/null-ls.nvim",
     opts = function(_, opts)
