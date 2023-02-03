@@ -72,3 +72,5 @@
 - ansible.builtin.command:
     cmd: ~/.tmux/plugins/tpm/bin/install_plugins
     creates: ~/.tmux/plugins/tmux-pain-control
+- ansible.builtin.pip:
+    name: pynvim
