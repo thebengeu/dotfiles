@@ -54,7 +54,15 @@ return {
     end,
     keys = { "h", "j", "k", "l", "<Left>", "<Down>", "<Up>", "<Right>" },
   },
-  { "jinh0/eyeliner.nvim", event = "BufReadPost" },
+  {
+    "jinh0/eyeliner.nvim",
+    config = function()
+      local C = require("catppuccin.palettes").get_palette()
+      vim.api.nvim_set_hl(0, "EyelinerPrimary", { fg = C.red, bold = true, underline = true })
+      vim.api.nvim_set_hl(0, "EyelinerSecondary", { fg = C.peach, bold = true, underline = true })
+    end,
+    event = "BufReadPost",
+  },
   {
     "rmagatti/goto-preview",
     event = "BufReadPost",
