@@ -437,6 +437,12 @@ return {
     event = "BufReadPost",
   },
   {
+    "danth/pathfinder.vim",
+    config = function()
+      vim.g.pf_autorun_delay = 1
+    end,
+  },
+  {
     "cbochs/portal.nvim",
     keys = {
       {
