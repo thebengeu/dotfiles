@@ -441,6 +441,7 @@ return {
     config = function()
       vim.g.pf_autorun_delay = 1
     end,
+    event = "BufReadPost",
   },
   {
     "cbochs/portal.nvim",
