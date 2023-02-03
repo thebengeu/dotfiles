@@ -434,13 +434,13 @@ return {
     event = "BufReadPost",
   },
   { "windwp/nvim-ts-autotag", config = true, event = "InsertEnter" },
-  {
-    "chrisgrieser/nvim-various-textobjs",
-    config = function()
-      require("various-textobjs").setup({ useDefaultKeymaps = true })
-    end,
-    event = "BufReadPost",
-  },
+  -- {
+  --   "chrisgrieser/nvim-various-textobjs",
+  --   config = function()
+  --     require("various-textobjs").setup({ useDefaultKeymaps = true })
+  --   end,
+  --   event = "BufReadPost",
+  -- },
   {
     "danth/pathfinder.vim",
     config = function()
