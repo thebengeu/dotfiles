@@ -238,6 +238,7 @@ return {
       opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "copilot" } }))
     end,
   },
+  { "haringsrob/nvim_context_vt", event = "BufReadPost" },
   {
     "mfussenegger/nvim-dap",
     config = function()
