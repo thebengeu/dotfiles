@@ -21,6 +21,7 @@
       - cantino/mcfly/mcfly
       - emacs
       - eth-p/software/bat-extras-batman
+      - exa
       - fd
       - fnm
       - fzf

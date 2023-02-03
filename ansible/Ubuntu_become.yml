@@ -34,7 +34,6 @@
       - docker-ce
       - docker-ce-cli
       - docker-compose-plugin
-      - exa
       - fish
       - golang
       - libgccjit-12-dev
