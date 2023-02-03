@@ -29,14 +29,12 @@
       - gitui
       - lazydocker
       - lazygit
+      - neovim
       - mosh
       - topgrade
       - wakatime-cli
       - xh
       - zoxide
-- community.general.homebrew:
-    install_options: HEAD
-    name: neovim
 - community.general.alternatives:
     name: editor
     path: /home/linuxbrew/.linuxbrew/bin/nvim
