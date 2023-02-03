@@ -25,6 +25,7 @@
       - fnm
       - fzf
       - gh
+      - ghorg
       - git-delta
       - gitui
       - lazydocker
