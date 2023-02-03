@@ -95,6 +95,10 @@ return {
       },
     },
   },
+  -- {
+  --   "lvimuser/lsp-inlayhints.nvim",
+  --   config = true,
+  -- },
   {
     "nvim-lualine/lualine.nvim",
     opts = {
@@ -381,14 +385,12 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    dependencies = {
-      "jose-elias-alvarez/typescript.nvim",
-      init = function()
-        require("lazyvim.util").on_attach(function(client, buffer)
-          if client.name == "tsserver" then
+    opts = {
+      servers = {
+        tsserver = {
+          on_attach = function(client, buffer)
+            -- require("lsp-inlayhints").on_attach(client, buffer)
             vim.api.nvim_create_autocmd("BufWritePre", {
-              desc = "typescript.nvim",
-              pattern = "<buffer>",
               callback = function()
                 local actions = require("typescript").actions
                 actions.removeUnused({ sync = true })
@@ -396,10 +398,35 @@ return {
                 actions.organizeImports({ sync = true })
                 vim.lsp.buf.format()
               end,
+              pattern = "<buffer>",
             })
-          end
-        end)
-      end,
+          end,
+          settings = {
+            typescript = {
+              inlayHints = {
+                includeInlayParameterNameHints = "all",
+                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHints = true,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayEnumMemberValueHints = true,
+              },
+            },
+            javascript = {
+              inlayHints = {
+                includeInlayParameterNameHints = "all",
+                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHints = true,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayEnumMemberValueHints = true,
+              },
+            },
+          },
+        },
+      },
     },
   },
   { "SmiteshP/nvim-navic", opts = {
@@ -441,6 +468,7 @@ return {
   --   end,
   --   event = "BufReadPost",
   -- },
+  { "vuki656/package-info.nvim", config = true, ft = "json" },
   {
     "danth/pathfinder.vim",
     config = function()
@@ -528,6 +556,13 @@ return {
   },
   {
     "nvim-telescope/telescope.nvim",
+    dependencies = {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      build = "make",
+      config = function()
+        require("telescope").load_extension("fzf")
+      end,
+    },
     keys = {
       { "<leader><space>", "<cmd>Telescope smart_open<cr>", desc = "Smart Open" },
     },
