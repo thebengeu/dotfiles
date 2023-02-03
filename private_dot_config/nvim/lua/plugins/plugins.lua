@@ -55,7 +55,25 @@ return {
     keys = { "h", "j", "k", "l", "<Left>", "<Down>", "<Up>", "<Right>" },
   },
   { "jinh0/eyeliner.nvim", event = "BufReadPost" },
-  { "rmagatti/goto-preview", event = "BufReadPost", opts = { default_mappings = true } },
+  {
+    "rmagatti/goto-preview",
+    event = "BufReadPost",
+    init = function()
+      require("which-key").register({
+        g = {
+          P = "Close Preview(s)",
+          p = {
+            name = "+preview",
+            d = "Definition",
+            i = "Implementation",
+            r = "References",
+            t = "Type Definition",
+          },
+        },
+      })
+    end,
+    opts = { default_mappings = true },
+  },
   {
     "lukas-reineke/indent-blankline.nvim",
     opts = {
@@ -460,6 +478,14 @@ return {
       })
     end,
     event = "BufReadPost",
+    init = function()
+      require("which-key").register({
+        [","] = "Previous text subject",
+        ["."] = "Text subject smart",
+        [";"] = "Text subject container outer",
+        ["i;"] = "text subject container inner",
+      }, { mode = "o" })
+    end,
   },
   { "windwp/nvim-ts-autotag", config = true, event = "InsertEnter" },
   -- {
@@ -599,6 +625,15 @@ return {
   { "mbbill/undotree", event = "BufReadPost" },
   { "blankname/vim-fish", ft = "fish" },
   { "tpope/vim-fugitive", event = "BufReadPost" },
-  { "andymass/vim-matchup", event = "BufReadPost" },
+  {
+    "andymass/vim-matchup",
+    init = function()
+      require("which-key").register({
+        ["a%"] = "any block",
+        ["i%"] = "inner any block",
+      }, { mode = "o" })
+    end,
+    event = "BufReadPost",
+  },
   { "wakatime/vim-wakatime", event = "BufReadPost" },
 }
