@@ -553,7 +553,7 @@ return {
       },
     },
   },
-  { "mbbill/undotree" },
+  { "mbbill/undotree", event = "BufReadPost" },
   { "blankname/vim-fish", event = "BufReadPost" },
   { "tpope/vim-fugitive", event = "BufReadPost" },
   { "andymass/vim-matchup", event = "BufReadPost" },
