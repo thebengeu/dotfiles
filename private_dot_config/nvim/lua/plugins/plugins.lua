@@ -633,7 +633,7 @@ return {
   },
   { "mbbill/undotree", cmd = "UndotreeToggle" },
   { "blankname/vim-fish", ft = "fish" },
-  { "tpope/vim-fugitive", event = "BufReadPost" },
+  { "tpope/vim-fugitive", cmd = "G" },
   {
     "andymass/vim-matchup",
     init = function()
