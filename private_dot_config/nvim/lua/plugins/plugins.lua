@@ -631,7 +631,7 @@ return {
       },
     },
   },
-  { "mbbill/undotree", event = "BufReadPost" },
+  { "mbbill/undotree", cmd = "UndotreeToggle" },
   { "blankname/vim-fish", ft = "fish" },
   { "tpope/vim-fugitive", event = "BufReadPost" },
   {
@@ -644,6 +644,6 @@ return {
     end,
     event = "BufReadPost",
   },
-  { "simnalamburt/vim-mundo", event = "BufReadPost" },
+  { "simnalamburt/vim-mundo", cmd = "MundoToggle" },
   { "wakatime/vim-wakatime", event = "BufReadPost" },
 }
