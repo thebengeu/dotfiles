@@ -644,5 +644,6 @@ return {
     end,
     event = "BufReadPost",
   },
+  { "simnalamburt/vim-mundo", event = "BufReadPost" },
   { "wakatime/vim-wakatime", event = "BufReadPost" },
 }
