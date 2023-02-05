@@ -202,6 +202,43 @@ return {
   },
   { "karb94/neoscroll.nvim", config = true, event = "BufReadPost" },
   {
+    "folke/noice.nvim",
+    keys = {
+      {
+        "<c-f>",
+        function()
+          if not require("noice.lsp").scroll(4) then
+            if vim.api.nvim_get_mode()["mode"] == "i" then
+              return "<c-f>"
+            else
+              return "<cmd>lua require('neoscroll').scroll(vim.api.nvim_win_get_height(0), true, 450)<CR>"
+            end
+          end
+        end,
+        silent = true,
+        expr = true,
+        desc = "Scroll forward",
+        mode = { "i", "n", "s" },
+      },
+      {
+        "<c-b>",
+        function()
+          if not require("noice.lsp").scroll(-4) then
+            if vim.api.nvim_get_mode()["mode"] == "i" then
+              return "<c-b>"
+            else
+              return "<cmd>lua require('neoscroll').scroll(-vim.api.nvim_win_get_height(0), true, 450)<CR>"
+            end
+          end
+        end,
+        silent = true,
+        expr = true,
+        desc = "Scroll backward",
+        mode = { "i", "n", "s" },
+      },
+    },
+  },
+  {
     "jose-elias-alvarez/null-ls.nvim",
     opts = function(_, opts)
       local nls = require("null-ls")
