@@ -31,12 +31,14 @@
       - gitui
       - lazydocker
       - lazygit
-      - neovim
       - mosh
       - topgrade
       - wakatime-cli
       - xh
       - zoxide
+- community.general.homebrew:
+    install_options: HEAD
+    name: neovim
 - ansible.builtin.git:
     repo: https://github.com/plexus/chemacs2
     dest: ~/.emacs.d
