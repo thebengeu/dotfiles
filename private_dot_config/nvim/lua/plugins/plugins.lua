@@ -540,13 +540,6 @@ return {
   -- },
   { "vuki656/package-info.nvim", config = true, ft = "json" },
   {
-    "danth/pathfinder.vim",
-    config = function()
-      vim.g.pf_autorun_delay = 1
-    end,
-    event = "BufReadPost",
-  },
-  {
     "cbochs/portal.nvim",
     keys = {
       {
