@@ -243,6 +243,17 @@ return {
         mode = { "i", "n", "s" },
       },
     },
+    opts = {
+      routes = {
+        {
+          filter = {
+            event = "msg_show",
+            kind = "search_count",
+          },
+          opts = { skip = true },
+        },
+      },
+    },
   },
   {
     "jose-elias-alvarez/null-ls.nvim",
