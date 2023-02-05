@@ -146,6 +146,11 @@ return {
       }
     end,
   },
+  { "echasnovski/mini.indentscope", opts = {
+    options = {
+      border = "top",
+    },
+  } },
   -- {
   --   "mawkler/modicator.nvim",
   --   dependencies = "catppuccin",
