@@ -586,20 +586,6 @@ return {
     "linty-org/readline.nvim",
     keys = {
       {
-        "<M-f>",
-        function()
-          require("readline").forward_word()
-        end,
-        mode = "!",
-      },
-      {
-        "<M-b>",
-        function()
-          require("readline").backward_word()
-        end,
-        mode = "!",
-      },
-      {
         "<C-a>",
         function()
           require("readline").dwim_beginning_of_line()
@@ -614,16 +600,16 @@ return {
         mode = "!",
       },
       {
-        "<M-d>",
+        "<C-k>",
         function()
-          require("readline").kill_word()
+          require("readline").kill_line()
         end,
         mode = "!",
       },
       {
-        "<M-BS>",
+        "<C-u>",
         function()
-          require("readline").backward_kill_word()
+          require("readline").dwim_backward_kill_line()
         end,
         mode = "!",
       },
@@ -635,16 +621,30 @@ return {
         mode = "!",
       },
       {
-        "<C-k>",
+        "<M-BS>",
         function()
-          require("readline").kill_line()
+          require("readline").backward_kill_word()
         end,
         mode = "!",
       },
       {
-        "<C-u>",
+        "<M-b>",
         function()
-          require("readline").dwim_backward_kill_line()
+          require("readline").backward_word()
+        end,
+        mode = "!",
+      },
+      {
+        "<M-d>",
+        function()
+          require("readline").kill_word()
+        end,
+        mode = "!",
+      },
+      {
+        "<M-f>",
+        function()
+          require("readline").forward_word()
         end,
         mode = "!",
       },
