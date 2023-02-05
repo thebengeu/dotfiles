@@ -146,11 +146,17 @@ return {
       }
     end,
   },
-  { "echasnovski/mini.indentscope", opts = {
-    options = {
-      border = "top",
+  {
+    "echasnovski/mini.indentscope",
+    init = function()
+      vim.g.miniindentscope_disable = true
+    end,
+    opts = {
+      options = {
+        border = "top",
+      },
     },
-  } },
+  },
   -- {
   --   "mawkler/modicator.nvim",
   --   dependencies = "catppuccin",
