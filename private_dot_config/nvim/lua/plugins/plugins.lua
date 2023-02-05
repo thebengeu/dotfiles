@@ -223,7 +223,7 @@ return {
             if vim.api.nvim_get_mode()["mode"] == "i" then
               return "<c-f>"
             else
-              return "<cmd>lua require('neoscroll').scroll(vim.api.nvim_win_get_height(0), true, 450)<CR>"
+              return "<Cmd>lua require('neoscroll').scroll(vim.api.nvim_win_get_height(0), true, 450)<CR>"
             end
           end
         end,
@@ -239,7 +239,7 @@ return {
             if vim.api.nvim_get_mode()["mode"] == "i" then
               return "<c-b>"
             else
-              return "<cmd>lua require('neoscroll').scroll(-vim.api.nvim_win_get_height(0), true, 450)<CR>"
+              return "<Cmd>lua require('neoscroll').scroll(-vim.api.nvim_win_get_height(0), true, 450)<CR>"
             end
           end
         end,
@@ -704,6 +704,26 @@ return {
       },
     },
   },
+  {
+    "ThePrimeagen/refactoring.nvim",
+    config = function()
+      require("telescope").load_extension("refactoring")
+    end,
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-lua/plenary.nvim",
+    },
+    keys = {
+      {
+        "<leader>cR",
+        function()
+          require("telescope").extensions.refactoring.refactors()
+        end,
+        desc = "Refactors",
+        mode = { "n", "v" },
+      },
+    },
+  },
   { "lewis6991/satellite.nvim", config = true, event = "BufReadPost" },
   {
     "danielfalk/smart-open.nvim",
@@ -712,7 +732,7 @@ return {
     end,
     dependencies = { "kkharji/sqlite.lua" },
     keys = {
-      { "<leader><space>", "<cmd>Telescope smart_open<cr>", desc = "Smart Open" },
+      { "<leader><space>", "<Cmd>Telescope smart_open<CR>", desc = "Smart Open" },
     },
   },
   {
@@ -747,6 +767,13 @@ return {
     },
   },
   {
+    "simrat39/symbols-outline.nvim",
+    config = true,
+    keys = {
+      { "<leader>cs", "<Cmd>SymbolsOutline<CR>", desc = "Symbols Outline" },
+    },
+  },
+  {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       "nvim-telescope/telescope-fzf-native.nvim",
@@ -765,7 +792,7 @@ return {
       require("telescope").load_extension("undo")
     end,
     keys = {
-      { "<leader>su", "<cmd>Telescope undo<cr>", desc = "Undo" },
+      { "<leader>su", "<Cmd>Telescope undo<CR>", desc = "Undo" },
     },
   },
   {
@@ -774,7 +801,7 @@ return {
       require("telescope").load_extension("dap")
     end,
     keys = {
-      { "<leader>dl", "<cmd>Telescope dap list_breakpoints<cr>", desc = "List Breakpoints" },
+      { "<leader>dl", "<Cmd>Telescope dap list_breakpoints<CR>", desc = "List Breakpoints" },
     },
   },
   { "axelvc/template-string.nvim", config = true, event = "InsertEnter" },
