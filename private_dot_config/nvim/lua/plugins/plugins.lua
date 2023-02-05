@@ -413,6 +413,12 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
+    init = function()
+      local keys = require("lazyvim.plugins.lsp.keymaps").get()
+      keys[#keys + 1] = { "<c-k>", false, mode = "i" }
+      keys[#keys + 1] =
+        { "<C-l>", vim.lsp.buf.signature_help, mode = "i", desc = "Signature Help", has = "signatureHelp" }
+    end,
     opts = {
       servers = {
         tsserver = {
@@ -548,6 +554,74 @@ return {
       },
     },
   },
+  {
+    "linty-org/readline.nvim",
+    keys = {
+      {
+        "<M-f>",
+        function()
+          require("readline").forward_word()
+        end,
+        mode = "!",
+      },
+      {
+        "<M-b>",
+        function()
+          require("readline").backward_word()
+        end,
+        mode = "!",
+      },
+      {
+        "<C-a>",
+        function()
+          require("readline").dwim_beginning_of_line()
+        end,
+        mode = "!",
+      },
+      {
+        "<C-e>",
+        function()
+          require("readline").end_of_line()
+        end,
+        mode = "!",
+      },
+      {
+        "<M-d>",
+        function()
+          require("readline").kill_word()
+        end,
+        mode = "!",
+      },
+      {
+        "<M-BS>",
+        function()
+          require("readline").backward_kill_word()
+        end,
+        mode = "!",
+      },
+      {
+        "<C-w>",
+        function()
+          require("readline").unix_word_rubout()
+        end,
+        mode = "!",
+      },
+      {
+        "<C-k>",
+        function()
+          require("readline").kill_line()
+        end,
+        mode = "!",
+      },
+      {
+        "<C-u>",
+        function()
+          require("readline").dwim_backward_kill_line()
+        end,
+        mode = "!",
+      },
+    },
+  },
   { "lewis6991/satellite.nvim", config = true, event = "BufReadPost" },
   {
     "danielfalk/smart-open.nvim",
@@ -600,7 +674,7 @@ return {
       end,
     },
     keys = {
-      { "<leader><space>", "<cmd>Telescope smart_open<cr>", desc = "Smart Open" },
+      { "<leader><space>", false },
     },
   },
   {
