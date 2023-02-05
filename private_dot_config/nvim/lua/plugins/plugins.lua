@@ -63,6 +63,7 @@ return {
     end,
     event = "BufReadPost",
   },
+  { "akinsho/git-conflict.nvim", config = true },
   {
     "rmagatti/goto-preview",
     event = "BufReadPost",
