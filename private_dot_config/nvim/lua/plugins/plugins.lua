@@ -783,5 +783,6 @@ return {
     event = "BufReadPost",
   },
   { "simnalamburt/vim-mundo", cmd = "MundoToggle" },
+  { "mg979/vim-visual-multi", event = "BufReadPost" },
   { "wakatime/vim-wakatime", event = "BufReadPost" },
 }
