@@ -737,6 +737,19 @@ return {
     },
   },
   {
+    "cshuaimin/ssr.nvim",
+    keys = {
+      {
+        "<leader>sR",
+        function()
+          require("ssr").open()
+        end,
+        desc = "Structural Replace",
+        mode = { "n", "x" },
+      },
+    },
+  },
+  {
     "gbprod/substitute.nvim",
     event = "BufReadPost",
     keys = {
