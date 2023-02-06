@@ -844,6 +844,16 @@ return {
     keys = {
       { "<leader><space>", false },
     },
+    opts = {
+      defaults = {
+        layout_config = {
+          flex = {
+            flip_columns = 120,
+          },
+        },
+        layout_strategy = "flex",
+      },
+    },
   },
   {
     "debugloop/telescope-undo.nvim",
