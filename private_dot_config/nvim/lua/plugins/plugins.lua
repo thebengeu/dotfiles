@@ -74,6 +74,7 @@ return {
       { "gt", "<Cmd>Glance type_definitions<cr>", desc = "Goto Type Definition" },
     },
   },
+  { "smjonas/inc-rename.nvim", config = true },
   {
     "lukas-reineke/indent-blankline.nvim",
     opts = {
