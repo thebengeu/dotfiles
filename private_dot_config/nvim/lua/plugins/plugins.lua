@@ -760,6 +760,7 @@ return {
           },
         },
         layout_strategy = "flex",
+        winblend = 5,
       },
     },
   },
