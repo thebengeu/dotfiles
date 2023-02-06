@@ -114,10 +114,6 @@ return {
       },
     },
   },
-  -- {
-  --   "lvimuser/lsp-inlayhints.nvim",
-  --   config = true,
-  -- },
   {
     "nvim-lualine/lualine.nvim",
     opts = {
@@ -149,46 +145,6 @@ return {
       },
     },
   },
-  -- {
-  --   "mawkler/modicator.nvim",
-  --   dependencies = "catppuccin",
-  --   config = function()
-  --     local C = require("catppuccin.palettes").get_palette()
-  --     require("modicator").setup({
-  --       highlights = {
-  --         modes = {
-  --           ["n"] = {
-  --             foreground = C.blue,
-  --           },
-  --           ["i"] = {
-  --             foreground = C.green,
-  --           },
-  --           ["v"] = {
-  --             foreground = C.mauve,
-  --           },
-  --           ["V"] = {
-  --             foreground = C.mauve,
-  --           },
-  --           ["�"] = {
-  --             foreground = C.mauve,
-  --           },
-  --           ["s"] = {
-  --             foreground = C.mauve,
-  --           },
-  --           ["S"] = {
-  --             foreground = C.mauve,
-  --           },
-  --           ["R"] = {
-  --             foreground = C.red,
-  --           },
-  --           ["c"] = {
-  --             foreground = C.peach,
-  --           },
-  --         },
-  --       },
-  --     })
-  --   end,
-  -- },
   {
     "mvllow/modes.nvim",
     config = function()
@@ -204,43 +160,8 @@ return {
     end,
     event = "BufReadPost",
   },
-  { "karb94/neoscroll.nvim", config = true, event = "BufReadPost" },
   {
     "folke/noice.nvim",
-    keys = {
-      {
-        "<c-f>",
-        function()
-          if not require("noice.lsp").scroll(4) then
-            if vim.api.nvim_get_mode()["mode"] == "i" then
-              return "<c-f>"
-            else
-              return "<Cmd>lua require('neoscroll').scroll(vim.api.nvim_win_get_height(0), true, 450)<CR>"
-            end
-          end
-        end,
-        silent = true,
-        expr = true,
-        desc = "Scroll forward",
-        mode = { "i", "n", "s" },
-      },
-      {
-        "<c-b>",
-        function()
-          if not require("noice.lsp").scroll(-4) then
-            if vim.api.nvim_get_mode()["mode"] == "i" then
-              return "<c-b>"
-            else
-              return "<Cmd>lua require('neoscroll').scroll(-vim.api.nvim_win_get_height(0), true, 450)<CR>"
-            end
-          end
-        end,
-        silent = true,
-        expr = true,
-        desc = "Scroll backward",
-        mode = { "i", "n", "s" },
-      },
-    },
     opts = {
       routes = {
         {
@@ -416,10 +337,7 @@ return {
         config = function()
           require("dap-vscode-js").setup({
             adapters = { "pwa-node" },
-            -- debugger_path = require("mason-registry").get_package("js-debug-adapter"):get_install_path(),
             debugger_path = os.getenv("HOME") .. "/vscode-js-debug",
-            -- log_file_level = vim.log.levels.DEBUG,
-            -- log_file_path = os.getenv("HOME") .. "/.cache/dap_vscode_js.log",
           })
           require("dap").configurations["typescript"] = {
             {
@@ -508,8 +426,7 @@ return {
       },
       servers = {
         tsserver = {
-          on_attach = function(client, buffer)
-            -- require("lsp-inlayhints").on_attach(client, buffer)
+          on_attach = function()
             vim.api.nvim_create_autocmd("BufWritePre", {
               callback = function()
                 local actions = require("typescript").actions
@@ -521,37 +438,14 @@ return {
               pattern = "<buffer>",
             })
           end,
-          settings = {
-            typescript = {
-              inlayHints = {
-                includeInlayParameterNameHints = "all",
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayVariableTypeHints = true,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayEnumMemberValueHints = true,
-              },
-            },
-            javascript = {
-              inlayHints = {
-                includeInlayParameterNameHints = "all",
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayVariableTypeHints = true,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayEnumMemberValueHints = true,
-              },
-            },
-          },
         },
       },
     },
   },
-  { "SmiteshP/nvim-navic", opts = {
-    highlight = true,
-  } },
+  {
+    "SmiteshP/nvim-navic",
+    opts = { highlight = true },
+  },
   {
     "mfussenegger/nvim-treehopper",
     config = function()
@@ -627,13 +521,6 @@ return {
       },
     },
   },
-  -- {
-  --   "chrisgrieser/nvim-various-textobjs",
-  --   config = function()
-  --     require("various-textobjs").setup({ useDefaultKeymaps = true })
-  --   end,
-  --   event = "BufReadPost",
-  -- },
   { "vuki656/package-info.nvim", config = true, ft = "json" },
   {
     "cbochs/portal.nvim",
