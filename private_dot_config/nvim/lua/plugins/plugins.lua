@@ -856,21 +856,21 @@ return {
     },
   },
   {
-    "debugloop/telescope-undo.nvim",
-    config = function()
-      require("telescope").load_extension("undo")
-    end,
-    keys = {
-      { "<leader>su", "<Cmd>Telescope undo<CR>", desc = "Undo" },
-    },
-  },
-  {
     "nvim-telescope/telescope-dap.nvim",
     config = function()
       require("telescope").load_extension("dap")
     end,
     keys = {
       { "<leader>dl", "<Cmd>Telescope dap list_breakpoints<CR>", desc = "List Breakpoints" },
+    },
+  },
+  {
+    "debugloop/telescope-undo.nvim",
+    config = function()
+      require("telescope").load_extension("undo")
+    end,
+    keys = {
+      { "<leader>su", "<Cmd>Telescope undo<CR>", desc = "Undo" },
     },
   },
   { "axelvc/template-string.nvim", config = true, event = "InsertEnter" },
