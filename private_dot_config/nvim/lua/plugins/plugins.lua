@@ -65,23 +65,14 @@ return {
   },
   { "akinsho/git-conflict.nvim", config = true, event = "BufReadPost" },
   {
-    "rmagatti/goto-preview",
-    event = "BufReadPost",
-    init = function()
-      require("which-key").register({
-        g = {
-          P = "Close Preview(s)",
-          p = {
-            name = "+preview",
-            d = "Definition",
-            i = "Implementation",
-            r = "References",
-            t = "Type Definition",
-          },
-        },
-      })
-    end,
-    opts = { default_mappings = true },
+    "DNLHC/glance.nvim",
+    config = true,
+    keys = {
+      { "gd", "<Cmd>Glance definitions<cr>", desc = "Goto Definition" },
+      { "gI", "<Cmd>Glance implementations<cr>", desc = "Goto Implementation" },
+      { "gr", "<Cmd>Glance references<cr>", desc = "References" },
+      { "gt", "<Cmd>Glance type_definitions<cr>", desc = "Goto Type Definition" },
+    },
   },
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -505,6 +496,10 @@ return {
     init = function()
       local keys = require("lazyvim.plugins.lsp.keymaps").get()
       keys[#keys + 1] = { "<c-k>", false, mode = "i" }
+      keys[#keys + 1] = { "gd", false }
+      keys[#keys + 1] = { "gI", false }
+      keys[#keys + 1] = { "gr", false }
+      keys[#keys + 1] = { "gt", false }
       keys[#keys + 1] =
         { "<C-l>", vim.lsp.buf.signature_help, mode = "i", desc = "Signature Help", has = "signatureHelp" }
     end,
