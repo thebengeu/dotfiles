@@ -1,5 +1,5 @@
 [core]
-	excludesFile = /home/beng/.gitignore
+  excludesFile = /home/beng/.gitignore
   pager = delta
 [delta]
   navigate = true
@@ -11,7 +11,7 @@
 [merge]
   conflictstyle = diff3
 [user]
-	email = beng@bengeu.com
-	name = Beng Eu
+  email = beng@bengeu.com
+  name = Beng Eu
 [pull]
-	rebase = true
+  rebase = true
