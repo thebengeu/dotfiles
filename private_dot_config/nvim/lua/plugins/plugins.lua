@@ -496,6 +496,14 @@ return {
         { "<C-l>", vim.lsp.buf.signature_help, mode = "i", desc = "Signature Help", has = "signatureHelp" }
     end,
     opts = {
+      capabilities = {
+        textDocument = {
+          foldingRange = {
+            dynamicRegistration = false,
+            lineFoldingOnly = true,
+          },
+        },
+      },
       servers = {
         tsserver = {
           on_attach = function(client, buffer)
@@ -593,6 +601,26 @@ return {
   },
   { "windwp/nvim-ts-autotag", config = true, event = "InsertEnter" },
   { "mrjones2014/nvim-ts-rainbow", event = "BufReadPost" },
+  {
+    "kevinhwang91/nvim-ufo",
+    config = true,
+    dependencies = "kevinhwang91/promise-async",
+    event = "BufReadPost",
+    keys = {
+      {
+        "zR",
+        function()
+          require("ufo").openAllFolds()
+        end,
+      },
+      {
+        "zM",
+        function()
+          require("ufo").closeAllFolds()
+        end,
+      },
+    },
+  },
   -- {
   --   "chrisgrieser/nvim-various-textobjs",
   --   config = function()
