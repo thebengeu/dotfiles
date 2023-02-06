@@ -834,6 +834,13 @@ return {
       },
     },
   },
+  {
+    "Wansmer/treesj",
+    keys = {
+      { "J", "<Cmd>TSJToggle<CR>" },
+    },
+    opts = { use_default_keymaps = false },
+  },
   { "mbbill/undotree", cmd = "UndotreeToggle" },
   { "blankname/vim-fish", ft = "fish" },
   { "tpope/vim-fugitive", cmd = "G" },
