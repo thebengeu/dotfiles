@@ -505,7 +505,7 @@ return {
   {
     "kevinhwang91/nvim-ufo",
     config = true,
-    dependencies = "kevinhwang91/promise-async",
+    dependencies = { "kevinhwang91/promise-async" },
     event = "BufReadPost",
     keys = {
       {
@@ -634,10 +634,6 @@ return {
   },
   {
     "ThePrimeagen/refactoring.nvim",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-lua/plenary.nvim",
-    },
     keys = {
       {
         "<leader>cR",
