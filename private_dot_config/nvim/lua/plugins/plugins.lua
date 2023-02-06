@@ -522,6 +522,7 @@ return {
     },
   },
   { "vuki656/package-info.nvim", config = true, ft = "json" },
+  { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
   {
     "cbochs/portal.nvim",
     keys = {
