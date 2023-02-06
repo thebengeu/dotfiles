@@ -550,7 +550,7 @@ return {
     event = "VeryLazy",
     keys = {
       {
-        "<leader>sp",
+        "<leader>p",
         function()
           require("telescope").extensions.projects.projects()
         end,
@@ -817,7 +817,7 @@ return {
       { "<c-n>", "<Plug>(YankyCycleForward)" },
       { "<c-p>", "<Plug>(YankyCycleBackward)" },
       {
-        "<leader>p",
+        "<leader>sy",
         function()
           require("telescope").extensions.yank_history.yank_history()
         end,
