@@ -546,7 +546,6 @@ return {
     "ahmedkhalf/project.nvim",
     config = function()
       require("project_nvim").setup()
-      require("telescope").load_extension("projects")
     end,
     event = "VeryLazy",
     keys = {
@@ -629,9 +628,6 @@ return {
   },
   {
     "ThePrimeagen/refactoring.nvim",
-    config = function()
-      require("telescope").load_extension("refactoring")
-    end,
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "nvim-lua/plenary.nvim",
@@ -657,12 +653,15 @@ return {
   },
   {
     "danielfalk/smart-open.nvim",
-    config = function()
-      require("telescope").load_extension("smart_open")
-    end,
     dependencies = { "kkharji/sqlite.lua" },
     keys = {
-      { "<leader><space>", "<Cmd>Telescope smart_open<CR>", desc = "Smart Open" },
+      {
+        "<leader><space>",
+        function()
+          require("telescope").extensions.smart_open.smart_open()
+        end,
+        desc = "Smart Open",
+      },
     },
   },
   {
@@ -752,20 +751,26 @@ return {
   },
   {
     "nvim-telescope/telescope-dap.nvim",
-    config = function()
-      require("telescope").load_extension("dap")
-    end,
     keys = {
-      { "<leader>dl", "<Cmd>Telescope dap list_breakpoints<CR>", desc = "List Breakpoints" },
+      {
+        "<leader>dl",
+        function()
+          require("telescope").extensions.dap.list_breakpoints()
+        end,
+        desc = "List Breakpoints",
+      },
     },
   },
   {
     "debugloop/telescope-undo.nvim",
-    config = function()
-      require("telescope").load_extension("undo")
-    end,
     keys = {
-      { "<leader>su", "<Cmd>Telescope undo<CR>", desc = "Undo" },
+      {
+        "<leader>su",
+        function()
+          require("telescope").extensions.undo.undo()
+        end,
+        desc = "Undo",
+      },
     },
   },
   { "axelvc/template-string.nvim", config = true, event = "InsertEnter" },
@@ -803,14 +808,6 @@ return {
   { "wakatime/vim-wakatime", event = "BufReadPost" },
   {
     "gbprod/yanky.nvim",
-    config = function()
-      require("yanky").setup({
-        ring = {
-          storage = "sqlite",
-        },
-      })
-      require("telescope").load_extension("yank_history")
-    end,
     dependencies = { "kkharji/sqlite.lua" },
     keys = {
       { "p", "<Plug>(YankyPutAfter)", mode = { "n", "x" } },
@@ -837,6 +834,11 @@ return {
       { "<P", "<Plug>(YankyPutIndentBeforeShiftLeft)" },
       { "=p", "<Plug>(YankyPutAfterFilter)" },
       { "=P", "<Plug>(YankyPutBeforeFilter)" },
+    },
+    opts = {
+      ring = {
+        storage = "sqlite",
+      },
     },
   },
 }
