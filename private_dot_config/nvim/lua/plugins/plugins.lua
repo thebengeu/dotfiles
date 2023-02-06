@@ -542,8 +542,20 @@ return {
   { "SmiteshP/nvim-navic", opts = {
     highlight = true,
   } },
-  { "nvim-treesitter/nvim-treesitter-context", event = "VimEnter" },
-  { "mrjones2014/nvim-ts-rainbow", event = "BufReadPost" },
+  {
+    "mfussenegger/nvim-treehopper",
+    config = function()
+      vim.cmd([[
+        omap     <silent> m :<C-U>lua require('tsht').nodes()<CR>
+        xnoremap <silent> m :lua require('tsht').nodes()<CR>
+      ]])
+    end,
+    init = function()
+      require("which-key").register({
+        m = "Nodes",
+      }, { mode = { "o", "x" } })
+    end,
+  },
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
@@ -553,6 +565,7 @@ return {
       },
     },
   },
+  { "nvim-treesitter/nvim-treesitter-context", event = "VimEnter" },
   {
     "RRethy/nvim-treesitter-textsubjects",
     config = function()
@@ -579,6 +592,7 @@ return {
     end,
   },
   { "windwp/nvim-ts-autotag", config = true, event = "InsertEnter" },
+  { "mrjones2014/nvim-ts-rainbow", event = "BufReadPost" },
   -- {
   --   "chrisgrieser/nvim-various-textobjs",
   --   config = function()
