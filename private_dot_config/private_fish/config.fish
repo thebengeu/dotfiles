@@ -4,6 +4,7 @@ fish_add_path ~/.local/bin
 fish_add_path ~/doomemacs/bin
 fish_add_path ~/go/bin
 if status is-interactive
+  set --export --global BAT_PAGER 'less --mouse --quit-if-one-screen --RAW-CONTROL-CHARS'
   set --export --global EDITOR nvim
   set --export --global MCFLY_DELETE_WITHOUT_CONFIRM TRUE
   set --export --global MCFLY_DISABLE_MENU TRUE
