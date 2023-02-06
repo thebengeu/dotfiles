@@ -751,6 +751,11 @@ return {
   },
   {
     "gbprod/substitute.nvim",
+    config = function()
+      require("substitute").setup({
+        on_substitute = require("yanky.integration").substitute(),
+      })
+    end,
     event = "BufReadPost",
     keys = {
       {
@@ -857,4 +862,42 @@ return {
   { "simnalamburt/vim-mundo", cmd = "MundoToggle" },
   { "mg979/vim-visual-multi", event = "BufReadPost" },
   { "wakatime/vim-wakatime", event = "BufReadPost" },
+  {
+    "gbprod/yanky.nvim",
+    config = function()
+      require("yanky").setup({
+        ring = {
+          storage = "sqlite",
+        },
+      })
+      require("telescope").load_extension("yank_history")
+    end,
+    dependencies = { "kkharji/sqlite.lua" },
+    keys = {
+      { "p", "<Plug>(YankyPutAfter)", mode = { "n", "x" } },
+      { "P", "<Plug>(YankyPutBefore)", mode = { "n", "x" } },
+      { "gp", "<Plug>(YankyGPutAfter)", mode = { "n", "x" } },
+      { "gP", "<Plug>(YankyGPutBefore)", mode = { "n", "x" } },
+      { "<c-n>", "<Plug>(YankyCycleForward)" },
+      { "<c-p>", "<Plug>(YankyCycleBackward)" },
+      {
+        "<leader>p",
+        function()
+          require("telescope").extensions.yank_history.yank_history()
+        end,
+        desc = "Yank History",
+      },
+      { "y", "<Plug>(YankyYank)", mode = { "n", "x" } },
+      { "]p", "<Plug>(YankyPutIndentAfterLinewise)" },
+      { "[p", "<Plug>(YankyPutIndentBeforeLinewise)" },
+      { "]P", "<Plug>(YankyPutIndentAfterLinewise)" },
+      { "[P", "<Plug>(YankyPutIndentBeforeLinewise)" },
+      { ">p", "<Plug>(YankyPutIndentAfterShiftRight)" },
+      { "<p", "<Plug>(YankyPutIndentAfterShiftLeft)" },
+      { ">P", "<Plug>(YankyPutIndentBeforeShiftRight)" },
+      { "<P", "<Plug>(YankyPutIndentBeforeShiftLeft)" },
+      { "=p", "<Plug>(YankyPutAfterFilter)" },
+      { "=P", "<Plug>(YankyPutBeforeFilter)" },
+    },
+  },
 }
