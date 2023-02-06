@@ -74,7 +74,7 @@ return {
       { "gt", "<Cmd>Glance type_definitions<cr>", desc = "Goto Type Definition" },
     },
   },
-  { "smjonas/inc-rename.nvim", config = true },
+  { "smjonas/inc-rename.nvim", config = true, keys = { "<leader>cr" } },
   {
     "lukas-reineke/indent-blankline.nvim",
     opts = {
@@ -454,6 +454,7 @@ return {
         xnoremap <silent> m :lua require('tsht').nodes()<CR>
       ]])
     end,
+    event = "BufReadPost",
     init = function()
       require("which-key").register({
         m = "Nodes",
@@ -473,7 +474,7 @@ return {
       },
     },
   },
-  { "nvim-treesitter/nvim-treesitter-context", event = "VimEnter" },
+  { "nvim-treesitter/nvim-treesitter-context", config = true, event = "BufReadPost" },
   {
     "RRethy/nvim-treesitter-textsubjects",
     config = function()
@@ -651,6 +652,7 @@ return {
   { "lewis6991/satellite.nvim", config = true, event = "BufReadPost" },
   {
     "luukvbaal/statuscol.nvim",
+    event = "BufReadPost",
     opts = {
       foldfunc = "builtin",
       setopt = true,
