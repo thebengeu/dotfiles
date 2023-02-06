@@ -1,4 +1,5 @@
 return {
+  { "stevearc/aerial.nvim", cmd = "AerialToggle", config = true },
   {
     "akinsho/bufferline.nvim",
     config = function()
@@ -11,6 +12,7 @@ return {
     "catppuccin",
     opts = {
       integrations = {
+        aerial = true,
         cmp = true,
         dap = {
           enable_ui = true,
@@ -36,6 +38,7 @@ return {
         noice = true,
         notify = true,
         semantic_tokens = true,
+        symbols_outline = true,
         telescope = true,
         treesitter = true,
         treesitter_context = true,
