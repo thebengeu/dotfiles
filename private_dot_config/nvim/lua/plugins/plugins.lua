@@ -761,6 +761,13 @@ return {
   },
   { "lewis6991/satellite.nvim", config = true, event = "BufReadPost" },
   {
+    "luukvbaal/statuscol.nvim",
+    opts = {
+      foldfunc = "builtin",
+      setopt = true,
+    },
+  },
+  {
     "danielfalk/smart-open.nvim",
     config = function()
       require("telescope").load_extension("smart_open")
