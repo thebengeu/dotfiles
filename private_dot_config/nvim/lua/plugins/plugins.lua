@@ -355,6 +355,13 @@ return {
     end,
     keys = {
       {
+        "<leader>db",
+        function()
+          require("dap").toggle_breakpoint()
+        end,
+        desc = "Toggle Breakpoint",
+      },
+      {
         "<leader>dc",
         function()
           require("dap").continue()
@@ -388,13 +395,6 @@ return {
           require("dap").repl.toggle()
         end,
         desc = "Toggle REPL",
-      },
-      {
-        "<leader>dt",
-        function()
-          require("dap").toggle_breakpoint()
-        end,
-        desc = "Toggle Breakpoint",
       },
       {
         "<leader>du",
