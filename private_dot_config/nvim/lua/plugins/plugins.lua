@@ -261,6 +261,8 @@ return {
         sources = vim.list_extend(opts.sources, {
           nls.builtins.code_actions.eslint_d,
           nls.builtins.diagnostics.eslint_d,
+          nls.builtins.diagnostics.fish,
+          nls.builtins.formatting.fish_indent,
           nls.builtins.formatting.prettierd.with({
             extra_filetypes = { "prisma" },
           }),
