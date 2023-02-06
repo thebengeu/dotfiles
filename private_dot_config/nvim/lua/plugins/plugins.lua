@@ -738,6 +738,19 @@ return {
         require("telescope").load_extension("fzf")
       end,
     },
+    init = function()
+      local C = require("catppuccin.palettes").get_palette()
+      vim.api.nvim_set_hl(0, "TelescopePreviewBorder", { bg = C.crust, fg = C.crust })
+      vim.api.nvim_set_hl(0, "TelescopePreviewNormal", { bg = C.crust })
+      vim.api.nvim_set_hl(0, "TelescopePreviewTitle", { fg = C.crust })
+      vim.api.nvim_set_hl(0, "TelescopePromptBorder", { bg = C.crust, fg = C.crust })
+      vim.api.nvim_set_hl(0, "TelescopePromptNormal", { bg = C.crust })
+      vim.api.nvim_set_hl(0, "TelescopePromptPrefix", { bg = C.crust })
+      vim.api.nvim_set_hl(0, "TelescopePromptTitle", { fg = C.crust })
+      vim.api.nvim_set_hl(0, "TelescopeResultsBorder", { bg = C.mantle, fg = C.crust })
+      vim.api.nvim_set_hl(0, "TelescopeResultsNormal", { bg = C.mantle })
+      vim.api.nvim_set_hl(0, "TelescopeResultsTitle", { fg = C.mantle })
+    end,
     keys = {
       { "<leader><space>", false },
       {
