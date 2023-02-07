@@ -185,6 +185,9 @@ return {
           opts = { skip = true },
         },
       },
+      presets = {
+        command_palette = false,
+      },
     },
   },
   {
