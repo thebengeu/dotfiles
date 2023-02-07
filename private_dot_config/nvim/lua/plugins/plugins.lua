@@ -1,5 +1,9 @@
 return {
-  { "stevearc/aerial.nvim", cmd = "AerialToggle", config = true },
+  {
+    "stevearc/aerial.nvim",
+    cmd = "AerialToggle",
+    config = true,
+  },
   {
     "akinsho/bufferline.nvim",
     config = function()
@@ -50,12 +54,10 @@ return {
   { "alker0/chezmoi.vim" },
   {
     "ja-ford/delaytrain.nvim",
-    config = function()
-      require("delaytrain").setup({
-        grace_period = 2,
-      })
-    end,
     keys = { "h", "j", "k", "l", "<Left>", "<Down>", "<Up>", "<Right>" },
+    opts = {
+      grace_period = 2,
+    },
   },
   {
     "jinh0/eyeliner.nvim",
@@ -66,7 +68,11 @@ return {
     end,
     event = "BufReadPost",
   },
-  { "akinsho/git-conflict.nvim", config = true, event = "BufReadPost" },
+  {
+    "akinsho/git-conflict.nvim",
+    config = true,
+    event = "BufReadPost",
+  },
   {
     "DNLHC/glance.nvim",
     config = true,
@@ -77,7 +83,11 @@ return {
       { "gt", "<Cmd>Glance type_definitions<cr>", desc = "Goto Type Definition" },
     },
   },
-  { "smjonas/inc-rename.nvim", config = true, keys = { "<leader>cr" } },
+  {
+    "smjonas/inc-rename.nvim",
+    config = true,
+    keys = { "<leader>cr" },
+  },
   {
     "lukas-reineke/indent-blankline.nvim",
     opts = {
@@ -219,7 +229,6 @@ return {
     opts = function(_, opts)
       local cmp = require("cmp")
       local luasnip = require("luasnip")
-
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<CR>"] = cmp.mapping.confirm({
           behavior = cmp.ConfirmBehavior.Replace,
@@ -259,10 +268,15 @@ return {
           cmp.config.compare.order,
         },
       }
-      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "copilot" } }))
+      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, {
+        { name = "copilot" },
+      }))
     end,
   },
-  { "haringsrob/nvim_context_vt", event = "BufReadPost" },
+  {
+    "haringsrob/nvim_context_vt",
+    event = "BufReadPost",
+  },
   {
     "mfussenegger/nvim-dap",
     config = function()
@@ -362,7 +376,7 @@ return {
     config = function()
       require("dapui").setup()
     end,
-    dependencies = { "mfussenegger/nvim-dap" },
+    dependencies = "mfussenegger/nvim-dap",
     keys = {
       {
         "<leader>dU",
@@ -477,7 +491,11 @@ return {
       },
     },
   },
-  { "nvim-treesitter/nvim-treesitter-context", config = true, event = "BufReadPost" },
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    config = true,
+    event = "BufReadPost",
+  },
   {
     "RRethy/nvim-treesitter-textsubjects",
     config = function()
@@ -503,12 +521,19 @@ return {
       }, { mode = "o" })
     end,
   },
-  { "windwp/nvim-ts-autotag", config = true, event = "InsertEnter" },
-  { "mrjones2014/nvim-ts-rainbow", event = "BufReadPost" },
+  {
+    "windwp/nvim-ts-autotag",
+    config = true,
+    event = "InsertEnter",
+  },
+  {
+    "mrjones2014/nvim-ts-rainbow",
+    event = "BufReadPost",
+  },
   {
     "kevinhwang91/nvim-ufo",
     config = true,
-    dependencies = { "kevinhwang91/promise-async" },
+    dependencies = "kevinhwang91/promise-async",
     event = "BufReadPost",
     keys = {
       {
@@ -525,8 +550,15 @@ return {
       },
     },
   },
-  { "vuki656/package-info.nvim", config = true, ft = "json" },
-  { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
+  {
+    "vuki656/package-info.nvim",
+    config = true,
+    ft = "json",
+  },
+  {
+    "nvim-treesitter/playground",
+    cmd = "TSPlaygroundToggle",
+  },
   {
     "cbochs/portal.nvim",
     keys = {
@@ -648,7 +680,11 @@ return {
       },
     },
   },
-  { "lewis6991/satellite.nvim", config = true, event = "BufReadPost" },
+  {
+    "lewis6991/satellite.nvim",
+    config = true,
+    event = "BufReadPost",
+  },
   {
     "luukvbaal/statuscol.nvim",
     event = "BufReadPost",
@@ -659,7 +695,7 @@ return {
   },
   {
     "danielfalk/smart-open.nvim",
-    dependencies = { "kkharji/sqlite.lua" },
+    dependencies = "kkharji/sqlite.lua",
     keys = {
       {
         "<leader><space>",
@@ -729,7 +765,7 @@ return {
   {
     "abecodes/tabout.nvim",
     config = true,
-    dependencies = { "hrsh7th/nvim-cmp" },
+    dependencies = "hrsh7th/nvim-cmp",
     event = "InsertEnter",
   },
   {
@@ -802,7 +838,11 @@ return {
       },
     },
   },
-  { "axelvc/template-string.nvim", config = true, event = "InsertEnter" },
+  {
+    "axelvc/template-string.nvim",
+    config = true,
+    event = "InsertEnter",
+  },
   {
     "aserowy/tmux.nvim",
     keys = { "<C-h>", "<C-j>", "<C-k>", "<C-l>" },
@@ -819,9 +859,18 @@ return {
     },
     opts = { use_default_keymaps = false },
   },
-  { "mbbill/undotree", cmd = "UndotreeToggle" },
-  { "blankname/vim-fish", ft = "fish" },
-  { "tpope/vim-fugitive", cmd = "G" },
+  {
+    "mbbill/undotree",
+    cmd = "UndotreeToggle",
+  },
+  {
+    "blankname/vim-fish",
+    ft = "fish",
+  },
+  {
+    "tpope/vim-fugitive",
+    cmd = "G",
+  },
   {
     "andymass/vim-matchup",
     init = function()
@@ -832,12 +881,21 @@ return {
     end,
     event = "BufReadPost",
   },
-  { "simnalamburt/vim-mundo", cmd = "MundoToggle" },
-  { "mg979/vim-visual-multi", event = "BufReadPost" },
-  { "wakatime/vim-wakatime", event = "BufReadPost" },
+  {
+    "simnalamburt/vim-mundo",
+    cmd = "MundoToggle",
+  },
+  {
+    "mg979/vim-visual-multi",
+    event = "BufReadPost",
+  },
+  {
+    "wakatime/vim-wakatime",
+    event = "BufReadPost",
+  },
   {
     "gbprod/yanky.nvim",
-    dependencies = { "kkharji/sqlite.lua" },
+    dependencies = "kkharji/sqlite.lua",
     keys = {
       { "p", "<Plug>(YankyPutAfter)", mode = { "n", "x" } },
       { "P", "<Plug>(YankyPutBefore)", mode = { "n", "x" } },
