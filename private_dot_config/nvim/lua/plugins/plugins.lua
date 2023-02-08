@@ -4,6 +4,7 @@ return {
     cmd = "AerialToggle",
     config = true,
   },
+  { "pearofducks/ansible-vim" },
   {
     "akinsho/bufferline.nvim",
     config = function()
@@ -193,14 +194,14 @@ return {
   {
     "jose-elias-alvarez/null-ls.nvim",
     opts = function(_, opts)
-      local nls = require("null-ls")
+      local null_ls = require("null-ls")
       return {
         sources = vim.list_extend(opts.sources, {
-          nls.builtins.code_actions.eslint_d,
-          nls.builtins.diagnostics.eslint_d,
-          nls.builtins.diagnostics.fish,
-          nls.builtins.formatting.fish_indent,
-          nls.builtins.formatting.prettierd.with({
+          null_ls.builtins.code_actions.eslint_d,
+          null_ls.builtins.diagnostics.eslint_d,
+          null_ls.builtins.diagnostics.fish,
+          null_ls.builtins.formatting.fish_indent,
+          null_ls.builtins.formatting.prettierd.with({
             extra_filetypes = { "prisma" },
           }),
         }),
@@ -445,6 +446,8 @@ return {
         },
       },
       servers = {
+        ansiblels = {},
+        prismals = {},
         tsserver = {
           on_attach = function()
             vim.api.nvim_create_autocmd("BufWritePre", {
@@ -487,6 +490,7 @@ return {
       ensure_installed = {
         "fish",
         "gitignore",
+        "prisma",
       },
       rainbow = {
         enable = true,
