@@ -22,8 +22,7 @@ if status is-interactive
     abbr --add cgd 'chezmoi git diff'
     abbr --add cgP 'chezmoi git push'
     abbr --add cgp 'chezmoi git pull'
-    abbr --add cgs 'chezmoi git status'
-    abbr --add cgss 'chezmoi git -- status -s'
+    abbr --add cgs 'chezmoi git s'
     abbr --add clg 'lazygit --path ~/.local/share/chezmoi'
     abbr --add cr 'chezmoi re-add'
     abbr --add cat bat
@@ -39,8 +38,7 @@ if status is-interactive
     abbr --add gP 'git push'
     abbr --add gp 'git pull'
     abbr --add grbc 'git rebase --continue'
-    abbr --add gs 'git status'
-    abbr --add gss 'git status -s'
+    abbr --add gs 'git s'
     abbr --add lg lazygit
     abbr --add ll 'exa --git --icons --long'
     abbr --add ls 'exa --icons'

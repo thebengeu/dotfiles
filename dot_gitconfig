@@ -1,5 +1,6 @@
 [alias]
   lg = log --pretty='format:%Cblue%ar%Creset %s'
+  s = status --short
 [core]
   excludesFile = /home/beng/.gitignore
   pager = delta
