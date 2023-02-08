@@ -35,7 +35,7 @@ if status is-interactive
     abbr --add gcm 'git commit -m'
     abbr --add gco 'git checkout'
     abbr --add gd 'git diff'
-    abbr --add gl 'git log'
+    abbr --add gl 'git lg'
     abbr --add gP 'git push'
     abbr --add gp 'git pull'
     abbr --add grbc 'git rebase --continue'
