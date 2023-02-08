@@ -142,8 +142,11 @@ return {
       return {
         ensure_installed = vim.list_extend(opts.ensure_installed, {
           "eslint_d",
+          "fixjson",
           "js-debug-adapter",
           "prettierd",
+          "yamlfmt",
+          "yamllint",
         }),
       }
     end,
@@ -200,10 +203,13 @@ return {
           null_ls.builtins.code_actions.eslint_d,
           null_ls.builtins.diagnostics.eslint_d,
           null_ls.builtins.diagnostics.fish,
+          null_ls.builtins.diagnostics.yamllint,
           null_ls.builtins.formatting.fish_indent,
+          null_ls.builtins.formatting.fixjson,
           null_ls.builtins.formatting.prettierd.with({
             extra_filetypes = { "prisma" },
           }),
+          null_ls.builtins.formatting.yamlfmt,
         }),
       }
     end,
