@@ -65,6 +65,8 @@
     key: https://github.com/thebengeu.keys
     user: "{{ user }}"
 - community.general.pipx:
+    name: ansible-lint
+- community.general.pipx:
     name: tusker
 - ansible.builtin.command:
     cmd: chezmoi init --apply --ssh thebengeu
