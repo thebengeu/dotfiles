@@ -1,10 +1,5 @@
 return {
   {
-    "stevearc/aerial.nvim",
-    cmd = "AerialToggle",
-    config = true,
-  },
-  {
     "pearofducks/ansible-vim",
     ft = "yaml.ansible",
   },
@@ -20,7 +15,6 @@ return {
     "catppuccin",
     opts = {
       integrations = {
-        aerial = true,
         cmp = true,
         dap = {
           enable_ui = true,
@@ -46,7 +40,6 @@ return {
         noice = true,
         notify = true,
         semantic_tokens = true,
-        symbols_outline = true,
         telescope = true,
         treesitter = true,
         treesitter_context = true,
@@ -120,23 +113,6 @@ return {
     "LazyVim/LazyVim",
     opts = {
       colorscheme = "catppuccin",
-    },
-  },
-  {
-    "mrjones2014/legendary.nvim",
-    event = "BufReadPost",
-    opts = {
-      autocmds = {
-        {
-          { "BufEnter", "FocusGained" },
-          'call system("tmux rename-window " . expand("%:p"))',
-        },
-        {
-          "BufWritePost",
-          "!chezmoi apply --source-path <afile>",
-          opts = { pattern = "*/.local/share/chezmoi/*" },
-        },
-      },
     },
   },
   {
@@ -590,10 +566,6 @@ return {
     ft = "json",
   },
   {
-    "nvim-treesitter/playground",
-    cmd = "TSPlaygroundToggle",
-  },
-  {
     "cbochs/portal.nvim",
     keys = {
       {
@@ -861,18 +833,6 @@ return {
     },
   },
   {
-    "debugloop/telescope-undo.nvim",
-    keys = {
-      {
-        "<leader>su",
-        function()
-          require("telescope").extensions.undo.undo()
-        end,
-        desc = "Undo",
-      },
-    },
-  },
-  {
     "axelvc/template-string.nvim",
     config = true,
     event = "InsertEnter",
@@ -894,10 +854,6 @@ return {
     opts = { use_default_keymaps = false },
   },
   {
-    "mbbill/undotree",
-    cmd = "UndotreeToggle",
-  },
-  {
     "blankname/vim-fish",
     ft = "fish",
   },
@@ -914,10 +870,6 @@ return {
       }, { mode = "o" })
     end,
     event = "BufReadPost",
-  },
-  {
-    "simnalamburt/vim-mundo",
-    cmd = "MundoToggle",
   },
   {
     "mg979/vim-visual-multi",
