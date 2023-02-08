@@ -148,6 +148,12 @@ return {
     },
   },
   {
+    "L3MON4D3/LuaSnip",
+    keys = function()
+      return {}
+    end,
+  },
+  {
     "williamboman/mason.nvim",
     opts = function(_, opts)
       return {
