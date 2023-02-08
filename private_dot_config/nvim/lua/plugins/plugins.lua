@@ -4,7 +4,10 @@ return {
     cmd = "AerialToggle",
     config = true,
   },
-  { "pearofducks/ansible-vim" },
+  {
+    "pearofducks/ansible-vim",
+    ft = "yaml.ansible",
+  },
   {
     "akinsho/bufferline.nvim",
     config = function()
