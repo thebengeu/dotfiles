@@ -91,7 +91,7 @@ return {
   {
     "smjonas/inc-rename.nvim",
     config = true,
-    keys = { "<leader>cr" },
+    lazy = true,
   },
   {
     "lukas-reineke/indent-blankline.nvim",
