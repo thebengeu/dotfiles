@@ -15,7 +15,7 @@ if status is-interactive
     abbr --add b bat
     abbr --add bi 'brew install'
     abbr --add bui 'brew uninstall'
-    abbr --add ca 'chezmoi apply'
+    abbr --add ca 'chezmoi apply --exclude templates'
     abbr --add cgca 'chezmoi git -- commit --amend'
     abbr --add cgcam 'chezmoi git -- commit -a -m'
     abbr --add cgd 'chezmoi git diff'
