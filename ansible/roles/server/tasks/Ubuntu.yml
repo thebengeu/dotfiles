@@ -51,8 +51,14 @@
 - community.general.pipx:
     name: ansible-lint
 - ansible.builtin.command:
-    cmd: chezmoi init --apply --ssh thebengeu
+    cmd: chezmoi init --ssh thebengeu
     creates: ~/.local/share/chezmoi
+- ansible.builtin.command:
+    cmd: chezmoi apply --exclude templates
+    creates: ~/.tmux.conf
+- ansible.builtin.command:
+    cmd: bat cache --build
+    creates: /home/beng/.cache/bat/themes.bin
 - ansible.builtin.command:
     cmd: ~/.tmux/plugins/tpm/bin/install_plugins
     creates: ~/.tmux/plugins/tmux-pain-control
