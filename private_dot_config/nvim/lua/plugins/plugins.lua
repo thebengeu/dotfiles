@@ -138,6 +138,7 @@ return {
           "fixjson",
           "js-debug-adapter",
           "prettierd",
+          "shellharden",
           "yamlfmt",
           "yamllint",
         }),
@@ -196,12 +197,15 @@ return {
           null_ls.builtins.code_actions.eslint_d,
           null_ls.builtins.diagnostics.eslint_d,
           null_ls.builtins.diagnostics.fish,
+          null_ls.builtins.diagnostics.shellcheck,
           null_ls.builtins.diagnostics.yamllint,
           null_ls.builtins.formatting.fish_indent,
           null_ls.builtins.formatting.fixjson,
           null_ls.builtins.formatting.prettierd.with({
             extra_filetypes = { "prisma" },
           }),
+          null_ls.builtins.formatting.shfmt,
+          null_ls.builtins.formatting.shellharden,
           null_ls.builtins.formatting.yamlfmt,
         }),
       }
@@ -447,6 +451,7 @@ return {
       },
       servers = {
         ansiblels = {},
+        bashls = {},
         prismals = {},
         tsserver = {
           on_attach = function()
