@@ -21,8 +21,6 @@ return {
 {{- if eq .chezmoi.os "linux" }}
 {{-   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
   default_domain = "WSL:Ubuntu",
-{{-   else }}
-  default_prog = { "tmux", "new-session", "-A", "-s", "0" },
 {{-   end }}
 {{- end }}
   font = wezterm.font("MonoLisa Variable"),
