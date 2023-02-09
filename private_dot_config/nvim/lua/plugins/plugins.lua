@@ -708,25 +708,7 @@ return {
     },
   },
   {
-    "cshuaimin/ssr.nvim",
-    keys = {
-      {
-        "<leader>sR",
-        function()
-          require("ssr").open()
-        end,
-        desc = "Structural Replace",
-        mode = { "n", "x" },
-      },
-    },
-  },
-  {
     "gbprod/substitute.nvim",
-    config = function()
-      require("substitute").setup({
-        on_substitute = require("yanky.integration").substitute(),
-      })
-    end,
     event = "BufReadPost",
     keys = {
       {
@@ -821,11 +803,6 @@ return {
     },
   },
   {
-    "axelvc/template-string.nvim",
-    config = true,
-    event = "InsertEnter",
-  },
-  {
     "aserowy/tmux.nvim",
     keys = { "<C-h>", "<C-j>", "<C-k>", "<C-l>" },
     opts = {
@@ -866,40 +843,5 @@ return {
   {
     "wakatime/vim-wakatime",
     event = "BufReadPost",
-  },
-  {
-    "gbprod/yanky.nvim",
-    dependencies = "kkharji/sqlite.lua",
-    keys = {
-      { "p", "<Plug>(YankyPutAfter)", mode = { "n", "x" } },
-      { "P", "<Plug>(YankyPutBefore)", mode = { "n", "x" } },
-      { "gp", "<Plug>(YankyGPutAfter)", mode = { "n", "x" } },
-      { "gP", "<Plug>(YankyGPutBefore)", mode = { "n", "x" } },
-      { "<c-n>", "<Plug>(YankyCycleForward)" },
-      { "<c-p>", "<Plug>(YankyCycleBackward)" },
-      {
-        "<leader>sy",
-        function()
-          require("telescope").extensions.yank_history.yank_history()
-        end,
-        desc = "Yank History",
-      },
-      { "y", "<Plug>(YankyYank)", mode = { "n", "x" } },
-      { "]p", "<Plug>(YankyPutIndentAfterLinewise)" },
-      { "[p", "<Plug>(YankyPutIndentBeforeLinewise)" },
-      { "]P", "<Plug>(YankyPutIndentAfterLinewise)" },
-      { "[P", "<Plug>(YankyPutIndentBeforeLinewise)" },
-      { ">p", "<Plug>(YankyPutIndentAfterShiftRight)" },
-      { "<p", "<Plug>(YankyPutIndentAfterShiftLeft)" },
-      { ">P", "<Plug>(YankyPutIndentBeforeShiftRight)" },
-      { "<P", "<Plug>(YankyPutIndentBeforeShiftLeft)" },
-      { "=p", "<Plug>(YankyPutAfterFilter)" },
-      { "=P", "<Plug>(YankyPutBeforeFilter)" },
-    },
-    opts = {
-      ring = {
-        storage = "sqlite",
-      },
-    },
   },
 }
