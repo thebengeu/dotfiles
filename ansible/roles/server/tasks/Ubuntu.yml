@@ -19,7 +19,6 @@
       - broot
       - btop
       - cantino/mcfly/mcfly
-      - emacs
       - eth-p/software/bat-extras-batman
       - exa
       - fd
@@ -40,21 +39,9 @@
     install_options: HEAD
     name: neovim
 - ansible.builtin.git:
-    repo: https://github.com/plexus/chemacs2
-    dest: ~/.emacs.d
-- ansible.builtin.git:
-    repo: https://github.com/doomemacs/doomemacs
-    dest: ~/doomemacs
-- ansible.builtin.git:
-    repo: https://git.savannah.gnu.org/git/emacs.git
-    dest: ~/emacs
-- ansible.builtin.git:
     repo: https://github.com/ryanoasis/nerd-fonts.git
     depth: 1
     dest: ~/nerd-fonts
-- ansible.builtin.git:
-    repo: https://github.com/syl20bnr/spacemacs
-    dest: ~/spacemacs
 - ansible.builtin.git:
     repo: https://github.com/tmux-plugins/tpm
     dest: ~/.tmux/plugins/tpm
