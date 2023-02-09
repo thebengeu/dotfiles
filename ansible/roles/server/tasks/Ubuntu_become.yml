@@ -32,7 +32,6 @@
 - ansible.builtin.apt:
     name:
       - 1password-cli
-      - autoconf
       - awscli
       - containerd.io
       - curl
@@ -41,8 +40,6 @@
       - docker-compose-plugin
       - fish
       - golang
-      - libgccjit-12-dev
-      - libncurses-dev
       - libsqlite3-dev
       - make
       - moreutils
@@ -55,7 +52,6 @@
       - python3-pip
       - ripgrep
       - sqlite3
-      - texinfo
       - tmux
       - unzip
     update_cache: yes
