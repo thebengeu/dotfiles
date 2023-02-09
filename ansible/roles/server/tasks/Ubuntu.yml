@@ -38,6 +38,10 @@
 - community.general.homebrew:
     install_options: HEAD
     name: neovim
+- community.general.alternatives:
+    name: editor
+    path: /home/linuxbrew/.linuxbrew/bin/nvim
+  become: yes
 - ansible.builtin.git:
     repo: https://github.com/ryanoasis/nerd-fonts.git
     depth: 1
