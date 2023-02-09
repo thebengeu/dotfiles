@@ -43,10 +43,6 @@
     path: /home/linuxbrew/.linuxbrew/bin/nvim
   become: yes
 - ansible.builtin.git:
-    repo: https://github.com/ryanoasis/nerd-fonts.git
-    depth: 1
-    dest: ~/nerd-fonts
-- ansible.builtin.git:
     repo: https://github.com/tmux-plugins/tpm
     dest: ~/.tmux/plugins/tpm
 - ansible.posix.authorized_key:
@@ -54,8 +50,6 @@
     user: "{{ user }}"
 - community.general.pipx:
     name: ansible-lint
-- community.general.pipx:
-    name: tusker
 - ansible.builtin.command:
     cmd: chezmoi init --apply --ssh thebengeu
     creates: ~/.local/share/chezmoi
