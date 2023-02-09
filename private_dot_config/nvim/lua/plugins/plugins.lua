@@ -757,13 +757,6 @@ return {
     },
   },
   {
-    "simrat39/symbols-outline.nvim",
-    config = true,
-    keys = {
-      { "<leader>cs", "<Cmd>SymbolsOutline<CR>", desc = "Symbols Outline" },
-    },
-  },
-  {
     "abecodes/tabout.nvim",
     config = true,
     dependencies = "hrsh7th/nvim-cmp",
