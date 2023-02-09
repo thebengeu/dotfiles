@@ -6,4 +6,5 @@ ansible-playbook --ask-become-pass --extra-vars user=${USER} --tags server ~/ans
 op account add
 eval $(op signin)
 tide configure
+bat cache --build
 ```
