@@ -1,1 +1,2 @@
-disable = ["emacs"]
+disable = ["chezmoi"]
+display_preamble = false
