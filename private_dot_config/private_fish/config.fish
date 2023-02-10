@@ -22,6 +22,7 @@ if status is-interactive
     abbr --add cgP 'chezmoi git push'
     abbr --add cgp 'chezmoi git pull'
     abbr --add cgs 'chezmoi git s'
+    abbr --add cgl 'chezmoi git lg'
     abbr --add clg 'lazygit --path ~/.local/share/chezmoi'
     abbr --add cr 'chezmoi re-add'
     abbr --add cat bat
