@@ -1,5 +1,7 @@
+defaults
 account default
 auth on
+from cron@bungee.email
 host smtp.fastmail.com
 password {{ onepasswordRead "op://Shared/Fastmail/Security/msmtp" }}
 tls on
