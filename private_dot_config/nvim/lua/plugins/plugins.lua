@@ -132,17 +132,15 @@ return {
   {
     "williamboman/mason.nvim",
     opts = function(_, opts)
-      return {
-        ensure_installed = vim.list_extend(opts.ensure_installed, {
-          "eslint_d",
-          "fixjson",
-          "js-debug-adapter",
-          "prettierd",
-          "shellharden",
-          "yamlfmt",
-          "yamllint",
-        }),
-      }
+      opts.ensure_installed = vim.list_extend(opts.ensure_installed, {
+        "eslint_d",
+        "fixjson",
+        "js-debug-adapter",
+        "prettierd",
+        "shellharden",
+        "yamlfmt",
+        "yamllint",
+      })
     end,
   },
   {
@@ -192,23 +190,21 @@ return {
     "jose-elias-alvarez/null-ls.nvim",
     opts = function(_, opts)
       local null_ls = require("null-ls")
-      return {
-        sources = vim.list_extend(opts.sources, {
-          null_ls.builtins.code_actions.eslint_d,
-          null_ls.builtins.diagnostics.eslint_d,
-          null_ls.builtins.diagnostics.fish,
-          null_ls.builtins.diagnostics.shellcheck,
-          null_ls.builtins.diagnostics.yamllint,
-          null_ls.builtins.formatting.fish_indent,
-          null_ls.builtins.formatting.fixjson,
-          null_ls.builtins.formatting.prettierd.with({
-            extra_filetypes = { "prisma" },
-          }),
-          null_ls.builtins.formatting.shfmt,
-          null_ls.builtins.formatting.shellharden,
-          null_ls.builtins.formatting.yamlfmt,
+      opts.sources = vim.list_extend(opts.sources, {
+        null_ls.builtins.code_actions.eslint_d,
+        null_ls.builtins.diagnostics.eslint_d,
+        null_ls.builtins.diagnostics.fish,
+        null_ls.builtins.diagnostics.shellcheck,
+        null_ls.builtins.diagnostics.yamllint,
+        null_ls.builtins.formatting.fish_indent,
+        null_ls.builtins.formatting.fixjson,
+        null_ls.builtins.formatting.prettierd.with({
+          extra_filetypes = { "prisma" },
         }),
-      }
+        null_ls.builtins.formatting.shfmt,
+        null_ls.builtins.formatting.shellharden,
+        null_ls.builtins.formatting.yamlfmt,
+      })
     end,
   },
   {
@@ -491,17 +487,17 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
+    opts = function(_, opts)
+      opts.ensure_installed = vim.list_extend(opts.ensure_installed, {
         "fish",
         "gitignore",
         "prisma",
-      },
-      rainbow = {
+      })
+      opts.rainbow = {
         enable = true,
         extended_mode = true,
-      },
-    },
+      }
+    end,
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
