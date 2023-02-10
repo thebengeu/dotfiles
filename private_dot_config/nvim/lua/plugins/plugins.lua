@@ -668,11 +668,9 @@ return {
     "ThePrimeagen/refactoring.nvim",
     keys = {
       {
-        "<leader>cR",
-        function()
-          require("telescope").extensions.refactoring.refactors()
-        end,
-        desc = "Refactors",
+        "<leader>cF",
+        "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
+        desc = "Refactor",
         mode = { "n", "v" },
       },
     },
