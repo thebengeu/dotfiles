@@ -3,6 +3,7 @@ return {
     "pearofducks/ansible-vim",
     ft = "yaml.ansible",
   },
+  { "skywind3000/asyncrun.vim", cmd = "AsyncRun" },
   {
     "akinsho/bufferline.nvim",
     config = function()
