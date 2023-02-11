@@ -8,7 +8,11 @@ if status is-interactive
     set --export --global MCFLY_DELETE_WITHOUT_CONFIRM TRUE
     set --export --global MCFLY_DISABLE_MENU TRUE
     set --export --global MCFLY_KEY_SCHEME vim
+    set --global fish_cursor_default block
+    set --global fish_cursor_insert line
+    set --global fish_cursor_replace_one underscore
     set --global fish_greeting
+    set --global fish_vi_force_cursor 1
     fnm env --use-on-cd | source
     mcfly init fish | source
     zoxide init --cmd cd fish | source
@@ -43,6 +47,7 @@ if status is-interactive
     abbr --add ll 'exa --git --icons --long'
     abbr --add ls 'exa --icons'
     abbr --add n nvim
+    abbr --add node 'sh -c "printf \"\e[6 q\"; node"'
     abbr --add pr 'gh pr create -f'
     abbr --add prr 'gh pr create -f -r'
     abbr --add vim nvim
