@@ -15,6 +15,11 @@ return {
   {
     "catppuccin",
     opts = {
+      custom_highlights = function(colors)
+        return {
+          NoiceCursor = { fg = colors.base, bg = colors.text },
+        }
+      end,
       integrations = {
         cmp = true,
         dap = {
