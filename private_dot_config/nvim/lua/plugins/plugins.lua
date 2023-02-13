@@ -861,7 +861,7 @@ return {
   },
   {
     "tpope/vim-fugitive",
-    cmd = "G",
+    cmd = { "G", "Gclog" },
   },
   {
     "andymass/vim-matchup",
