@@ -55,7 +55,7 @@ return {
     keys = { "h", "j", "k", "l", "<Left>", "<Down>", "<Up>", "<Right>" },
     opts = {
       grace_period = 2,
-      ignore_filetypes = { "neo%-tree" },
+      ignore_filetypes = { "neo%-tree", "qf" },
     },
   },
   {
@@ -249,6 +249,30 @@ return {
         null_ls.builtins.formatting.yamlfmt,
       })
     end,
+  },
+  {
+    "kevinhwang91/nvim-bqf",
+    ft = "qf",
+    opts = {
+      preview = {
+        should_preview_cb = function(bufnr, qwinid)
+          local bufname = vim.api.nvim_buf_get_name(bufnr)
+          if bufname:match("^fugitive://") and not vim.api.nvim_buf_is_loaded(bufnr) then
+            if bqf_pv_timer and bqf_pv_timer:get_due_in() > 0 then
+              bqf_pv_timer:stop()
+              bqf_pv_timer = nil
+            end
+            bqf_pv_timer = vim.defer_fn(function()
+              vim.api.nvim_buf_call(bufnr, function()
+                vim.cmd(("do fugitive BufReadCmd %s"):format(bufname))
+              end)
+              require("bqf.preview.handler").open(qwinid, nil, true)
+            end, 60)
+          end
+          return true
+        end,
+      },
+    },
   },
   {
     "hrsh7th/nvim-cmp",
@@ -872,6 +896,44 @@ return {
       }, { mode = "o" })
     end,
     event = "BufReadPost",
+  },
+  {
+    "tpope/vim-unimpaired",
+    config = function()
+      for _, key in ipairs({
+        "<C-L>",
+        "<C-Q>",
+        "<C-T>",
+        "<space>",
+        "A",
+        "a",
+        "B",
+        "C",
+        "f",
+        "L",
+        "l",
+        "n",
+        "o",
+        "P",
+        "p",
+        "T",
+        "u",
+        "x",
+        "y",
+      }) do
+        require("which-key").register({
+          ["[" .. key] = "which_key_ignore",
+          ["]" .. key] = "which_key_ignore",
+        })
+      end
+      require("which-key").register({
+        ["[q"] = "Previous item in quickfix list",
+        ["]q"] = "Next item in quickfix list",
+        ["[Q"] = "First item in quickfix list",
+        ["]Q"] = "Last item in quickfix list",
+      })
+    end,
+    event = "VeryLazy",
   },
   {
     "mg979/vim-visual-multi",
