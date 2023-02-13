@@ -68,6 +68,10 @@ return {
     event = "BufReadPost",
   },
   {
+    "ggandor/flit.nvim",
+    commit = "be110f9814a45788d10537fd59b3c76d956bb7ad",
+  },
+  {
     "akinsho/git-conflict.nvim",
     config = true,
     event = "BufReadPost",
@@ -149,6 +153,10 @@ return {
     opts = {
       colorscheme = "catppuccin",
     },
+  },
+  {
+    "ggandor/leap.nvim",
+    commit = "7140feed70a5911b8c8a7eb9c218d198772f69cf",
   },
   {
     "nvim-lualine/lualine.nvim",
