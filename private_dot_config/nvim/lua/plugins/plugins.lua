@@ -55,6 +55,7 @@ return {
     keys = { "h", "j", "k", "l", "<Left>", "<Down>", "<Up>", "<Right>" },
     opts = {
       grace_period = 2,
+      ignore_filetypes = { "neo%-tree" },
     },
   },
   {
