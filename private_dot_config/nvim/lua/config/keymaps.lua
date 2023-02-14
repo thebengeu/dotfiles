@@ -10,3 +10,5 @@ vim.keymap.set(
   [[<Cmd>update | exec ":!git commit -m '" . input("") . "'" | AsyncRun -mode=term -pos=hide git push<CR>]],
   { desc = "Git commit" }
 )
+vim.keymap.set("n", "<C-r>", "<Cmd>silent redo<CR>")
+vim.keymap.set("n", "u", "<Cmd>silent undo<CR>")
