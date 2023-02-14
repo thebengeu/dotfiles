@@ -532,7 +532,8 @@ return {
         bashls = {},
         prismals = {},
         tsserver = {
-          on_attach = function()
+          on_attach = function(client)
+            client.server_capabilities.documentFormattingProvider = false
             vim.api.nvim_create_autocmd("BufWritePre", {
               callback = function()
                 local actions = require("typescript").actions
