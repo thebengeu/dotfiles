@@ -59,6 +59,14 @@ return {
     },
   },
   {
+    "sainnhe/edge",
+    lazy = true,
+  },
+  {
+    "sainnhe/everforest",
+    lazy = true,
+  },
+  {
     "jinh0/eyeliner.nvim",
     config = function()
       local C = require("catppuccin.palettes").get_palette()
@@ -121,6 +129,10 @@ return {
       { "gr", "<Cmd>Glance references<cr>", desc = "References" },
       { "gt", "<Cmd>Glance type_definitions<cr>", desc = "Goto Type Definition" },
     },
+  },
+  {
+    "sainnhe/gruvbox-material",
+    lazy = true,
   },
   {
     "smjonas/inc-rename.nvim",
@@ -203,6 +215,10 @@ return {
       })
     end,
     event = "BufReadPost",
+  },
+  {
+    "EdenEast/nightfox.nvim",
+    lazy = true,
   },
   {
     "folke/noice.nvim",
@@ -759,6 +775,10 @@ return {
         desc = "Smart Open",
       },
     },
+  },
+  {
+    "sainnhe/sonokai",
+    lazy = true,
   },
   {
     "gbprod/substitute.nvim",
