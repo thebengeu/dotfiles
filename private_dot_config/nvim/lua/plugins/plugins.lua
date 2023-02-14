@@ -419,6 +419,13 @@ return {
         desc = "Toggle REPL",
       },
       {
+        "<leader>dt",
+        function()
+          require("dap").terminate()
+        end,
+        desc = "Terminate",
+      },
+      {
         "<leader>du",
         function()
           require("dap").step_out()
