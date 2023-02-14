@@ -440,6 +440,13 @@ return {
           })
           require("dap").configurations["typescript"] = {
             {
+              cwd = "${workspaceFolder}",
+              name = "Attach",
+              processId = require("dap.utils").pick_process,
+              request = "attach",
+              type = "pwa-node",
+            },
+            {
               console = "integratedTerminal",
               cwd = "${workspaceFolder}",
               name = "ts-node/esm/transpile-only",
