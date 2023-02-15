@@ -48,6 +48,7 @@ if status is-interactive
     abbr --add ls 'exa --icons'
     abbr --add n nvim
     abbr --add node 'sh -c "printf \"\e[6 q\"; node"'
+    abbr --add os 'eval $(op signin)'
     abbr --add pr 'gh pr create -f'
     abbr --add prr 'gh pr create -f -r'
     abbr --add tg topgrade
