@@ -180,8 +180,10 @@ return {
     "williamboman/mason.nvim",
     opts = function(_, opts)
       opts.ensure_installed = vim.list_extend(opts.ensure_installed, {
+        "black",
         "eslint_d",
         "fixjson",
+        "isort",
         "js-debug-adapter",
         "prettierd",
         "shellharden",
@@ -247,8 +249,12 @@ return {
         null_ls.builtins.diagnostics.fish,
         null_ls.builtins.diagnostics.shellcheck,
         null_ls.builtins.diagnostics.yamllint,
+        null_ls.builtins.formatting.black,
         null_ls.builtins.formatting.fish_indent,
         null_ls.builtins.formatting.fixjson,
+        null_ls.builtins.formatting.isort.with({
+          extra_args = { "--profile", "black" },
+        }),
         null_ls.builtins.formatting.prettierd.with({
           extra_filetypes = { "prisma" },
         }),
@@ -538,6 +544,7 @@ return {
         ansiblels = {},
         bashls = {},
         prismals = {},
+        pyright = {},
         tsserver = {
           on_attach = function(client)
             client.server_capabilities.documentFormattingProvider = false
