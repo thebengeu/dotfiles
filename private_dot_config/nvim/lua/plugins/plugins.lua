@@ -59,6 +59,44 @@ return {
     },
   },
   {
+    "monaqa/dial.nvim",
+    config = function()
+      vim.list_extend(require("dial.config").augends.group.default, {
+        require("dial.augend").constant.alias.bool,
+      })
+    end,
+    keys = {
+      {
+        "<C-a>",
+        "<Plug>(dial-increment)",
+      },
+      {
+        "<C-x>",
+        "<Plug>(dial-decrement)",
+      },
+      {
+        "<C-a>",
+        "<Plug>(dial-increment)",
+        { mode = "v" },
+      },
+      {
+        "<C-x>",
+        "<Plug>(dial-decrement)",
+        { mode = "v" },
+      },
+      {
+        "g<C-a>",
+        "g<Plug>(dial-increment)",
+        { mode = "v" },
+      },
+      {
+        "g<C-x>",
+        "g<Plug>(dial-decrement)",
+        { mode = "v" },
+      },
+    },
+  },
+  {
     "sainnhe/edge",
     lazy = true,
   },
