@@ -1,12 +1,19 @@
-- ansible.builtin.copy:
-    dest: /lib/systemd/network
-    src: wsl_external.network
+- ansible.builtin.template:
+    dest: /lib/systemd/network/wsl_external.network
+    src: wsl_external.network.j2
+  when: address is defined
 - ansible.builtin.service:
     enabled: true
     name: systemd-networkd
+  when: address is defined
+- ansible.builtin.copy:
+    dest: /etc/wsl.conf
+    src: wsl.conf
+  when: address is defined
 - ansible.builtin.copy:
     dest: /etc/resolv.conf
     src: resolv.conf
+  when: address is defined
 - community.general.sudoers:
     commands: ALL
     name: "{{ user }}"
