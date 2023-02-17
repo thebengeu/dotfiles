@@ -433,7 +433,7 @@ return {
     "haringsrob/nvim_context_vt",
     event = "BufReadPost",
     opts = {
-      disable_virtual_lines_ft = { "yaml" },
+      disable_virtual_lines = true,
       prefix = "",
     },
   },
