@@ -205,8 +205,10 @@ return {
               format = require("iron.fts.common").bracketed_paste,
             },
           },
-          scratch_repl = true,
-          should_map_plug = false,
+          repl_open_cmd = require("iron.view").split.horizontal.botright(20, {
+            number = false,
+            relativenumber = false,
+          }),
         },
         keymaps = {
           send_motion = "<space>m",
@@ -216,7 +218,7 @@ return {
     end,
     keys = {
       { "<C-m>", mode = "v" },
-      { "<space>m", desc = "Send to REPL" },
+      { "<C-m>", "gv<C-m>", remap = true },
       { "<space>r", "<Cmd>IronRepl<CR>", desc = "REPL" },
     },
   },
