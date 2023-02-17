@@ -1,5 +1,15 @@
 return {
   {
+    "goolord/alpha-nvim",
+    opts = function(_, opts)
+      opts.section.buttons.val[5] = require("alpha.themes.dashboard").button(
+        "c",
+        " " .. " Config",
+        ":e ~/.local/share/chezmoi/private_dot_config/nvim/lua/plugins/plugins.lua <CR>"
+      )
+    end,
+  },
+  {
     "pearofducks/ansible-vim",
     ft = "yaml.ansible",
   },
