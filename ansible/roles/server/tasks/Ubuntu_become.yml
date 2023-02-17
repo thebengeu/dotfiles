@@ -32,8 +32,6 @@
       }} stable
 - ansible.builtin.apt_repository:
     repo: ppa:jgmath2000/et
-- ansible.builtin.apt_repository:
-    repo: ppa:fish-shell/release-3
 - ansible.builtin.apt_key:
     url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
 - ansible.builtin.apt_repository:
@@ -58,7 +56,6 @@
       - docker-ce-cli
       - docker-compose-plugin
       - et
-      - fish
       - golang
       - libsqlite3-dev
       - make
@@ -66,7 +63,6 @@
       - msmtp-mta
       - nodejs
       - openssh-server
-      - pipx
       - postgresql
       - postgresql-client
       - python3-pip
@@ -81,11 +77,6 @@
     deb: http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.17_amd64.deb
 - ansible.builtin.group:
     name: docker
-- ansible.builtin.user:
-    append: yes
-    groups: docker
-    name: "{{ user }}"
-    shell: /usr/bin/fish
 - ansible.builtin.command:
     cmd: ssh-keygen -A
     creates: /etc/ssh/ssh_host_*

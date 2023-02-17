@@ -22,6 +22,7 @@
       - eth-p/software/bat-extras-batman
       - exa
       - fd
+      - fish
       - fnm
       - fzf
       - gh
@@ -31,6 +32,7 @@
       - lazydocker
       - lazygit
       - mosh
+      - pdm
       - topgrade
       - wakatime-cli
       - xh
@@ -42,14 +44,18 @@
     name: editor
     path: /home/linuxbrew/.linuxbrew/bin/nvim
   become: yes
+- ansible.builtin.user:
+    append: yes
+    groups: docker
+    name: "{{ user }}"
+    shell: /home/linuxbrew/.linuxbrew/bin/fish
+  become: yes
 - ansible.builtin.git:
     repo: https://github.com/tmux-plugins/tpm
     dest: ~/.tmux/plugins/tpm
 - ansible.posix.authorized_key:
     key: https://github.com/thebengeu.keys
     user: "{{ user }}"
-- community.general.pipx:
-    name: ansible-lint
 - ansible.builtin.command:
     cmd: chezmoi init --ssh thebengeu
     creates: ~/.local/share/chezmoi
