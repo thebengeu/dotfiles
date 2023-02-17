@@ -29,6 +29,7 @@
       - ghorg
       - git-delta
       - gitui
+      - ipython
       - lazydocker
       - lazygit
       - mosh
