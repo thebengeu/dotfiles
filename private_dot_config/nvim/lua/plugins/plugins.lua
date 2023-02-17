@@ -250,7 +250,7 @@ return {
   {
     "williamboman/mason.nvim",
     opts = function(_, opts)
-      opts.ensure_installed = vim.list_extend(opts.ensure_installed, {
+      vim.list_extend(opts.ensure_installed, {
         "black",
         "eslint_d",
         "fixjson",
@@ -314,7 +314,7 @@ return {
     "jose-elias-alvarez/null-ls.nvim",
     opts = function(_, opts)
       local null_ls = require("null-ls")
-      opts.sources = vim.list_extend(opts.sources, {
+      vim.list_extend(opts.sources, {
         null_ls.builtins.code_actions.eslint_d,
         null_ls.builtins.diagnostics.eslint_d,
         null_ls.builtins.diagnostics.fish,
