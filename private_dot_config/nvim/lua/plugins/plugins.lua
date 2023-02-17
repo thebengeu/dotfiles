@@ -765,10 +765,8 @@ return {
     "ahmedkhalf/project.nvim",
     config = function()
       require("project_nvim").setup({
-        ignore_lsp = {
-          "lua_ls",
-          "null-ls",
-        },
+        detection_methods = { "pattern" },
+        patterns = { ".git" },
       })
     end,
     event = "BufEnter",
