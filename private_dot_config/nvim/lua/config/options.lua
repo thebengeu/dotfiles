@@ -16,3 +16,5 @@ vim.opt.fillchars = {
   foldopen = "",
   foldsep = " ",
 }
+vim.opt.linebreak = true
+vim.opt.wrap = true
