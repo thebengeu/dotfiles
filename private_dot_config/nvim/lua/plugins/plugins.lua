@@ -157,6 +157,39 @@ return {
     },
   },
   {
+    "/hkupty/iron.nvim",
+    config = function()
+      require("iron.core").setup({
+        config = {
+          repl_definition = {
+            python = {
+              command = { "pipenv", "run", "ipython", "--no-autoindent" },
+              format = require("iron.fts.common").bracketed_paste,
+            },
+          },
+          scratch_repl = true,
+          should_map_plug = false,
+        },
+        keymaps = {
+          send_motion = "<space>m",
+          visual_send = "<C-m>",
+        },
+      })
+    end,
+    keys = {
+      { "<C-m>", mode = "v" },
+      { "<space>m", desc = "Send to REPL" },
+      { "<space>r", "<Cmd>IronRepl<CR>", desc = "REPL" },
+    },
+  },
+  {
+    "GCBallesteros/jupytext.vim",
+    config = function()
+      vim.g.jupytext_fmt = "py"
+      vim.g.jupytext_style = ":hydrogen"
+    end,
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
       colorscheme = "catppuccin",
