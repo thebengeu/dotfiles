@@ -199,12 +199,6 @@ return {
     config = function()
       require("iron.core").setup({
         config = {
-          repl_definition = {
-            python = {
-              command = { "pipenv", "run", "ipython", "--no-autoindent" },
-              format = require("iron.fts.common").bracketed_paste,
-            },
-          },
           repl_open_cmd = require("iron.view").split.horizontal.botright(20, {
             number = false,
             relativenumber = false,
