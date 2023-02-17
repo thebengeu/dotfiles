@@ -756,8 +756,8 @@ return {
     config = function()
       require("project_nvim").setup({
         ignore_lsp = {
+          "lua_ls",
           "null-ls",
-          "sumneko_lua",
         },
       })
     end,
