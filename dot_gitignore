@@ -1,2 +1,4 @@
 .idea/
+.pdm.toml
 .projectile
+__pypackages__/
