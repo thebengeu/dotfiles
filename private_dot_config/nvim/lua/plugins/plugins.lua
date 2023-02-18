@@ -298,8 +298,8 @@ return {
   },
   {
     "williamboman/mason.nvim",
-    opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, {
+    opts = {
+      ensure_installed = {
         "ansible-lint",
         "black",
         "eslint_d",
@@ -308,12 +308,16 @@ return {
         "js-debug-adapter",
         "mypy",
         "prettierd",
+        "ruff",
+        "shellcheck",
         "shellharden",
+        "shfmt",
+        "stylua",
         "taplo",
         "yamlfmt",
         "yamllint",
-      })
-    end,
+      },
+    },
   },
   {
     "echasnovski/mini.indentscope",
@@ -370,10 +374,8 @@ return {
         null_ls.builtins.code_actions.eslint_d,
         null_ls.builtins.diagnostics.eslint_d,
         null_ls.builtins.diagnostics.fish,
-        null_ls.builtins.diagnostics.flake8.with({
-          extra_args = { "--max-line-length", "88" },
-        }),
         null_ls.builtins.diagnostics.mypy,
+        null_ls.builtins.diagnostics.ruff,
         null_ls.builtins.diagnostics.shellcheck,
         null_ls.builtins.diagnostics.yamllint,
         null_ls.builtins.formatting.black,
