@@ -657,14 +657,14 @@ return {
     "mfussenegger/nvim-treehopper",
     config = function()
       vim.cmd([[
-        omap     <silent> m :<C-U>lua require('tsht').nodes()<CR>
-        xnoremap <silent> m :lua require('tsht').nodes()<CR>
+        omap     <silent> p :<C-U>lua require('tsht').nodes()<CR>
+        xnoremap <silent> p :lua require('tsht').nodes()<CR>
       ]])
     end,
     event = "BufReadPost",
     init = function()
       require("which-key").register({
-        m = "Nodes",
+        p = "Nodes",
       }, { mode = { "o", "x" } })
     end,
   },
