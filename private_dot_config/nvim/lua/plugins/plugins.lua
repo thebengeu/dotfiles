@@ -306,6 +306,7 @@ return {
         "fixjson",
         "isort",
         "js-debug-adapter",
+        "luacheck",
         "mypy",
         "prettierd",
         "ruff",
@@ -375,6 +376,9 @@ return {
         null_ls.builtins.code_actions.eslint_d,
         null_ls.builtins.diagnostics.eslint_d,
         null_ls.builtins.diagnostics.fish,
+        null_ls.builtins.diagnostics.luacheck.with({
+          extra_args = { "--globals", "vim" },
+        }),
         null_ls.builtins.diagnostics.mypy,
         null_ls.builtins.diagnostics.ruff,
         null_ls.builtins.diagnostics.shellcheck,
@@ -405,11 +409,11 @@ return {
         should_preview_cb = function(bufnr, qwinid)
           local bufname = vim.api.nvim_buf_get_name(bufnr)
           if bufname:match("^fugitive://") and not vim.api.nvim_buf_is_loaded(bufnr) then
-            if bqf_pv_timer and bqf_pv_timer:get_due_in() > 0 then
-              bqf_pv_timer:stop()
-              bqf_pv_timer = nil
+            if Bqf_preview_timer and Bqf_preview_timer:get_due_in() > 0 then
+              Bqf_preview_timer:stop()
+              Bqf_preview_timer = nil
             end
-            bqf_pv_timer = vim.defer_fn(function()
+            Bqf_preview_timer = vim.defer_fn(function()
               vim.api.nvim_buf_call(bufnr, function()
                 vim.cmd(("do fugitive BufReadCmd %s"):format(bufname))
               end)
