@@ -782,26 +782,6 @@ return {
     event = "BufReadPost",
   },
   {
-    "kevinhwang91/nvim-ufo",
-    config = true,
-    dependencies = "kevinhwang91/promise-async",
-    event = "BufReadPost",
-    keys = {
-      {
-        "zR",
-        function()
-          require("ufo").openAllFolds()
-        end,
-      },
-      {
-        "zM",
-        function()
-          require("ufo").closeAllFolds()
-        end,
-      },
-    },
-  },
-  {
     "vuki656/package-info.nvim",
     config = true,
     ft = "json",
@@ -929,7 +909,6 @@ return {
     "luukvbaal/statuscol.nvim",
     event = "BufReadPost",
     opts = {
-      foldfunc = "builtin",
       setopt = true,
     },
   },
