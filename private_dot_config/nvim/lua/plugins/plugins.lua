@@ -306,7 +306,6 @@ return {
         "fixjson",
         "isort",
         "js-debug-adapter",
-        "luacheck",
         "mypy",
         "prettierd",
         "ruff",
@@ -381,9 +380,6 @@ return {
         null_ls.builtins.code_actions.eslint_d,
         null_ls.builtins.diagnostics.eslint_d,
         null_ls.builtins.diagnostics.fish,
-        null_ls.builtins.diagnostics.luacheck.with({
-          extra_args = { "--globals", "vim" },
-        }),
         null_ls.builtins.diagnostics.mypy.with(run_if_not_pypackages),
         null_ls.builtins.diagnostics.ruff.with(run_if_not_pypackages),
         null_ls.builtins.diagnostics.shellcheck,
