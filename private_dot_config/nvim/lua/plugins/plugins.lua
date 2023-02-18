@@ -222,7 +222,42 @@ return {
     end,
     keys = {
       { "<C-z>", mode = "v" },
-      { "<C-z>", "gv<C-z>", remap = true },
+      {
+        "<C-z>",
+        function()
+          local mark_rows = {}
+
+          for char in ("abcdefghijklmnopqrstuvwxyz"):gmatch(".") do
+            local mark = vim.api.nvim_buf_get_mark(0, char)
+            local mark_row = mark[1]
+            if mark_row ~= 0 then
+              table.insert(mark_rows, mark_row)
+            end
+          end
+
+          table.sort(mark_rows)
+
+          local cursor = vim.api.nvim_win_get_cursor(0)
+          local current_row = cursor[1]
+          local start_row = 1
+          local end_row = vim.api.nvim_buf_line_count(0)
+
+          for _, mark_row in ipairs(mark_rows) do
+            if mark_row <= current_row then
+              start_row = mark_row
+            else
+              end_row = mark_row - 1
+              break
+            end
+          end
+
+          vim.api.nvim_win_set_cursor(0, { start_row, 0 })
+          vim.cmd("normal V")
+          vim.api.nvim_win_set_cursor(0, { end_row, 0 })
+          require("iron.core").visual_send()
+          vim.api.nvim_win_set_cursor(0, cursor)
+        end,
+      },
       { "<space>r", "<Cmd>IronRepl<CR>", desc = "REPL" },
     },
   },
