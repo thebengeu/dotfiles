@@ -168,12 +168,22 @@ return {
   },
   {
     "DNLHC/glance.nvim",
-    config = true,
     keys = {
       { "gd", "<Cmd>Glance definitions<cr>", desc = "Goto Definition" },
       { "gI", "<Cmd>Glance implementations<cr>", desc = "Goto Implementation" },
       { "gr", "<Cmd>Glance references<cr>", desc = "References" },
       { "gt", "<Cmd>Glance type_definitions<cr>", desc = "Goto Type Definition" },
+    },
+    opts = {
+      hooks = {
+        before_open = function(results, open, jump)
+          if #results == 1 then
+            jump()
+          else
+            open() -- argument is optional
+          end
+        end,
+      },
     },
   },
   {
