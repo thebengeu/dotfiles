@@ -1094,7 +1094,6 @@ return {
         "<C-L>",
         "<C-Q>",
         "<C-T>",
-        "<space>",
         "A",
         "a",
         "B",
@@ -1116,15 +1115,15 @@ return {
           ["]" .. key] = "which_key_ignore",
         })
       end
-
-      register({
-        ["[q"] = "Previous item in quickfix list",
-        ["]q"] = "Next item in quickfix list",
-        ["[Q"] = "First item in quickfix list",
-        ["]Q"] = "Last item in quickfix list",
-      })
     end,
-    event = "VeryLazy",
+    keys = {
+      { "[<space>", desc = "Add blank lines above" },
+      { "]<space>", desc = "Add blank lines below" },
+      { "[q", desc = "Previous item in quickfix list" },
+      { "]q", desc = "Next item in quickfix list" },
+      { "[Q", desc = "First item in quickfix list" },
+      { "]Q", desc = "Last item in quickfix list" },
+    },
   },
   {
     "mg979/vim-visual-multi",
