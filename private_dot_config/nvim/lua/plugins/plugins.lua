@@ -287,14 +287,6 @@ return {
     },
   },
   {
-    "nvim-lualine/lualine.nvim",
-    opts = {
-      options = {
-        theme = "catppuccin",
-      },
-    },
-  },
-  {
     "L3MON4D3/LuaSnip",
     keys = function()
       return {}
