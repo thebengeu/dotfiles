@@ -207,6 +207,9 @@ return {
     config = function()
       require("iron.core").setup({
         config = {
+          repl_definition = {
+            python = require("iron.fts.python").ipython,
+          },
           repl_open_cmd = require("iron.view").split.horizontal.botright(20, {
             number = false,
             relativenumber = false,
