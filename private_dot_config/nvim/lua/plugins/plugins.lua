@@ -867,6 +867,7 @@ return {
         function()
           require("session-lens").search_session()
         end,
+        desc = "Sessions",
       },
     },
   },
