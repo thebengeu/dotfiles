@@ -17,7 +17,6 @@ vim.o.sessionoptions = table.concat({
   "help",
   "localoptions",
   "tabpages",
-  "terminal",
   "winpos",
   "winsize",
 }, ",")
