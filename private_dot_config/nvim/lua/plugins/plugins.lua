@@ -306,8 +306,10 @@ return {
         "fixjson",
         "isort",
         "js-debug-adapter",
+        "mypy",
         "prettierd",
         "shellharden",
+        "taplo",
         "yamlfmt",
         "yamllint",
       })
@@ -371,6 +373,7 @@ return {
         null_ls.builtins.diagnostics.flake8.with({
           extra_args = { "--max-line-length", "88" },
         }),
+        null_ls.builtins.diagnostics.mypy,
         null_ls.builtins.diagnostics.shellcheck,
         null_ls.builtins.diagnostics.yamllint,
         null_ls.builtins.formatting.black,
@@ -385,6 +388,7 @@ return {
         null_ls.builtins.formatting.shfmt,
         null_ls.builtins.formatting.shellharden,
         null_ls.builtins.formatting.stylua,
+        null_ls.builtins.formatting.taplo,
         null_ls.builtins.formatting.yamlfmt,
       }
     end,
