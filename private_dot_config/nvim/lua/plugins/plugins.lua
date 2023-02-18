@@ -801,6 +801,10 @@ return {
     enabled = false,
   },
   {
+    "nvim-treesitter/playground",
+    cmd = { "TSHighlightCapturesUnderCursor", "TSPlaygroundToggle" },
+  },
+  {
     "cbochs/portal.nvim",
     keys = {
       {
