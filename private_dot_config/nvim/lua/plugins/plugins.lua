@@ -717,6 +717,19 @@ return {
         enable = true,
         extended_mode = true,
       }
+      opts.textobjects = {
+        lsp_interop = {},
+        move = {},
+        select = {
+          enable = true,
+          keymaps = {
+            ["=l"] = "@assignment.lhs",
+            ["=r"] = "@assignment.rhs",
+          },
+          lookahead = true,
+        },
+        swap = {},
+      }
     end,
   },
   {
