@@ -216,14 +216,13 @@ return {
           }),
         },
         keymaps = {
-          send_motion = "<space>m",
-          visual_send = "<C-m>",
+          visual_send = "<C-z>",
         },
       })
     end,
     keys = {
-      { "<C-m>", mode = "v" },
-      { "<C-m>", "gv<C-m>", remap = true },
+      { "<C-z>", mode = "v" },
+      { "<C-z>", "gv<C-z>", remap = true },
       { "<space>r", "<Cmd>IronRepl<CR>", desc = "REPL" },
     },
   },
