@@ -1,19 +1,17 @@
 return {
   {
     "goolord/alpha-nvim",
-    opts = function(_, opts)
-      opts.section.buttons.val[5] = require("alpha.themes.dashboard").button(
-        "c",
-        " " .. " Config",
-        ":e ~/.local/share/chezmoi/private_dot_config/nvim/lua/plugins/plugins.lua <CR>"
-      )
-    end,
+    enabled = false,
   },
   {
     "pearofducks/ansible-vim",
     ft = "yaml.ansible",
   },
-  { "skywind3000/asyncrun.vim", cmd = "AsyncRun" },
+  {
+    "skywind3000/asyncrun.vim",
+    cmd = "AsyncRun",
+  },
+  { "rmagatti/auto-session" },
   {
     "akinsho/bufferline.nvim",
     config = function()
@@ -743,6 +741,10 @@ return {
     ft = "json",
   },
   {
+    "folke/persistence.nvim",
+    enabled = false,
+  },
+  {
     "cbochs/portal.nvim",
     keys = {
       {
@@ -856,6 +858,17 @@ return {
     "lewis6991/satellite.nvim",
     config = true,
     event = "BufReadPost",
+  },
+  {
+    "rmagatti/session-lens",
+    keys = {
+      {
+        "<space>sS",
+        function()
+          require("session-lens").search_session()
+        end,
+      },
+    },
   },
   {
     "luukvbaal/statuscol.nvim",

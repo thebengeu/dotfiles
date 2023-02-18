@@ -9,6 +9,18 @@ vim.o.foldcolumn = "1"
 vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 vim.o.report = 999
+vim.o.sessionoptions = table.concat({
+  "blank",
+  "buffers",
+  "curdir",
+  "folds",
+  "help",
+  "localoptions",
+  "tabpages",
+  "terminal",
+  "winpos",
+  "winsize",
+}, ",")
 vim.opt.fillchars = {
   eob = " ",
   fold = " ",
