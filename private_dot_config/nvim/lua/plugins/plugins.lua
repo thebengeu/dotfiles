@@ -216,6 +216,7 @@ return {
           }),
         },
         keymaps = {
+          send_motion = "<space>z",
           visual_send = "<C-z>",
         },
       })
@@ -259,6 +260,7 @@ return {
         end,
       },
       { "<space>r", "<Cmd>IronRepl<CR>", desc = "REPL" },
+      { "<space>z", desc = "Send to REPL" },
     },
   },
   {
