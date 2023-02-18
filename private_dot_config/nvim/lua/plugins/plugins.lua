@@ -1034,6 +1034,8 @@ return {
   {
     "tpope/vim-unimpaired",
     config = function()
+      local register = require("which-key").register
+
       for _, key in ipairs({
         "<C-L>",
         "<C-Q>",
@@ -1055,12 +1057,13 @@ return {
         "x",
         "y",
       }) do
-        require("which-key").register({
+        register({
           ["[" .. key] = "which_key_ignore",
           ["]" .. key] = "which_key_ignore",
         })
       end
-      require("which-key").register({
+
+      register({
         ["[q"] = "Previous item in quickfix list",
         ["]q"] = "Next item in quickfix list",
         ["[Q"] = "First item in quickfix list",
