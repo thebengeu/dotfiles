@@ -812,25 +812,9 @@ return {
   },
   {
     "nvim-treesitter/playground",
-    cmd = { "TSHighlightCapturesUnderCursor", "TSPlaygroundToggle" },
-  },
-  {
-    "cbochs/portal.nvim",
-    keys = {
-      {
-        "<leader>o",
-        function()
-          require("portal").jump_backward()
-        end,
-        desc = "Jump Backward",
-      },
-      {
-        "<leader>i",
-        function()
-          require("portal").jump_forward()
-        end,
-        desc = "Jump Forward",
-      },
+    cmd = {
+      "TSHighlightCapturesUnderCursor",
+      "TSPlaygroundToggle",
     },
   },
   {
