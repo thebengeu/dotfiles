@@ -1,3 +1,20 @@
+local colorschemes = {
+  "carbonfox",
+  "catppuccin",
+  "duskfox",
+  "edge",
+  "everforest",
+  "gruvbox-material",
+  "nightfox",
+  "nordfox",
+  "sonokai",
+  "terafox",
+  "tokyonight",
+}
+
+math.randomseed(os.time())
+local colorscheme = colorschemes[math.random(#colorschemes)]
+
 return {
   {
     "goolord/alpha-nvim",
@@ -283,7 +300,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin",
+      colorscheme = colorscheme,
     },
   },
   {
