@@ -114,10 +114,23 @@ return {
   },
   {
     "sainnhe/edge",
+    config = function()
+      local styles = {
+        "aura",
+        "default",
+        "neon",
+      }
+
+      vim.g.edge_enable_italic = 1
+      vim.g.edge_style = styles[math.random(#styles)]
+    end,
     lazy = true,
   },
   {
     "sainnhe/everforest",
+    config = function()
+      vim.g.everforest_enable_italic = 1
+    end,
     lazy = true,
   },
   {
@@ -213,6 +226,9 @@ return {
   },
   {
     "sainnhe/gruvbox-material",
+    config = function()
+      vim.g.gruvbox_material_enable_italic = 1
+    end,
     lazy = true,
   },
   {
@@ -952,6 +968,19 @@ return {
   },
   {
     "sainnhe/sonokai",
+    config = function()
+      local styles = {
+        "andromeda",
+        "atlantis",
+        "default",
+        "espresso",
+        "maia",
+        "shusia",
+      }
+
+      vim.g.sonokai_enable_italic = 1
+      vim.g.sonokai_style = styles[math.random(#styles)]
+    end,
     lazy = true,
   },
   {
