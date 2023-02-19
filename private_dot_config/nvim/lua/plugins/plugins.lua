@@ -157,7 +157,7 @@ return {
         callback = update_eyeliner_hl,
       })
     end,
-    event = "BufReadPost",
+    event = "BufReadPre",
   },
   {
     "akinsho/git-conflict.nvim",
