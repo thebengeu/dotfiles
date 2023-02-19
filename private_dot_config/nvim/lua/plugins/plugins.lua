@@ -349,21 +349,6 @@ return {
     },
   },
   {
-    "mvllow/modes.nvim",
-    config = function()
-      local C = require("catppuccin.palettes").get_palette()
-      require("modes").setup({
-        colors = {
-          copy = C.blue,
-          delete = C.red,
-          insert = C.green,
-          visual = C.mauve,
-        },
-      })
-    end,
-    event = "BufReadPost",
-  },
-  {
     "EdenEast/nightfox.nvim",
     lazy = true,
   },
