@@ -41,7 +41,6 @@ return {
         gitsigns = true,
         illuminate = true,
         indent_blankline = {
-          colored_indent_levels = true,
           enabled = true,
         },
         leap = true,
@@ -206,6 +205,19 @@ return {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
+    init = function()
+      local link_hl = function()
+        for i = 1, 7 do
+          vim.api.nvim_set_hl(0, "IndentBlanklineIndent" .. i, { link = "rainbowcol" .. i })
+        end
+      end
+
+      link_hl()
+
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        callback = link_hl,
+      })
+    end,
     opts = {
       char_highlight_list = {
         "IndentBlanklineIndent1",
@@ -214,6 +226,7 @@ return {
         "IndentBlanklineIndent4",
         "IndentBlanklineIndent5",
         "IndentBlanklineIndent6",
+        "IndentBlanklineIndent7",
       },
       show_current_context = true,
       show_current_context_start = true,
