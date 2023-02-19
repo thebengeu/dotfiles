@@ -123,9 +123,26 @@ return {
   {
     "jinh0/eyeliner.nvim",
     config = function()
-      local C = require("catppuccin.palettes").get_palette()
-      vim.api.nvim_set_hl(0, "EyelinerPrimary", { fg = C.red, bold = true, underline = true })
-      vim.api.nvim_set_hl(0, "EyelinerSecondary", { fg = C.peach, bold = true, underline = true })
+      require("eyeliner").setup()
+
+      local add_bold_and_underline = function(name)
+        vim.api.nvim_set_hl(0, name, {
+          bold = true,
+          fg = vim.api.nvim_get_hl_by_name(name, true).foreground,
+          underline = true,
+        })
+      end
+
+      local update_eyeliner_hl = function()
+        add_bold_and_underline("EyelinerPrimary")
+        add_bold_and_underline("EyelinerSecondary")
+      end
+
+      update_eyeliner_hl()
+
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        callback = update_eyeliner_hl,
+      })
     end,
     event = "BufReadPost",
   },
