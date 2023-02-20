@@ -387,7 +387,9 @@ return {
   },
   {
     "chentoast/marks.nvim",
-    config = true,
+    opts = {
+      sign_priority = 13,
+    },
   },
   {
     "williamboman/mason.nvim",
