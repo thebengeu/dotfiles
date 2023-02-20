@@ -8,7 +8,7 @@ if status is-interactive
     set --export MCFLY_DELETE_WITHOUT_CONFIRM TRUE
     set --export MCFLY_DISABLE_MENU TRUE
     set --export MCFLY_KEY_SCHEME vim
-    set --export PYTHONPATH '/home/linuxbrew/.linuxbrew/Cellar/pdm/2.4.5/libexec/lib/python3.11/site-packages/pdm/pep582'
+    set --export PYTHONPATH '/home/linuxbrew/.linuxbrew/Cellar/pdm/2.4.6/libexec/lib/python3.11/site-packages/pdm/pep582'
     set --global fish_cursor_default block
     set --global fish_cursor_insert line
     set --global fish_cursor_replace_one underscore
