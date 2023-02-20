@@ -1,20 +1,31 @@
 local colorschemes = {
-  "carbonfox",
-  "catppuccin",
-  "duskfox",
-  "edge",
-  "everforest",
-  "gruvbox-material",
-  "kanagawa",
-  "nightfox",
-  "nordfox",
-  "sonokai",
-  "terafox",
-  "tokyonight",
+  { "carbonfox" },
+  { "catppuccin", "frappe" },
+  { "catppuccin", "macchiato" },
+  { "catppuccin", "mocha" },
+  { "duskfox" },
+  { "edge", "aura" },
+  { "edge", "default" },
+  { "edge", "neon" },
+  { "everforest" },
+  { "gruvbox-material" },
+  { "kanagawa" },
+  { "nightfox" },
+  { "nordfox" },
+  { "sonokai", "andromeda" },
+  { "sonokai", "atlantis" },
+  { "sonokai", "default" },
+  { "sonokai", "espresso" },
+  { "sonokai", "maia" },
+  { "sonokai", "shusia" },
+  { "terafox" },
+  { "tokyonight", "moon" },
+  { "tokyonight", "night" },
+  { "tokyonight", "storm" },
 }
 
 math.randomseed(os.time())
-local colorscheme = colorschemes[math.random(#colorschemes)]
+local colorscheme = colorschemes[math.random(#colorschemes)][1]
 
 return {
   {
@@ -33,6 +44,7 @@ return {
   {
     "catppuccin",
     opts = {
+      flavor = colorscheme[2],
       integrations = {
         cmp = true,
         dap = {
@@ -119,14 +131,8 @@ return {
   {
     "sainnhe/edge",
     config = function()
-      local styles = {
-        "aura",
-        "default",
-        "neon",
-      }
-
       vim.g.edge_enable_italic = 1
-      vim.g.edge_style = styles[math.random(#styles)]
+      vim.g.edge_style = colorscheme[2]
     end,
     lazy = true,
   },
@@ -981,17 +987,8 @@ return {
   {
     "sainnhe/sonokai",
     config = function()
-      local styles = {
-        "andromeda",
-        "atlantis",
-        "default",
-        "espresso",
-        "maia",
-        "shusia",
-      }
-
       vim.g.sonokai_enable_italic = 1
-      vim.g.sonokai_style = styles[math.random(#styles)]
+      vim.g.sonokai_style = colorscheme[2]
     end,
     lazy = true,
   },
@@ -1114,6 +1111,12 @@ return {
       resize = {
         enable_default_keybindings = false,
       },
+    },
+  },
+  {
+    "folke/tokyonight.nvim",
+    opts = {
+      style = colorscheme[2],
     },
   },
   {
