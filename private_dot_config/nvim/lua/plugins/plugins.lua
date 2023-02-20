@@ -571,6 +571,14 @@ return {
     end,
   },
   {
+    "haringsrob/nvim_context_vt",
+    event = "BufReadPost",
+    opts = {
+      disable_virtual_lines = true,
+      prefix = "",
+    },
+  },
+  {
     "mfussenegger/nvim-dap",
     config = function()
       require("dap")
@@ -814,11 +822,6 @@ return {
         swap = {},
       }
     end,
-  },
-  {
-    "nvim-treesitter/nvim-treesitter-context",
-    config = true,
-    event = "BufReadPost",
   },
   {
     "RRethy/nvim-treesitter-textsubjects",
