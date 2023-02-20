@@ -78,8 +78,11 @@ return {
   {
     "monaqa/dial.nvim",
     config = function()
+      local augend = require("dial.augend")
+
       vim.list_extend(require("dial.config").augends.group.default, {
-        require("dial.augend").constant.alias.bool,
+        augend.constant.alias.bool,
+        augend.constant.new({ elements = { "True", "False" } }),
       })
     end,
     keys = {
