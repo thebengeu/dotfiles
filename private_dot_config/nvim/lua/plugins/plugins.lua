@@ -1160,7 +1160,6 @@ return {
         "n",
         "o",
         "P",
-        "p",
         "T",
         "u",
         "x",
@@ -1175,6 +1174,8 @@ return {
     keys = {
       { "[<space>", desc = "Add blank lines above" },
       { "]<space>", desc = "Add blank lines below" },
+      { "[p", desc = "Paste before linewise" },
+      { "]p", desc = "Paste after linewise" },
       { "[q", desc = "Previous item in quickfix list" },
       { "]q", desc = "Next item in quickfix list" },
       { "[Q", desc = "First item in quickfix list" },
