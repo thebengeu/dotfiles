@@ -79,6 +79,7 @@ return {
     },
   },
   { "alker0/chezmoi.vim" },
+  { "github/copilot.vim" },
   {
     "ja-ford/delaytrain.nvim",
     keys = { "h", "j", "k", "l", "<Left>", "<Down>", "<Up>", "<Right>" },
