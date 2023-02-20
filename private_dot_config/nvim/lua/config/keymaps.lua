@@ -12,3 +12,4 @@ vim.keymap.set(
 )
 vim.keymap.set("n", "<C-r>", "<Cmd>silent redo<CR>")
 vim.keymap.set("n", "u", "<Cmd>silent undo<CR>")
+vim.keymap.set("n", "<space>bo", "<Cmd>%bd|e#|bd#<CR>", { desc = "Delete other buffers" })
