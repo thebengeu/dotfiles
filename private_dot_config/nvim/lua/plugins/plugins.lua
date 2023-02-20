@@ -5,6 +5,7 @@ local colorschemes = {
   "edge",
   "everforest",
   "gruvbox-material",
+  "kanagawa",
   "nightfox",
   "nordfox",
   "sonokai",
@@ -331,6 +332,24 @@ return {
     config = function()
       vim.g.jupytext_fmt = "py"
       vim.g.jupytext_style = ":hydrogen"
+    end,
+  },
+  {
+    "rebelot/kanagawa.nvim",
+    config = function()
+      local default_colors = require("kanagawa.colors").setup()
+
+      require("kanagawa").setup({
+        overrides = {
+          rainbowcol1 = { fg = default_colors.peachRed },
+          rainbowcol2 = { fg = default_colors.carpYellow },
+          rainbowcol3 = { fg = default_colors.crystalBlue },
+          rainbowcol4 = { fg = default_colors.surimiOrange },
+          rainbowcol5 = { fg = default_colors.springGreen },
+          rainbowcol6 = { fg = default_colors.oniViolet },
+          rainbowcol7 = { fg = default_colors.waveAqua2 },
+        },
+      })
     end,
   },
   {
