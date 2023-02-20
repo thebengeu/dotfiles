@@ -14,3 +14,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained" }, {
   command = 'call system("tmux rename-window " . expand("%:p"))',
 })
+vim.api.nvim_create_autocmd("BufEnter", {
+  command = "startinsert",
+  pattern = "term://*",
+})
