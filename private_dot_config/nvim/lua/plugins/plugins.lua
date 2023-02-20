@@ -262,7 +262,6 @@ return {
         "IndentBlanklineIndent7",
       },
       show_current_context = true,
-      show_current_context_start = true,
       show_first_indent_level = false,
       use_treesitter = true,
     },
@@ -530,14 +529,6 @@ return {
         { name = "copilot" },
       }))
     end,
-  },
-  {
-    "haringsrob/nvim_context_vt",
-    event = "BufReadPost",
-    opts = {
-      disable_virtual_lines = true,
-      prefix = "",
-    },
   },
   {
     "mfussenegger/nvim-dap",
