@@ -25,7 +25,7 @@ local colorschemes = {
 }
 
 math.randomseed(os.time())
-local colorscheme = colorschemes[math.random(#colorschemes)][1]
+local colorscheme = colorschemes[math.random(#colorschemes)]
 
 return {
   {
@@ -364,7 +364,19 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = colorscheme,
+      colorscheme = colorscheme[1],
+    },
+  },
+  {
+    "nvim-lualine/lualine.nvim",
+    opts = {
+      sections = {
+        lualine_z = {
+          function()
+            return table.concat(colorscheme, " ")
+          end,
+        },
+      },
     },
   },
   {
