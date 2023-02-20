@@ -795,6 +795,7 @@ return {
         "fish",
         "gitignore",
         "prisma",
+        "toml",
       })
       opts.rainbow = {
         enable = true,
