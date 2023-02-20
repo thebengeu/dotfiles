@@ -1059,7 +1059,36 @@ return {
   },
   {
     "aserowy/tmux.nvim",
-    keys = { "<C-h>", "<C-j>", "<C-k>", "<C-l>" },
+    keys = {
+      {
+        "<C-h>",
+        function()
+          require("tmux").move_left()
+        end,
+        mode = { "n", "t" },
+      },
+      {
+        "<C-j>",
+        function()
+          require("tmux").move_bottom()
+        end,
+        mode = { "n", "t" },
+      },
+      {
+        "<C-k>",
+        function()
+          require("tmux").move_top()
+        end,
+        mode = { "n", "t" },
+      },
+      {
+        "<C-l>",
+        function()
+          require("tmux").move_right()
+        end,
+        mode = { "n", "t" },
+      },
+    },
     opts = {
       resize = {
         enable_default_keybindings = false,
