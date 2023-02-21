@@ -1,3 +1,5 @@
+local g = vim.g
+
 local colorschemes = {
   { "carbonfox" },
   { "catppuccin", "frappe" },
@@ -132,15 +134,18 @@ return {
   {
     "sainnhe/edge",
     config = function()
-      vim.g.edge_enable_italic = 1
-      vim.g.edge_style = colorscheme[2]
+      g.edge_better_performance = 1
+      g.edge_enable_italic = 1
+      g.edge_style = colorscheme[2]
     end,
     lazy = true,
   },
   {
     "sainnhe/everforest",
     config = function()
-      vim.g.everforest_enable_italic = 1
+      g.everforest_better_performance = 1
+      g.everforest_background = "hard"
+      g.everforest_enable_italic = 1
     end,
     lazy = true,
   },
@@ -232,7 +237,10 @@ return {
   {
     "sainnhe/gruvbox-material",
     config = function()
-      vim.g.gruvbox_material_enable_italic = 1
+      g.gruvbox_material_background = "hard"
+      g.gruvbox_material_better_performance = 1
+      g.gruvbox_material_enable_italic = 1
+      g.gruvbox_material_foreground = "original"
     end,
     lazy = true,
   },
@@ -334,8 +342,8 @@ return {
   {
     "GCBallesteros/jupytext.vim",
     config = function()
-      vim.g.jupytext_fmt = "py"
-      vim.g.jupytext_style = ":hydrogen"
+      g.jupytext_fmt = "py"
+      g.jupytext_style = ":hydrogen"
     end,
   },
   {
@@ -412,7 +420,7 @@ return {
   {
     "echasnovski/mini.indentscope",
     init = function()
-      vim.g.miniindentscope_disable = true
+      g.miniindentscope_disable = true
     end,
     opts = {
       options = {
@@ -990,8 +998,9 @@ return {
   {
     "sainnhe/sonokai",
     config = function()
-      vim.g.sonokai_enable_italic = 1
-      vim.g.sonokai_style = colorscheme[2]
+      g.sonokai_better_performance = 1
+      g.sonokai_enable_italic = 1
+      g.sonokai_style = colorscheme[2]
     end,
     lazy = true,
   },
