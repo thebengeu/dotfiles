@@ -98,6 +98,7 @@ return {
       vim.list_extend(require("dial.config").augends.group.default, {
         augend.constant.alias.bool,
         augend.constant.new({ elements = { "True", "False" } }),
+        augend.constant.new({ elements = { "and", "or" } }),
       })
     end,
     keys = {
