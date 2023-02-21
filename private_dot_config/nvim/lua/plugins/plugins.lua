@@ -475,6 +475,7 @@ return {
         null_ls.builtins.formatting.prettierd.with({
           extra_filetypes = { "prisma" },
         }),
+        null_ls.builtins.formatting.ruff,
         null_ls.builtins.formatting.shfmt,
         null_ls.builtins.formatting.shellharden,
         null_ls.builtins.formatting.stylua,
