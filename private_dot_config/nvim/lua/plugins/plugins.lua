@@ -759,10 +759,10 @@ return {
     "neovim/nvim-lspconfig",
     init = function()
       local keys = require("lazyvim.plugins.lsp.keymaps").get()
-      keys[#keys + 1] = { "gd", false }
-      keys[#keys + 1] = { "gI", false }
-      keys[#keys + 1] = { "gr", false }
-      keys[#keys + 1] = { "gt", false }
+      table.insert(keys, { "gd", false })
+      table.insert(keys, { "gI", false })
+      table.insert(keys, { "gr", false })
+      table.insert(keys, { "gt", false })
     end,
     opts = {
       capabilities = {
