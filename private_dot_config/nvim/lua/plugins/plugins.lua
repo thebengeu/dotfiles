@@ -371,6 +371,7 @@ return {
         },
       })
     end,
+    lazy = true,
   },
   {
     "LazyVim/LazyVim",
@@ -398,6 +399,7 @@ return {
   },
   {
     "chentoast/marks.nvim",
+    event = "BufReadPost",
     opts = {
       sign_priority = 13,
     },
@@ -456,6 +458,7 @@ return {
         },
       })
     end,
+    lazy = true,
   },
   {
     "echasnovski/mini.ai",
