@@ -422,6 +422,27 @@ return {
     },
   },
   {
+    "echasnovski/mini.ai",
+    config = function(plugin, opts)
+      local super = plugin["_"]["super"]
+      super["config"](super, opts)
+
+      require("which-key").register({
+        af = "Function call",
+        ["if"] = "Function call",
+        mode = { "o", "x" },
+      })
+    end,
+    keys = {
+      { "ad", desc = "Function definition", mode = { "o", "x" } },
+      { "id", desc = "Function definition", mode = { "o", "x" } },
+    },
+    opts = function(_, opts)
+      opts.custom_textobjects["d"] = opts.custom_textobjects["f"]
+      opts.custom_textobjects["f"] = nil
+    end,
+  },
+  {
     "echasnovski/mini.indentscope",
     init = function()
       g.miniindentscope_disable = true
