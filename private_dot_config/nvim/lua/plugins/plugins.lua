@@ -1055,6 +1055,24 @@ return {
     keys = {
       { "<leader><space>", false },
       {
+        "<leader>si",
+        function()
+          require("telescope.builtin").live_grep({
+            vimgrep_arguments = {
+              "rg",
+              "--color=never",
+              "--column",
+              "--line-number",
+              "--no-heading",
+              "--no-ignore",
+              "--smart-case",
+              "--with-filename",
+            },
+          })
+        end,
+        desc = "Grep (ignored)",
+      },
+      {
         "<leader>fp",
         function()
           require("telescope.builtin").find_files({
