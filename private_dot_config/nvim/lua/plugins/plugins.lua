@@ -1109,33 +1109,37 @@ return {
   {
     "aserowy/tmux.nvim",
     keys = {
+      "<C-h>",
+      "<C-j>",
+      "<C-k>",
+      "<C-l>",
       {
         "<C-h>",
         function()
           require("tmux").move_left()
         end,
-        mode = { "n", "t" },
+        mode = "t",
       },
       {
         "<C-j>",
         function()
           require("tmux").move_bottom()
         end,
-        mode = { "n", "t" },
+        mode = "t",
       },
       {
         "<C-k>",
         function()
           require("tmux").move_top()
         end,
-        mode = { "n", "t" },
+        mode = "t",
       },
       {
         "<C-l>",
         function()
           require("tmux").move_right()
         end,
-        mode = { "n", "t" },
+        mode = "t",
       },
     },
     opts = {
