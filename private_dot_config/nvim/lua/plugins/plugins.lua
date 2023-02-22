@@ -185,6 +185,7 @@ return {
     init = function()
       require("which-key").register({
         ["<leader>gh"] = "which_key_ignore",
+        ["<leader>h"] = "+hunks",
       })
     end,
     opts = {
