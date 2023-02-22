@@ -12,6 +12,10 @@ local colorschemes = {
   { "everforest" },
   { "gruvbox-material" },
   { "kanagawa" },
+  { "material", "darker" },
+  { "material", "deep ocean" },
+  { "material", "oceanic" },
+  { "material", "palenight" },
   { "nightfox" },
   { "nordfox" },
   { "sonokai", "andromeda" },
@@ -420,6 +424,38 @@ return {
         "yamllint",
       },
     },
+  },
+  {
+    "marko-cerovac/material.nvim",
+    config = function()
+      local colors = require("material.colors")
+
+      g.material_style = colorscheme[2]
+
+      require("material").setup({
+        custom_highlights = {
+          rainbowcol1 = { fg = colors.main.red },
+          rainbowcol2 = { fg = colors.main.yellow },
+          rainbowcol3 = { fg = colors.main.blue },
+          rainbowcol4 = { fg = colors.main.orange },
+          rainbowcol5 = { fg = colors.main.green },
+          rainbowcol6 = { fg = colors.main.purple },
+          rainbowcol7 = { fg = colors.main.cyan },
+        },
+        plugins = {
+          "dap",
+          "gitsigns",
+          "indent-blankline",
+          "mini",
+          "nvim-cmp",
+          "nvim-navic",
+          "nvim-web-devicons",
+          "telescope",
+          "trouble",
+          "which-key",
+        },
+      })
+    end,
   },
   {
     "echasnovski/mini.ai",
