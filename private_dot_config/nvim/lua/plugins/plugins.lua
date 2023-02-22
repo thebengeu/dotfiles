@@ -196,8 +196,11 @@ return {
           vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
         end
 
-        map("n", "]h", gs.next_hunk, "Next Hunk")
-        map("n", "[h", gs.prev_hunk, "Prev Hunk")
+        local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
+        local next_hunk_repeat, prev_hunk_repeat = ts_repeat_move.make_repeatable_move_pair(gs.next_hunk, gs.prev_hunk)
+
+        map("n", "]h", next_hunk_repeat, "Next Hunk")
+        map("n", "[h", prev_hunk_repeat, "Prev Hunk")
         map({ "n", "v" }, "<leader>hs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
         map({ "n", "v" }, "<leader>hr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
         map("n", "<leader>hS", gs.stage_buffer, "Stage Buffer")
@@ -793,6 +796,27 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    dependencies = {
+      {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        keys = {
+          {
+            ";",
+            function()
+              require("nvim-treesitter.textobjects.repeatable_move").repeat_last_move()
+            end,
+            mode = { "n", "o", "x" },
+          },
+          {
+            ",",
+            function()
+              require("nvim-treesitter.textobjects.repeatable_move").repeat_last_move_opposite()
+            end,
+            mode = { "n", "o", "x" },
+          },
+        },
+      },
+    },
     opts = function(_, opts)
       opts.ensure_installed = vim.list_extend(opts.ensure_installed, {
         "fish",
