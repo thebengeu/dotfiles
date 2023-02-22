@@ -1056,6 +1056,15 @@ return {
     keys = {
       { "<leader><space>", false },
       {
+        "<leader>fp",
+        function()
+          require("telescope.builtin").find_files({
+            cwd = require("lazy.core.config").options.root,
+          })
+        end,
+        desc = "Find Plugin Files",
+      },
+      {
         "<leader>si",
         function()
           require("telescope.builtin").live_grep({
@@ -1074,13 +1083,28 @@ return {
         desc = "Grep (ignored)",
       },
       {
-        "<leader>fp",
+        "<leader>sp",
         function()
-          require("telescope.builtin").find_files({
-            cwd = require("lazy.core.config").options.root,
-          })
+          local root = require("lazy.core.config").options.root
+          require("telescope.pickers")
+            .new({
+              attach_mappings = function(prompt_bufnr)
+                local actions = require("telescope.actions")
+                actions.select_default:replace(function()
+                  actions.close(prompt_bufnr)
+                  local selection = require("telescope.actions.state").get_selected_entry()
+                  require("telescope.builtin").live_grep({
+                    search_dirs = { root .. "/" .. selection[1] },
+                  })
+                end)
+                return true
+              end,
+              finder = require("telescope.finders").new_oneshot_job({ "ls", root }),
+              sorter = require("telescope.config").values.file_sorter(),
+            })
+            :find()
         end,
-        desc = "Find Plugin Files",
+        desc = "Grep Plugin Files",
       },
     },
     opts = {
