@@ -810,8 +810,14 @@ return {
         select = {
           enable = true,
           keymaps = {
-            ["=l"] = "@assignment.lhs",
-            ["=r"] = "@assignment.rhs",
+            ["=l"] = {
+              desc = "Select assignment LHS",
+              query = "@assignment.lhs",
+            },
+            ["=r"] = {
+              desc = "Select assignment RHS",
+              query = "@assignment.rhs",
+            },
           },
           lookahead = true,
         },
