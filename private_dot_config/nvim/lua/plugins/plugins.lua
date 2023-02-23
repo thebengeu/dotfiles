@@ -463,8 +463,8 @@ return {
   {
     "echasnovski/mini.ai",
     config = function(plugin, opts)
-      local super = plugin["_"]["super"]
-      super["config"](super, opts)
+      local super = plugin._.super
+      super.config(super, opts)
 
       require("which-key").register({
         af = "Function call",
@@ -477,8 +477,8 @@ return {
       { "id", desc = "Function definition", mode = { "o", "x" } },
     },
     opts = function(_, opts)
-      opts.custom_textobjects["d"] = opts.custom_textobjects["f"]
-      opts.custom_textobjects["f"] = nil
+      opts.custom_textobjects.d = opts.custom_textobjects.f
+      opts.custom_textobjects.f = nil
     end,
   },
   {
@@ -723,7 +723,7 @@ return {
             adapters = { "pwa-node" },
             debugger_path = os.getenv("HOME") .. "/vscode-js-debug",
           })
-          require("dap").configurations["typescript"] = {
+          require("dap").configurations.typescript = {
             {
               cwd = "${workspaceFolder}",
               name = "Attach",
