@@ -1337,7 +1337,7 @@ return {
   },
   {
     "mg979/vim-visual-multi",
-    event = "BufReadPost",
+    keys = { "<C-Down>", "<C-Up>" },
   },
   {
     "wakatime/vim-wakatime",
