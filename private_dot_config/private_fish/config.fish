@@ -45,6 +45,7 @@ if status is-interactive
     abbr --add gP 'git push'
     abbr --add gp 'git pull'
     abbr --add grbc 'git rebase --continue'
+    abbr --add grhh 'git reset --hard HEAD'
     abbr --add gs 'git s'
     abbr --add lg lazygit
     abbr --add ll 'exa --git --icons --long'
