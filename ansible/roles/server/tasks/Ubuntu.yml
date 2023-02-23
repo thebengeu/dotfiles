@@ -30,6 +30,7 @@
       - git-delta
       - gitui
       - ipython
+      - jq
       - lazydocker
       - lazygit
       - mosh
