@@ -57,6 +57,7 @@
       - docker-compose-plugin
       - et
       - golang
+      - libpq-dev
       - libsqlite3-dev
       - make
       - moreutils
