@@ -94,7 +94,16 @@ return {
   { "alker0/chezmoi.vim" },
   {
     "ja-ford/delaytrain.nvim",
-    keys = { "h", "j", "k", "l", "<Left>", "<Down>", "<Up>", "<Right>" },
+    keys = {
+      "<Down>",
+      "<Left>",
+      "<Right>",
+      "<Up>",
+      "h",
+      "j",
+      "k",
+      "l",
+    },
     opts = {
       grace_period = 2,
       ignore_filetypes = { "neo%-tree", "qf" },
