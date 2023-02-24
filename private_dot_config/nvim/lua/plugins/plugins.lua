@@ -265,7 +265,9 @@ return {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
-    init = function()
+    config = function(_, opts)
+      require("indent_blankline").setup(opts)
+
       local link_hl = function()
         for i = 1, 7 do
           vim.api.nvim_set_hl(0, "IndentBlanklineIndent" .. i, { link = "rainbowcol" .. i })
@@ -489,7 +491,10 @@ return {
   },
   {
     "echasnovski/mini.indentscope",
-    init = function()
+    config = function(plugin, opts)
+      local super = plugin._.super
+      super.config(super, opts)
+
       g.miniindentscope_disable = true
     end,
     opts = {
