@@ -912,6 +912,10 @@ return {
         "prisma",
         "toml",
       })
+      opts.matchup = {
+        disable_virtual_text = true,
+        enable = true,
+      }
       opts.rainbow = {
         enable = true,
         extended_mode = true,
