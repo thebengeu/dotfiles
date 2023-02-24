@@ -2,9 +2,9 @@ local g = vim.g
 
 local colorschemes = {
   { "carbonfox" },
-  { "catppuccin", "frappe" },
-  { "catppuccin", "macchiato" },
-  { "catppuccin", "mocha" },
+  { "catppuccin-frappe" },
+  { "catppuccin-macchiato" },
+  { "catppuccin-mocha" },
   { "duskfox" },
   { "edge", "aura" },
   { "edge", "default" },
@@ -25,13 +25,20 @@ local colorschemes = {
   { "sonokai", "maia" },
   { "sonokai", "shusia" },
   { "terafox" },
-  { "tokyonight", "moon" },
-  { "tokyonight", "night" },
-  { "tokyonight", "storm" },
+  { "tokyonight-moon" },
+  { "tokyonight-night" },
+  { "tokyonight-storm" },
 }
 
+local function set_colorscheme_style(colorscheme_and_style)
+  if colorscheme_and_style[2] then
+    g[colorscheme_and_style[1] .. "_style"] = colorscheme_and_style[2]
+  end
+end
+
 math.randomseed(os.time())
-local colorscheme = colorschemes[math.random(#colorschemes)]
+local current_colorscheme_and_style = colorschemes[math.random(#colorschemes)]
+set_colorscheme_style(current_colorscheme_and_style)
 
 return {
   {
@@ -50,7 +57,6 @@ return {
   {
     "catppuccin",
     opts = {
-      flavor = colorscheme[2],
       integrations = {
         cmp = true,
         dap = {
@@ -140,7 +146,6 @@ return {
     config = function()
       g.edge_better_performance = 1
       g.edge_enable_italic = 1
-      g.edge_style = colorscheme[2]
     end,
     lazy = true,
   },
@@ -384,7 +389,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = colorscheme[1],
+      colorscheme = current_colorscheme_and_style[1],
     },
   },
   {
@@ -393,7 +398,7 @@ return {
       sections = {
         lualine_z = {
           function()
-            return table.concat(colorscheme, " ")
+            return table.concat(current_colorscheme_and_style, "-")
           end,
         },
       },
@@ -439,8 +444,6 @@ return {
     "marko-cerovac/material.nvim",
     config = function()
       local colors = require("material.colors")
-
-      g.material_style = colorscheme[2]
 
       require("material").setup({
         custom_highlights = {
@@ -1098,7 +1101,6 @@ return {
     config = function()
       g.sonokai_better_performance = 1
       g.sonokai_enable_italic = 1
-      g.sonokai_style = colorscheme[2]
     end,
     lazy = true,
   },
@@ -1202,6 +1204,41 @@ return {
         end,
         desc = "Grep Plugin Files",
       },
+      {
+        "<leader>uC",
+        function()
+          local root = require("lazy.core.config").options.root
+          require("telescope.pickers")
+            .new({
+              attach_mappings = function(prompt_bufnr)
+                local actions = require("telescope.actions")
+                actions.select_default:replace(function()
+                  actions.close(prompt_bufnr)
+                  local selection = require("telescope.actions.state").get_selected_entry()
+                  current_colorscheme_and_style = selection.value
+                  set_colorscheme_style(current_colorscheme_and_style)
+                  vim.cmd.colorscheme(current_colorscheme_and_style[1])
+                end)
+                return true
+              end,
+              finder = require("telescope.finders").new_table({
+                results = colorschemes,
+                entry_maker = function(entry)
+                  colorscheme_and_style = table.concat(entry, "-")
+
+                  return {
+                    display = colorscheme_and_style,
+                    ordinal = colorscheme_and_style,
+                    value = entry,
+                  }
+                end,
+              }),
+              sorter = require("telescope.config").values.generic_sorter(),
+            })
+            :find()
+        end,
+        desc = "Colorscheme",
+      },
     },
     opts = {
       defaults = {
@@ -1267,12 +1304,6 @@ return {
       resize = {
         enable_default_keybindings = false,
       },
-    },
-  },
-  {
-    "folke/tokyonight.nvim",
-    opts = {
-      style = colorscheme[2],
     },
   },
   {
