@@ -659,11 +659,6 @@ return {
       )
       vim.fn.sign_define("DapLogPoint", { text = "◆", texthl = "DapLogPoint", linehl = "", numhl = "" })
     end,
-    init = function()
-      require("which-key").register({
-        ["<leader>d"] = { name = "+debug" },
-      })
-    end,
     keys = {
       {
         "<leader>db",
@@ -1362,6 +1357,7 @@ return {
       super.config(super, opts)
 
       require("which-key").register({
+        ["<leader>d"] = { name = "+debug" },
         ["<leader>gh"] = "which_key_ignore",
       })
     end,
