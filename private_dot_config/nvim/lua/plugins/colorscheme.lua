@@ -186,7 +186,66 @@ return {
   },
   {
     "nvim-telescope/telescope.nvim",
+    dependencies = {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      build = "make",
+      config = function()
+        require("telescope").load_extension("fzf")
+      end,
+    },
     keys = {
+      { "<leader><space>", false },
+      {
+        "<leader>fp",
+        function()
+          require("telescope.builtin").find_files({
+            cwd = require("lazy.core.config").options.root,
+          })
+        end,
+        desc = "Find Plugin Files",
+      },
+      {
+        "<leader>si",
+        function()
+          require("telescope.builtin").live_grep({
+            vimgrep_arguments = {
+              "rg",
+              "--color=never",
+              "--column",
+              "--line-number",
+              "--no-heading",
+              "--no-ignore",
+              "--smart-case",
+              "--with-filename",
+            },
+          })
+        end,
+        desc = "Grep (ignored)",
+      },
+      {
+        "<leader>sp",
+        function()
+          local root = require("lazy.core.config").options.root
+          require("telescope.pickers")
+            .new({
+              attach_mappings = function(prompt_bufnr)
+                local actions = require("telescope.actions")
+                actions.select_default:replace(function()
+                  actions.close(prompt_bufnr)
+                  local selection = require("telescope.actions.state").get_selected_entry()
+                  require("telescope.builtin").live_grep({
+                    search_dirs = { root .. "/" .. selection[1] },
+                  })
+                end)
+                return true
+              end,
+              finder = require("telescope.finders").new_oneshot_job({ "ls", root }),
+              sorter = require("telescope.config").values.file_sorter(),
+            })
+            :find()
+        end,
+        desc = "Grep Plugin Files",
+      },
       {
         "<leader>uC",
         function()
@@ -220,6 +279,17 @@ return {
             :find()
         end,
         desc = "Colorscheme",
+      },
+    },
+    opts = {
+      defaults = {
+        layout_config = {
+          flex = {
+            flip_columns = 120,
+          },
+        },
+        layout_strategy = "flex",
+        winblend = 5,
       },
     },
   },
