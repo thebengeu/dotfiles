@@ -893,6 +893,7 @@ return {
             function()
               require("nvim-treesitter.textobjects.repeatable_move").repeat_last_move()
             end,
+            desc = "Last move",
             mode = { "n", "o", "x" },
           },
           {
@@ -900,6 +901,7 @@ return {
             function()
               require("nvim-treesitter.textobjects.repeatable_move").repeat_last_move_opposite()
             end,
+            desc = "Last move opposite",
             mode = { "n", "o", "x" },
           },
         },
