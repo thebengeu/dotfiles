@@ -822,7 +822,10 @@ return {
               local diagnostics = {}
 
               for _, diagnostic in ipairs(result.diagnostics) do
-                if not string.match(diagnostic.message, '"_.+" is not accessed') then
+                if
+                  not string.match(diagnostic.message, '"_.+" is not accessed')
+                  and not diagnostic.message == "models is not accessed"
+                then
                   table.insert(diagnostics, diagnostic)
                 end
               end
