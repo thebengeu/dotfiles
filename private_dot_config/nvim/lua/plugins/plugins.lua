@@ -1293,7 +1293,7 @@ return {
   },
   {
     "andymass/vim-matchup",
-    init = function()
+    config = function()
       require("which-key").register({
         ["a%"] = "any block",
         ["i%"] = "inner any block",
