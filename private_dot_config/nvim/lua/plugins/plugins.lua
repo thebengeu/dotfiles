@@ -1,3 +1,4 @@
+local api = vim.api
 local g = vim.g
 
 local colorschemes = {
@@ -164,9 +165,9 @@ return {
       require("eyeliner").setup()
 
       local add_bold_and_underline = function(name)
-        vim.api.nvim_set_hl(0, name, {
+        api.nvim_set_hl(0, name, {
           bold = true,
-          fg = vim.api.nvim_get_hl_by_name(name, true).foreground,
+          fg = api.nvim_get_hl_by_name(name, true).foreground,
           underline = true,
         })
       end
@@ -178,7 +179,7 @@ return {
 
       update_eyeliner_hl()
 
-      vim.api.nvim_create_autocmd("ColorScheme", {
+      api.nvim_create_autocmd("ColorScheme", {
         callback = update_eyeliner_hl,
       })
     end,
@@ -223,7 +224,7 @@ return {
           ["<leader>h"] = "+hunks",
         })
 
-        vim.api.nvim_buf_attach(buffer, false, {
+        api.nvim_buf_attach(buffer, false, {
           on_detach = function()
             require("which-key").register({
               ["<leader>h"] = "which_key_ignore",
@@ -275,13 +276,13 @@ return {
 
       local link_hl = function()
         for i = 1, 7 do
-          vim.api.nvim_set_hl(0, "IndentBlanklineIndent" .. i, { link = "rainbowcol" .. i })
+          api.nvim_set_hl(0, "IndentBlanklineIndent" .. i, { link = "rainbowcol" .. i })
         end
       end
 
       link_hl()
 
-      vim.api.nvim_create_autocmd("ColorScheme", {
+      api.nvim_create_autocmd("ColorScheme", {
         callback = link_hl,
       })
     end,
@@ -326,7 +327,7 @@ return {
           local mark_rows = {}
 
           for char in ("abcdefghijklmnopqrstuvwxyz"):gmatch(".") do
-            local mark = vim.api.nvim_buf_get_mark(0, char)
+            local mark = api.nvim_buf_get_mark(0, char)
             local mark_row = mark[1]
             if mark_row ~= 0 then
               table.insert(mark_rows, mark_row)
@@ -335,10 +336,10 @@ return {
 
           table.sort(mark_rows)
 
-          local cursor = vim.api.nvim_win_get_cursor(0)
+          local cursor = api.nvim_win_get_cursor(0)
           local current_row = cursor[1]
           local start_row = 1
-          local end_row = vim.api.nvim_buf_line_count(0)
+          local end_row = api.nvim_buf_line_count(0)
 
           for _, mark_row in ipairs(mark_rows) do
             if mark_row <= current_row then
@@ -349,11 +350,11 @@ return {
             end
           end
 
-          vim.api.nvim_win_set_cursor(0, { start_row, 0 })
+          api.nvim_win_set_cursor(0, { start_row, 0 })
           vim.cmd("normal V")
-          vim.api.nvim_win_set_cursor(0, { end_row, 0 })
+          api.nvim_win_set_cursor(0, { end_row, 0 })
           require("iron.core").visual_send()
-          vim.api.nvim_win_set_cursor(0, cursor)
+          api.nvim_win_set_cursor(0, cursor)
         end,
       },
       { "<space>r", "<Cmd>IronRepl<CR>", desc = "REPL" },
@@ -570,14 +571,14 @@ return {
     opts = {
       preview = {
         should_preview_cb = function(bufnr, qwinid)
-          local bufname = vim.api.nvim_buf_get_name(bufnr)
-          if bufname:match("^fugitive://") and not vim.api.nvim_buf_is_loaded(bufnr) then
+          local bufname = api.nvim_buf_get_name(bufnr)
+          if bufname:match("^fugitive://") and not api.nvim_buf_is_loaded(bufnr) then
             if Bqf_preview_timer and Bqf_preview_timer:get_due_in() > 0 then
               Bqf_preview_timer:stop()
               Bqf_preview_timer = nil
             end
             Bqf_preview_timer = vim.defer_fn(function()
-              vim.api.nvim_buf_call(bufnr, function()
+              api.nvim_buf_call(bufnr, function()
                 vim.cmd(("do fugitive BufReadCmd %s"):format(bufname))
               end)
               require("bqf.preview.handler").open(qwinid, nil, true)
@@ -853,7 +854,7 @@ return {
         tsserver = {
           on_attach = function(client)
             client.server_capabilities.documentFormattingProvider = false
-            vim.api.nvim_create_autocmd("BufWritePre", {
+            api.nvim_create_autocmd("BufWritePre", {
               callback = function()
                 local actions = require("typescript").actions
                 actions.removeUnused({ sync = true })
