@@ -519,7 +519,9 @@ return {
             event = "msg_show",
             kind = "search_count",
           },
-          opts = { skip = true },
+          opts = {
+            skip = true,
+          },
         },
       },
       presets = {
@@ -868,7 +870,9 @@ return {
   },
   {
     "SmiteshP/nvim-navic",
-    opts = { highlight = true },
+    opts = {
+      highlight = true,
+    },
   },
   {
     "mfussenegger/nvim-treehopper",
@@ -1310,7 +1314,9 @@ return {
     keys = {
       { "J", "<Cmd>TSJToggle<CR>" },
     },
-    opts = { use_default_keymaps = false },
+    opts = {
+      use_default_keymaps = false,
+    },
   },
   {
     "blankname/vim-fish",
