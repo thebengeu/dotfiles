@@ -802,7 +802,10 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    init = function()
+    config = function(plugin, opts)
+      local super = plugin._.super
+      super.config(super, opts)
+
       local keys = require("lazyvim.plugins.lsp.keymaps").get()
       table.insert(keys, { "gd", false })
       table.insert(keys, { "gI", false })
