@@ -926,31 +926,6 @@ return {
     end,
   },
   {
-    "RRethy/nvim-treesitter-textsubjects",
-    config = function()
-      require("nvim-treesitter.configs").setup({
-        textsubjects = {
-          enable = true,
-          prev_selection = ",",
-          keymaps = {
-            ["."] = "textsubjects-smart",
-            [";"] = "textsubjects-container-outer",
-            ["i;"] = "textsubjects-container-inner",
-          },
-        },
-      })
-    end,
-    event = "BufReadPost",
-    init = function()
-      require("which-key").register({
-        [","] = "Previous text subject",
-        ["."] = "Text subject smart",
-        [";"] = "Text subject container outer",
-        ["i;"] = "text subject container inner",
-      }, { mode = "o" })
-    end,
-  },
-  {
     "windwp/nvim-ts-autotag",
     config = true,
     event = "InsertEnter",
