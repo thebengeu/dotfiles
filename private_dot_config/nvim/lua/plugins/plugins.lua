@@ -186,12 +186,6 @@ return {
   },
   {
     "lewis6991/gitsigns.nvim",
-    init = function()
-      require("which-key").register({
-        ["<leader>gh"] = "which_key_ignore",
-        ["<leader>h"] = "+hunks",
-      })
-    end,
     opts = {
       on_attach = function(buffer)
         local gs = package.loaded.gitsigns
@@ -219,6 +213,18 @@ return {
           gs.diffthis("~")
         end, "Diff This ~")
         map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
+
+        require("which-key").register({
+          ["<leader>h"] = "+hunks",
+        })
+
+        vim.api.nvim_buf_attach(buffer, false, {
+          on_detach = function()
+            require("which-key").register({
+              ["<leader>h"] = "which_key_ignore",
+            })
+          end,
+        })
       end,
     },
   },
@@ -1336,5 +1342,16 @@ return {
   {
     "wakatime/vim-wakatime",
     event = "BufReadPost",
+  },
+  {
+    "folke/which-key.nvim",
+    config = function(plugin, opts)
+      local super = plugin._.super
+      super.config(super, opts)
+
+      require("which-key").register({
+        ["<leader>gh"] = "which_key_ignore",
+      })
+    end,
   },
 }
