@@ -182,7 +182,7 @@ return {
   {
     "akinsho/git-conflict.nvim",
     config = true,
-    event = "BufReadPost",
+    event = { "BufNewFile", "BufReadPost" },
   },
   {
     "lewis6991/gitsigns.nvim",
@@ -407,7 +407,7 @@ return {
   },
   {
     "chentoast/marks.nvim",
-    event = "BufReadPost",
+    event = { "BufNewFile", "BufReadPost" },
     opts = {
       sign_priority = 13,
     },
@@ -769,7 +769,7 @@ return {
   },
   {
     "kevinhwang91/nvim-hlslens",
-    event = "BufReadPost",
+    event = { "BufNewFile", "BufReadPost" },
     keys = {
       {
         "n",
@@ -947,7 +947,7 @@ return {
   },
   {
     "mrjones2014/nvim-ts-rainbow",
-    event = "BufReadPost",
+    event = { "BufNewFile", "BufReadPost" },
   },
   {
     "vuki656/package-info.nvim",
@@ -1059,7 +1059,7 @@ return {
   {
     "lewis6991/satellite.nvim",
     config = true,
-    event = "BufReadPost",
+    event = { "BufNewFile", "BufReadPost" },
   },
   {
     "rmagatti/session-lens",
@@ -1075,7 +1075,7 @@ return {
   },
   {
     "luukvbaal/statuscol.nvim",
-    event = "BufReadPost",
+    event = { "BufNewFile", "BufReadPost" },
     opts = {
       setopt = true,
     },
@@ -1104,7 +1104,7 @@ return {
   },
   {
     "gbprod/substitute.nvim",
-    event = "BufReadPost",
+    event = { "BufNewFile", "BufReadPost" },
     keys = {
       {
         "x",
@@ -1298,7 +1298,7 @@ return {
         ["i%"] = "inner any block",
       }, { mode = "o" })
     end,
-    event = "BufReadPost",
+    event = { "BufNewFile", "BufReadPost" },
   },
   {
     "tpope/vim-unimpaired",
@@ -1347,7 +1347,7 @@ return {
   },
   {
     "wakatime/vim-wakatime",
-    event = "BufReadPost",
+    event = { "BufNewFile", "BufReadPost" },
   },
   {
     "folke/which-key.nvim",
