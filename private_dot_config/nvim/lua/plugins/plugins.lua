@@ -1374,7 +1374,13 @@ return {
   },
   {
     "mg979/vim-visual-multi",
-    keys = { "<C-Down>", "<C-Up>" },
+    keys = {
+      "<C-Down>",
+      "<C-Up>",
+      "<C-n>",
+      "\\\\",
+      "\\\\A",
+    },
   },
   {
     "wakatime/vim-wakatime",
