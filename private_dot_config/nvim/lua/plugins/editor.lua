@@ -59,6 +59,13 @@ return {
     },
   },
   {
+    "chentoast/marks.nvim",
+    event = { "BufNewFile", "BufReadPost" },
+    opts = {
+      sign_priority = 13,
+    },
+  },
+  {
     "linty-org/readline.nvim",
     keys = {
       {

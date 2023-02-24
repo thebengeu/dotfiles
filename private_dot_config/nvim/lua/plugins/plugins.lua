@@ -8,13 +8,6 @@ return {
   },
   { "rmagatti/auto-session" },
   {
-    "chentoast/marks.nvim",
-    event = { "BufNewFile", "BufReadPost" },
-    opts = {
-      sign_priority = 13,
-    },
-  },
-  {
     "kevinhwang91/nvim-bqf",
     ft = "qf",
     opts = {
