@@ -869,18 +869,15 @@ return {
   },
   {
     "mfussenegger/nvim-treehopper",
-    config = function()
-      vim.cmd([[
-        omap     <silent> p :<C-U>lua require('tsht').nodes()<CR>
-        xnoremap <silent> p :lua require('tsht').nodes()<CR>
-      ]])
-    end,
-    event = "BufReadPost",
-    init = function()
-      require("which-key").register({
-        p = "Nodes",
-      }, { mode = { "o", "x" } })
-    end,
+    keys = {
+      { "p", ":<C-U>lua require('tsht').nodes()<CR>", desc = "Nodes", mode = "o" },
+      {
+        "p",
+        ":lua require('tsht').nodes()<CR>",
+        desc = "Nodes",
+        mode = "x",
+      },
+    },
   },
   {
     "nvim-treesitter/nvim-treesitter",
