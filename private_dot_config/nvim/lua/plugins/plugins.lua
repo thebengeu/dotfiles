@@ -3,22 +3,10 @@ local g = vim.g
 
 return {
   {
-    "pearofducks/ansible-vim",
-    ft = "yaml.ansible",
-  },
-  {
     "skywind3000/asyncrun.vim",
     cmd = "AsyncRun",
   },
   { "rmagatti/auto-session" },
-  { "alker0/chezmoi.vim" },
-  {
-    "GCBallesteros/jupytext.vim",
-    config = function()
-      g.jupytext_fmt = "py"
-      g.jupytext_style = ":hydrogen"
-    end,
-  },
   {
     "chentoast/marks.nvim",
     event = { "BufNewFile", "BufReadPost" },
@@ -49,11 +37,6 @@ return {
         end,
       },
     },
-  },
-  {
-    "vuki656/package-info.nvim",
-    config = true,
-    ft = "json",
   },
   {
     "folke/persistence.nvim",
@@ -151,10 +134,6 @@ return {
         enable_default_keybindings = false,
       },
     },
-  },
-  {
-    "blankname/vim-fish",
-    ft = "fish",
   },
   {
     "tpope/vim-unimpaired",
