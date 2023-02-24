@@ -522,8 +522,6 @@ return {
         extended_mode = true,
       }
       opts.textobjects = {
-        lsp_interop = {},
-        move = {},
         select = {
           enable = true,
           keymaps = {
@@ -538,7 +536,6 @@ return {
           },
           lookahead = true,
         },
-        swap = {},
       }
     end,
   },
