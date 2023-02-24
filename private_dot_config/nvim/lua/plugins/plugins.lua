@@ -257,7 +257,7 @@ return {
           if #results == 1 then
             jump()
           else
-            open() -- argument is optional
+            open()
           end
         end,
       },
