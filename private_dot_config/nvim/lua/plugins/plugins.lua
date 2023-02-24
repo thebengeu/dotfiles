@@ -1207,7 +1207,6 @@ return {
       {
         "<leader>uC",
         function()
-          local root = require("lazy.core.config").options.root
           require("telescope.pickers")
             .new({
               attach_mappings = function(prompt_bufnr)
@@ -1224,7 +1223,7 @@ return {
               finder = require("telescope.finders").new_table({
                 results = colorschemes,
                 entry_maker = function(entry)
-                  colorscheme_and_style = table.concat(entry, "-")
+                  local colorscheme_and_style = table.concat(entry, "-")
 
                   return {
                     display = colorscheme_and_style,
