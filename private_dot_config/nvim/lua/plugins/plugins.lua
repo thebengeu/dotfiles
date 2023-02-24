@@ -1053,7 +1053,7 @@ return {
     "rmagatti/session-lens",
     keys = {
       {
-        "<space>sS",
+        "<space>sl",
         function()
           require("session-lens").search_session()
         end,
