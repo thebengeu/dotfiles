@@ -43,25 +43,6 @@ return {
     },
   },
   {
-    "ahmedkhalf/project.nvim",
-    config = function()
-      require("project_nvim").setup({
-        detection_methods = { "pattern" },
-        patterns = { ".git", "pyproject.toml" },
-      })
-    end,
-    event = "BufEnter",
-    keys = {
-      {
-        "<leader>p",
-        function()
-          require("telescope").extensions.projects.projects()
-        end,
-        desc = "Projects",
-      },
-    },
-  },
-  {
     "rmagatti/session-lens",
     keys = {
       {
