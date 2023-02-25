@@ -182,9 +182,9 @@ return {
   {
     "mfussenegger/nvim-treehopper",
     keys = {
-      { "p", ":<C-U>lua require('tsht').nodes()<CR>", desc = "Nodes", mode = "o" },
+      { "o", ":<C-U>lua require('tsht').nodes()<CR>", desc = "Nodes", mode = "o" },
       {
-        "p",
+        "o",
         ":lua require('tsht').nodes()<CR>",
         desc = "Nodes",
         mode = "x",
@@ -235,11 +235,11 @@ return {
         select = {
           enable = true,
           keymaps = {
-            ["=l"] = {
+            ["ql"] = {
               desc = "Select assignment LHS",
               query = "@assignment.lhs",
             },
-            ["=r"] = {
+            ["qr"] = {
               desc = "Select assignment RHS",
               query = "@assignment.rhs",
             },
