@@ -8,30 +8,6 @@ return {
   },
   { "rmagatti/auto-session" },
   {
-    "kevinhwang91/nvim-bqf",
-    ft = "qf",
-    opts = {
-      preview = {
-        should_preview_cb = function(bufnr, qwinid)
-          local bufname = api.nvim_buf_get_name(bufnr)
-          if bufname:match("^fugitive://") and not api.nvim_buf_is_loaded(bufnr) then
-            if Bqf_preview_timer and Bqf_preview_timer:get_due_in() > 0 then
-              Bqf_preview_timer:stop()
-              Bqf_preview_timer = nil
-            end
-            Bqf_preview_timer = vim.defer_fn(function()
-              api.nvim_buf_call(bufnr, function()
-                vim.cmd(("do fugitive BufReadCmd %s"):format(bufname))
-              end)
-              require("bqf.preview.handler").open(qwinid, nil, true)
-            end, 60)
-          end
-          return true
-        end,
-      },
-    },
-  },
-  {
     "folke/persistence.nvim",
     enabled = false,
   },
