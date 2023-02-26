@@ -138,15 +138,7 @@ return {
       "nvim-treesitter/nvim-treesitter",
       "nvim-lua/plenary.nvim",
     },
-    keys = {
-      {
-        "<space>t",
-        function()
-          require("neotest").run.run({ suite = true })
-        end,
-        desc = "Run test suite",
-      },
-    },
+    lazy = true,
   },
   {
     "hrsh7th/nvim-cmp",

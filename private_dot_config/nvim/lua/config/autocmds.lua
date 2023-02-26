@@ -18,3 +18,9 @@ vim.api.nvim_create_autocmd("BufEnter", {
   command = "startinsert",
   pattern = "term://*",
 })
+vim.api.nvim_create_autocmd("BufWritePost", {
+  callback = function()
+    require("neotest").run.run({ suite = true })
+  end,
+  pattern = "*.py",
+})
