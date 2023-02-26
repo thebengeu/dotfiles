@@ -289,6 +289,26 @@ return {
     event = "InsertEnter",
   },
   {
+    "rgroli/other.nvim",
+    config = function()
+      require("other-nvim").setup({
+        mappings = {
+          {
+            pattern = "/src/.+/(.+).py$",
+            target = "/tests/test_%1.py",
+          },
+          {
+            pattern = "/tests/test_(.+).py$",
+            target = "/src/*/%1.py",
+          },
+        },
+      })
+    end,
+    keys = {
+      { "<space>fo", "<Cmd>Other<CR>", desc = "Open other file" },
+    },
+  },
+  {
     "ThePrimeagen/refactoring.nvim",
     keys = {
       {
