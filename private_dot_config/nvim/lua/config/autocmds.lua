@@ -24,3 +24,11 @@ vim.api.nvim_create_autocmd("BufWritePost", {
   end,
   pattern = "*.py",
 })
+vim.api.nvim_create_autocmd("CursorHold", {
+  callback = function()
+    if vim.tbl_isempty(vim.fn.getqflist()) then
+      vim.cmd("cclose")
+    end
+  end,
+  pattern = "*.py",
+})
