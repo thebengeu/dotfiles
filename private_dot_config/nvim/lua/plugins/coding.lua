@@ -115,6 +115,40 @@ return {
     end,
   },
   {
+    "folke/neodev.nvim",
+    opts = {
+      library = {
+        plugins = { "neotest" },
+        types = true,
+      },
+    },
+  },
+  {
+    "nvim-neotest/neotest",
+    config = function()
+      require("neotest").setup({
+        adapters = {
+          require("neotest-python"),
+        },
+      })
+    end,
+    dependencies = {
+      "antoinemadec/FixCursorHold.nvim",
+      "nvim-neotest/neotest-python",
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-lua/plenary.nvim",
+    },
+    keys = {
+      {
+        "<space>t",
+        function()
+          require("neotest").run.run({ suite = true })
+        end,
+        desc = "Run test suite",
+      },
+    },
+  },
+  {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "zbirenbaum/copilot-cmp",
