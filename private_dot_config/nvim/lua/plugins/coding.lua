@@ -115,15 +115,6 @@ return {
     end,
   },
   {
-    "folke/neodev.nvim",
-    opts = {
-      library = {
-        plugins = { "neotest" },
-        types = true,
-      },
-    },
-  },
-  {
     "nvim-neotest/neotest",
     config = function()
       require("neotest").setup({
