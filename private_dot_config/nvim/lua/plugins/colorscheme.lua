@@ -196,6 +196,15 @@ return {
     keys = {
       { "<leader><space>", false },
       {
+        "<leader>fi",
+        function()
+          require("telescope.builtin").find_files({
+            no_ignore = true,
+          })
+        end,
+        desc = "Find Files (ignored)",
+      },
+      {
         "<leader>fp",
         function()
           require("telescope.builtin").find_files({
