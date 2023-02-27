@@ -236,7 +236,7 @@ return {
         function()
           local root = require("lazy.core.config").options.root
           require("telescope.pickers")
-            .new({
+            .new({}, {
               attach_mappings = function(prompt_bufnr)
                 local actions = require("telescope.actions")
                 actions.select_default:replace(function()
@@ -259,7 +259,7 @@ return {
         "<leader>uC",
         function()
           require("telescope.pickers")
-            .new({
+            .new({}, {
               attach_mappings = function(prompt_bufnr)
                 local actions = require("telescope.actions")
                 actions.select_default:replace(function()
