@@ -72,14 +72,6 @@ return {
       table.insert(keys, { "gt", false })
     end,
     opts = {
-      capabilities = {
-        textDocument = {
-          foldingRange = {
-            dynamicRegistration = false,
-            lineFoldingOnly = true,
-          },
-        },
-      },
       servers = {
         ansiblels = {},
         bashls = {},
