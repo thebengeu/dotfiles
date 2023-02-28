@@ -303,6 +303,19 @@ return {
     },
   },
   {
+    "cshuaimin/ssr.nvim",
+    keys = {
+      {
+        "<leader>cs",
+        function()
+          require("ssr").open()
+        end,
+        desc = "Structural Search and Replace",
+        mode = { "n", "x" },
+      },
+    },
+  },
+  {
     "Wansmer/treesj",
     keys = {
       { "J", "<Cmd>TSJToggle<CR>" },
