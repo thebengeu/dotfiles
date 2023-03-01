@@ -22,4 +22,7 @@ return {
     "blankname/vim-fish",
     ft = "fish",
   },
+  {
+    "Glench/Vim-Jinja2-Syntax",
+  },
 }

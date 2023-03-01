@@ -7,6 +7,8 @@ return {
       ensure_installed = {
         "ansible-lint",
         "black",
+        "curlylint",
+        "djlint",
         "eslint_d",
         "fixjson",
         "isort",
@@ -34,6 +36,12 @@ return {
         end,
       }
       opts.sources = {
+        null_ls.builtins.diagnostics.curlylint.with({
+          extra_filetypes = { "jinja" },
+        }),
+        null_ls.builtins.diagnostics.djlint.with({
+          extra_filetypes = { "jinja" },
+        }),
         null_ls.builtins.code_actions.eslint_d,
         null_ls.builtins.diagnostics.eslint_d,
         null_ls.builtins.diagnostics.fish,
@@ -42,6 +50,9 @@ return {
         null_ls.builtins.diagnostics.shellcheck,
         null_ls.builtins.diagnostics.yamllint,
         null_ls.builtins.formatting.black,
+        null_ls.builtins.formatting.djlint.with({
+          extra_filetypes = { "jinja" },
+        }),
         null_ls.builtins.formatting.fish_indent,
         null_ls.builtins.formatting.fixjson,
         null_ls.builtins.formatting.isort.with({
