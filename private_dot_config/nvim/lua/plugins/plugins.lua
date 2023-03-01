@@ -141,5 +141,10 @@ return {
         ["<leader>gh"] = "which_key_ignore",
       })
     end,
+    opts = {
+      operators = {
+        ["<space>z"] = "Send to REPL",
+      },
+    },
   },
 }
