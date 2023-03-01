@@ -1,1 +1,3 @@
---theme="Catppuccin-mocha"
+--italic-text always
+--style plain
+--theme "Catppuccin-mocha"
