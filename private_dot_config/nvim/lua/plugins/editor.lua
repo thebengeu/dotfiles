@@ -59,10 +59,6 @@ return {
     },
   },
   {
-    "ggandor/leap.nvim",
-    commit = "2d7a2048c5f1af247ab6430003f101869e590aeb",
-  },
-  {
     "chentoast/marks.nvim",
     event = { "BufNewFile", "BufReadPost" },
     opts = {
