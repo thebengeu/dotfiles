@@ -95,3 +95,6 @@
 - community.general.npm:
     name: npm-check-updates
     global: true
+- community.general.npm:
+    name: ts-node
+    global: true
