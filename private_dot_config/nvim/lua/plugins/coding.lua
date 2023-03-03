@@ -29,10 +29,21 @@ return {
   {
     "/hkupty/iron.nvim",
     config = function()
+      local ts = require("iron.fts.typescript").ts
+
       require("iron.core").setup({
         config = {
           repl_definition = {
             python = require("iron.fts.python").ipython,
+            typescript = vim.tbl_extend("force", ts, {
+              command = { "ts-node", "--compilerOptions", '{"module": "commonjs"}' },
+              format = function(lines)
+                for i, line in ipairs(lines) do
+                  lines[i] = line:gsub("const ", "")
+                end
+                return require("iron.fts.common").format(ts, lines)
+              end,
+            }),
           },
           repl_open_cmd = require("iron.view").split.horizontal.botright(20, {
             number = false,
