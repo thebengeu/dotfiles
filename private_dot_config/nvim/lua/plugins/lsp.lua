@@ -13,7 +13,6 @@ return {
         "fixjson",
         "isort",
         "js-debug-adapter",
-        "mypy",
         "prettierd",
         "ruff",
         "shellcheck",
