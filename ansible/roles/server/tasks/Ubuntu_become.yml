@@ -57,6 +57,7 @@
       - docker-compose-plugin
       - et
       - golang
+      - libluajit-5.1-dev
       - libsqlite3-dev
       - make
       - moreutils
