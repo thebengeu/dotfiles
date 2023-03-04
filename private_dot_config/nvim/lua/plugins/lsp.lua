@@ -29,9 +29,9 @@ return {
     "jose-elias-alvarez/null-ls.nvim",
     opts = function(_, opts)
       local null_ls = require("null-ls")
-      local run_if_not_pypackages = {
+      local run_if_not_venv = {
         runtime_condition = function(params)
-          return not params.lsp_params.textDocument.uri:find("/__pypackages__/")
+          return not params.lsp_params.textDocument.uri:find("/.venv/")
         end,
       }
       opts.sources = {
@@ -44,8 +44,8 @@ return {
         null_ls.builtins.code_actions.eslint_d,
         null_ls.builtins.diagnostics.eslint_d,
         null_ls.builtins.diagnostics.fish,
-        null_ls.builtins.diagnostics.mypy.with(run_if_not_pypackages),
-        null_ls.builtins.diagnostics.ruff.with(run_if_not_pypackages),
+        null_ls.builtins.diagnostics.mypy.with(run_if_not_venv),
+        null_ls.builtins.diagnostics.ruff.with(run_if_not_venv),
         null_ls.builtins.diagnostics.shellcheck,
         null_ls.builtins.diagnostics.yamllint,
         null_ls.builtins.formatting.black,
