@@ -29,12 +29,11 @@
       - ghorg
       - git-delta
       - gitui
-      - ipython
       - jq
       - lazydocker
       - lazygit
       - mosh
-      - pdm
+      - pipx
       - topgrade
       - wakatime-cli
       - xh
@@ -70,7 +69,5 @@
 - ansible.builtin.command:
     cmd: ~/.tmux/plugins/tpm/bin/install_plugins
     creates: ~/.tmux/plugins/tmux-pain-control
-- ansible.builtin.pip:
-    executable: /home/linuxbrew/.linuxbrew/bin/pip3
-    name:
-      - rich
+- community.general.pipx:
+    name: poetry
