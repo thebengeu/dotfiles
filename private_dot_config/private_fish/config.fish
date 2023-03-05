@@ -26,6 +26,7 @@ if status is-interactive
     abbr --add agp 'git -C ~/ansible pull'
     abbr --add ags 'git -C ~/ansible s'
     abbr --add alg 'lazygit --path ~/ansible'
+    abbr --add an 'nvim --cmd "cd ~/ansible"'
     abbr --add b bat
     abbr --add bi 'brew install'
     abbr --add bui 'brew uninstall'
@@ -39,6 +40,7 @@ if status is-interactive
     abbr --add cgl 'chezmoi git lg'
     abbr --add cglp 'chezmoi git -- lg --patch'
     abbr --add clg 'lazygit --path ~/.local/share/chezmoi'
+    abbr --add cn 'nvim --cmd "cd ~/.local/share/chezmoi"'
     abbr --add cr 'chezmoi re-add'
     abbr --add cat bat
     abbr --add e 'emacsclient -nw'
