@@ -13,6 +13,7 @@ if status is-interactive
     set --global fish_cursor_replace_one underscore
     set --global fish_greeting
     set --global fish_vi_force_cursor 1
+    direnv hook fish | source
     fnm env --use-on-cd | source
     mcfly init fish | source
     zoxide init --cmd cd fish | source
