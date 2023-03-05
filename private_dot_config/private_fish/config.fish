@@ -17,8 +17,14 @@ if status is-interactive
     fnm env --use-on-cd | source
     mcfly init fish | source
     zoxide init --cmd cd fish | source
+    abbr --add agca 'git -C ~/ansible commit --amend'
+    abbr --add agcam 'git -C ~/ansible commit -a -m'
+    abbr --add agd 'git -C ~/ansible diff'
     abbr --add agl 'git -C ~/ansible lg'
+    abbr --add aglp 'git -C ~/ansible lg --patch'
+    abbr --add agP 'git -C ~/ansible push'
     abbr --add agp 'git -C ~/ansible pull'
+    abbr --add ags 'git -C ~/ansible s'
     abbr --add alg 'lazygit --path ~/ansible'
     abbr --add b bat
     abbr --add bi 'brew install'
