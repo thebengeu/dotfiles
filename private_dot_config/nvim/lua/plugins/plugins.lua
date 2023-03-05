@@ -6,7 +6,12 @@ return {
     "skywind3000/asyncrun.vim",
     cmd = "AsyncRun",
   },
-  { "rmagatti/auto-session" },
+  {
+    "rmagatti/auto-session",
+    opts = {
+      log_level = "error",
+    },
+  },
   {
     "folke/persistence.nvim",
     enabled = false,
