@@ -19,7 +19,6 @@
       - broot
       - btop
       - cantino/mcfly/mcfly
-      - direnv
       - eth-p/software/bat-extras-batman
       - exa
       - fd
