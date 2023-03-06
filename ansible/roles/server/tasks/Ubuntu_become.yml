@@ -58,6 +58,7 @@
       - et
       - golang
       - libluajit-5.1-dev
+      - libpq-dev
       - libsqlite3-dev
       - make
       - moreutils
