@@ -35,6 +35,9 @@ return {
         config = {
           repl_definition = {
             python = require("iron.fts.python").ipython,
+            sql = {
+              command = { "psql", "postgresql://postgres:postgres@localhost:5432/postgres" },
+            },
             typescript = vim.tbl_extend("force", ts, {
               command = { "ts-node", "--compilerOptions", '{"module": "commonjs"}' },
               format = function(lines)
@@ -145,23 +148,29 @@ return {
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
-      "zbirenbaum/copilot-cmp",
-      config = function()
-        require("copilot_cmp").setup({
-          method = "getPanelCompletions",
-          formatters = {
-            insert_text = require("copilot_cmp.format").remove_existing,
-          },
-        })
-      end,
-      dependencies = {
-        "zbirenbaum/copilot.lua",
+      {
+        "zbirenbaum/copilot-cmp",
         config = function()
-          require("copilot").setup({
-            panel = { enabled = false },
-            suggestion = { enabled = false },
+          require("copilot_cmp").setup({
+            method = "getPanelCompletions",
+            formatters = {
+              insert_text = require("copilot_cmp.format").remove_existing,
+            },
           })
         end,
+        dependencies = {
+          "zbirenbaum/copilot.lua",
+          config = function()
+            require("copilot").setup({
+              panel = { enabled = false },
+              suggestion = { enabled = false },
+            })
+          end,
+        },
+      },
+      {
+        "kristijanhusak/vim-dadbod-completion",
+        dependencies = { "tpope/vim-dadbod" },
       },
     },
     opts = function(_, opts)
@@ -204,6 +213,7 @@ return {
       }
       opts.sources = cmp.config.sources(vim.list_extend(opts.sources, {
         { name = "copilot" },
+        -- { name = "vim-dadbod-completion" },
       }))
     end,
   },
@@ -249,6 +259,7 @@ return {
         "fish",
         "gitignore",
         "prisma",
+        "sql",
         "toml",
       })
       opts.matchup = {
@@ -321,6 +332,10 @@ return {
     opts = {
       use_default_keymaps = false,
     },
+  },
+  {
+    "tpope/vim-dadbod",
+    cmd = "DB",
   },
   {
     "andymass/vim-matchup",

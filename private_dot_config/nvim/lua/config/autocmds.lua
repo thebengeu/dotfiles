@@ -26,3 +26,13 @@ vim.api.nvim_create_autocmd("CursorHold", {
   end,
   pattern = "*.py",
 })
+vim.api.nvim_create_autocmd("FileType", {
+  callback = function()
+    require("cmp").setup.buffer({
+      sources = {
+        { name = "vim-dadbod-completion" },
+      },
+    })
+  end,
+  pattern = "sql",
+})
