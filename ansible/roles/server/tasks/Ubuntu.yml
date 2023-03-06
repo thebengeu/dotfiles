@@ -32,7 +32,6 @@
       - lazydocker
       - lazygit
       - mosh
-      - pipx
       - topgrade
       - wakatime-cli
       - xh
@@ -68,6 +67,3 @@
 - ansible.builtin.command:
     cmd: ~/.tmux/plugins/tpm/bin/install_plugins
     creates: ~/.tmux/plugins/tmux-pain-control
-- community.general.pipx:
-    executable: /home/linuxbrew/.linuxbrew/bin/pipx
-    name: poetry
