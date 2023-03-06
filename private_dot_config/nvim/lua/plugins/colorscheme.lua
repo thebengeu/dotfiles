@@ -11,7 +11,8 @@ local colorschemes = {
   { "edge", "neon" },
   { "everforest" },
   { "gruvbox-material" },
-  { "kanagawa" },
+  { "kanagawa-dragon" },
+  { "kanagawa-wave" },
   { "material", "darker" },
   { "material", "deep ocean" },
   { "material", "oceanic" },
@@ -106,21 +107,19 @@ return {
   },
   {
     "rebelot/kanagawa.nvim",
-    config = function()
-      local default_colors = require("kanagawa.colors").setup()
-
-      require("kanagawa").setup({
-        overrides = {
-          rainbowcol1 = { fg = default_colors.peachRed },
-          rainbowcol2 = { fg = default_colors.carpYellow },
-          rainbowcol3 = { fg = default_colors.crystalBlue },
-          rainbowcol4 = { fg = default_colors.surimiOrange },
-          rainbowcol5 = { fg = default_colors.springGreen },
-          rainbowcol6 = { fg = default_colors.oniViolet },
-          rainbowcol7 = { fg = default_colors.waveAqua2 },
-        },
-      })
-    end,
+    opts = {
+      overrides = function(colors)
+        return {
+          rainbowcol1 = { fg = colors.palette.peachRed },
+          rainbowcol2 = { fg = colors.palette.carpYellow },
+          rainbowcol3 = { fg = colors.palette.crystalBlue },
+          rainbowcol4 = { fg = colors.palette.surimiOrange },
+          rainbowcol5 = { fg = colors.palette.springGreen },
+          rainbowcol6 = { fg = colors.palette.oniViolet },
+          rainbowcol7 = { fg = colors.palette.waveAqua2 },
+        }
+      end,
+    },
     lazy = true,
   },
   {
