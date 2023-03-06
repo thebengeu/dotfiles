@@ -1,3 +1,0 @@
-export POETRY_ACTIVE=1
-export VIRTUAL_ENV=/home/beng/drakon/arb/.venv
-PATH_add /home/beng/drakon/arb/.venv/bin
