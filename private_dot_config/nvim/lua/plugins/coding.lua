@@ -213,7 +213,7 @@ return {
       }
       opts.sources = cmp.config.sources(vim.list_extend(opts.sources, {
         { name = "copilot" },
-        -- { name = "vim-dadbod-completion" },
+        { name = "vim-dadbod-completion" },
       }))
     end,
   },
