@@ -33,6 +33,7 @@
       - lazygit
       - mosh
       - sqlfluff
+      - temporal
       - topgrade
       - wakatime-cli
       - xh
