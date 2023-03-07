@@ -131,9 +131,9 @@ return {
   },
   {
     "SmiteshP/nvim-navic",
-    opts = {
-      highlight = true,
-    },
+    opts = function(_, opts)
+      opts.icons = nil
+    end,
   },
   {
     "mrjones2014/nvim-ts-rainbow",
