@@ -61,13 +61,13 @@ if status is-interactive
     abbr --add ll 'exa --git --icons --long'
     abbr --add ls 'exa --icons'
     abbr --add n nvim
-    abbr --add node 'sh -c "printf \"\e[6 q\"; node"'
+    abbr --add nr 'sh -c "printf \"\e[6 q\"; node"'
     abbr --add os 'set COMMAND $(op signin) && test -n "$COMMAND" && eval $COMMAND && set --export OP_TIME $(date +%s)'
     abbr --add pr 'gh pr create -f'
     abbr --add prr 'gh pr create -f -r'
     abbr --add tg topgrade
     abbr --add tns 'tmux new-session -A -s 0'
-    abbr --add ts-node 'sh -c \'printf "\e[6 q"; ts-node --compilerOptions \\\'{"module": "commonjs"}\\\'\''
+    abbr --add tsr 'sh -c \'printf "\e[6 q"; ts-node --compilerOptions \\\'{"module": "commonjs"}\\\'\''
     abbr --add vim nvim
     function br --wraps=broot
         set -l cmd_file (mktemp)
