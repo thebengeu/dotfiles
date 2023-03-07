@@ -103,7 +103,6 @@ return {
         "a",
         "B",
         "C",
-        "f",
         "L",
         "l",
         "n",
@@ -123,6 +122,8 @@ return {
     keys = {
       { "[<space>", desc = "Add blank lines above" },
       { "]<space>", desc = "Add blank lines below" },
+      { "[f", desc = "Previous file in directory" },
+      { "]f", desc = "Next file in directory" },
       { "[p", desc = "Paste before linewise" },
       { "]p", desc = "Paste after linewise" },
       { "[q", desc = "Previous item in quickfix list" },
