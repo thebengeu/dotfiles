@@ -18,6 +18,7 @@ return {
         "shellcheck",
         "shellharden",
         "shfmt",
+        "sqlfluff",
         "stylua",
         "taplo",
         "yamlfmt",
@@ -47,6 +48,10 @@ return {
         null_ls.builtins.diagnostics.mypy.with(run_if_not_venv),
         null_ls.builtins.diagnostics.ruff.with(run_if_not_venv),
         null_ls.builtins.diagnostics.shellcheck,
+        null_ls.builtins.diagnostics.sqlfluff.with({
+          extra_args = { "--dialect", "postgres" },
+          timeout = 20000,
+        }),
         null_ls.builtins.diagnostics.yamllint,
         null_ls.builtins.formatting.black,
         null_ls.builtins.formatting.djlint.with({
@@ -63,6 +68,10 @@ return {
         null_ls.builtins.formatting.ruff,
         null_ls.builtins.formatting.shfmt,
         null_ls.builtins.formatting.shellharden,
+        null_ls.builtins.formatting.sqlfluff.with({
+          extra_args = { "--dialect", "postgres" },
+          timeout = 60000,
+        }),
         null_ls.builtins.formatting.stylua,
         null_ls.builtins.formatting.taplo,
         null_ls.builtins.formatting.yamlfmt,
@@ -82,6 +91,9 @@ return {
       table.insert(keys, { "gt", false })
     end,
     opts = {
+      format = {
+        timeout_ms = 60000,
+      },
       servers = {
         ansiblels = {},
         bashls = {},
