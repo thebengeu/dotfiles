@@ -32,6 +32,7 @@
       - lazydocker
       - lazygit
       - mosh
+      - sqlfluff
       - topgrade
       - wakatime-cli
       - xh
