@@ -67,6 +67,7 @@ if status is-interactive
     abbr --add prr 'gh pr create -f -r'
     abbr --add tg topgrade
     abbr --add tns 'tmux new-session -A -s 0'
+    abbr --add ts-node 'sh -c \'printf "\e[6 q"; ts-node --compilerOptions \\\'{"module": "commonjs"}\\\'\''
     abbr --add vim nvim
     function br --wraps=broot
         set -l cmd_file (mktemp)
