@@ -10,6 +10,9 @@ return {
     "rmagatti/auto-session",
     opts = {
       log_level = "error",
+      pre_save_cmds = {
+        require("neo-tree.sources.manager").close_all,
+      },
     },
   },
   {
