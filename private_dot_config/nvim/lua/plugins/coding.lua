@@ -325,6 +325,11 @@ return {
     },
   },
   {
+    "axelvc/template-string.nvim",
+    config = true,
+    ft = "typescript",
+  },
+  {
     "Wansmer/treesj",
     keys = {
       { "J", "<Cmd>TSJToggle<CR>" },
