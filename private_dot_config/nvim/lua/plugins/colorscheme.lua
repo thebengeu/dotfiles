@@ -224,6 +224,7 @@ return {
               "rg",
               "--color=never",
               "--column",
+              "--follow",
               "--line-number",
               "--no-heading",
               "--no-ignore",
