@@ -1,3 +1,4 @@
+local Util = require("lazyvim.util")
 local g = vim.g
 
 local colorschemes = {
@@ -193,7 +194,10 @@ return {
       end,
     },
     keys = {
+      { "<leader>/", Util.telescope("live_grep", { cwd = false }), desc = "Grep (cwd)" },
       { "<leader><space>", false },
+      { "<leader>fF", Util.telescope("files"), desc = "Find Files (root dir)" },
+      { "<leader>ff", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
       {
         "<leader>fi",
         function()
