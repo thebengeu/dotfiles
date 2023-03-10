@@ -9,7 +9,6 @@ return {
         "black",
         "curlylint",
         "djlint",
-        "eslint_d",
         "fixjson",
         "isort",
         "js-debug-adapter",
@@ -42,8 +41,6 @@ return {
         null_ls.builtins.diagnostics.djlint.with({
           extra_filetypes = { "jinja" },
         }),
-        null_ls.builtins.code_actions.eslint_d,
-        null_ls.builtins.diagnostics.eslint_d,
         null_ls.builtins.diagnostics.fish,
         null_ls.builtins.diagnostics.mypy.with(run_if_not_venv),
         null_ls.builtins.diagnostics.ruff.with(run_if_not_venv),

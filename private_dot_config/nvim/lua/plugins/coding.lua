@@ -149,26 +149,6 @@ return {
     "hrsh7th/nvim-cmp",
     dependencies = {
       {
-        "zbirenbaum/copilot-cmp",
-        config = function()
-          require("copilot_cmp").setup({
-            method = "getPanelCompletions",
-            formatters = {
-              insert_text = require("copilot_cmp.format").remove_existing,
-            },
-          })
-        end,
-        dependencies = {
-          "zbirenbaum/copilot.lua",
-          config = function()
-            require("copilot").setup({
-              panel = { enabled = false },
-              suggestion = { enabled = false },
-            })
-          end,
-        },
-      },
-      {
         "kristijanhusak/vim-dadbod-completion",
         dependencies = { "tpope/vim-dadbod" },
       },
@@ -177,10 +157,6 @@ return {
       local cmp = require("cmp")
       local luasnip = require("luasnip")
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
-        ["<CR>"] = cmp.mapping.confirm({
-          behavior = cmp.ConfirmBehavior.Replace,
-          select = false,
-        }),
         ["<Tab>"] = cmp.mapping(function(fallback)
           if luasnip.expand_or_jumpable() then
             luasnip.expand_or_jump()
@@ -196,23 +172,7 @@ return {
           end
         end, { "i", "s" }),
       })
-      opts.sorting = {
-        priority_weight = 2,
-        comparators = {
-          require("copilot_cmp.comparators").score,
-          cmp.config.compare.offset,
-          cmp.config.compare.exact,
-          cmp.config.compare.score,
-          cmp.config.compare.recently_used,
-          cmp.config.compare.locality,
-          cmp.config.compare.kind,
-          cmp.config.compare.sort_text,
-          cmp.config.compare.length,
-          cmp.config.compare.order,
-        },
-      }
       opts.sources = cmp.config.sources(vim.list_extend(opts.sources, {
-        { name = "copilot" },
         { name = "vim-dadbod-completion" },
       }))
     end,
