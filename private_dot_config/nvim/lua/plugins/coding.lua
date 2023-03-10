@@ -39,7 +39,7 @@ return {
               command = { "psql", "postgresql://postgres:postgres@localhost:5432/postgres" },
             },
             typescript = vim.tbl_extend("force", ts, {
-              command = { "ts-node", "--compilerOptions", '{"module": "commonjs"}' },
+              command = { "ts-node", "--compilerOptions", '{"module": "commonjs"}', "--transpileOnly" },
               format = function(lines)
                 for i, line in ipairs(lines) do
                   lines[i] = line:gsub("const ", "")
