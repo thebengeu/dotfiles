@@ -66,6 +66,7 @@ if status is-interactive
     abbr --add pi 'pnpm i'
     abbr --add pr 'gh pr create -f'
     abbr --add prr 'gh pr create -f -r'
+    abbr --add rg 'rg --max-columns 1000'
     abbr --add tg topgrade
     abbr --add tns 'tmux new-session -A -s 0'
     abbr --add tsr 'sh -c \'printf "\e[6 q"; ts-node --compilerOptions \\\'{"module": "commonjs"}\\\'\''
