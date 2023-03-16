@@ -65,6 +65,7 @@ if status is-interactive
     abbr --add os 'set COMMAND $(op signin) && test -n "$COMMAND" && eval $COMMAND && set --export OP_TIME $(date +%s)'
     abbr --add pd 'pnpm dev'
     abbr --add pi 'pnpm i'
+    abbr --add ppg 'pnpm prisma generate'
     abbr --add pr 'gh pr create -f'
     abbr --add prr 'gh pr create -f -r'
     abbr --add rg 'rg --max-columns 1000'
