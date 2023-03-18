@@ -30,6 +30,15 @@ return {
     "/hkupty/iron.nvim",
     config = function()
       local ts = require("iron.fts.typescript").ts
+      local typescript = vim.tbl_extend("force", ts, {
+        command = { "ts-node", "--compilerOptions", '{"module": "commonjs"}', "--transpileOnly" },
+        format = function(lines)
+          for i, line in ipairs(lines) do
+            lines[i] = line:gsub("const ", "")
+          end
+          return require("iron.fts.common").format(ts, lines)
+        end,
+      })
 
       require("iron.core").setup({
         config = {
@@ -38,15 +47,8 @@ return {
             sql = {
               command = { "psql", "postgresql://postgres:postgres@localhost:5432/postgres" },
             },
-            typescript = vim.tbl_extend("force", ts, {
-              command = { "ts-node", "--compilerOptions", '{"module": "commonjs"}', "--transpileOnly" },
-              format = function(lines)
-                for i, line in ipairs(lines) do
-                  lines[i] = line:gsub("const ", "")
-                end
-                return require("iron.fts.common").format(ts, lines)
-              end,
-            }),
+            typescript = typescript,
+            typescriptreact = typescript,
           },
           repl_open_cmd = require("iron.view").split.horizontal.botright(20, {
             number = false,
