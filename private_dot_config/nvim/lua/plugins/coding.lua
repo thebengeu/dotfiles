@@ -34,7 +34,7 @@ return {
         command = { "ts-node", "--compilerOptions", '{"module": "commonjs"}', "--transpileOnly" },
         format = function(lines)
           for i, line in ipairs(lines) do
-            lines[i] = line:gsub("const ", "")
+            lines[i] = line:gsub("const ", "var ")
           end
           return require("iron.fts.common").format(ts, lines)
         end,
