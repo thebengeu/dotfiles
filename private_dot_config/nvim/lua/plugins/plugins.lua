@@ -7,6 +7,10 @@ return {
     cmd = "AsyncRun",
   },
   {
+    "max397574/better-escape.nvim",
+    config = true,
+  },
+  {
     "rmagatti/auto-session",
     opts = {
       log_level = "error",
