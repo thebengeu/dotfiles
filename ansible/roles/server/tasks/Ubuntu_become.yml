@@ -23,28 +23,23 @@
     keyring: /usr/share/keyrings/1password-archive-keyring.gpg
 - ansible.builtin.apt_repository:
     filename: 1password
-    repo: deb [arch=amd64 signed-by=/usr/share/keyrings/1password-archive-keyring.gpg]
-      https://downloads.1password.com/linux/debian/amd64 stable main
+    repo: deb [arch=amd64 signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/amd64 stable main
 - ansible.builtin.apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
 - ansible.builtin.apt_repository:
-    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release
-      }} stable
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
 - ansible.builtin.apt_repository:
     repo: ppa:jgmath2000/et
 - ansible.builtin.apt_key:
     url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
 - ansible.builtin.apt_repository:
-    repo: deb https://deb.nodesource.com/node_19.x {{ ansible_distribution_release
-      }} main
+    repo: deb https://deb.nodesource.com/node_19.x {{ ansible_distribution_release }} main
 - ansible.builtin.apt_repository:
-    repo: deb-src https://deb.nodesource.com/node_19.x {{ ansible_distribution_release
-      }} main
+    repo: deb-src https://deb.nodesource.com/node_19.x {{ ansible_distribution_release }} main
 - ansible.builtin.apt_key:
     url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
 - ansible.builtin.apt_repository:
-    repo: deb http://apt-archive.postgresql.org/pub/repos/apt {{ ansible_distribution_release
-      }}-pgdg-archive main
+    repo: deb http://apt-archive.postgresql.org/pub/repos/apt {{ ansible_distribution_release }}-pgdg-archive main
 - ansible.builtin.apt:
     name:
       - 1password-cli
@@ -74,7 +69,7 @@
       - unzip
     update_cache: yes
 - ansible.builtin.apt:
-    deb: https://github.com/twpayne/chezmoi/releases/download/v2.30.0/chezmoi_2.30.0_linux_amd64.deb
+    deb: https://github.com/twpayne/chezmoi/releases/download/v2.33.0/chezmoi_2.33.0_linux_amd64.deb
 - ansible.builtin.group:
     name: docker
 - ansible.builtin.command:
