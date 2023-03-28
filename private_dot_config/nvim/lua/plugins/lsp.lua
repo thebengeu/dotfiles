@@ -87,6 +87,7 @@ return {
       servers = {
         ansiblels = {},
         bashls = {},
+        graphql = {},
         prismals = {},
         pyright = {
           on_attach = function(client)
