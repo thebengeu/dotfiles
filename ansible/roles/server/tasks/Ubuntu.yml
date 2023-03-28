@@ -64,7 +64,7 @@
     cmd: chezmoi apply --exclude templates
     creates: ~/.tmux.conf
 - ansible.builtin.command:
-    cmd: bat cache --build
+    cmd: /home/linuxbrew/.linuxbrew/bin/bat cache --build
     creates: /home/beng/.cache/bat/themes.bin
 - ansible.builtin.command:
     cmd: ~/.tmux/plugins/tpm/bin/install_plugins
