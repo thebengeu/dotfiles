@@ -40,7 +40,7 @@
     shell: /home/linuxbrew/.linuxbrew/bin/fish
   become: yes
 - ansible.builtin.shell:
-    cmd: curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
+    cmd: curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
     creates: ~/.config/fish/functions/fisher.fish
     executable: /home/linuxbrew/.linuxbrew/bin/fish
 - ansible.builtin.shell:
