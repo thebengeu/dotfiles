@@ -1,16 +1,4 @@
 - ansible.builtin.shell:
-    cmd: curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
-    creates: ~/.config/fish/functions/fisher.fish
-    executable: /usr/bin/fish
-- ansible.builtin.shell:
-    cmd: yes | fisher install IlanCosman/tide@v5
-    creates: ~/.config/fish/functions/tide.fish
-    executable: /usr/bin/fish
-- ansible.builtin.shell:
-    cmd: fisher install catppuccin/fish
-    creates: ~/.config/fish/themes/Catppuccin Mocha.theme
-    executable: /usr/bin/fish
-- ansible.builtin.shell:
     cmd: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     creates: /home/linuxbrew
 - community.general.homebrew:
@@ -51,6 +39,18 @@
     name: "{{ user }}"
     shell: /home/linuxbrew/.linuxbrew/bin/fish
   become: yes
+- ansible.builtin.shell:
+    cmd: curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
+    creates: ~/.config/fish/functions/fisher.fish
+    executable: /home/linuxbrew/.linuxbrew/bin/fish
+- ansible.builtin.shell:
+    cmd: yes | fisher install IlanCosman/tide@v5
+    creates: ~/.config/fish/functions/tide.fish
+    executable: /home/linuxbrew/.linuxbrew/bin/fish
+- ansible.builtin.shell:
+    cmd: fisher install catppuccin/fish
+    creates: ~/.config/fish/themes/Catppuccin Mocha.theme
+    executable: /home/linuxbrew/.linuxbrew/bin/fish
 - ansible.builtin.git:
     repo: https://github.com/tmux-plugins/tpm
     dest: ~/.tmux/plugins/tpm
