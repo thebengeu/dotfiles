@@ -78,8 +78,10 @@ return {
       super.config(super, opts)
 
       local keys = require("lazyvim.plugins.lsp.keymaps").get()
-      table.insert(keys, { "gd", false })
+      table.insert(keys, { "[d", false })
+      table.insert(keys, { "]d", false })
       table.insert(keys, { "gI", false })
+      table.insert(keys, { "gd", false })
       table.insert(keys, { "gr", false })
       table.insert(keys, { "gt", false })
     end,
