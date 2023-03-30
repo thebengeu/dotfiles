@@ -17,6 +17,12 @@ return {
     },
   },
   {
+    "echasnovski/mini.bracketed",
+    config = function()
+      require("mini.bracketed").setup()
+    end,
+  },
+  {
     "folke/persistence.nvim",
     enabled = false,
   },
