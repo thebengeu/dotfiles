@@ -234,42 +234,52 @@ return {
       {
         "]p",
         "<Plug>(YankyPutIndentAfterLinewise)",
+        desc = "Put after linewise",
       },
       {
         "[p",
         "<Plug>(YankyPutIndentBeforeLinewise)",
+        desc = "Put before linewise",
       },
       {
         "]P",
         "<Plug>(YankyPutIndentAfterLinewise)",
+        desc = "Put after linewise",
       },
       {
         "[P",
         "<Plug>(YankyPutIndentBeforeLinewise)",
+        desc = "Put before linewise",
       },
       {
         ">p",
         "<Plug>(YankyPutIndentAfterShiftRight)",
+        desc = "Put after linewise, +indent",
       },
       {
         "<p",
         "<Plug>(YankyPutIndentAfterShiftLeft)",
+        desc = "Put after linewise, -indent",
       },
       {
         ">P",
         "<Plug>(YankyPutIndentBeforeShiftRight)",
+        desc = "Put before linewise, +indent",
       },
       {
         "<P",
         "<Plug>(YankyPutIndentBeforeShiftLeft)",
+        desc = "Put before linewise, -indent",
       },
       {
         "=p",
         "<Plug>(YankyPutAfterFilter)",
+        desc = "Put after linewise, reindent",
       },
       {
         "=P",
         "<Plug>(YankyPutBeforeFilter)",
+        desc = "Put before linewise, reindent",
       },
     },
     opts = {
