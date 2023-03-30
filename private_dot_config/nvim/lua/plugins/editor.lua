@@ -1,3 +1,5 @@
+local g = vim.g
+
 return {
   {
     "ja-ford/delaytrain.nvim",
@@ -128,6 +130,11 @@ return {
   },
   {
     "gbprod/substitute.nvim",
+    config = function()
+      require("substitute").setup({
+        on_substitute = require("yanky.integration").substitute(),
+      })
+    end,
     event = { "BufNewFile", "BufReadPost" },
     keys = {
       {
@@ -166,12 +173,109 @@ return {
   },
   {
     "mg979/vim-visual-multi",
+    init = function()
+      g.VM_maps = {
+        ["Find Under"] = "<C-g>",
+        ["Find Subword Under"] = "<C-g>",
+      }
+    end,
     keys = {
+      "<C-g>",
       "<C-Down>",
       "<C-Up>",
-      "<C-n>",
       "\\\\",
       "\\\\A",
+    },
+  },
+  {
+    "gbprod/yanky.nvim",
+    dependencies = "kkharji/sqlite.lua",
+    keys = {
+      {
+        "p",
+        "<Plug>(YankyPutAfter)",
+        { mode = { "n", "x" } },
+      },
+      {
+        "P",
+        "<Plug>(YankyPutBefore)",
+        { mode = { "n", "x" } },
+      },
+      {
+        "gp",
+        "<Plug>(YankyGPutAfter)",
+        { mode = { "n", "x" } },
+      },
+      {
+        "gP",
+        "<Plug>(YankyGPutBefore)",
+        { mode = { "n", "x" } },
+      },
+      {
+        "<C-n>",
+        "<Plug>(YankyCycleForward)",
+      },
+      {
+        "<C-p>",
+        "<Plug>(YankyCycleBackward)",
+      },
+      {
+        "<leader>sy",
+        function()
+          require("telescope").extensions.yank_history.yank_history()
+        end,
+        desc = "Yank History",
+      },
+      {
+        "y",
+        "<Plug>(YankyYank)",
+        { mode = { "n", "x" } },
+      },
+      {
+        "]p",
+        "<Plug>(YankyPutIndentAfterLinewise)",
+      },
+      {
+        "[p",
+        "<Plug>(YankyPutIndentBeforeLinewise)",
+      },
+      {
+        "]P",
+        "<Plug>(YankyPutIndentAfterLinewise)",
+      },
+      {
+        "[P",
+        "<Plug>(YankyPutIndentBeforeLinewise)",
+      },
+      {
+        ">p",
+        "<Plug>(YankyPutIndentAfterShiftRight)",
+      },
+      {
+        "<p",
+        "<Plug>(YankyPutIndentAfterShiftLeft)",
+      },
+      {
+        ">P",
+        "<Plug>(YankyPutIndentBeforeShiftRight)",
+      },
+      {
+        "<P",
+        "<Plug>(YankyPutIndentBeforeShiftLeft)",
+      },
+      {
+        "=p",
+        "<Plug>(YankyPutAfterFilter)",
+      },
+      {
+        "=P",
+        "<Plug>(YankyPutBeforeFilter)",
+      },
+    },
+    opts = {
+      ring = {
+        storage = "sqlite",
+      },
     },
   },
 }
