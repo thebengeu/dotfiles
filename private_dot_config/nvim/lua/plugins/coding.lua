@@ -295,6 +295,10 @@ return {
     ft = "typescript",
   },
   {
+    "folke/todo-comments.nvim",
+    enabled = false,
+  },
+  {
     "Wansmer/treesj",
     keys = {
       { "J", "<Cmd>TSJToggle<CR>" },
