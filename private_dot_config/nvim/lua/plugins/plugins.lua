@@ -1,6 +1,3 @@
-local api = vim.api
-local g = vim.g
-
 return {
   {
     "skywind3000/asyncrun.vim",
@@ -95,48 +92,6 @@ return {
       resize = {
         enable_default_keybindings = false,
       },
-    },
-  },
-  {
-    "tpope/vim-unimpaired",
-    config = function()
-      local register = require("which-key").register
-
-      for _, key in ipairs({
-        "<C-L>",
-        "<C-Q>",
-        "<C-T>",
-        "A",
-        "a",
-        "B",
-        "C",
-        "L",
-        "l",
-        "n",
-        "o",
-        "P",
-        "T",
-        "u",
-        "x",
-        "y",
-      }) do
-        register({
-          ["[" .. key] = "which_key_ignore",
-          ["]" .. key] = "which_key_ignore",
-        })
-      end
-    end,
-    keys = {
-      { "[<space>", desc = "Add blank lines above" },
-      { "]<space>", desc = "Add blank lines below" },
-      { "[f", desc = "Previous file in directory" },
-      { "]f", desc = "Next file in directory" },
-      { "[p", desc = "Paste before linewise" },
-      { "]p", desc = "Paste after linewise" },
-      { "[q", desc = "Previous item in quickfix list" },
-      { "]q", desc = "Next item in quickfix list" },
-      { "[Q", desc = "First item in quickfix list" },
-      { "]Q", desc = "Last item in quickfix list" },
     },
   },
   {
