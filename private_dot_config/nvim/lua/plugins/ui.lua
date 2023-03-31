@@ -14,7 +14,7 @@ return {
       local add_bold_and_underline = function(name)
         api.nvim_set_hl(0, name, {
           bold = true,
-          fg = api.nvim_get_hl_by_name(name, true).foreground,
+          fg = api.nvim_get_hl(0, { name = name }).fg,
           underline = true,
         })
       end
