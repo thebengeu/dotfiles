@@ -29,6 +29,44 @@ return {
   {
     "/hkupty/iron.nvim",
     config = function()
+      local config = require("iron.config")
+
+      ---@diagnostic disable-next-line: duplicate-set-field
+      require("iron.lowlevel").create_repl_on_current_window = function(ft, repl, bufnr, current_bufnr, opts)
+        vim.api.nvim_win_set_buf(0, bufnr)
+        -- TODO Move this out of this function
+        -- Checking config should be done on an upper layer.
+        -- This layer should be simpler
+        opts = opts or {}
+        opts.cwd = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(current_bufnr), ":h")
+        if config.close_window_on_exit then
+          opts.on_exit = function()
+            local bufwinid = vim.fn.bufwinid(bufnr)
+            while bufwinid ~= -1 do
+              vim.api.nvim_win_close(bufwinid, true)
+              bufwinid = vim.fn.bufwinid(bufnr)
+            end
+            vim.api.nvim_buf_delete(bufnr, { force = true })
+          end
+        end
+
+        local cmd = repl.command
+        if type(repl.command) == "function" then
+          local meta = {
+            current_bufnr = current_bufnr,
+          }
+          cmd = repl.command(meta)
+        end
+        local job_id = vim.fn.termopen(cmd, opts)
+
+        return {
+          ft = ft,
+          bufnr = bufnr,
+          job = job_id,
+          repldef = repl,
+        }
+      end
+
       local ts = require("iron.fts.typescript").ts
       local typescript = vim.tbl_extend("force", ts, {
         command = { "ts-node", "--compilerOptions", '{"module": "commonjs"}', "--transpileOnly" },
