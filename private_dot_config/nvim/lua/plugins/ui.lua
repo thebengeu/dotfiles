@@ -130,12 +130,6 @@ return {
     },
   },
   {
-    "SmiteshP/nvim-navic",
-    opts = function(_, opts)
-      opts.icons = nil
-    end,
-  },
-  {
     "mrjones2014/nvim-ts-rainbow",
     event = { "BufNewFile", "BufReadPost" },
   },
