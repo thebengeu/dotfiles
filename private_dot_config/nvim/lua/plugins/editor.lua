@@ -61,6 +61,16 @@ return {
     },
   },
   {
+    "ggandor/leap.nvim",
+    keys = {
+      { "X", mode = { "n", "x", "o" }, desc = "Leap backward before" },
+      { "x", mode = { "n", "x", "o" }, desc = "Leap forward before" },
+    },
+    config = function()
+      require("leap").add_default_mappings(true)
+    end,
+  },
+  {
     "chentoast/marks.nvim",
     event = { "BufNewFile", "BufReadPost" },
     opts = {
