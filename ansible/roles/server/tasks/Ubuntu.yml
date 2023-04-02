@@ -21,6 +21,7 @@
       - lazygit
       - mosh
       - sqlfluff
+      - scc
       - temporal
       - topgrade
       - wakatime-cli
