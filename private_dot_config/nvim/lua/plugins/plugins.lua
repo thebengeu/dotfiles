@@ -61,7 +61,10 @@ return {
   },
   {
     "aserowy/tmux.nvim",
+    config = true,
     keys = {
+      { "<A-j>", mode = { "i", "n", "v" } },
+      { "<A-k>", mode = { "i", "n", "v" } },
       "<C-h>",
       "<C-j>",
       "<C-k>",
@@ -93,11 +96,6 @@ return {
           require("tmux").move_right()
         end,
         mode = "t",
-      },
-    },
-    opts = {
-      resize = {
-        enable_default_keybindings = false,
       },
     },
   },
