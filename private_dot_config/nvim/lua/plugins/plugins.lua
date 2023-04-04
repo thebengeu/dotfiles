@@ -21,12 +21,7 @@ return {
     config = function()
       require("mini.bracketed").setup()
     end,
-    keys = {
-      "[D",
-      "[d",
-      "]D",
-      "]d",
-    },
+    event = { "BufNewFile", "BufReadPost" },
   },
   {
     "folke/persistence.nvim",
