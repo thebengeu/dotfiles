@@ -183,6 +183,7 @@ return {
       "nvim-treesitter/nvim-treesitter",
       "nvim-lua/plenary.nvim",
     },
+    enabled = false,
     lazy = true,
   },
   {
@@ -309,6 +310,7 @@ return {
         },
       })
     end,
+    enabled = false,
     keys = {
       { "<space>fo", "<Cmd>Other<CR>", desc = "Open other file" },
     },

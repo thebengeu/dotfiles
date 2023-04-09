@@ -12,6 +12,7 @@ return {
       g.jupytext_fmt = "py"
       g.jupytext_style = ":hydrogen"
     end,
+    enabled = false,
   },
   {
     "vuki656/package-info.nvim",
@@ -24,5 +25,6 @@ return {
   },
   {
     "Glench/Vim-Jinja2-Syntax",
+    enabled = false,
   },
 }
