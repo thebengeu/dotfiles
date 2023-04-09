@@ -30,6 +30,8 @@
     repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
 - ansible.builtin.apt_repository:
     repo: ppa:jgmath2000/et
+- ansible.builtin.apt_repository:
+    repo: ppa:neovim-ppa/unstable
 - ansible.builtin.apt_key:
     url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
 - ansible.builtin.apt_repository:
@@ -58,6 +60,7 @@
       - make
       - moreutils
       - msmtp-mta
+      - neovim
       - nodejs
       - openssh-server
       - postgresql

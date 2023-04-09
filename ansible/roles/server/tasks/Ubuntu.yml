@@ -27,12 +27,9 @@
       - wakatime-cli
       - xh
       - zoxide
-- community.general.homebrew:
-    install_options: HEAD
-    name: neovim
 - community.general.alternatives:
     name: editor
-    path: /home/linuxbrew/.linuxbrew/bin/nvim
+    path: /usr/bin/nvim
   become: yes
 - ansible.builtin.user:
     append: yes
