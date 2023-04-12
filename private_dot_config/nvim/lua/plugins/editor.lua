@@ -182,6 +182,10 @@ return {
     },
   },
   {
+    "cappyzawa/trim.nvim",
+    config = true,
+  },
+  {
     "mg979/vim-visual-multi",
     init = function()
       g.VM_maps = {
