@@ -49,7 +49,11 @@ return {
           extra_args = { "--dialect", "postgres" },
           timeout = 20000,
         }),
-        null_ls.builtins.diagnostics.yamllint,
+        null_ls.builtins.diagnostics.yamllint.with({
+          runtime_condition = function(params)
+            return not params.lsp_params.textDocument.uri:find("/Pulumi%.")
+          end,
+        }),
         null_ls.builtins.formatting.black,
         null_ls.builtins.formatting.djlint.with({
           extra_filetypes = { "jinja" },
