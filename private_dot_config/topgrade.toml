@@ -1,2 +1,3 @@
+assume_yes = true
 disable = ["chezmoi"]
 display_preamble = false
