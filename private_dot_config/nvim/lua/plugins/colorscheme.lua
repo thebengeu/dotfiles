@@ -6,6 +6,8 @@ local colorschemes = {
   { "catppuccin-frappe" },
   { "catppuccin-macchiato" },
   { "catppuccin-mocha" },
+  { "dracula" },
+  { "dracula-soft" },
   { "duskfox" },
   { "edge", "aura" },
   { "edge", "default" },
@@ -81,6 +83,25 @@ return {
         which_key = true,
       },
     },
+  },
+  {
+    "Mofiqul/dracula.nvim",
+    config = function()
+      local dracula = require("dracula")
+      local colors = dracula.colors()
+
+      dracula.setup({
+        overrides = {
+          IndentBlanklineIndent1 = { fg = colors.red },
+          IndentBlanklineIndent2 = { fg = colors.green },
+          IndentBlanklineIndent3 = { fg = colors.yellow },
+          IndentBlanklineIndent4 = { fg = colors.purple },
+          IndentBlanklineIndent5 = { fg = colors.pink },
+          IndentBlanklineIndent6 = { fg = colors.cyan },
+        },
+      })
+    end,
+    lazy = true,
   },
   {
     "sainnhe/edge",
