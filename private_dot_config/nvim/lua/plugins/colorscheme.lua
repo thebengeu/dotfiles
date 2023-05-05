@@ -32,6 +32,7 @@ local colorschemes = {
   { "tokyonight-moon" },
   { "tokyonight-night" },
   { "tokyonight-storm" },
+  { "vscode" },
 }
 
 local function set_colorscheme_style(colorscheme_and_style)
@@ -344,5 +345,30 @@ return {
         winblend = 5,
       },
     },
+  },
+  {
+    "Mofiqul/vscode.nvim",
+    config = function()
+      local colors = require("vscode.colors").get_colors()
+
+      require("vscode").setup({
+        group_overrides = {
+          IndentBlanklineIndent1 = { fg = colors.vscRed },
+          IndentBlanklineIndent2 = { fg = colors.vscYellow },
+          IndentBlanklineIndent3 = { fg = colors.vscBlue },
+          IndentBlanklineIndent4 = { fg = colors.vscOrange },
+          IndentBlanklineIndent5 = { fg = colors.vscGreen },
+          IndentBlanklineIndent6 = { fg = colors.vscViolet },
+          rainbowcol1 = { fg = colors.vscRed },
+          rainbowcol2 = { fg = colors.vscYellow },
+          rainbowcol3 = { fg = colors.vscBlue },
+          rainbowcol4 = { fg = colors.vscOrange },
+          rainbowcol5 = { fg = colors.vscGreen },
+          rainbowcol6 = { fg = colors.vscViolet },
+          rainbowcol7 = { fg = colors.vscBlueGreen },
+        },
+      })
+    end,
+    lazy = true,
   },
 }
