@@ -20,6 +20,7 @@ local colorschemes = {
   { "material", "palenight" },
   { "nightfox" },
   { "nordfox" },
+  { "rose-pine" },
   { "sonokai", "andromeda" },
   { "sonokai", "atlantis" },
   { "sonokai", "default" },
@@ -175,6 +176,27 @@ return {
   {
     "EdenEast/nightfox.nvim",
     lazy = true,
+  },
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
+    opts = {
+      highlight_groups = {
+        IndentBlanklineIndent1 = { fg = "love" },
+        IndentBlanklineIndent2 = { fg = "gold" },
+        IndentBlanklineIndent3 = { fg = "pine" },
+        IndentBlanklineIndent4 = { fg = "rose" },
+        IndentBlanklineIndent5 = { fg = "foam" },
+        IndentBlanklineIndent6 = { fg = "iris" },
+        rainbowcol1 = { fg = "love" },
+        rainbowcol2 = { fg = "gold" },
+        rainbowcol3 = { fg = "pine" },
+        rainbowcol4 = { fg = "rose" },
+        rainbowcol5 = { fg = "foam" },
+        rainbowcol6 = { fg = "iris" },
+        rainbowcol7 = { fg = "highlight_high" },
+      },
+    },
   },
   {
     "sainnhe/sonokai",
