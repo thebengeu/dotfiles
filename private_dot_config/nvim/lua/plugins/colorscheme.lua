@@ -20,6 +20,7 @@ local colorschemes = {
   { "material", "palenight" },
   { "nightfox" },
   { "nordfox" },
+  { "one_monokai" },
   { "rose-pine" },
   { "sonokai", "andromeda" },
   { "sonokai", "atlantis" },
@@ -176,6 +177,22 @@ return {
   {
     "EdenEast/nightfox.nvim",
     lazy = true,
+  },
+  {
+    "cpea2506/one_monokai.nvim",
+    opts = {
+      themes = function(colors)
+        return {
+          rainbowcol1 = { fg = colors.dark_red },
+          rainbowcol2 = { fg = colors.orange },
+          rainbowcol3 = { fg = colors.yellow },
+          rainbowcol4 = { fg = colors.green },
+          rainbowcol5 = { fg = colors.aqua },
+          rainbowcol6 = { fg = colors.purple },
+          rainbowcol7 = { fg = colors.cyan },
+        }
+      end,
+    },
   },
   {
     "rose-pine/neovim",
