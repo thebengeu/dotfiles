@@ -23,6 +23,9 @@ local colorschemes = {
   { "nightfox" },
   { "nordfox" },
   { "one_monokai" },
+  { "onedark" },
+  { "onedark_dark" },
+  { "onedark_vivid" },
   { "rose-pine" },
   { "sonokai", "andromeda" },
   { "sonokai", "atlantis" },
@@ -215,6 +218,21 @@ return {
         }
       end,
     },
+  },
+  {
+    "olimorris/onedarkpro.nvim",
+    config = function()
+      require("onedarkpro").setup({
+        highlights = {
+          IndentBlanklineIndent1 = { fg = "${red}" },
+          IndentBlanklineIndent2 = { fg = "${yellow}" },
+          IndentBlanklineIndent3 = { fg = "${orange}" },
+          IndentBlanklineIndent4 = { fg = "${green}" },
+          IndentBlanklineIndent5 = { fg = "${blue}" },
+          IndentBlanklineIndent6 = { fg = "${cyan}" },
+        },
+      })
+    end,
   },
   {
     "rose-pine/neovim",
