@@ -205,6 +205,7 @@ return {
   },
   {
     "cpea2506/one_monokai.nvim",
+    lazy = true,
     opts = {
       themes = function(colors)
         return {
@@ -221,21 +222,21 @@ return {
   },
   {
     "olimorris/onedarkpro.nvim",
-    config = function()
-      require("onedarkpro").setup({
-        highlights = {
-          IndentBlanklineIndent1 = { fg = "${red}" },
-          IndentBlanklineIndent2 = { fg = "${yellow}" },
-          IndentBlanklineIndent3 = { fg = "${orange}" },
-          IndentBlanklineIndent4 = { fg = "${green}" },
-          IndentBlanklineIndent5 = { fg = "${blue}" },
-          IndentBlanklineIndent6 = { fg = "${cyan}" },
-        },
-      })
-    end,
+    lazy = true,
+    opts = {
+      highlights = {
+        IndentBlanklineIndent1 = { fg = "${red}" },
+        IndentBlanklineIndent2 = { fg = "${yellow}" },
+        IndentBlanklineIndent3 = { fg = "${orange}" },
+        IndentBlanklineIndent4 = { fg = "${green}" },
+        IndentBlanklineIndent5 = { fg = "${blue}" },
+        IndentBlanklineIndent6 = { fg = "${cyan}" },
+      },
+    },
   },
   {
     "rose-pine/neovim",
+    lazy = true,
     name = "rose-pine",
     opts = {
       highlight_groups = {
@@ -280,9 +281,7 @@ return {
       {
         "<leader>fi",
         function()
-          require("telescope.builtin").find_files({
-            no_ignore = true,
-          })
+          require("telescope.builtin").find_files({ no_ignore = true })
         end,
         desc = "Find Files (ignored)",
       },
