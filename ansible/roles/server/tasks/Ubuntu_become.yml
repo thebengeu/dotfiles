@@ -45,7 +45,6 @@
 - ansible.builtin.apt:
     name:
       - 1password-cli
-      - awscli
       - containerd.io
       - cargo
       - curl

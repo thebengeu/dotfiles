@@ -3,6 +3,7 @@
     creates: /home/linuxbrew
 - community.general.homebrew:
     name:
+      - awscli
       - bat
       - broot
       - btop
@@ -20,6 +21,7 @@
       - lazydocker
       - lazygit
       - mosh
+      - pulumi
       - sqlfluff
       - scc
       - temporal
