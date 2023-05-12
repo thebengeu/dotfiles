@@ -65,6 +65,9 @@ return {
         }),
         null_ls.builtins.formatting.prettierd.with({
           extra_filetypes = { "prisma" },
+          runtime_condition = function(params)
+            return not params.lsp_params.textDocument.uri:find("/ccxt/")
+          end,
         }),
         null_ls.builtins.formatting.ruff,
         null_ls.builtins.formatting.shfmt,
@@ -124,6 +127,9 @@ return {
             client.server_capabilities.documentFormattingProvider = false
             api.nvim_create_autocmd("BufWritePre", {
               callback = function()
+                if vim.api.nvim_buf_get_name(0):find("/ccxt/") then
+                  return
+                end
                 local actions = require("typescript").actions
                 actions.removeUnused({ sync = true })
                 actions.addMissingImports({ sync = true })
@@ -134,6 +140,20 @@ return {
             })
           end,
         },
+      },
+      setup = {
+        eslint = function()
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            callback = function(event)
+              if vim.api.nvim_buf_get_name(0):find("/ccxt/") then
+                return
+              end
+              if require("lspconfig.util").get_active_client_by_name(event.buf, "eslint") then
+                vim.cmd("EslintFixAll")
+              end
+            end,
+          })
+        end,
       },
     },
   },
