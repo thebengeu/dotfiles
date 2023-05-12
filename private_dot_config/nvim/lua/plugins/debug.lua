@@ -7,7 +7,7 @@ return {
         config = function()
           require("dap-vscode-js").setup({
             adapters = { "pwa-node" },
-            debugger_path = require("mason-registry").get_package("js-debug-adapter"):get_install_path(),
+            debugger_path = os.getenv("HOME") .. "/vscode-js-debug",
           })
           require("dap").configurations.typescript = {
             {
