@@ -65,10 +65,7 @@ return {
   },
   {
     "echasnovski/mini.indentscope",
-    config = function(plugin, opts)
-      local super = plugin._.super
-      super.config(super, opts)
-
+    config = function()
       g.miniindentscope_disable = true
     end,
     opts = {
