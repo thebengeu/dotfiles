@@ -13,6 +13,9 @@ local colorschemes = {
   { "edge", "default" },
   { "edge", "neon" },
   { "everforest" },
+  { "github_dark" },
+  { "github_dark_dimmed" },
+  { "github_dark_high_contrast" },
   { "gruvbox-material" },
   { "kanagawa-dragon" },
   { "kanagawa-wave" },
@@ -122,6 +125,24 @@ return {
       g.everforest_enable_italic = 1
     end,
     lazy = true,
+  },
+  {
+    "projekt0n/github-nvim-theme",
+    config = function()
+      require("github-theme").setup({
+        groups = {
+          all = {
+            rainbowcol1 = { fg = "palette.red" },
+            rainbowcol2 = { fg = "palette.yellow" },
+            rainbowcol3 = { fg = "palette.blue" },
+            rainbowcol4 = { fg = "palette.pink" },
+            rainbowcol5 = { fg = "palette.green" },
+            rainbowcol6 = { fg = "palette.magenta" },
+            rainbowcol7 = { fg = "palette.cyan" },
+          },
+        },
+      })
+    end,
   },
   {
     "sainnhe/gruvbox-material",
