@@ -14,10 +14,6 @@
     dest: /etc/resolv.conf
     src: resolv.conf
   when: address is defined
-- ansible.builtin.copy:
-    dest: /etc/mosquitto/conf.d/default.conf
-    force: false
-    src: default.conf
 - community.general.sudoers:
     commands: ALL
     name: "{{ user }}"
@@ -76,6 +72,10 @@
       - tmux
       - unzip
     update_cache: yes
+- ansible.builtin.copy:
+    dest: /etc/mosquitto/conf.d/default.conf
+    force: false
+    src: default.conf
 - ansible.builtin.apt:
     deb: https://github.com/twpayne/chezmoi/releases/download/v2.33.0/chezmoi_2.33.0_linux_amd64.deb
 - ansible.builtin.group:
