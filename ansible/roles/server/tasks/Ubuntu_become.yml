@@ -108,3 +108,6 @@
 - ansible.builtin.pip:
     name:
       - qmk
+- ansible.builtin.command:
+    cmd: corepack enable
+    creates: /usr/bin/pnpm
