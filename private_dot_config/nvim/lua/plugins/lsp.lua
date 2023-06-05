@@ -148,8 +148,13 @@ return {
               if vim.api.nvim_buf_get_name(0):find("/ccxt/") then
                 return
               end
-              if require("lspconfig.util").get_active_client_by_name(event.buf, "eslint") then
-                vim.cmd("EslintFixAll")
+
+              local client = vim.lsp.get_active_clients({ bufnr = event.buf, name = "eslint" })[1]
+              if client then
+                local diag = vim.diagnostic.get(event.buf, { namespace = vim.lsp.diagnostic.get_namespace(client.id) })
+                if #diag > 0 then
+                  vim.cmd("EslintFixAll")
+                end
               end
             end,
           })
