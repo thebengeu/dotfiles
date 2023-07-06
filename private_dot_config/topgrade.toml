@@ -1,3 +1,2 @@
 assume_yes = true
 disable = ["chezmoi", "vim"]
-display_preamble = false
