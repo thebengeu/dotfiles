@@ -31,7 +31,11 @@
 - ansible.builtin.apt_repository:
     repo: deb [arch={{ arch.stdout }}] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
 - ansible.builtin.apt_repository:
+    repo: ppa:fish-shell/release-3
+- ansible.builtin.apt_repository:
     repo: ppa:jgmath2000/et
+- ansible.builtin.apt_repository:
+    repo: ppa:keithw/mosh-dev
 - ansible.builtin.apt_repository:
     repo: ppa:neovim-ppa/unstable
 - ansible.builtin.apt_key:
@@ -47,6 +51,7 @@
 - ansible.builtin.apt:
     name:
       - 1password-cli
+      - btop
       - containerd.io
       - cargo
       - curl
@@ -54,12 +59,18 @@
       - docker-ce-cli
       - docker-compose-plugin
       - et
+      - exa
+      - fish
+      - fzf
+      - gh
       - golang
+      - jq
       - libluajit-5.1-dev
       - libpq-dev
       - libsqlite3-dev
       - make
       - moreutils
+      - mosh
       - mosquitto
       - mosquitto-clients
       - msmtp-mta
@@ -79,7 +90,13 @@
     force: false
     src: default.conf
 - ansible.builtin.apt:
-    deb: https://github.com/twpayne/chezmoi/releases/download/v2.33.6/chezmoi_2.33.6_linux_{{ arch.stdout }}.deb
+    deb: https://github.com/sharkdp/bat/releases/download/v0.23.0/bat_0.23.0_{{ arch.stdout }}.deb
+- ansible.builtin.apt:
+    deb: https://github.com/twpayne/chezmoi/releases/download/v2.34.3/chezmoi_2.34.3_linux_{{ arch.stdout }}.deb
+- ansible.builtin.apt:
+    deb: https://github.com/sharkdp/fd/releases/download/v8.7.0/fd_8.7.0_{{ arch.stdout }}.deb
+- ansible.builtin.apt:
+    deb: https://github.com/dandavison/delta/releases/download/0.16.5/git-delta_0.16.5_{{ arch.stdout }}.deb
 - ansible.builtin.group:
     name: docker
 - ansible.builtin.command:
@@ -111,6 +128,10 @@
 - ansible.builtin.pip:
     name:
       - qmk
+      - sqlfluff
 - ansible.builtin.command:
     cmd: corepack enable
     creates: /usr/bin/pnpm
+- community.general.snap:
+    name: aws-cli
+    classic: true

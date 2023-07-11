@@ -1,34 +1,45 @@
 - ansible.builtin.shell:
-    cmd: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    creates: /home/linuxbrew
-- community.general.homebrew:
-    name:
-      - awscli
-      - bat
-      - broot
-      - btop
-      - cantino/mcfly/mcfly
-      - eth-p/software/bat-extras-batman
-      - exa
-      - fd
-      - fish
-      - fzf
-      - gh
-      - ghorg
-      - git-delta
-      - gitui
-      - jq
-      - lazydocker
-      - lazygit
-      - mosh
-      - pulumi
-      - sqlfluff
-      - scc
-      - temporal
-      - topgrade
-      - wakatime-cli
-      - xh
-      - zoxide
+    cmd: go install github.com/gabrie30/ghorg@latest
+    creates: ~/go/bin/ghorg
+- ansible.builtin.shell:
+    cmd: go install github.com/jesseduffield/lazydocker@latest
+    creates: ~/go/bin/lazydocker
+- ansible.builtin.shell:
+    cmd: go install github.com/jesseduffield/lazygit@latest
+    creates: ~/go/bin/lazygit
+- ansible.builtin.shell:
+    cmd: go install github.com/boyter/scc/v3@latest
+    creates: ~/go/bin/scc
+- ansible.builtin.file:
+    path: ~/.pulumi/bin
+    state: directory
+- ansible.builtin.unarchive:
+    creates: ~/.pulumi/bin/pulumi
+    dest: ~/.pulumi/bin
+    extra_opts: [--strip-components=1]
+    remote_src: yes
+    src: https://get.pulumi.com/releases/sdk/pulumi-v3.74.0-linux-{{ arch.stdout }}.tar.gz
+- ansible.builtin.file:
+    path: ~/.temporalio/bin
+    state: directory
+- ansible.builtin.unarchive:
+    creates: ~/.temporalio/bin/temporal
+    dest: ~/.temporalio/bin
+    extra_opts: [temporal]
+    remote_src: yes
+    src: https://temporal.download/cli/archive/latest?platform=linux&arch={{ arch.stdout }}
+- community.general.cargo:
+    name: broot
+- community.general.cargo:
+    name: gitui
+- community.general.cargo:
+    name: mcfly
+- community.general.cargo:
+    name: topgrade
+- community.general.cargo:
+    name: xh
+- community.general.cargo:
+    name: zoxide
 - community.general.alternatives:
     name: editor
     path: /usr/bin/nvim
@@ -37,20 +48,20 @@
     append: yes
     groups: docker
     name: "{{ user }}"
-    shell: /home/linuxbrew/.linuxbrew/bin/fish
+    shell: /usr/bin/fish
   become: yes
 - ansible.builtin.shell:
     cmd: curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
     creates: ~/.config/fish/functions/fisher.fish
-    executable: /home/linuxbrew/.linuxbrew/bin/fish
+    executable: /usr/bin/fish
 - ansible.builtin.shell:
     cmd: yes | fisher install IlanCosman/tide@v5
     creates: ~/.config/fish/functions/tide.fish
-    executable: /home/linuxbrew/.linuxbrew/bin/fish
+    executable: /usr/bin/fish
 - ansible.builtin.shell:
     cmd: fisher install catppuccin/fish
     creates: ~/.config/fish/themes/Catppuccin Mocha.theme
-    executable: /home/linuxbrew/.linuxbrew/bin/fish
+    executable: /usr/bin/fish
 - ansible.builtin.git:
     repo: https://github.com/tmux-plugins/tpm
     dest: ~/.tmux/plugins/tpm
@@ -64,7 +75,7 @@
     cmd: chezmoi apply --exclude templates
     creates: ~/.tmux.conf
 - ansible.builtin.command:
-    cmd: /home/linuxbrew/.linuxbrew/bin/bat cache --build
+    cmd: /usr/bin/bat cache --build
     creates: /home/beng/.cache/bat/themes.bin
 - ansible.builtin.command:
     cmd: ~/.tmux/plugins/tpm/bin/install_plugins
