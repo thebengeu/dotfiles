@@ -76,6 +76,7 @@ if status is-interactive
     abbr --add tns 'tmux new-session -A -s'
     abbr --add tsr 'sh -c \'printf "\e[6 q"; pnpm ts-node --compilerOptions \\\'{"module": "commonjs"}\\\'\''
     abbr --add vim nvim
+    alias rm safe-rm
     function br --wraps=broot
         set -l cmd_file (mktemp)
         if broot --outcmd $cmd_file $argv
