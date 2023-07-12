@@ -1,5 +1,7 @@
 fish_add_path ~/.cargo/bin
 fish_add_path ~/.local/bin
+fish_add_path ~/.pulumi/bin
+fish_add_path ~/.temporalio/bin
 fish_add_path ~/go/bin
 if status is-interactive
     set --export BAT_PAGER 'less --mouse --quit-if-one-screen --RAW-CONTROL-CHARS'
