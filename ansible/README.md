@@ -10,4 +10,5 @@ git clone git@github.com:thebengeu/ansible.git ~/ansible
 ansible-playbook --extra-vars user=$USER --tags server ~/ansible/site.yml --ask-become-pass
 chezmoi apply
 tide configure
+cp ~/.wezterm.lua /mnt/c/Users/beng
 ```
