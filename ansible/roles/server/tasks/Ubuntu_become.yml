@@ -80,6 +80,7 @@
       - postgresql-client
       - python3-pip
       - ripgrep
+      - safe-rm
       - sqlite3
       - tmux
       - unzip
