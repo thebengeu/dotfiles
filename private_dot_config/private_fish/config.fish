@@ -44,6 +44,7 @@ if status is-interactive
     abbr --add e 'emacsclient -nw'
     abbr --add g git
     abbr --add gaa 'git add -A'
+    abbr --add gc 'git clone'
     abbr --add gca 'git commit --amend'
     abbr --add gcam 'git commit -a -m'
     abbr --add gcm 'git commit -m'
