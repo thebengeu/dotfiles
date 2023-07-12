@@ -40,6 +40,13 @@
     name: xh
 - community.general.cargo:
     name: zoxide
+- ansible.builtin.git:
+    repo: https://github.com/neovim/neovim
+    dest: ~/neovim
+- ansible.builtin.shell:
+    chdir: ~/neovim
+    cmd: make CMAKE_BUILD_TYPE=Release && cd build && cpack -G DEB && sudo dpkg -i nvim-linux64.deb
+    creates: /usr/bin/nvim
 - community.general.alternatives:
     name: editor
     path: /usr/bin/nvim

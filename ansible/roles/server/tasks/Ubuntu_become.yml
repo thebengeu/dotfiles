@@ -36,8 +36,6 @@
     repo: ppa:jgmath2000/et
 - ansible.builtin.apt_repository:
     repo: ppa:keithw/mosh-dev
-- ansible.builtin.apt_repository:
-    repo: ppa:neovim-ppa/unstable
 - ansible.builtin.apt_key:
     url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
 - ansible.builtin.apt_repository:
@@ -54,6 +52,7 @@
       - btop
       - containerd.io
       - cargo
+      - cmake
       - curl
       - docker-ce
       - docker-ce-cli
@@ -62,6 +61,7 @@
       - exa
       - fish
       - fzf
+      - gettext
       - gh
       - golang
       - jq
@@ -74,7 +74,7 @@
       - mosquitto
       - mosquitto-clients
       - msmtp-mta
-      - neovim
+      - ninja-build
       - nodejs
       - openssh-server
       - postgresql
