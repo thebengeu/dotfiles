@@ -31,6 +31,8 @@
 - community.general.cargo:
     name: broot
 - community.general.cargo:
+    name: exa
+- community.general.cargo:
     name: gitui
 - community.general.cargo:
     name: mcfly
