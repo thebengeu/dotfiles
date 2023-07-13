@@ -1,13 +1,5 @@
 SetTitleMatchMode "Regex"
 
-SetTimer EnterBrightDataPassword, 200
-
-EnterBrightDataPassword() {
-  if WinActive("Authentication Required - Mozilla Firefox") {
-    SendText "lum-customer-hl_f1516e39-zone-isp-dns-remote`t27053p9y19rt`n"
-  }
-}
-
 Tmux(SessionName, WindowNumber) {
   WinTitle := "^" . SessionName . " ahk_class org\.wezfurlong\.wezterm"
   if WinExist(WinTitle) {
