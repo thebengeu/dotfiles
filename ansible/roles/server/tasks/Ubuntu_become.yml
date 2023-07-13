@@ -75,6 +75,7 @@
       - msmtp-mta
       - ninja-build
       - nodejs
+      - ntpdate
       - openssh-server
       - postgresql
       - postgresql-client
