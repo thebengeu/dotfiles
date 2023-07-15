@@ -12,7 +12,6 @@ return {
         "fixjson",
         "isort",
         "js-debug-adapter",
-        "prettierd",
         "ruff",
         "shellcheck",
         "shellharden",
@@ -63,7 +62,7 @@ return {
         null_ls.builtins.formatting.isort.with({
           extra_args = { "--profile", "black" },
         }),
-        null_ls.builtins.formatting.prettierd.with({
+        null_ls.builtins.formatting.prettier.with({
           extra_filetypes = { "prisma" },
           runtime_condition = function(params)
             return not params.lsp_params.textDocument.uri:find("/ccxt/")
@@ -109,8 +108,8 @@ return {
 
               for _, diagnostic in ipairs(result.diagnostics) do
                 if
-                  not string.match(diagnostic.message, '"_.+" is not accessed')
-                  and not diagnostic.message == "models is not accessed"
+                    not string.match(diagnostic.message, '"_.+" is not accessed')
+                    and not diagnostic.message == "models is not accessed"
                 then
                   table.insert(diagnostics, diagnostic)
                 end
@@ -163,3 +162,4 @@ return {
     },
   },
 }
+
