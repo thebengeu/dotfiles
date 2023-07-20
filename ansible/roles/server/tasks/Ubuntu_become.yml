@@ -52,6 +52,7 @@
       - btop
       - containerd.io
       - cargo
+      - clangd-15
       - cmake
       - curl
       - docker-ce
@@ -87,6 +88,10 @@
       - tmux
       - unzip
     update_cache: yes
+- community.general.alternatives:
+    link: /usr/bin/clangd
+    name: clangd
+    path: /usr/bin/clangd-15
 - ansible.builtin.copy:
     dest: /etc/mosquitto/conf.d/default.conf
     force: false
