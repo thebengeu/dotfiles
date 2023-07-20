@@ -99,6 +99,9 @@ return {
       servers = {
         ansiblels = {},
         bashls = {},
+        clangd = {
+          mason = false,
+        },
         graphql = {},
         prismals = {},
         pyright = {
@@ -108,8 +111,8 @@ return {
 
               for _, diagnostic in ipairs(result.diagnostics) do
                 if
-                    not string.match(diagnostic.message, '"_.+" is not accessed')
-                    and not diagnostic.message == "models is not accessed"
+                  not string.match(diagnostic.message, '"_.+" is not accessed')
+                  and not diagnostic.message == "models is not accessed"
                 then
                   table.insert(diagnostics, diagnostic)
                 end
@@ -162,4 +165,3 @@ return {
     },
   },
 }
-
