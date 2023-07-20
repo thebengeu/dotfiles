@@ -60,6 +60,9 @@ if status is-interactive
     abbr --add grbc 'git rebase --continue'
     abbr --add grhh 'git reset --hard HEAD'
     abbr --add gs 'git s'
+    abbr --add gsa 'git stash apply'
+    abbr --add gsP 'git stash push'
+    abbr --add gsp 'git stash pop'
     abbr --add lg lazygit
     abbr --add ll 'exa --git --icons --long'
     abbr --add ls 'exa --icons'
