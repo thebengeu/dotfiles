@@ -12,6 +12,7 @@ return {
         "fixjson",
         "isort",
         "js-debug-adapter",
+        "prettier",
         "ruff",
         "shellcheck",
         "shellharden",
