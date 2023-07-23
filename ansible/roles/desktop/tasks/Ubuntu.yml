@@ -1,5 +1,9 @@
 - ansible.builtin.shell:
-    cmd: curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin launch=n
+    # yamllint disable rule:line-length
+    cmd: |
+      set -o pipefail
+      curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin launch=n
+    # yamllint enable rule:line-length
     creates: ~/.local/kitty.app
 - ansible.builtin.file:
     dest: ~/.local/bin/kitty
@@ -7,13 +11,16 @@
     state: link
 - ansible.builtin.copy:
     dest: ~/.local/share/applications/
+    mode: "644"
     remote_src: true
     src: ~/.local/kitty.app/share/applications/kitty.desktop
 - ansible.builtin.copy:
     dest: ~/.local/share/applications/
+    mode: "644"
     remote_src: true
     src: ~/.local/kitty.app/share/applications/kitty-open.desktop
 - ansible.builtin.lineinfile:
+    # yamllint disable-line rule:line-length
     line: Icon=/home/{{ user }}/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png
     path: "{{ item }}"
     regexp: ^Icon=

@@ -11,9 +11,11 @@
 - ansible.builtin.apt_key:
     url: https://packages.microsoft.com/keys/microsoft.asc
 - ansible.builtin.apt_repository:
+    # yamllint disable-line rule:line-length
     repo: deb [arch=amd64,arm64,armhf] http://packages.microsoft.com/repos/code stable main
     filename: vscode
 - ansible.builtin.apt_repository:
+    # yamllint disable-line rule:line-length
     repo: deb [arch=amd64] https://packages.microsoft.com/repos/edge/ stable main
     filename: microsoft-edge
 - ansible.builtin.apt_repository:
@@ -34,6 +36,7 @@
     state: absent
 - ansible.builtin.copy:
     dest: /etc/apt/preferences.d/firefox
+    mode: "644"
     src: firefox
 - ansible.builtin.apt_repository:
     repo: ppa:mozillateam/ppa
@@ -58,6 +61,7 @@
 - ansible.builtin.apt:
     deb: https://cdn.manictime.com/setup/linux/v1_4_2_0/ManicTime.deb
 - ansible.builtin.apt:
+    # yamllint disable-line rule:line-length
     deb: https://github.com/wez/wezterm/releases/download/20221119-145034-49b9839f/wezterm-20221119-145034-49b9839f.Ubuntu22.04.deb
 - ansible.builtin.lineinfile:
     line: Exec=spotify --force-device-scale-factor=2 %U

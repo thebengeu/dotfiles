@@ -1,7 +1,9 @@
-- shell: dpkg --print-architecture
+- ansible.builtin.command: dpkg --print-architecture
+  changed_when: false
   register: arch
 - ansible.builtin.template:
     dest: /lib/systemd/network/wsl_external.network
+    mode: "644"
     src: wsl_external.network.j2
   when: address is defined
 - ansible.builtin.service:
@@ -10,10 +12,12 @@
   when: address is defined
 - ansible.builtin.copy:
     dest: /etc/wsl.conf
+    mode: "644"
     src: wsl.conf
   when: address is defined
 - ansible.builtin.copy:
     dest: /etc/resolv.conf
+    mode: "644"
     src: resolv.conf
   when: address is defined
 - community.general.sudoers:
@@ -25,10 +29,12 @@
     keyring: /usr/share/keyrings/1password-archive-keyring.gpg
 - ansible.builtin.apt_repository:
     filename: 1password
+    # yamllint disable-line rule:line-length
     repo: deb [arch={{ arch.stdout }} signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/{{ arch.stdout }} stable main
 - ansible.builtin.apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
 - ansible.builtin.apt_repository:
+    # yamllint disable-line rule:line-length
     repo: deb [arch={{ arch.stdout }}] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
 - ansible.builtin.apt_repository:
     repo: ppa:fish-shell/release-3
@@ -39,12 +45,15 @@
 - ansible.builtin.apt_key:
     url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
 - ansible.builtin.apt_repository:
+    # yamllint disable-line rule:line-length
     repo: deb https://deb.nodesource.com/node_20.x {{ ansible_distribution_release }} main
 - ansible.builtin.apt_repository:
+    # yamllint disable-line rule:line-length
     repo: deb-src https://deb.nodesource.com/node_20.x {{ ansible_distribution_release }} main
 - ansible.builtin.apt_key:
     url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
 - ansible.builtin.apt_repository:
+    # yamllint disable-line rule:line-length
     repo: deb http://apt-archive.postgresql.org/pub/repos/apt {{ ansible_distribution_release }}-pgdg-archive main
 - ansible.builtin.apt:
     name:
@@ -95,14 +104,19 @@
 - ansible.builtin.copy:
     dest: /etc/mosquitto/conf.d/default.conf
     force: false
+    mode: "644"
     src: default.conf
 - ansible.builtin.apt:
+    # yamllint disable-line rule:line-length
     deb: https://github.com/sharkdp/bat/releases/download/v0.23.0/bat_0.23.0_{{ arch.stdout }}.deb
 - ansible.builtin.apt:
+    # yamllint disable-line rule:line-length
     deb: https://github.com/twpayne/chezmoi/releases/download/v2.35.2/chezmoi_2.35.2_linux_{{ arch.stdout }}.deb
 - ansible.builtin.apt:
+    # yamllint disable-line rule:line-length
     deb: https://github.com/sharkdp/fd/releases/download/v8.7.0/fd_8.7.0_{{ arch.stdout }}.deb
 - ansible.builtin.apt:
+    # yamllint disable-line rule:line-length
     deb: https://github.com/dandavison/delta/releases/download/0.16.5/git-delta_0.16.5_{{ arch.stdout }}.deb
 - ansible.builtin.group:
     name: docker

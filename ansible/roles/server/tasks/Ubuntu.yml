@@ -1,16 +1,17 @@
-- ansible.builtin.shell:
+- ansible.builtin.command:
     cmd: go install github.com/gabrie30/ghorg@latest
     creates: ~/go/bin/ghorg
-- ansible.builtin.shell:
+- ansible.builtin.command:
     cmd: go install github.com/jesseduffield/lazydocker@latest
     creates: ~/go/bin/lazydocker
-- ansible.builtin.shell:
+- ansible.builtin.command:
     cmd: go install github.com/jesseduffield/lazygit@latest
     creates: ~/go/bin/lazygit
-- ansible.builtin.shell:
+- ansible.builtin.command:
     cmd: go install github.com/boyter/scc/v3@latest
     creates: ~/go/bin/scc
 - ansible.builtin.file:
+    mode: "755"
     path: ~/.pulumi/bin
     state: directory
 - ansible.builtin.unarchive:
@@ -18,8 +19,10 @@
     dest: ~/.pulumi/bin
     extra_opts: [--strip-components=1]
     remote_src: true
+    # yamllint disable-line rule:line-length
     src: https://get.pulumi.com/releases/sdk/pulumi-v3.76.0-linux-{{ (arch.stdout == 'amd64') | ternary('x64', arch.stdout) }}.tar.gz
 - ansible.builtin.file:
+    mode: "755"
     path: ~/.temporalio/bin
     state: directory
 - ansible.builtin.unarchive:
@@ -27,6 +30,7 @@
     dest: ~/.temporalio/bin
     extra_opts: [temporal]
     remote_src: true
+    # yamllint disable-line rule:line-length
     src: https://temporal.download/cli/archive/latest?platform=linux&arch={{ arch.stdout }}
 - community.general.cargo:
     name: broot
@@ -48,9 +52,14 @@
     dest: ~/neovim
     force: true
     repo: https://github.com/neovim/neovim
+    version: v0.9.1
 - ansible.builtin.shell:
     chdir: ~/neovim
-    cmd: make CMAKE_BUILD_TYPE=Release && cd build && cpack -G DEB && sudo dpkg -i nvim-linux64.deb
+    cmd: |
+      make CMAKE_BUILD_TYPE=Release &&
+      cd build &&
+      cpack -G DEB &&
+      sudo dpkg -i nvim-linux64.deb
     creates: /usr/bin/nvim
 - community.general.alternatives:
     name: editor
@@ -63,11 +72,18 @@
     shell: /usr/bin/fish
   become: true
 - ansible.builtin.shell:
-    cmd: curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+    # yamllint disable rule:line-length
+    cmd: |
+      set -o pipefail
+      curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source &&
+      fisher install jorgebucaran/fisher
+    # yamllint enable rule:line-length
     creates: ~/.config/fish/functions/fisher.fish
     executable: /usr/bin/fish
 - ansible.builtin.shell:
-    cmd: yes | fisher install IlanCosman/tide@v5
+    cmd: |
+      set -o pipefail
+      yes | fisher install IlanCosman/tide@v5
     creates: ~/.config/fish/functions/tide.fish
     executable: /usr/bin/fish
 - ansible.builtin.shell:
@@ -77,6 +93,7 @@
 - ansible.builtin.git:
     repo: https://github.com/tmux-plugins/tpm
     dest: ~/.tmux/plugins/tpm
+    version: v3.1.0
 - ansible.posix.authorized_key:
     key: https://github.com/thebengeu.keys
     user: "{{ user }}"
