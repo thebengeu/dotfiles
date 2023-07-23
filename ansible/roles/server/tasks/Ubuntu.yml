@@ -17,7 +17,7 @@
     creates: ~/.pulumi/bin/pulumi
     dest: ~/.pulumi/bin
     extra_opts: [--strip-components=1]
-    remote_src: yes
+    remote_src: true
     src: https://get.pulumi.com/releases/sdk/pulumi-v3.76.0-linux-{{ (arch.stdout == 'amd64') | ternary('x64', arch.stdout) }}.tar.gz
 - ansible.builtin.file:
     path: ~/.temporalio/bin
@@ -26,7 +26,7 @@
     creates: ~/.temporalio/bin/temporal
     dest: ~/.temporalio/bin
     extra_opts: [temporal]
-    remote_src: yes
+    remote_src: true
     src: https://temporal.download/cli/archive/latest?platform=linux&arch={{ arch.stdout }}
 - community.general.cargo:
     name: broot
@@ -55,13 +55,13 @@
 - community.general.alternatives:
     name: editor
     path: /usr/bin/nvim
-  become: yes
+  become: true
 - ansible.builtin.user:
-    append: yes
+    append: true
     groups: docker
     name: "{{ user }}"
     shell: /usr/bin/fish
-  become: yes
+  become: true
 - ansible.builtin.shell:
     cmd: curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
     creates: ~/.config/fish/functions/fisher.fish

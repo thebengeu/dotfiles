@@ -87,7 +87,7 @@
       - sqlite3
       - tmux
       - unzip
-    update_cache: yes
+    update_cache: true
 - community.general.alternatives:
     link: /usr/bin/clangd
     name: clangd
