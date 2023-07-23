@@ -52,7 +52,7 @@
     dest: ~/neovim
     force: true
     repo: https://github.com/neovim/neovim
-    version: v0.9.1
+    version: f2ce31d3dc1c728c33c0910e1a9970f0eb2e3f11
 - ansible.builtin.shell:
     chdir: ~/neovim
     cmd: |
