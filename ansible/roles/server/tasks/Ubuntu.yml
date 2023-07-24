@@ -32,6 +32,13 @@
     remote_src: true
     # yamllint disable-line rule:line-length
     src: https://temporal.download/cli/archive/latest?platform=linux&arch={{ arch.stdout }}
+- ansible.builtin.shell:
+    # yamllint disable rule:line-length
+    cmd: |
+      set -o pipefail
+      curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path --profile minimal -y
+    # yamllint enable rule:line-length
+    creates: ~/.cargo/env
 - community.general.cargo:
     name: broot
 - community.general.cargo:
