@@ -46,10 +46,10 @@
     url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
 - ansible.builtin.apt_repository:
     # yamllint disable-line rule:line-length
-    repo: deb https://deb.nodesource.com/node_20.x {{ ansible_distribution_release }} main
+    repo: deb https://deb.nodesource.com/node_19.x {{ ansible_distribution_release }} main
 - ansible.builtin.apt_repository:
     # yamllint disable-line rule:line-length
-    repo: deb-src https://deb.nodesource.com/node_20.x {{ ansible_distribution_release }} main
+    repo: deb-src https://deb.nodesource.com/node_19.x {{ ansible_distribution_release }} main
 - ansible.builtin.apt_key:
     url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
 - ansible.builtin.apt_repository:
