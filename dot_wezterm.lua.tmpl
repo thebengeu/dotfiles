@@ -24,30 +24,30 @@ return {
   default_domain = "WSL:Ubuntu",
 {{-   end }}
 {{- end }}
-	font = wezterm.font("PragmataProLiga NF"),
-	font_rules = {
-		{
-			font = wezterm.font({
-				family = "PragmataProLiga NF",
-				harfbuzz_features = { "ss09" },
-				style = "Italic",
-			}),
-			italic = true,
-		},
-	},
-	font_size = 13,
-	-- font = wezterm.font("MonoLisa Variable"),
+	-- font = wezterm.font("PragmataProLiga NF"),
 	-- font_rules = {
 	-- 	{
 	-- 		font = wezterm.font({
-	-- 			family = "MonoLisa Variable",
-	-- 			harfbuzz_features = { "ss02" },
+	-- 			family = "PragmataProLiga NF",
+	-- 			harfbuzz_features = { "ss09" },
 	-- 			style = "Italic",
 	-- 		}),
 	-- 		italic = true,
 	-- 	},
 	-- },
-	-- font_size = 11,
+	-- font_size = 13,
+	font = wezterm.font("MonoLisa Variable"),
+	font_rules = {
+		{
+			font = wezterm.font({
+				family = "MonoLisa Variable",
+				harfbuzz_features = { "ss02" },
+				style = "Italic",
+			}),
+			italic = true,
+		},
+	},
+	font_size = 12,
   show_new_tab_button_in_tab_bar = false,
   show_tab_index_in_tab_bar = false,
   skip_close_confirmation_for_processes_named = { "conhost.exe", "tmux", "wsl.exe", "wslhost.exe" },
