@@ -75,7 +75,7 @@ if status is-interactive
     abbr --add ppg 'pnpm prisma generate'
     abbr --add pr 'gh pr create -f'
     abbr --add prr 'gh pr create -f -r'
-    abbr --add pt 'pnpm ts-node'
+    abbr --add pt 'pnpm tsx'
     abbr --add rg 'rg --max-columns 1000'
     abbr --add tg topgrade
     abbr --add tns 'tmux new-session -A -s'
