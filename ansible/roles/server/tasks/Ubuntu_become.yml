@@ -37,6 +37,8 @@
     # yamllint disable-line rule:line-length
     repo: deb [arch={{ arch.stdout }}] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
 - ansible.builtin.apt_repository:
+    repo: ppa:jgmath2000/et
+- ansible.builtin.apt_repository:
     repo: ppa:fish-shell/release-3
 - ansible.builtin.apt_key:
     keyring: /usr/share/keyrings/githubcli-archive-keyring.gpg
@@ -46,7 +48,7 @@
     # yamllint disable-line rule:line-length
     repo: deb [arch={{ arch.stdout }} signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main
 - ansible.builtin.apt_repository:
-    repo: ppa:jgmath2000/et
+    repo: ppa:longsleep/golang-backports
 - ansible.builtin.apt_repository:
     repo: ppa:keithw/mosh-dev
 - ansible.builtin.apt_key:
@@ -76,7 +78,7 @@
       - fish
       - gettext
       - gh
-      - golang
+      - golang-go
       - jq
       - libluajit-5.1-dev
       - libpq-dev
