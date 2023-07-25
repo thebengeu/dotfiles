@@ -38,9 +38,19 @@
     filename: docker
     # yamllint disable-line rule:line-length
     repo: deb [arch={{ arch.stdout }} signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+- ansible.builtin.apt_key:
+    keyring: /etc/apt/trusted.gpg.d/jgmath2000-ubuntu-et.gpg
+    # yamllint disable-line rule:line-length
+    url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xd3614cb0b3c2d154356bd436cb4adea5b72a07a1
 - ansible.builtin.apt_repository:
+    filename: jgmath2000-ubuntu-et-{{ ansible_distribution_release }}
     repo: ppa:jgmath2000/et
+- ansible.builtin.apt_key:
+    keyring: /etc/apt/trusted.gpg.d/fish-shell-ubuntu-release-3.gpg
+    # yamllint disable-line rule:line-length
+    url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x59fda1ce1b84b3fad89366c027557f056dc33ca5
 - ansible.builtin.apt_repository:
+    filename: fish-shell-ubuntu-release-3-{{ ansible_distribution_release }}
     repo: ppa:fish-shell/release-3
 - ansible.builtin.apt_key:
     keyring: /usr/share/keyrings/githubcli-archive-keyring.gpg
@@ -49,9 +59,20 @@
     filename: github-cli
     # yamllint disable-line rule:line-length
     repo: deb [arch={{ arch.stdout }} signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main
+- ansible.builtin.apt_key:
+    keyring: /etc/apt/trusted.gpg.d/longsleep-ubuntu-golang-backports.gpg
+    # yamllint disable-line rule:line-length
+    url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x52b59b1571a79dbc054901c0f6bc817356a3d45e
 - ansible.builtin.apt_repository:
+    # yamllint disable-line rule:line-length
+    filename: longsleep-ubuntu-golang-backports-{{ ansible_distribution_release }}
     repo: ppa:longsleep/golang-backports
+- ansible.builtin.apt_key:
+    keyring: /etc/apt/trusted.gpg.d/keithw-ubuntu-mosh-dev.gpg
+    # yamllint disable-line rule:line-length
+    url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xf2923d3f37fef230bddc376e3eb9326a7bf6dfcd
 - ansible.builtin.apt_repository:
+    filename: keithw-ubuntu-mosh-dev-{{ ansible_distribution_release }}
     repo: ppa:keithw/mosh-dev
 - ansible.builtin.apt_key:
     keyring: /usr/share/keyrings/nodesource.gpg
@@ -65,8 +86,10 @@
     # yamllint disable-line rule:line-length
     repo: deb-src [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x {{ ansible_distribution_release }} main
 - ansible.builtin.apt_key:
+    keyring: /etc/apt/trusted.gpg.d/apt.postgresql.org.gpg
     url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
 - ansible.builtin.apt_repository:
+    filename: pgdg
     # yamllint disable-line rule:line-length
     repo: deb http://apt-archive.postgresql.org/pub/repos/apt {{ ansible_distribution_release }}-pgdg-archive main
 - ansible.builtin.apt:
