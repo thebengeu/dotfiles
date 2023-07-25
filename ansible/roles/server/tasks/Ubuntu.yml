@@ -32,29 +32,6 @@
     remote_src: true
     # yamllint disable-line rule:line-length
     src: https://temporal.download/cli/archive/latest?platform=linux&arch={{ arch.stdout }}
-- ansible.builtin.shell:
-    # yamllint disable rule:line-length
-    cmd: |
-      set -o pipefail
-      curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path --profile minimal -y
-    # yamllint enable rule:line-length
-    creates: ~/.cargo/env
-- community.general.cargo:
-    name: broot
-- community.general.cargo:
-    name: cargo-update
-- community.general.cargo:
-    name: exa
-- community.general.cargo:
-    name: gitui
-- community.general.cargo:
-    name: mcfly
-- community.general.cargo:
-    name: topgrade
-- community.general.cargo:
-    name: xh
-- community.general.cargo:
-    name: zoxide
 - ansible.builtin.git:
     dest: ~/neovim
     force: true
@@ -93,6 +70,30 @@
       yes | fisher install IlanCosman/tide@v5
     creates: ~/.config/fish/functions/tide.fish
     executable: /usr/bin/fish
+- ansible.builtin.shell:
+    # yamllint disable rule:line-length
+    cmd: |
+      set -o pipefail
+      curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path --profile minimal -y
+    # yamllint enable rule:line-length
+    creates: ~/.cargo/env
+    executable: /usr/bin/fish
+- community.general.cargo:
+    name: broot
+- community.general.cargo:
+    name: cargo-update
+- community.general.cargo:
+    name: exa
+- community.general.cargo:
+    name: gitui
+- community.general.cargo:
+    name: mcfly
+- community.general.cargo:
+    name: topgrade
+- community.general.cargo:
+    name: xh
+- community.general.cargo:
+    name: zoxide
 - ansible.builtin.shell:
     cmd: fisher install catppuccin/fish
     creates: ~/.config/fish/themes/Catppuccin Mocha.theme
