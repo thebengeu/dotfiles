@@ -57,6 +57,7 @@ if status is-interactive
     abbr --add glp 'git lg --patch'
     abbr --add gP 'git push'
     abbr --add gp 'git pull'
+    abbr --add gr 'git rebase'
     abbr --add grbc 'git rebase --continue'
     abbr --add grhh 'git reset --hard HEAD'
     abbr --add gs 'git s'
