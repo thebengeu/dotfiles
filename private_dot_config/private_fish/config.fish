@@ -79,7 +79,7 @@ if status is-interactive
     abbr --add rg 'rg --max-columns 1000'
     abbr --add tg topgrade
     abbr --add tns 'tmux new-session -A -s'
-    abbr --add tsr 'sh -c \'printf "\e[6 q"; pnpm ts-node --compilerOptions \\\'{"module": "commonjs"}\\\'\''
+    abbr --add tsx 'sh -c \'printf "\e[6 q"; pnpm tsx\''
     abbr --add vim nvim
     alias rm safe-rm
     function br --wraps=broot
