@@ -101,7 +101,8 @@
 - ansible.builtin.git:
     repo: https://github.com/tmux-plugins/tpm
     dest: ~/.tmux/plugins/tpm
-    version: v3.1.0
+  tags:
+    - skip_ansible_lint
 - ansible.posix.authorized_key:
     key: https://github.com/thebengeu.keys
     user: "{{ user }}"
