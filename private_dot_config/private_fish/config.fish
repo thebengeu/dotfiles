@@ -75,6 +75,7 @@ if status is-interactive
     abbr --add pp 'psql postgresql://postgres:postgres@localhost:5432/postgres'
     abbr --add ppg 'pnpm prisma generate'
     abbr --add pr 'gh pr create -f'
+    abbr --add prm 'pnpm rm'
     abbr --add prr 'gh pr create -f -r'
     abbr --add pt 'pnpm tsx'
     abbr --add rg 'rg --max-columns 1000'
