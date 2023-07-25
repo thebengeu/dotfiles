@@ -1,6 +1,8 @@
 - ansible.builtin.command: dpkg --print-architecture
   changed_when: false
   register: arch
+- community.general.timezone:
+    name: Asia/Singapore
 - ansible.builtin.template:
     dest: /lib/systemd/network/wsl_external.network
     mode: "644"
