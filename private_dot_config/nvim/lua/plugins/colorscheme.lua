@@ -289,10 +289,9 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      build = "make",
+      "nvim-telescope/telescope-fzy-native.nvim",
       config = function()
-        require("telescope").load_extension("fzf")
+        require("telescope").load_extension("fzy_native")
       end,
     },
     keys = {
@@ -403,6 +402,12 @@ return {
         },
         layout_strategy = "flex",
         winblend = 5,
+      },
+      extensions = {
+        fzy_native = {
+          override_file_sorter = true,
+          override_generic_sorter = true,
+        },
       },
     },
   },
