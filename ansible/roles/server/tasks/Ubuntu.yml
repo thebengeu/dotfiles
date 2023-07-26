@@ -121,3 +121,15 @@
 - ansible.builtin.command:
     cmd: ~/go/bin/gup import
     creates: ~/go/bin/lazygit
+- ansible.builtin.pip:
+    name:
+      - pipx
+    extra_args: --user
+- community.general.pipx:
+    name: howdoi
+- community.general.pipx:
+    name: khal
+- community.general.pipx:
+    name: qmk
+- community.general.pipx:
+    name: sqlfluff

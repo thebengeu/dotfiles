@@ -184,13 +184,6 @@
 - community.general.npm:
     name: pm2
     global: true
-- ansible.builtin.pip:
-    name:
-      - howdoi
-      - khal
-      - pipupgrade
-      - qmk
-      - sqlfluff
 - ansible.builtin.command:
     cmd: corepack enable
     creates: /usr/bin/pnpm
