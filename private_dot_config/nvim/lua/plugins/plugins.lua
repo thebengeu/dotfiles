@@ -8,20 +8,17 @@ return {
     config = true,
   },
   {
-    "rmagatti/auto-session",
-    opts = {
-      log_level = "error",
-      pre_save_cmds = {
-        require("neo-tree.sources.manager").close_all,
-      },
-    },
-  },
-  {
     "echasnovski/mini.bracketed",
     config = function()
       require("mini.bracketed").setup()
     end,
     event = { "BufNewFile", "BufReadPost" },
+  },
+  {
+    "olimorris/persisted.nvim",
+    opts = {
+      autoload = true,
+    },
   },
   {
     "folke/persistence.nvim",
@@ -32,18 +29,6 @@ return {
     cmd = {
       "TSHighlightCapturesUnderCursor",
       "TSPlaygroundToggle",
-    },
-  },
-  {
-    "rmagatti/session-lens",
-    keys = {
-      {
-        "<space>sl",
-        function()
-          require("session-lens").search_session()
-        end,
-        desc = "Sessions",
-      },
     },
   },
   {
