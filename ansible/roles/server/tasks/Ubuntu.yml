@@ -48,14 +48,17 @@
     force: true
     repo: https://github.com/neovim/neovim
     version: f2ce31d3dc1c728c33c0910e1a9970f0eb2e3f11
-- ansible.builtin.shell:
+- ansible.builtin.command:
     chdir: ~/neovim
-    cmd: |
-      make CMAKE_BUILD_TYPE=Release &&
-      cd build &&
-      cpack -G DEB &&
-      sudo dpkg -i nvim-linux64.deb
-    creates: /usr/bin/nvim
+    cmd: make CMAKE_BUILD_TYPE=Release
+    creates: ~/neovim/build/
+- ansible.builtin.command:
+    chdir: ~/neovim/build
+    cmd: cpack -G DEB
+    creates: ~/neovim/build/nvim-linux64.deb
+- ansible.builtin.apt:
+    deb: /home/{{ user }}/neovim/build/nvim-linux64.deb
+  become: true
 - community.general.alternatives:
     name: editor
     path: /usr/bin/nvim
