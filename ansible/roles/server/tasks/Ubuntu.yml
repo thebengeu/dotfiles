@@ -89,6 +89,8 @@
 - community.general.cargo:
     name: mcfly
 - community.general.cargo:
+    name: tealdeer
+- community.general.cargo:
     name: tokei
 - community.general.cargo:
     name: topgrade
