@@ -1,3 +1,5 @@
 [misc]
 assume_yes = true
 disable = ["chezmoi", "vim"]
+[npm]
+use_sudo = true
