@@ -13,6 +13,9 @@
 - ansible.builtin.command:
     cmd: go install github.com/boyter/scc/v3@latest
     creates: ~/go/bin/scc
+- ansible.builtin.command:
+    cmd: go install github.com/sachaos/todoist@latest
+    creates: ~/go/bin/todoist
 - ansible.builtin.file:
     mode: "755"
     path: ~/.pulumi/bin
