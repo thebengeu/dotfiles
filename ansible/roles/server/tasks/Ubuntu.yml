@@ -140,18 +140,9 @@
     mode: "755"
     url: https://cht.sh/:cht.sh
 - ansible.builtin.shell:
-    # yamllint disable rule:line-length
-    cmd: |
-      set -o pipefail
-      NIX_INSTALLER_NO_MODIFY_PROFILE=1 curl -L https://nixos.org/nix/install | sh -s -- --no-daemon
-    # yamllint enable rule:line-length
-    creates: /nix/store/
-    executable: /usr/bin/fish
-- ansible.builtin.shell:
     cmd: fisher install lilyball/nix-env.fish
     creates: ~/.config/fish/conf.d/nix-env.fish
     executable: /usr/bin/fish
-- ansible.builtin.shell:
-    cmd: nix-env -iA nixpkgs.peco
+- ansible.builtin.command:
+    cmd: nix profile install nixpkgs#peco
     creates: ~/.nix-profile/bin/peco
-    executable: /usr/bin/fish

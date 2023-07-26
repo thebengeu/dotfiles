@@ -1,6 +1,9 @@
 - ansible.builtin.command: dpkg --print-architecture
   changed_when: false
   register: arch
+- ansible.builtin.command: uname --machine
+  changed_when: false
+  register: machine
 - community.general.timezone:
     name: Asia/Singapore
 - ansible.builtin.template:
@@ -201,8 +204,11 @@
 - community.general.snap:
     name: chezmoi
     classic: true
-- ansible.builtin.file:
+- ansible.builtin.get_url:
+    dest: /tmp/nix-installer
     mode: "755"
-    owner: "{{ user }}"
-    path: /nix
-    state: directory
+    # yamllint disable-line rule:line-length
+    url: https://install.determinate.systems/nix/nix-installer-{{ machine.stdout }}-linux
+- ansible.builtin.command:
+    cmd: /tmp/nix-installer install --no-confirm
+    creates: /nix/
