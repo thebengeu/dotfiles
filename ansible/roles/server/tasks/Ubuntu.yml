@@ -87,6 +87,8 @@
 - community.general.cargo:
     name: gitui
 - community.general.cargo:
+    name: just
+- community.general.cargo:
     name: mcfly
 - community.general.cargo:
     name: tealdeer
