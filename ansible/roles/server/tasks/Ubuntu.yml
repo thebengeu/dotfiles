@@ -133,3 +133,15 @@
     name: qmk
 - community.general.pipx:
     name: sqlfluff
+- community.general.yarn:
+    name: npm-check-updates
+    global: true
+    production: true
+- community.general.yarn:
+    name: pino-pretty
+    global: true
+    production: true
+- community.general.yarn:
+    name: pm2
+    global: true
+    production: true
