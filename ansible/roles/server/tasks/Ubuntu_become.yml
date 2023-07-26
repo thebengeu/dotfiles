@@ -191,6 +191,7 @@
     name:
       - howdoi
       - khal
+      - pipupgrade
       - qmk
       - sqlfluff
 - ansible.builtin.command:
