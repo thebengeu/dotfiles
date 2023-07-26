@@ -32,6 +32,7 @@ if status is-interactive
     abbr --add bi 'brew install'
     abbr --add bui 'brew uninstall'
     abbr --add ca 'chezmoi apply --exclude templates'
+    abbr --add cat bat
     abbr --add cgca 'chezmoi git -- commit --amend'
     abbr --add cgcam 'chezmoi git -- commit -a -m'
     abbr --add cgd 'chezmoi git diff'
@@ -44,7 +45,7 @@ if status is-interactive
     abbr --add clg 'lazygit --path ~/.local/share/chezmoi'
     abbr --add cn 'nvim --cmd "cd ~/.local/share/chezmoi"'
     abbr --add cr 'chezmoi re-add'
-    abbr --add cat bat
+    abbr --add cu 'chezmoi update --exclude templates'
     abbr --add e 'emacsclient -nw'
     abbr --add g git
     abbr --add gaa 'git add -A'
