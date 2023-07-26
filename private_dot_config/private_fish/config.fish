@@ -77,12 +77,12 @@ if status is-interactive
     abbr --add pr 'gh pr create -f'
     abbr --add prm 'pnpm rm'
     abbr --add prr 'gh pr create -f -r'
-    abbr --add pt 'pnpm tsx'
     abbr --add rg 'rg --max-columns 1000'
     abbr --add scc 'scc --not-match "package-lock.json|pnpm-lock.yaml"'
     abbr --add tg topgrade
     abbr --add tns 'tmux new-session -A -s'
-    abbr --add tsx 'sh -c \'printf "\e[6 q"; pnpm tsx\''
+    abbr --add tsx 'pnpm tsx'
+    abbr --add tsxr 'sh -c \'printf "\e[6 q"; pnpm tsx\''
     abbr --add vim nvim
     alias rm safe-rm
     function br --wraps=broot
