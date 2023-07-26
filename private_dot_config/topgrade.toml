@@ -1,3 +1,5 @@
+[commands]
+chezmoi = "chezmoi update --exclude templates"
 [misc]
 assume_yes = true
 disable = ["chezmoi", "vim"]
