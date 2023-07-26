@@ -1,4 +1,7 @@
 - ansible.builtin.command:
+    cmd: go install github.com/cointop-sh/cointop@latest
+    creates: ~/go/bin/cointop
+- ansible.builtin.command:
     cmd: go install github.com/gabrie30/ghorg@latest
     creates: ~/go/bin/ghorg
 - ansible.builtin.command:
