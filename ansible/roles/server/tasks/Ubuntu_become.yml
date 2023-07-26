@@ -121,6 +121,7 @@
       - mosquitto
       - mosquitto-clients
       - msmtp-mta
+      - needrestart
       - ninja-build
       - nodejs
       - ntpdate
