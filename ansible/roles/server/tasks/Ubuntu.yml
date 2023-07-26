@@ -1,24 +1,3 @@
-- ansible.builtin.command:
-    cmd: go install github.com/cointop-sh/cointop@latest
-    creates: ~/go/bin/cointop
-- ansible.builtin.command:
-    cmd: go install github.com/gabrie30/ghorg@latest
-    creates: ~/go/bin/ghorg
-- ansible.builtin.command:
-    cmd: go install github.com/Gelio/go-global-update@latest
-    creates: ~/go/bin/go-global-update
-- ansible.builtin.command:
-    cmd: go install github.com/jesseduffield/lazydocker@latest
-    creates: ~/go/bin/lazydocker
-- ansible.builtin.command:
-    cmd: go install github.com/jesseduffield/lazygit@latest
-    creates: ~/go/bin/lazygit
-- ansible.builtin.command:
-    cmd: go install github.com/boyter/scc/v3@latest
-    creates: ~/go/bin/scc
-- ansible.builtin.command:
-    cmd: go install github.com/sachaos/todoist@latest
-    creates: ~/go/bin/todoist
 - ansible.builtin.file:
     mode: "755"
     path: ~/.pulumi/bin
@@ -136,3 +115,9 @@
 - ansible.builtin.command:
     cmd: nix profile install nixpkgs#peco
     creates: ~/.nix-profile/bin/peco
+- ansible.builtin.command:
+    cmd: go install github.com/nao1215/gup@latest
+    creates: ~/go/bin/gup
+- ansible.builtin.command:
+    cmd: ~/go/bin/gup import
+    creates: ~/go/bin/lazygit
