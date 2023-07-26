@@ -151,6 +151,7 @@
     cmd: fisher install lilyball/nix-env.fish
     creates: ~/.config/fish/conf.d/nix-env.fish
     executable: /usr/bin/fish
-- ansible.builtin.command:
+- ansible.builtin.shell:
     cmd: nix-env -iA nixpkgs.peco
     creates: ~/.nix-profile/bin/peco
+    executable: /usr/bin/fish
