@@ -17,7 +17,8 @@
 - ansible.builtin.unarchive:
     creates: ~/.pulumi/bin/pulumi
     dest: ~/.pulumi/bin
-    extra_opts: [--strip-components=1]
+    extra_opts:
+      - --strip-components=1
     remote_src: true
     # yamllint disable-line rule:line-length
     src: https://get.pulumi.com/releases/sdk/pulumi-v3.76.0-linux-{{ (arch.stdout == 'amd64') | ternary('x64', arch.stdout) }}.tar.gz
@@ -28,10 +29,20 @@
 - ansible.builtin.unarchive:
     creates: ~/.temporalio/bin/temporal
     dest: ~/.temporalio/bin
-    extra_opts: [temporal]
+    extra_opts:
+      - temporal
     remote_src: true
     # yamllint disable-line rule:line-length
     src: https://temporal.download/cli/archive/latest?platform=linux&arch={{ arch.stdout }}
+- ansible.builtin.unarchive:
+    creates: ~/.local/bin/peco
+    dest: ~/.local/bin
+    extra_opts:
+      - --strip-components=1
+      - peco_linux_{{ arch.stdout }}/peco
+    remote_src: true
+    # yamllint disable-line rule:line-length
+    src: https://github.com/peco/peco/releases/download/v0.5.11/peco_linux_{{ arch.stdout }}.tar.gz
 - ansible.builtin.git:
     dest: ~/neovim
     force: true
