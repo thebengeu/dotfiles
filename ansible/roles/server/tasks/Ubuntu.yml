@@ -5,6 +5,9 @@
     cmd: go install github.com/gabrie30/ghorg@latest
     creates: ~/go/bin/ghorg
 - ansible.builtin.command:
+    cmd: go install github.com/Gelio/go-global-update@latest
+  creates: ~/go/bin/go-global-update
+- ansible.builtin.command:
     cmd: go install github.com/jesseduffield/lazydocker@latest
     creates: ~/go/bin/lazydocker
 - ansible.builtin.command:
