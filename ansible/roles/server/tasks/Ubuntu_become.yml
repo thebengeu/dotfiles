@@ -189,6 +189,7 @@
     global: true
 - ansible.builtin.pip:
     name:
+      - khal
       - qmk
       - sqlfluff
 - ansible.builtin.command:
