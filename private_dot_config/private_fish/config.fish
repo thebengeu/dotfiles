@@ -85,18 +85,6 @@ if status is-interactive
     abbr --add tsxr 'sh -c \'printf "\e[6 q"; pnpm tsx\''
     abbr --add vim nvim
     alias rm safe-rm
-    function br --wraps=broot
-        set -l cmd_file (mktemp)
-        if broot --outcmd $cmd_file $argv
-            read --local --null cmd <$cmd_file
-            rm -f $cmd_file
-            eval $cmd
-        else
-            set -l code $status
-            rm -f $cmd_file
-            return $code
-        end
-    end
     function fish_title
         if test -n "$TMUX"
             tmux rename-window -t $(tmux display-message -p '#{window_index}') $PWD
