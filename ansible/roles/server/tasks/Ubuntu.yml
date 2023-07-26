@@ -40,15 +40,6 @@
     remote_src: true
     # yamllint disable-line rule:line-length
     src: https://temporal.download/cli/archive/latest?platform=linux&arch={{ arch.stdout }}
-- ansible.builtin.unarchive:
-    creates: ~/.local/bin/peco
-    dest: ~/.local/bin
-    extra_opts:
-      - --strip-components=1
-      - peco_linux_{{ arch.stdout }}/peco
-    remote_src: true
-    # yamllint disable-line rule:line-length
-    src: https://github.com/peco/peco/releases/download/v0.5.11/peco_linux_{{ arch.stdout }}.tar.gz
 - ansible.builtin.git:
     dest: ~/neovim
     force: true
@@ -157,3 +148,6 @@
     cmd: fisher install lilyball/nix-env.fish
     creates: ~/.config/fish/conf.d/nix-env.fish
     executable: /usr/bin/fish
+- ansible.builtin.command:
+    cmd: nix-env -iA nixpkgs.peco
+    creates: ~/.nix-profile/bin/peco
