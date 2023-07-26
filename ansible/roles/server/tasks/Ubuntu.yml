@@ -69,14 +69,14 @@
     name: "{{ user }}"
     shell: /usr/bin/fish
   become: true
-- ansible.builtin.shell:
-    # yamllint disable rule:line-length
-    cmd: |
-      set -o pipefail
-      curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path --profile minimal -y
-    # yamllint enable rule:line-length
+- ansible.builtin.get_url:
+    dest: /tmp/rustup-init
+    mode: "755"
+    # yamllint disable-line rule:line-length
+    url: https://static.rust-lang.org/rustup/dist/{{ machine.stdout }}-unknown-linux-gnu/rustup-init
+- ansible.builtin.command:
+    cmd: /tmp/rustup-init --no-modify-path --profile minimal -y
     creates: ~/.cargo/env
-    executable: /usr/bin/fish
 - community.general.cargo:
     name: broot
 - community.general.cargo:
