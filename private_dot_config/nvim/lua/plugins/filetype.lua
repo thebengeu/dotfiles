@@ -24,6 +24,10 @@ return {
     ft = "fish",
   },
   {
+    "NoahTheDuke/vim-just",
+    ft = "just",
+  },
+  {
     "Glench/Vim-Jinja2-Syntax",
     enabled = false,
   },
