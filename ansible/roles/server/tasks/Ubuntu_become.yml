@@ -182,9 +182,6 @@
     name: pino-pretty
     global: true
 - community.general.npm:
-    name: ts-node
-    global: true
-- community.general.npm:
     name: pm2
     global: true
 - ansible.builtin.pip:
