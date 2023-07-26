@@ -200,3 +200,8 @@
     classic: true
 - community.general.snap:
     name: btop
+- ansible.builtin.file:
+    mode: "755"
+    owner: "{{ user }}"
+    path: /nix
+    state: directory
