@@ -138,8 +138,12 @@
       - speedtest
       - sqlite3
       - unzip
+    update_cache: true
+- ansible.builtin.apt:
+    name:
       - wslu
     update_cache: true
+  when: ansible_virtualization_type == "wsl"
 - community.general.alternatives:
     link: /usr/bin/clangd
     name: clangd
