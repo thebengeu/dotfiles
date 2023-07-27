@@ -1,3 +1,3 @@
 --italic-text always
---style plain
+--style header-filename,rule
 --theme "Catppuccin-mocha"
