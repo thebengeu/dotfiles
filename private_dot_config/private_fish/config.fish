@@ -93,8 +93,9 @@ if status is-interactive
         end
         pwd
     end
-    function fish_user_key_bindings
+    function fish_hybrid_key_bindings
         fish_default_key_bindings -M insert
         fish_vi_key_bindings --no-erase insert
     end
+    set --global fish_key_bindings fish_hybrid_key_bindings
 end
