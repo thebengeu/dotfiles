@@ -96,6 +96,12 @@
     filename: ookla_speedtest-cli
     # yamllint disable-line rule:line-length
     repo: deb [signed-by=/etc/apt/keyrings/ookla_speedtest-cli-archive-keyring.gpg] https://packagecloud.io/ookla/speedtest-cli/ubuntu/ {{ ansible_distribution_release }} main
+- ansible.builtin.apt_key:
+    keyring: /etc/apt/trusted.gpg.d/wslutilities-ubuntu-wslu.gpg
+    url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x254f460f2970e18123046570c1d0e7e6ab4095d6
+- ansible.builtin.apt_repository:
+    filename: wslutilities-ubuntu-wslu-{{ ansible_distribution_release }}
+    repo: ppa:wslutilities/wslu
 - ansible.builtin.apt:
     name:
       - 1password-cli
@@ -135,6 +141,7 @@
       - speedtest
       - sqlite3
       - unzip
+      - wslu
     update_cache: true
 - community.general.alternatives:
     link: /usr/bin/clangd
