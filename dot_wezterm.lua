@@ -68,7 +68,7 @@ config.ssh_domains = {
 	{
 		name = "SSH:dev-remote",
 		multiplexing = "None",
-		remote_address = "192.168.50.4",
+		remote_address = "beng.asuscomm.com",
 		username = "beng",
 	},
 	{
