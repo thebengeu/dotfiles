@@ -154,20 +154,15 @@
     mode: "644"
     src: default.conf
 - ansible.builtin.apt:
-    # yamllint disable-line rule:line-length
-    deb: https://github.com/sharkdp/bat/releases/download/v0.23.0/bat_0.23.0_{{ arch.stdout }}.deb
-- ansible.builtin.apt:
-    # yamllint disable-line rule:line-length
-    deb: https://github.com/sharkdp/fd/releases/download/v8.7.0/fd_8.7.0_{{ arch.stdout }}.deb
-- ansible.builtin.apt:
-    # yamllint disable-line rule:line-length
-    deb: http://ftp.debian.org/debian/pool/main/f/fzf/fzf_0.42.0-1_{{ arch.stdout }}.deb
-- ansible.builtin.apt:
-    # yamllint disable-line rule:line-length
-    deb: https://github.com/dandavison/delta/releases/download/0.16.5/git-delta_0.16.5_{{ arch.stdout }}.deb
-- ansible.builtin.apt:
-    # yamllint disable-line rule:line-length
-    deb: http://ftp.debian.org/debian/pool/main/t/tmux/tmux_3.3a-4_{{ arch.stdout }}.deb
+    deb: "{{ item }}"
+  loop:
+    # yamllint disable rule:line-length
+    - https://github.com/sharkdp/bat/releases/download/v0.23.0/bat_0.23.0_{{ arch.stdout }}.deb
+    - https://github.com/sharkdp/fd/releases/download/v8.7.0/fd_8.7.0_{{ arch.stdout }}.deb
+    - http://ftp.debian.org/debian/pool/main/f/fzf/fzf_0.42.0-1_{{ arch.stdout }}.deb
+    - https://github.com/dandavison/delta/releases/download/0.16.5/git-delta_0.16.5_{{ arch.stdout }}.deb
+    - http://ftp.debian.org/debian/pool/main/t/tmux/tmux_3.3a-4_{{ arch.stdout }}.deb
+    # yamllint enable rule:line-length
 - ansible.builtin.group:
     name: docker
 - ansible.builtin.command:

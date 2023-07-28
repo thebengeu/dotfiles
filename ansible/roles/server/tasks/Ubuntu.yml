@@ -57,27 +57,19 @@
     cmd: /tmp/rustup-init --no-modify-path --profile minimal -y
     creates: ~/.cargo/env
 - community.general.cargo:
-    name: broot
-- community.general.cargo:
-    name: cargo-update
-- community.general.cargo:
-    name: exa
-- community.general.cargo:
-    name: gitui
-- community.general.cargo:
-    name: just
-- community.general.cargo:
-    name: mcfly
-- community.general.cargo:
-    name: tealdeer
-- community.general.cargo:
-    name: tokei
-- community.general.cargo:
-    name: topgrade
-- community.general.cargo:
-    name: xh
-- community.general.cargo:
-    name: zoxide
+    name: "{{ item }}"
+  loop:
+    - broot
+    - cargo-update
+    - exa
+    - gitui
+    - just
+    - mcfly
+    - tealdeer
+    - tokei
+    - topgrade
+    - xh
+    - zoxide
 - ansible.builtin.git:
     repo: https://github.com/tmux-plugins/tpm
     dest: ~/.tmux/plugins/tpm
@@ -113,8 +105,11 @@
     mode: "755"
     url: https://cht.sh/:cht.sh
 - ansible.builtin.command:
-    cmd: nix profile install nixpkgs#peco
-    creates: ~/.nix-profile/bin/peco
+    cmd: nix profile install nixpkgs#{{ item }}
+    creates: ~/.nix-profile/bin/{{ item }}
+  loop:
+    - nix
+    - peco
 - ansible.builtin.command:
     cmd: go install github.com/nao1215/gup@latest
     creates: ~/go/bin/gup
@@ -126,22 +121,17 @@
       - pipx
     extra_args: --user
 - community.general.pipx:
-    name: howdoi
-- community.general.pipx:
-    name: khal
-- community.general.pipx:
-    name: qmk
-- community.general.pipx:
-    name: sqlfluff
+    name: "{{ item }}"
+  loop:
+    - howdoi
+    - khal
+    - qmk
+    - sqlfluff
 - community.general.yarn:
-    name: npm-check-updates
+    name: "{{ item }}"
     global: true
     production: true
-- community.general.yarn:
-    name: pino-pretty
-    global: true
-    production: true
-- community.general.yarn:
-    name: pm2
-    global: true
-    production: true
+  loop:
+    - npm-check-updates
+    - pino-pretty
+    - pm2
