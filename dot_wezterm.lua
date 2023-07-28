@@ -52,7 +52,12 @@ config.keys = {
 }
 config.show_new_tab_button_in_tab_bar = false
 config.show_tab_index_in_tab_bar = false
-config.skip_close_confirmation_for_processes_named = { "conhost.exe", "tmux", "wsl.exe", "wslhost.exe" }
+config.skip_close_confirmation_for_processes_named = {
+	"conhost.exe",
+	"tmux",
+	"wsl.exe",
+	"wslhost.exe",
+}
 config.ssh_domains = {
 	{
 		name = "SSH:192.168.50.4",
