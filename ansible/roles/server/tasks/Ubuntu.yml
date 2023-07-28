@@ -52,7 +52,7 @@
     dest: /tmp/rustup-init
     mode: "755"
     # yamllint disable-line rule:line-length
-    url: https://static.rust-lang.org/rustup/dist/{{ machine.stdout }}-unknown-linux-gnu/rustup-init
+    url: https://static.rust-lang.org/rustup/dist/{{ ansible_machine }}-unknown-linux-gnu/rustup-init
 - ansible.builtin.command:
     cmd: /tmp/rustup-init --no-modify-path --profile minimal -y
     creates: ~/.cargo/env
