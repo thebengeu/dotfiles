@@ -66,6 +66,7 @@ if status is-interactive
     abbr --add gsa 'git stash apply'
     abbr --add gsP 'git stash push'
     abbr --add gsp 'git stash pop'
+    abbr --add j just
     abbr --add lg lazygit
     abbr --add ll 'exa --git --icons --long'
     abbr --add ls 'exa --icons'
