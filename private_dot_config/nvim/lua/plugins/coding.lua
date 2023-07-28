@@ -263,6 +263,9 @@ return {
         "sql",
         "toml",
       })
+      opts.indent = {
+        disable = { "yaml" },
+      }
       opts.matchup = {
         disable_virtual_text = true,
         enable = true,
