@@ -114,6 +114,14 @@ config.window_padding = {
 	bottom = 0,
 }
 
+local wsl_domains = wezterm.default_wsl_domains()
+
+for _, wsl_domain in ipairs(wsl_domains) do
+	wsl_domain.default_cwd = "~"
+end
+
+config.wsl_domains = wsl_domains
+
 platform_specific.apply_to_config(config)
 
 return config
