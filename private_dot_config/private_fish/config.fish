@@ -13,13 +13,16 @@ set --export MCFLY_DELETE_WITHOUT_CONFIRM TRUE
 set --export MCFLY_DISABLE_MENU TRUE
 set --export MCFLY_KEY_SCHEME vim
 set --export NODE_NO_WARNINGS 1
+
 set --global fish_cursor_default block
 set --global fish_cursor_insert line
 set --global fish_cursor_replace_one underscore
 set --global fish_greeting
 set --global fish_vi_force_cursor 1
+
 mcfly init fish | source
 zoxide init --cmd cd fish | source
+
 abbr --add agca 'git -C ~/ansible commit --amend'
 abbr --add agcam 'git -C ~/ansible commit -a -m'
 abbr --add agd 'git -C ~/ansible diff'
@@ -90,6 +93,7 @@ abbr --add tns 'tmux new-session -A -s'
 abbr --add tsx 'pnpm tsx'
 abbr --add tsxr 'sh -c \'printf "\e[6 q"; pnpm tsx\''
 abbr --add vim nvim
+
 alias rm safe-rm
 
 function fish_title
