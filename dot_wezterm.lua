@@ -1,5 +1,7 @@
 local platform_specific = require("platform_specific")
 local wezterm = require("wezterm")
+local act = wezterm.action
+
 local config = {}
 
 config.adjust_window_size_when_changing_font_size = false
@@ -44,6 +46,10 @@ config.font_rules = {
 	},
 }
 config.font_size = 12
+config.keys = {
+	{ key = "w", mods = "SHIFT|CTRL", action = act.CloseCurrentTab({ confirm = false }) },
+	{ key = "w", mods = "SUPER", action = act.CloseCurrentTab({ confirm = false }) },
+}
 config.show_new_tab_button_in_tab_bar = false
 config.show_tab_index_in_tab_bar = false
 config.skip_close_confirmation_for_processes_named = { "conhost.exe", "tmux", "wsl.exe", "wslhost.exe" }
