@@ -50,6 +50,25 @@ config.keys = {
 	{ key = "w", mods = "SHIFT|CTRL", action = act.CloseCurrentTab({ confirm = false }) },
 	{ key = "w", mods = "SUPER", action = act.CloseCurrentTab({ confirm = false }) },
 }
+config.launch_menu = {
+	{
+		args = {
+			"wezterm",
+			"cli",
+			"spawn",
+			"--domain-name",
+			"local",
+			"--",
+			"powershell",
+			"wsl",
+			"--shutdown",
+			";",
+			"wsl",
+		},
+		domain = { DomainName = "local" },
+		label = "Restart WSL",
+	},
+}
 config.show_new_tab_button_in_tab_bar = false
 config.show_tab_index_in_tab_bar = false
 config.skip_close_confirmation_for_processes_named = {
