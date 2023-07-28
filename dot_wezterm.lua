@@ -60,7 +60,25 @@ config.skip_close_confirmation_for_processes_named = {
 }
 config.ssh_domains = {
 	{
-		name = "SSH:192.168.50.4",
+		name = "SSH:dev-local",
+		multiplexing = "None",
+		remote_address = "192.168.50.3",
+		username = "beng",
+	},
+	{
+		name = "SSH:dev-remote",
+		multiplexing = "None",
+		remote_address = "192.168.50.4",
+		username = "beng",
+	},
+	{
+		name = "SSH:ec2",
+		multiplexing = "None",
+		remote_address = "13.213.181.86",
+		username = "ubuntu",
+	},
+	{
+		name = "SSH:prod",
 		multiplexing = "None",
 		remote_address = "192.168.50.4",
 		username = "beng",
