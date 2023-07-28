@@ -1,0 +1,71 @@
+local platform_specific = require("platform_specific")
+local wezterm = require("wezterm")
+local config = {}
+
+config.adjust_window_size_when_changing_font_size = false
+config.color_scheme = "Catppuccin Mocha"
+config.colors = {
+	tab_bar = {
+		active_tab = {
+			bg_color = "#cba6f7",
+			fg_color = "#11111b",
+		},
+		inactive_tab = {
+			bg_color = "#181825",
+			fg_color = "#cdd6f4",
+		},
+		inactive_tab_hover = {
+			bg_color = "#181825",
+			fg_color = "#cdd6f4",
+		},
+	},
+}
+-- config.font = wezterm.font("PragmataProLiga NF")
+-- config.font_rules = {
+-- 	{
+-- 		font = wezterm.font({
+-- 			family = "PragmataProLiga NF",
+-- 			harfbuzz_features = { "ss09" },
+-- 			style = "Italic",
+-- 		}),
+-- 		italic = true,
+-- 	},
+-- }
+-- config.font_size = 13
+config.font = wezterm.font("MonoLisa Variable")
+config.font_rules = {
+	{
+		font = wezterm.font({
+			family = "MonoLisa Variable",
+			harfbuzz_features = { "ss02" },
+			style = "Italic",
+		}),
+		italic = true,
+	},
+}
+config.font_size = 12
+config.show_new_tab_button_in_tab_bar = false
+config.show_tab_index_in_tab_bar = false
+config.skip_close_confirmation_for_processes_named = { "conhost.exe", "tmux", "wsl.exe", "wslhost.exe" }
+config.ssh_domains = {
+	{
+		name = "SSH:192.168.50.4",
+		multiplexing = "None",
+		remote_address = "192.168.50.4",
+		username = "beng",
+	},
+}
+config.window_decorations = "INTEGRATED_BUTTONS | RESIZE"
+config.window_frame = {
+	active_titlebar_bg = "#1e1e2e",
+}
+config.window_padding = {
+	left = 0,
+	right = 0,
+	top = 0,
+	bottom = 0,
+}
+
+platform_specific.apply_to_config(config)
+
+return config

@@ -13,7 +13,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 })
 vim.api.nvim_create_autocmd("BufWritePost", {
   command = "!cp ~/.wezterm.lua /mnt/c/Users/beng",
-  pattern = "*/.local/share/chezmoi/dot_wezterm.lua.tmpl",
+  pattern = "*/.local/share/chezmoi/dot_wezterm.lua",
 })
 vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained" }, {
   command = 'call system("tmux rename-window " . expand("%:p"))',
