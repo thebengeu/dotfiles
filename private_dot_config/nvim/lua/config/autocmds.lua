@@ -22,11 +22,3 @@ vim.api.nvim_create_autocmd("BufEnter", {
   command = "startinsert",
   pattern = "term://*",
 })
-vim.api.nvim_create_autocmd("CursorHold", {
-  callback = function()
-    if vim.tbl_isempty(vim.fn.getqflist()) then
-      vim.cmd("cclose")
-    end
-  end,
-  pattern = "*.py",
-})

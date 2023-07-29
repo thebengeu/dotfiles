@@ -87,7 +87,6 @@ return {
       require("iron.core").setup({
         config = {
           repl_definition = {
-            python = require("iron.fts.python").ipython,
             sql = {
               command = { "psql", "postgresql://postgres:postgres@localhost:5432/postgres" },
             },
@@ -173,24 +172,6 @@ return {
       opts.custom_textobjects.d = opts.custom_textobjects.f
       opts.custom_textobjects.f = nil
     end,
-  },
-  {
-    "nvim-neotest/neotest",
-    config = function()
-      require("neotest").setup({
-        adapters = {
-          require("neotest-python"),
-        },
-      })
-    end,
-    dependencies = {
-      "antoinemadec/FixCursorHold.nvim",
-      "nvim-neotest/neotest-python",
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-lua/plenary.nvim",
-    },
-    enabled = false,
-    lazy = true,
   },
   {
     "hrsh7th/nvim-cmp",
@@ -302,27 +283,6 @@ return {
     "windwp/nvim-ts-autotag",
     config = true,
     event = "InsertEnter",
-  },
-  {
-    "rgroli/other.nvim",
-    config = function()
-      require("other-nvim").setup({
-        mappings = {
-          {
-            pattern = "/src/.+/(.+).py$",
-            target = "/tests/test_%1.py",
-          },
-          {
-            pattern = "/tests/test_(.+).py$",
-            target = "/src/*/%1.py",
-          },
-        },
-      })
-    end,
-    enabled = false,
-    keys = {
-      { "<space>fo", "<Cmd>Other<CR>", desc = "Open other file" },
-    },
   },
   {
     "ThePrimeagen/refactoring.nvim",
