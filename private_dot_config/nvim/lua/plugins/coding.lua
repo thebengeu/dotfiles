@@ -27,7 +27,7 @@ return {
     lazy = true,
   },
   {
-    "/hkupty/iron.nvim",
+    "Vigemus/iron.nvim",
     config = function()
       local config = require("iron.config")
 
@@ -69,10 +69,14 @@ return {
 
       local ts = require("iron.fts.typescript").ts
       local typescript = vim.tbl_extend("force", ts, {
-        command = { "ts-node", "--compilerOptions", '{"module": "commonjs"}', "--transpileOnly" },
+        command = { "pnpm", "tsx" },
         format = function(lines)
           for i, line in ipairs(lines) do
-            lines[i] = line:gsub("const ", "var ")
+            lines[i] = line
+              :gsub("const ", "var ")
+              :gsub("^import ", "const ")
+              :gsub(" from '(%S+)'$", " = require('%1')")
+              :gsub(" type ", " ")
           end
           return require("iron.fts.common").format(ts, lines)
         end,
