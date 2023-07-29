@@ -135,3 +135,14 @@
     - npm-check-updates
     - pino-pretty
     - pm2
+- ansible.builtin.git:
+    dest: ~/bat-extras
+    repo: https://github.com/eth-p/bat-extras.git
+    version: ceaac1b917a8516763a834cb8504bce5a1270f88
+- ansible.builtin.command:
+    chdir: /home/{{ ansible_user_id }}/bat-extras
+    cmd: ./build.sh --install --minify all
+    creates: /usr/local/bin/batman
+  become: true
+  environment:
+    PATH: /usr/bin:/home/{{ ansible_user_id }}/go/bin
