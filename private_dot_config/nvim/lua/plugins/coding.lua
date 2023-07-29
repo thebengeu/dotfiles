@@ -74,7 +74,9 @@ return {
           for i, line in ipairs(lines) do
             lines[i] = line
               :gsub("const ", "var ")
-              :gsub("^import ", "const ")
+              :gsub("^import ", "var ")
+              :gsub("( from '%S+)%.js'$", "%1'")
+              :gsub("(, {.+} from '(%S+)')$", " = require('%2')%1")
               :gsub(" from '(%S+)'$", " = require('%1')")
               :gsub(" type ", " ")
           end
