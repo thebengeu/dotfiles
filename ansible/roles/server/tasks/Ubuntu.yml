@@ -36,7 +36,7 @@
     cmd: cpack -G DEB
     creates: ~/neovim/build/nvim-linux64.deb
 - ansible.builtin.apt:
-    deb: /home/{{ user }}/neovim/build/nvim-linux64.deb
+    deb: /home/{{ ansible_user_id }}/neovim/build/nvim-linux64.deb
   become: true
 - community.general.alternatives:
     name: editor
@@ -45,7 +45,7 @@
 - ansible.builtin.user:
     append: true
     groups: docker
-    name: "{{ user }}"
+    name: "{{ ansible_user_id }}"
     shell: /usr/bin/fish
   become: true
 - ansible.builtin.get_url:
@@ -77,7 +77,7 @@
     - skip_ansible_lint
 - ansible.posix.authorized_key:
     key: https://github.com/thebengeu.keys
-    user: "{{ user }}"
+    user: "{{ ansible_user_id }}"
 - ansible.builtin.command:
     cmd: chezmoi init --ssh thebengeu
     creates: ~/.local/share/chezmoi

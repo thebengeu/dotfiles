@@ -24,8 +24,8 @@
   when: address is defined
 - community.general.sudoers:
     commands: ALL
-    name: "{{ user }}"
-    user: "{{ user }}"
+    name: "{{ ansible_user_id }}"
+    user: "{{ ansible_user_id }}"
 - ansible.builtin.apt_key:
     keyring: /usr/share/keyrings/1password-archive-keyring.gpg
     url: https://downloads.1password.com/linux/keys/1password.asc

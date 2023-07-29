@@ -7,7 +7,7 @@ rm ~/.ssh/id_ed25519.pub
 sudo add-apt-repository ppa:ansible/ansible
 sudo apt install ansible
 git clone git@github.com:thebengeu/ansible.git ~/ansible
-ansible-playbook --extra-vars user=$USER --tags server ~/ansible/site.yml --ask-become-pass
+ansible-playbook --tags server ~/ansible/site.yml --ask-become-pass
 chezmoi apply
 tide configure
 cp ~/.wezterm.lua /mnt/c/Users/beng
