@@ -6,14 +6,9 @@ return {
     opts = {
       ensure_installed = {
         "ansible-lint",
-        "black",
-        "curlylint",
-        "djlint",
         "fixjson",
-        "isort",
         "js-debug-adapter",
         "prettier",
-        "ruff",
         "shellcheck",
         "shellharden",
         "shfmt",
@@ -29,21 +24,8 @@ return {
     "jose-elias-alvarez/null-ls.nvim",
     opts = function(_, opts)
       local null_ls = require("null-ls")
-      local run_if_not_venv = {
-        runtime_condition = function(params)
-          return not params.lsp_params.textDocument.uri:find("/.venv/")
-        end,
-      }
       opts.sources = {
-        null_ls.builtins.diagnostics.curlylint.with({
-          extra_filetypes = { "jinja" },
-        }),
-        null_ls.builtins.diagnostics.djlint.with({
-          extra_filetypes = { "jinja" },
-        }),
         null_ls.builtins.diagnostics.fish,
-        null_ls.builtins.diagnostics.mypy.with(run_if_not_venv),
-        null_ls.builtins.diagnostics.ruff.with(run_if_not_venv),
         null_ls.builtins.diagnostics.shellcheck,
         null_ls.builtins.diagnostics.sqlfluff.with({
           extra_args = { "--dialect", "postgres" },
@@ -54,22 +36,14 @@ return {
             return not params.lsp_params.textDocument.uri:find("/Pulumi%.")
           end,
         }),
-        null_ls.builtins.formatting.black,
-        null_ls.builtins.formatting.djlint.with({
-          extra_filetypes = { "jinja" },
-        }),
         null_ls.builtins.formatting.fish_indent,
         null_ls.builtins.formatting.fixjson,
-        null_ls.builtins.formatting.isort.with({
-          extra_args = { "--profile", "black" },
-        }),
         null_ls.builtins.formatting.prettier.with({
           extra_filetypes = { "prisma" },
           runtime_condition = function(params)
             return not params.lsp_params.textDocument.uri:find("/ccxt/")
           end,
         }),
-        null_ls.builtins.formatting.ruff,
         null_ls.builtins.formatting.shfmt,
         null_ls.builtins.formatting.shellharden,
         null_ls.builtins.formatting.stylua,
