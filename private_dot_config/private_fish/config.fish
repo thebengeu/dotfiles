@@ -7,7 +7,6 @@ fish_add_path ~/go/bin
 
 status is-interactive || exit
 
-set --export BAT_PAGER 'less --mouse --quit-if-one-screen --RAW-CONTROL-CHARS'
 set --export EDITOR nvim
 set --export MCFLY_DELETE_WITHOUT_CONFIRM TRUE
 set --export MCFLY_DISABLE_MENU TRUE
