@@ -19,8 +19,12 @@ set --global fish_cursor_replace_one underscore
 set --global fish_greeting
 set --global fish_vi_force_cursor 1
 
+atuin init fish --disable-ctrl-r --disable-up-arrow | source
 mcfly init fish | source
+starship init fish | source
 zoxide init --cmd cd fish | source
+
+enable_transience
 
 abbr --add agca 'git -C ~/ansible commit --amend'
 abbr --add agcam 'git -C ~/ansible commit -a -m'

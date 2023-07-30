@@ -1,0 +1,10 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+[aws]
+disabled = true
+
+[git_branch]
+ignore_branches = ['main', 'master']
+
+[nodejs]
+disabled = true
