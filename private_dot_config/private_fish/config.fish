@@ -1,3 +1,6 @@
+set --export PNPM_HOME ~/.local/share/pnpm
+
+fish_add_path $PNPM_HOME
 fish_add_path ~/.cargo/bin
 fish_add_path ~/.local/bin
 fish_add_path ~/.pulumi/bin
