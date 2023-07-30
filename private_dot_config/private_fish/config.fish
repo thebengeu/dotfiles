@@ -75,6 +75,7 @@ abbr --add jd 'just dev'
 abbr --add lg lazygit
 abbr --add ll 'exa --git --icons --long'
 abbr --add ls 'exa --icons'
+abbr --add man batman
 abbr --add n nvim
 abbr --add nr 'sh -c "printf \"\e[6 q\"; node"'
 abbr --add os 'set COMMAND $(op signin) && test -n "$COMMAND" && eval $COMMAND && set --export OP_TIME $(date +%s)'
