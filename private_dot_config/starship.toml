@@ -6,8 +6,14 @@ disabled = true
 [git_branch]
 ignore_branches = ['main', 'master']
 
+[hostname]
+format = "[$hostname]($style) "
+
 [lua]
 disabled = true
 
 [nodejs]
+disabled = true
+
+[username]
 disabled = true
