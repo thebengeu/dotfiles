@@ -151,7 +151,7 @@
 - ansible.builtin.command:
     cmd: atuin gen-completions --out-dir ~/.config/fish/completions --shell fish
     creates: ~/.config/fish/completions/atuin.fish
-- ansible.builtin.command:
+- ansible.builtin.shell:
     cmd: just --completions fish > ~/.config/fish/completions/just.fish
     creates: ~/.config/fish/completions/just.fish
 - ansible.builtin.command:
