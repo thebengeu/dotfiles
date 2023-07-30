@@ -154,3 +154,6 @@
 - ansible.builtin.command:
     cmd: just --completions fish > ~/.config/fish/completions/just.fish
     creates: ~/.config/fish/completions/just.fish
+- ansible.builtin.command:
+    cmd: pnpm add --global https://github.com/thebengeu/ts-node.git
+    creates: ~/.local/share/pnpm/ts-node
