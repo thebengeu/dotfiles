@@ -129,14 +129,6 @@
     - khal
     - qmk
     - sqlfluff
-- community.general.yarn:
-    name: "{{ item }}"
-    global: true
-    production: true
-  loop:
-    - npm-check-updates
-    - pino-pretty
-    - pm2
 - ansible.builtin.git:
     dest: ~/bat-extras
     repo: https://github.com/eth-p/bat-extras.git
@@ -157,3 +149,10 @@
 - ansible.builtin.command:
     cmd: pnpm add --global https://github.com/thebengeu/ts-node.git
     creates: ~/.local/share/pnpm/ts-node
+- ansible.builtin.command:
+    cmd: pnpm add --global {{ item }}
+    creates: ~/.local/share/pnpm/{{ item }}
+  loop:
+    - npm-check-updates
+    - pino-pretty
+    - pm2
