@@ -110,6 +110,7 @@
     cmd: nix profile install nixpkgs#{{ item }}
     creates: ~/.nix-profile/bin/{{ item }}
   loop:
+    - nethogs
     - nix
     - peco
 - ansible.builtin.command:
