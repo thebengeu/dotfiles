@@ -182,6 +182,10 @@ return {
     },
   },
   {
+    "johmsalas/text-case.nvim",
+    config = true,
+  },
+  {
     "cappyzawa/trim.nvim",
     config = true,
   },
