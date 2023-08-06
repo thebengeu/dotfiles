@@ -4,19 +4,20 @@ Set-WindowsExplorerOptions -EnableShowFileExtensions -EnableShowFullPathInTitleB
 
 winget settings --enable LocalManifestFiles
 
-$wingetPackages = @(
+$wingetPackageIds = @(
   'twpayne.chezmoi'
+  'dandavison.delta'
   'Git.Git'
-  'komac'
+  'RussellBanks.Komac'
   'Microsoft.Powershell'
   'Starship.Starship'
-  'startallback'
-  'wingetcreate'
+  'StartIsBack.StartAllBack'
+  'Microsoft.WingetCreate'
 )
 
-foreach ($wingetPackage in $wingetPackages)
+foreach ($wingetPackageId in $wingetPackageIds)
 {
-  winget install --silent $wingetPackage
+  winget install --silent --id $wingetPackageId
 }
 
 $storeApps = @(
