@@ -4,7 +4,7 @@
 PackageIdentifier: AudioBand.AudioBand
 PackageVersion: 1.2.1
 Installers:
-- InstallerUrl: https://github.com/AudioBand/AudioBand/releases/latest/download/audioband.msi
+- InstallerUrl: https://github.com/AudioBand/AudioBand/releases/download/v1.2.1/AudioBand.msi
   InstallerLocale: en-US
   Architecture: x64
   InstallerType: wix
