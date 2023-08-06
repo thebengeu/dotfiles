@@ -52,6 +52,11 @@ config.keys = {
 }
 config.launch_menu = {
 	{
+		domain = { DomainName = "local" },
+		label = "PowerShell",
+		args = { "pwsh", "-NoLogo" },
+	},
+	{
 		args = {
 			"wezterm",
 			"cli",
