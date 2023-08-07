@@ -5,14 +5,33 @@ Set-WindowsExplorerOptions -EnableShowFileExtensions -EnableShowFullPathInTitleB
 winget settings --enable LocalManifestFiles
 
 $wingetPackageIds = @(
+  'AgileBits.1Password'
+  'AgileBits.1Password.CLI'
+  '7zip.7zip'
+  'Twilio.Authy'
+  'Armin2208.WindowsAutoNightMode'
   'twpayne.chezmoi'
+  'Hibbiki.Chromium'
   'dandavison.delta'
+  'Discord.Discord'
+  'flux.flux'
+  'Mozilla.Firefox'
+  'Flow-Launcher.Flow-Launcher'
   'Git.Git'
   'RussellBanks.Komac'
+  'ManicTime.ManicTime'
+  'Obsidian.Obsidian'
   'Microsoft.Powershell'
+  'Microsoft.PowerToys'
+  'Microsoft.VisualStudioCode'
+  'Spotify.Spotify'
   'Starship.Starship'
   'StartIsBack.StartAllBack'
+  'xanderfrangos.twinkletray'
+  'JetBrains.WebStorm'
+  'wez.wezterm'
   'Microsoft.WingetCreate'
+  'Highresolution.X-MouseButtonControl'
 )
 
 foreach ($wingetPackageId in $wingetPackageIds)
@@ -23,7 +42,9 @@ foreach ($wingetPackageId in $wingetPackageIds)
 $storeApps = @(
   'Apple Music Preview'
   '9NRX63209R7B' # Outlook for Windows
+  'Pure Battery Analytics'
   'Raindrop.io'
+  'Unigram—Telegram for Windows'
   'WhatsApp'
 )
 
@@ -34,12 +55,42 @@ foreach ($storeApps in $storeApps)
 
 choco feature enable -n allowGlobalConfirmation
 
-choco install op
+@chocoPackages = @(
+  'Kindle'
+)
+
+foreach ($chocoPackage in $chocoPackages)
+{
+  choco install $chocoPackage
+}
+
+irm get.scoop.sh | iex
+scoop bucket add extras
+
+@scoopPackages = @(
+  'tableplus'
+)
+
+foreach ($scoopPackage in $scoopPackages)
+{
+  scoop install $scoopPackage
+}
 
 refreshenv
 
 chezmoi init --apply --exclude templates --ssh thebengeu
 
-git clone git@github.com:thebengeu/boxstarter.git "${env:USERPROFILE}\boxstarter"
+$boxstarterPath = "${env:USERPROFILE}\boxstarter"
 
-winget install --silent --manifest "${env:USERPROFILE}\boxstarter\manifests\a\AudioBand\AudioBand\1.2.1"
+git clone git@github.com:thebengeu/boxstarter.git $boxstarterPath
+
+@manifestPaths = @(
+  'a\AudioBand\AudioBand\1.2.1'
+  'r\Rabby\RabbyDesktop\0.31.0'
+  't\Todoist\Todoist\8.5.0'
+)
+
+for each ($manifestPath in $manifestPaths)
+{
+  winget install --silent --manifest "${$boxstarterPath}\manifests\${$manifestPath}"
+}
