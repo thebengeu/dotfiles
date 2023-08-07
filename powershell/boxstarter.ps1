@@ -2,6 +2,7 @@
 
 Set-WindowsExplorerOptions -EnableShowFileExtensions -EnableShowFullPathInTitleBar -EnableShowHiddenFilesFoldersDrives -EnableShowProtectedOSFiles
 
+winget settings --enable InstallerHashOverride
 winget settings --enable LocalManifestFiles
 
 $wingetPackageIds = @(
@@ -21,6 +22,7 @@ $wingetPackageIds = @(
   'RussellBanks.Komac'
   'ManicTime.ManicTime'
   'Obsidian.Obsidian'
+  'Microsoft.Office'
   'Microsoft.Powershell'
   'Microsoft.PowerToys'
   'Microsoft.VisualStudioCode'
@@ -65,11 +67,13 @@ foreach ($chocoPackage in $chocoPackages)
   choco install $chocoPackage
 }
 
+New-Item -ItemType Junction -Path "$env:LOCALAPPDATA\nvim" -Target "$env:USERPROFILE\.config\nvim"
+
 refreshenv
 
 chezmoi init --apply --exclude templates --ssh thebengeu
 
-$boxstarterPath = "${env:USERPROFILE}\boxstarter"
+$boxstarterPath = "$env:USERPROFILE\boxstarter"
 
 git clone git@github.com:thebengeu/boxstarter.git "$boxstarterPath"
 
