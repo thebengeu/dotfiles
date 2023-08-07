@@ -90,7 +90,7 @@ git clone git@github.com:thebengeu/boxstarter.git $boxstarterPath
   't\Todoist\Todoist\8.5.0'
 )
 
-for each ($manifestPath in $manifestPaths)
+foreach ($manifestPath in $manifestPaths)
 {
   winget install --silent --manifest "${$boxstarterPath}\manifests\${$manifestPath}"
 }
