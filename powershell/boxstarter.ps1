@@ -57,23 +57,12 @@ choco feature enable -n allowGlobalConfirmation
 
 $chocoPackages = @(
   'Kindle'
+  'tableplus'
 )
 
 foreach ($chocoPackage in $chocoPackages)
 {
   choco install $chocoPackage
-}
-
-irm get.scoop.sh | iex
-scoop bucket add extras
-
-$scoopPackages = @(
-  'tableplus'
-)
-
-foreach ($scoopPackage in $scoopPackages)
-{
-  scoop install $scoopPackage
 }
 
 refreshenv
