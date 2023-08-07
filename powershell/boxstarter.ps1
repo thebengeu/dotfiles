@@ -36,7 +36,7 @@ $wingetPackageIds = @(
 
 foreach ($wingetPackageId in $wingetPackageIds)
 {
-  winget install --silent --id $wingetPackageId
+  winget install --no-upgrade --silent --id $wingetPackageId
 }
 
 $storeApps = @(
