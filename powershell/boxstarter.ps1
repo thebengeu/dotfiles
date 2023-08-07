@@ -38,10 +38,6 @@ choco install op
 
 refreshenv
 
-Import-Module "${env:ChocolateyInstall}\helpers\chocolateyInstaller.psm1"
-
-Install-ChocolateyShortcut -ShortcutFilePath "${env:APPDATA}\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar\Obsidian.lnk" -TargetPath "${env:LOCALAPPDATA}\Obsidian\Obsidian.exe"
-
 chezmoi init --apply --exclude templates --ssh thebengeu
 
 git clone git@github.com:thebengeu/boxstarter.git "${env:USERPROFILE}\boxstarter"
