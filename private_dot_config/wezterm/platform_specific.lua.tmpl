@@ -1,10 +1,8 @@
 local module = {}
 
 function module.apply_to_config(config)
-{{- if eq .chezmoi.os "linux" }}
-{{-   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+{{- if eq .chezmoi.os "windows" }}
   config.default_domain = "WSL:Ubuntu"
-{{-   end }}
 {{- end }}
 end
 
