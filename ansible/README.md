@@ -9,9 +9,6 @@ sudo apt install ansible
 git clone git@github.com:thebengeu/ansible.git ~/ansible
 ansible-playbook --tags server ~/ansible/site.yml --ask-become-pass
 chezmoi apply
-mkdir -p /mnt/c/Users/beng/.config/wezterm
-cp ~/.config/wezterm/platform_specific.lua /mnt/c/Users/beng/.config/wezterm
-cp ~/.wezterm.lua /mnt/c/Users/beng
 aws configure
 sudo -u postgres psql # \password
 ```
