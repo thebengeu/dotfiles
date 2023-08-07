@@ -71,7 +71,7 @@ chezmoi init --apply --exclude templates --ssh thebengeu
 
 $boxstarterPath = "${env:USERPROFILE}\boxstarter"
 
-git clone git@github.com:thebengeu/boxstarter.git $boxstarterPath
+git clone git@github.com:thebengeu/boxstarter.git "$boxstarterPath"
 
 $manifestPaths = @(
   'a\AudioBand\AudioBand\1.2.1'
@@ -81,5 +81,5 @@ $manifestPaths = @(
 
 foreach ($manifestPath in $manifestPaths)
 {
-  winget install --silent --manifest "${$boxstarterPath}\manifests\${$manifestPath}"
+  winget install --silent --manifest "$boxstarterPath\manifests\$manifestPath"
 }
