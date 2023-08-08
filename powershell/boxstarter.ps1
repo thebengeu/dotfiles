@@ -50,10 +50,12 @@ foreach ($wingetPackageId in $wingetPackageIds)
 
 $storeApps = @(
   'Apple Music Preview'
+  'iCloud'
   '9NRX63209R7B' # Outlook for Windows
   'Raindrop.io'
   'Unigram—Telegram for Windows'
   'WhatsApp'
+  'Windows Terminal Preview'
 )
 
 if ($isMobile)
