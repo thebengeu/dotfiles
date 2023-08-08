@@ -82,7 +82,7 @@ Set-PSRepository -Name 'PSGallery' -InstallationPolicy Trusted
 
 Install-Module PSFzf
 
-$chromiumShortcut = (New-Object -ComObject WScript.Shell).CreateShortCut("$env:APPDATA\Roaming\Microsoft\Windows\Start Menu\Programs\Chromium.lnk")
+$chromiumShortcut = (New-Object -ComObject WScript.Shell).CreateShortCut("$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Chromium.lnk")
 $chromiumShortcut.Arguments = '--proxy-server=zproxy.lum-superproxy.io:22225'
 $chromiumShortcut.Save()
 
