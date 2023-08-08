@@ -27,6 +27,7 @@ $wingetPackageIds = @(
   'Microsoft.PowerToys'
   'Microsoft.Sysinternals.ProcessMonitor'
   'Neovide.Neovide'
+  'QMK.QMKToolbox'
   'Spotify.Spotify'
   'Starship.Starship'
   'StartIsBack.StartAllBack'
