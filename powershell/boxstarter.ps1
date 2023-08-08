@@ -7,7 +7,6 @@ winget settings --enable LocalManifestFiles
 
 $wingetPackageIds = @(
   'AgileBits.1Password'
-  'AgileBits.1Password.CLI'
   '7zip.7zip'
   'Twilio.Authy'
   'Armin2208.WindowsAutoNightMode'
@@ -19,23 +18,28 @@ $wingetPackageIds = @(
   'Mozilla.Firefox'
   'Flow-Launcher.Flow-Launcher'
   'Git.Git'
-  'RussellBanks.Komac'
   'ManicTime.ManicTime'
   'Obsidian.Obsidian'
-  'Microsoft.Office'
   'Microsoft.Powershell'
   'Microsoft.PowerToys'
   'Neovide.Neovide'
   'Spotify.Spotify'
   'Starship.Starship'
   'StartIsBack.StartAllBack'
-  'xanderfrangos.twinkletray'
   'Microsoft.VisualStudioCode'
   'JetBrains.WebStorm'
   'wez.wezterm'
   'Microsoft.WingetCreate'
   'Highresolution.X-MouseButtonControl'
+  'ajeetdsouza.zoxide'
 )
+
+$isDesktop = $env:COMPUTERNAME -eq 'DEV'
+
+if ($isDesktop)
+{
+  $wingetPackageIds += 'xanderfrangos.twinkletray'
+}
 
 foreach ($wingetPackageId in $wingetPackageIds)
 {
@@ -45,11 +49,15 @@ foreach ($wingetPackageId in $wingetPackageIds)
 $storeApps = @(
   'Apple Music Preview'
   '9NRX63209R7B' # Outlook for Windows
-  'Pure Battery Analytics'
   'Raindrop.io'
   'Unigram—Telegram for Windows'
   'WhatsApp'
 )
+
+if (!$isDesktop)
+{
+  $storeApps += 'Pure Battery Analytics'
+}
 
 foreach ($storeApps in $storeApps)
 {
