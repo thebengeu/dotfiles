@@ -1,5 +1,3 @@
-# https://boxstarter.org/package/nr/url?
-
 function Set-Registry-Values($path, $values) {
   foreach ($name in $values.Keys) {
     Set-ItemProperty $path $name $values[$name]
