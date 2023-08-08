@@ -1,0 +1,6 @@
+[cd]
+args = ["-NoLogo"]
+command = "pwsh"
+
+[edit]
+command = "code"
