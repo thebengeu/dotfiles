@@ -23,6 +23,7 @@ $wingetPackageIds = @(
   'Obsidian.Obsidian'
   'Microsoft.Powershell'
   'Microsoft.PowerToys'
+  'Microsoft.Sysinternals.ProcessMonitor'
   'Neovide.Neovide'
   'Spotify.Spotify'
   'Starship.Starship'
@@ -84,3 +85,5 @@ Install-Module PSFzf
 $chromiumShortcut = (New-Object -ComObject WScript.Shell).CreateShortCut("$env:APPDATA\Roaming\Microsoft\Windows\Start Menu\Programs\Chromium.lnk")
 $chromiumShortcut.Arguments = '--proxy-server=zproxy.lum-superproxy.io:22225'
 $chromiumShortcut.Save()
+
+Set-ItemProperty -Path "HKCU:\Control Panel\Mouse" -Name "MouseSensitivity" -Value 20
