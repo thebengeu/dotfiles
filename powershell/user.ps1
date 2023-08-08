@@ -35,7 +35,7 @@ foreach ($scoopPackage in $scoopPackages)
   scoop install $scoopPackage
 }
 
-chezmoi init --apply --exclude templates --ssh thebengeu
+chezmoi init --apply --ssh thebengeu
 
 New-Item -ItemType Junction -Path "$env:LOCALAPPDATA\nvim" -Target "$env:USERPROFILE\.config\nvim"
 
