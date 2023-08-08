@@ -17,6 +17,7 @@ $wingetPackageIds = @(
   'flux.flux'
   'Mozilla.Firefox'
   'Flow-Launcher.Flow-Launcher'
+  'junegunn.fzf'
   'Git.Git'
   'ManicTime.ManicTime'
   'Obsidian.Obsidian'
