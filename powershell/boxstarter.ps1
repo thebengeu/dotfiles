@@ -76,3 +76,7 @@ foreach ($chocoPackage in $chocoPackages)
 {
   choco install $chocoPackage
 }
+
+Set-PSRepository -Name 'PSGallery' -InstallationPolicy Trusted
+
+Install-Module PSFzf
