@@ -82,9 +82,19 @@ Set-PSRepository -Name 'PSGallery' -InstallationPolicy Trusted
 
 Install-Module PSFzf
 
-$chromiumShortcut = (New-Object -ComObject WScript.Shell).CreateShortCut("$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Chromium.lnk")
-$chromiumShortcut.Arguments = '--proxy-server=zproxy.lum-superproxy.io:22225'
-$chromiumShortcut.Save()
+$startMenuPrograms = 'Microsoft\Windows\Start Menu\Programs'
+
+$shortcutArguments = @{
+  "$env:APPDATA\$startMenuPrograms\Chromium.lnk" = '--proxy-server=zproxy.lum-superproxy.io:22225'
+  "$env:ProgramData\$startMenuPrograms\Neovide.lnk" = '--multigrid --wsl'
+}
+
+foreach ($shortcutPath in $shortcutArguments.Keys)
+{
+  $shortcut = (New-Object -ComObject WScript.Shell).CreateShortCut($shortcutPath)
+  $shortcut.Arguments = $shortcutArguments[$shortcutPath]
+  $shortcut.Save()
+}
 
 Set-ItemProperty -Path "HKCU:\Control Panel\Mouse" -Name "MouseSensitivity" -Value 20
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\PrecisionTouchPad" -Name "ThreeFingerTapEnabled" -Value 4
