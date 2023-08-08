@@ -27,6 +27,7 @@ if ($nul -eq (Get-Command -ErrorAction SilentlyContinue scoop)) {
 scoop bucket add extras
 
 $scoopPackages = @(
+  'goneovim'
 )
 
 foreach ($scoopPackage in $scoopPackages)
