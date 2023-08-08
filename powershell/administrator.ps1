@@ -7,7 +7,7 @@ function Set-Registry-Values($path, $values) {
 $isMobile = (Get-CimInstance -Class Win32_ComputerSystem -Property PCSystemType).PCSystemType -eq 2
 
 Set-Registry-Values 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' @{
-  Hidden          = 0
+  Hidden          = 1
   HideFileExt     = 0
   ShowSuperHidden = 1
 }
