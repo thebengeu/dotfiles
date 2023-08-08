@@ -39,9 +39,9 @@ chezmoi init --apply --exclude templates --ssh thebengeu
 
 New-Item -ItemType Junction -Path "$env:LOCALAPPDATA\nvim" -Target "$env:USERPROFILE\.config\nvim"
 
-$boxstarterPath = "$env:USERPROFILE\boxstarter"
+$powershellPath = "$env:USERPROFILE\powershell"
 
-git clone git@github.com:thebengeu/boxstarter.git "$boxstarterPath"
+git clone git@github.com:thebengeu/powershell.git "$powershellPath"
 
 $manifestPaths = @(
   'a\AudioBand\AudioBand\1.2.1'
@@ -51,5 +51,5 @@ $manifestPaths = @(
 
 foreach ($manifestPath in $manifestPaths)
 {
-  winget install --silent --manifest "$boxstarterPath\manifests\$manifestPath"
+  winget install --silent --manifest "$powershellPath\manifests\$manifestPath"
 }
