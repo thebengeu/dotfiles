@@ -1,8 +1,18 @@
 # https://boxstarter.org/package/nr/url?
 
+function Set-Registry-Values($path, $values) {
+  foreach ($name in $values.Keys) {
+    Set-ItemProperty $path $name $values[$name]
+  }
+}
+
 $isMobile = (Get-CimInstance -Class Win32_ComputerSystem -Property PCSystemType).PCSystemType -eq 2
 
-Set-WindowsExplorerOptions -EnableShowFileExtensions -EnableShowFullPathInTitleBar -EnableShowHiddenFilesFoldersDrives -EnableShowProtectedOSFiles
+Set-Registry-Values 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' @{
+  Hidden = 0
+  HideFileExt = 0
+  ShowSuperHidden = 1
+}
 
 winget settings --enable InstallerHashOverride
 winget settings --enable LocalManifestFiles
@@ -101,14 +111,16 @@ foreach ($shortcutPath in $shortcutArguments.Keys)
   $shortcut.Save()
 }
 
-Set-ItemProperty -Path "HKCU:\Control Panel\Mouse" -Name "MouseSensitivity" -Value 20
-Set-ItemProperty -Path "HKCU:\Software\Microsoft\Accessibility" -Name "CursorSize" -Value 2
+Set-ItemProperty 'HKCU:\Control Panel\Mouse' 'MouseSensitivity' 20
+Set-ItemProperty 'HKCU:\Software\Microsoft\Accessibility' 'CursorSize' 2
 
 if ($isMobile) {
-  Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\PrecisionTouchPad" -Name "FourFingerSlideEnabled" -Value 3
-  Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\PrecisionTouchPad" -Name "FourFingerTapEnabled" -Value 3
-  Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\PrecisionTouchPad" -Name "RightClickZoneEnabled" -Value 0
-  Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\PrecisionTouchPad" -Name "ThreeFingerTapEnabled" -Value 4
+  Set-Registry-Values "HKCU:\Software\Microsoft\Windows\CurrentVersion\PrecisionTouchPad" @{
+    FourFingerSlideEnabled = 3
+    FourFingerTapEnabled = 3
+    RightClickZoneEnabled = 0
+    ThreeFingerTapEnabled = 4
+  }
 }
 
 $unnecessaryApps = @(
