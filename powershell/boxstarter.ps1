@@ -1,5 +1,7 @@
 # https://boxstarter.org/package/nr/url?
 
+$isMobile = (Get-CimInstance -Class Win32_ComputerSystem -Property PCSystemType).PCSystemType -eq 2
+
 Set-WindowsExplorerOptions -EnableShowFileExtensions -EnableShowFullPathInTitleBar -EnableShowHiddenFilesFoldersDrives -EnableShowProtectedOSFiles
 
 winget settings --enable InstallerHashOverride
@@ -36,9 +38,7 @@ $wingetPackageIds = @(
   'ajeetdsouza.zoxide'
 )
 
-$isDesktop = $env:COMPUTERNAME -eq 'DEV'
-
-if ($isDesktop)
+if (!$isMobile)
 {
   $wingetPackageIds += 'xanderfrangos.twinkletray'
 }
@@ -56,7 +56,7 @@ $storeApps = @(
   'WhatsApp'
 )
 
-if (!$isDesktop)
+if ($isMobile)
 {
   $storeApps += 'Pure Battery Analytics'
 }
@@ -65,6 +65,8 @@ foreach ($storeApps in $storeApps)
 {
   winget install --source msstore $storeApps
 }
+
+irm https://community.chocolatey.org/install.ps1 | iex
 
 choco feature enable -n allowGlobalConfirmation
 
@@ -97,11 +99,14 @@ foreach ($shortcutPath in $shortcutArguments.Keys)
 }
 
 Set-ItemProperty -Path "HKCU:\Control Panel\Mouse" -Name "MouseSensitivity" -Value 20
-Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\PrecisionTouchPad" -Name "ThreeFingerTapEnabled" -Value 4
-Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\PrecisionTouchPad" -Name "FourFingerSlideEnabled" -Value 3
-Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\PrecisionTouchPad" -Name "FourFingerTapEnabled" -Value 3
-Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\PrecisionTouchPad" -Name "RightClickZoneEnabled" -Value 0
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Accessibility" -Name "CursorSize" -Value 2
+
+if ($isMobile) {
+  Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\PrecisionTouchPad" -Name "FourFingerSlideEnabled" -Value 3
+  Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\PrecisionTouchPad" -Name "FourFingerTapEnabled" -Value 3
+  Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\PrecisionTouchPad" -Name "RightClickZoneEnabled" -Value 0
+  Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\PrecisionTouchPad" -Name "ThreeFingerTapEnabled" -Value 4
+}
 
 $unnecessaryApps = @(
   'Clipchamp.Clipchamp'
