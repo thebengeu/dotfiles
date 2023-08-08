@@ -3,8 +3,7 @@ $wingetPackageIds = @(
   'Neovim.Neovim.Nightly'
 )
 
-foreach ($wingetPackageId in $wingetPackageIds)
-{
+foreach ($wingetPackageId in $wingetPackageIds) {
   winget install --ignore-security-hash --silent --id $wingetPackageId
 }
 
@@ -18,8 +17,7 @@ $scoopPackages = @(
   'goneovim'
 )
 
-foreach ($scoopPackage in $scoopPackages)
-{
+foreach ($scoopPackage in $scoopPackages) {
   scoop install $scoopPackage
 }
 
@@ -37,7 +35,6 @@ $manifestPaths = @(
   't\Todoist\Todoist\8.5.0'
 )
 
-foreach ($manifestPath in $manifestPaths)
-{
+foreach ($manifestPath in $manifestPaths) {
   winget install --silent --manifest "$powershellPath\manifests\$manifestPath"
 }

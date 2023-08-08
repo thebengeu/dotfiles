@@ -7,8 +7,8 @@ function Set-Registry-Values($path, $values) {
 $isMobile = (Get-CimInstance -Class Win32_ComputerSystem -Property PCSystemType).PCSystemType -eq 2
 
 Set-Registry-Values 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' @{
-  Hidden = 0
-  HideFileExt = 0
+  Hidden          = 0
+  HideFileExt     = 0
   ShowSuperHidden = 1
 }
 
@@ -49,13 +49,11 @@ $wingetPackageIds = @(
   'ajeetdsouza.zoxide'
 )
 
-if (!$isMobile)
-{
+if (!$isMobile) {
   $wingetPackageIds += 'xanderfrangos.twinkletray'
 }
 
-foreach ($wingetPackageId in $wingetPackageIds)
-{
+foreach ($wingetPackageId in $wingetPackageIds) {
   winget install --no-upgrade --silent --id $wingetPackageId
 }
 
@@ -69,13 +67,11 @@ $storeApps = @(
   'Windows Terminal Preview'
 )
 
-if ($isMobile)
-{
+if ($isMobile) {
   $storeApps += 'Pure Battery Analytics'
 }
 
-foreach ($storeApps in $storeApps)
-{
+foreach ($storeApps in $storeApps) {
   winget install --source msstore $storeApps
 }
 
@@ -88,8 +84,7 @@ $chocoPackages = @(
   'tableplus'
 )
 
-foreach ($chocoPackage in $chocoPackages)
-{
+foreach ($chocoPackage in $chocoPackages) {
   choco install $chocoPackage
 }
 
@@ -100,12 +95,11 @@ Install-Module PSFzf
 $startMenuPrograms = 'Microsoft\Windows\Start Menu\Programs'
 
 $shortcutArguments = @{
-  "$env:APPDATA\$startMenuPrograms\Chromium.lnk" = '--proxy-server=zproxy.lum-superproxy.io:22225'
+  "$env:APPDATA\$startMenuPrograms\Chromium.lnk"    = '--proxy-server=zproxy.lum-superproxy.io:22225'
   "$env:ProgramData\$startMenuPrograms\Neovide.lnk" = '--multigrid --wsl'
 }
 
-foreach ($shortcutPath in $shortcutArguments.Keys)
-{
+foreach ($shortcutPath in $shortcutArguments.Keys) {
   $shortcut = (New-Object -ComObject WScript.Shell).CreateShortCut($shortcutPath)
   $shortcut.Arguments = $shortcutArguments[$shortcutPath]
   $shortcut.Save()
@@ -117,9 +111,9 @@ Set-ItemProperty 'HKCU:\Software\Microsoft\Accessibility' 'CursorSize' 2
 if ($isMobile) {
   Set-Registry-Values "HKCU:\Software\Microsoft\Windows\CurrentVersion\PrecisionTouchPad" @{
     FourFingerSlideEnabled = 3
-    FourFingerTapEnabled = 3
-    RightClickZoneEnabled = 0
-    ThreeFingerTapEnabled = 4
+    FourFingerTapEnabled   = 3
+    RightClickZoneEnabled  = 0
+    ThreeFingerTapEnabled  = 4
   }
 }
 
@@ -145,7 +139,6 @@ $unnecessaryApps = @(
   'MicrosoftCorporationII.QuickAssist'
 )
 
-foreach ($unnecessaryApp in $unnecessaryApps)
-{
+foreach ($unnecessaryApp in $unnecessaryApps) {
   Get-AppxPackage $unnecessaryApp | Remove-AppxPackage
 }
