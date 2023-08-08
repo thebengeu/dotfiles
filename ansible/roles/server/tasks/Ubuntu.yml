@@ -133,6 +133,7 @@
   loop:
     - howdoi
     - khal
+    - neovim-remote
     - qmk
     - sqlfluff
 - ansible.builtin.git:
