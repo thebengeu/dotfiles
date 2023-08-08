@@ -46,6 +46,7 @@ $wingetPackageIds = @(
   'wez.wezterm'
   'Microsoft.WingetCreate'
   'Highresolution.X-MouseButtonControl'
+  'Zoom.Zoom'
   'ajeetdsouza.zoxide'
 )
 
