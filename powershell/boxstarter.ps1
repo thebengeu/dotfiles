@@ -92,3 +92,30 @@ Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Precisio
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\PrecisionTouchPad" -Name "FourFingerTapEnabled" -Value 3
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\PrecisionTouchPad" -Name "RightClickZoneEnabled" -Value 0
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Accessibility" -Name "CursorSize" -Value 2
+
+$unnecessaryApps = @(
+  'Clipchamp.Clipchamp'
+  'Microsoft.549981C3F5F10' # Cortana
+  'Microsoft.BingNews'
+  'Microsoft.BingWeather'
+  'Microsoft.GetHelp'
+  'Microsoft.Getstarted'
+  'Microsoft.MicrosoftSolitaireCollection'
+  'Microsoft.MicrosoftStickyNotes'
+  'Microsoft.Paint'
+  'Microsoft.PowerAutomateDesktop'
+  'Microsoft.Todos'
+  'Microsoft.WindowsAlarms'
+  'Microsoft.WindowsCalculator'
+  'Microsoft.WindowsFeedbackHub'
+  'Microsoft.WindowsMaps'
+  'Microsoft.WindowsSoundRecorder'
+  'Microsoft.ZuneMusic'
+  'Microsoft.ZuneVideo'
+  'MicrosoftCorporationII.QuickAssist'
+)
+
+foreach ($unnecessaryApp in $unnecessaryApps)
+{
+  Get-AppxPackage $unnecessaryApp | Remove-AppxPackage
+}
