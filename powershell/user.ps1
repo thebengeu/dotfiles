@@ -1,3 +1,15 @@
+$shortcutArguments = @{
+  "Chromium" = '--proxy-server=zproxy.lum-superproxy.io:22225'
+  "Neovide" = '--multigrid --wsl'
+}
+
+foreach ($appName in $shortcutArguments.Keys)
+{
+  $shortcut = (New-Object -ComObject WScript.Shell).CreateShortCut("$env:APPDATA\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar\$appName.lnk")
+  $shortcut.Arguments = $shortcutArguments[$appName]
+  $shortcut.Save()
+}
+
 $wingetPackageIds = @(
   'Microsoft.Office'
   'Neovim.Neovim.Nightly'
@@ -8,7 +20,10 @@ foreach ($wingetPackageId in $wingetPackageIds)
   winget install --ignore-security-hash --silent --id $wingetPackageId
 }
 
-irm get.scoop.sh | iex
+if ($nul -eq (Get-Command -ErrorAction SilentlyContinue scoop)) {
+  Invoke-RestMethod get.scoop.sh | Invoke-Expression
+}
+
 scoop bucket add extras
 
 $scoopPackages = @(
