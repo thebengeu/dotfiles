@@ -24,6 +24,7 @@ foreach ($scoopPackage in $scoopPackages) {
 chezmoi init --apply --ssh thebengeu
 
 New-Item -ItemType Junction -Path "$env:LOCALAPPDATA\nvim" -Target "$env:USERPROFILE\.config\nvim"
+New-Item -ItemType SymbolicLink -Path "$env:USERPROFILE\.config\chezmoi\chezmoi.toml" -Target "$env:USERPROFILE\.local\share\chezmoi\chezmoi.toml"
 
 $powershellPath = "$env:USERPROFILE\powershell"
 
