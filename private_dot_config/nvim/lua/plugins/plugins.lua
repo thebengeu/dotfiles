@@ -9,10 +9,24 @@ return {
   },
   {
     "rmagatti/auto-session",
+    keys = {
+      {
+        "<space>sl",
+        function()
+          require("auto-session.session-lens").search_session()
+        end,
+        desc = "Sessions",
+      },
+    },
+    lazy = false,
     opts = {
-      log_level = "error",
+      auto_session_enable_last_session = vim.loop.cwd() == vim.loop.os_homedir(),
+      log_level = vim.log.levels.ERROR,
       pre_save_cmds = {
         require("neo-tree.sources.manager").close_all,
+      },
+      session_lens = {
+        previewer = true,
       },
     },
   },
@@ -32,18 +46,6 @@ return {
     cmd = {
       "TSHighlightCapturesUnderCursor",
       "TSPlaygroundToggle",
-    },
-  },
-  {
-    "rmagatti/session-lens",
-    keys = {
-      {
-        "<space>sl",
-        function()
-          require("session-lens").search_session()
-        end,
-        desc = "Sessions",
-      },
     },
   },
   {
