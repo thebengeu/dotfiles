@@ -1,3 +1,19 @@
-{{- if ne .chezmoi.hostname "dev" }}
+chezmoi.toml
+
+{{ if eq .chezmoi.os "windows" }}
+*
+!.config/{nvim,wezterm,starship.toml}
+!AutoHotkey.ahk
+!.git{config,ignore}
+!.wezterm.lua
+!Microsoft.PowerShell_profile.ps1
+{{ else }}
+.config/wezterm
+AutoHotkey.ahk
+.wezterm.lua
+Microsoft.PowerShell_profile.ps1
+{{ end }}
+
+{{ if ne .chezmoi.hostname "dev" }}
 .wslconfig
-{{- end }}
+{{ end }}
