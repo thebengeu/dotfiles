@@ -66,7 +66,7 @@ foreach ($storeApps in $storeApps)
   winget install --source msstore $storeApps
 }
 
-irm https://community.chocolatey.org/install.ps1 | iex
+Invoke-RestMethod community.chocolatey.org/install.ps1 | Invoke-Expression
 
 choco feature enable -n allowGlobalConfirmation
 
