@@ -15,6 +15,8 @@ scoop bucket add extras
 
 $scoopPackages = @(
   'goneovim'
+  'lazygit'
+  'topgrade'
 )
 
 foreach ($scoopPackage in $scoopPackages) {
