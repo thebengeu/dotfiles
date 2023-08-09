@@ -92,7 +92,7 @@ else {
 }
 
 foreach ($storeApps in $storeApps) {
-  winget install --source msstore $storeApps
+  winget install --accept-package-agreements --source msstore $storeApps
 }
 
 Invoke-RestMethod community.chocolatey.org/install.ps1 | Invoke-Expression
