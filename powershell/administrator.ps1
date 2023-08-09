@@ -56,7 +56,9 @@ $wingetPackageIds = @(
 if (!$isMobile) {
   $wingetPackageIds += @(
     'BinaryFortress.DisplayFusion'
+    'PlayStation.DualSenseFWUpdater'
     'Nvidia.GeForceExperience'
+    'Valve.Steam'
     'xanderfrangos.twinkletray'
   )
 }
@@ -86,8 +88,6 @@ else {
   $storeApps += @(
     'Dolby Access'
     'DTS Sound Unbound'
-    'PlayStation.DualSenseFWUpdater'
-    'Valve.Steam'
   )
 }
 
