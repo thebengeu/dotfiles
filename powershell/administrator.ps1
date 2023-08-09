@@ -56,6 +56,7 @@ $wingetPackageIds = @(
 if (!$isMobile) {
   $wingetPackageIds += @(
     'BinaryFortress.DisplayFusion'
+    'Nvidia.GeForceExperience'
     'Logitech.LogiTune'
     'xanderfrangos.twinkletray'
   )
