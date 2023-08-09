@@ -77,14 +77,19 @@ $storeApps = @(
   'Windows Terminal Preview'
 )
 
-$storeApps += $isMobile ? @(
-  'Pure Battery Analytics'
-) : @(
-  'Dolby Access'
-  'DTS Sound Unbound'
-  'PlayStation.DualSenseFWUpdater'
-  'Valve.Steam'
-)
+if ($isMobile) {
+  $storeApps += @(
+    'Pure Battery Analytics'
+  )
+}
+else {
+  $storeApps += @(
+    'Dolby Access'
+    'DTS Sound Unbound'
+    'PlayStation.DualSenseFWUpdater'
+    'Valve.Steam'
+  )
+}
 
 foreach ($storeApps in $storeApps) {
   winget install --source msstore $storeApps
