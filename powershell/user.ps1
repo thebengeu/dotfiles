@@ -1,10 +1,16 @@
-$wingetPackageIds = @(
+$ignoreSecurityHashWingetPackageIds = @(
   'Microsoft.Office'
   'Neovim.Neovim.Nightly'
 )
 
-foreach ($wingetPackageId in $wingetPackageIds) {
-  winget install --ignore-security-hash --silent --id $wingetPackageId
+if (!$isMobile) {
+  $ignoreSecurityHashWingetPackageIds += @(
+    'Logitech.LogiTune'
+  )
+}
+
+foreach ($ignoreSecurityHashWingetPackageId in $ignoreSecurityHashWingetPackageIds) {
+  winget install --ignore-security-hash --silent --id $ignoreSecurityHashWingetPackageId
 }
 
 if ($nul -eq (Get-Command -ErrorAction SilentlyContinue scoop)) {
@@ -25,19 +31,10 @@ foreach ($scoopPackage in $scoopPackages) {
 
 chezmoi init --apply --ssh thebengeu
 
-New-Item -ItemType Junction -Path "$env:LOCALAPPDATA\nvim" -Target "$env:USERPROFILE\.config\nvim"
-New-Item -ItemType SymbolicLink -Path "$env:USERPROFILE\.config\chezmoi\chezmoi.toml" -Target "$env:USERPROFILE\.local\share\chezmoi\chezmoi.toml"
+$localAppDataNvimPath = "$env:LOCALAPPDATA\nvim"
 
-$powershellPath = "$env:USERPROFILE\powershell"
-
-git clone git@github.com:thebengeu/powershell.git "$powershellPath"
-
-$manifestPaths = @(
-  'a\AudioBand\AudioBand\1.2.1'
-  'r\Rabby\RabbyDesktop\0.31.0'
-  't\Todoist\Todoist\8.5.0'
-)
-
-foreach ($manifestPath in $manifestPaths) {
-  winget install --silent --manifest "$powershellPath\manifests\$manifestPath"
+if (!(Test-Path $localAppDataNvimPath)) {
+  New-Item -ItemType Junction -Path $localAppDataNvimPath -Target "$env:USERPROFILE\.config\nvim"
 }
+
+git clone git@github.com:thebengeu/powershell.git "$env:USERPROFILE\powershell"

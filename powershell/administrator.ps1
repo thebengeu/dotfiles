@@ -57,12 +57,12 @@ if (!$isMobile) {
   $wingetPackageIds += @(
     'BinaryFortress.DisplayFusion'
     'Nvidia.GeForceExperience'
-    'Logitech.LogiTune'
     'xanderfrangos.twinkletray'
   )
 }
 
 foreach ($wingetPackageId in $wingetPackageIds) {
+  $wingetPackageId
   winget install --no-upgrade --silent --id $wingetPackageId
 }
 
@@ -95,6 +95,7 @@ foreach ($storeApps in $storeApps) {
   winget install --accept-package-agreements --source msstore $storeApps
 }
 
+Set-ExecutionPolicy Unrestricted
 Invoke-RestMethod community.chocolatey.org/install.ps1 | Invoke-Expression
 
 choco feature enable -n allowGlobalConfirmation
@@ -102,6 +103,7 @@ choco feature enable -n allowGlobalConfirmation
 $chocoPackages = @(
   'Kindle'
   'ledger-live'
+  'spotify'
   'tableplus'
 )
 
@@ -109,7 +111,8 @@ foreach ($chocoPackage in $chocoPackages) {
   choco install $chocoPackage
 }
 
-Set-PSRepository -Name 'PSGallery' -InstallationPolicy Trusted
+Install-PackageProvider NuGet -Force
+Set-PSRepository PSGallery -InstallationPolicy Trusted
 
 Install-Module PSFzf
 
