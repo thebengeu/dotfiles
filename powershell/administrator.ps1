@@ -26,12 +26,14 @@ $wingetPackageIds = @(
   'Hibbiki.Chromium'
   'dandavison.delta'
   'Discord.Discord'
+  'ExpressVPN.ExpressVPN'
   'flux.flux'
   'Mozilla.Firefox'
   'Flow-Launcher.Flow-Launcher'
   'junegunn.fzf'
   'Git.Git'
   'ManicTime.ManicTime'
+  'Notion.Notion'
   'Obsidian.Obsidian'
   'Microsoft.Powershell'
   'Microsoft.PowerToys'
@@ -46,12 +48,17 @@ $wingetPackageIds = @(
   'wez.wezterm'
   'Microsoft.WingetCreate'
   'Highresolution.X-MouseButtonControl'
+  'th-ch.YouTubeMusic'
   'Zoom.Zoom'
   'ajeetdsouza.zoxide'
 )
 
 if (!$isMobile) {
-  $wingetPackageIds += 'xanderfrangos.twinkletray'
+  $wingetPackageIds += @(
+    'BinaryFortress.DisplayFusion'
+    'Logitech.LogiTune'
+    'xanderfrangos.twinkletray'
+  )
 }
 
 foreach ($wingetPackageId in $wingetPackageIds) {
@@ -60,6 +67,7 @@ foreach ($wingetPackageId in $wingetPackageIds) {
 
 $storeApps = @(
   'Apple Music Preview'
+  '9PL8WPH0QK9M' # Cider (Preview)
   'iCloud'
   '9NRX63209R7B' # Outlook for Windows
   'Raindrop.io'
@@ -68,9 +76,14 @@ $storeApps = @(
   'Windows Terminal Preview'
 )
 
-if ($isMobile) {
-  $storeApps += 'Pure Battery Analytics'
-}
+$storeApps += $isMobile ? @(
+  'Pure Battery Analytics'
+) : @(
+  'Dolby Access'
+  'DTS Sound Unbound'
+  'PlayStation.DualSenseFWUpdater'
+  'Valve.Steam'
+)
 
 foreach ($storeApps in $storeApps) {
   winget install --source msstore $storeApps
@@ -82,6 +95,7 @@ choco feature enable -n allowGlobalConfirmation
 
 $chocoPackages = @(
   'Kindle'
+  'ledger-live'
   'tableplus'
 )
 
