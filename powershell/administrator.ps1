@@ -149,6 +149,7 @@ $unnecessaryApps = @(
   'Microsoft.BingWeather'
   'Microsoft.GetHelp'
   'Microsoft.Getstarted'
+  'Microsoft.MicrosoftOfficeHub'
   'Microsoft.MicrosoftSolitaireCollection'
   'Microsoft.MicrosoftStickyNotes'
   'Microsoft.Paint'
