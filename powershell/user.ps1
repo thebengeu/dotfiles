@@ -1,3 +1,5 @@
+$isMobile = (Get-CimInstance -Class Win32_ComputerSystem -Property PCSystemType).PCSystemType -eq 2
+
 $ignoreSecurityHashWingetPackageIds = @(
   'Microsoft.Office'
   'Neovim.Neovim.Nightly'
