@@ -55,6 +55,7 @@ $wingetPackageIds = @(
 
 if (!$isMobile) {
   $wingetPackageIds += @(
+    'Asus.ArmouryCrate'
     'BinaryFortress.DisplayFusion'
     'PlayStation.DualSenseFWUpdater'
     'Nvidia.GeForceExperience'
