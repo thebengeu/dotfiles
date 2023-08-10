@@ -169,4 +169,6 @@ foreach ($unnecessaryApp in $unnecessaryApps) {
   Get-AppxPackage $unnecessaryApp | Remove-AppxPackage
 }
 
-Enable-WindowsOptionalFeature -FeatureName Microsoft-Hyper-V-All -NoRestart -Online
+if (!$isMobile) {
+  Enable-WindowsOptionalFeature -FeatureName Microsoft-Hyper-V-All -NoRestart -Online
+}
