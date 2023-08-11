@@ -22,10 +22,8 @@ if ($nul -eq (Get-Command -ErrorAction SilentlyContinue scoop)) {
 scoop bucket add extras
 
 $scoopPackages = @(
-  'ghorg'
   'goneovim'
   'just'
-  'lazygit'
   'topgrade'
 )
 
@@ -33,7 +31,9 @@ foreach ($scoopPackage in $scoopPackages) {
   scoop install $scoopPackage
 }
 
-chezmoi init --apply --exclude templates --ssh thebengeu
+chezmoi init --apply --ssh thebengeu
+
+. $PROFILE
 
 $localAppDataNvimPath = "$env:LOCALAPPDATA\nvim"
 
@@ -48,5 +48,8 @@ pnpm add --global pino-pretty npm-check-updates https://github.com/thebengeu/ts-
 pip install pipx
 
 pipx install neovim-remote
+
+go install github.com/nao1215/gup@latest
+gup import
 
 $env:PATH = [System.Environment]::GetEnvironmentVariable("PATH", "Machine") + [IO.Path]::PathSeparator + [System.Environment]::GetEnvironmentVariable("PATH", "User")

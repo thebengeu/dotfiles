@@ -35,6 +35,7 @@ $wingetPackageIds = @(
   'Flow-Launcher.Flow-Launcher'
   'junegunn.fzf'
   'Git.Git'
+  'jftuga.less'
   'ManicTime.ManicTime'
   'Notion.Notion'
   'Obsidian.Obsidian'
@@ -115,6 +116,7 @@ Invoke-RestMethod community.chocolatey.org/install.ps1 | Invoke-Expression
 choco feature enable -n allowGlobalConfirmation
 
 $chocoPackages = @(
+  'golang'
   'Kindle'
   'ledger-live'
   'mingw'
@@ -130,6 +132,7 @@ Install-PackageProvider NuGet -Force
 Set-PSRepository PSGallery -InstallationPolicy Trusted
 
 Install-Module PSFzf
+Install-Module PSWindowsUpdate
 
 $startMenuPrograms = 'Microsoft\Windows\Start Menu\Programs'
 
