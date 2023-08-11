@@ -76,10 +76,12 @@ if (!$isMobile) {
 
 foreach ($wingetPackageId in $wingetPackageIds) {
   $wingetPackageId
-  winget install --no-upgrade --silent --id $wingetPackageId
+  winget install --exact --no-upgrade --silent --id $wingetPackageId
 }
 
 winget install --silent --override '--add Microsoft.VisualStudio.Workload.VCTools --includeRecommended --quiet --wait' Microsoft.VisualStudio.2022.BuildTools
+
+winget pin add --exact --id JetBrains.WebStorm
 
 corepack enable
 
