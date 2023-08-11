@@ -78,6 +78,7 @@ return {
           mason = false,
         },
         graphql = {},
+        powershell_es = {},
         prismals = {},
         tsserver = {
           on_attach = function(client)
