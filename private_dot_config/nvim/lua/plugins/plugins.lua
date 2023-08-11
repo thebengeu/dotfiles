@@ -50,7 +50,15 @@ return {
   },
   {
     "danielfalk/smart-open.nvim",
-    dependencies = "kkharji/sqlite.lua",
+    dependencies = {
+      "kkharji/sqlite.lua",
+      config = function()
+        if jit.os:find("Windows") then
+          vim.g.sqlite_clib_path = "C:/ProgramData/chocolatey/lib/SQLite/tools/sqlite3.dll"
+        end
+      end,
+      enabled = true,
+    },
     keys = {
       {
         "<leader><space>",

@@ -205,4 +205,12 @@ return {
       "\\\\A",
     },
   },
+  {
+    "gbprod/yanky.nvim",
+    opts = {
+      ring = {
+        storage = "sqlite",
+      },
+    },
+  },
 }
