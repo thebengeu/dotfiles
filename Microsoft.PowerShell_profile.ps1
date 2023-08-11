@@ -7,4 +7,5 @@ Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory
 
 New-Alias which Get-Command
 
+$Env:NODE_NO_WARNINGS = 1
 $Env:Path += [IO.Path]::PathSeparator + "$env:ProgramFiles\PostgreSQL\15\bin"
