@@ -50,7 +50,6 @@ $wingetPackageIds = @(
   'QMK.QMKToolbox'
   'BurntSushi.ripgrep.MSVC'
   'Spotify.Spotify'
-  'SQLite.SQLite'
   'Starship.Starship'
   'StartIsBack.StartAllBack'
   'Microsoft.VisualStudioCode'
@@ -123,6 +122,7 @@ $chocoPackages = @(
   'ledger-live'
   'mingw'
   'spotify'
+  'SQLite'
   'tableplus'
 )
 
