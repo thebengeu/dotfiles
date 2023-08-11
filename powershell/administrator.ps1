@@ -1,5 +1,7 @@
-function Set-Registry-Values($path, $values) {
-  foreach ($name in $values.Keys) {
+function Set-Registry-Values($path, $values)
+{
+  foreach ($name in $values.Keys)
+  {
     Set-ItemProperty $path $name $values[$name]
   }
 }
@@ -62,7 +64,8 @@ $wingetPackageIds = @(
   'ajeetdsouza.zoxide'
 )
 
-if (!$isMobile) {
+if (!$isMobile)
+{
   $wingetPackageIds += @(
     'Asus.ArmouryCrate'
     'BinaryFortress.DisplayFusion'
@@ -73,12 +76,13 @@ if (!$isMobile) {
   )
 }
 
-foreach ($wingetPackageId in $wingetPackageIds) {
+foreach ($wingetPackageId in $wingetPackageIds)
+{
   $wingetPackageId
   winget install --exact --no-upgrade --silent --id $wingetPackageId
 }
 
-winget install --silent --override '--add Microsoft.VisualStudio.Workload.VCTools --includeRecommended --quiet --wait' Microsoft.VisualStudio.2022.BuildTools
+winget install --exact --override '--add Microsoft.VisualStudio.Workload.VCTools --includeRecommended --quiet --wait' --silent Microsoft.VisualStudio.2022.BuildTools
 
 winget pin add --exact --id JetBrains.WebStorm
 
@@ -95,19 +99,21 @@ $storeApps = @(
   'Windows Terminal Preview'
 )
 
-if ($isMobile) {
+if ($isMobile)
+{
   $storeApps += @(
     'Pure Battery Analytics'
   )
-}
-else {
+} else
+{
   $storeApps += @(
     'Dolby Access'
     'DTS Sound Unbound'
   )
 }
 
-foreach ($storeApps in $storeApps) {
+foreach ($storeApps in $storeApps)
+{
   winget install --accept-package-agreements --exact --source msstore $storeApps
 }
 
@@ -126,7 +132,8 @@ $chocoPackages = @(
   'tableplus'
 )
 
-foreach ($chocoPackage in $chocoPackages) {
+foreach ($chocoPackage in $chocoPackages)
+{
   choco install $chocoPackage
 }
 
@@ -139,11 +146,12 @@ Install-Module PSWindowsUpdate
 $startMenuPrograms = 'Microsoft\Windows\Start Menu\Programs'
 
 $shortcutArguments = @{
-  "$env:APPDATA\$startMenuPrograms\Chromium.lnk"    = '--proxy-server=zproxy.lum-superproxy.io:22225'
-  "$env:ProgramData\$startMenuPrograms\Neovide.lnk" = '--multigrid --wsl'
+  "$Env:APPDATA\$startMenuPrograms\Chromium.lnk"    = '--proxy-server=zproxy.lum-superproxy.io:22225'
+  "$Env:ProgramData\$startMenuPrograms\Neovide.lnk" = '--multigrid'
 }
 
-foreach ($shortcutPath in $shortcutArguments.Keys) {
+foreach ($shortcutPath in $shortcutArguments.Keys)
+{
   $shortcut = (New-Object -ComObject WScript.Shell).CreateShortCut($shortcutPath)
   $shortcut.Arguments = $shortcutArguments[$shortcutPath]
   $shortcut.Save()
@@ -152,7 +160,8 @@ foreach ($shortcutPath in $shortcutArguments.Keys) {
 Set-ItemProperty 'HKCU:\Control Panel\Mouse' 'MouseSensitivity' 20
 Set-ItemProperty 'HKCU:\Software\Microsoft\Accessibility' 'CursorSize' 2
 
-if ($isMobile) {
+if ($isMobile)
+{
   Set-Registry-Values "HKCU:\Software\Microsoft\Windows\CurrentVersion\PrecisionTouchPad" @{
     FourFingerSlideEnabled = 3
     FourFingerTapEnabled   = 3
@@ -184,12 +193,14 @@ $unnecessaryApps = @(
   'MicrosoftCorporationII.QuickAssist'
 )
 
-foreach ($unnecessaryApp in $unnecessaryApps) {
+foreach ($unnecessaryApp in $unnecessaryApps)
+{
   Get-AppxPackage $unnecessaryApp | Remove-AppxPackage
 }
 
-if (!$isMobile) {
+if (!$isMobile)
+{
   Enable-WindowsOptionalFeature -FeatureName Microsoft-Hyper-V-All -NoRestart -Online
 }
 
-$env:PATH = [System.Environment]::GetEnvironmentVariable("PATH", "Machine") + [IO.Path]::PathSeparator + [System.Environment]::GetEnvironmentVariable("PATH", "User")
+$Env:PATH = [System.Environment]::GetEnvironmentVariable("PATH", "Machine") + [IO.Path]::PathSeparator + [System.Environment]::GetEnvironmentVariable("PATH", "User")

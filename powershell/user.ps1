@@ -5,17 +5,20 @@ $ignoreSecurityHashWingetPackageIds = @(
   'Neovim.Neovim.Nightly'
 )
 
-if (!$isMobile) {
+if (!$isMobile)
+{
   $ignoreSecurityHashWingetPackageIds += @(
     'Logitech.LogiTune'
   )
 }
 
-foreach ($ignoreSecurityHashWingetPackageId in $ignoreSecurityHashWingetPackageIds) {
-  winget install --ignore-security-hash --silent --id $ignoreSecurityHashWingetPackageId
+foreach ($ignoreSecurityHashWingetPackageId in $ignoreSecurityHashWingetPackageIds)
+{
+  winget install --exact --ignore-security-hash --silent --id $ignoreSecurityHashWingetPackageId
 }
 
-if ($nul -eq (Get-Command -ErrorAction SilentlyContinue scoop)) {
+if ($nul -eq (Get-Command -ErrorAction SilentlyContinue scoop))
+{
   Invoke-RestMethod get.scoop.sh | Invoke-Expression
 }
 
@@ -27,7 +30,8 @@ $scoopPackages = @(
   'topgrade'
 )
 
-foreach ($scoopPackage in $scoopPackages) {
+foreach ($scoopPackage in $scoopPackages)
+{
   scoop install $scoopPackage
 }
 
@@ -35,13 +39,14 @@ chezmoi init --apply --ssh thebengeu
 
 . $PROFILE
 
-$localAppDataNvimPath = "$env:LOCALAPPDATA\nvim"
+$localAppDataNvimPath = "$Env:LOCALAPPDATA\nvim"
 
-if (!(Test-Path $localAppDataNvimPath)) {
-  New-Item -ItemType Junction -Path $localAppDataNvimPath -Target "$env:USERPROFILE\.config\nvim"
+if (!(Test-Path $localAppDataNvimPath))
+{
+  New-Item -ItemType Junction -Path $localAppDataNvimPath -Target "$Env:USERPROFILE\.config\nvim"
 }
 
-git clone git@github.com:thebengeu/powershell.git "$env:USERPROFILE\powershell"
+git clone git@github.com:thebengeu/powershell.git "$Env:USERPROFILE\powershell"
 
 pnpm add --global pino-pretty npm-check-updates https://github.com/thebengeu/ts-node.git
 
@@ -52,4 +57,4 @@ pipx install neovim-remote
 go install github.com/nao1215/gup@latest
 gup import
 
-$env:PATH = [System.Environment]::GetEnvironmentVariable("PATH", "Machine") + [IO.Path]::PathSeparator + [System.Environment]::GetEnvironmentVariable("PATH", "User")
+$Env:PATH = [System.Environment]::GetEnvironmentVariable("PATH", "Machine") + [IO.Path]::PathSeparator + [System.Environment]::GetEnvironmentVariable("PATH", "User")
