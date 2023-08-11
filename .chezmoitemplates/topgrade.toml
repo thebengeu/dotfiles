@@ -5,3 +5,5 @@ assume_yes = true
 disable = ["chezmoi", "vim"]
 [npm]
 use_sudo = true
+[windows]
+enable_winget = true

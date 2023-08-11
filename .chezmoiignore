@@ -1,7 +1,7 @@
 chezmoi.toml
 
 {{ if eq .chezmoi.os "windows" }}
-.config/{bat,fish,ghorg,gitui,gup,lazygit,tealdeer,yamllint}/
+.config/{bat,fish,gitui,gup,lazygit,tealdeer,yamllint}/
 .config/topgrade.toml
 .local/
 .ansible.cfg
@@ -11,6 +11,7 @@ chezmoi.toml
 .tokeignore
 {{ else }}
 .config/wezterm/
+AppData/
 AutoHotkey.ahk
 .wezterm.lua
 Microsoft.PowerShell_profile.ps1
