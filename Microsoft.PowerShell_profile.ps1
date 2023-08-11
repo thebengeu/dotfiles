@@ -187,9 +187,59 @@ function pd
   pnpm dev
 }
 
+function pgca
+{
+  git -C $Env:USERPROFILE/powershell commit --amend
+}
+
+function pgcam
+{
+  git -C $Env:USERPROFILE/powershell commit -a -m $args
+}
+
+function pgd
+{
+  git -C $Env:USERPROFILE/powershell diff
+}
+
+function pgl
+{
+  git -C $Env:USERPROFILE/powershell lg
+}
+
+function pglp
+{
+  git -C $Env:USERPROFILE/powershell lg --patch
+}
+
+function pgP
+{
+  git -C $Env:USERPROFILE/powershell push
+}
+
+function pgp
+{
+  git -C $Env:USERPROFILE/powershell pull
+}
+
+function pgs
+{
+  git -C $Env:USERPROFILE/powershell s
+}
+
 function pi
 {
   pnpm i $args
+}
+
+function plg
+{
+  lazygit --path $Env:USERPROFILE/powershell
+}
+
+function pn
+{
+  nvim --cmd "cd ~/powershell"
 }
 
 function pp
