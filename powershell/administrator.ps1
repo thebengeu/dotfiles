@@ -22,6 +22,7 @@ $wingetPackageIds = @(
   '7zip.7zip'
   'Twilio.Authy'
   'Armin2208.WindowsAutoNightMode'
+  'Amazon.AWSCLI'
   'twpayne.chezmoi'
   'Hibbiki.Chromium'
   'dandavison.delta'
@@ -39,6 +40,10 @@ $wingetPackageIds = @(
   'Microsoft.PowerToys'
   'Microsoft.Sysinternals.ProcessMonitor'
   'Neovide.Neovide'
+  'OpenJS.NodeJS'
+  'PostgreSQL.PostgreSQL'
+  'Pulumi.Pulumi'
+  'Python.Python.3.11'
   'QMK.QMKToolbox'
   'Spotify.Spotify'
   'Starship.Starship'
@@ -68,6 +73,10 @@ foreach ($wingetPackageId in $wingetPackageIds) {
   $wingetPackageId
   winget install --no-upgrade --silent --id $wingetPackageId
 }
+
+winget install --silent --override '--add Microsoft.VisualStudio.Workload.VCTools --includeRecommended --quiet --wait' Microsoft.VisualStudio.2022.BuildTools
+
+corepack enable
 
 $storeApps = @(
   'Apple Music Preview'
@@ -172,3 +181,5 @@ foreach ($unnecessaryApp in $unnecessaryApps) {
 if (!$isMobile) {
   Enable-WindowsOptionalFeature -FeatureName Microsoft-Hyper-V-All -NoRestart -Online
 }
+
+$env:PATH = [System.Environment]::GetEnvironmentVariable("PATH", "Machine") + [IO.Path]::PathSeparator + [System.Environment]::GetEnvironmentVariable("PATH", "User")

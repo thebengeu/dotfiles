@@ -9,3 +9,5 @@ $manifestPaths = @(
 foreach ($manifestPath in $manifestPaths) {
   winget install --silent --manifest "$env:USERPROFILE\powershell\manifests\$manifestPath"
 }
+
+$env:PATH = [System.Environment]::GetEnvironmentVariable("PATH", "Machine") + [IO.Path]::PathSeparator + [System.Environment]::GetEnvironmentVariable("PATH", "User")

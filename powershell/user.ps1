@@ -22,7 +22,9 @@ if ($nul -eq (Get-Command -ErrorAction SilentlyContinue scoop)) {
 scoop bucket add extras
 
 $scoopPackages = @(
+  'ghorg'
   'goneovim'
+  'just'
   'lazygit'
   'topgrade'
 )
@@ -31,7 +33,7 @@ foreach ($scoopPackage in $scoopPackages) {
   scoop install $scoopPackage
 }
 
-chezmoi init --apply --ssh thebengeu
+chezmoi init --apply --exclude templates --ssh thebengeu
 
 $localAppDataNvimPath = "$env:LOCALAPPDATA\nvim"
 
@@ -40,3 +42,5 @@ if (!(Test-Path $localAppDataNvimPath)) {
 }
 
 git clone git@github.com:thebengeu/powershell.git "$env:USERPROFILE\powershell"
+
+$env:PATH = [System.Environment]::GetEnvironmentVariable("PATH", "Machine") + [IO.Path]::PathSeparator + [System.Environment]::GetEnvironmentVariable("PATH", "User")
