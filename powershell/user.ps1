@@ -43,4 +43,10 @@ if (!(Test-Path $localAppDataNvimPath)) {
 
 git clone git@github.com:thebengeu/powershell.git "$env:USERPROFILE\powershell"
 
+pnpm add --global pino-pretty npm-check-updates https://github.com/thebengeu/ts-node.git
+
+pip install pipx
+
+pipx install neovim-remote
+
 $env:PATH = [System.Environment]::GetEnvironmentVariable("PATH", "Machine") + [IO.Path]::PathSeparator + [System.Environment]::GetEnvironmentVariable("PATH", "User")
