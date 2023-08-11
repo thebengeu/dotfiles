@@ -6,3 +6,5 @@ Import-Module PSFzf
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
 
 New-Alias which Get-Command
+
+$Env:Path += [IO.Path]::PathSeparator + "$env:ProgramFiles\PostgreSQL\15\bin"
