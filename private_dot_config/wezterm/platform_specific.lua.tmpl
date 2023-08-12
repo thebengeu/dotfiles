@@ -2,16 +2,7 @@ local module = {}
 
 function module.apply_to_config(config)
 {{- if eq .chezmoi.os "windows" }}
-  config.default_prog = {
-    "C:/msys64/msys2_shell.cmd",
-    "-defterm",
-    "-here",
-    "-no-start",
-    "-shell",
-    "fish",
-    "-ucrt64",
-    "-use-full-path",
-  }
+  config.default_prog = { "C:/msys64/usr/bin/fish.exe" }
 {{- end }}
 end
 
