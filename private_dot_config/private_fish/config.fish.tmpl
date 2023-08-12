@@ -1,19 +1,19 @@
+{{ if eq .chezmoi.os "windows" -}}
+fish_add_path --global /usr/bin
+{{- else }}
 set --export PNPM_HOME ~/.local/share/pnpm
 
-fish_add_path $PNPM_HOME
-fish_add_path ~/.cargo/bin
-fish_add_path ~/.local/bin
-fish_add_path ~/.pulumi/bin
-fish_add_path ~/.temporalio/bin
-fish_add_path ~/go/bin
+fish_add_path --global $PNPM_HOME
+fish_add_path --global ~/.cargo/bin
+fish_add_path --global ~/.local/bin
+fish_add_path --global ~/.pulumi/bin
+fish_add_path --global ~/.temporalio/bin
+fish_add_path --global ~/go/bin
+{{ end }}
 
 status is-interactive || exit
 
 set --export EDITOR nvim
-set --export MCFLY_DELETE_WITHOUT_CONFIRM TRUE
-set --export MCFLY_DISABLE_MENU TRUE
-set --export MCFLY_KEY_SCHEME vim
-set --export NODE_NO_WARNINGS 1
 
 set --global fish_cursor_default block
 set --global fish_cursor_insert line
@@ -22,11 +22,22 @@ set --global fish_greeting
 set --global fish_vi_force_cursor 1
 
 atuin init fish --disable-ctrl-r --disable-up-arrow | source
-mcfly init fish | source
 starship init fish | source
 zoxide init --cmd cd fish | source
 
 enable_transience
+
+{{- if ne .chezmoi.os "windows" }}
+set --export MCFLY_DELETE_WITHOUT_CONFIRM TRUE
+set --export MCFLY_DISABLE_MENU TRUE
+set --export MCFLY_KEY_SCHEME vim
+set --export NODE_NO_WARNINGS 1
+
+mcfly init fish | source
+
+abbr --add ll 'exa --git --icons --long'
+abbr --add ls 'exa --icons'
+{{ end }}
 
 abbr --add agca 'git -C ~/ansible commit --amend'
 abbr --add agcam 'git -C ~/ansible commit -a -m'
@@ -77,8 +88,6 @@ abbr --add gsp 'git stash pop'
 abbr --add j just
 abbr --add jd 'just dev'
 abbr --add lg lazygit
-abbr --add ll 'exa --git --icons --long'
-abbr --add ls 'exa --icons'
 abbr --add man batman
 abbr --add n nvim
 abbr --add nr 'sh -c "printf \"\e[6 q\"; node"'
