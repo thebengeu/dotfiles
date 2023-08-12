@@ -50,6 +50,7 @@ $wingetPackageIds = @(
   'Python.Python.3.11'
   'QMK.QMKToolbox'
   'BurntSushi.ripgrep.MSVC'
+  'Rustlang.Rustup'
   'Spotify.Spotify'
   'StartIsBack.StartAllBack'
   'Microsoft.VisualStudioCode'
