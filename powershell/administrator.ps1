@@ -112,7 +112,7 @@ if ($isMobile)
 
 foreach ($storeApps in $storeApps)
 {
-  winget install --accept-package-agreements --exact --source msstore $storeApps
+  winget install --accept-package-agreements --source msstore $storeApps
 }
 
 Set-ExecutionPolicy Unrestricted
