@@ -21,6 +21,7 @@ winget settings --enable LocalManifestFiles
 
 $wingetPackageIds = @(
   'AgileBits.1Password'
+  'AgileBits.1Password.CLI'
   '7zip.7zip'
   'Twilio.Authy'
   'Armin2208.WindowsAutoNightMode'
