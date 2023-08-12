@@ -39,6 +39,7 @@ $wingetPackageIds = @(
   'Git.Git'
   'jftuga.less'
   'ManicTime.ManicTime'
+  'MSYS2.MSYS2'
   'Notion.Notion'
   'Obsidian.Obsidian'
   'Microsoft.Powershell'
@@ -201,6 +202,31 @@ foreach ($unnecessaryApp in $unnecessaryApps)
 if (!$isMobile)
 {
   Enable-WindowsOptionalFeature -FeatureName Microsoft-Hyper-V-All -NoRestart -Online
+}
+
+$PNPM_HOME = "$env:LOCALAPPDATA\pnpm"
+
+[Environment]::SetEnvironmentVariable('PNPM_HOME', $PNPM_HOME, 'User')
+
+$pathsForTargets = @{
+  [EnvironmentVariableTarget]::Machine = @(
+    "$Env:ProgramFiles\PostgreSQL\15\bin"
+  )
+  [EnvironmentVariableTarget]::User    = @(
+    $Env:PNPM_HOME
+  )
+}
+
+foreach ($environmentVariableTarget in $pathsForTargets.Keys)
+{
+  foreach ($pathForTarget in $pathsForTargets[$environmentVariableTarget])
+  {
+    $Path = [Environment]::GetEnvironmentVariable('Path', $environmentVariableTarget)
+    if (($Path -split [IO.Path]::PathSeparator) -notcontains $pathForTarget)
+    {
+      [Environment]::SetEnvironmentVariable('Path', $Path + [IO.Path]::PathSeparator + $pathForTarget, $environmentVariableTarget)
+    }
+  }
 }
 
 $Env:PATH = [System.Environment]::GetEnvironmentVariable("PATH", "Machine") + [IO.Path]::PathSeparator + [System.Environment]::GetEnvironmentVariable("PATH", "User")
