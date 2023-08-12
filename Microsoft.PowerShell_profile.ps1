@@ -19,14 +19,6 @@ Set-Alias tg topgrade
 Set-Alias vim nvim
 Set-Alias which Get-Command
 
-$Env:NODE_NO_WARNINGS = 1
-$Env:PNPM_HOME = "$env:LOCALAPPDATA\pnpm"
-$Env:Path += @(
-  "$Env:ProgramFiles\PostgreSQL\15\bin"
-  $Env:PNPM_HOME
-  "$Env:USERPROFILE\go\bin"
-) -join [IO.Path]::PathSeparator
-
 function ca
 {
   chezmoi apply --exclude templates
