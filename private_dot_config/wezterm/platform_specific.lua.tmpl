@@ -2,7 +2,16 @@ local module = {}
 
 function module.apply_to_config(config)
 {{- if eq .chezmoi.os "windows" }}
-  config.default_domain = "WSL:Ubuntu"
+  config.default_prog = {
+    "C:/msys64/msys2_shell.cmd",
+    "-defterm",
+    "-here",
+    "-no-start",
+    "-shell",
+    "fish",
+    "-ucrt64",
+    "-use-full-path",
+  }
 {{- end }}
 end
 
