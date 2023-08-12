@@ -86,8 +86,6 @@ winget install --exact --override '--add Microsoft.VisualStudio.Workload.VCTools
 
 winget pin add --exact --id JetBrains.WebStorm
 
-corepack enable
-
 $storeApps = @(
   'Apple Music Preview'
   '9PL8WPH0QK9M' # Cider (Preview)
@@ -119,22 +117,6 @@ foreach ($storeApps in $storeApps)
 
 Set-ExecutionPolicy Unrestricted
 Invoke-RestMethod community.chocolatey.org/install.ps1 | Invoke-Expression
-
-choco feature enable -n allowGlobalConfirmation
-
-$chocoPackages = @(
-  'golang'
-  'Kindle'
-  'ledger-live'
-  'spotify'
-  'SQLite'
-  'tableplus'
-)
-
-foreach ($chocoPackage in $chocoPackages)
-{
-  choco install $chocoPackage
-}
 
 Install-PackageProvider NuGet -Force
 Set-PSRepository PSGallery -InstallationPolicy Trusted
@@ -232,3 +214,21 @@ foreach ($environmentVariableTarget in $pathsForTargets.Keys)
 }
 
 $Env:PATH = [System.Environment]::GetEnvironmentVariable("PATH", "Machine") + [IO.Path]::PathSeparator + [System.Environment]::GetEnvironmentVariable("PATH", "User")
+
+corepack enable
+
+choco feature enable -n allowGlobalConfirmation
+
+$chocoPackages = @(
+  'golang'
+  'Kindle'
+  'ledger-live'
+  'spotify'
+  'SQLite'
+  'tableplus'
+)
+
+foreach ($chocoPackage in $chocoPackages)
+{
+  choco install $chocoPackage
+}
