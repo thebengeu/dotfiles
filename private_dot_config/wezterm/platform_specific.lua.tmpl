@@ -2,7 +2,10 @@ local module = {}
 
 function module.apply_to_config(config)
 {{- if eq .chezmoi.os "windows" }}
-  config.default_prog = { "C:/msys64/usr/bin/fish.exe" }
+  config.default_prog = {
+    "C:/msys64/usr/bin/fish.exe",
+    "--login"
+  }
 {{- end }}
 end
 
