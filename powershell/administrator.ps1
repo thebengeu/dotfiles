@@ -206,6 +206,7 @@ if (!$isMobile)
 
 $PNPM_HOME = "$env:LOCALAPPDATA\pnpm"
 
+[Environment]::SetEnvironmentVariable('HOME', $Env:USERPROFILE, 'User')
 [Environment]::SetEnvironmentVariable('NODE_NO_WARNINGS', 1, 'Machine')
 [Environment]::SetEnvironmentVariable('PNPM_HOME', $PNPM_HOME, 'User')
 
