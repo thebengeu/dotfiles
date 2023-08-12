@@ -35,8 +35,6 @@ foreach ($scoopPackage in $scoopPackages)
 
 chezmoi init --apply --ssh thebengeu
 
-. $PROFILE
-
 $localAppDataNvimPath = "$Env:LOCALAPPDATA\nvim"
 
 if (!(Test-Path $localAppDataNvimPath))
