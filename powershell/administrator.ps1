@@ -42,7 +42,7 @@ $wingetPackageIds = @(
   'MSYS2.MSYS2'
   'Notion.Notion'
   'Obsidian.Obsidian'
-  'Microsoft.Powershell'
+  'Microsoft.PowerShell'
   'Microsoft.PowerToys'
   'Microsoft.Sysinternals.ProcessMonitor'
   'Neovide.Neovide'
