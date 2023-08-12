@@ -25,13 +25,11 @@ $wingetPackageIds = @(
   'Twilio.Authy'
   'Armin2208.WindowsAutoNightMode'
   'Amazon.AWSCLI'
-  'sharkdp.bat'
   'twpayne.chezmoi'
   'Hibbiki.Chromium'
   'dandavison.delta'
   'Discord.Discord'
   'ExpressVPN.ExpressVPN'
-  'sharkdp.fd'
   'flux.flux'
   'Mozilla.Firefox'
   'Flow-Launcher.Flow-Launcher'
@@ -53,7 +51,6 @@ $wingetPackageIds = @(
   'QMK.QMKToolbox'
   'BurntSushi.ripgrep.MSVC'
   'Spotify.Spotify'
-  'Starship.Starship'
   'StartIsBack.StartAllBack'
   'Microsoft.VisualStudioCode'
   'JetBrains.WebStorm'
@@ -62,7 +59,6 @@ $wingetPackageIds = @(
   'Highresolution.X-MouseButtonControl'
   'th-ch.YouTubeMusic'
   'Zoom.Zoom'
-  'ajeetdsouza.zoxide'
 )
 
 if (!$isMobile)
@@ -127,7 +123,6 @@ $chocoPackages = @(
   'golang'
   'Kindle'
   'ledger-live'
-  'mingw'
   'spotify'
   'SQLite'
   'tableplus'
@@ -215,6 +210,7 @@ $pathsForTargets = @{
     "$Env:ProgramFiles\PostgreSQL\15\bin"
   )
   [EnvironmentVariableTarget]::User    = @(
+    "$Env:USERPROFILE\.cargo\bin"
     $Env:PNPM_HOME
   )
 }

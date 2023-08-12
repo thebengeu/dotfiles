@@ -26,8 +26,6 @@ scoop bucket add extras
 
 $scoopPackages = @(
   'goneovim'
-  'just'
-  'topgrade'
 )
 
 foreach ($scoopPackage in $scoopPackages)
@@ -56,5 +54,28 @@ pipx install neovim-remote
 
 go install github.com/nao1215/gup@latest
 gup import
+
+$crates = @(
+  'atuin'
+  'bat'
+  'broot'
+  'cargo-update'
+  'exa'
+  'fd-find'
+  'gitui'
+  'just'
+  'mcfly'
+  'starship'
+  'tealdeer'
+  'tokei'
+  'topgrade'
+  'xh'
+  'zoxide'
+)
+
+foreach ($crate in $crates)
+{
+  cargo install $crate
+}
 
 $Env:PATH = [System.Environment]::GetEnvironmentVariable("PATH", "Machine") + [IO.Path]::PathSeparator + [System.Environment]::GetEnvironmentVariable("PATH", "User")
