@@ -213,6 +213,10 @@ foreach ($environmentVariableTarget in $pathsForTargets.Keys)
   }
 }
 
+C:\msys64\usr\bin\sh -c 'pacman -Suy --noconfirm'
+C:\msys64\usr\bin\sh -c 'pacman -Suy --noconfirm'
+C:\msys64\usr\bin\sh -c 'pacman -S --needed --noconfirm fish tmux'
+
 $Env:PATH = [System.Environment]::GetEnvironmentVariable("PATH", "Machine") + [IO.Path]::PathSeparator + [System.Environment]::GetEnvironmentVariable("PATH", "User")
 
 corepack enable
