@@ -77,5 +77,3 @@ foreach ($crate in $crates)
 {
   cargo install $crate
 }
-
-$Env:PATH = [System.Environment]::GetEnvironmentVariable("PATH", "Machine") + [IO.Path]::PathSeparator + [System.Environment]::GetEnvironmentVariable("PATH", "User")
