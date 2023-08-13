@@ -267,6 +267,9 @@ foreach ($crate in $crates)
 
 go install github.com/nao1215/gup@latest
 
+Remove-Item $env:OneDrive\Desktop\*.lnk
+Remove-Item $env:PUBLIC\Desktop\*.lnk
+
 $sshKeyPath = "$Env:USERPROFILE\.ssh\id_ed25519"
 
 if (!(Test-Path $sshKeyPath))
