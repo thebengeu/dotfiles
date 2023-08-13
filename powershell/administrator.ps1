@@ -37,6 +37,7 @@ $wingetPackageIds = @(
   'Flow-Launcher.Flow-Launcher'
   'junegunn.fzf'
   'Git.Git'
+  'GoLang.Go'
   'jftuga.less'
   'ManicTime.ManicTime'
   'MSYS2.MSYS2'
@@ -224,10 +225,8 @@ corepack enable
 choco feature enable -n allowGlobalConfirmation
 
 $chocoPackages = @(
-  'golang'
   'Kindle'
   'ledger-live'
-  'spotify'
   'SQLite'
   'tableplus'
 )
