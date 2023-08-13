@@ -237,6 +237,17 @@ foreach ($chocoPackage in $chocoPackages)
   choco install $chocoPackage
 }
 
+$sshKeyPath = "$Env:USERPROFILE\.ssh\id_ed25519"
+
+if (!(Test-Path $sshKeyPath))
+{
+  mkdir "$Env:USERPROFILE\.ssh"
+  op read 'op://Personal/Ed25519 SSH Key/id_ed25519' > $sshKeyPath
+  Get-Service ssh-agent | Set-Service -StartupType Automatic
+  Start-Service ssh-agent
+  ssh-add $sshKeyPath
+}
+
 chezmoi init --apply --ssh thebengeu
 
 C:\msys64\usr\bin\fish -c 'curl -Ls https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher update'
