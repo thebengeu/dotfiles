@@ -237,6 +237,37 @@ foreach ($chocoPackage in $chocoPackages)
   choco install $chocoPackage
 }
 
+git clone https://github.com/tmux-plugins/tpm "$Env:USERPROFILE\.tmux\plugins\tpm"
+C:\msys64\usr\bin\bash --login ~/.tmux/plugins/tpm/bin/install_plugins
+
+pnpm add --global pino-pretty npm-check-updates https://github.com/thebengeu/ts-node.git
+
+pip install pipx
+
+pipx install neovim-remote
+
+$crates = @(
+  'atuin'
+  'bat'
+  'broot'
+  'cargo-update'
+  'fd-find'
+  'just'
+  'starship'
+  'tealdeer'
+  'tokei'
+  'topgrade'
+  'xh'
+  'zoxide'
+)
+
+foreach ($crate in $crates)
+{
+  cargo install $crate
+}
+
+go install github.com/nao1215/gup@latest
+
 $sshKeyPath = "$Env:USERPROFILE\.ssh\id_ed25519"
 
 if (!(Test-Path $sshKeyPath))
@@ -259,36 +290,6 @@ if (!(Test-Path $localAppDataNvimPath))
   New-Item -ItemType Junction -Path $localAppDataNvimPath -Target "$Env:USERPROFILE\.config\nvim"
 }
 
-git clone https://github.com/tmux-plugins/tpm "$Env:USERPROFILE\.tmux\plugins\tpm"
 git clone git@github.com:thebengeu/powershell.git "$Env:USERPROFILE\powershell"
 
-C:\msys64\usr\bin\bash --login ~/.tmux/plugins/tpm/bin/install_plugins
-
-pnpm add --global pino-pretty npm-check-updates https://github.com/thebengeu/ts-node.git
-
-pip install pipx
-
-pipx install neovim-remote
-
-go install github.com/nao1215/gup@latest
 gup import
-
-$crates = @(
-  'atuin'
-  'bat'
-  'broot'
-  'cargo-update'
-  'fd-find'
-  'just'
-  'starship'
-  'tealdeer'
-  'tokei'
-  'topgrade'
-  'xh'
-  'zoxide'
-)
-
-foreach ($crate in $crates)
-{
-  cargo install $crate
-}
