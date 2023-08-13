@@ -187,6 +187,7 @@ if (!$isMobile)
 
 $PNPM_HOME = "$env:LOCALAPPDATA\pnpm"
 
+[Environment]::SetEnvironmentVariable('GIT_SSH', (Get-Command ssh).Source, 'Machine')
 [Environment]::SetEnvironmentVariable('HOME', $Env:USERPROFILE, 'User')
 [Environment]::SetEnvironmentVariable('MSYS2_PATH_TYPE', 'inherit', 'Machine')
 [Environment]::SetEnvironmentVariable('NODE_NO_WARNINGS', 1, 'Machine')
