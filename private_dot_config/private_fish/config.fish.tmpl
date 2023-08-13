@@ -37,6 +37,8 @@ mcfly init fish | source
 
 abbr --add ll 'exa --git --icons --long'
 abbr --add ls 'exa --icons'
+
+alias rm safe-rm
 {{ end }}
 
 abbr --add agca 'git -C ~/ansible commit --amend'
@@ -107,8 +109,6 @@ abbr --add tns 'tmux new-session -A -s'
 abbr --add tsx 'pnpm tsx'
 abbr --add tsxr 'sh -c \'printf "\e[6 q"; pnpm tsx\''
 abbr --add vim nvim
-
-alias rm safe-rm
 
 function fish_title
     if test -n "$TMUX"
