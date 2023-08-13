@@ -21,7 +21,7 @@ Set-Alias which Get-Command
 
 function ca
 {
-  chezmoi apply --exclude templates
+  chezmoi apply $(chezmoi managed --include files --path-style absolute | Select-String -NotMatch '.aws/credentials|.config/ghorg/conf.yaml')
 }
 
 function cgca
