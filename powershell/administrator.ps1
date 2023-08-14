@@ -246,7 +246,7 @@ foreach ($chocoPackage in $chocoPackages)
 git clone https://github.com/tmux-plugins/tpm "$Env:USERPROFILE\.tmux\plugins\tpm"
 C:\msys64\usr\bin\bash --login ~/.tmux/plugins/tpm/bin/install_plugins
 
-pnpm add --global pino-pretty npm-check-updates https://github.com/thebengeu/ts-node.git
+pnpm add --global npm-check-updates pino-pretty pm2 https://github.com/thebengeu/ts-node.git
 
 pip install pipx
 
