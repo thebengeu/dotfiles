@@ -129,7 +129,6 @@ $startMenuPrograms = 'Microsoft\Windows\Start Menu\Programs'
 
 $shortcutArguments = @{
   "$Env:APPDATA\$startMenuPrograms\Chromium.lnk"    = '--proxy-server=zproxy.lum-superproxy.io:22225'
-  "$Env:ProgramData\$startMenuPrograms\Neovide.lnk" = '--multigrid'
 }
 
 foreach ($shortcutPath in $shortcutArguments.Keys)

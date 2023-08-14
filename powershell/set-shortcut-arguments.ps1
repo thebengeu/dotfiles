@@ -1,6 +1,5 @@
 $shortcutArguments = @{
   "Chromium" = '--proxy-server=zproxy.lum-superproxy.io:22225'
-  "Neovide"  = '--multigrid'
 }
 
 foreach ($appName in $shortcutArguments.Keys)
