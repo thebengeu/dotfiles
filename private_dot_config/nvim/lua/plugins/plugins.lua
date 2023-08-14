@@ -20,7 +20,8 @@ return {
     },
     lazy = false,
     opts = {
-      auto_session_enable_last_session = vim.loop.cwd() == vim.loop.os_homedir(),
+      auto_session_enable_last_session = vim.loop.cwd() == "C:\\Program Files\\Neovide"
+        or vim.loop.cwd() == vim.loop.os_homedir(),
       log_level = vim.log.levels.ERROR,
       pre_save_cmds = {
         require("neo-tree.sources.manager").close_all,
