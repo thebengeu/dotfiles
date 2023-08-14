@@ -19,4 +19,6 @@ vim.o.sessionoptions = table.concat({
   "winsize",
 }, ",")
 vim.opt.linebreak = true
+vim.opt.shell = "pwsh"
+vim.opt.shellcmdflag = "-Command"
 vim.opt.wrap = true
