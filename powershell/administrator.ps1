@@ -193,11 +193,11 @@ function SetEnvironmentVariable($variable, $value, $target)
   Set-Item "Env:$variable" $value
 }
 
-SetEnvironmentVariable('GIT_SSH', (Get-Command ssh).Source, 'Machine')
-SetEnvironmentVariable('HOME', $Env:USERPROFILE, 'User')
-SetEnvironmentVariable('MSYS2_PATH_TYPE', 'inherit', 'Machine')
-SetEnvironmentVariable('NODE_NO_WARNINGS', 1, 'Machine')
-SetEnvironmentVariable('PNPM_HOME', $PNPM_HOME, 'User')
+SetEnvironmentVariable 'GIT_SSH' (Get-Command ssh).Source 'Machine'
+SetEnvironmentVariable 'HOME' $Env:USERPROFILE 'User'
+SetEnvironmentVariable 'MSYS2_PATH_TYPE' 'inherit' 'Machine'
+SetEnvironmentVariable 'NODE_NO_WARNINGS' 1 'Machine'
+SetEnvironmentVariable 'PNPM_HOME' $PNPM_HOME 'User'
 
 $pathsForTargets = @{
   [EnvironmentVariableTarget]::Machine = @(
@@ -306,8 +306,22 @@ gup import
 $fontFolder = "$Env:USERPROFILE\.local\share\chezmoi\private_dot_local\private_share\fonts"
 $shellFolder = (New-Object -COMObject Shell.Application).Namespace($fontFolder)
 
-foreach ($fontFile in Get-ChildItem $fontFolder) {
+foreach ($fontFile in Get-ChildItem $fontFolder)
+{
   $registryKeyName = $shellFolder.GetDetailsOf($shellFolder.ParseName($fontFile.Name), 21 <# Title #>) + ' (TrueType)'
   New-ItemProperty 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Fonts' $registryKeyName -Force -PropertyType string -Value $fontFile.Name > $null
   Copy-Item $fontFile.FullName $env:windir\Fonts
+}
+
+New-Item -ItemType SymbolicLink -Path "$Env:USERPROFILE\.config\chezmoi\chezmoi.toml" -Target "$Env:USERPROFILE\.local\share\chezmoi\chezmoi.toml"
+
+$manifestPaths = @(
+  'a\AudioBand\AudioBand\1.2.1'
+  'r\Rabby\RabbyDesktop\0.31.0'
+  't\Todoist\Todoist\8.5.0'
+)
+
+foreach ($manifestPath in $manifestPaths)
+{
+  winget install --manifest "$Env:USERPROFILE\powershell\manifests\$manifestPath" --silent
 }
