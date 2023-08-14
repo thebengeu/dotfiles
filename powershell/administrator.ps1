@@ -302,3 +302,12 @@ if (!(Test-Path $localAppDataNvimPath))
 git clone git@github.com:thebengeu/powershell.git "$Env:USERPROFILE\powershell"
 
 gup import
+
+$fontFolder = "$Env:USERPROFILE\.local\share\chezmoi\private_dot_local\private_share\fonts"
+$shellFolder = (New-Object -COMObject Shell.Application).Namespace($fontFolder)
+
+foreach ($fontFile in Get-ChildItem $fontFolder) {
+  $registryKeyName = $shellFolder.GetDetailsOf($shellFolder.ParseName($fontFile.Name), 21) + ' (TrueType)'
+  New-ItemProperty 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Fonts' $registryKeyName -Force -PropertyType string -Value $fontFile.Name > $null
+  Copy-Item $fontFile.FullName $env:windir\Fonts
+}
