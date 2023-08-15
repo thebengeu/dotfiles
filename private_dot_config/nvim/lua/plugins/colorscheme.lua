@@ -351,7 +351,7 @@ return {
                 end)
                 return true
               end,
-              finder = require("telescope.finders").new_oneshot_job({ "ls", root }, {}),
+              finder = require("telescope.finders").new_table({ results = vim.fn.readdir(root) }),
               sorter = require("telescope.config").values.file_sorter(),
             })
             :find()
