@@ -97,16 +97,6 @@
 - ansible.builtin.command:
     cmd: chezmoi apply --exclude templates
     creates: ~/.config/fish/fish_plugins
-- ansible.builtin.get_url:
-    dest: /tmp/fisher.fish
-    mode: "644"
-    url: https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish
-- ansible.builtin.shell:
-    cmd: |
-      source /tmp/fisher.fish
-      fisher update
-    creates: ~/.config/fish/functions/fisher.fish
-    executable: /usr/bin/fish
 - ansible.builtin.command:
     cmd: /usr/bin/bat cache --build
     creates: ~/.cache/bat/themes.bin
@@ -150,12 +140,6 @@
   become: true
   environment:
     PATH: /usr/bin:/home/{{ ansible_user_id }}/go/bin
-- ansible.builtin.command:
-    cmd: atuin gen-completions --out-dir ~/.config/fish/completions --shell fish
-    creates: ~/.config/fish/completions/atuin.fish
-- ansible.builtin.shell:
-    cmd: just --completions fish > ~/.config/fish/completions/just.fish
-    creates: ~/.config/fish/completions/just.fish
 - ansible.builtin.command:
     cmd: pnpm add --global https://github.com/thebengeu/ts-node.git
     creates: ~/.local/share/pnpm/ts-node
