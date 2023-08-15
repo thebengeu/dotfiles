@@ -22,6 +22,10 @@
     remote_src: true
     # yamllint disable-line rule:line-length
     src: https://temporal.download/cli/archive/latest?platform=linux&arch={{ arch.stdout }}
+- ansible.builtin.file:
+    mode: "755"
+    path: ~/.local/bin
+    state: directory
 - ansible.builtin.unarchive:
     creates: ~/.local/bin/bandwhich
     dest: ~/.local/bin
@@ -77,6 +81,8 @@
     - topgrade
     - xh
     - zoxide
+  environment:
+    PATH: /usr/bin:/home/{{ ansible_user_id }}/.cargo/bin
 - ansible.builtin.git:
     repo: https://github.com/tmux-plugins/tpm
     dest: ~/.tmux/plugins/tpm
@@ -156,6 +162,8 @@
 - ansible.builtin.command:
     cmd: pnpm add --global https://github.com/thebengeu/ts-node.git
     creates: ~/.local/share/pnpm/ts-node
+  environment:
+    PATH: /usr/bin:/home/{{ ansible_user_id }}/.local/share/pnpm
 - ansible.builtin.command:
     cmd: pnpm add --global {{ item }}
     creates: ~/.local/share/pnpm/{{ item }}
@@ -163,3 +171,5 @@
     - npm-check-updates
     - pino-pretty
     - pm2
+  environment:
+    PATH: /usr/bin:/home/{{ ansible_user_id }}/.local/share/pnpm
