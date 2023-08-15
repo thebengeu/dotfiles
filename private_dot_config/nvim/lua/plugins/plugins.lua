@@ -55,7 +55,7 @@ return {
       "kkharji/sqlite.lua",
       config = function()
         if jit.os:find("Windows") then
-          vim.g.sqlite_clib_path = os.getenv("ProgramData") .. "/chocolatey/lib/SQLite/tools/sqlite3.dll"
+          vim.g.sqlite_clib_path = os.getenv("ChocolateyInstall") .. "/lib/SQLite/tools/sqlite3.dll"
         end
       end,
       enabled = true,
