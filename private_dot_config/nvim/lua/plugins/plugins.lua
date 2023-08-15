@@ -119,6 +119,10 @@ return {
     opts = {
       defaults = {
         ["<leader>h"] = "+hunks",
+        ["[<Space>"] = { "Add blank lines above", mode = "n" },
+        ["[e"] = { "Exchange line with lines above", mode = { "n", "x" } },
+        ["]<Space>"] = { "Add blank lines below", mode = "n" },
+        ["]e"] = { "Exchange line with lines below", mode = { "n", "x" } },
       },
       operators = {
         ["<space>z"] = "Send to REPL",
