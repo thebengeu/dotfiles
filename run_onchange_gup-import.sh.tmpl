@@ -1,4 +1,4 @@
 {{ if ne .chezmoi.os "windows" -}}
 #!/usr/bin/env sh
-{{ template "run_onchange_gup-update.tmpl" }}
+{{ template "run_onchange_gup-import.tmpl" }}
 {{ end }}
