@@ -110,9 +110,6 @@
 - ansible.builtin.command:
     cmd: /usr/bin/bat cache --build
     creates: ~/.cache/bat/themes.bin
-- ansible.builtin.command:
-    cmd: ~/.tmux/plugins/tpm/bin/install_plugins
-    creates: ~/.tmux/plugins/tmux-pain-control
 - ansible.builtin.get_url:
     dest: ~/.local/bin/cht.sh
     mode: "755"
