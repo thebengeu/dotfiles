@@ -291,8 +291,6 @@ if (!(Test-Path $sshKeyPath))
 chezmoi init --ssh thebengeu
 chezmoi apply $(chezmoi managed --include files --path-style absolute | Select-String -NotMatch '.aws/credentials|.config/ghorg/conf.yaml')
 
-C:\msys64\usr\bin\fish -c 'curl -Ls https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher update'
-
 $localAppDataNvimPath = "$Env:LOCALAPPDATA\nvim"
 
 if (!(Test-Path $localAppDataNvimPath))
