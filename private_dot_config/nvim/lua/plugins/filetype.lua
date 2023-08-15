@@ -7,6 +7,12 @@ return {
   },
   { "alker0/chezmoi.vim" },
   {
+    "LhKipp/nvim-nu",
+    build = ":TSInstall nu",
+    config = true,
+    ft = "nu",
+  },
+  {
     "vuki656/package-info.nvim",
     config = true,
     ft = "json",
