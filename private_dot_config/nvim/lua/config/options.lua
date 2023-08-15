@@ -19,8 +19,4 @@ vim.o.sessionoptions = table.concat({
   "winsize",
 }, ",")
 vim.opt.linebreak = true
-if jit.os:find("Windows") then
-  vim.opt.shell = "pwsh"
-  vim.opt.shellcmdflag = "-Command"
-end
 vim.opt.wrap = true
