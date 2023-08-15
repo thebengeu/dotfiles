@@ -83,11 +83,6 @@
     - zoxide
   environment:
     PATH: /usr/bin:/home/{{ ansible_user_id }}/.cargo/bin
-- ansible.builtin.git:
-    repo: https://github.com/tmux-plugins/tpm
-    dest: ~/.tmux/plugins/tpm
-  tags:
-    - skip_ansible_lint
 - ansible.builtin.command:
     cmd: chezmoi init --ssh thebengeu
     creates: ~/.local/share/chezmoi
