@@ -43,20 +43,7 @@ return {
   {
     "echasnovski/mini.bracketed",
     config = true,
-    keys = function()
-      local keys = {}
-
-      for _, suffix_and_options in pairs(require("mini.bracketed").config) do
-        local suffix = suffix_and_options["suffix"]
-
-        table.insert(keys, "[" .. string.upper(suffix))
-        table.insert(keys, "[" .. suffix)
-        table.insert(keys, "]" .. string.upper(suffix))
-        table.insert(keys, "]" .. suffix)
-      end
-
-      return keys
-    end,
+    event = { "BufNewFile", "BufReadPost" },
   },
   {
     "folke/persistence.nvim",
