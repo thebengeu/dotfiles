@@ -126,16 +126,10 @@ return {
   },
   {
     "folke/which-key.nvim",
-    config = function(plugin, opts)
-      local super = plugin._.super
-      super.config(super, opts)
-
-      require("which-key").register({
-        ["<leader>d"] = { name = "+debug" },
-        ["<leader>gh"] = "which_key_ignore",
-      })
-    end,
     opts = {
+      defaults = {
+        ["<leader>h"] = "+hunks",
+      },
       operators = {
         ["<space>z"] = "Send to REPL",
       },
