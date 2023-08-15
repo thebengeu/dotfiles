@@ -106,9 +106,6 @@
 - ansible.builtin.command:
     cmd: go install github.com/nao1215/gup@latest
     creates: ~/go/bin/gup
-- ansible.builtin.command:
-    cmd: ~/go/bin/gup import
-    creates: ~/go/bin/lazygit
 - ansible.builtin.pip:
     name:
       - pipx
