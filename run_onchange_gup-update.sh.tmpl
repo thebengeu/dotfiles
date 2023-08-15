@@ -1,5 +1,4 @@
 {{ if ne .chezmoi.os "windows" -}}
 #!/usr/bin/env sh
-# {{ include ".chezmoitemplates/gup.conf" | sha256sum }}
-gup import
+{{ template "run_onchange_gup-update.tmpl" }}
 {{ end }}
