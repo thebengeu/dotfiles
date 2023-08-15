@@ -201,6 +201,7 @@ SetEnvironmentVariable 'PNPM_HOME' $PNPM_HOME 'User'
 
 $pathsForTargets = @{
   [EnvironmentVariableTarget]::Machine = @(
+    "$Env:ProgramFiles\Git\bin"
     "$Env:ProgramFiles\PostgreSQL\15\bin"
   )
   [EnvironmentVariableTarget]::User    = @(
