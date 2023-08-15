@@ -26,7 +26,7 @@ return {
 
           return {
             adapters = { "pwa-node" },
-            debugger_path = os.getenv("HOME") .. "/vscode-js-debug",
+            debugger_path = vim.loop.os_homedir() .. "/vscode-js-debug",
           }
         end,
       },
