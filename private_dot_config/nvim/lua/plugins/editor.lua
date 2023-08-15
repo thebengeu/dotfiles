@@ -184,6 +184,9 @@ return {
   {
     "johmsalas/text-case.nvim",
     config = true,
+    keys = {
+      { "ga", desc = "+text-case" },
+    },
   },
   {
     "cappyzawa/trim.nvim",
