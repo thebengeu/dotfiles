@@ -92,11 +92,10 @@ return {
   },
   {
     "Mofiqul/dracula.nvim",
-    config = function()
-      local dracula = require("dracula")
-      local colors = dracula.colors()
+    opts = function()
+      local colors = require("dracula").colors()
 
-      dracula.setup({
+      return {
         overrides = {
           IndentBlanklineIndent1 = { fg = colors.red },
           IndentBlanklineIndent2 = { fg = colors.green },
@@ -105,7 +104,7 @@ return {
           IndentBlanklineIndent5 = { fg = colors.pink },
           IndentBlanklineIndent6 = { fg = colors.cyan },
         },
-      })
+      }
     end,
     lazy = true,
   },
@@ -128,8 +127,8 @@ return {
   },
   {
     "projekt0n/github-nvim-theme",
-    config = function()
-      require("github-theme").setup({
+    opts = function()
+      return {
         groups = {
           all = {
             rainbowcol1 = { fg = "palette.red" },
@@ -141,9 +140,10 @@ return {
             rainbowcol7 = { fg = "palette.cyan" },
           },
         },
-      })
+      }
     end,
     lazy = true,
+    main = "github-theme",
   },
   {
     "sainnhe/gruvbox-material",
@@ -192,10 +192,10 @@ return {
   },
   {
     "marko-cerovac/material.nvim",
-    config = function()
+    opts = function()
       local colors = require("material.colors")
 
-      require("material").setup({
+      return {
         custom_highlights = {
           rainbowcol1 = { fg = colors.main.red },
           rainbowcol2 = { fg = colors.main.yellow },
@@ -217,7 +217,7 @@ return {
           "trouble",
           "which-key",
         },
-      })
+      }
     end,
     lazy = true,
   },
@@ -413,10 +413,10 @@ return {
   },
   {
     "Mofiqul/vscode.nvim",
-    config = function()
+    opts = function()
       local colors = require("vscode.colors").get_colors()
 
-      require("vscode").setup({
+      return {
         group_overrides = {
           IndentBlanklineIndent1 = { fg = colors.vscRed },
           IndentBlanklineIndent2 = { fg = colors.vscYellow },
@@ -432,7 +432,7 @@ return {
           rainbowcol6 = { fg = colors.vscViolet },
           rainbowcol7 = { fg = colors.vscBlueGreen },
         },
-      })
+      }
     end,
     lazy = true,
   },

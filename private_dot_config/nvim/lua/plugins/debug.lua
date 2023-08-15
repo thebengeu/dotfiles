@@ -4,11 +4,7 @@ return {
     dependencies = {
       {
         "mxsdev/nvim-dap-vscode-js",
-        config = function()
-          require("dap-vscode-js").setup({
-            adapters = { "pwa-node" },
-            debugger_path = os.getenv("HOME") .. "/vscode-js-debug",
-          })
+        opts = function()
           require("dap").configurations.typescript = {
             {
               cwd = "${workspaceFolder}",
@@ -26,6 +22,11 @@ return {
               runtimeArgs = { "--loader", "ts-node/esm/transpile-only" },
               type = "pwa-node",
             },
+          }
+
+          return {
+            adapters = { "pwa-node" },
+            debugger_path = os.getenv("HOME") .. "/vscode-js-debug",
           }
         end,
       },
