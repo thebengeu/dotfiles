@@ -23,10 +23,12 @@ if ($nul -eq (Get-Command -ErrorAction SilentlyContinue scoop))
 }
 
 scoop bucket add extras
+scoop bucket add nerd-fonts
 
 $scoopPackages = @(
   'gcc'
   'goneovim'
+  'nerd-fonts/JetBrainsMono-NF'
 )
 
 foreach ($scoopPackage in $scoopPackages)
