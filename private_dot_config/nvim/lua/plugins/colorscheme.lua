@@ -152,6 +152,16 @@ return {
   },
   {
     "LazyVim/LazyVim",
+    init = function()
+      if jit.os:find("Windows") then
+        local float_term = Util.float_term
+
+        ---@diagnostic disable-next-line: duplicate-set-field
+        Util.float_term = function(cmd, opts)
+          return float_term(cmd or { "nu" }, opts)
+        end
+      end
+    end,
     opts = {
       colorscheme = current_colorscheme_and_style[1],
     },
