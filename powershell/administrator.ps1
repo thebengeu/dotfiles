@@ -324,5 +324,3 @@ foreach ($manifestPath in $manifestPaths)
 {
   winget install --manifest "$Env:USERPROFILE\powershell\manifests\$manifestPath" --silent
 }
-
-C:\msys64\usr\bin\bash --login ~/.tmux/plugins/tpm/bin/install_plugins
