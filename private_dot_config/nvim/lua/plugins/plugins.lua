@@ -20,18 +20,25 @@ return {
       },
     },
     lazy = false,
-    opts = {
-      auto_session_enable_last_session = vim.loop.cwd() == vim.loop.os_homedir() .. "\\scoop\\apps\\goneovim\\current"
-        or vim.loop.cwd() == "C:\\Program Files\\Neovide"
-        or vim.loop.cwd() == vim.loop.os_homedir(),
-      log_level = vim.log.levels.ERROR,
-      pre_save_cmds = {
-        require("neo-tree.sources.manager").close_all,
-      },
-      session_lens = {
-        previewer = true,
-      },
-    },
+    opts = function()
+      local cwd = vim.loop.cwd()
+      local homedir = vim.loop.os_homedir()
+      local goneovim_folder = homedir .. "\\scoop\\apps\\goneovim\\current"
+      local neovide_folder = os.getenv("ProgramFiles") .. "\\Neovide"
+
+      return {
+        auto_session_enable_last_session = cwd == goneovim_folder or cwd == homedir or cwd == neovide_folder,
+        log_level = vim.log.levels.ERROR,
+        pre_save_cmds = {
+          function()
+            require("neo-tree.sources.manager").close_all()
+          end,
+        },
+        session_lens = {
+          previewer = true,
+        },
+      }
+    end,
   },
   {
     "echasnovski/mini.bracketed",
