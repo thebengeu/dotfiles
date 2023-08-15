@@ -88,9 +88,6 @@
     dest: ~/.tmux/plugins/tpm
   tags:
     - skip_ansible_lint
-- ansible.posix.authorized_key:
-    key: https://github.com/thebengeu.keys
-    user: "{{ ansible_user_id }}"
 - ansible.builtin.command:
     cmd: chezmoi init --ssh thebengeu
     creates: ~/.local/share/chezmoi
