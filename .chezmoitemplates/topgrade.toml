@@ -1,6 +1,6 @@
 [commands]
 atuin_fish_completions = "atuin gen-completions --out-dir $HOME/.config/fish/completions --shell fish"
-chezmoi = "chezmoi update --exclude templates"
+chezmoi = "chezmoi update --exclude templates && chezmoi apply $(sh -c \"chezmoi managed --include files --path-style absolute | rg --invert-match '.aws/credentials|.config/ghorg/conf.yaml|.msmtprc'\")"
 just_fish_completions = "just --completions fish > $HOME/.config/fish/completions/just.fish"
 [misc]
 assume_yes = true
