@@ -7,7 +7,6 @@ chezmoi.toml
 .ansible.cfg
 .inputrc
 .msmtprc
-.tmux.conf
 .tokeignore
 {{ else }}
 .config/wezterm/
