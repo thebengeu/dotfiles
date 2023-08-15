@@ -35,18 +35,6 @@ return {
           gs.diffthis("~")
         end, "Diff This ~")
         map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
-
-        require("which-key").register({
-          ["<leader>h"] = "+hunks",
-        })
-
-        api.nvim_buf_attach(buffer, false, {
-          on_detach = function()
-            require("which-key").register({
-              ["<leader>h"] = "which_key_ignore",
-            })
-          end,
-        })
       end,
     },
   },

@@ -154,15 +154,14 @@ return {
   },
   {
     "echasnovski/mini.ai",
-    config = function(plugin, opts)
-      local super = plugin._.super
-      super.config(super, opts)
-
-      require("which-key").register({
-        af = "Function call",
-        ["if"] = "Function call",
-        mode = { "o", "x" },
-      })
+    init = function()
+      require("lazyvim.util").on_load("mini.ai", function()
+        require("which-key").register({
+          af = "Function call",
+          ["if"] = "Function call",
+          mode = { "o", "x" },
+        })
+      end)
     end,
     keys = {
       { "ad", desc = "Function definition", mode = { "o", "x" } },
