@@ -55,19 +55,17 @@ return {
   {
     "neovim/nvim-lspconfig",
     init = function()
-      require("lazyvim.util").on_load("nvim-lspconfig", function()
-        local keys = require("lazyvim.plugins.lsp.keymaps").get()
-        table.insert(keys, { "[d", false })
-        table.insert(keys, { "[e", false })
-        table.insert(keys, { "[w", false })
-        table.insert(keys, { "]d", false })
-        table.insert(keys, { "]e", false })
-        table.insert(keys, { "]w", false })
-        table.insert(keys, { "gI", false })
-        table.insert(keys, { "gd", false })
-        table.insert(keys, { "gr", false })
-        table.insert(keys, { "gt", false })
-      end)
+      local keys = require("lazyvim.plugins.lsp.keymaps").get()
+      table.insert(keys, { "[d", false })
+      table.insert(keys, { "[e", false })
+      table.insert(keys, { "[w", false })
+      table.insert(keys, { "]d", false })
+      table.insert(keys, { "]e", false })
+      table.insert(keys, { "]w", false })
+      table.insert(keys, { "gI", false })
+      table.insert(keys, { "gd", false })
+      table.insert(keys, { "gr", false })
+      table.insert(keys, { "gt", false })
     end,
     opts = {
       servers = {
