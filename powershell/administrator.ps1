@@ -42,6 +42,7 @@ $wingetPackageIds = @(
   'ManicTime.ManicTime'
   'MSYS2.MSYS2'
   'Notion.Notion'
+  'Nushell.Nushell'
   'Obsidian.Obsidian'
   'Microsoft.PowerShell'
   'Microsoft.PowerToys'
