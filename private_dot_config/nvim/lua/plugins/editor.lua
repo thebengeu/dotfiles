@@ -191,6 +191,7 @@ return {
   {
     "cappyzawa/trim.nvim",
     config = true,
+    event = "BufWritePre",
   },
   {
     "mg979/vim-visual-multi",
