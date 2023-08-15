@@ -1,4 +1,5 @@
-{{ if eq .chezmoi.os "windows" }}
+{{ if ne .chezmoi.os "windows" -}}
+#!/usr/bin/env sh
 # {{ include ".chezmoitemplates/gup.conf" | sha256sum }}
 gup import
 {{ end }}
