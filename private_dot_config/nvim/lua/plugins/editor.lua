@@ -140,10 +140,10 @@ return {
   },
   {
     "gbprod/substitute.nvim",
-    config = function()
-      require("substitute").setup({
+    opts = function()
+      return {
         on_substitute = require("yanky.integration").substitute(),
-      })
+      }
     end,
     event = { "BufNewFile", "BufReadPost" },
     keys = {

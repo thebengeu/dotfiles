@@ -34,9 +34,7 @@ return {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
-    config = function(_, opts)
-      require("indent_blankline").setup(opts)
-
+    opts = function()
       local link_hl = function()
         for i = 1, 7 do
           api.nvim_set_hl(0, "IndentBlanklineIndent" .. i, { link = "rainbowcol" .. i })
@@ -48,20 +46,21 @@ return {
       api.nvim_create_autocmd("ColorScheme", {
         callback = link_hl,
       })
+
+      return {
+        char_highlight_list = {
+          "IndentBlanklineIndent1",
+          "IndentBlanklineIndent2",
+          "IndentBlanklineIndent3",
+          "IndentBlanklineIndent4",
+          "IndentBlanklineIndent5",
+          "IndentBlanklineIndent6",
+          "IndentBlanklineIndent7",
+        },
+        show_current_context = true,
+        use_treesitter = true,
+      }
     end,
-    opts = {
-      char_highlight_list = {
-        "IndentBlanklineIndent1",
-        "IndentBlanklineIndent2",
-        "IndentBlanklineIndent3",
-        "IndentBlanklineIndent4",
-        "IndentBlanklineIndent5",
-        "IndentBlanklineIndent6",
-        "IndentBlanklineIndent7",
-      },
-      show_current_context = true,
-      use_treesitter = true,
-    },
   },
   {
     "echasnovski/mini.indentscope",
