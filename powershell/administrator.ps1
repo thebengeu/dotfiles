@@ -302,8 +302,6 @@ if (!(Test-Path $localAppDataNvimPath))
 
 git clone git@github.com:thebengeu/powershell.git "$Env:USERPROFILE\powershell"
 
-gup import
-
 $fontFolder = "$Env:USERPROFILE\.local\share\chezmoi\private_dot_local\private_share\fonts"
 $shellFolder = (New-Object -COMObject Shell.Application).Namespace($fontFolder)
 
