@@ -16,6 +16,7 @@ return {
   {
     "max397574/better-escape.nvim",
     config = true,
+    event = "InsertEnter",
   },
   {
     "rmagatti/auto-session",
