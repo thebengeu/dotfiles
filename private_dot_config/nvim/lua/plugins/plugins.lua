@@ -24,7 +24,7 @@ return {
       local cwd = vim.loop.cwd()
       local homedir = vim.loop.os_homedir()
       local goneovim_folder = homedir .. "\\scoop\\apps\\goneovim\\current"
-      local neovide_folder = os.getenv("ProgramFiles") .. "\\Neovide"
+      local neovide_folder = os.getenv("ProgramFiles") or "" .. "\\Neovide"
 
       return {
         auto_session_enable_last_session = cwd == goneovim_folder or cwd == homedir or cwd == neovide_folder,
