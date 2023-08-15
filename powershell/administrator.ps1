@@ -296,7 +296,7 @@ $localAppDataNvimPath = "$Env:LOCALAPPDATA\nvim"
 
 if (!(Test-Path $localAppDataNvimPath))
 {
-  New-Item -ItemType Junction -Path $localAppDataNvimPath -Target "$Env:USERPROFILE\.config\nvim"
+  New-Item $localAppDataNvimPath -ItemType Junction -Target "$Env:USERPROFILE\.config\nvim"
 }
 
 git clone git@github.com:thebengeu/powershell.git "$Env:USERPROFILE\powershell"
