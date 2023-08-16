@@ -1,5 +1,3 @@
-local g = vim.g
-
 return {
   {
     "pearofducks/ansible-vim",
