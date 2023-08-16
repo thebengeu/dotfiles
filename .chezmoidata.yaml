@@ -14,6 +14,9 @@ aliases:
   g: git
   j: just
   jd: just dev
+  l: lsd -l
+  la: lsd -a
+  lla: lsd -la
   lg: lazygit
   man: batman
   n: nvim
