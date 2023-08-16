@@ -12,9 +12,9 @@ chezmoi.toml
 {{ else }}
 .config/wezterm/
 AppData/
+*.ps1
 AutoHotkey.ahk
 .wezterm.lua
-Microsoft.PowerShell_profile.ps1
 {{ end }}
 
 {{ if ne .chezmoi.hostname "dev" }}
