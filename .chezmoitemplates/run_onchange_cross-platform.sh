@@ -3,6 +3,7 @@ cargo install atuin
 cargo install broot
 cargo install cargo-update
 cargo install just
+cargo install lsd
 cargo install sd
 cargo install starship
 cargo install tealdeer
