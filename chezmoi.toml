@@ -4,3 +4,7 @@ command = "pwsh"
 
 [edit]
 command = "code"
+
+[interpreters.ps1]
+command = "pwsh"
+args = ["-NoLogo"]
