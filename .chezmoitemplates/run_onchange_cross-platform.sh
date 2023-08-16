@@ -20,4 +20,4 @@ pnpm add --global npm-check-updates
 pnpm add --global pino-pretty
 pnpm add --global pm2
 pnpm add --global https://github.com/thebengeu/ts-node.git
-curl cht.sh/:cht.sh >"$HOME"/.local/bin/cht.sh
+curl cht.sh/:cht.sh >~/.local/bin/cht.sh
