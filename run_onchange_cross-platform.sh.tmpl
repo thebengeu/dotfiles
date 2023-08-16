@@ -1,0 +1,5 @@
+{{ if ne .chezmoi.os "windows" -}}
+{{ template "run_onchange_cross-platform.sh" }}
+cargo install gitui
+chmod +x $HOME/.local/bin/cht.sh 
+{{ end }}
