@@ -26,7 +26,9 @@ return {
       local null_ls = require("null-ls")
       opts.sources = {
         null_ls.builtins.diagnostics.fish,
-        null_ls.builtins.diagnostics.shellcheck,
+        null_ls.builtins.diagnostics.shellcheck.with({
+          extra_args = { "-e", "SC1017" },
+        }),
         null_ls.builtins.diagnostics.sqlfluff.with({
           extra_args = { "--dialect", "postgres" },
           timeout = 20000,
