@@ -250,6 +250,15 @@ pip install pipx
 Remove-Item $env:OneDrive\Desktop\*.lnk
 Remove-Item $env:PUBLIC\Desktop\*.lnk
 
+if ((Get-WindowsCapability -Online | Where-Object Name -eq OpenSSH.Server~~~~0.0.1.0).State -eq 'NotPresent')
+{
+  Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
+  Start-Service sshd
+  Set-Service sshd -StartupType 'Automatic'
+}
+
+New-ItemProperty HKLM:\SOFTWARE\OpenSSH DefaultShell -Force -PropertyType String -Value "$Env:ProgramFiles\nu\bin\nu.exe"
+
 $sshKeyPath = "$Env:USERPROFILE\.ssh\id_ed25519"
 
 if (!(Test-Path $sshKeyPath))
