@@ -25,7 +25,9 @@ return {
     opts = function(_, opts)
       local null_ls = require("null-ls")
       opts.sources = {
-        null_ls.builtins.diagnostics.fish,
+        null_ls.builtins.diagnostics.fish.with(jit.os:find("Windows") and {
+          command = "C:\\msys64\\usr\\bin\\fish",
+        } or {}),
         null_ls.builtins.diagnostics.shellcheck.with({
           extra_args = { "-e", "SC1017" },
         }),
@@ -38,7 +40,9 @@ return {
             return not params.lsp_params.textDocument.uri:find("/Pulumi%.")
           end,
         }),
-        null_ls.builtins.formatting.fish_indent,
+        null_ls.builtins.formatting.fish_indent.with(jit.os:find("Windows") and {
+          command = "C:\\msys64\\usr\\bin\\fish_indent",
+        } or {}),
         null_ls.builtins.formatting.fixjson,
         null_ls.builtins.formatting.prettier.with({
           extra_filetypes = { "prisma" },
