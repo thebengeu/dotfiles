@@ -16,7 +16,7 @@ set --export NODE_NO_WARNINGS 1
 
 mcfly init fish | source
 
-abbr --add ll 'exa --git --icons --long'
 abbr --add ls 'exa --icons'
+abbr --add lsl 'exa --git --icons --long'
 
 alias rm safe-rm
