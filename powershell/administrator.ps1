@@ -294,6 +294,13 @@ $manifestPaths = @(
   't\Todoist\Todoist\8.5.0'
 )
 
+if (!$isMobile)
+{
+  $manifestPaths += @(
+    'f\Finkitd\o\o\ManicTimeServer\23.2.4.1'
+  )
+}
+
 foreach ($manifestPath in $manifestPaths)
 {
   winget install --manifest "$Env:USERPROFILE\powershell\manifests\$manifestPath" --silent
