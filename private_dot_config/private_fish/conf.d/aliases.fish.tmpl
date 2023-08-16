@@ -1,0 +1,13 @@
+{{range $alias, $command := .aliases -}}
+abbr --add {{$alias}} '{{$command | replace "'" "\\'"}}'
+{{end -}}
+{{range $git_alias, $command := .git_aliases -}}
+abbr --add g{{$git_alias}} 'git {{$command}}'
+{{range $prefix, $directory := $.alias_directories -}}
+abbr --add {{$prefix}}g{{$git_alias}} 'git -C {{$directory}} {{$command}}'
+{{end -}}
+{{end -}}
+{{range $prefix, $directory := $.alias_directories -}}
+abbr --add {{$prefix}}lg 'lazygit --path {{$directory}}'
+abbr --add {{$prefix}}n 'nvim --cmd "cd {{$directory}}"'
+{{end -}}
