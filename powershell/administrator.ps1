@@ -245,33 +245,7 @@ foreach ($chocoPackage in $chocoPackages)
   choco install $chocoPackage
 }
 
-pnpm add --global npm-check-updates pino-pretty pm2 https://github.com/thebengeu/ts-node.git
-
 pip install pipx
-
-pipx install neovim-remote
-
-$crates = @(
-  'atuin'
-  'bat'
-  'broot'
-  'cargo-update'
-  'fd-find'
-  'just'
-  'starship'
-  'tealdeer'
-  'tokei'
-  'topgrade'
-  'xh'
-  'zoxide'
-)
-
-foreach ($crate in $crates)
-{
-  cargo install $crate
-}
-
-go install github.com/nao1215/gup@latest
 
 Remove-Item $env:OneDrive\Desktop\*.lnk
 Remove-Item $env:PUBLIC\Desktop\*.lnk
