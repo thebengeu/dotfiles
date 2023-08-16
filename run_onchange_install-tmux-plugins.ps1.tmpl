@@ -1,4 +1,2 @@
-{{ if eq .chezmoi.os "windows" }}
 # {{ include "dot_tmux.conf" | sha256sum }}
 C:\msys64\usr\bin\bash --login ~/.tmux/plugins/tpm/bin/install_plugins
-{{ end }}

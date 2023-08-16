@@ -5,6 +5,7 @@ chezmoi.toml
 .config/fish/conf.d/non-windows.fish
 .config/topgrade.toml
 .local/
+*.sh
 .ansible.cfg
 .inputrc
 .msmtprc

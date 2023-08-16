@@ -1,4 +1,2 @@
-{{ if ne .chezmoi.os "windows" -}}
 #!/usr/bin/env sh
-{{ template "run_onchange_gup-import.tmpl" }}
-{{ end }}
+{{ includeTemplate "run_onchange_gup-import.ps1.tmpl" -}}
