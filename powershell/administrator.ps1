@@ -300,3 +300,7 @@ foreach ($manifestPath in $manifestPaths)
 {
   winget install --manifest "$Env:USERPROFILE\powershell\manifests\$manifestPath" --silent
 }
+
+$authorizedKeysPath = "$Env:ProgramData\ssh\administrators_authorized_keys"
+Copy-Item $Env:USERPROFILE\.ssh\id_ed25519.pub $authorizedKeysPath
+icacls $authorizedKeysPath /inheritance:r /grant Administrators:F /grant SYSTEM:F
