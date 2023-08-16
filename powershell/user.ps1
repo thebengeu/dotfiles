@@ -1,5 +1,15 @@
 $isMobile = (Get-CimInstance -Class Win32_ComputerSystem -Property PCSystemType).PCSystemType -eq 2
 
+$wingetPackageIds = @(
+  'Spotify.Spotify'
+)
+
+foreach ($wingetPackageId in $wingetPackageIds)
+{
+  $wingetPackageId
+  winget install --exact --no-upgrade --silent --id $wingetPackageId
+}
+
 $ignoreSecurityHashWingetPackageIds = @(
   'Microsoft.Office'
   'Neovim.Neovim.Nightly'

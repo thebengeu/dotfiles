@@ -55,7 +55,6 @@ $wingetPackageIds = @(
   'QMK.QMKToolbox'
   'BurntSushi.ripgrep.MSVC'
   'Rustlang.Rustup'
-  'Spotify.Spotify'
   'StartIsBack.StartAllBack'
   'Microsoft.VisualStudioCode'
   'JetBrains.WebStorm'
