@@ -809,3 +809,4 @@ $env.config = {
 }
 
 use ~/.cache/starship/init.nu
+source ~/.zoxide.nu
