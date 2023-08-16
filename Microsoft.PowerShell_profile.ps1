@@ -3,6 +3,7 @@ Invoke-Expression (& {
  (zoxide init --cmd cd powershell | Out-String) }
 )
 
+Import-Module gsudoModule
 Import-Module PSFzf
 Import-Module PSWindowsUpdate
 
