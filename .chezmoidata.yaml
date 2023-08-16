@@ -7,10 +7,8 @@ aliases:
   bi: brew install
   bui: brew uninstall
   cat: bat
-  ca: chezmoi apply $(sh -c "chezmoi managed --include files --path-style absolute | rg --invert-match '.aws/credentials|.config/ghorg/conf.yaml|.msmtprc'")
   caa: chezmoi apply
   cr: chezmoi re-add
-  cu: chezmoi update --exclude templates && chezmoi apply $(sh -c "chezmoi managed --include files --path-style absolute | rg --invert-match '.aws/credentials|.config/ghorg/conf.yaml|.msmtprc'")
   g: git
   j: just
   jd: just dev
@@ -22,7 +20,6 @@ aliases:
   man: batman
   n: nvim
   nr: sh -c "printf \"\e[6 q\"; node"
-  os: set COMMAND $(op signin) && test -n "$COMMAND" && eval $COMMAND && set --export OP_TIME $(date +%s)
   p: pnpm
   pd: pnpm dev
   pi: pnpm i

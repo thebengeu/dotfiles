@@ -14,6 +14,10 @@ zoxide init --cmd cd fish | source
 
 enable_transience
 
+abbr --add ca "chezmoi apply --exclude templates; chezmoi apply (chezmoi managed --include files --path-style absolute | rg --invert-match '.aws/credentials|.config/ghorg/conf.yaml|.msmtprc')"
+abbr --add cu "chezmoi update --exclude templates; chezmoi apply (chezmoi managed --include files --path-style absolute | rg --invert-match '.aws/credentials|.config/ghorg/conf.yaml|.msmtprc')"
+abbr --add os 'set COMMAND $(op signin) && test -n "$COMMAND" && eval $COMMAND && set --export OP_TIME $(date +%s)'
+
 function fish_title
     if test -n "$TMUX"
         tmux rename-window -t $(tmux display-message -p '#{window_index}') $PWD

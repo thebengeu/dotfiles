@@ -1,0 +1,15 @@
+alias ca = chezmoi apply --exclude templates; chezmoi apply (chezmoi managed --include files --path-style absolute | rg --invert-match '.aws/credentials|.config/ghorg/conf.yaml|.msmtprc' | lines)
+alias cu = chezmoi update --exclude templates; chezmoi apply (chezmoi managed --include files --path-style absolute | rg --invert-match '.aws/credentials|.config/ghorg/conf.yaml|.msmtprc' | lines)
+{{range $alias, $command := .aliases -}}
+alias {{$alias}} = {{$command}}
+{{end -}}
+{{range $git_alias, $command := .git_aliases -}}
+alias g{{$git_alias}} = git {{$command}}
+{{range $prefix, $directory := $.alias_directories -}}
+alias {{$prefix}}g{{$git_alias}} = git -C {{$directory}} {{$command}}
+{{end -}}
+{{end -}}
+{{range $prefix, $directory := $.alias_directories -}}
+alias {{$prefix}}lg = lazygit --path {{$directory}}
+alias {{$prefix}}n = nvim --cmd "cd {{$directory}}"
+{{end -}}
