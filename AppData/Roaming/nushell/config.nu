@@ -1,4 +1,8 @@
 $env.config = {
+    cursor_shape: {
+        vi_insert: line
+        vi_normal: block
+    }
     edit_mode: vi
     keybindings: []
     show_banner: false
