@@ -8,7 +8,11 @@ $env.config = {
     }
     edit_mode: vi
     keybindings: []
+    shell_integration: true
     show_banner: false
+    table: {
+        index_mode: auto
+    }
 }
 
 source ~/.local/share/atuin/init.nu
