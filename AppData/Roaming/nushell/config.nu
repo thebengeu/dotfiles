@@ -1,4 +1,7 @@
 $env.config = {
+    cd: {
+        abbreviations: true
+    }
     cursor_shape: {
         vi_insert: line
         vi_normal: block
