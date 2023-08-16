@@ -1,4 +1,2 @@
-{{ if eq .chezmoi.os "windows" }}
 # {{ include "private_dot_config/private_fish/fish_plugins" | sha256sum }}
-C:\msys64\usr\bin\fish -c 'curl -Ls https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher update'
-{{ end }}
+C:\msys64\usr\bin\fish --profile -c 'curl -Ls https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher update'
