@@ -27,4 +27,4 @@ mkdir -p ~/.local/share/atuin
 atuin init nu >~/.local/share/atuin/init.nu
 mkdir -p ~/.cache/starship
 starship init nu >~/.cache/starship/init.nu
-zoxide init nushell >~/.zoxide.nu
+zoxide init --no-cmd nushell | sd __zoxide_z z >~/.zoxide.nu
