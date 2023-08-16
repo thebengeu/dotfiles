@@ -1,0 +1,37 @@
+{{range $alias, $command := .aliases -}}
+{{if $command | contains " " -}}
+function {{$alias}}
+{
+  {{- if $command | hasPrefix (print $alias " ") }}
+  & $(Get-Command -CommandType Application {{$alias}}){{ $command | trimPrefix $alias }} $args
+  {{- else}}
+  {{$command}} $args
+  {{- end}}
+}
+{{else -}}
+Set-Alias {{$alias}} {{$command}}
+{{end}}
+{{end -}}
+{{range $git_alias, $command := .git_aliases -}}
+function g{{$git_alias}}
+{
+  git {{$command}} $args
+}
+{{range $prefix, $directory := $.alias_directories}}
+function {{$prefix}}g{{$git_alias}}
+{
+  git -C {{$directory | replace "~" ""}} {{$command}} $args
+}
+{{end -}}
+{{end -}}
+{{range $prefix, $directory := $.alias_directories}}
+function {{$prefix}}lg
+{
+  lazygit --path {{$directory}} $args
+}
+
+function {{$prefix}}n
+{
+  nvim --cmd "cd {{$directory}}" $args
+}
+{{end -}}
