@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd("TextChanged", {
   pattern = "*.lua",
 })
 vim.api.nvim_create_autocmd("BufWritePost", {
-  command = "!chezmoi apply --source-path <afile>",
+  command = "AsyncRun -mode=term -pos=hide chezmoi apply --source-path <afile>",
   pattern = "*/.local/share/chezmoi/*",
 })
 vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained" }, {
