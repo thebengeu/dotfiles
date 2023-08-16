@@ -11,6 +11,7 @@ vim.keymap.set(
   { desc = "Git commit" }
 )
 vim.keymap.set("n", "<leader>gP", [[<Cmd>AsyncRun -mode=term -pos=hide git push<CR>]], { desc = "Git push" })
+vim.keymap.set("n", "<leader>gp", [[<Cmd>AsyncRun -mode=term -pos=hide git pull<CR>]], { desc = "Git pull" })
 vim.keymap.set("n", "<C-r>", "<Cmd>silent redo<CR>")
 vim.keymap.set("n", "u", "<Cmd>silent undo<CR>")
 vim.keymap.set("n", "<space>bo", "<Cmd>%bd|e#|bd#<CR>", { desc = "Delete other buffers" })
