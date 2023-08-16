@@ -38,6 +38,7 @@ $wingetPackageIds = @(
   'junegunn.fzf'
   'Git.Git'
   'GoLang.Go'
+  'gerardog.gsudo'
   'jftuga.less'
   'ManicTime.ManicTime'
   'MSYS2.MSYS2'
