@@ -55,7 +55,6 @@ $wingetPackageIds = @(
   'QMK.QMKToolbox'
   'BurntSushi.ripgrep.MSVC'
   'Rustlang.Rustup'
-  'SlackTechnologies.Slack'
   'Spotify.Spotify'
   'StartIsBack.StartAllBack'
   'Microsoft.VisualStudioCode'
@@ -207,6 +206,7 @@ $pathsForTargets = @{
   )
   [EnvironmentVariableTarget]::User    = @(
     "$Env:USERPROFILE\.cargo\bin"
+    "$Env:USERPROFILE\.local\bin"
     $Env:PNPM_HOME
   )
 }
