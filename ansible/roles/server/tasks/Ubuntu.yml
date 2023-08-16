@@ -65,24 +65,6 @@
 - ansible.builtin.command:
     cmd: /tmp/rustup-init --no-modify-path --profile minimal -y
     creates: ~/.cargo/env
-- community.general.cargo:
-    name: "{{ item }}"
-  loop:
-    - atuin
-    - broot
-    - cargo-update
-    - exa
-    - gitui
-    - just
-    - mcfly
-    - starship
-    - tealdeer
-    - tokei
-    - topgrade
-    - xh
-    - zoxide
-  environment:
-    PATH: /usr/bin:/home/{{ ansible_user_id }}/.cargo/bin
 - ansible.builtin.command:
     cmd: chezmoi init --ssh thebengeu
     creates: ~/.local/share/chezmoi
@@ -92,10 +74,6 @@
 - ansible.builtin.command:
     cmd: /usr/bin/bat cache --build
     creates: ~/.cache/bat/themes.bin
-- ansible.builtin.get_url:
-    dest: ~/.local/bin/cht.sh
-    mode: "755"
-    url: https://cht.sh/:cht.sh
 - ansible.builtin.command:
     cmd: nix profile install nixpkgs#{{ item }}
     creates: ~/.nix-profile/bin/{{ item }}
@@ -103,21 +81,10 @@
     - nethogs
     - nix
     - peco
-- ansible.builtin.command:
-    cmd: go install github.com/nao1215/gup@latest
-    creates: ~/go/bin/gup
 - ansible.builtin.pip:
     name:
       - pipx
     extra_args: --user
-- community.general.pipx:
-    name: "{{ item }}"
-  loop:
-    - howdoi
-    - khal
-    - neovim-remote
-    - qmk
-    - sqlfluff
 - ansible.builtin.git:
     dest: ~/bat-extras
     repo: https://github.com/eth-p/bat-extras.git
@@ -129,17 +96,3 @@
   become: true
   environment:
     PATH: /usr/bin:/home/{{ ansible_user_id }}/go/bin
-- ansible.builtin.command:
-    cmd: pnpm add --global https://github.com/thebengeu/ts-node.git
-    creates: ~/.local/share/pnpm/ts-node
-  environment:
-    PATH: /usr/bin:/home/{{ ansible_user_id }}/.local/share/pnpm
-- ansible.builtin.command:
-    cmd: pnpm add --global {{ item }}
-    creates: ~/.local/share/pnpm/{{ item }}
-  loop:
-    - npm-check-updates
-    - pino-pretty
-    - pm2
-  environment:
-    PATH: /usr/bin:/home/{{ ansible_user_id }}/.local/share/pnpm
