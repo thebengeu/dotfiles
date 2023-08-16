@@ -284,6 +284,13 @@ return {
     event = "InsertEnter",
   },
   {
+    "chrisgrieser/nvim-various-textobjs",
+    event = { "BufNewFile", "BufReadPost" },
+    opts = {
+      useDefaultKeymaps = true,
+    },
+  },
+  {
     "ThePrimeagen/refactoring.nvim",
     keys = {
       {
