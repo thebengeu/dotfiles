@@ -250,10 +250,6 @@ pip install pipx
 Remove-Item $env:OneDrive\Desktop\*.lnk
 Remove-Item $env:PUBLIC\Desktop\*.lnk
 
-Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
-Start-Service sshd
-Set-Service sshd -StartupType 'Automatic'
-New-ItemProperty HKLM:\SOFTWARE\OpenSSH DefaultShell -Force -PropertyType String -Value "$Env:ProgramFiles\nu\bin\nu.exe"
 
 $sshKeyPath = "$Env:USERPROFILE\.ssh\id_ed25519"
 
@@ -301,6 +297,14 @@ foreach ($manifestPath in $manifestPaths)
   winget install --manifest "$Env:USERPROFILE\powershell\manifests\$manifestPath" --silent
 }
 
-$authorizedKeysPath = "$Env:ProgramData\ssh\administrators_authorized_keys"
-Copy-Item $Env:USERPROFILE\.ssh\id_ed25519.pub $authorizedKeysPath
-icacls $authorizedKeysPath /inheritance:r /grant Administrators:F /grant SYSTEM:F
+if (!$isMobile)
+{
+  Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
+  Start-Service sshd
+  Set-Service sshd -StartupType 'Automatic'
+  New-ItemProperty HKLM:\SOFTWARE\OpenSSH DefaultShell -Force -PropertyType String -Value "$Env:ProgramFiles\nu\bin\nu.exe"
+
+  $authorizedKeysPath = "$Env:ProgramData\ssh\administrators_authorized_keys"
+  Copy-Item $Env:USERPROFILE\.ssh\id_ed25519.pub $authorizedKeysPath
+  icacls $authorizedKeysPath /inheritance:r /grant Administrators:F /grant SYSTEM:F
+}
