@@ -8,6 +8,14 @@ def chezmoi_update [] {
     chezmoi apply (chezmoi managed --include files --path-style absolute | rg --invert-match '.aws/credentials|.config/ghorg/conf.yaml|.msmtprc' | lines)
 }
 
+{{range $name, $body_and_parameters := .functions -}}
+def {{$name}} [{{$body_and_parameters.parameters | join ", "}}] {
+{{- range $body_and_parameters.body}}
+  {{. -}}
+{{end}}
+}
+{{- end}}
+
 alias ca = chezmoi_apply
 alias cu = chezmoi_update
 {{range $alias, $command := .aliases -}}
