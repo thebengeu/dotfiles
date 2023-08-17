@@ -50,6 +50,7 @@ $wingetPackageIds = @(
   'Git.Git'
   'GoLang.Go'
   'gerardog.gsudo'
+  'DEVCOM.Lua'
   'jftuga.less'
   'ManicTime.ManicTime'
   'MSYS2.MSYS2'
