@@ -8,7 +8,10 @@ aliases:
   bui: brew uninstall
   cat: bat
   caa: chezmoi apply
+  ci: choco install
   cr: chezmoi re-add
+  cs: choco search
+  cu: choco uninstall
   g: git
   j: just
   jd: just dev
@@ -17,7 +20,6 @@ aliases:
   ll: lsd -l
   lla: lsd -la
   lg: lazygit
-  man: batman
   n: nvim
   nr: sh -c "printf \"\e[6 q\"; node"
   p: pnpm
@@ -30,11 +32,25 @@ aliases:
   prr: gh pr create -f -r
   rg: rg --max-columns 1000
   scc: scc --not-match "package-lock.json|pnpm-lock.yaml"
+  si: scoop install
+  ss: scoop search
+  su: scoop uninstall
   tg: topgrade
   tns: tmux new-session -A -s
   tsx: pnpm tsx
   tsxr: sh -c 'printf "\e[6 q"; pnpm tsx'
   vim: nvim
+  wi: winget install
+  ws: winget search
+  wu: winget uninstall
+functions:
+  wcss:
+    body:
+      - winget search $package
+      - choco search $package
+      - scoop search $package
+    parameters:
+      - package
 git_aliases:
   aa: add -A
   c: clone
