@@ -1,5 +1,15 @@
-alias ca = chezmoi apply --exclude templates; chezmoi apply (chezmoi managed --include files --path-style absolute | rg --invert-match '.aws/credentials|.config/ghorg/conf.yaml|.msmtprc' | lines)
-alias cu = chezmoi update --exclude templates; chezmoi apply (chezmoi managed --include files --path-style absolute | rg --invert-match '.aws/credentials|.config/ghorg/conf.yaml|.msmtprc' | lines)
+def chezmoi_apply [] {
+    chezmoi apply --exclude templates
+    chezmoi apply (chezmoi managed --include files --path-style absolute | rg --invert-match '.aws/credentials|.config/ghorg/conf.yaml|.msmtprc' | lines)
+}
+
+def chezmoi_update [] {
+    chezmoi update --exclude templates
+    chezmoi apply (chezmoi managed --include files --path-style absolute | rg --invert-match '.aws/credentials|.config/ghorg/conf.yaml|.msmtprc' | lines)
+}
+
+alias ca = chezmoi_apply
+alias cu = chezmoi_update
 {{range $alias, $command := .aliases -}}
 alias {{$alias}} = {{$command}}
 {{end -}}
