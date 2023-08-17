@@ -96,7 +96,7 @@ foreach ($wingetPackageId in $wingetPackageIds)
   winget install --exact --no-upgrade --silent --id $wingetPackageId
 }
 
-winget install --exact --override '--add Microsoft.VisualStudio.Workload.VCTools --includeRecommended --quiet --wait' --silent Microsoft.VisualStudio.2022.BuildTools
+winget install --exact --id --no-upgrade --override '--add Microsoft.VisualStudio.Workload.VCTools --includeRecommended --quiet --wait' --silent Microsoft.VisualStudio.2022.BuildTools
 
 winget pin add --exact --id JetBrains.WebStorm
 
