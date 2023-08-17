@@ -20,14 +20,14 @@ function g{{$git_alias}}
 {{range $prefix, $directory := $.alias_directories}}
 function {{$prefix}}g{{$git_alias}}
 {
-  git -C {{$directory | replace "~" ""}} {{$command}} $args
+  git -C {{$directory | replace "~" "$HOME"}} {{$command}} $args
 }
 {{end -}}
 {{end -}}
 {{range $prefix, $directory := $.alias_directories}}
 function {{$prefix}}lg
 {
-  lazygit --path {{$directory}} $args
+  lazygit --path {{$directory | replace "~" "$HOME" }} $args
 }
 
 function {{$prefix}}n
