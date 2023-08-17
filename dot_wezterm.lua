@@ -93,18 +93,22 @@ config.skip_close_confirmation_for_processes_named = {
 config.ssh_domains = {}
 
 for _, ssh_domain in ipairs({
-	{ "dev-local", "192.168.50.3" },
-	{ "dev-remote", "beng.asuscomm.com" },
-	{ "ec2", "13.213.181.86", "ubuntu" },
-	{ "prod", "192.168.50.4" },
+	"dev-local",
+	"dev-remote",
+	"ec2",
+	"prod",
 }) do
-	table.insert(config.ssh_domains, {
-		default_prog = { "tmux", "new-session", "-A", "-s", "0" },
-		name = "SSH:" .. ssh_domain[1],
+	local ssh_domain_config = {
+		name = "SSH:" .. ssh_domain,
 		multiplexing = "None",
-		remote_address = ssh_domain[2],
-		username = ssh_domain[3] or "beng",
-	})
+		remote_address = ssh_domain,
+	}
+
+	if not ssh_domain:find("^dev%-") then
+		ssh_domain_config["default_prog"] = { "tmux", "new-session", "-A", "-s", "0" }
+	end
+
+	table.insert(config.ssh_domains, ssh_domain_config)
 end
 
 config.window_close_confirmation = "NeverPrompt"
