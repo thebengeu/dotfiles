@@ -68,6 +68,7 @@ $wingetPackageIds = @(
   'QMK.QMKToolbox'
   'BurntSushi.ripgrep.MSVC'
   'Rustlang.Rustup'
+  'SlackTechnologies.Slack'
   'StartIsBack.StartAllBack'
   'Microsoft.VisualStudioCode'
   'JetBrains.WebStorm'
