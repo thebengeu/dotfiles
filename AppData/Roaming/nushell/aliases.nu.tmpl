@@ -11,8 +11,8 @@ def chezmoi_update [] {
 {{range $name, $body_and_parameters := .functions -}}
 def {{$name}} [{{$body_and_parameters.parameters | join ", "}}] {
 {{- range $body_and_parameters.body}}
-  {{. -}}
-{{end}}
+    do --ignore-program-errors { {{.}} }
+{{- end}}
 }
 {{- end}}
 
