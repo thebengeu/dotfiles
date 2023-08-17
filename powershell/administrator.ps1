@@ -100,6 +100,11 @@ winget install --exact --override '--add Microsoft.VisualStudio.Workload.VCTools
 
 winget pin add --exact --id JetBrains.WebStorm
 
+if (!$isMobile)
+{
+  winget pin add --exact --id Asus.ArmouryCrate
+}
+
 $storeApps = @(
   'Apple Music Preview'
   '9PL8WPH0QK9M' # Cider (Preview)
