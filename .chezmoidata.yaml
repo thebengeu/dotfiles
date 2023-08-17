@@ -12,6 +12,8 @@ aliases:
   cr: chezmoi re-add
   cs: choco search
   cu: choco uninstall
+  dev: sh -c 'ssh dev-$(if ncat -z --wait 100ms 192.168.50.2 22; then echo "local"; else echo "remote"; fi)'
+  ec2: ssh -t ec2 tmux new-session -A -s 0
   g: git
   j: just
   jd: just dev
@@ -29,6 +31,7 @@ aliases:
   ppg: pnpm prisma generate
   pr: gh pr create -f
   prm: pnpm rm
+  prod: ssh -t prod tmux new-session -A -s 0
   prr: gh pr create -f -r
   rg: rg --max-columns 1000
   scc: scc --not-match "package-lock.json|pnpm-lock.yaml"
