@@ -86,6 +86,7 @@ config.show_new_tab_button_in_tab_bar = false
 config.show_tab_index_in_tab_bar = false
 config.skip_close_confirmation_for_processes_named = {
 	"conhost.exe",
+	"nu.exe",
 	"tmux",
 	"wsl.exe",
 	"wslhost.exe",
