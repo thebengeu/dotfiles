@@ -38,7 +38,7 @@ aliases:
   si: scoop install
   ss: scoop search
   su: scoop uninstall
-  tg: topgrade
+  tg: pwsh -Command gsudo topgrade
   tns: tmux new-session -A -s
   tsx: pnpm tsx
   tsxr: sh -c 'printf "\e[6 q"; pnpm tsx'
