@@ -1,0 +1,14 @@
+# Created using wingetcreate 1.2.8.0
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.installer.1.4.0.schema.json
+
+PackageIdentifier: AudioBand.AudioBand
+PackageVersion: 1.2.1
+Installers:
+- InstallerUrl: https://github.com/AudioBand/AudioBand/releases/download/v1.2.1/AudioBand.msi
+  InstallerLocale: en-US
+  Architecture: x64
+  InstallerType: wix
+  InstallerSha256: 7EC79A1EF6871236DE2CE7DE722EA2C7EE98981948F202E3DC1707FB741281B9
+  ProductCode: '{0BD4E347-1EE9-4F74-BB18-067B8736E44D}'
+ManifestType: installer
+ManifestVersion: 1.4.0
