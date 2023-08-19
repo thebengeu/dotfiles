@@ -266,7 +266,7 @@ foreach ($chocoPackage in $chocoPackages)
   choco install $chocoPackage
 }
 
-pip install pipx
+pip install --user pipx
 
 Remove-Item $env:OneDrive\Desktop\*.lnk
 Remove-Item $env:PUBLIC\Desktop\*.lnk

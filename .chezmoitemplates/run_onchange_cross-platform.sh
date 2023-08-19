@@ -18,6 +18,7 @@ pipx install khal
 pipx install neovim-remote
 pipx install qmk
 pipx install sqlfluff
+pipx install virtualenv
 pnpm add --global npm-check-updates
 pnpm add --global pino-pretty
 pnpm add --global pm2
