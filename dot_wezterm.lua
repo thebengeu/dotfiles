@@ -54,7 +54,7 @@ config.launch_menu = {
 	{
 		domain = { DomainName = "local" },
 		label = "Bash",
-		args = { "bash", "--login" },
+		args = { "bash" },
 	},
 	{
 		domain = { DomainName = "local" },
