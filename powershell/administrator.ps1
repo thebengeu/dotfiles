@@ -65,7 +65,6 @@ $wingetPackageIds = @(
   'OpenJS.NodeJS'
   'PostgreSQL.PostgreSQL'
   'Pulumi.Pulumi'
-  'Python.Python.3.11'
   'QMK.QMKToolbox'
   'BurntSushi.ripgrep.MSVC'
   'Rustlang.Rustup'
@@ -113,6 +112,7 @@ $storeApps = @(
   '9PL8WPH0QK9M' # Cider (Preview)
   'iCloud'
   '9NRX63209R7B' # Outlook for Windows
+  'Python 3.11'
   'Raindrop.io'
   'Unigram—Telegram for Windows'
   'WhatsApp'
