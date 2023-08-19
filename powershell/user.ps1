@@ -37,6 +37,7 @@ scoop bucket add nerd-fonts
 
 $scoopPackages = @(
   'gcc'
+  'git-filter-repo'
   'goneovim'
   'nerd-fonts/JetBrainsMono-NF'
 )
