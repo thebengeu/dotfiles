@@ -1,0 +1,4 @@
+- hosts: localhost
+  roles:
+    - {role: server, tags: server}
+    - {role: desktop, tags: desktop}

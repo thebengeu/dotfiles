@@ -1,0 +1,52 @@
+- ansible.builtin.shell:
+    # yamllint disable rule:line-length
+    cmd: |
+      set -o pipefail
+      curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin launch=n
+    # yamllint enable rule:line-length
+    creates: ~/.local/kitty.app
+- ansible.builtin.file:
+    dest: ~/.local/bin/kitty
+    src: ~/.local/kitty.app/bin/kitty
+    state: link
+- ansible.builtin.copy:
+    dest: ~/.local/share/applications/
+    mode: "644"
+    remote_src: true
+    src: ~/.local/kitty.app/share/applications/kitty.desktop
+- ansible.builtin.copy:
+    dest: ~/.local/share/applications/
+    mode: "644"
+    remote_src: true
+    src: ~/.local/kitty.app/share/applications/kitty-open.desktop
+- ansible.builtin.lineinfile:
+    # yamllint disable-line rule:line-length
+    line: Icon=/home/{{ user }}/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png
+    path: "{{ item }}"
+    regexp: ^Icon=
+  loop:
+    - ~/.local/share/applications/kitty.desktop
+    - ~/.local/share/applications/kitty-open.desktop
+- ansible.builtin.lineinfile:
+    line: Exec=/home/{{ user }}/.local/kitty.app/bin/kitty
+    path: "{{ item }}"
+    regexp: ^Exec=
+  loop:
+    - ~/.local/share/applications/kitty.desktop
+    - ~/.local/share/applications/kitty-open.desktop
+- community.general.homebrew_tap:
+    name:
+      - linuxbrew/fonts
+      - spicetify/homebrew-tap
+- community.general.homebrew:
+    name:
+      - font-fira-code
+      - font-iosevka
+      - font-jetbrains-mono
+      - font-symbols-only-nerd-font
+      - font-victor-mono
+      - spicetify-cli
+- ansible.builtin.file:
+    dest: ~/.local/share/fonts/linuxbrew
+    src: /home/linuxbrew/.linuxbrew/share/fonts
+    state: link

@@ -1,0 +1,98 @@
+- ansible.builtin.file:
+    mode: "755"
+    path: ~/.pulumi/bin
+    state: directory
+- ansible.builtin.unarchive:
+    creates: ~/.pulumi/bin/pulumi
+    dest: ~/.pulumi/bin
+    extra_opts:
+      - --strip-components=1
+    remote_src: true
+    # yamllint disable-line rule:line-length
+    src: https://get.pulumi.com/releases/sdk/pulumi-v3.76.0-linux-{{ (arch.stdout == 'amd64') | ternary('x64', arch.stdout) }}.tar.gz
+- ansible.builtin.file:
+    mode: "755"
+    path: ~/.temporalio/bin
+    state: directory
+- ansible.builtin.unarchive:
+    creates: ~/.temporalio/bin/temporal
+    dest: ~/.temporalio/bin
+    extra_opts:
+      - temporal
+    remote_src: true
+    # yamllint disable-line rule:line-length
+    src: https://temporal.download/cli/archive/latest?platform=linux&arch={{ arch.stdout }}
+- ansible.builtin.file:
+    mode: "755"
+    path: ~/.local/bin
+    state: directory
+- ansible.builtin.unarchive:
+    creates: ~/.local/bin/bandwhich
+    dest: ~/.local/bin
+    remote_src: true
+    src: https://github.com/imsnif/bandwhich/releases/download/0.20.0/bandwhich-v0.20.0-x86_64-unknown-linux-musl.tar.gz
+- ansible.builtin.git:
+    dest: ~/neovim
+    force: true
+    repo: https://github.com/neovim/neovim
+    version: f2ce31d3dc1c728c33c0910e1a9970f0eb2e3f11
+- ansible.builtin.command:
+    chdir: ~/neovim
+    cmd: make CMAKE_BUILD_TYPE=Release
+    creates: ~/neovim/build/
+- ansible.builtin.command:
+    chdir: ~/neovim/build
+    cmd: cpack -G DEB
+    creates: ~/neovim/build/nvim-linux64.deb
+- ansible.builtin.apt:
+    deb: /home/{{ ansible_user_id }}/neovim/build/nvim-linux64.deb
+  become: true
+- community.general.alternatives:
+    name: editor
+    path: /usr/bin/nvim
+  become: true
+- ansible.builtin.user:
+    append: true
+    groups: docker
+    name: "{{ ansible_user_id }}"
+    shell: /usr/bin/fish
+  become: true
+- ansible.builtin.get_url:
+    dest: /tmp/rustup-init
+    mode: "755"
+    # yamllint disable-line rule:line-length
+    url: https://static.rust-lang.org/rustup/dist/{{ ansible_machine }}-unknown-linux-gnu/rustup-init
+- ansible.builtin.command:
+    cmd: /tmp/rustup-init --no-modify-path --profile minimal -y
+    creates: ~/.cargo/env
+- ansible.builtin.command:
+    cmd: chezmoi init --ssh thebengeu
+    creates: ~/.local/share/chezmoi
+- ansible.builtin.command:
+    cmd: chezmoi apply --exclude templates
+    creates: ~/.config/fish/fish_plugins
+- ansible.builtin.command:
+    cmd: /usr/bin/bat cache --build
+    creates: ~/.cache/bat/themes.bin
+- ansible.builtin.command:
+    cmd: nix profile install nixpkgs#{{ item }}
+    creates: ~/.nix-profile/bin/{{ item }}
+  loop:
+    - nethogs
+    - nix
+    - peco
+- ansible.builtin.pip:
+    name:
+      - pipx
+    extra_args: --user
+- ansible.builtin.git:
+    dest: ~/bat-extras
+    repo: https://github.com/eth-p/bat-extras.git
+    version: ceaac1b917a8516763a834cb8504bce5a1270f88
+- ansible.builtin.command:
+    chdir: /home/{{ ansible_user_id }}/bat-extras
+    cmd: ./build.sh --install --minify all
+    creates: /usr/local/bin/batman
+  become: true
+  environment:
+    PATH: /usr/bin:/home/{{ ansible_user_id }}/go/bin

@@ -1,0 +1,200 @@
+- ansible.builtin.command: dpkg --print-architecture
+  changed_when: false
+  register: arch
+- community.general.timezone:
+    name: Asia/Singapore
+- ansible.builtin.template:
+    dest: /lib/systemd/network/wsl_external.network
+    mode: "644"
+    src: wsl_external.network.j2
+  when: address is defined
+- ansible.builtin.service:
+    enabled: true
+    name: systemd-networkd
+  when: address is defined
+- ansible.builtin.copy:
+    dest: /etc/wsl.conf
+    mode: "644"
+    src: wsl.conf
+  when: address is defined
+- ansible.builtin.copy:
+    dest: /etc/resolv.conf
+    mode: "644"
+    src: resolv.conf
+  when: address is defined
+- community.general.sudoers:
+    commands: ALL
+    name: "{{ ansible_user_id }}"
+    user: "{{ ansible_user_id }}"
+- ansible.builtin.apt_key:
+    keyring: /usr/share/keyrings/1password-archive-keyring.gpg
+    url: https://downloads.1password.com/linux/keys/1password.asc
+- ansible.builtin.apt_repository:
+    filename: 1password
+    # yamllint disable-line rule:line-length
+    repo: deb [arch={{ arch.stdout }} signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/{{ arch.stdout }} stable main
+- ansible.builtin.apt_key:
+    keyring: /etc/apt/keyrings/docker.gpg
+    url: https://download.docker.com/linux/ubuntu/gpg
+- ansible.builtin.apt_repository:
+    filename: docker
+    # yamllint disable-line rule:line-length
+    repo: deb [arch={{ arch.stdout }} signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+- ansible.builtin.apt_key:
+    keyring: /etc/apt/trusted.gpg.d/jgmath2000-ubuntu-et.gpg
+    url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xd3614cb0b3c2d154356bd436cb4adea5b72a07a1
+- ansible.builtin.apt_repository:
+    filename: jgmath2000-ubuntu-et-{{ ansible_distribution_release }}
+    repo: ppa:jgmath2000/et
+- ansible.builtin.apt_key:
+    keyring: /etc/apt/trusted.gpg.d/fish-shell-ubuntu-release-3.gpg
+    url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x59fda1ce1b84b3fad89366c027557f056dc33ca5
+- ansible.builtin.apt_repository:
+    filename: fish-shell-ubuntu-release-3-{{ ansible_distribution_release }}
+    repo: ppa:fish-shell/release-3
+- ansible.builtin.apt_key:
+    keyring: /usr/share/keyrings/githubcli-archive-keyring.gpg
+    url: https://cli.github.com/packages/githubcli-archive-keyring.gpg
+- ansible.builtin.apt_repository:
+    filename: github-cli
+    # yamllint disable-line rule:line-length
+    repo: deb [arch={{ arch.stdout }} signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main
+- ansible.builtin.apt_key:
+    keyring: /etc/apt/trusted.gpg.d/longsleep-ubuntu-golang-backports.gpg
+    url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x52b59b1571a79dbc054901c0f6bc817356a3d45e
+- ansible.builtin.apt_repository:
+    # yamllint disable-line rule:line-length
+    filename: longsleep-ubuntu-golang-backports-{{ ansible_distribution_release }}
+    repo: ppa:longsleep/golang-backports
+- ansible.builtin.apt_key:
+    keyring: /etc/apt/trusted.gpg.d/keithw-ubuntu-mosh-dev.gpg
+    url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xf2923d3f37fef230bddc376e3eb9326a7bf6dfcd
+- ansible.builtin.apt_repository:
+    filename: keithw-ubuntu-mosh-dev-{{ ansible_distribution_release }}
+    repo: ppa:keithw/mosh-dev
+- ansible.builtin.apt_key:
+    keyring: /usr/share/keyrings/nodesource.gpg
+    url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+- ansible.builtin.apt_repository:
+    filename: nodesource
+    # yamllint disable-line rule:line-length
+    repo: deb [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/node_19.x {{ ansible_distribution_release }} main
+- ansible.builtin.apt_key:
+    keyring: /etc/apt/trusted.gpg.d/apt.postgresql.org.gpg
+    url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
+- ansible.builtin.apt_repository:
+    filename: pgdg
+    # yamllint disable-line rule:line-length
+    repo: deb http://apt-archive.postgresql.org/pub/repos/apt {{ ansible_distribution_release }}-pgdg-archive main
+- ansible.builtin.apt_key:
+    keyring: /etc/apt/keyrings/ookla_speedtest-cli-archive-keyring.gpg
+    url: https://packagecloud.io/ookla/speedtest-cli/gpgkey
+- ansible.builtin.apt_repository:
+    filename: ookla_speedtest-cli
+    # yamllint disable-line rule:line-length
+    repo: deb [signed-by=/etc/apt/keyrings/ookla_speedtest-cli-archive-keyring.gpg] https://packagecloud.io/ookla/speedtest-cli/ubuntu/ {{ ansible_distribution_release }} main
+- ansible.builtin.apt_key:
+    keyring: /etc/apt/trusted.gpg.d/wslutilities-ubuntu-wslu.gpg
+    url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x254f460f2970e18123046570c1d0e7e6ab4095d6
+- ansible.builtin.apt_repository:
+    filename: wslutilities-ubuntu-wslu-{{ ansible_distribution_release }}
+    repo: ppa:wslutilities/wslu
+- ansible.builtin.apt:
+    name:
+      - 1password-cli
+      - containerd.io
+      - clangd-15
+      - cmake
+      - curl
+      - docker-ce
+      - docker-ce-cli
+      - docker-compose-plugin
+      - et
+      - fish
+      - gettext
+      - gh
+      - golang-go
+      - jq
+      - libluajit-5.1-dev
+      - libpq-dev
+      - libsqlite3-dev
+      - make
+      - moreutils
+      - mosh
+      - mosquitto
+      - mosquitto-clients
+      - msmtp-mta
+      - needrestart
+      - ninja-build
+      - nodejs
+      - ntpdate
+      - openssh-server
+      - postgresql
+      - postgresql-client
+      - python3-pip
+      - python3-venv
+      - ripgrep
+      - safe-rm
+      - speedtest
+      - sqlite3
+      - unzip
+    update_cache: true
+- ansible.builtin.apt:
+    name:
+      - wslu
+    update_cache: true
+  when: ansible_virtualization_type == "wsl"
+- community.general.alternatives:
+    link: /usr/bin/clangd
+    name: clangd
+    path: /usr/bin/clangd-15
+- ansible.builtin.copy:
+    dest: /etc/mosquitto/conf.d/default.conf
+    force: false
+    mode: "644"
+    src: default.conf
+- ansible.builtin.apt:
+    deb: "{{ item }}"
+  loop:
+    # yamllint disable rule:line-length
+    - https://github.com/sharkdp/bat/releases/download/v0.23.0/bat_0.23.0_{{ arch.stdout }}.deb
+    - https://github.com/sharkdp/fd/releases/download/v8.7.0/fd_8.7.0_{{ arch.stdout }}.deb
+    - http://ftp.debian.org/debian/pool/main/f/fzf/fzf_0.42.0-1+b1_{{ arch.stdout }}.deb
+    - https://github.com/dandavison/delta/releases/download/0.16.5/git-delta_0.16.5_{{ arch.stdout }}.deb
+    - http://ftp.debian.org/debian/pool/main/t/tmux/tmux_3.3a-4_{{ arch.stdout }}.deb
+    # yamllint enable rule:line-length
+- ansible.builtin.group:
+    name: docker
+- ansible.builtin.command:
+    cmd: ssh-keygen -A
+    creates: /etc/ssh/ssh_host_*
+- ansible.builtin.lineinfile:
+    line: PasswordAuthentication no
+    path: /etc/ssh/sshd_config
+    search_string: PasswordAuthentication
+- ansible.builtin.replace:
+    path: /etc/ssh/sshd_config
+    regexp: ^#(ListenAddress 0.0.0.0)$
+    replace: \1
+- ansible.builtin.service:
+    name: ssh
+    state: reloaded
+- ansible.builtin.command:
+    cmd: corepack enable
+    creates: /usr/bin/pnpm
+- community.general.snap:
+    name: aws-cli
+    classic: true
+- community.general.snap:
+    name: btop
+- community.general.snap:
+    name: chezmoi
+    classic: true
+- ansible.builtin.get_url:
+    dest: /tmp/nix-installer
+    mode: "755"
+    # yamllint disable-line rule:line-length
+    url: https://install.determinate.systems/nix/nix-installer-{{ ansible_machine }}-linux
+- ansible.builtin.command:
+    cmd: /tmp/nix-installer install --no-confirm
+    creates: /nix/
