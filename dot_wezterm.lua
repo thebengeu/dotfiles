@@ -53,6 +53,16 @@ config.keys = {
 config.launch_menu = {
 	{
 		domain = { DomainName = "local" },
+		label = "Bash",
+		args = { "bash", "--login" },
+	},
+	{
+		domain = { DomainName = "local" },
+		label = "fish",
+		args = { "C:\\msys64\\usr\\bin\\fish", "--login" },
+	},
+	{
+		domain = { DomainName = "local" },
 		label = "PowerShell",
 		args = { "pwsh", "-NoLogo" },
 	},
@@ -85,7 +95,9 @@ config.launch_menu = {
 config.show_new_tab_button_in_tab_bar = false
 config.show_tab_index_in_tab_bar = false
 config.skip_close_confirmation_for_processes_named = {
+	"bash.exe",
 	"conhost.exe",
+	"fish.exe",
 	"nu.exe",
 	"tmux",
 	"wsl.exe",
