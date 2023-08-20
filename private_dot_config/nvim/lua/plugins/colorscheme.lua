@@ -282,7 +282,7 @@ return {
         require("telescope").load_extension("fzy_native")
       end,
     },
-    keys = function()
+    keys = function(_, keys)
       local vimgrep_arguments = {
         "rg",
         "--color=never",
@@ -300,7 +300,7 @@ return {
       vim.list_extend(no_ignore_vimgrep_arguments, vimgrep_arguments)
       vim.list_extend(no_ignore_vimgrep_arguments, { "--no-ignore" })
 
-      return {
+      vim.list_extend(keys, {
         {
           "<leader>/",
           Util.telescope("live_grep", {
@@ -416,7 +416,7 @@ return {
           end,
           desc = "Colorscheme",
         },
-      }
+      })
     end,
     opts = {
       defaults = {
