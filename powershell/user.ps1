@@ -40,6 +40,7 @@ $scoopPackages = @(
   'git-filter-repo'
   'goneovim'
   'nerd-fonts/JetBrainsMono-NF'
+  'python'
 )
 
 foreach ($scoopPackage in $scoopPackages)

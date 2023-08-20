@@ -112,7 +112,6 @@ $storeApps = @(
   '9PL8WPH0QK9M' # Cider (Preview)
   'iCloud'
   '9NRX63209R7B' # Outlook for Windows
-  'Python 3.11'
   'Raindrop.io'
   'Unigram—Telegram for Windows'
   'WhatsApp'
