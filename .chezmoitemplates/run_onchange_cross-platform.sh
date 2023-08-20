@@ -29,3 +29,4 @@ atuin init nu >~/.local/share/atuin/init.nu
 mkdir -p ~/.cache/starship
 starship init nu >~/.cache/starship/init.nu
 zoxide init --no-cmd nushell | sd __zoxide_z z >~/.zoxide.nu
+sh -c 'curl -Ls https://github.com/Shopify/ejson/releases/download/v1.4.1/ejson_1.4.1_windows_amd64.tar.gz | tar xz --directory ~/.local/bin ejson.exe'
