@@ -282,105 +282,142 @@ return {
         require("telescope").load_extension("fzy_native")
       end,
     },
-    keys = {
-      { "<leader>/", Util.telescope("live_grep", { cwd = false }), desc = "Grep (cwd)" },
-      { "<leader><space>", false },
-      { "<leader>fF", Util.telescope("files"), desc = "Find Files (root dir)" },
-      { "<leader>ff", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
-      {
-        "<leader>fi",
-        function()
-          require("telescope.builtin").find_files({ no_ignore = true })
-        end,
-        desc = "Find Files (ignored)",
-      },
-      {
-        "<leader>fp",
-        function()
-          require("telescope.builtin").find_files({
-            cwd = require("lazy.core.config").options.root,
-          })
-        end,
-        desc = "Find Plugin Files",
-      },
-      {
-        "<leader>si",
-        function()
-          require("telescope.builtin").live_grep({
-            vimgrep_arguments = {
-              "rg",
-              "--color=never",
-              "--column",
-              "--follow",
-              "--line-number",
-              "--no-heading",
-              "--no-ignore",
-              "--smart-case",
-              "--with-filename",
-            },
-          })
-        end,
-        desc = "Grep (ignored)",
-      },
-      {
-        "<leader>sp",
-        function()
-          local root = require("lazy.core.config").options.root
-          require("telescope.pickers")
-            .new({}, {
-              attach_mappings = function(prompt_bufnr)
-                local actions = require("telescope.actions")
-                actions.select_default:replace(function()
-                  actions.close(prompt_bufnr)
-                  local selection = require("telescope.actions.state").get_selected_entry()
-                  require("telescope.builtin").live_grep({
-                    search_dirs = { root .. "/" .. selection[1] },
-                  })
-                end)
-                return true
-              end,
-              finder = require("telescope.finders").new_table({ results = vim.fn.readdir(root) }),
-              sorter = require("telescope.config").values.file_sorter(),
-            })
-            :find()
-        end,
-        desc = "Grep Plugin Files",
-      },
-      {
-        "<leader>uC",
-        function()
-          require("telescope.pickers")
-            .new({}, {
-              attach_mappings = function(prompt_bufnr)
-                local actions = require("telescope.actions")
-                actions.select_default:replace(function()
-                  actions.close(prompt_bufnr)
-                  local selection = require("telescope.actions.state").get_selected_entry()
-                  current_colorscheme_and_style = selection.value
-                  set_colorscheme_style(current_colorscheme_and_style)
-                  vim.cmd.colorscheme(current_colorscheme_and_style[1])
-                end)
-                return true
-              end,
-              finder = require("telescope.finders").new_table({
-                results = colorschemes,
-                entry_maker = function(entry)
-                  local colorscheme_and_style = table.concat(entry, "-")
+    keys = function()
+      local vimgrep_arguments = {
+        "rg",
+        "--color=never",
+        "--column",
+        "--follow",
+        "--hidden",
+        "--line-number",
+        "--no-heading",
+        "--no-ignore",
+        "--smart-case",
+        "--with-filename",
+      }
 
-                  return {
-                    display = colorscheme_and_style,
-                    ordinal = colorscheme_and_style,
-                    value = entry,
-                  }
-                end,
-              }),
-              sorter = require("telescope.config").values.generic_sorter(),
+      local no_ignore_vimgrep_arguments = {}
+      vim.list_extend(no_ignore_vimgrep_arguments, vimgrep_arguments)
+      vim.list_extend(no_ignore_vimgrep_arguments, { "--no-ignore" })
+
+      return {
+        {
+          "<leader>/",
+          Util.telescope("live_grep", {
+            cwd = false,
+            vimgrep_arguments = vimgrep_arguments,
+          }),
+          desc = "Grep (cwd)",
+        },
+        { "<leader><space>", false },
+        { "<leader>fF", Util.telescope("files"), desc = "Find Files (root dir)" },
+        { "<leader>ff", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
+        {
+          "<leader>fi",
+          function()
+            require("telescope.builtin").find_files({ no_ignore = true })
+          end,
+          desc = "Find Files (ignored)",
+        },
+        {
+          "<leader>fp",
+          function()
+            require("telescope.builtin").find_files({
+              cwd = require("lazy.core.config").options.root,
             })
-            :find()
-        end,
-        desc = "Colorscheme",
-      },
-    },
+          end,
+          desc = "Find Plugin Files",
+        },
+        {
+          "<leader>sg",
+          Util.telescope("live_grep", {
+            vimgrep_arguments = vimgrep_arguments,
+          }),
+          desc = "Grep (root dir)",
+        },
+        {
+          "<leader>sG",
+          Util.telescope("live_grep", {
+            cwd = false,
+            vimgrep_arguments = vimgrep_arguments,
+          }),
+          desc = "Grep (cwd)",
+        },
+        {
+          "<leader>si",
+          Util.telescope("live_grep", {
+            vimgrep_arguments = no_ignore_vimgrep_arguments,
+          }),
+          desc = "Grep (root dir ignored)",
+        },
+        {
+          "<leader>sI",
+          Util.telescope("live_grep", {
+            cwd = false,
+            vimgrep_arguments = no_ignore_vimgrep_arguments,
+          }),
+          desc = "Grep (cwd ignored)",
+        },
+        {
+          "<leader>sp",
+          function()
+            local root = require("lazy.core.config").options.root
+            require("telescope.pickers")
+              .new({}, {
+                attach_mappings = function(prompt_bufnr)
+                  local actions = require("telescope.actions")
+                  actions.select_default:replace(function()
+                    actions.close(prompt_bufnr)
+                    local selection = require("telescope.actions.state").get_selected_entry()
+                    require("telescope.builtin").live_grep({
+                      search_dirs = { root .. "/" .. selection[1] },
+                    })
+                  end)
+                  return true
+                end,
+                finder = require("telescope.finders").new_table({ results = vim.fn.readdir(root) }),
+                sorter = require("telescope.config").values.file_sorter(),
+              })
+              :find()
+          end,
+          desc = "Grep Plugin Files",
+        },
+        {
+          "<leader>uC",
+          function()
+            require("telescope.pickers")
+              .new({}, {
+                attach_mappings = function(prompt_bufnr)
+                  local actions = require("telescope.actions")
+                  actions.select_default:replace(function()
+                    actions.close(prompt_bufnr)
+                    local selection = require("telescope.actions.state").get_selected_entry()
+                    current_colorscheme_and_style = selection.value
+                    set_colorscheme_style(current_colorscheme_and_style)
+                    vim.cmd.colorscheme(current_colorscheme_and_style[1])
+                  end)
+                  return true
+                end,
+                finder = require("telescope.finders").new_table({
+                  results = colorschemes,
+                  entry_maker = function(entry)
+                    local colorscheme_and_style = table.concat(entry, "-")
+
+                    return {
+                      display = colorscheme_and_style,
+                      ordinal = colorscheme_and_style,
+                      value = entry,
+                    }
+                  end,
+                }),
+                sorter = require("telescope.config").values.generic_sorter(),
+              })
+              :find()
+          end,
+          desc = "Colorscheme",
+        },
+      }
+    end,
     opts = {
       defaults = {
         layout_config = {
