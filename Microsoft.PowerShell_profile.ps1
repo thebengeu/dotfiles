@@ -13,13 +13,3 @@ Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory
 
 Set-Alias touch New-Item
 Set-Alias which Get-Command
-
-function ca
-{
-  chezmoi apply --exclude templates; chezmoi apply $(sh -c "chezmoi managed --include files --path-style absolute | rg --invert-match '.aws/credentials|.config/ghorg/conf.yaml|.msmtprc'")
-}
-
-function cu
-{
-  chezmoi update --exclude templates; chezmoi apply $(sh -c "chezmoi managed --include files --path-style absolute | rg --invert-match '.aws/credentials|.config/ghorg/conf.yaml|.msmtprc'")
-}

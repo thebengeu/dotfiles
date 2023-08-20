@@ -8,7 +8,5 @@ sudo add-apt-repository ppa:ansible/ansible
 sudo apt install ansible
 git clone git@github.com:thebengeu/ansible.git ~/ansible
 ansible-playbook --tags server ~/ansible/site.yml --ask-become-pass
-chezmoi apply
-aws configure
 sudo -u postgres psql # \password
 ```

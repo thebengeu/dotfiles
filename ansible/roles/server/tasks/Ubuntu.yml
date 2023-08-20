@@ -66,11 +66,8 @@
     cmd: /tmp/rustup-init --no-modify-path --profile minimal -y
     creates: ~/.cargo/env
 - ansible.builtin.command:
-    cmd: chezmoi init --ssh thebengeu
+    cmd: chezmoi init --apply --ssh thebengeu
     creates: ~/.local/share/chezmoi
-- ansible.builtin.command:
-    cmd: chezmoi apply --exclude templates
-    creates: ~/.config/fish/fish_plugins
 - ansible.builtin.command:
     cmd: /usr/bin/bat cache --build
     creates: ~/.cache/bat/themes.bin
