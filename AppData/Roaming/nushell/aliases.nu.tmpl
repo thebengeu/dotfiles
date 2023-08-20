@@ -7,15 +7,5 @@ def {{$name}} [{{$body_and_parameters.parameters | join ", "}}] {
 {{- end}}
 
 {{range $alias, $command := .aliases -}}
-alias {{$alias}} = {{$command}}
-{{end -}}
-{{range $git_alias, $command := .git_aliases -}}
-alias g{{$git_alias}} = git {{$command}}
-{{range $prefix, $directory := $.alias_directories -}}
-alias {{$prefix}}g{{$git_alias}} = git -C {{$directory}} {{$command}}
-{{end -}}
-{{end -}}
-{{range $prefix, $directory := $.alias_directories -}}
-alias {{$prefix}}lg = lazygit --path {{$directory}}
-alias {{$prefix}}n = nvim --cmd "cd {{$directory}}"
+alias {{$alias}} = {{$command | replace "$HOME" "~"}}
 {{end -}}

@@ -1,14 +1,35 @@
-alias_directories: {
-	a: "~/ansible"
-	c: "~/.local/share/chezmoi"
-	p: "~/powershell"
+import "strings"
+
+_aliasDirectories: {
+	c: "$HOME/.local/share/chezmoi"
+	d: "$HOME/drakon"
+}
+_gitAliases: {
+	aa:  "add -A"
+	c:   "clone"
+	ca:  "commit --amend"
+	cam: "commit -a -m"
+	cm:  "commit -m"
+	co:  "checkout"
+	d:   "diff"
+	l:   "lg"
+	lp:  "lg --patch"
+	P:   "push"
+	p:   "pull"
+	r:   "rebase"
+	rbc: "rebase --continue"
+	rhh: "reset --hard HEAD"
+	s:   "s"
+	sa:  "stash apply"
+	sP:  "stash push"
+	sp:  "stash pop"
 }
 aliases: {
 	b:    "bat"
 	bi:   "brew install"
 	bui:  "brew uninstall"
 	cat:  "bat"
-	ca:  "chezmoi apply"
+	ca:   "chezmoi apply"
 	ci:   "choco install"
 	cr:   "chezmoi re-add"
 	cs:   "choco search"
@@ -47,6 +68,16 @@ aliases: {
 	wi:   "winget install"
 	ws:   "winget search"
 	wu:   "winget uninstall"
+	for gitAlias, command in _gitAliases {
+		"g\(gitAlias)": "git \(command)"
+		for prefix, directory in _aliasDirectories {
+			"\(prefix)g\(gitAlias)": "git -C \(directory) \(command)"
+		}
+	}
+	for prefix, directory in _aliasDirectories {
+		"\(prefix)lg": "lazygit --path \(directory)"
+		"\(prefix)n":  "nvim --cmd \"cd \(strings.Replace(directory, "$HOME", "~", -1))\""
+	}
 }
 functions: wcss: {
 	body: [
@@ -55,24 +86,4 @@ functions: wcss: {
 		"scoop search $package",
 	]
 	parameters: ["package"]
-}
-git_aliases: {
-	aa:  "add -A"
-	c:   "clone"
-	ca:  "commit --amend"
-	cam: "commit -a -m"
-	cm:  "commit -m"
-	co:  "checkout"
-	d:   "diff"
-	l:   "lg"
-	lp:  "lg --patch"
-	P:   "push"
-	p:   "pull"
-	r:   "rebase"
-	rbc: "rebase --continue"
-	rhh: "reset --hard HEAD"
-	s:   "s"
-	sa:  "stash apply"
-	sP:  "stash push"
-	sp:  "stash pop"
 }
