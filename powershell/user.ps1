@@ -41,6 +41,7 @@ $scoopPackages = @(
   'goneovim'
   'nerd-fonts/JetBrainsMono-NF'
   'python'
+  'sed'
 )
 
 foreach ($scoopPackage in $scoopPackages)
