@@ -284,8 +284,7 @@ if (!(Test-Path $sshKeyPath))
   ssh-add $sshKeyPath
 }
 
-chezmoi init --ssh thebengeu
-chezmoi apply $(chezmoi managed --include files --path-style absolute | Select-String -NotMatch '.aws/credentials|.config/ghorg/conf.yaml')
+chezmoi init --apply --ssh thebengeu
 
 $localAppDataNvimPath = "$Env:LOCALAPPDATA\nvim"
 
