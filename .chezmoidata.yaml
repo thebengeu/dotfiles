@@ -22,7 +22,7 @@ aliases:
   ll: lsd -l
   lla: lsd -la
   lg: lazygit
-  n: nvim
+  "n": nvim
   nr: sh -c "printf \"\e[6 q\"; node"
   p: pnpm
   pd: pnpm dev
