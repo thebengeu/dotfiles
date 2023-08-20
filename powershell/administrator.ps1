@@ -306,8 +306,6 @@ foreach ($fontFile in Get-ChildItem $fontFolder)
   Copy-Item $fontFile.FullName $env:windir\Fonts
 }
 
-New-Item -ItemType SymbolicLink -Path "$Env:USERPROFILE\.config\chezmoi\chezmoi.toml" -Target "$Env:USERPROFILE\.local\share\chezmoi\chezmoi.toml"
-
 $manifestPaths = @(
   'a\AudioBand\AudioBand\1.2.1'
   'r\Rabby\RabbyDesktop\0.31.0'

@@ -1,6 +1,6 @@
 ansible/
-chezmoi.toml
 powershell/
+secrets.ejson
 
 {{ if eq .chezmoi.os "windows" }}
 .config/{bat,gitui,gup,lazygit,tealdeer,yamllint}/
