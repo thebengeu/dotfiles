@@ -46,7 +46,7 @@ $wingetPackageIds = @(
   'flux.flux'
   'Mozilla.Firefox'
   'Flow-Launcher.Flow-Launcher'
-  'junegunn.fz'
+  'junegunn.fzf'
   'Git.Git'
   'GoLang.Go'
   'gerardog.gsudo'
