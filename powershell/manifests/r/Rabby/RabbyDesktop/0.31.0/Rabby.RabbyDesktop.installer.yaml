@@ -4,7 +4,7 @@
 PackageIdentifier: Rabby.RabbyDesktop
 PackageVersion: 0.31.0
 Installers:
-- InstallerUrl: https://download.rabby.io/wallet-desktop/win32-x64/rabby-wallet-desktop-installer-x64-latest.exe
+- InstallerUrl: https://download.rabby.io/wallet-desktop/win32-x64/rabby-wallet-desktop-installer-x64-0.31..exe
   Architecture: x64
   InstallerType: nullsoft
   InstallerSha256: FDE9295D03F3B3E38B80F07F5656CCED2775801DDA13BB537BC6F25CC1311D35
