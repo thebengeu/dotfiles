@@ -24,6 +24,11 @@ _gitAliases: {
 	sP:  "stash push"
 	sp:  "stash pop"
 }
+_shAliases: {
+	dev:  #"ssh dev-$(if ncat -z --wait 100ms 192.168.50.2 22; then echo "local"; else echo "remote"; fi)"#
+	nr:   #"printf "\e[6 q"; node"#
+	tsxr: #"printf "\e[6 q"; pnpm tsx"#
+}
 aliases: {
 	b:    "bat"
 	bi:   "brew install"
@@ -34,7 +39,6 @@ aliases: {
 	cr:   "chezmoi re-add"
 	cs:   "choco search"
 	cu:   "choco uninstall"
-	dev:  "sh -c 'ssh dev-$(if ncat -z --wait 100ms 192.168.50.2 22; then echo \"local\"; else echo \"remote\"; fi)'"
 	ec2:  "ssh -t ec2 tmux new-session -A -s 0"
 	g:    "git"
 	j:    "just"
@@ -45,7 +49,6 @@ aliases: {
 	lla:  "lsd -la"
 	lg:   "lazygit"
 	n:    "nvim"
-	nr:   "sh -c \"printf \\\"\\e[6 q\\\"; node\""
 	p:    "pnpm"
 	pd:   "pnpm dev"
 	pi:   "pnpm i"
@@ -63,21 +66,26 @@ aliases: {
 	tg:   "pwsh -Command gsudo topgrade"
 	tns:  "tmux new-session -A -s"
 	tsx:  "pnpm tsx"
-	tsxr: "sh -c 'printf \"\\e[6 q\"; pnpm tsx'"
 	vim:  "nvim"
 	wi:   "winget install"
 	ws:   "winget search"
 	wu:   "winget uninstall"
+
+	for prefix, directory in _aliasDirectories {
+		"\(prefix)lg": "lazygit --path \(directory)"
+		"\(prefix)n":  "nvim --cmd 'cd \(strings.Replace(directory, "$HOME", "~", -1))'"
+	}
+
 	for gitAlias, command in _gitAliases {
 		"g\(gitAlias)": "git \(command)"
 		for prefix, directory in _aliasDirectories {
 			"\(prefix)g\(gitAlias)": "git -C \(directory) \(command)"
 		}
 	}
-	for prefix, directory in _aliasDirectories {
-		"\(prefix)lg": "lazygit --path \(directory)"
-		"\(prefix)n":  "nvim --cmd \"cd \(strings.Replace(directory, "$HOME", "~", -1))\""
-	}
+
+  for shAlias, command in _shAliases {
+    "\(shAlias)": "sh -c '\(command)'"
+  }
 }
 functions: wcss: {
 	body: [
