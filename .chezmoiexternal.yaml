@@ -1,6 +1,11 @@
 .tmux/plugins/tpm:
+  refreshPeriod: 168h
   type: git-repo
   url: https://github.com/tmux-plugins/tpm
+enhancd:
+  refreshPeriod: 168h
+  type: git-repo
+  url: https://github.com/b4b4r07/enhancd
 powerlevel10k:
   refreshPeriod: 168h
   type: git-repo
