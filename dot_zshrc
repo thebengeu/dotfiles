@@ -27,4 +27,6 @@ source ~/fzf-tab/fzf-tab.plugin.zsh
 
 source ~/zsh-abbr/zsh-abbr.zsh
 
+# source ~/wezterm.sh
+
 # zprof
