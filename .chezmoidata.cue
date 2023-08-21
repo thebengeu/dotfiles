@@ -72,6 +72,7 @@ aliases: {
 	wu:   "winget uninstall"
 
 	for prefix, directory in _aliasDirectories {
+		"\(prefix)cd": "cd \(directory)"
 		"\(prefix)lg": "lazygit --path \(directory)"
 		"\(prefix)n":  "nvim --cmd 'cd \(strings.Replace(directory, "$HOME", "~", -1))'"
 	}
