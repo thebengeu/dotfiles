@@ -1,1 +1,28 @@
+export ATUIN_NOBIND=true
+
+setopt extended_glob
+
+zstyle ':prezto:module:editor' key-bindings 'vi'
+
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+source "${ZINIT_HOME}/zinit.zsh"
+
+zinit light-mode for \
+  PZTM::completion \
+  PZTM::directory \
+  PZTM::editor \
+  PZTM::history \
+  ajeetdsouza/zoxide \
+  atuinsh/atuin \
+  hlissner/zsh-autopair \
+  marlonrichert/zsh-autocomplete \
+  olets/zsh-abbr \
+  zdharma-continuum/history-search-multi-word \
+  zsh-users/zsh-autosuggestions \
+  zsh-users/zsh-history-substring-search \
+  zdharma-continuum/fast-syntax-highlighting
+
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+
 eval "$(starship init zsh)"
