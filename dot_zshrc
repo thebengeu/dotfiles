@@ -12,6 +12,7 @@ source ~/.cache/p10k-instant-prompt-$USER.zsh
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 source ~/.p10k.zsh
 
+source ~/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 source ~/zsh-abbr/zsh-abbr.zsh
 
 # zprof
