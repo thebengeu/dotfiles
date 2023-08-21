@@ -142,6 +142,7 @@ Invoke-RestMethod community.chocolatey.org/install.ps1 | Invoke-Expression
 Install-PackageProvider NuGet -Force
 Set-PSRepository PSGallery -InstallationPolicy Trusted
 
+Install-Module Microsoft.WinGet.Client
 Install-Module PSFzf
 Install-Module PSWindowsUpdate
 
