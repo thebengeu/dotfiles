@@ -14,7 +14,9 @@ source ~/.cache/p10k-instant-prompt-$USER.zsh
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 source ~/.p10k.zsh
 
+ZVM_INIT_MODE=sourcing
 source ~/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+source ~/history-search-multi-word/history-search-multi-word.plugin.zsh
 
 autoload -U compinit
 compinit
