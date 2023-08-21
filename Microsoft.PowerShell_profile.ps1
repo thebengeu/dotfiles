@@ -9,7 +9,7 @@ Import-Module PSWindowsUpdate
 
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
 
-. .\aliases.ps1
+. $Env:USERPROFILE\aliases.ps1
 
 Set-Alias touch New-Item
 Set-Alias which Get-Command
