@@ -67,6 +67,11 @@ config.launch_menu = {
 		args = { "pwsh", "-NoLogo" },
 	},
 	{
+		domain = { DomainName = "local" },
+		label = "zsh",
+		args = { "C:\\msys64\\usr\\bin\\zsh", "--login" },
+	},
+	{
 		args = {
 			"wezterm",
 			"cli",
@@ -102,6 +107,7 @@ config.skip_close_confirmation_for_processes_named = {
 	"tmux",
 	"wsl.exe",
 	"wslhost.exe",
+	"zsh.exe",
 }
 config.ssh_domains = {}
 
