@@ -20,6 +20,7 @@ _gitRepos: [
 	"olets/zsh-abbr",
 	"romkatv/powerlevel10k",
 	"zdharma-continuum/history-search-multi-word",
+	"zsh-users/zsh-autosuggestions",
 ]
 
 for gitRepo in _gitRepos {
