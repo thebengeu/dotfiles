@@ -9,3 +9,7 @@ zsh-abbr:
   refreshPeriod: 168h
   type: git-repo
   url: https://github.com/olets/zsh-abbr
+zsh-vi-mode:
+  refreshPeriod: 168h
+  type: git-repo
+  url: https://github.com/jeffreytse/zsh-vi-mode

@@ -22,6 +22,7 @@ config.colors = {
 		},
 	},
 }
+config.default_cursor_style = "SteadyBar"
 -- config.font = wezterm.font("PragmataProLiga NF")
 -- config.font_rules = {
 -- 	{
