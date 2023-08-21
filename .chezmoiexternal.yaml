@@ -6,6 +6,10 @@ enhancd:
   refreshPeriod: 168h
   type: git-repo
   url: https://github.com/b4b4r07/enhancd
+fzf-tab:
+  refreshPeriod: 168h
+  type: git-repo
+  url: https://github.com/Aloxaf/fzf-tab
 powerlevel10k:
   refreshPeriod: 168h
   type: git-repo
