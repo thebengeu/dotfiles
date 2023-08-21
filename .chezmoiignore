@@ -8,6 +8,7 @@ secrets.ejson
 .config/topgrade.toml
 .local/
 *.sh
+!wezterm.sh
 .ansible.cfg
 .inputrc
 .msmtprc

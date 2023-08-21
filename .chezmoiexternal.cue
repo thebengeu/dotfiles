@@ -1,10 +1,16 @@
 import "regexp"
 
-#GitRepo: {
-	_gitRepo:      string
+#External: {
 	refreshPeriod: "168h"
-	type:          "git-repo"
-	url:           "https://github.com/\(_gitRepo)"
+	type:          "file" | "git-repo"
+	url:           string
+}
+
+#GitRepo: {
+	#External
+	_gitRepo: string
+	type:     "git-repo"
+	url:      "https://github.com/\(_gitRepo)"
 }
 
 _gitRepos: [
@@ -23,4 +29,9 @@ for gitRepo in _gitRepos {
 
 ".tmux/plugins/tpm": #GitRepo & {
 	_gitRepo: "tmux-plugins/tpm"
+}
+
+"wezterm.sh": #External & {
+	type: "file"
+	url:  "https://raw.githubusercontent.com/wez/wezterm/main/assets/shell-integration/wezterm.sh"
 }
