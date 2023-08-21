@@ -1,3 +1,5 @@
+# zmodload zsh/zprof
+
 export ATUIN_NOBIND=true
 
 setopt extended_glob
@@ -7,22 +9,26 @@ zstyle ':prezto:module:editor' key-bindings 'vi'
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 source "${ZINIT_HOME}/zinit.zsh"
 
-zinit light-mode for \
-  PZTM::completion \
+zinit light-mode lucid for \
   PZTM::directory \
   PZTM::editor \
   PZTM::history \
+    cloneopts"--branch 23.05.24" \
+  marlonrichert/zsh-autocomplete \
   ajeetdsouza/zoxide \
   atuinsh/atuin \
-  hlissner/zsh-autopair \
-  marlonrichert/zsh-autocomplete \
-  olets/zsh-abbr \
   zdharma-continuum/history-search-multi-word \
   zsh-users/zsh-autosuggestions \
   zsh-users/zsh-history-substring-search \
-  zdharma-continuum/fast-syntax-highlighting
+  zdharma-continuum/fast-syntax-highlighting \
+    wait \
+  hlissner/zsh-autopair \
+    wait \
+  olets/zsh-abbr
 
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
 
 eval "$(starship init zsh)"
+
+# zprof
