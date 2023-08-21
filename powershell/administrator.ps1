@@ -308,22 +308,42 @@ foreach ($fontFile in Get-ChildItem $fontFolder)
   Copy-Item $fontFile.FullName $env:windir\Fonts
 }
 
-$manifestPaths = @(
-  'a\AudioBand\AudioBand\1.2.1'
-  'r\Rabby\RabbyDesktop\0.31.0'
-  't\Todoist\Todoist\8.5.0'
-)
+$manifestPaths = @{
+  'a\AudioBand\AudioBand' = @{
+    id = '0BD4E347-1EE9-4F74-BB18-067B8736E44D'
+    version = '1.2.1'
+  }
+  'r\Rabby\RabbyDesktop' = @{
+    id = '2cd4acdc-36c3-5e85-b6bd-84403600b4d8'
+    version = '0.31.0'
+  }
+  't\Todoist\Todoist' = @{
+    id = 'Doist.Todoist'
+    version = '8.5.0'
+  }
+}
 
 if (!$isMobile)
 {
-  $manifestPaths += @(
-    'f\Finkitd\o\o\ManicTimeServer\23.2.4.1'
-  )
+  $manifestPaths['f\Finkitd\o\o\ManicTimeServer']= @{
+    id = ''
+    version = '23.2.4.1'
+  }
 }
 
-foreach ($manifestPath in $manifestPaths)
+foreach ($manifestPath in $manifestPaths.Keys)
 {
-  winget install --manifest "$Env:USERPROFILE\powershell\manifests\$manifestPath" --silent
+  $idAndVersion = $manifestPaths[$manifestPath]
+  $manifestVersion = $idAndVersion.version
+  $installedVersion = (Get-WinGetPackage -Id $idAndVersion.id).InstalledVersion
+
+  if ($null -eq $installedVersion)
+  {
+    winget install --manifest "$Env:USERPROFILE\powershell\manifests\$manifestPath\$manifestVersion" --silent
+  } elseif ([System.Version]$installedVersion -gt [System.Version]$manifestVersion)
+  {
+    throw "${manifestPath} installed version ${installedVersion} > $($manifestVersion)"
+  }
 }
 
 if (!$isMobile)
