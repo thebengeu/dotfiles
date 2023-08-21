@@ -3,7 +3,7 @@ account default
 auth on
 from cron@bungee.email
 host smtp.fastmail.com
-password {{ (ejsonDecrypt "secrets.ejson").msmtp_password }}
+password {{ (ejsonDecrypt (print .chezmoi.sourceDir "/secrets.ejson")).msmtp_password }}
 tls on
 tls_starttls off
 user thebengeu@fastmail.com
