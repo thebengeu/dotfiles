@@ -21,6 +21,8 @@ source ~/history-search-multi-word/history-search-multi-word.plugin.zsh
 autoload -U compinit
 compinit
 
+source ~/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 ENHANCD_USE_ABBREV=true
 source ~/enhancd/init.sh
 
