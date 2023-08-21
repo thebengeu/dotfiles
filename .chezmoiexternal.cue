@@ -16,6 +16,7 @@ import "regexp"
 _gitRepos: [
 	"Aloxaf/fzf-tab",
 	"b4b4r07/enhancd",
+	"hlissner/zsh-autopair",
 	"jeffreytse/zsh-vi-mode",
 	"olets/zsh-abbr",
 	"romkatv/powerlevel10k",
