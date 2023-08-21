@@ -24,7 +24,6 @@ source ~/enhancd/init.sh
 
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 source ~/fzf-tab/fzf-tab.plugin.zsh
-source ~/fzf-tab-source/fzf-tab-source.plugin.zsh
 
 source ~/zsh-abbr/zsh-abbr.zsh
 
