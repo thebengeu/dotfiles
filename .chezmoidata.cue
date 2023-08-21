@@ -84,9 +84,9 @@ aliases: {
 		}
 	}
 
-  for shAlias, command in _shAliases {
-    "\(shAlias)": "sh -c '\(command)'"
-  }
+	for shAlias, command in _shAliases {
+		"\(shAlias)": "sh -c '\(command)'"
+	}
 }
 functions: wcss: {
 	body: [
