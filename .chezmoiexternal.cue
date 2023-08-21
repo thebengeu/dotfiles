@@ -14,11 +14,12 @@ import "regexp"
 }
 
 _gitRepos: [
-	"b4b4r07/enhancd",
 	"Aloxaf/fzf-tab",
-	"romkatv/powerlevel10k",
-	"olets/zsh-abbr",
+	"b4b4r07/enhancd",
 	"jeffreytse/zsh-vi-mode",
+	"olets/zsh-abbr",
+	"romkatv/powerlevel10k",
+	"Freed-Wu/fzf-tab-source",
 ]
 
 for gitRepo in _gitRepos {
