@@ -1,4 +1,4 @@
 {{range $alias, $command := .aliases -}}
 abbr "{{$alias}}"="{{$command | replace "\"" "\\\"" | replace "$HOME" "~" }}"
 {{end -}}
-"tz"="time zsh -i -c exit"
+abbr "tz"="time zsh -i -c exit"
