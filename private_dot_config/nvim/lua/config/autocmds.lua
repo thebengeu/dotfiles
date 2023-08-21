@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd("TextChanged", {
   pattern = "*.lua",
 })
 vim.api.nvim_create_autocmd("BufWritePost", {
-  command = "AsyncRun -mode=term -pos=hide chezmoi apply --source-path <afile>",
+  command = "AsyncRun -close -mode=term -rows=5 chezmoi apply",
   pattern = "*/.local/share/chezmoi/*",
 })
 if os.getenv("TMUX") ~= nil then
