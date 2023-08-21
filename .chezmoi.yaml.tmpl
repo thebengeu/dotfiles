@@ -1,16 +1,9 @@
-# vi: ft=yaml
-cd:
-  args:
-    - '-NoLogo'
-  command: pwsh
-edit:
-  command: code
 hooks:
   apply:
     pre:
       args:
         - -c
-        - cd $CHEZMOI_SOURCE_DIR; cue export --force --outfile .chezmoidata.yaml .chezmoidata.cue
+        - cd $CHEZMOI_SOURCE_DIR; cue export --force --outfile .chezmoidata.yaml .chezmoidata.cue; cue export --force --outfile .chezmoiexternal.yaml .chezmoiexternal.cue
       command: sh
 interpreters:
   ps1:
