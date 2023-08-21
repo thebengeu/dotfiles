@@ -1,7 +1,11 @@
+.tmux/plugins/tpm:
+  type: git-repo
+  url: https://github.com/tmux-plugins/tpm
 powerlevel10k:
   refreshPeriod: 168h
   type: git-repo
   url: https://github.com/romkatv/powerlevel10k
-.tmux/plugins/tpm:
+zsh-abbr:
+  refreshPeriod: 168h
   type: git-repo
-  url: https://github.com/tmux-plugins/tpm
+  url: https://github.com/olets/zsh-abbr
