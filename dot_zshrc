@@ -16,16 +16,17 @@ source ~/.p10k.zsh
 
 ZVM_INIT_MODE=sourcing
 source ~/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-source ~/history-search-multi-word/history-search-multi-word.plugin.zsh
 
-autoload -U compinit
-compinit
-
+source ~/zsh-autopair/autopair.zsh
 source ~/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source ~/history-search-multi-word/history-search-multi-word.plugin.zsh
 
 source ~/zsh-history-substring-search/zsh-history-substring-search.zsh
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+
+autoload -U compinit
+compinit
 
 source ~/zsh-autosuggestions/zsh-autosuggestions.zsh
 
