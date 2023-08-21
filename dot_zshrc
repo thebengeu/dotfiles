@@ -21,6 +21,10 @@ source ~/history-search-multi-word/history-search-multi-word.plugin.zsh
 autoload -U compinit
 compinit
 
+source ~/zsh-history-substring-search/zsh-history-substring-search.zsh
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
 source ~/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 ENHANCD_USE_ABBREV=true

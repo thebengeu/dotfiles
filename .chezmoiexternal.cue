@@ -21,6 +21,7 @@ _gitRepos: [
 	"romkatv/powerlevel10k",
 	"zdharma-continuum/history-search-multi-word",
 	"zsh-users/zsh-autosuggestions",
+	"zsh-users/zsh-history-substring-search",
 ]
 
 for gitRepo in _gitRepos {
