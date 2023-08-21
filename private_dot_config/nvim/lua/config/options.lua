@@ -20,3 +20,9 @@ vim.o.sessionoptions = table.concat({
 }, ",")
 vim.opt.linebreak = true
 vim.opt.wrap = true
+
+if jit.os:find("Windows") then
+  vim.o.shell = "sh"
+  vim.o.shellcmdflag = "-c"
+  vim.o.shellxquote = ""
+end
