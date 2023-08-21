@@ -272,7 +272,8 @@ Remove-Item $env:OneDrive\Desktop\*.lnk
 Remove-Item $env:PUBLIC\Desktop\*.lnk
 
 $ejsonPublicKey = "5df4cad7a4c3a2937a863ecf18c56c23274cb048624bc9581ecaac56f2813107"
-op read op://Personal/ejson/$ejsonPublicKey --out-file $HOME\.config\ejson\keys\$ejsonPublicKey
+mkdir -p $HOME/.config/ejson/keys
+op read op://Personal/ejson/$ejsonPublicKey --out-file $HOME/.config/ejson/keys/$ejsonPublicKey
 
 $sshKeyPath = "$Env:USERPROFILE\.ssh\id_ed25519"
 
