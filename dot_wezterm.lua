@@ -63,6 +63,11 @@ config.launch_menu = {
 	},
 	{
 		domain = { DomainName = "local" },
+		label = "Nushell",
+		args = { "nu" },
+	},
+	{
+		domain = { DomainName = "local" },
 		label = "PowerShell",
 		args = { "pwsh", "-NoLogo" },
 	},
