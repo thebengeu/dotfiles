@@ -4,6 +4,8 @@ HISTFILE=~/.zsh_history
 HISTSIZE=9223372036854775807
 SAVEHIST=9223372036854775807
 
+setopt AUTO_CD
+setopt EXTENDED_GLOB
 setopt HIST_FIND_NO_DUPS
 setopt SHARE_HISTORY
 
@@ -13,6 +15,13 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 source ~/.p10k.zsh
 
 source ~/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
+autoload -U compinit
+compinit
+
+ENHANCD_USE_ABBREV=true
+source ~/enhancd/init.sh
+
 source ~/zsh-abbr/zsh-abbr.zsh
 
 # zprof
