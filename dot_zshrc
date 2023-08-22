@@ -30,8 +30,8 @@ compinit
 
 source ~/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-ENHANCD_USE_ABBREV=true
-source ~/enhancd/init.sh
+# ENHANCD_USE_ABBREV=true
+# source ~/enhancd/init.sh
 
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 source ~/fzf-tab/fzf-tab.plugin.zsh
