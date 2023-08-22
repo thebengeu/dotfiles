@@ -38,6 +38,7 @@ source ~/zsh-autosuggestions/zsh-autosuggestions.zsh
 ENHANCD_USE_ABBREV=true
 source ~/enhancd/init.sh
 
+eval "$(atuin init zsh --disable-ctrl-r --disable-up-arrow)"
 eval "$(zoxide init zsh)"
 
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
