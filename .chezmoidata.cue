@@ -90,6 +90,7 @@ aliases: {
 	}
 }
 environmentVariables: {
+	EJSON_KEYDIR:        "$HOME/.config/ejson/keys"
 	RIPGREP_CONFIG_PATH: "$HOME/.ripgreprc"
 }
 functions: wcss: {
