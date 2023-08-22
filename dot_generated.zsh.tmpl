@@ -19,3 +19,5 @@ function {{$alias}} () {
   {{$command | replace "$HOME" "~"}} $@
 }
 {{end -}}
+{{output "atuin" "init" "zsh" "--disable-ctrl-r" "--disable-up-arrow"}}
+{{output "zoxide" "init" "zsh"}}
