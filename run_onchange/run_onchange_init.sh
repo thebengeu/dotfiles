@@ -1,9 +1,10 @@
 #!/usr/bin/env sh
+ARCHITECTURE=$(dpkg --print-architecture)
 
 if [ ! -f /usr/bin/op ]; then
 	curl -sS https://downloads.1password.com/linux/keys/1password.asc |
 		sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
-	echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) stable main" |
+	echo "deb [arch=$ARCHITECTURE signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) stable main" |
 		sudo tee /etc/apt/sources.list.d/1password.list
 	sudo mkdir -p /etc/debsig/policies/AC2D62742012EA22/
 	curl -sS https://downloads.1password.com/linux/debian/debsig/1password.pol |
@@ -32,7 +33,7 @@ if [ ! -f ~/.ssh/id_ed25519 ]; then
 fi
 
 if [ ! -f "$EJSON_KEY_PATH" ]; then
-	curl -Ls https://github.com/Shopify/ejson/releases/download/v1.4.1/ejson_1.4.1_linux_amd64.tar.gz | tar xz --directory ~/.local/bin ejson
+	curl -Ls https://github.com/Shopify/ejson/releases/download/v1.4.1/ejson_1.4.1_linux_"$ARCHITECTURE".tar.gz | tar xz --directory ~/.local/bin ejson
 	mkdir -p "$HOME"/.config/ejson/keys
 	eval "$(op signin)"
 	op read op://Personal/ejson/"$EJSON_PUBLIC_KEY" --out-file "$EJSON_KEY_PATH"

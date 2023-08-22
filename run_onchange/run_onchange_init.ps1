@@ -165,7 +165,7 @@ if (!(Test-Path $ejsonKeyPath) -or !(Test-Path $sshKeyPath))
 
 if (!(Test-Path $ejsonKeyPath))
 {
-  sh -c 'curl -Ls https://github.com/Shopify/ejson/releases/download/v1.4.1/ejson_1.4.1_windows_amd64.tar.gz | tar xz --directory ~/.local/bin ejson.exe'
+  sh -c "curl -Ls https://github.com/Shopify/ejson/releases/download/v1.4.1/ejson_1.4.1_windows_$($Env:PROCESSOR_ARCHITECTURE.ToLower()).tar.gz | tar xz --directory ~/.local/bin ejson.exe"
   mkdir -p $HOME/.config/ejson/keys
   op read op://Personal/ejson/$ejsonPublicKey --out-file $ejsonKeyPath
 }
