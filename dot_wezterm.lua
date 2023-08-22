@@ -85,7 +85,7 @@ config.launch_menu = {
 			"--domain-name",
 			"local",
 			"--",
-			"powershell",
+			"pwsh",
 			"wsl",
 			"--shutdown",
 			";",
