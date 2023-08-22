@@ -66,9 +66,6 @@
     cmd: /tmp/rustup-init --no-modify-path --profile minimal -y
     creates: ~/.cargo/env
 - ansible.builtin.command:
-    cmd: chezmoi init --apply --ssh thebengeu
-    creates: ~/.local/share/chezmoi
-- ansible.builtin.command:
     cmd: /usr/bin/bat cache --build
     creates: ~/.cache/bat/themes.bin
 - ansible.builtin.command:
@@ -78,10 +75,6 @@
     - nethogs
     - nix
     - peco
-- ansible.builtin.pip:
-    name:
-      - pipx
-    extra_args: --user
 - ansible.builtin.git:
     dest: ~/bat-extras
     repo: https://github.com/eth-p/bat-extras.git
@@ -91,5 +84,6 @@
     cmd: ./build.sh --install --minify all
     creates: /usr/local/bin/batman
   become: true
-  environment:
-    PATH: /usr/bin:/home/{{ ansible_user_id }}/go/bin
+- ansible.builtin.command:
+    cmd: go install cuelang.org/go/cmd/cue@latest
+    creates: ~/go/bin/cue
