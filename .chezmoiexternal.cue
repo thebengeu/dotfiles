@@ -20,9 +20,11 @@ _gitRepos: [
 	"jeffreytse/zsh-vi-mode",
 	"olets/zsh-abbr",
 	"romkatv/powerlevel10k",
+	"romkatv/zsh-defer",
 	"zdharma-continuum/fast-syntax-highlighting",
 	"zdharma-continuum/history-search-multi-word",
 	"zsh-users/zsh-autosuggestions",
+	"zsh-users/zsh-completions",
 	"zsh-users/zsh-history-substring-search",
 ]
 
