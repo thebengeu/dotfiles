@@ -17,7 +17,7 @@ run_onchange/*.sh
 {{ else }}
 .config/wezterm/
 AppData/
-*.ps1
+**/*.ps1
 AutoHotkey.ahk
 .wezterm.lua
 {{ end }}
