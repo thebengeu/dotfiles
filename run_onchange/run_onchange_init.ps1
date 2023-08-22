@@ -154,6 +154,7 @@ corepack enable
 
 choco feature enable -n allowGlobalConfirmation
 
+$ejsonPublicKey = "5df4cad7a4c3a2937a863ecf18c56c23274cb048624bc9581ecaac56f2813107"
 $ejsonKeyPath = "$HOME/.config/ejson/keys/$ejsonPublicKey"
 $sshKeyPath = "$Env:USERPROFILE\.ssh\id_ed25519"
 
@@ -165,7 +166,6 @@ if (!(Test-Path $ejsonKeyPath) -or !(Test-Path $sshKeyPath))
 if (!(Test-Path $ejsonKeyPath))
 {
   sh -c 'curl -Ls https://github.com/Shopify/ejson/releases/download/v1.4.1/ejson_1.4.1_windows_amd64.tar.gz | tar xz --directory ~/.local/bin ejson.exe'
-  $ejsonPublicKey = "5df4cad7a4c3a2937a863ecf18c56c23274cb048624bc9581ecaac56f2813107"
   mkdir -p $HOME/.config/ejson/keys
   op read op://Personal/ejson/$ejsonPublicKey --out-file $ejsonKeyPath
 }
