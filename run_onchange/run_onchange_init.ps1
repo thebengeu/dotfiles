@@ -179,6 +179,8 @@ if (!(Test-Path $sshKeyPath))
   ssh-add $sshKeyPath
 }
 
+go install cuelang.org/go/cmd/cue@latest
+
 chezmoi init --apply --ssh thebengeu
 
 $localAppDataNvimPath = "$Env:LOCALAPPDATA\nvim"
