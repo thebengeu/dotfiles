@@ -39,16 +39,16 @@ if [ ! -f "$EJSON_KEY_PATH" ]; then
 	op read op://Personal/ejson/"$EJSON_PUBLIC_KEY" --out-file "$EJSON_KEY_PATH"
 fi
 
-CHEZMOI_SOURCE_DIR="$HOME/.local/share/chezmoi"
-
-git clone git@github.com:thebengeu/dotfiles.git "$CHEZMOI_SOURCE_DIR"
-
-sudo add-apt-repository -y ppa:ansible/ansible
-sudo apt install ansible
-ansible-playbook --tags server "$CHEZMOI_SOURCE_DIR"/ansible/site.yml --ask-become-pass
-
-sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'postgres';"
-
 if [ ! "$CHEZMOI" = 1 ]; then
+	CHEZMOI_SOURCE_DIR="$HOME/.local/share/chezmoi"
+
+	git clone git@github.com:thebengeu/dotfiles.git "$CHEZMOI_SOURCE_DIR"
+
+	sudo add-apt-repository -y ppa:ansible/ansible
+	sudo apt install ansible
+	ansible-playbook --tags server "$CHEZMOI_SOURCE_DIR"/ansible/site.yml --ask-become-pass
+
+	sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'postgres';"
+
 	/snap/bin/chezmoi apply --init
 fi
