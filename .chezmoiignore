@@ -1,4 +1,6 @@
 ansible/
+manifests/
+README.md
 secrets.ejson
 
 {{ if eq .chezmoi.os "windows" }}
@@ -15,7 +17,7 @@ run_onchange/*.sh
 {{ else }}
 .config/wezterm/
 AppData/
-run_onchange/*.ps1
+*.ps1
 AutoHotkey.ahk
 .wezterm.lua
 {{ end }}
