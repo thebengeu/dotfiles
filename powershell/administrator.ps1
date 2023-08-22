@@ -1,13 +1,3 @@
-if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator'))
-{
-  if ([int](Get-CimInstance -Class Win32_OperatingSystem | Select-Object -ExpandProperty BuildNumber) -ge 6000)
-  {
-    $CommandLine = "-NoExit -File `"" + $MyInvocation.MyCommand.Path + "`" " + $MyInvocation.UnboundArguments
-    Start-Process -Wait -FilePath PowerShell.exe -Verb Runas -ArgumentList $CommandLine
-    Exit
-  }
-}
-
 function Set-Registry-Values($path, $values)
 {
   foreach ($name in $values.Keys)
@@ -83,7 +73,6 @@ $wingetPackageIds = @(
 if (!$isMobile)
 {
   $wingetPackageIds += @(
-    'Asus.ArmouryCrate'
     'BinaryFortress.DisplayFusion'
     'PlayStation.DualSenseFWUpdater'
     'Nvidia.GeForceExperience'
@@ -101,11 +90,6 @@ foreach ($wingetPackageId in $wingetPackageIds)
 winget install --exact --id --no-upgrade --override '--add Microsoft.VisualStudio.Workload.VCTools --includeRecommended --quiet --wait' --silent Microsoft.VisualStudio.2022.BuildTools
 
 winget pin add --exact --id JetBrains.WebStorm
-
-if (!$isMobile)
-{
-  winget pin add --exact --id Asus.ArmouryCrate
-}
 
 $storeApps = @(
   'Apple Music Preview'
@@ -255,23 +239,9 @@ corepack enable
 
 choco feature enable -n allowGlobalConfirmation
 
-$chocoPackages = @(
-  'Kindle'
-  'ledger-live'
-  'SQLite'
-  'tableplus'
-)
-
-foreach ($chocoPackage in $chocoPackages)
-{
-  choco install $chocoPackage
-}
-
 pip install --user pipx
 
-Remove-Item $env:OneDrive\Desktop\*.lnk
-Remove-Item $env:PUBLIC\Desktop\*.lnk
-
+sh -c 'curl -Ls https://github.com/Shopify/ejson/releases/download/v1.4.1/ejson_1.4.1_windows_amd64.tar.gz | tar xz --directory ~/.local/bin ejson.exe'
 $ejsonPublicKey = "5df4cad7a4c3a2937a863ecf18c56c23274cb048624bc9581ecaac56f2813107"
 mkdir -p $HOME/.config/ejson/keys
 op read op://Personal/ejson/$ejsonPublicKey --out-file $HOME/.config/ejson/keys/$ejsonPublicKey
@@ -289,69 +259,12 @@ if (!(Test-Path $sshKeyPath))
 
 chezmoi init --apply --ssh thebengeu
 
-$localAppDataNvimPath = "$Env:LOCALAPPDATA\nvim"
-
-if (!(Test-Path $localAppDataNvimPath))
-{
-  New-Item $localAppDataNvimPath -ItemType Junction -Target "$Env:USERPROFILE\.config\nvim"
-}
-
-git clone git@github.com:thebengeu/powershell.git "$Env:USERPROFILE\powershell"
-
-$fontFolder = "$Env:USERPROFILE\.local\share\chezmoi\private_dot_local\private_share\fonts"
-$shellFolder = (New-Object -COMObject Shell.Application).Namespace($fontFolder)
-
-foreach ($fontFile in Get-ChildItem $fontFolder)
-{
-  $registryKeyName = $shellFolder.GetDetailsOf($shellFolder.ParseName($fontFile.Name), 21 <# Title #>) + ' (TrueType)'
-  New-ItemProperty 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Fonts' $registryKeyName -Force -PropertyType string -Value $fontFile.Name > $null
-  Copy-Item $fontFile.FullName $env:windir\Fonts
-}
-
-$manifestPaths = @{
-  'a\AudioBand\AudioBand' = @{
-    id = '0BD4E347-1EE9-4F74-BB18-067B8736E44D'
-    version = '1.2.1'
-  }
-  'r\Rabby\RabbyDesktop' = @{
-    id = '2cd4acdc-36c3-5e85-b6bd-84403600b4d8'
-    version = '0.31.0'
-  }
-  't\Todoist\Todoist' = @{
-    id = 'Doist.Todoist'
-    version = '8.5.0'
-  }
-}
-
-if (!$isMobile)
-{
-  $manifestPaths['f\Finkitd\o\o\ManicTimeServer']= @{
-    id = ''
-    version = '23.2.4.1'
-  }
-}
-
-foreach ($manifestPath in $manifestPaths.Keys)
-{
-  $idAndVersion = $manifestPaths[$manifestPath]
-  $manifestVersion = $idAndVersion.version
-  $installedVersion = (Get-WinGetPackage -Id $idAndVersion.id).InstalledVersion
-
-  if ($null -eq $installedVersion)
-  {
-    winget install --manifest "$Env:USERPROFILE\powershell\manifests\$manifestPath\$manifestVersion" --silent
-  } elseif ([System.Version]$installedVersion -gt [System.Version]$manifestVersion)
-  {
-    throw "${manifestPath} installed version ${installedVersion} > $($manifestVersion)"
-  }
-}
-
 if (!$isMobile)
 {
   Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
   Start-Service sshd
   Set-Service sshd -StartupType 'Automatic'
-  New-ItemProperty HKLM:\SOFTWARE\OpenSSH DefaultShell -Force -PropertyType String -Value "$Env:ProgramFiles\nu\bin\nu.exe"
+  New-ItemProperty HKLM:\SOFTWARE\OpenSSH DefaultShell -Force -PropertyType String -Value "C:\msys64\usr\bin\zsh"
 
   $authorizedKeysPath = "$Env:ProgramData\ssh\administrators_authorized_keys"
   Copy-Item $Env:USERPROFILE\.ssh\id_ed25519.pub $authorizedKeysPath
