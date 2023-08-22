@@ -130,6 +130,7 @@
       - speedtest
       - sqlite3
       - unzip
+      - zsh
     update_cache: true
 - ansible.builtin.apt:
     name:
