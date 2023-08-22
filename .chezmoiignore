@@ -7,7 +7,7 @@ secrets.ejson
 .config/fish/conf.d/non-windows.fish
 .config/topgrade.toml
 .local/
-*.sh
+run_onchange/*.sh
 !wezterm.sh
 .ansible.cfg
 .inputrc
@@ -16,7 +16,7 @@ secrets.ejson
 {{ else }}
 .config/wezterm/
 AppData/
-*.ps1
+run_onchange/*.ps1
 AutoHotkey.ahk
 .wezterm.lua
 {{ end }}
