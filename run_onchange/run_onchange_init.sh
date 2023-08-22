@@ -50,5 +50,5 @@ ansible-playbook --tags server "$CHEZMOI_SOURCE_DIR"/ansible/site.yml --ask-beco
 sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'postgres';"
 
 if [ ! "$CHEZMOI" = 1 ]; then
-	chezmoi apply --init
+	/snap/bin/chezmoi apply --init
 fi
