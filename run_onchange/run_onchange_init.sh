@@ -50,5 +50,6 @@ if [ ! "$CHEZMOI" = 1 ]; then
 
 	sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'postgres';"
 
+	export PATH=~/go/bin:"$PATH"
 	/snap/bin/chezmoi apply --init
 fi
