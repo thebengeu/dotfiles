@@ -4,3 +4,13 @@ export {{$environmentVariable}}={{$value}}
 {{range $path := .paths -}}
 export PATH={{$path}}:$PATH
 {{end -}}
+{{range $name, $body_and_parameters := .functions -}}
+function {{$name}} () {
+{{- range $line := $body_and_parameters.body}}
+  {{- range $i, $parameter := $body_and_parameters.parameters}}
+    {{- $line = $line | replace $parameter ($i | add1 | toString)}}
+  {{- end}}
+  {{$line}}
+{{- end}}
+}
+{{- end}}
