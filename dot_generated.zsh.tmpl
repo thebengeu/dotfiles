@@ -1,0 +1,3 @@
+{{range $environmentVariable, $value := .environmentVariables -}}
+export {{$environmentVariable}}={{$value}}
+{{end -}}

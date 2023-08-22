@@ -283,32 +283,10 @@ return {
       end,
     },
     keys = function(_, keys)
-      local vimgrep_arguments = {
-        "rg",
-        "--color=never",
-        "--column",
-        "--follow",
-        "--hidden",
-        "--line-number",
-        "--no-heading",
-        "--no-ignore",
-        "--smart-case",
-        "--with-filename",
-      }
-
-      local no_ignore_vimgrep_arguments = {}
-      vim.list_extend(no_ignore_vimgrep_arguments, vimgrep_arguments)
+      local no_ignore_vimgrep_arguments = vim.fn.copy(require("telescope.config").values.vimgrep_arguments)
       vim.list_extend(no_ignore_vimgrep_arguments, { "--no-ignore" })
 
       vim.list_extend(keys, {
-        {
-          "<leader>/",
-          Util.telescope("live_grep", {
-            cwd = false,
-            vimgrep_arguments = vimgrep_arguments,
-          }),
-          desc = "Grep (cwd)",
-        },
         { "<leader><space>", false },
         { "<leader>fF", Util.telescope("files"), desc = "Find Files (root dir)" },
         { "<leader>ff", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
@@ -327,21 +305,6 @@ return {
             })
           end,
           desc = "Find Plugin Files",
-        },
-        {
-          "<leader>sg",
-          Util.telescope("live_grep", {
-            vimgrep_arguments = vimgrep_arguments,
-          }),
-          desc = "Grep (root dir)",
-        },
-        {
-          "<leader>sG",
-          Util.telescope("live_grep", {
-            cwd = false,
-            vimgrep_arguments = vimgrep_arguments,
-          }),
-          desc = "Grep (cwd)",
         },
         {
           "<leader>si",

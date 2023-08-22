@@ -1,5 +1,7 @@
 # zmodload zsh/zprof
 
+source ~/.generated.zsh
+
 HISTFILE=~/.zsh_history
 HISTSIZE=9223372036854775807
 SAVEHIST=9223372036854775807
