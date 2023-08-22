@@ -46,7 +46,6 @@ Install-Module Microsoft.WinGet.Client
 Install-Module PSFzf
 Install-Module PSWindowsUpdate
 
-
 Set-ItemProperty 'HKCU:\Control Panel\Mouse' 'MouseSensitivity' 20
 Set-ItemProperty 'HKCU:\Software\Microsoft\Accessibility' 'CursorSize' 2
 
@@ -143,7 +142,7 @@ corepack enable
 
 choco feature enable -n allowGlobalConfirmation
 
-pip install --user pipx
+Read-Host "Connect with 1Password CLI"
 
 sh -c 'curl -Ls https://github.com/Shopify/ejson/releases/download/v1.4.1/ejson_1.4.1_windows_amd64.tar.gz | tar xz --directory ~/.local/bin ejson.exe'
 $ejsonPublicKey = "5df4cad7a4c3a2937a863ecf18c56c23274cb048624bc9581ecaac56f2813107"
@@ -155,7 +154,7 @@ $sshKeyPath = "$Env:USERPROFILE\.ssh\id_ed25519"
 if (!(Test-Path $sshKeyPath))
 {
   mkdir "$Env:USERPROFILE\.ssh"
-  op read 'op://Personal/Ed25519 SSH Key/id_ed25519' > $sshKeyPath
+  op read 'op://Personal/Ed25519 SSH Key/id_ed25519' --out-file $sshKeyPath
   Get-Service ssh-agent | Set-Service -StartupType Automatic
   Start-Service ssh-agent
   ssh-add $sshKeyPath

@@ -13,6 +13,7 @@ cargo install vivid
 cargo install xh
 cargo install zoxide
 go install github.com/nao1215/gup@latest
+pip install --user pipx
 pipx install howdoi
 pipx install khal
 pipx install neovim-remote
