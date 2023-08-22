@@ -22,64 +22,9 @@ winget settings --enable LocalManifestFiles
 $wingetPackageIds = @(
   'AgileBits.1Password'
   'AgileBits.1Password.CLI'
-  '7zip.7zip'
-  'Twilio.Authy'
-  'Armin2208.WindowsAutoNightMode'
-  'Amazon.AWSCLI'
-  'rsteube.Carapace'
   'twpayne.chezmoi'
-  'Hibbiki.Chromium'
-  'Kitware.CMake'
-  'dandavison.delta'
-  'Discord.Discord'
-  'ExpressVPN.ExpressVPN'
-  'flux.flux'
-  'Mozilla.Firefox'
-  'Flow-Launcher.Flow-Launcher'
-  'junegunn.fzf'
-  'Git.Git'
-  'GoLang.Go'
-  'gerardog.gsudo'
-  'DEVCOM.Lua'
-  'jftuga.less'
-  'ManicTime.ManicTime'
-  'MSYS2.MSYS2'
-  'Notion.Notion'
-  'Nushell.Nushell'
-  'Obsidian.Obsidian'
-  'Microsoft.OpenSSH.Beta'
   'Microsoft.PowerShell'
-  'Microsoft.PowerToys'
-  'Microsoft.Sysinternals.ProcessMonitor'
-  'Neovide.Neovide'
-  'OpenJS.NodeJS'
-  'PostgreSQL.PostgreSQL'
-  'Pulumi.Pulumi'
-  'QMK.QMKToolbox'
-  'BurntSushi.ripgrep.MSVC'
-  'Rustlang.Rustup'
-  'SlackTechnologies.Slack'
-  'StartIsBack.StartAllBack'
-  'Microsoft.VisualStudioCode'
-  'JetBrains.WebStorm'
-  'wez.wezterm'
-  'JernejSimoncic.Wget'
-  'Microsoft.WingetCreate'
-  'Highresolution.X-MouseButtonControl'
-  'th-ch.YouTubeMusic'
-  'Zoom.Zoom'
 )
-
-if (!$isMobile)
-{
-  $wingetPackageIds += @(
-    'BinaryFortress.DisplayFusion'
-    'PlayStation.DualSenseFWUpdater'
-    'Nvidia.GeForceExperience'
-    'Valve.Steam'
-    'xanderfrangos.twinkletray'
-  )
-}
 
 foreach ($wingetPackageId in $wingetPackageIds)
 {
@@ -90,35 +35,6 @@ foreach ($wingetPackageId in $wingetPackageIds)
 winget install --exact --id --no-upgrade --override '--add Microsoft.VisualStudio.Workload.VCTools --includeRecommended --quiet --wait' --silent Microsoft.VisualStudio.2022.BuildTools
 
 winget pin add --exact --id JetBrains.WebStorm
-
-$storeApps = @(
-  'Apple Music Preview'
-  '9PL8WPH0QK9M' # Cider (Preview)
-  'iCloud'
-  '9NRX63209R7B' # Outlook for Windows
-  'Raindrop.io'
-  'Unigram—Telegram for Windows'
-  'WhatsApp'
-  'Windows Terminal Preview'
-)
-
-if ($isMobile)
-{
-  $storeApps += @(
-    'Pure Battery Analytics'
-  )
-} else
-{
-  $storeApps += @(
-    'Dolby Access'
-    'DTS Sound Unbound'
-  )
-}
-
-foreach ($storeApps in $storeApps)
-{
-  winget install --accept-package-agreements --source msstore $storeApps
-}
 
 Set-ExecutionPolicy Unrestricted
 Invoke-RestMethod community.chocolatey.org/install.ps1 | Invoke-Expression
