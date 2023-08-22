@@ -60,7 +60,6 @@ aliases: {
 	prm:  "pnpm rm"
 	prod: "ssh -t prod tmux new-session -A -s 0"
 	prr:  "gh pr create -f -r"
-	rg:   "rg --max-columns 1000"
 	scc:  "scc --not-match \"package-lock.json|pnpm-lock.yaml\""
 	si:   "scoop install"
 	ss:   "scoop search"
@@ -89,6 +88,9 @@ aliases: {
 	for shAlias, command in _shAliases {
 		"\(shAlias)": "sh -c '\(command)'"
 	}
+}
+environmentVariables: {
+	RIPGREP_CONFIG_PATH: "$HOME/.ripgreprc"
 }
 functions: wcss: {
 	body: [

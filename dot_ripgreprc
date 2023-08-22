@@ -1,0 +1,4 @@
+--glob=!.git/
+--hidden
+--max-columns 1000
+--smart-case
