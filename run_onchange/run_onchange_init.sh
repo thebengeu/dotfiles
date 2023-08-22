@@ -46,4 +46,6 @@ sudo add-apt-repository ppa:ansible/ansible
 sudo apt install ansible
 ansible-playbook --tags server "$CHEZMOI_SOURCE_DIR"/site.yml --ask-become-pass
 
+sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'postgres';"
+
 chezmoi apply --init
