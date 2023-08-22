@@ -1,4 +1,6 @@
---glob=!.git/
+--glob
+!.git/
 --hidden
---max-columns 1000
+--max-columns
+1000
 --smart-case
