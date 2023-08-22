@@ -19,6 +19,17 @@ fpath+=~/zsh-completions/src
 # source ~/powerlevel10k/powerlevel10k.zsh-theme
 # source ~/.p10k.zsh
 
+AGKOZAK_BLANK_LINES=1
+AGKOZAK_CUSTOM_SYMBOLS=( '⇣⇡' '⇣' '⇡' '+' 'x' '!' '>' '?' 'S')
+AGKOZAK_LEFT_PROMPT_ONLY=1
+AGKOZAK_PROMPT_DIRTRIM=0
+AGKOZAK_PROMPT_CHAR=( ❯ ❯ ❮ )
+AGKOZAK_SHOW_VIRTUALENV=0
+AGKOZAK_USER_HOST_DISPLAY=0
+source ~/agkozak-zsh-prompt/agkozak-zsh-prompt.plugin.zsh
+
+# source ~/git-prompt.zsh/git-prompt.zsh
+
 # ZVM_INIT_MODE=sourcing
 # function zvm_after_init() {
   source ~/history-search-multi-word/history-search-multi-word.plugin.zsh
