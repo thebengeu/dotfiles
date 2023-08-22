@@ -208,6 +208,6 @@ if (!$isMobile)
   New-ItemProperty HKLM:\SOFTWARE\OpenSSH DefaultShell -Force -PropertyType String -Value "C:\msys64\usr\bin\zsh"
 
   $authorizedKeysPath = "$Env:ProgramData\ssh\administrators_authorized_keys"
-  Copy-Item $Env:USERPROFILE\.ssh\id_ed25519.pub $authorizedKeysPath
+  Copy-Item $Env:USERPROFILE\.ssh\authorized_keys $authorizedKeysPath
   icacls $authorizedKeysPath /inheritance:r /grant Administrators:F /grant SYSTEM:F
 }
