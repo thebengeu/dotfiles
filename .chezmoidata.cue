@@ -91,6 +91,8 @@ aliases: {
 }
 environmentVariables: {
 	EJSON_KEYDIR:        "$HOME/.config/ejson/keys"
+	NODE_NO_WARNINGS:    "1"
+	PNPM_HOME:           "~/.local/share/pnpm"
 	RIPGREP_CONFIG_PATH: "$HOME/.ripgreprc"
 }
 functions: wcss: {
@@ -101,3 +103,12 @@ functions: wcss: {
 	]
 	parameters: ["package"]
 }
+paths: [
+	'/snap/bin',
+	'~/.cargo/bin',
+	'~/.local/bin',
+	'~/.pulumi/bin',
+	'~/.temporalio/bin',
+	'~/go/bin',
+	'$PNPM_HOME',
+]
