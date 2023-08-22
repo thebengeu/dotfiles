@@ -1,5 +1,4 @@
 ansible/
-powershell/
 secrets.ejson
 
 {{ if eq .chezmoi.os "windows" }}
