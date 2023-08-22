@@ -13,12 +13,6 @@ setopt SHARE_HISTORY
 
 fpath+=~/zsh-completions/src
 
-# source ~/zsh-defer/zsh-defer.plugin.zsh
-
-# source ~/.cache/p10k-instant-prompt-$USER.zsh
-# source ~/powerlevel10k/powerlevel10k.zsh-theme
-# source ~/.p10k.zsh
-
 AGKOZAK_BLANK_LINES=1
 AGKOZAK_CUSTOM_SYMBOLS=( '⇣⇡' '⇣' '⇡' '+' 'x' '!' '>' '?' 'S')
 AGKOZAK_LEFT_PROMPT_ONLY=1
@@ -28,15 +22,7 @@ AGKOZAK_SHOW_VIRTUALENV=0
 AGKOZAK_USER_HOST_DISPLAY=0
 source ~/agkozak-zsh-prompt/agkozak-zsh-prompt.plugin.zsh
 
-# source ~/git-prompt.zsh/git-prompt.zsh
-
-# ZVM_INIT_MODE=sourcing
-# function zvm_after_init() {
-  source ~/history-search-multi-word/history-search-multi-word.plugin.zsh
-# }
-# source ~/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-
-# source ~/zsh-autopair/autopair.zsh
+source ~/history-search-multi-word/history-search-multi-word.plugin.zsh
 source ~/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
 source ~/zsh-history-substring-search/zsh-history-substring-search.zsh
@@ -54,9 +40,5 @@ source ~/enhancd/init.sh
 
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 source ~/fzf-tab/fzf-tab.plugin.zsh
-
-# source ~/zsh-abbr/zsh-abbr.zsh
-
-# source ~/wezterm.sh
 
 # zprof
