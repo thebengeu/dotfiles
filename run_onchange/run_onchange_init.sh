@@ -7,6 +7,7 @@ EJSON_KEY_PATH="$HOME/.config/ejson/keys/$EJSON_PUBLIC_KEY"
 if [ ! -f "$EJSON_KEY_PATH" ]; then
 	curl -Ls https://github.com/Shopify/ejson/releases/download/v1.4.1/ejson_1.4.1_linux_amd64.tar.gz | tar xz --directory ~/.local/bin ejson
 	mkdir -p "$HOME"/.config/ejson/keys
+	eval "$(op signin)"
 	op read op://Personal/ejson/"$EJSON_PUBLIC_KEY" --out-file "$EJSON_KEY_PATH"
 fi
 
