@@ -46,18 +46,6 @@ Install-Module Microsoft.WinGet.Client
 Install-Module PSFzf
 Install-Module PSWindowsUpdate
 
-$startMenuPrograms = 'Microsoft\Windows\Start Menu\Programs'
-
-$shortcutArguments = @{
-  "$Env:APPDATA\$startMenuPrograms\Chromium.lnk"    = '--proxy-server=zproxy.lum-superproxy.io:22225'
-}
-
-foreach ($shortcutPath in $shortcutArguments.Keys)
-{
-  $shortcut = (New-Object -ComObject WScript.Shell).CreateShortCut($shortcutPath)
-  $shortcut.Arguments = $shortcutArguments[$shortcutPath]
-  $shortcut.Save()
-}
 
 Set-ItemProperty 'HKCU:\Control Panel\Mouse' 'MouseSensitivity' 20
 Set-ItemProperty 'HKCU:\Software\Microsoft\Accessibility' 'CursorSize' 2
