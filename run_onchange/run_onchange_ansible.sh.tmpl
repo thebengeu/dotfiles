@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+# {{ include "ansible/roles/server/tasks/Ubuntu.yml" | sha256sum }}
+# {{ include "ansible/roles/server/tasks/Ubuntu_become.yml" | sha256sum }}
+ansible-playbook --tags server "$CHEZMOI_SOURCE_DIR"/ansible/site.yml
