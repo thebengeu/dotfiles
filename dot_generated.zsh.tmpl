@@ -14,3 +14,11 @@ function {{$name}} () {
 {{- end}}
 }
 {{- end}}
+{{range $alias, $command := .aliases -}}
+# alias {{$alias}}="{{$command | replace "\"" "\\\"" | replace "$HOME" "~"}}"
+{{end -}}
+{{range $alias, $command := .aliases -}}
+function {{$alias}} () {
+  {{$command | replace "$HOME" "~"}} $@
+}
+{{end -}}

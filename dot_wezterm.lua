@@ -60,7 +60,7 @@ config.launch_menu = {
 	{
 		domain = { DomainName = "local" },
 		label = "fish",
-		args = { "C:\\msys64\\usr\\bin\\fish", "--login" },
+		args = { "C:\\msys64\\usr\\bin\\fish" },
 	},
 	{
 		domain = { DomainName = "local" },
@@ -75,7 +75,7 @@ config.launch_menu = {
 	{
 		domain = { DomainName = "local" },
 		label = "zsh",
-		args = { "C:\\msys64\\usr\\bin\\zsh", "--login" },
+		args = { "C:\\msys64\\usr\\bin\\zsh" },
 	},
 	{
 		args = {

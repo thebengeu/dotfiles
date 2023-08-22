@@ -42,6 +42,7 @@ aliases: {
 	cu:   "choco uninstall"
 	cup:  "chezmoi update --apply --init"
 	ec2:  "ssh -t ec2 tmux new-session -A -s 0"
+	ez:   "exec zsh"
 	g:    "git"
 	j:    "just"
 	jd:   "just dev"
@@ -67,6 +68,7 @@ aliases: {
 	tg:   "pwsh -Command gsudo topgrade"
 	tns:  "tmux new-session -A -s"
 	tsx:  "pnpm tsx"
+	tz:   "time zsh -i -c exit"
 	vim:  "nvim"
 	wi:   "winget install"
 	ws:   "winget search"
@@ -105,6 +107,7 @@ functions: wcss: {
 }
 paths: [
 	'/snap/bin',
+	'/usr/bin',
 	'~/.cargo/bin',
 	'~/.local/bin',
 	'~/.pulumi/bin',
