@@ -1,5 +1,6 @@
 ansible/
 manifests/
+scripts/
 README.md
 secrets.ejson
 
