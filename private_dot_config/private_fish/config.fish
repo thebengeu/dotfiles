@@ -1,16 +1,11 @@
 status is-interactive || exit
 
-set --export EDITOR nvim
-
 set --global fish_cursor_default block
 set --global fish_cursor_insert line
 set --global fish_cursor_replace_one underscore
 set --global fish_greeting
 set --global fish_vi_force_cursor 1
 
-atuin init fish --disable-ctrl-r --disable-up-arrow | source
-starship init fish | source
-zoxide init --cmd cd fish | source
 
 enable_transience
 

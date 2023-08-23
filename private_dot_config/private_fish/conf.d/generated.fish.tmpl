@@ -1,0 +1,16 @@
+{{range $environmentVariable, $value := .environmentVariables -}}
+set export {{$environmentVariable}} {{$value}}
+{{end}}
+
+{{- range $path := .paths}}
+fish_add_path --global {{$path}}
+{{- end}}
+
+status is-interactive || exit
+
+{{range $alias, $command := .aliases -}}
+abbr --add {{$alias}} '{{$command | replace "'" "\\'" | replace "$HOME" "~" }}'
+{{end}}
+{{output "atuin" "init" "fish" "--disable-ctrl-r" "--disable-up-arrow"}}
+{{output "starship" "init" "fish" "--print-full-init"}}
+{{output "zoxide" "init" "--cmd" "cd" "fish"}}
