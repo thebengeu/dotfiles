@@ -8,7 +8,7 @@ fish_add_path --global {{$path}}
 
 status is-interactive || exit
 
-{{range $alias, $command := .aliases -}}
+{{range $alias, $command := index .platformSpecificAliases .chezmoi.os | merge .aliases -}}
 abbr --add {{$alias}} '{{$command | replace "'" "\\'" | replace "$HOME" "~" }}'
 {{end}}
 {{output "atuin" "init" "fish" "--disable-ctrl-r" "--disable-up-arrow"}}

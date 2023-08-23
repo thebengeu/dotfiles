@@ -12,7 +12,7 @@ function {{$name}} (
 }
 {{- end}}
 
-{{range $alias, $command := .aliases -}}
+{{range $alias, $command := index .platformSpecificAliases .chezmoi.os | merge .aliases -}}
 {{if $command | contains " " -}}
 function {{$alias}}
 {

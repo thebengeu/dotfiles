@@ -1,4 +1,7 @@
-import "strings"
+import (
+	"regexp"
+	"strings"
+)
 
 _aliasDirectories: {
 	c: "$HOME/.local/share/chezmoi"
@@ -31,15 +34,10 @@ _shAliases: {
 }
 aliases: {
 	b:    "bat"
-	bi:   "brew install"
-	bui:  "brew uninstall"
 	cad:  "chezmoi add"
 	cat:  "bat"
 	ca:   "chezmoi apply --init"
-	ci:   "choco install"
 	cr:   "chezmoi re-add"
-	cs:   "choco search"
-	cu:   "choco uninstall"
 	cup:  "chezmoi update --apply --init"
 	ec2:  "ssh -t ec2 tmux new-session -A -s 0"
 	ez:   "exec zsh"
@@ -54,25 +52,17 @@ aliases: {
 	n:    "nvim"
 	p:    "pnpm"
 	pd:   "pnpm dev"
-	pi:   "pnpm i"
 	pp:   "psql postgresql://postgres:postgres@localhost:5432/postgres"
 	ppg:  "pnpm prisma generate"
 	pr:   "gh pr create -f"
-	prm:  "pnpm rm"
 	prod: "ssh -t prod tmux new-session -A -s 0"
 	prr:  "gh pr create -f -r"
 	scc:  "scc --not-match \"package-lock.json|pnpm-lock.yaml\""
-	si:   "scoop install"
-	ss:   "scoop search"
-	su:   "scoop uninstall"
 	tg:   "pwsh -Command gsudo topgrade"
 	tns:  "tmux new-session -A -s"
 	tsx:  "pnpm tsx"
 	tz:   "time zsh -i -c exit"
 	vim:  "nvim"
-	wi:   "winget install"
-	ws:   "winget search"
-	wu:   "winget uninstall"
 
 	for prefix, directory in _aliasDirectories {
 		"\(prefix)cd": "cd \(directory)"
@@ -91,6 +81,29 @@ aliases: {
 		"\(shAlias)": "sh -c '\(command)'"
 	}
 }
+_packageManagers: {
+	linux: [
+		"brew",
+		"pnpm",
+	]
+	windows: [
+		"choco",
+		"pnpm",
+		"scoop",
+		"winget",
+	]
+}
+platformSpecificAliases: {
+	for os, packageManagers in _packageManagers {
+		"\(os)": {
+			for packageManager in packageManagers {
+				for subCommand in ["install", "search", "uninstall"] {
+					"\(regexp.Find("^.", packageManager)+regexp.Find("^.", subCommand))": "\(packageManager) \(subCommand)"
+				}
+			}
+		}
+	}
+}
 environmentVariables: {
 	EDITOR:              "nvim"
 	EJSON_KEYDIR:        "$HOME/.config/ejson/keys"
@@ -107,12 +120,12 @@ functions: wcss: {
 	parameters: ["package"]
 }
 paths: [
-	'/snap/bin',
-	'/usr/bin',
-	'~/.cargo/bin',
-	'~/.local/bin',
-	'~/.pulumi/bin',
-	'~/.temporalio/bin',
-	'~/go/bin',
-	'$PNPM_HOME',
+	"/snap/bin",
+	"/usr/bin",
+	"~/.cargo/bin",
+	"~/.local/bin",
+	"~/.pulumi/bin",
+	"~/.temporalio/bin",
+	"~/go/bin",
+	"$PNPM_HOME",
 ]

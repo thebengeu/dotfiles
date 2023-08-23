@@ -6,6 +6,6 @@ def {{$name}} [{{$body_and_parameters.parameters | join ", "}}] {
 }
 {{- end}}
 
-{{range $alias, $command := .aliases -}}
+{{range $alias, $command := index .platformSpecificAliases .chezmoi.os | merge .aliases -}}
 alias {{$alias}} = {{$command | replace "$HOME" "~"}}
 {{end -}}
