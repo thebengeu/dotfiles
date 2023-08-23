@@ -92,6 +92,7 @@ aliases: {
 	}
 }
 environmentVariables: {
+	EDITOR:              "nvim"
 	EJSON_KEYDIR:        "$HOME/.config/ejson/keys"
 	NODE_NO_WARNINGS:    "1"
 	PNPM_HOME:           "~/.local/share/pnpm"

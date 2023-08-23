@@ -1,3 +1,0 @@
-{{range $alias, $command := .aliases -}}
-abbr --add {{$alias}} '{{$command | replace "'" "\\'" | replace "$HOME" "~" }}'
-{{end -}}
