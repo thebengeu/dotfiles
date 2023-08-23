@@ -21,3 +21,4 @@ function {{$alias}} () {
 {{end -}}
 {{output "atuin" "init" "zsh" "--disable-ctrl-r" "--disable-up-arrow"}}
 {{output "zoxide" "init" "zsh"}}
+export LS_COLORS='{{ output "vivid" "generate" "catppuccin-mocha" | trim }}'
