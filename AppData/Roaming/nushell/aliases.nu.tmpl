@@ -1,6 +1,6 @@
-{{range $name, $body_and_parameters := .functions -}}
-def {{$name}} [{{$body_and_parameters.parameters | join ", "}}] {
-{{- range $body_and_parameters.body}}
+{{range $name, $lines_and_parameters := .functions -}}
+def {{$name}} [{{$lines_and_parameters.parameters | join ", "}}] {
+{{- range $lines_and_parameters.lines}}
     do --ignore-program-errors { {{.}} }
 {{- end}}
 }
