@@ -11,6 +11,9 @@ ignore_branches = ['main', 'master']
 [hostname]
 format = "[$hostname]($style) "
 
+[line_break]
+disabled = true
+
 [lua]
 disabled = true
 
