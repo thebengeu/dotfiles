@@ -22,7 +22,7 @@ EJSON_KEY_PATH="$EJSON_KEYDIR/$EJSON_PUBLIC_KEY"
 SSH_KEY_PATH="$HOME/.ssh/id_ed25519"
 
 if [ ! -f ~/.ssh/id_ed25519 ] || [ ! -f "$EJSON_KEY_PATH" ]; then
-	eval "$(read -r --silent | op signin)"
+	eval "$(read -r -s | op signin)"
 fi
 
 if [ ! -f ~/.ssh/id_ed25519 ]; then
