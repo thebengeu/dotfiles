@@ -1,12 +1,12 @@
-{{range $name, $body_and_parameters := .functions -}}
+{{range $name, $lines_and_parameters := .functions -}}
 function {{$name}} (
-{{- range $i, $parameter := $body_and_parameters.parameters -}}
+{{- range $i, $parameter := $lines_and_parameters.parameters -}}
   {{- if $i}}, {{end -}}
   ${{$parameter -}}
 {{end -}}
 )
 {
-{{- range $body_and_parameters.body}}
+{{- range $lines_and_parameters.lines}}
   {{. -}}
 {{end}}
 }

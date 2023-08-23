@@ -11,6 +11,14 @@ status is-interactive || exit
 {{range $alias, $command := index .platformSpecificAliases .chezmoi.os | merge .aliases -}}
 abbr --add {{$alias}} '{{$command | replace "'" "\\'" | replace "$HOME" "~" }}'
 {{end}}
+{{range $name, $lines_and_parameters := .functions -}}
+function {{$name}} --argument-names {{$lines_and_parameters.parameters | join " "}}
+{{- range $lines_and_parameters.lines}}
+  {{.}}
+{{- end}}
+end
+{{- end}}
+
 {{output "starship" "init" "fish" "--print-full-init"}}
 {{output "zoxide" "init" "--cmd" "cd" "fish"}}
 set --export LS_COLORS '{{ output "vivid" "generate" "catppuccin-mocha" | trim }}'

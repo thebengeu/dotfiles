@@ -123,10 +123,8 @@ environmentVariables: {
 	RIPGREP_CONFIG_PATH: "$HOME/.ripgreprc"
 }
 functions: wcss: {
-	body: [
-		"winget search $package",
-		"choco search $package",
-		"scoop search $package",
+	lines: [
+		#"sh -c "C:/msys64/usr/bin/parallel {} search $package ::: choco scoop winget""#,
 	]
 	parameters: ["package"]
 }
