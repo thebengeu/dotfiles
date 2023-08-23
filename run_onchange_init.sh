@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 ARCHITECTURE=$(dpkg --print-architecture)
 
 if [ ! -f /usr/bin/op ]; then
@@ -22,7 +22,7 @@ EJSON_KEY_PATH="$EJSON_KEYDIR/$EJSON_PUBLIC_KEY"
 SSH_KEY_PATH="$HOME/.ssh/id_ed25519"
 
 if [ ! -f ~/.ssh/id_ed25519 ] || [ ! -f "$EJSON_KEY_PATH" ]; then
-	eval "$(read -r | op signin)"
+	eval "$(read -r --silent | op signin)"
 fi
 
 if [ ! -f ~/.ssh/id_ed25519 ]; then
@@ -35,7 +35,6 @@ fi
 if [ ! -f "$EJSON_KEY_PATH" ]; then
 	curl -Ls https://github.com/Shopify/ejson/releases/download/v1.4.1/ejson_1.4.1_linux_"$ARCHITECTURE".tar.gz | tar xz --directory ~/.local/bin ejson
 	mkdir -p "$HOME"/.config/ejson/keys
-	eval "$(op signin)"
 	op read op://Personal/ejson/"$EJSON_PUBLIC_KEY" --out-file "$EJSON_KEY_PATH"
 fi
 
