@@ -11,7 +11,6 @@ status is-interactive || exit
 {{range $alias, $command := index .platformSpecificAliases .chezmoi.os | merge .aliases -}}
 abbr --add {{$alias}} '{{$command | replace "'" "\\'" | replace "$HOME" "~" }}'
 {{end}}
-{{output "atuin" "init" "fish" "--disable-ctrl-r" "--disable-up-arrow"}}
 {{output "starship" "init" "fish" "--print-full-init"}}
 {{output "zoxide" "init" "--cmd" "cd" "fish"}}
 set --export LS_COLORS '{{ output "vivid" "generate" "catppuccin-mocha" | trim }}'
