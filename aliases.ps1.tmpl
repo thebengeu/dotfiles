@@ -23,6 +23,6 @@ function {{$alias}}
   {{- end}}
 }
 {{else -}}
-Set-Alias {{$alias}} {{$command}}
+Set-Alias -Option AllScope {{$alias}} {{$command}}
 {{end}}
 {{end -}}

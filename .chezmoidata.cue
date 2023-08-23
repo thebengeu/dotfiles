@@ -48,6 +48,7 @@ aliases: {
 	la:   "lsd -a"
 	ll:   "lsd -l"
 	lla:  "lsd -la"
+	ls:   "lsd"
 	lg:   "lazygit"
 	n:    "nvim"
 	p:    "pnpm"
