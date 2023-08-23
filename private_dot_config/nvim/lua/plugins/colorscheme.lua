@@ -158,7 +158,7 @@ return {
 
         ---@diagnostic disable-next-line: duplicate-set-field
         Util.float_term = function(cmd, opts)
-          return float_term(cmd or { "C:\\msys64\\usr\\bin\\zsh" }, opts)
+          return float_term(cmd or { "C:\\msys64\\usr\\bin\\fish" }, opts)
         end
       end
     end,
