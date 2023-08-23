@@ -5,16 +5,13 @@ README.md
 secrets.ejson
 
 {{ if eq .chezmoi.os "windows" }}
-.config/{bat,gitui,gup,lazygit,tealdeer,yamllint}/
-.config/fish/conf.d/non-windows.fish
+.config/{bat,gitui,gup,lazygit,tealdeer}/
 .config/topgrade.toml
 .local/
 *.sh
-!wezterm.sh
 .ansible.cfg
 .inputrc
 .msmtprc
-.tokeignore
 {{ else }}
 .config/wezterm/
 AppData/
