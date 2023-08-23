@@ -1,3 +1,6 @@
+git:
+  paging:
+    pager: delta --paging never
 gui:
   showBottomLine: false
   # showIcons: true
