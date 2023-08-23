@@ -58,10 +58,15 @@ aliases: {
 	prod: "ssh -t prod tmux new-session -A -s 0"
 	prr:  "gh pr create -f -r"
 	scc:  "scc --not-match \"package-lock.json|pnpm-lock.yaml\""
+	tf:   "time fish --interactive -c exit"
+	tfn:  "time fish --interactive --no-config -c exit"
 	tg:   "pwsh -Command gsudo topgrade"
+	tn:   "time nu --interactive -c exit"
+	tnn:  "time nu --interactive --no-config-file -c exit"
 	tns:  "tmux new-session -A -s"
 	tsx:  "pnpm tsx"
-	tz:   "time zsh -i -c exit"
+	tz:   "time zsh --interactive -c exit"
+	tzn:  "time zsh --interactive --no-rcs -c exit"
 	vim:  "nvim"
 
 	for prefix, directory in _aliasDirectories {
