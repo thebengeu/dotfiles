@@ -2,6 +2,7 @@
 cargo install atuin
 cargo install broot
 cargo install cargo-update
+cargo install hyperfine
 cargo install just
 cargo install lsd
 cargo install sd
