@@ -126,7 +126,6 @@
       - python3-pip
       - python3-venv
       - ripgrep
-      - safe-rm
       - speedtest
       - sqlite3
       - unzip
