@@ -58,16 +58,22 @@ aliases: {
 	prod: "ssh -t prod tmux new-session -A -s 0"
 	prr:  "gh pr create -f -r"
 	scc:  "scc --not-match \"package-lock.json|pnpm-lock.yaml\""
-	tf:   "time fish --interactive -c exit"
-	tfn:  "time fish --interactive --no-config -c exit"
 	tg:   "pwsh -Command gsudo topgrade"
-	tn:   "time nu --interactive -c exit"
-	tnn:  "time nu --interactive --no-config-file -c exit"
 	tns:  "tmux new-session -A -s"
 	tsx:  "pnpm tsx"
-	tz:   "time zsh --interactive -c exit"
-	tzn:  "time zsh --interactive --no-rcs -c exit"
 	vim:  "nvim"
+
+	_noConfigArguments: {
+		fish: "config"
+		nu:   "config-file"
+		zsh:  "rcs"
+	}
+	for shell, noConfigArgument in _noConfigArguments {
+		"h\(regexp.Find("^.", shell))": "hyperfine --shell sh 'time \(shell) --interactive -c exit'"
+		"h\(regexp.Find("^.", shell))n": "hyperfine --shell sh 'time \(shell) --interactive --no-\(noConfigArgument) -c exit'"
+		"t\(regexp.Find("^.", shell))":  "time \(shell) --interactive -c exit"
+		"t\(regexp.Find("^.", shell))n": "time \(shell) --interactive --no-\(noConfigArgument) -c exit"
+	}
 
 	for prefix, directory in _aliasDirectories {
 		"\(prefix)cd": "cd \(directory)"

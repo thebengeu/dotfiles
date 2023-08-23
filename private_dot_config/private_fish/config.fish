@@ -6,7 +6,6 @@ set --global fish_cursor_replace_one underscore
 set --global fish_greeting
 set --global fish_vi_force_cursor 1
 
-
 enable_transience
 
 abbr --add man batman
