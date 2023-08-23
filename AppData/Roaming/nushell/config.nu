@@ -52,7 +52,6 @@ $env.config = {
 }
 
 source aliases.nu
-source ~/.local/share/atuin/init.nu
 source ~/.zoxide.nu
 
 use ~/.cache/starship/init.nu

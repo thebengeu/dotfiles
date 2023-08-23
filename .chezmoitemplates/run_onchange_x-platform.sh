@@ -1,5 +1,4 @@
 #!/usr/bin/env sh
-cargo install atuin
 cargo install broot
 cargo install cargo-update
 cargo install hyperfine
@@ -26,8 +25,6 @@ pnpm add --global pino-pretty
 pnpm add --global pm2
 pnpm add --global https://github.com/thebengeu/ts-node.git
 curl cht.sh/:cht.sh >~/.local/bin/cht.sh
-mkdir -p ~/.local/share/atuin
-atuin init nu >~/.local/share/atuin/init.nu
 mkdir -p ~/.cache/starship
 starship init nu >~/.cache/starship/init.nu
 zoxide init --no-cmd nushell | sd __zoxide_z z >~/.zoxide.nu
