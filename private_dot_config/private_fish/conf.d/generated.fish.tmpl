@@ -14,7 +14,7 @@ abbr --add {{$alias}} '{{$command | replace "'" "\\'" | replace "$HOME" "~" }}'
 {{range $name, $lines_and_parameters := .functions -}}
 function {{$name}} --argument-names {{$lines_and_parameters.parameters | join " "}}
 {{- range $lines_and_parameters.lines}}
-  {{.}}
+    {{.}}
 {{- end}}
 end
 {{- end}}
