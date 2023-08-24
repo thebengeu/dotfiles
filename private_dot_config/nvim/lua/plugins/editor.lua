@@ -16,6 +16,7 @@ return {
     opts = {
       grace_period = 2,
       ignore_filetypes = {
+        "lazy",
         "mason",
         "neo%-tree",
         "qf",
