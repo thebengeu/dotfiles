@@ -52,6 +52,3 @@ $env.config = {
 }
 
 source generated.nu
-source ~/.zoxide.nu
-
-use ~/.cache/starship/init.nu
