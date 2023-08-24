@@ -19,6 +19,7 @@ function {{$name}} --argument-names {{$lines_and_parameters.parameters | join " 
 end
 {{- end}}
 
+{{output "broot" "--print-shell-function" "fish"}}
 {{output "starship" "init" "fish" "--print-full-init"}}
 {{output "zoxide" "init" "--cmd" "cd" "fish"}}
 set --export LS_COLORS '{{ output "vivid" "generate" "catppuccin-mocha" | trim }}'

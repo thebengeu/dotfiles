@@ -19,5 +19,6 @@ function {{$alias}} () {
   {{$command | replace "$HOME" "~"}} $@
 }
 {{end -}}
+{{output "broot" "--print-shell-function" "zsh"}}
 {{output "zoxide" "init" "zsh"}}
 export LS_COLORS='{{ output "vivid" "generate" "catppuccin-mocha" | trim }}'

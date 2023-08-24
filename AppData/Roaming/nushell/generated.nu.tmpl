@@ -9,3 +9,4 @@ def {{$name}} [{{$lines_and_parameters.parameters | join ", "}}] {
 {{range $alias, $command := index .platformSpecificAliases .chezmoi.os | merge .aliases -}}
 alias {{$alias}} = {{$command | replace "$HOME" "~"}}
 {{end -}}
+{{output "broot" "--print-shell-function" "nushell"}}
