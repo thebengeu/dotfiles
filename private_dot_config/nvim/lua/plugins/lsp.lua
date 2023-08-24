@@ -76,9 +76,8 @@ return {
       table.insert(keys, { "gr", false })
       table.insert(keys, { "gt", false })
     end,
-    opts = {
-      servers = {
-        ansiblels = {},
+    opts = function(_, opts)
+      opts.servers = vim.tbl_extend("force", opts.servers, {
         bashls = {},
         clangd = {
           mason = false,
@@ -104,8 +103,8 @@ return {
             })
           end,
         },
-      },
-      setup = {
+      }, jit.os:find("windows") and {} or { ansible_ls = {} })
+      opts.setup = vim.tbl_extend("force", opts.setup, {
         eslint = function()
           vim.api.nvim_create_autocmd("BufWritePre", {
             callback = function(event)
@@ -123,7 +122,7 @@ return {
             end,
           })
         end,
-      },
-    },
+      })
+    end,
   },
 }
