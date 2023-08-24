@@ -283,9 +283,6 @@ return {
       end,
     },
     keys = function(_, keys)
-      local no_ignore_vimgrep_arguments = vim.fn.copy(require("telescope.config").values.vimgrep_arguments)
-      vim.list_extend(no_ignore_vimgrep_arguments, { "--no-ignore" })
-
       vim.list_extend(keys, {
         { "<leader><space>", false },
         { "<leader>fF", Util.telescope("files"), desc = "Find Files (root dir)" },
@@ -308,17 +305,27 @@ return {
         },
         {
           "<leader>si",
-          Util.telescope("live_grep", {
-            vimgrep_arguments = no_ignore_vimgrep_arguments,
-          }),
+          function()
+            Util.telescope("live_grep", {
+              vimgrep_arguments = vim.list_extend(
+                vim.fn.copy(require("telescope.config").values.vimgrep_arguments),
+                { "--no-ignore" }
+              ),
+            })()
+          end,
           desc = "Grep (root dir ignored)",
         },
         {
           "<leader>sI",
-          Util.telescope("live_grep", {
-            cwd = false,
-            vimgrep_arguments = no_ignore_vimgrep_arguments,
-          }),
+          function()
+            Util.telescope("live_grep", {
+              cwd = false,
+              vimgrep_arguments = vim.list_extend(
+                vim.fn.copy(require("telescope.config").values.vimgrep_arguments),
+                { "--no-ignore" }
+              ),
+            })()
+          end,
           desc = "Grep (cwd ignored)",
         },
         {
