@@ -215,6 +215,9 @@ return {
   },
   {
     "gbprod/yanky.nvim",
+    keys = {
+      { "y", false, mode = { "n", "x" } },
+    },
     opts = {
       ring = {
         storage = "sqlite",
