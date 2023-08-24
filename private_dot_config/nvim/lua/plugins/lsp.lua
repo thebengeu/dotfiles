@@ -16,7 +16,7 @@ return {
         "taplo",
         "yamlfmt",
         "yamllint",
-      }, jit.os:find("windows") and {} or {"ansible-lint"}),
+      }, jit.os:find("windows") and {} or { "ansible-lint" }),
     },
   },
   {
@@ -77,6 +77,9 @@ return {
     end,
     opts = function(_, opts)
       opts.servers = vim.tbl_extend("force", opts.servers, {
+        ansiblels = {
+          autostart = not jit.os:find("windows"),
+        },
         bashls = {},
         clangd = {
           mason = false,
@@ -102,7 +105,7 @@ return {
             })
           end,
         },
-      }, jit.os:find("windows") and {} or { ansible_ls = {} })
+      })
       opts.setup = vim.tbl_extend("force", opts.setup, {
         eslint = function()
           vim.api.nvim_create_autocmd("BufWritePre", {
