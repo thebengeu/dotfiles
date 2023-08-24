@@ -283,6 +283,15 @@ return {
       end,
     },
     keys = function(_, keys)
+      local live_grep = function(search_dir)
+        require("telescope.builtin").live_grep({
+          path_display = function(_, path)
+            return path:gsub(search_dir:gsub("/", "\\"):gsub("%-", "%%-") .. "\\", "")
+          end,
+          search_dirs = { search_dir },
+        })
+      end
+
       vim.list_extend(keys, {
         { "<leader><space>", false },
         { "<leader>fF", Util.telescope("files"), desc = "Find Files (root dir)" },
@@ -339,9 +348,7 @@ return {
                   actions.select_default:replace(function()
                     actions.close(prompt_bufnr)
                     local selection = require("telescope.actions.state").get_selected_entry()
-                    require("telescope.builtin").live_grep({
-                      search_dirs = { root .. "/" .. selection[1] },
-                    })
+                    live_grep(root .. "/" .. selection[1])
                   end)
                   return true
                 end,
@@ -351,6 +358,13 @@ return {
               :find()
           end,
           desc = "Grep Plugin Files",
+        },
+        {
+          "<leader>sv",
+          function()
+            live_grep(require("lazy.core.config").options.root .. "/LazyVim")
+          end,
+          desc = "Grep LazyVim",
         },
         {
           "<leader>uC",
