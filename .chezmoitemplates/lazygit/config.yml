@@ -4,6 +4,7 @@ git:
 gui:
   showBottomLine: false
   # showIcons: true
+  skipDiscardChangeWarning: true
   skipNoStagedFilesWarning: true
   theme:
     lightTheme: false
