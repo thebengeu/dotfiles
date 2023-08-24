@@ -5,6 +5,7 @@ return {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = vim.list_extend({
+        "cueimports",
         "fixjson",
         "js-debug-adapter",
         "prettier",
@@ -84,6 +85,7 @@ return {
         clangd = {
           mason = false,
         },
+        dagger = {},
         graphql = {},
         powershell_es = {},
         prismals = {},
