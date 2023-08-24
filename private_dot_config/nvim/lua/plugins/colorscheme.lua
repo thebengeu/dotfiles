@@ -388,23 +388,27 @@ return {
         },
       })
     end,
-    opts = {
-      defaults = {
+    opts = function(_, opts)
+      opts.defaults = vim.tbl_extend("force", opts.defaults, {
         layout_config = {
           flex = {
             flip_columns = 120,
           },
         },
         layout_strategy = "flex",
+        vimgrep_arguments = vim.list_extend(
+          vim.fn.copy(require("telescope.config").values.vimgrep_arguments),
+          { "--hidden" }
+        ),
         winblend = 5,
-      },
-      extensions = {
+      })
+      opts.extensions = {
         fzy_native = {
           override_file_sorter = true,
           override_generic_sorter = true,
         },
-      },
-    },
+      }
+    end,
   },
   {
     "Mofiqul/vscode.nvim",
