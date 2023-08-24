@@ -15,7 +15,11 @@ return {
     },
     opts = {
       grace_period = 2,
-      ignore_filetypes = { "neo%-tree", "qf" },
+      ignore_filetypes = {
+        "mason",
+        "neo%-tree",
+        "qf",
+      },
     },
   },
   {
