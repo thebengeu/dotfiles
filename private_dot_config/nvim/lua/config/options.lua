@@ -1,6 +1,3 @@
--- Options are automatically loaded before lazy.nvim startup
--- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
--- Add any additional options here
 vim.g.db = "postgresql://postgres:postgres@localhost:5432/postgres"
 vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
@@ -26,3 +23,9 @@ if jit.os:find("Windows") then
   vim.o.shellcmdflag = "-c"
   vim.o.shellxquote = ""
 end
+
+vim.api.nvim_create_user_command("Search", function(opts)
+  vim.fn.system("start https://www.google.com/search?q=" .. opts.fargs[1])
+end, { nargs = 1 })
+
+vim.o.keywordprg = ":Search"
