@@ -65,15 +65,16 @@ aliases: {
 	vim:  "nvim"
 
 	_noConfigArguments: {
-		fish: "config"
-		nu:   "config-file"
-		zsh:  "rcs"
+		fish: "--no-config"
+		nu:   "--no-config-file"
+		pwsh: "-NoProfile"
+		zsh:  "--no-rcs"
 	}
 	for shell, noConfigArgument in _noConfigArguments {
 		"h\(regexp.Find("^.", shell))":  "hyperfine --shell sh 'time \(shell) --interactive -c exit'"
-		"h\(regexp.Find("^.", shell))n": "hyperfine --shell sh 'time \(shell) --interactive --no-\(noConfigArgument) -c exit'"
+		"h\(regexp.Find("^.", shell))n": "hyperfine --shell sh 'time \(shell) --interactive \(noConfigArgument) -c exit'"
 		"t\(regexp.Find("^.", shell))":  "time \(shell) --interactive -c exit"
-		"t\(regexp.Find("^.", shell))n": "time \(shell) --interactive --no-\(noConfigArgument) -c exit"
+		"t\(regexp.Find("^.", shell))n": "time \(shell) --interactive -\(noConfigArgument) -c exit"
 	}
 
 	for prefix, directory in _aliasDirectories {
