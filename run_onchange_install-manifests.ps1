@@ -42,5 +42,8 @@ foreach ($manifestPath in $manifestPaths.Keys)
   } elseif ([System.Version]$installedVersion -gt [System.Version]$manifestVersion)
   {
     throw "${manifestPath} installed version ${installedVersion} > $($manifestVersion)"
+  } else
+  {
+    "${manifestPath} installed version ${installedVersion} = $($manifestVersion)"
   }
 }
