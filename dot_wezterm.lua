@@ -1,4 +1,3 @@
-local platform_specific = require("platform_specific")
 local wezterm = require("wezterm")
 local act = wezterm.action
 
@@ -23,6 +22,9 @@ config.colors = {
 	},
 }
 config.default_cursor_style = "SteadyBar"
+if package.config:sub(1, 1) == "\\" then
+	config.default_prog = { "C:\\msys64\\usr\\bin\\fish" }
+end
 -- config.font = wezterm.font("PragmataProLiga NF")
 -- config.font_rules = {
 -- 	{
@@ -161,7 +163,5 @@ for _, wsl_domain in ipairs(wsl_domains) do
 end
 
 config.wsl_domains = wsl_domains
-
-platform_specific.apply_to_config(config)
 
 return config
