@@ -74,6 +74,11 @@ config.launch_menu = {
 	},
 	{
 		domain = { DomainName = "local" },
+		label = "Windows PowerShell",
+		args = { "powershell", "-NoLogo" },
+	},
+	{
+		domain = { DomainName = "local" },
 		label = "zsh",
 		args = { "C:\\msys64\\usr\\bin\\zsh" },
 	},
