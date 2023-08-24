@@ -38,6 +38,7 @@ $wingetPackageIds = @(
   'QMK.QMKToolbox'
   'BurntSushi.ripgrep.MSVC'
   'SlackTechnologies.Slack'
+  'Ookla.Speedtest.CLI'
   'StartIsBack.StartAllBack'
   'Microsoft.VisualStudioCode'
   'JetBrains.WebStorm'
