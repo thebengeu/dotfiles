@@ -19,7 +19,23 @@ function {{$name}} --argument-names {{$lines_and_parameters.parameters | join " 
 end
 {{- end}}
 
-{{output "broot" "--print-shell-function" "fish"}}
+function br --wraps=broot
+    set -l cmd_file (mktemp)
+    if broot --outcmd $cmd_file $argv
+        read --local --null cmd < $cmd_file
+        rm -f $cmd_file
+{{- if eq .chezmoi.os "windows" }}
+        eval (echo $cmd | sd 'cd (.+)' 'cd (cygpath "$1")')
+{{- else }}
+        eval $cmd
+{{- end }}
+    else
+        set -l code $status
+        rm -f $cmd_file
+        return $code
+    end
+end
+
 {{output "starship" "init" "fish" "--print-full-init"}}
 {{output "zoxide" "init" "--cmd" "cd" "fish"}}
 set --export LS_COLORS '{{ output "vivid" "generate" "catppuccin-mocha" | trim }}'

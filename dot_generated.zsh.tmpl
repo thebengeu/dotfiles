@@ -19,6 +19,24 @@ function {{$alias}} () {
   {{$command | replace "$HOME" "~"}} $@
 }
 {{end -}}
-{{output "broot" "--print-shell-function" "zsh"}}
-{{output "zoxide" "init" "zsh"}}
+
+function br {
+    local cmd cmd_file code
+    cmd_file=$(mktemp)
+    if broot --outcmd "$cmd_file" "$@"; then
+{{- if eq .chezmoi.os "windows" }}
+        eval $(cat $cmd_file | sd 'cd (.+)' 'cd $(cygpath "$1")')
+{{- else }}
+        cmd=$(<"$cmd_file")
+        eval "$cmd"
+{{- end }}
+        command rm -f "$cmd_file"
+    else
+        code=$?
+        command rm -f "$cmd_file"
+        return "$code"
+    fi
+}
+
+{{output "zoxide" "init" "--cmd" "cd" "zsh"}}
 export LS_COLORS='{{ output "vivid" "generate" "catppuccin-mocha" | trim }}'
