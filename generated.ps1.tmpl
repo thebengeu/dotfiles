@@ -27,3 +27,5 @@ Set-Alias -Option AllScope {{$alias}} {{$command}}
 {{end}}
 {{end -}}
 {{output "broot" "--print-shell-function" "powershell"}}
+{{output "starship" "init" "powershell" "--print-full-init"}}
+{{output "zoxide" "init" "--cmd" "cd" "powershell"}}
