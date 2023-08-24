@@ -4,8 +4,7 @@ return {
   {
     "williamboman/mason.nvim",
     opts = {
-      ensure_installed = {
-        "ansible-lint",
+      ensure_installed = vim.list_extend({
         "fixjson",
         "js-debug-adapter",
         "prettier",
@@ -17,7 +16,7 @@ return {
         "taplo",
         "yamlfmt",
         "yamllint",
-      },
+      }, jit.os:find("windows") and {} or {"ansible-lint"}),
     },
   },
   {
