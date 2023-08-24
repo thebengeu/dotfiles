@@ -3,6 +3,7 @@ just_fish_completions = "just --completions fish > $HOME/.config/fish/completion
 [misc]
 assume_yes = true
 disable = ["vim"]
+no_retry = true
 [npm]
 use_sudo = true
 [windows]
