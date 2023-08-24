@@ -10,3 +10,5 @@ def {{$name}} [{{$lines_and_parameters.parameters | join ", "}}] {
 alias {{$alias}} = {{$command | replace "$HOME" "~"}}
 {{end -}}
 {{output "broot" "--print-shell-function" "nushell"}}
+{{output "starship" "init" "nu"}}
+{{output "zoxide" "init" "--no-cmd" "nushell" | replace "__zoxide_z" "z"}}
