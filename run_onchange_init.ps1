@@ -205,7 +205,7 @@ if (!$isMobile)
   Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
   Start-Service sshd
   Set-Service sshd -StartupType 'Automatic'
-  New-ItemProperty HKLM:\SOFTWARE\OpenSSH DefaultShell -Force -PropertyType String -Value "C:\msys64\usr\bin\zsh"
+  New-ItemProperty HKLM:\SOFTWARE\OpenSSH DefaultShell -Force -PropertyType String -Value "C:\msys64\usr\bin\fish.exe"
 
   $authorizedKeysPath = "$Env:ProgramData\ssh\administrators_authorized_keys"
   Copy-Item $Env:USERPROFILE\.ssh\authorized_keys $authorizedKeysPath
