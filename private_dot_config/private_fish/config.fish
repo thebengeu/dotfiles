@@ -6,7 +6,8 @@ set --global fish_cursor_replace_one underscore
 set --global fish_greeting
 set --global fish_vi_force_cursor 1
 set --global fzf_diff_highlighter delta --paging never
-set --global fzf_fd_opts --path-separator //
+set --global fzf_directory_opts --preview '_fzf_preview_file_custom {}'
+set --global fzf_fd_opts --hidden --path-separator //
 set --global fzf_git_log_format '%C(bold blue)%h%Creset %s'
 
 enable_transience
