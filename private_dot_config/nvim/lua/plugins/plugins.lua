@@ -28,7 +28,6 @@ return {
 
       return {
         auto_session_enable_last_session = cwd == goneovim_folder or cwd == homedir or cwd == neovide_folder,
-        auto_session_suppress_dirs = { goneovim_folder, neovide_folder },
         log_level = vim.log.levels.ERROR,
         pre_save_cmds = {
           function()
