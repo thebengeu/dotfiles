@@ -68,7 +68,11 @@ return {
     opts = {
       filesystem = {
         filtered_items = {
+          hide_by_name = {
+            "node_modules",
+          },
           hide_dotfiles = false,
+          hide_gitignored = false,
         },
       },
     },
