@@ -1,2 +1,3 @@
 AppData/**/*.tmpl
-private_dot_config/nvim
+private_dot_config/**/*.tmpl
+!private_dot_config/private_fish/conf.d/generated.fish.tmpl
