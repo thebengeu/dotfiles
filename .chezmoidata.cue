@@ -41,6 +41,7 @@ aliases: {
 	cup:  "chezmoi update --apply --init"
 	ec2:  "ssh -t ec2 tmux new-session -A -s 0"
 	ez:   "exec zsh"
+	fd:   "fd --hidden --path-separator '//'"
 	g:    "git"
 	j:    "just"
 	jd:   "just dev"
