@@ -89,7 +89,7 @@ return {
     },
   },
   {
-    "danielfalk/smart-open.nvim",
+    "thebengeu/smart-open.nvim",
     dependencies = {
       "kkharji/sqlite.lua",
       config = function()
