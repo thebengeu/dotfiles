@@ -52,6 +52,8 @@ config.font_size = 12
 config.keys = {
 	{ key = "w", mods = "SHIFT|CTRL", action = act.CloseCurrentTab({ confirm = false }) },
 	{ key = "w", mods = "SUPER", action = act.CloseCurrentTab({ confirm = false }) },
+	{ key = "UpArrow", mods = "SHIFT", action = act.ScrollToPrompt(-1) },
+	{ key = "DownArrow", mods = "SHIFT", action = act.ScrollToPrompt(1) },
 }
 config.launch_menu = {
 	{
