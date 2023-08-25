@@ -180,6 +180,7 @@ if (!(Test-Path $sshKeyPath))
 }
 
 go install cuelang.org/go/cmd/cue@latest
+cargo install vivid
 
 chezmoi init --apply --ssh thebengeu
 

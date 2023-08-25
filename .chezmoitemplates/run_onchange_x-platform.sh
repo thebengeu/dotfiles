@@ -9,7 +9,6 @@ cargo install starship
 cargo install tealdeer
 cargo install tokei
 cargo install topgrade
-cargo install vivid
 cargo install xh
 cargo install zoxide
 go install github.com/nao1215/gup@latest
