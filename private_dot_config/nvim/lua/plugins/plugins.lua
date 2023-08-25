@@ -12,11 +12,11 @@ return {
     "rmagatti/auto-session",
     keys = {
       {
-        "<space>sl",
+        "<space>ql",
         function()
           require("auto-session.session-lens").search_session()
         end,
-        desc = "Sessions",
+        desc = "List Sessions",
       },
     },
     lazy = false,
