@@ -205,42 +205,7 @@ return {
     end,
   },
   {
-    "mfussenegger/nvim-treehopper",
-    keys = {
-      { "o", ":<C-U>lua require('tsht').nodes()<CR>", desc = "Nodes", mode = "o" },
-      {
-        "o",
-        ":lua require('tsht').nodes()<CR>",
-        desc = "Nodes",
-        mode = "x",
-      },
-    },
-  },
-  {
     "nvim-treesitter/nvim-treesitter",
-    dependencies = {
-      {
-        "nvim-treesitter/nvim-treesitter-textobjects",
-        keys = {
-          {
-            ";",
-            function()
-              require("nvim-treesitter.textobjects.repeatable_move").repeat_last_move()
-            end,
-            desc = "Last move",
-            mode = { "n", "o", "x" },
-          },
-          {
-            ",",
-            function()
-              require("nvim-treesitter.textobjects.repeatable_move").repeat_last_move_opposite()
-            end,
-            desc = "Last move opposite",
-            mode = { "n", "o", "x" },
-          },
-        },
-      },
-    },
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
         "cue",
