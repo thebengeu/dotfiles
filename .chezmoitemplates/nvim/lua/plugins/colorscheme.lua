@@ -303,6 +303,7 @@ return {
           end,
           desc = "Find Plugin Files",
         },
+        { "<leader>gC", "<cmd>Telescope git_commits<CR>", desc = "commits" },
         {
           "<leader>si",
           function()
