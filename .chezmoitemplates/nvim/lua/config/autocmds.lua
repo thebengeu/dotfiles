@@ -1,6 +1,6 @@
 vim.api.nvim_create_autocmd("TextChanged", {
   callback = function()
-    if string.find(vim.fn.getline("."), "^%s*,%s*$") then
+    if vim.fn.getline("."):find("^%s*,%s*$") then
       vim.cmd.undojoin()
       vim.fn.deletebufline("", vim.fn.line("."))
     end
