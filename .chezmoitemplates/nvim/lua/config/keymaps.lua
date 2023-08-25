@@ -1,19 +1,18 @@
-vim.keymap.set("n", "<leader>ga", function()
-  vim.api.nvim_command("update")
-  vim.api.nvim_command(
-    "AsyncRun -close -mode=term -rows=5 git commit -am '"
-      .. vim.fn.input("Commit summary: "):gsub("'", "\\'")
-      .. "' && git push"
-  )
-end, { desc = "Git commit all" })
-vim.keymap.set("n", "<leader>gc", function()
-  vim.api.nvim_command("update")
-  vim.api.nvim_command(
-    "AsyncRun -close -mode=term -rows=5 git commit -m '"
-      .. vim.fn.input("Commit summary: "):gsub("'", "\\'")
-      .. "' && git push"
-  )
-end, { desc = "Git commit" })
+local update_commit_push = function(flags)
+  return function()
+    vim.api.nvim_command("update")
+    vim.api.nvim_command(
+      "AsyncRun -close -mode=term -rows=5 git commit -"
+        .. flags
+        .. "m '"
+        .. vim.fn.input("Commit summary: "):gsub("'", "\\'")
+        .. "' && git push"
+    )
+  end
+end
+
+vim.keymap.set("n", "<leader>ga", update_commit_push("a"), { desc = "Git commit all" })
+vim.keymap.set("n", "<leader>gc", update_commit_push(""), { desc = "Git commit" })
 vim.keymap.set("n", "<leader>gP", [[<Cmd>AsyncRun -close -mode=term -rows=5 git push<CR>]], { desc = "Git push" })
 vim.keymap.set("n", "<leader>gp", [[<Cmd>AsyncRun -close -mode=term -rows=5 git pull<CR>]], { desc = "Git pull" })
 vim.keymap.set("n", "<C-r>", "<Cmd>silent redo<CR>")
