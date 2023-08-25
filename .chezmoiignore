@@ -13,6 +13,7 @@ secrets.ejson
 .inputrc
 .msmtprc
 {{ else }}
+.config/fish/conf.d/shell-integration.fish
 .config/wezterm/
 AppData/
 *.ps1
