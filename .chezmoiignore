@@ -5,7 +5,7 @@ README.md
 secrets.ejson
 
 {{ if eq .chezmoi.os "windows" }}
-.config/{bat,gitui,gup,lazygit,tealdeer}/
+.config/{bat,fd,gitui,gup,lazygit,nvim,tealdeer}/
 .config/topgrade.toml
 .local/
 *.sh
