@@ -62,7 +62,6 @@ return {
           enable_ui = true,
           enabled = true,
         },
-        leap = true,
         treesitter_context = true,
         ts_rainbow = true,
       },
