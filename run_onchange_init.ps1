@@ -44,7 +44,13 @@ foreach ($wingetPackageId in $wingetPackageIds)
   winget install --exact --no-upgrade --silent --id $wingetPackageId
 }
 
-winget install --exact --id --no-upgrade --override '--add Microsoft.VisualStudio.Workload.VCTools --includeRecommended --quiet --wait' --silent Microsoft.VisualStudio.2022.BuildTools
+$buildToolsOverride = '--add Microsoft.VisualStudio.Workload.VCTools --includeRecommended --quiet --wait'
+
+if ($Env:PROCESSOR_ARCHITECTURE -eq 'ARM64') {
+  $buildToolsOverride += ' --add Microsoft.VisualStudio.Component.VC.Tools.ARM64'
+}
+
+winget install --exact --no-upgrade --override $buildToolsOverride --silent --id Microsoft.VisualStudio.2022.BuildTools
 
 winget pin add --exact --id JetBrains.WebStorm
 
