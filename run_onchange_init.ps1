@@ -180,7 +180,10 @@ if (!(Test-Path $sshKeyPath))
 }
 
 go install cuelang.org/go/cmd/cue@latest
+cargo install broot
+cargo install starship
 cargo install vivid
+cargo install zoxide
 
 chezmoi init --apply --ssh thebengeu
 

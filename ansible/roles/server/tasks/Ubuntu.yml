@@ -88,5 +88,10 @@
     cmd: go install cuelang.org/go/cmd/cue@latest
     creates: ~/go/bin/cue
 - ansible.builtin.command:
-    cmd: cargo install vivid
-    creates: ~/.cargo/bin/vivid
+    cmd: cargo install {{ item }}
+    creates: ~/.cargo/bin/{{ item }}
+  loop:
+    - broot
+    - starship
+    - vivid
+    - zoxide

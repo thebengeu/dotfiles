@@ -1,16 +1,13 @@
 #!/usr/bin/env sh
-cargo install broot
 cargo install cargo-update
 cargo install hyperfine
 cargo install just
 cargo install lsd
 cargo install sd
-cargo install starship
 cargo install tealdeer
 cargo install tokei
 cargo install topgrade
 cargo install xh
-cargo install zoxide
 go install github.com/nao1215/gup@latest
 pip install --user pipx
 pipx install howdoi
