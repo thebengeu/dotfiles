@@ -8,6 +8,7 @@ if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
 $chocoPackages = @(
   'Kindle'
   'ledger-live'
+  'nirlauncher'
   'SQLite'
   'tableplus'
 )
