@@ -5,21 +5,7 @@ if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
   Exit
 }
 
-function Set-Registry-Values($path, $values)
-{
-  foreach ($name in $values.Keys)
-  {
-    Set-ItemProperty $path $name $values[$name]
-  }
-}
-
 $isMobile = (Get-CimInstance -Class Win32_ComputerSystem -Property PCSystemType).PCSystemType -eq 2
-
-Set-Registry-Values 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' @{
-  Hidden          = 1
-  HideFileExt     = 0
-  ShowSuperHidden = 1
-}
 
 winget settings --enable InstallerHashOverride
 winget settings --enable LocalManifestFiles
@@ -62,19 +48,6 @@ Set-PSRepository PSGallery -InstallationPolicy Trusted
 Install-Module Microsoft.WinGet.Client
 Install-Module PSFzf
 Install-Module PSWindowsUpdate
-
-Set-ItemProperty 'HKCU:\Control Panel\Mouse' 'MouseSensitivity' 20
-Set-ItemProperty 'HKCU:\Software\Microsoft\Accessibility' 'CursorSize' 2
-
-if ($isMobile)
-{
-  Set-Registry-Values "HKCU:\Software\Microsoft\Windows\CurrentVersion\PrecisionTouchPad" @{
-    FourFingerSlideEnabled = 3
-    FourFingerTapEnabled   = 3
-    RightClickZoneEnabled  = 0
-    ThreeFingerTapEnabled  = 4
-  }
-}
 
 $unnecessaryApps = @(
   'Clipchamp.Clipchamp'
@@ -127,7 +100,7 @@ SetEnvironmentVariable 'PNPM_HOME' $PNPM_HOME 'User'
 
 $pathsForTargets = @{
   [EnvironmentVariableTarget]::Machine = @(
-    "$Env:ProgramFiles\Git\bin"
+    "C:\msys64\usr\bin"
     "$Env:ProgramFiles\PostgreSQL\15\bin"
   )
   [EnvironmentVariableTarget]::User    = @(
