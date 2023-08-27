@@ -36,6 +36,6 @@ function br --wraps=broot
     end
 end
 
-{{output "starship" "init" "fish" "--print-full-init"}}
+{{output "fish" "-c" "starship init fish --print-full-init"}}
 {{output "zoxide" "init" "--cmd" "cd" "fish"}}
 set --export LS_COLORS '{{ output "vivid" "generate" "catppuccin-mocha" | trim }}'
