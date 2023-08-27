@@ -196,16 +196,6 @@ cargo install zoxide
 
 chezmoi init --apply --ssh thebengeu
 
-$fontFolder = "$Env:USERPROFILE\.local\share\chezmoi\private_dot_local\private_share\fonts"
-$shellFolder = (New-Object -COMObject Shell.Application).Namespace($fontFolder)
-
-foreach ($fontFile in Get-ChildItem $fontFolder)
-{
-  $registryKeyName = $shellFolder.GetDetailsOf($shellFolder.ParseName($fontFile.Name), 21 <# Title #>) + ' (TrueType)'
-  New-ItemProperty 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Fonts' $registryKeyName -Force -PropertyType string -Value $fontFile.Name > $null
-  Copy-Item $fontFile.FullName $env:windir\Fonts
-}
-
 if (!$isMobile)
 {
   Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
