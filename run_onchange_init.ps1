@@ -21,8 +21,6 @@ Set-Registry-Values 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Ad
   ShowSuperHidden = 1
 }
 
-Stop-Process -processname explorer
-
 winget settings --enable InstallerHashOverride
 winget settings --enable LocalManifestFiles
 
