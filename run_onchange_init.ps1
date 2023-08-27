@@ -99,6 +99,7 @@ $unnecessaryApps = @(
   'Microsoft.ZuneMusic'
   'Microsoft.ZuneVideo'
   'MicrosoftCorporationII.QuickAssist'
+  'SpotifyAB.SpotifyMusic'
 )
 
 foreach ($unnecessaryApp in $unnecessaryApps)
