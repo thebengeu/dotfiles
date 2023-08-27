@@ -14,7 +14,6 @@ $wingetPackageIds = @(
   'Amazon.AWSCLI'
   'rsteube.Carapace'
   'Hibbiki.Chromium'
-  'Kitware.CMake'
   'dandavison.delta'
   'Discord.Discord'
   'ExpressVPN.ExpressVPN'
