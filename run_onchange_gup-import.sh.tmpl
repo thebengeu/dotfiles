@@ -1,2 +1,3 @@
 #!/usr/bin/env sh
-{{ includeTemplate "run_onchange_gup-import.ps1.tmpl" -}}
+# {{ include ".chezmoitemplates/gup.conf" | sha256sum }}
+gup import
