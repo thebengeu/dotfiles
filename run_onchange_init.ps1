@@ -30,6 +30,7 @@ $wingetPackageIds = @(
   'AgileBits.1Password'
   'AgileBits.1Password.CLI'
   'twpayne.chezmoi'
+  'Kitware.CMake'
   'Git.Git'
   'GoLang.Go'
   'MSYS2.MSYS2'
@@ -171,6 +172,7 @@ if (!(Test-Path $ejsonKeyPath) -or !(Test-Path $sshKeyPath))
 
 if (!(Test-Path $ejsonKeyPath))
 {
+  mkdir -p "$Env:USERPROFILE\.local\bin"
   sh -c "curl -Ls https://github.com/Shopify/ejson/releases/download/v1.4.1/ejson_1.4.1_windows_$($Env:PROCESSOR_ARCHITECTURE.ToLower()).tar.gz | tar xz --directory ~/.local/bin ejson.exe"
   mkdir -p $HOME/.config/ejson/keys
   op read op://Personal/ejson/$ejsonPublicKey --out-file $ejsonKeyPath
