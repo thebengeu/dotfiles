@@ -8,7 +8,6 @@ secrets.ejson
 .config/{bat,fd,gitui,gup,lazygit,nvim,tealdeer}/
 .config/topgrade.toml
 .local/
-*.sh
 .ansible.cfg
 .inputrc
 .msmtprc
