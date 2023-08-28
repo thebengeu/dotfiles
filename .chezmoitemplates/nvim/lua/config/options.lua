@@ -10,6 +10,7 @@ vim.g.loaded_ruby_provider = 0
 
 vim.opt.keywordprg = ":Search"
 vim.opt.linebreak = true
+vim.opt.mouse = ""
 vim.opt.report = 999
 vim.opt.sessionoptions = {
   "blank",
