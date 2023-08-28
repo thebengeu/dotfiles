@@ -19,7 +19,7 @@ function {{$alias}}
   {{- if $command | hasPrefix (print $alias " ") }}
   & $(Get-Command -CommandType Application {{$alias}}){{ $command | trimPrefix $alias }} $args
   {{- else}}
-  {{$command}} $args
+  {{$command | replace "/" "\\"}} $args
   {{- end}}
 }
 {{else -}}
