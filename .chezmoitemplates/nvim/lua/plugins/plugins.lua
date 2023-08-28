@@ -151,6 +151,13 @@ return {
     },
   },
   {
+    "akinsho/toggleterm.nvim",
+    opts = {
+      open_mapping = [[<c-\>]],
+      shell = "fish",
+    },
+  },
+  {
     "wakatime/vim-wakatime",
     event = { "BufNewFile", "BufReadPost" },
   },
