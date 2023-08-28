@@ -66,3 +66,5 @@ foreach ($wingetPackageId in $wingetPackageIds)
   $wingetPackageId
   winget install --exact --no-upgrade --silent --id $wingetPackageId
 }
+
+winget pin add --exact --id JetBrains.WebStorm

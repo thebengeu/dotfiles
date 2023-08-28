@@ -38,8 +38,6 @@ if ($Env:PROCESSOR_ARCHITECTURE -eq 'ARM64')
 
 winget install --exact --no-upgrade --override $buildToolsOverride --silent --id Microsoft.VisualStudio.2022.BuildTools
 
-winget pin add --exact --id JetBrains.WebStorm
-
 Set-ExecutionPolicy Unrestricted
 Invoke-RestMethod community.chocolatey.org/install.ps1 | Invoke-Expression
 
