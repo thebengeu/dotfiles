@@ -152,8 +152,9 @@ return {
   },
   {
     "akinsho/toggleterm.nvim",
+    keys = "<c-_>",
     opts = {
-      open_mapping = [[<c-\>]],
+      open_mapping = "<c-_>",
       shell = "fish",
     },
   },
