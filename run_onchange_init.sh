@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-if ! [ -x "$(command -v dpkg)" ]; then
+if [ ! -x "$(command -v dpkg)" ]; then
   exit
 fi
 
