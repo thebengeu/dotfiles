@@ -12,6 +12,11 @@ return {
     "rmagatti/auto-session",
     keys = {
       {
+        "<space>qd",
+        "<Cmd>Autosession delete<CR>",
+        desc = "Delete Session",
+      },
+      {
         "<space>ql",
         function()
           require("auto-session.session-lens").search_session()
