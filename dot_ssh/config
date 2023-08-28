@@ -1,7 +1,3 @@
-ControlMaster auto
-ControlPath /tmp/%r@%h:%p
-ControlPersist yes
-
 Host dev-local
   Hostname 192.168.50.2
 
