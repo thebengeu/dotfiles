@@ -30,7 +30,9 @@ pipx install virtualenv
 pnpm add --global npm-check-updates
 pnpm add --global pino-pretty
 pnpm add --global pm2
+{{ if ne .chezmoi.arch "arm64" }}
 pnpm add --global https://github.com/thebengeu/ts-node.git
+{{ end }}
 
 CHT_SH_PATH=~/.local/bin/cht.sh
 curl -s https://cht.sh/:cht.sh >$CHT_SH_PATH
