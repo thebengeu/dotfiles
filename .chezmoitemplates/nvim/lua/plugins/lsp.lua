@@ -116,7 +116,7 @@ return {
                 return
               end
 
-              local client = vim.lsp.get_clients({
+              local client = vim.lsp.get_active_clients({
                 bufnr = event.buf,
                 name = "eslint",
               })[1]
