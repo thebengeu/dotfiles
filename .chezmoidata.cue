@@ -42,7 +42,6 @@ aliases: {
 	cup:  "chezmoi update --apply --init"
 	ec2:  "ssh -t ec2 tmux new-session -A -s 0"
 	ez:   "exec zsh"
-	fd:   "fd --hidden --path-separator '//'"
 	g:    "git"
 	j:    "just"
 	jd:   "just dev"
@@ -108,6 +107,13 @@ _packageManagers: {
 	]
 }
 platformSpecificAliases: {
+	linux: {
+		fd: "fd --hidden"
+	}
+	windows: {
+		fd: "fd --hidden --path-separator '//'"
+	}
+
 	for os, packageManagers in _packageManagers {
 		"\(os)": {
 			for packageManager in packageManagers {
