@@ -37,6 +37,7 @@ aliases: {
 	cad:  "chezmoi add"
 	cat:  "bat"
 	ca:   "chezmoi apply --init"
+	cht:  "cht.sh"
 	cr:   "chezmoi re-add"
 	cup:  "chezmoi update --apply --init"
 	ec2:  "ssh -t ec2 tmux new-session -A -s 0"
