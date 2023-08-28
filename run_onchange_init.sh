@@ -1,4 +1,3 @@
-{{ if ne .chezmoi.os "windows" }}
 #!/usr/bin/env bash
 ARCHITECTURE=$(dpkg --print-architecture)
 
@@ -53,4 +52,3 @@ if [ ! "$CHEZMOI" = 1 ]; then
 	export PATH=~/go/bin:"$PATH"
 	/snap/bin/chezmoi apply --init
 fi
-{{ end }}
