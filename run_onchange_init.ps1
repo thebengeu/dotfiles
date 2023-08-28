@@ -168,10 +168,7 @@ cargo install starship
 cargo install vivid
 cargo install zoxide
 
-if ($Env:CHEZMOI -ne 1)
-{
-  chezmoi init --apply --ssh thebengeu
-}
+chezmoi init --apply --ssh thebengeu
 
 if (!$isMobile)
 {
