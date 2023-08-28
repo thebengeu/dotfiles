@@ -1,5 +1,4 @@
 Import-Module gsudoModule
-Import-Module Microsoft.WinGet.Client
 Import-Module PSFzf
 Import-Module PSWindowsUpdate
 
