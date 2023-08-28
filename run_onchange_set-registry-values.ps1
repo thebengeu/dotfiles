@@ -12,10 +12,14 @@ Set-Registry-Values 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Ad
   Hidden          = 1
   HideFileExt     = 0
   ShowSuperHidden = 1
+  ShowTaskViewButton = 0
+  TaskbarDa = 0
+  TaskbarMn = 0
 }
 
 Set-ItemProperty 'HKCU:\Control Panel\Mouse' 'MouseSensitivity' 20
 Set-ItemProperty 'HKCU:\Software\Microsoft\Accessibility' 'CursorSize' 2
+Set-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Search' 'SearchboxTaskbarMode' 0
 
 if ($isMobile)
 {
