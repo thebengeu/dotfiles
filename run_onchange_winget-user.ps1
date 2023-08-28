@@ -12,7 +12,6 @@ foreach ($wingetPackageId in $wingetPackageIds)
 
 $ignoreSecurityHashWingetPackageIds = @(
   'Microsoft.Office'
-  'Neovim.Neovim.Nightly'
 )
 
 if (!$isMobile)
