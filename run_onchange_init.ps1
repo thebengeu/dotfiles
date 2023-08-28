@@ -31,7 +31,8 @@ foreach ($wingetPackageId in $wingetPackageIds)
 
 $buildToolsOverride = '--add Microsoft.VisualStudio.Workload.VCTools --includeRecommended --quiet --wait'
 
-if ($Env:PROCESSOR_ARCHITECTURE -eq 'ARM64') {
+if ($Env:PROCESSOR_ARCHITECTURE -eq 'ARM64')
+{
   $buildToolsOverride += ' --add Microsoft.VisualStudio.Component.VC.Tools.ARM64'
 }
 
@@ -45,9 +46,13 @@ Invoke-RestMethod community.chocolatey.org/install.ps1 | Invoke-Expression
 Install-PackageProvider NuGet -Force
 Set-PSRepository PSGallery -InstallationPolicy Trusted
 
-Install-Module Microsoft.WinGet.Client
 Install-Module PSFzf
 Install-Module PSWindowsUpdate
+
+if ($Env:PROCESSOR_ARCHITECTURE -ne 'ARM64')
+{
+  Install-Module Microsoft.WinGet.Client
+}
 
 $unnecessaryApps = @(
   'Clipchamp.Clipchamp'

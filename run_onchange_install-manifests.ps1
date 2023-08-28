@@ -30,11 +30,21 @@ if (!$isMobile)
   }
 }
 
+if (Get-Module -ListAvailable Microsoft.WinGet.Client)
+{
+  Import-Module Microsoft.WinGet.Client
+}
+
 foreach ($manifestPath in $manifestPaths.Keys)
 {
   $idAndVersion = $manifestPaths[$manifestPath]
   $manifestVersion = $idAndVersion.version
-  $installedVersion = (Get-WinGetPackage -Id $idAndVersion.id).InstalledVersion
+  $installedVersion = $null
+
+  if (Get-Command -ErrorAction SilentlyContinue Get-WinGetPackage)
+  {
+    $installedVersion = (Get-WinGetPackage -Id $idAndVersion.id).InstalledVersion
+  }
 
   if ($null -eq $installedVersion)
   {
