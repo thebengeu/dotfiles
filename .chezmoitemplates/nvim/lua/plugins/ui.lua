@@ -132,6 +132,7 @@ return {
   {
     "lewis6991/satellite.nvim",
     config = true,
+    enabled = vim.version().minor >= 10,
     event = { "BufNewFile", "BufReadPost" },
   },
   {
