@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+if ! [ -x "$(command -v dpkg)" ]; then
+  exit
+fi
+
 ARCHITECTURE=$(dpkg --print-architecture)
 
 if [ ! -f /usr/bin/op ]; then
