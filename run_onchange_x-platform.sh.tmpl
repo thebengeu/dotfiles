@@ -4,10 +4,13 @@ cargo install hyperfine
 cargo install just
 cargo install lsd
 cargo install sd
-cargo install tealdeer
 cargo install tokei
 cargo install topgrade
+
+{{ if or (ne .chezmoi.os "windows") (ne .chezmoi.arch "arm64") }}
+cargo install tealdeer
 cargo install xh
+{{ end }}
 
 {{ if eq .chezmoi.os "windows" }}
 cargo install bat
@@ -30,7 +33,7 @@ pipx install virtualenv
 pnpm add --global npm-check-updates
 pnpm add --global pino-pretty
 pnpm add --global pm2
-{{ if ne .chezmoi.arch "arm64" }}
+{{ if or (ne .chezmoi.os "windows") (ne .chezmoi.arch "arm64") }}
 pnpm add --global https://github.com/thebengeu/ts-node.git
 {{ end }}
 
