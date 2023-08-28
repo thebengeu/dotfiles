@@ -11,6 +11,7 @@ secrets.ejson
 .ansible.cfg
 .inputrc
 .msmtprc
+run_onchange_init.sh
 {{ else }}
 .config/fish/conf.d/shell-integration.fish
 .config/wezterm/
