@@ -90,6 +90,8 @@
 - ansible.builtin.command:
     cmd: cargo install {{ item }}
     creates: ~/.cargo/bin/{{ item }}
+  environment:
+    PATH: /usr/bin:/home/{{ ansible_user_id }}/.cargo/bin
   loop:
     - broot
     - starship
