@@ -9,6 +9,7 @@ set --global fzf_diff_highlighter delta --paging never
 set --global fzf_directory_opts --preview '_fzf_preview_file_custom {}'
 set --global fzf_fd_opts --hidden --path-separator //
 set --global fzf_git_log_format '%C(bold blue)%h%Creset %s'
+set --global sponge_purge_only_on_exit true
 
 enable_transience
 
