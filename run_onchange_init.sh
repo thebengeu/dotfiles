@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 if [ ! -x "$(command -v dpkg)" ]; then
-  exit
+	exit
 fi
 
 ARCHITECTURE=$(dpkg --print-architecture)
@@ -53,6 +53,6 @@ if [ ! "$CHEZMOI" = 1 ]; then
 
 	sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'postgres';"
 
-	export PATH=~/go/bin:"$PATH"
+	export PATH=~/.cargo/bin:~/go/bin:"$PATH"
 	/snap/bin/chezmoi apply --init
 fi
