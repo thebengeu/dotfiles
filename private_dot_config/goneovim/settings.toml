@@ -1,0 +1,7 @@
+[Cursor]
+SmoothMove = true
+
+[Editor]
+Clipboard = false
+RestoreWindowGeometry = true
+SmoothScroll = true
