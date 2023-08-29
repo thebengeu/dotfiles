@@ -1,12 +1,8 @@
+local async_run = require("util").async_run
+
 local edit_chezmoi_path = function(source_or_target)
   return function()
     vim.cmd.edit(vim.fn.system({ "chezmoi", source_or_target .. "-path", vim.api.nvim_buf_get_name(0) }))
-  end
-end
-
-local async_run = function(command)
-  return function()
-    vim.cmd.AyncRun("-close -mode=term -rows=5 " .. command)
   end
 end
 
