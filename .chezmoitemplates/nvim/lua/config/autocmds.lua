@@ -23,7 +23,7 @@ vim.api.nvim_create_autocmd("TextChanged", {
 if os.getenv("TMUX") ~= nil then
   vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained" }, {
     callback = function()
-      vim.fn.system("tmux rename-window " .. vim.fn.expand("%:p"):gsub(os.getenv("HOME") or "", "~"))
+      vim.fn.system("tmux rename-window '" .. vim.fn.expand("%:p"):gsub(os.getenv("HOME") or "", "~") .. "'")
     end,
   })
 end
