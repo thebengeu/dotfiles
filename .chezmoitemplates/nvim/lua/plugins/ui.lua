@@ -8,9 +8,7 @@ return {
   },
   {
     "jinh0/eyeliner.nvim",
-    config = function()
-      require("eyeliner").setup()
-
+    init = function()
       local add_bold_and_underline = function(name)
         api.nvim_set_hl(0, name, {
           bold = true,
@@ -20,8 +18,15 @@ return {
       end
 
       local update_eyeliner_hl = function()
+        local eyeliner = require("eyeliner")
+
+        eyeliner.disable()
+        eyeliner.enable()
+
         add_bold_and_underline("EyelinerPrimary")
         add_bold_and_underline("EyelinerSecondary")
+
+        api.nvim_command("doautocmd Eyeliner CursorMoved")
       end
 
       update_eyeliner_hl()
