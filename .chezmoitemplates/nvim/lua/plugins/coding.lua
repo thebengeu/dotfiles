@@ -205,6 +205,8 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
+      vim.treesitter.language.register("lua", "lua.chezmoitmpl")
+
       vim.list_extend(opts.ensure_installed, {
         "cue",
         "fish",
