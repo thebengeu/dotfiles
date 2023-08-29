@@ -69,20 +69,6 @@ return {
   },
   {
     "Mofiqul/dracula.nvim",
-    opts = function()
-      local colors = require("dracula").colors()
-
-      return {
-        overrides = {
-          IndentBlanklineIndent1 = { fg = colors.red },
-          IndentBlanklineIndent2 = { fg = colors.green },
-          IndentBlanklineIndent3 = { fg = colors.yellow },
-          IndentBlanklineIndent4 = { fg = colors.purple },
-          IndentBlanklineIndent5 = { fg = colors.pink },
-          IndentBlanklineIndent6 = { fg = colors.cyan },
-        },
-      }
-    end,
     lazy = true,
   },
   {
@@ -232,16 +218,6 @@ return {
   {
     "olimorris/onedarkpro.nvim",
     lazy = true,
-    opts = {
-      highlights = {
-        IndentBlanklineIndent1 = { fg = "${red}" },
-        IndentBlanklineIndent2 = { fg = "${yellow}" },
-        IndentBlanklineIndent3 = { fg = "${orange}" },
-        IndentBlanklineIndent4 = { fg = "${green}" },
-        IndentBlanklineIndent5 = { fg = "${blue}" },
-        IndentBlanklineIndent6 = { fg = "${cyan}" },
-      },
-    },
   },
   {
     "rose-pine/neovim",
@@ -249,12 +225,6 @@ return {
     name = "rose-pine",
     opts = {
       highlight_groups = {
-        IndentBlanklineIndent1 = { fg = "love" },
-        IndentBlanklineIndent2 = { fg = "gold" },
-        IndentBlanklineIndent3 = { fg = "pine" },
-        IndentBlanklineIndent4 = { fg = "rose" },
-        IndentBlanklineIndent5 = { fg = "foam" },
-        IndentBlanklineIndent6 = { fg = "iris" },
         rainbowcol1 = { fg = "love" },
         rainbowcol2 = { fg = "gold" },
         rainbowcol3 = { fg = "pine" },
@@ -427,12 +397,6 @@ return {
 
       return {
         group_overrides = {
-          IndentBlanklineIndent1 = { fg = colors.vscRed },
-          IndentBlanklineIndent2 = { fg = colors.vscYellow },
-          IndentBlanklineIndent3 = { fg = colors.vscBlue },
-          IndentBlanklineIndent4 = { fg = colors.vscOrange },
-          IndentBlanklineIndent5 = { fg = colors.vscGreen },
-          IndentBlanklineIndent6 = { fg = colors.vscViolet },
           rainbowcol1 = { fg = colors.vscRed },
           rainbowcol2 = { fg = colors.vscYellow },
           rainbowcol3 = { fg = colors.vscBlue },
