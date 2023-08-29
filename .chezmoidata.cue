@@ -64,17 +64,18 @@ aliases: {
 	tsx:  "pnpm tsx"
 	vim:  "nvim"
 
-	_noConfigArguments: {
-		fish: "--no-config"
-		nu:   "--no-config-file"
-		pwsh: "-NoProfile"
-		zsh:  "--no-rcs"
+	_noConfigFlags: {
+		"fish --interactive": "--no-config"
+		"nu --interactive":   "--no-config-file"
+		"powershell":         "-NoProfile"
+		"pwsh --interactive": "-NoProfile"
+		"zsh --interactive":  "--no-rcs"
 	}
-	for shell, noConfigArgument in _noConfigArguments {
-		"h\(regexp.Find("^.", shell))":  "hyperfine --shell sh 'time \(shell) --interactive -c exit'"
-		"h\(regexp.Find("^.", shell))n": "hyperfine --shell sh 'time \(shell) --interactive \(noConfigArgument) -c exit'"
-		"t\(regexp.Find("^.", shell))":  "time \(shell) --interactive -c exit"
-		"t\(regexp.Find("^.", shell))n": "time \(shell) --interactive -\(noConfigArgument) -c exit"
+	for shellAndFlags, noConfigFlag in _noConfigFlags {
+		"h\(regexp.Find("^p?.", shellAndFlags))":  "hyperfine --shell sh 'time \(shellAndFlags) -c exit'"
+		"h\(regexp.Find("^p?.", shellAndFlags))n": "hyperfine --shell sh 'time \(shellAndFlags) \(noConfigFlag) -c exit'"
+		"t\(regexp.Find("^p?.", shellAndFlags))":  "time \(shellAndFlags) -c exit"
+		"t\(regexp.Find("^p?.", shellAndFlags))n": "time \(shellAndFlags) -\(noConfigFlag) -c exit"
 	}
 
 	for prefix, directory in _aliasDirectories {
