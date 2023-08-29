@@ -136,7 +136,7 @@ return {
           end
 
           api.nvim_win_set_cursor(0, { start_row, 0 })
-          vim.cmd("normal V")
+          vim.cmd.normal("V")
           api.nvim_win_set_cursor(0, { end_row, 0 })
           require("iron.core").visual_send()
           api.nvim_win_set_cursor(0, cursor)

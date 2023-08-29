@@ -1,19 +1,20 @@
 local edit_chezmoi_path = function(source_or_target)
   return function()
-    vim.cmd("edit " .. vim.fn.system({ "chezmoi", source_or_target .. "-path", vim.api.nvim_buf_get_name(0) }))
+    vim.cmd.edit(vim.fn.system({ "chezmoi", source_or_target .. "-path", vim.api.nvim_buf_get_name(0) }))
+  end
+end
+
+local async_run = function(command)
+  return function()
+    vim.cmd.AyncRun("-close -mode=term -rows=5 " .. command)
   end
 end
 
 local update_commit_push = function(flags)
   return function()
-    vim.api.nvim_command("update")
-    vim.api.nvim_command(
-      "AsyncRun -close -mode=term -rows=5 git commit -"
-        .. flags
-        .. "m '"
-        .. vim.fn.input("Commit summary: "):gsub("'", "\\'")
-        .. "' && git push"
-    )
+    vim.cmd.update()
+    local commit_summary = vim.fn.input("Commit summary: "):gsub("'", "\\'")
+    async_run("git commit -" .. flags .. "m '" .. commit_summary .. "' && git push")()
   end
 end
 
@@ -27,8 +28,8 @@ end
 
 vim.keymap.set("n", "<leader>ga", update_commit_push("a"), { desc = "Git commit all" })
 vim.keymap.set("n", "<leader>gc", update_commit_push(""), { desc = "Git commit" })
-vim.keymap.set("n", "<leader>gP", "<Cmd>AsyncRun -close -mode=term -rows=5 git push<CR>", { desc = "Git push" })
-vim.keymap.set("n", "<leader>gp", "<Cmd>AsyncRun -close -mode=term -rows=5 git pull<CR>", { desc = "Git pull" })
+vim.keymap.set("n", "<leader>gP", async_run("git push"), { desc = "Git push" })
+vim.keymap.set("n", "<leader>gp", async_run("git pull"), { desc = "Git pull" })
 vim.keymap.set("n", "<C-r>", "<Cmd>silent redo<CR>")
 vim.keymap.set("n", "u", "<Cmd>silent undo<CR>")
 vim.keymap.set("n", "<space>bo", "<Cmd>%bd|e#|bd#<CR>", { desc = "Delete other buffers" })

@@ -121,7 +121,7 @@ return {
                   namespace = vim.lsp.diagnostic.get_namespace(client.id, false),
                 })
                 if #diag > 0 then
-                  vim.cmd("EslintFixAll")
+                  vim.cmd.EslintFixAll()
                 end
               end
             end,
