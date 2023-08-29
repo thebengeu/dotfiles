@@ -20,7 +20,3 @@ AppData/
 AutoHotkey.ahk
 .wezterm.lua
 {{ end }}
-
-{{ if ne .chezmoi.hostname "dev" }}
-.wslconfig
-{{ end }}
