@@ -2,8 +2,12 @@
 set --export {{$environmentVariable}} {{$value}}
 {{end}}
 
-{{ if ne .chezmoi.os "windows" }}
+{{ if eq .chezmoi.os "windows" }}
+set --global fzf_fd_opts --hidden --path-separator //
+{{ else }}
 set --export PNPM_HOME ~/.local/share/pnpm
+
+set --global fzf_fd_opts --hidden
 {{ end }}
 
 {{- range $path := .paths}}
