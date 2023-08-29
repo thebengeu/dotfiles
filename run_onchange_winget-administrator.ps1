@@ -31,7 +31,6 @@ $wingetPackageIds = @(
   'Microsoft.OpenSSH.Beta'
   'Microsoft.PowerToys'
   'Microsoft.Sysinternals.ProcessMonitor'
-  'Neovide.Neovide'
   'Neovim.Neovim'
   'Pulumi.Pulumi'
   'QMK.QMKToolbox'
