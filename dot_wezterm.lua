@@ -23,7 +23,7 @@ config.colors = {
 }
 config.default_cursor_style = "SteadyBar"
 if package.config:sub(1, 1) == "\\" then
-	config.default_prog = { "C:\\msys64\\usr\\bin\\fish" }
+	config.default_prog = { "fish" }
 end
 -- config.font = wezterm.font("PragmataProLiga NF")
 -- config.font_rules = {
@@ -64,7 +64,7 @@ config.launch_menu = {
 	{
 		domain = { DomainName = "local" },
 		label = "fish",
-		args = { "C:\\msys64\\usr\\bin\\fish" },
+		args = { "fish" },
 	},
 	{
 		domain = { DomainName = "local" },
@@ -84,7 +84,7 @@ config.launch_menu = {
 	{
 		domain = { DomainName = "local" },
 		label = "zsh",
-		args = { "C:\\msys64\\usr\\bin\\zsh" },
+		args = { "zsh" },
 	},
 	{
 		args = {
