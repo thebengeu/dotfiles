@@ -43,15 +43,22 @@ local colorschemes = {
   { "vscode" },
 }
 
-local function set_colorscheme_style(colorscheme_and_style)
+local current_colorscheme_and_style
+
+local set_colorscheme_style = function(colorscheme_and_style)
+  current_colorscheme_and_style = colorscheme_and_style
   if colorscheme_and_style[2] then
     g[colorscheme_and_style[1] .. "_style"] = colorscheme_and_style[2]
   end
 end
 
 math.randomseed(os.time())
-local current_colorscheme_and_style = colorschemes[math.random(#colorschemes)]
-set_colorscheme_style(current_colorscheme_and_style)
+set_colorscheme_style(colorschemes[math.random(#colorschemes)])
+
+vim.keymap.set("n", "<leader>uR", function()
+  set_colorscheme_style(colorschemes[math.random(#colorschemes)])
+  vim.cmd.colorscheme(current_colorscheme_and_style[1])
+end, { desc = "Randomise Colorscheme" })
 
 return {
   {
@@ -342,8 +349,7 @@ return {
                   actions.select_default:replace(function()
                     actions.close(prompt_bufnr)
                     local selection = require("telescope.actions.state").get_selected_entry()
-                    current_colorscheme_and_style = selection.value
-                    set_colorscheme_style(current_colorscheme_and_style)
+                    set_colorscheme_style(selection.value)
                     vim.cmd.colorscheme(current_colorscheme_and_style[1])
                   end)
                   return true
