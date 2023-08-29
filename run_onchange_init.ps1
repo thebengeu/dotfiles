@@ -38,8 +38,12 @@ if ($Env:PROCESSOR_ARCHITECTURE -eq 'ARM64')
 
 winget install --exact --no-upgrade --override $buildToolsOverride --silent --id Microsoft.VisualStudio.2022.BuildTools
 
-Set-ExecutionPolicy Unrestricted
-Invoke-RestMethod community.chocolatey.org/install.ps1 | Invoke-Expression
+if (!(Get-Command choco))
+{
+  Set-ExecutionPolicy Unrestricted
+  Invoke-RestMethod community.chocolatey.org/install.ps1 | Invoke-Expression
+  choco feature enable -n allowGlobalConfirmation
+}
 
 Install-PackageProvider NuGet -Force
 Set-PSRepository PSGallery -InstallationPolicy Trusted
@@ -103,7 +107,7 @@ SetEnvironmentVariable 'PNPM_HOME' $PNPM_HOME 'User'
 
 $pathsForTargets = @{
   [EnvironmentVariableTarget]::Machine = @(
-    "C:\msys64\usr\bin"
+    'C:\msys64\usr\bin'
     "$Env:ProgramFiles\PostgreSQL\15\bin"
   )
   [EnvironmentVariableTarget]::User    = @(
@@ -128,11 +132,23 @@ foreach ($environmentVariableTarget in $pathsForTargets.Keys)
 
 $Env:PATH = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + [IO.Path]::PathSeparator + [System.Environment]::GetEnvironmentVariable("Path", "User")
 
-sh --login -c 'pacman -Suy --noconfirm; pacman -Suy --noconfirm; pacman -S --needed --noconfirm fish parallel tmux zsh'
+$pacmanPackages = @(
+  'fish'
+  'parallel'
+  'tmux'
+  'zsh'
+)
+
+foreach ($pacmanPackage in $pacmanPackages)
+{
+  if (!(Get-Command $pacmanPackage))
+  {
+    sh --login -c "pacman -Suy --noconfirm; pacman -Suy --noconfirm; pacman -S --needed --noconfirm $pacmanPackage"
+  }
+}
 
 corepack enable
 
-choco feature enable -n allowGlobalConfirmation
 
 $ejsonPublicKey = "5df4cad7a4c3a2937a863ecf18c56c23274cb048624bc9581ecaac56f2813107"
 $ejsonKeyPath = "$HOME/.config/ejson/keys/$ejsonPublicKey"
@@ -166,7 +182,10 @@ cargo install starship
 cargo install vivid
 cargo install zoxide
 
-chezmoi init --apply --ssh thebengeu
+if (!(Test-Path "$Env:USERPROFILE\.local\share\chezmoi"))
+{
+  chezmoi init --apply --ssh thebengeu
+}
 
 if (!$isMobile)
 {
