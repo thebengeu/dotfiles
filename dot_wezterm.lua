@@ -96,6 +96,7 @@ config.launch_menu = {
 			"local",
 			"--",
 			"powershell",
+			"-NoProfile",
 			"-Command",
 			"wsl",
 			"--shutdown",
