@@ -33,7 +33,6 @@ $wingetPackageIds = @(
   'Microsoft.Sysinternals.ProcessMonitor'
   'Neovide.Neovide'
   'Neovim.Neovim'
-  'PostgreSQL.PostgreSQL'
   'Pulumi.Pulumi'
   'QMK.QMKToolbox'
   'BurntSushi.ripgrep.MSVC'

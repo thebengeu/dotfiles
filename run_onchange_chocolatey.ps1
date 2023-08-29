@@ -17,3 +17,5 @@ foreach ($chocoPackage in $chocoPackages)
 {
   choco install $chocoPackage
 }
+
+choco install postgresql --params '/Password:postgres'
