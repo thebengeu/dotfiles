@@ -60,7 +60,6 @@ aliases: {
 	prod: "ssh -t prod tmux new-session -A -s 0"
 	prr:  "gh pr create -f -r"
 	scc:  "scc --not-match \"package-lock.json|pnpm-lock.yaml\""
-	tg:   "pwsh -Command gsudo topgrade"
 	tns:  "tmux new-session -A -s"
 	tsx:  "pnpm tsx"
 	vim:  "nvim"
@@ -109,9 +108,11 @@ _packageManagers: {
 platformSpecificAliases: {
 	linux: {
 		fd: "fd --hidden"
+		tg: "topgrade"
 	}
 	windows: {
 		fd: "fd --hidden --path-separator '//'"
+		tg: "pwsh -Command gsudo topgrade"
 	}
 
 	for os, packageManagers in _packageManagers {
