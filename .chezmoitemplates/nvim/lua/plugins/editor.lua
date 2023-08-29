@@ -133,12 +133,11 @@ return {
   },
   {
     "gbprod/substitute.nvim",
-    opts = function()
-      return {
-        on_substitute = require("yanky.integration").substitute(),
-      }
-    end,
-    event = { "BufNewFile", "BufReadPost" },
+    opts = {
+      on_substitute = function()
+        require("yanky.integration").substitute()
+      end,
+    },
     keys = {
       {
         "x",
