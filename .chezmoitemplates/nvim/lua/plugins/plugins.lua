@@ -166,6 +166,10 @@ return {
     },
   },
   {
+    "tpope/vim-repeat",
+    event = { "BufNewFile", "BufReadPost" },
+  },
+  {
     "wakatime/vim-wakatime",
     event = { "BufNewFile", "BufReadPost" },
   },
