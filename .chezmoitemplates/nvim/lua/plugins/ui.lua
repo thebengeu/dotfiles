@@ -26,7 +26,7 @@ return {
         add_bold_and_underline("EyelinerPrimary")
         add_bold_and_underline("EyelinerSecondary")
 
-        api.nvim_command("doautocmd Eyeliner CursorMoved")
+        api.nvim_exec_autocmds("CursorMoved", { group = "Eyeliner" })
       end
 
       update_eyeliner_hl()
@@ -99,32 +99,24 @@ return {
   {
     "kevinhwang91/nvim-hlslens",
     event = { "BufNewFile", "BufReadPost" },
-    keys = {
-      {
-        "n",
-        "<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>",
-      },
-      {
-        "N",
-        "<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>",
-      },
-      {
-        "*",
-        "*<Cmd>lua require('hlslens').start()<CR>",
-      },
-      {
-        "#",
-        "#<Cmd>lua require('hlslens').start()<CR>",
-      },
-      {
-        "g*",
-        "g*<Cmd>lua require('hlslens').start()<CR>",
-      },
-      {
-        "g#",
-        "g#<Cmd>lua require('hlslens').start()<CR>",
-      },
-    },
+    keys = function()
+      local keys = {}
+
+      for _, key in ipairs({ "n", "N", "*", "#", "g*", "g#" }) do
+        table.insert(keys, {
+          key,
+          function()
+            vim.cmd.normal((key == "n" or key == "N") and {
+              vim.v.count1 .. key,
+              bang = true,
+            } or key)
+            require("hlslens").start()
+          end,
+        })
+      end
+
+      return keys
+    end,
     opts = {
       calm_down = true,
     },
