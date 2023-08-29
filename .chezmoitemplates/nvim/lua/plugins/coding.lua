@@ -1,5 +1,3 @@
-local api = vim.api
-
 return {
   {
     "DNLHC/glance.nvim",
@@ -112,7 +110,7 @@ return {
           local mark_rows = {}
 
           for char in ("abcdefghijklmnopqrstuvwxyz"):gmatch(".") do
-            local mark = api.nvim_buf_get_mark(0, char)
+            local mark = vim.api.nvim_buf_get_mark(0, char)
             local mark_row = mark[1]
             if mark_row ~= 0 then
               table.insert(mark_rows, mark_row)
@@ -121,10 +119,10 @@ return {
 
           table.sort(mark_rows)
 
-          local cursor = api.nvim_win_get_cursor(0)
+          local cursor = vim.api.nvim_win_get_cursor(0)
           local current_row = cursor[1]
           local start_row = 1
-          local end_row = api.nvim_buf_line_count(0)
+          local end_row = vim.api.nvim_buf_line_count(0)
 
           for _, mark_row in ipairs(mark_rows) do
             if mark_row <= current_row then
@@ -135,11 +133,11 @@ return {
             end
           end
 
-          api.nvim_win_set_cursor(0, { start_row, 0 })
+          vim.api.nvim_win_set_cursor(0, { start_row, 0 })
           vim.cmd.normal("V")
-          api.nvim_win_set_cursor(0, { end_row, 0 })
+          vim.api.nvim_win_set_cursor(0, { end_row, 0 })
           require("iron.core").visual_send()
-          api.nvim_win_set_cursor(0, cursor)
+          vim.api.nvim_win_set_cursor(0, cursor)
         end,
       },
       { "<space>r", "<Cmd>IronRepl<CR>", desc = "REPL" },
@@ -257,7 +255,9 @@ return {
     keys = {
       {
         "<leader>cF",
-        "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
+        function()
+          require("telescope").extensions.refactoring.refactors()
+        end,
         desc = "Refactor",
         mode = { "n", "v" },
       },

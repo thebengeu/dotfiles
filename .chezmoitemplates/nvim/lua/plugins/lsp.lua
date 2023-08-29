@@ -1,5 +1,3 @@
-local api = vim.api
-
 return {
   {
     "williamboman/mason.nvim",
@@ -88,7 +86,7 @@ return {
         tsserver = {
           on_attach = function(client)
             client.server_capabilities.documentFormattingProvider = false
-            api.nvim_create_autocmd("BufWritePre", {
+            vim.api.nvim_create_autocmd("BufWritePre", {
               callback = function()
                 if vim.api.nvim_buf_get_name(0):find("/ccxt/") then
                   return

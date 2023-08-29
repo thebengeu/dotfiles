@@ -1,5 +1,20 @@
-local api = vim.api
-local g = vim.g
+local create_colorscheme_autocmd = function(callback)
+  return function()
+    callback()
+
+    vim.api.nvim_create_autocmd("ColorScheme", {
+      callback = callback,
+    })
+  end
+end
+
+local add_bold_and_underline = function(name)
+  vim.api.nvim_set_hl(0, name, {
+    bold = true,
+    fg = vim.api.nvim_get_hl(0, { name = name }).fg,
+    underline = true,
+  })
+end
 
 return {
   {
@@ -8,50 +23,26 @@ return {
   },
   {
     "jinh0/eyeliner.nvim",
-    init = function()
-      local add_bold_and_underline = function(name)
-        api.nvim_set_hl(0, name, {
-          bold = true,
-          fg = api.nvim_get_hl(0, { name = name }).fg,
-          underline = true,
-        })
-      end
+    init = create_colorscheme_autocmd(function()
+      local eyeliner = require("eyeliner")
 
-      local update_eyeliner_hl = function()
-        local eyeliner = require("eyeliner")
+      eyeliner.disable()
+      eyeliner.enable()
 
-        eyeliner.disable()
-        eyeliner.enable()
+      add_bold_and_underline("EyelinerPrimary")
+      add_bold_and_underline("EyelinerSecondary")
 
-        add_bold_and_underline("EyelinerPrimary")
-        add_bold_and_underline("EyelinerSecondary")
-
-        api.nvim_exec_autocmds("CursorMoved", { group = "Eyeliner" })
-      end
-
-      update_eyeliner_hl()
-
-      api.nvim_create_autocmd("ColorScheme", {
-        callback = update_eyeliner_hl,
-      })
-    end,
+      vim.api.nvim_exec_autocmds("CursorMoved", { group = "Eyeliner" })
+    end),
     event = { "BufNewFile", "BufReadPre" },
   },
   {
     "lukas-reineke/indent-blankline.nvim",
-    init = function()
-      local link_hl = function()
-        for i = 1, 7 do
-          api.nvim_set_hl(0, "IndentBlanklineIndent" .. i, { link = "rainbowcol" .. i })
-        end
+    init = create_colorscheme_autocmd(function()
+      for i = 1, 7 do
+        vim.api.nvim_set_hl(0, "IndentBlanklineIndent" .. i, { link = "rainbowcol" .. i })
       end
-
-      link_hl()
-
-      api.nvim_create_autocmd("ColorScheme", {
-        callback = link_hl,
-      })
-    end,
+    end),
     opts = {
       char_highlight_list = {
         "IndentBlanklineIndent1",
@@ -69,7 +60,7 @@ return {
   {
     "echasnovski/mini.indentscope",
     config = function()
-      g.miniindentscope_disable = true
+      vim.g.miniindentscope_disable = true
     end,
     opts = {
       options = {
@@ -123,21 +114,13 @@ return {
   },
   {
     "HiPhish/rainbow-delimiters.nvim",
-    init = function()
-      local link_hl = function()
-        local rainbow_delimiters_highlight = require("rainbow-delimiters.default").highlight
+    init = create_colorscheme_autocmd(function()
+      local rainbow_delimiters_highlight = require("rainbow-delimiters.default").highlight
 
-        for i = 1, 7 do
-          api.nvim_set_hl(0, rainbow_delimiters_highlight[i], { link = "rainbowcol" .. i })
-        end
+      for i = 1, 7 do
+        vim.api.nvim_set_hl(0, rainbow_delimiters_highlight[i], { link = "rainbowcol" .. i })
       end
-
-      link_hl()
-
-      api.nvim_create_autocmd("ColorScheme", {
-        callback = link_hl,
-      })
-    end,
+    end),
     event = { "BufNewFile", "BufReadPost" },
   },
   {
