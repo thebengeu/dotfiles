@@ -50,6 +50,7 @@ config.font_rules = {
 }
 config.font_size = 12
 config.keys = {
+	{ key = "phys:Space", mods = "SHIFT|ALT|CTRL", action = act.QuickSelect },
 	{ key = "w", mods = "SHIFT|CTRL", action = act.CloseCurrentTab({ confirm = false }) },
 	{ key = "w", mods = "SUPER", action = act.CloseCurrentTab({ confirm = false }) },
 	{ key = "UpArrow", mods = "SHIFT", action = act.ScrollToPrompt(-1) },
