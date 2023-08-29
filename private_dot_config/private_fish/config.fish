@@ -17,10 +17,13 @@ abbr --add man batman
 abbr --add os 'set COMMAND $(op signin) && test -n "$COMMAND" && eval $COMMAND && set --export OP_TIME $(date +%s)'
 
 function fish_title
+    set --local full_prompt_pwd (prompt_pwd --dir-length=0)
+
     if test -n "$TMUX"
-        tmux rename-window -t $(tmux display-message -p '#{window_index}') $PWD
+        tmux rename-window -t $(tmux display-message -p '#{window_index}') $full_prompt_pwd
     end
-    pwd
+
+    echo $full_prompt_pwd
 end
 
 function fish_hybrid_key_bindings
