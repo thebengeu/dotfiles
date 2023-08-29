@@ -1,3 +1,5 @@
+local async_run = require("util").async_run
+
 vim.api.nvim_create_autocmd("TextChanged", {
   callback = function()
     if vim.fn.getline("."):find("^%s*,%s*$") then
@@ -8,7 +10,7 @@ vim.api.nvim_create_autocmd("TextChanged", {
   pattern = "*.lua",
 })
 vim.api.nvim_create_autocmd("BufWritePost", {
-  command = "AsyncRun -close -mode=term -rows=5 chezmoi apply --init",
+  callback = async_run("chezmoi apply --init"),
   pattern = "*/.local/share/chezmoi/*",
 })
 if os.getenv("TMUX") ~= nil then
