@@ -89,7 +89,6 @@ return {
   },
   {
     "kevinhwang91/nvim-hlslens",
-    event = { "BufNewFile", "BufReadPost" },
     keys = function()
       local keys = {}
 
@@ -97,10 +96,10 @@ return {
         table.insert(keys, {
           key,
           function()
-            vim.cmd.normal((key == "n" or key == "N") and {
-              vim.v.count1 .. key,
+            vim.cmd.normal({
+              ((key == "n" or key == "N") and vim.v.count1 or "") .. key,
               bang = true,
-            } or key)
+            })
             require("hlslens").start()
           end,
         })
