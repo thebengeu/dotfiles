@@ -23,7 +23,7 @@ return {
   },
   {
     "jinh0/eyeliner.nvim",
-    init = create_colorscheme_autocmd(function()
+    config = create_colorscheme_autocmd(function()
       local eyeliner = require("eyeliner")
 
       eyeliner.disable()
@@ -114,7 +114,7 @@ return {
   },
   {
     "HiPhish/rainbow-delimiters.nvim",
-    init = create_colorscheme_autocmd(function()
+    config = create_colorscheme_autocmd(function()
       local rainbow_delimiters_highlight = require("rainbow-delimiters.default").highlight
 
       for i = 1, 7 do
