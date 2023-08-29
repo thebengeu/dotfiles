@@ -21,6 +21,7 @@ return {
       {
         "<space>ql",
         function()
+          require("auto-session").setup_session_lens()
           require("auto-session.session-lens").search_session()
         end,
         desc = "List Sessions",
@@ -42,6 +43,7 @@ return {
           end,
         },
         session_lens = {
+          load_on_setup = false,
           previewer = true,
         },
       }
