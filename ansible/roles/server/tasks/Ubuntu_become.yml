@@ -3,25 +3,6 @@
   register: arch
 - community.general.timezone:
     name: Asia/Singapore
-- ansible.builtin.template:
-    dest: /lib/systemd/network/wsl_external.network
-    mode: "644"
-    src: wsl_external.network.j2
-  when: address is defined
-- ansible.builtin.service:
-    enabled: true
-    name: systemd-networkd
-  when: address is defined
-- ansible.builtin.copy:
-    dest: /etc/wsl.conf
-    mode: "644"
-    src: wsl.conf
-  when: address is defined
-- ansible.builtin.copy:
-    dest: /etc/resolv.conf
-    mode: "644"
-    src: resolv.conf
-  when: address is defined
 - community.general.sudoers:
     commands: ALL
     name: "{{ ansible_user_id }}"

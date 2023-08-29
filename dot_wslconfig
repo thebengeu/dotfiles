@@ -1,6 +1,0 @@
-[wsl2]
-dhcp = false
-guiApplications = false
-ipv6 = true
-networkingMode = bridged
-vmSwitch = External
