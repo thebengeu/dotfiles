@@ -5,7 +5,7 @@ let carapace_completer = {|spans: list<string>|
 }
 
 let fish_completer = {|spans|
-    C:\msys64\usr\bin\fish --command $'complete "--do-complete=($spans | str join " ")"'
+    fish --command $'complete "--do-complete=($spans | str join " ")"'
     | $"value(char tab)description(char newline)" + $in
     | from tsv --flexible --no-infer
 }

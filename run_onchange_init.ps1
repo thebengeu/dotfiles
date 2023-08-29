@@ -126,11 +126,9 @@ foreach ($environmentVariableTarget in $pathsForTargets.Keys)
   }
 }
 
-C:\msys64\usr\bin\sh --login -c 'pacman -Suy --noconfirm'
-C:\msys64\usr\bin\sh --login -c 'pacman -Suy --noconfirm'
-C:\msys64\usr\bin\sh --login -c 'pacman -S --needed --noconfirm fish parallel tmux zsh'
-
 $Env:PATH = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + [IO.Path]::PathSeparator + [System.Environment]::GetEnvironmentVariable("Path", "User")
+
+sh --login -c 'pacman -Suy --noconfirm; pacman -Suy --noconfirm; pacman -S --needed --noconfirm fish parallel tmux zsh'
 
 corepack enable
 

@@ -26,9 +26,7 @@ return {
       local null_ls = require("null-ls")
       opts.sources = {
         null_ls.builtins.diagnostics.cue_fmt,
-        null_ls.builtins.diagnostics.fish.with(jit.os:find("Windows") and {
-          command = "C:\\msys64\\usr\\bin\\fish",
-        } or {}),
+        null_ls.builtins.diagnostics.fish,
         null_ls.builtins.diagnostics.shellcheck.with({
           extra_args = { "-e", "SC1017" },
         }),
@@ -43,9 +41,7 @@ return {
         }),
         null_ls.builtins.formatting.cue_fmt,
         null_ls.builtins.formatting.cueimports,
-        null_ls.builtins.formatting.fish_indent.with(jit.os:find("Windows") and {
-          command = "C:\\msys64\\usr\\bin\\fish_indent",
-        } or {}),
+        null_ls.builtins.formatting.fish_indent,
         null_ls.builtins.formatting.fixjson,
         null_ls.builtins.formatting.prettier.with({
           extra_filetypes = { "prisma" },

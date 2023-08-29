@@ -132,7 +132,7 @@ environmentVariables: {
 }
 functions: wcss: {
 	lines: [
-		#"sh -c "C:/msys64/usr/bin/parallel {} search $package ::: choco scoop winget""#,
+		#"sh -c "parallel {} search $package ::: choco scoop winget""#,
 	]
 	parameters: ["package"]
 }
