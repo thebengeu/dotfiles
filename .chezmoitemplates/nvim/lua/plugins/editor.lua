@@ -1,5 +1,3 @@
-local g = vim.g
-
 return {
   {
     "ja-ford/delaytrain.nvim",
@@ -191,7 +189,7 @@ return {
   {
     "mg979/vim-visual-multi",
     init = function()
-      g.VM_maps = {
+      vim.g.VM_maps = {
         ["Find Under"] = "<C-g>",
         ["Find Subword Under"] = "<C-g>",
       }

@@ -1,5 +1,4 @@
 local Util = require("lazyvim.util")
-local g = vim.g
 
 local colorschemes = {
   { "carbonfox" },
@@ -48,7 +47,7 @@ local current_colorscheme_and_style
 local set_colorscheme_style = function(colorscheme_and_style)
   current_colorscheme_and_style = colorscheme_and_style
   if colorscheme_and_style[2] then
-    g[colorscheme_and_style[1] .. "_style"] = colorscheme_and_style[2]
+    vim.g[colorscheme_and_style[1] .. "_style"] = colorscheme_and_style[2]
   end
 end
 
@@ -81,17 +80,17 @@ return {
   {
     "sainnhe/edge",
     config = function()
-      g.edge_better_performance = 1
-      g.edge_enable_italic = 1
+      vim.g.edge_better_performance = 1
+      vim.g.edge_enable_italic = 1
     end,
     lazy = true,
   },
   {
     "sainnhe/everforest",
     config = function()
-      g.everforest_better_performance = 1
-      g.everforest_background = "hard"
-      g.everforest_enable_italic = 1
+      vim.g.everforest_better_performance = 1
+      vim.g.everforest_background = "hard"
+      vim.g.everforest_enable_italic = 1
     end,
     lazy = true,
   },
@@ -118,10 +117,10 @@ return {
   {
     "sainnhe/gruvbox-material",
     config = function()
-      g.gruvbox_material_background = "hard"
-      g.gruvbox_material_better_performance = 1
-      g.gruvbox_material_enable_italic = 1
-      g.gruvbox_material_foreground = "original"
+      vim.g.gruvbox_material_background = "hard"
+      vim.g.gruvbox_material_better_performance = 1
+      vim.g.gruvbox_material_enable_italic = 1
+      vim.g.gruvbox_material_foreground = "original"
     end,
     lazy = true,
   },
@@ -245,8 +244,8 @@ return {
   {
     "sainnhe/sonokai",
     config = function()
-      g.sonokai_better_performance = 1
-      g.sonokai_enable_italic = 1
+      vim.g.sonokai_better_performance = 1
+      vim.g.sonokai_enable_italic = 1
     end,
     lazy = true,
   },
@@ -280,7 +279,7 @@ return {
           end,
           desc = "Find Plugin Files",
         },
-        { "<leader>gC", "<cmd>Telescope git_commits<CR>", desc = "commits" },
+        { "<leader>gC", "<Cmd>Telescope git_commits<CR>", desc = "commits" },
         {
           "<leader>si",
           function()
