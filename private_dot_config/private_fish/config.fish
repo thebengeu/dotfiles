@@ -11,8 +11,6 @@ set --global fzf_fd_opts --hidden --path-separator //
 set --global fzf_git_log_format '%C(bold blue)%h%Creset %s'
 set --global sponge_purge_only_on_exit true
 
-enable_transience
-
 abbr --add man batman
 abbr --add os 'set COMMAND $(op signin) && test -n "$COMMAND" && eval $COMMAND && set --export OP_TIME $(date +%s)'
 
