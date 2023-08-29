@@ -20,6 +20,11 @@ end
 vim.keymap.del("x", "j")
 vim.keymap.del("x", "k")
 
+if vim.g.goneovim or vim.g.neovide then
+  vim.keymap.set("n", "<C-v>", "a<C-r>+<Esc>")
+  vim.keymap.set({ "c", "i" }, "<C-v>", "<C-r>+")
+end
+
 vim.keymap.set("n", "<leader>ga", update_commit_push("a"), { desc = "Git commit all" })
 vim.keymap.set("n", "<leader>gc", update_commit_push(""), { desc = "Git commit" })
 vim.keymap.set("n", "<leader>gP", "<Cmd>AsyncRun -close -mode=term -rows=5 git push<CR>", { desc = "Git push" })

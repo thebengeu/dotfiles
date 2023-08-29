@@ -1,3 +1,5 @@
+local toggle_term_open_mapping = (vim.g.goneovim or vim.g.neovide) and "<C-/>" or "<C-_>"
+
 return {
   {
     "skywind3000/asyncrun.vim",
@@ -157,9 +159,9 @@ return {
   },
   {
     "akinsho/toggleterm.nvim",
-    keys = "<c-_>",
+    keys = toggle_term_open_mapping,
     opts = {
-      open_mapping = "<c-_>",
+      open_mapping = toggle_term_open_mapping,
       shell = "fish",
     },
   },
