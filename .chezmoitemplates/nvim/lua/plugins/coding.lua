@@ -222,10 +222,6 @@ return {
         disable_virtual_text = true,
         enable = true,
       }
-      opts.rainbow = {
-        enable = true,
-        extended_mode = true,
-      }
       opts.textobjects = {
         select = {
           enable = true,

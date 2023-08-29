@@ -34,7 +34,7 @@ return {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
-    opts = function()
+    init = function()
       local link_hl = function()
         for i = 1, 7 do
           api.nvim_set_hl(0, "IndentBlanklineIndent" .. i, { link = "rainbowcol" .. i })
@@ -46,21 +46,20 @@ return {
       api.nvim_create_autocmd("ColorScheme", {
         callback = link_hl,
       })
-
-      return {
-        char_highlight_list = {
-          "IndentBlanklineIndent1",
-          "IndentBlanklineIndent2",
-          "IndentBlanklineIndent3",
-          "IndentBlanklineIndent4",
-          "IndentBlanklineIndent5",
-          "IndentBlanklineIndent6",
-          "IndentBlanklineIndent7",
-        },
-        show_current_context = true,
-        use_treesitter = true,
-      }
     end,
+    opts = {
+      char_highlight_list = {
+        "IndentBlanklineIndent1",
+        "IndentBlanklineIndent2",
+        "IndentBlanklineIndent3",
+        "IndentBlanklineIndent4",
+        "IndentBlanklineIndent5",
+        "IndentBlanklineIndent6",
+        "IndentBlanklineIndent7",
+      },
+      show_current_context = true,
+      use_treesitter = true,
+    },
   },
   {
     "echasnovski/mini.indentscope",
@@ -126,7 +125,22 @@ return {
     },
   },
   {
-    "mrjones2014/nvim-ts-rainbow",
+    "HiPhish/rainbow-delimiters.nvim",
+    init = function()
+      local link_hl = function()
+        local rainbow_delimiters_highlight = require("rainbow-delimiters.default").highlight
+
+        for i = 1, 7 do
+          api.nvim_set_hl(0, rainbow_delimiters_highlight[i], { link = "rainbowcol" .. i })
+        end
+      end
+
+      link_hl()
+
+      api.nvim_create_autocmd("ColorScheme", {
+        callback = link_hl,
+      })
+    end,
     event = { "BufNewFile", "BufReadPost" },
   },
   {
