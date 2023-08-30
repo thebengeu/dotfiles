@@ -50,22 +50,32 @@ local colorschemes = {
   { "vscode" },
 }
 
-local current_colorscheme_and_style
+local colorscheme_index
+local colorscheme
 
-local set_colorscheme_style = function(colorscheme_and_style)
-  current_colorscheme_and_style = colorscheme_and_style
-  if colorscheme_and_style[2] then
-    vim.g[colorscheme_and_style[1] .. "_style"] = colorscheme_and_style[2]
+local set_colorscheme_style = function(index)
+  colorscheme_index = index
+  colorscheme = colorschemes[index]
+  if colorscheme[2] then
+    vim.g[colorscheme[1] .. "_style"] = colorscheme[2]
   end
 end
 
 math.randomseed(os.time())
-set_colorscheme_style(colorschemes[math.random(#colorschemes)])
+set_colorscheme_style(math.random(#colorschemes))
 
 vim.keymap.set("n", "<leader>uR", function()
-  set_colorscheme_style(colorschemes[math.random(#colorschemes)])
-  vim.cmd.colorscheme(current_colorscheme_and_style[1])
+  set_colorscheme_style(math.random(#colorschemes))
+  vim.cmd.colorscheme(colorscheme[1])
 end, { desc = "Randomise Colorscheme" })
+vim.keymap.set("n", "[S", function()
+  set_colorscheme_style(colorscheme_index == 1 and #colorschemes or colorscheme_index - 1)
+  vim.cmd.colorscheme(colorscheme[1])
+end, { desc = "Colorscheme backward" })
+vim.keymap.set("n", "]S", function()
+  set_colorscheme_style(colorscheme_index == #colorschemes and 1 or colorscheme_index + 1)
+  vim.cmd.colorscheme(colorscheme[1])
+end, { desc = "Colorscheme backward" })
 
 return {
   {
@@ -197,7 +207,7 @@ return {
       end
     end,
     opts = {
-      colorscheme = current_colorscheme_and_style[1],
+      colorscheme = colorscheme[1],
     },
   },
   {
@@ -206,7 +216,7 @@ return {
       sections = {
         lualine_z = {
           function()
-            return table.concat(current_colorscheme_and_style, "-")
+            return table.concat(colorscheme, "-")
           end,
         },
       },
@@ -448,8 +458,8 @@ return {
                   actions.select_default:replace(function()
                     actions.close(prompt_bufnr)
                     local selection = require("telescope.actions.state").get_selected_entry()
-                    set_colorscheme_style(selection.value)
-                    vim.cmd.colorscheme(current_colorscheme_and_style[1])
+                    set_colorscheme_style(selection.index)
+                    vim.cmd.colorscheme(colorscheme[1])
                   end)
                   return true
                 end,
