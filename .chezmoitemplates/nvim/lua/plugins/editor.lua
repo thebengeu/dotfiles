@@ -74,6 +74,18 @@ return {
     },
   },
   {
+    "echasnovski/mini.pairs",
+    enabled = false,
+  },
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    opts = {
+      map_c_h = true,
+      map_c_w = true,
+    },
+  },
+  {
     "chrisgrieser/nvim-spider",
     keys = map({ "b", "e", "ge", "w" }, function(key)
       return {
