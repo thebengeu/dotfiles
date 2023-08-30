@@ -8,7 +8,6 @@ if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
 $chocoPackages = @(
   'Kindle'
   'ledger-live'
-  'neovide'
   'nirlauncher'
   'SQLite'
   'tableplus'
@@ -19,4 +18,5 @@ foreach ($chocoPackage in $chocoPackages)
   choco install $chocoPackage
 }
 
-choco install postgresql --params '/Password:postgres'
+choco install --ignore-dependencies neovide.install
+choco install --params '/Password:postgres' postgresql
