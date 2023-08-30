@@ -154,12 +154,10 @@ config.window_padding = {
 	top = 0,
 	bottom = 0,
 }
-
-config.wsl_domains = wezterm.default_wsl_domains()
-
-for _, wsl_domain in ipairs(config.wsl_domains) do
+config.wsl_domains = map(wezterm.default_wsl_domains(), function(wsl_domain)
 	wsl_domain.default_cwd = "~"
 	wsl_domain.default_prog = { "tmux", "new-session", "-A", "-s", "0" }
-end
+	return wsl_domain
+end)
 
 return config
