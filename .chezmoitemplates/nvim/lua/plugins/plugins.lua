@@ -91,13 +91,6 @@ return {
     enabled = false,
   },
   {
-    "nvim-treesitter/playground",
-    cmd = {
-      "TSHighlightCapturesUnderCursor",
-      "TSPlaygroundToggle",
-    },
-  },
-  {
     "thebengeu/smart-open.nvim",
     dependencies = {
       "kkharji/sqlite.lua",
