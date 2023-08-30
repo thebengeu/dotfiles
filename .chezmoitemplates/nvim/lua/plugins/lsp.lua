@@ -71,6 +71,9 @@ return {
       table.insert(keys, { "gt", false })
     end,
     opts = function(_, opts)
+      opts.inlay_hints = {
+        enabled = true,
+      }
       opts.servers = vim.tbl_extend("force", opts.servers, {
         ansiblels = {
           autostart = not jit.os:find("windows"),
