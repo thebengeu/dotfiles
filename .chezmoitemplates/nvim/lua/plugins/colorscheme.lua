@@ -17,6 +17,7 @@ local colorschemes = {
   { "github_dark_dimmed" },
   { "github_dark_high_contrast" },
   { "gruvbox-material" },
+  { "gruvbox-baby" },
   { "kanagawa-dragon" },
   { "kanagawa-wave" },
   { "material", "darker" },
@@ -31,6 +32,7 @@ local colorschemes = {
   { "onedark_dark" },
   { "onedark_vivid" },
   { "onenord" },
+  { "poimandres" },
   { "rose-pine" },
   { "sonokai", "andromeda" },
   { "sonokai", "atlantis" },
@@ -124,6 +126,10 @@ return {
     end,
     lazy = true,
     main = "github-theme",
+  },
+  {
+    "luisiacc/gruvbox-baby",
+    lazy = true,
   },
   {
     "sainnhe/gruvbox-material",
@@ -274,6 +280,10 @@ return {
         rainbowcol7 = { fg = "highlight_high" },
       },
     },
+  },
+  {
+    "olivercederborg/poimandres.nvim",
+    lazy = true,
   },
   {
     "sainnhe/sonokai",
