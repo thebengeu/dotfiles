@@ -1,6 +1,7 @@
 local Util = require("lazyvim.util")
 
 local colorschemes = {
+  { "bamboo" },
   { "bluloco" },
   { "carbonfox" },
   { "catppuccin-frappe" },
@@ -66,6 +67,10 @@ vim.keymap.set("n", "<leader>uR", function()
 end, { desc = "Randomise Colorscheme" })
 
 return {
+  {
+    "ribru17/bamboo.nvim",
+    lazy = true,
+  },
   {
     "uloco/bluloco.nvim",
     dependencies = { "rktjmp/lush.nvim" },
