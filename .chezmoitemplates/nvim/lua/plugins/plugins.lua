@@ -118,8 +118,8 @@ return {
   },
   {
     "aserowy/tmux.nvim",
+    cond = os.getenv("TMUX") ~= nil,
     config = true,
-    enabled = os.getenv("TMUX") ~= nil,
     keys = {
       { "<A-j>", mode = { "i", "n", "v" } },
       { "<A-k>", mode = { "i", "n", "v" } },
