@@ -25,6 +25,7 @@ local colorschemes = {
   { "material", "palenight" },
   { "nightfox" },
   { "nordfox" },
+  { "nordic" },
   { "one_monokai" },
   { "onedark" },
   { "onedark_dark" },
@@ -211,6 +212,25 @@ return {
   },
   {
     "EdenEast/nightfox.nvim",
+    lazy = true,
+  },
+  {
+    "AlexvZyl/nordic.nvim",
+    opts = function()
+      local colors = require("nordic.colors")
+
+      return {
+        override = {
+          rainbowcol1 = { fg = colors.red.base },
+          rainbowcol2 = { fg = colors.yellow.base },
+          rainbowcol3 = { fg = colors.blue0 },
+          rainbowcol4 = { fg = colors.orange.base },
+          rainbowcol5 = { fg = colors.green.base },
+          rainbowcol6 = { fg = colors.magenta.base },
+          rainbowcol7 = { fg = colors.cyan.base },
+        },
+      }
+    end,
     lazy = true,
   },
   {
