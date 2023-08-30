@@ -5,6 +5,9 @@ palette = "catppuccin_mocha"
 [aws]
 disabled = true
 
+[cmd_duration]
+disabled = true
+
 [git_branch]
 ignore_branches = ['main', 'master']
 
@@ -18,6 +21,12 @@ disabled = true
 disabled = true
 
 [nodejs]
+disabled = true
+
+[package]
+disabled = true
+
+[php]
 disabled = true
 
 [palettes.catppuccin_mocha]
