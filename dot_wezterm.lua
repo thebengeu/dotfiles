@@ -1,6 +1,16 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
+local map = function(table, callback)
+	local mapped_table = {}
+
+	for key, value in pairs(table) do
+		mapped_table[key] = callback(value)
+	end
+
+	return mapped_table
+end
+
 local config = {}
 
 config.adjust_window_size_when_changing_font_size = false
@@ -115,14 +125,12 @@ config.skip_close_confirmation_for_processes_named = {
 	"wslhost.exe",
 	"zsh.exe",
 }
-config.ssh_domains = {}
-
-for _, ssh_domain in ipairs({
+config.ssh_domains = map({
 	"dev-local",
 	"dev-remote",
 	"ec2",
 	"prod",
-}) do
+}, function(ssh_domain)
 	local ssh_domain_config = {
 		name = "SSH:" .. ssh_domain,
 		multiplexing = "None",
@@ -133,9 +141,8 @@ for _, ssh_domain in ipairs({
 		ssh_domain_config["default_prog"] = { "tmux", "new-session", "-A", "-s", "0" }
 	end
 
-	table.insert(config.ssh_domains, ssh_domain_config)
-end
-
+	return ssh_domain_config
+end)
 config.window_close_confirmation = "NeverPrompt"
 config.window_decorations = "INTEGRATED_BUTTONS | RESIZE"
 config.window_frame = {
