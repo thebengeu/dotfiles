@@ -1,3 +1,5 @@
+local map = require("util").map
+
 return {
   {
     "ja-ford/delaytrain.nvim",
@@ -72,12 +74,13 @@ return {
   },
   {
     "chrisgrieser/nvim-spider",
-    keys = {
-      { "w", "<cmd>lua require('spider').motion('w')<CR>" },
-      { "e", "<cmd>lua require('spider').motion('e')<CR>" },
-      { "b", "<cmd>lua require('spider').motion('b')<CR>" },
-      { "ge", "<cmd>lua require('spider').motion('ge')<CR>" },
-    },
+    keys = map({ "b", "e", "ge", "w" }, function(key)
+      return {
+        key,
+        "<Cmd>lua require('spider').motion('" .. key .. "')<CR>",
+        mode = { "n", "o", "x" },
+      }
+    end),
   },
   {
     "linty-org/readline.nvim",
