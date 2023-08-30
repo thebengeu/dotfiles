@@ -17,6 +17,7 @@ local colorschemes = {
   { "github_dark" },
   { "github_dark_dimmed" },
   { "github_dark_high_contrast" },
+  { "gruvbox" },
   { "gruvbox-material" },
   { "gruvbox-baby" },
   { "kanagawa-dragon" },
@@ -132,6 +133,25 @@ return {
     end,
     lazy = true,
     main = "github-theme",
+  },
+  {
+    "ellisonleao/gruvbox.nvim",
+    opts = function()
+      local colors = require("gruvbox.palette").get_base_colors(vim.o.background, "")
+
+      return {
+        overrides = {
+          rainbowcol1 = { fg = colors.red },
+          rainbowcol2 = { fg = colors.yellow },
+          rainbowcol3 = { fg = colors.blue },
+          rainbowcol4 = { fg = colors.orange },
+          rainbowcol5 = { fg = colors.green },
+          rainbowcol6 = { fg = colors.purple },
+          rainbowcol7 = { fg = colors.cyan },
+        },
+      }
+    end,
+    lazy = true,
   },
   {
     "luisiacc/gruvbox-baby",
