@@ -44,6 +44,7 @@ local colorschemes = {
   { "tokyonight-moon" },
   { "tokyonight-night" },
   { "tokyonight-storm" },
+  { "tundra" },
   { "vscode" },
 }
 
@@ -239,6 +240,36 @@ return {
       }
     end,
     lazy = true,
+  },
+  {
+    "sam4llis/nvim-tundra",
+    init = function()
+      require("lazyvim.util").on_load("nvim-tundra", function()
+        local colors = require("nvim-tundra.palette.arctic")
+        local rainbowcols = {
+          colors.red._500,
+          colors.sand._500,
+          colors.sky._500,
+          colors.orange._500,
+          colors.green._500,
+          colors.indigo._500,
+          colors.opal._500,
+        }
+
+        for i = 1, 7 do
+          vim.api.nvim_set_hl(0, "rainbowcol" .. i, { fg = rainbowcols[i] })
+        end
+      end)
+    end,
+    lazy = true,
+    opts = {
+      plugins = {
+        cmp = true,
+        gitsigns = true,
+        neogit = true,
+        telescope = true,
+      },
+    },
   },
   {
     "cpea2506/one_monokai.nvim",
