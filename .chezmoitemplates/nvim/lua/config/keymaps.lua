@@ -31,3 +31,15 @@ vim.keymap.set("n", "u", "<Cmd>silent undo<CR>")
 vim.keymap.set("n", "<space>bo", "<Cmd>%bd|e#|bd#<CR>", { desc = "Delete other buffers" })
 vim.keymap.set("n", "<space>cs", edit_chezmoi_path("source"), { desc = "Chezmoi Source" })
 vim.keymap.set("n", "<space>ct", edit_chezmoi_path("target"), { desc = "Chezmoi Target" })
+vim.keymap.set(
+  "n",
+  "[<space>",
+  "<Cmd>put!=repeat(nr2char(10), v:count1)|silent ']+<CR>",
+  { desc = "Add blank lines above" }
+)
+vim.keymap.set(
+  "n",
+  "]<space>",
+  "<Cmd>put =repeat(nr2char(10), v:count1)|silent '[-<CR>",
+  { desc = "Add blank lines below" }
+)
