@@ -30,6 +30,7 @@ local colorschemes = {
   { "onedark" },
   { "onedark_dark" },
   { "onedark_vivid" },
+  { "onenord" },
   { "rose-pine" },
   { "sonokai", "andromeda" },
   { "sonokai", "atlantis" },
@@ -252,6 +253,10 @@ return {
   },
   {
     "olimorris/onedarkpro.nvim",
+    lazy = true,
+  },
+  {
+    "rmehri01/onenord.nvim",
     lazy = true,
   },
   {
