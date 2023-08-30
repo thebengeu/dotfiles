@@ -1,5 +1,9 @@
 return {
   {
+    "sindrets/diffview.nvim",
+    cmd = { "DiffviewFileHistory", "DiffviewOpen" },
+  },
+  {
     "akinsho/git-conflict.nvim",
     config = true,
     event = { "BufNewFile", "BufReadPost" },
