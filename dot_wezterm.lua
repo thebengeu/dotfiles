@@ -56,75 +56,53 @@ config.keys = {
 	{ key = "UpArrow", mods = "SHIFT", action = act.ScrollToPrompt(-1) },
 	{ key = "DownArrow", mods = "SHIFT", action = act.ScrollToPrompt(1) },
 }
-config.launch_menu = {
-	{
-		domain = { DomainName = "local" },
-		label = "Bash",
-		args = { "bash" },
+
+config.launch_menu = {}
+
+for label, args in pairs({
+	["Bash"] = { "bash" },
+	["Developer PowerShell for VS 2022"] = {
+		"powershell",
+		"-noe",
+		"-c",
+		[[&{Import-Module "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\Common7\Tools\Microsoft.VisualStudio.DevShell.dll"; Enter-VsDevShell f5ce53b2}]],
 	},
-	{
-		domain = { DomainName = "local" },
-		label = "Developer PowerShell for VS 2022",
-		args = {
-			"powershell",
-			"-noe",
-			"-c",
-			[[&{Import-Module "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\Common7\Tools\Microsoft.VisualStudio.DevShell.dll"; Enter-VsDevShell f5ce53b2}]],
-		},
+	["fish"] = { "fish" },
+	["Nushell"] = { "nu" },
+	["PowerShell"] = { "pwsh", "-NoLogo" },
+	["Windows PowerShell"] = { "powershell", "-NoLogo" },
+	["zsh"] = { "zsh" },
+	["Restart WSL"] = {
+		"wezterm",
+		"cli",
+		"spawn",
+		"--domain-name",
+		"local",
+		"--",
+		"powershell",
+		"-NoProfile",
+		"-Command",
+		"wsl",
+		"--shutdown",
+		";",
+		"wsl",
+		"--cd",
+		"~",
+		"--exec",
+		"tmux",
+		"new-session",
+		"-A",
+		"-s",
+		"0",
 	},
-	{
+}) do
+	table.insert(config.launch_menu, {
 		domain = { DomainName = "local" },
-		label = "fish",
-		args = { "fish" },
-	},
-	{
-		domain = { DomainName = "local" },
-		label = "Nushell",
-		args = { "nu" },
-	},
-	{
-		domain = { DomainName = "local" },
-		label = "PowerShell",
-		args = { "pwsh", "-NoLogo" },
-	},
-	{
-		domain = { DomainName = "local" },
-		label = "Windows PowerShell",
-		args = { "powershell", "-NoLogo" },
-	},
-	{
-		domain = { DomainName = "local" },
-		label = "zsh",
-		args = { "zsh" },
-	},
-	{
-		args = {
-			"wezterm",
-			"cli",
-			"spawn",
-			"--domain-name",
-			"local",
-			"--",
-			"powershell",
-			"-NoProfile",
-			"-Command",
-			"wsl",
-			"--shutdown",
-			";",
-			"wsl",
-			"--cd",
-			"~",
-			"--exec",
-			"tmux",
-			"new-session",
-			"-A",
-			"-s",
-			"0",
-		},
-		domain = { DomainName = "local" },
-		label = "Restart WSL",
-	},
-}
+		label = label,
+		args = args,
+	})
+end
+
 config.show_new_tab_button_in_tab_bar = false
 config.show_tab_index_in_tab_bar = false
 config.skip_close_confirmation_for_processes_named = {
