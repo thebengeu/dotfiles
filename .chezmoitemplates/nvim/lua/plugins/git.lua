@@ -34,6 +34,16 @@ return {
     },
   },
   {
+    "NeogitOrg/neogit",
+    config = true,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    keys = {
+      { "<leader>gn", "<Cmd>Neogit<CR>", desc = "Neogit" },
+    },
+  },
+  {
     "tpope/vim-fugitive",
     cmd = { "G", "Gclog" },
   },

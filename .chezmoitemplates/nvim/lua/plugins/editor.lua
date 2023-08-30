@@ -18,6 +18,7 @@ return {
       ignore_filetypes = {
         "lazy",
         "mason",
+        "NeogitStatus",
         "neo%-tree",
         "qf",
       },
