@@ -64,6 +64,16 @@ config.launch_menu = {
 	},
 	{
 		domain = { DomainName = "local" },
+		label = "Developer PowerShell for VS 2022",
+		args = {
+			"powershell",
+			"-noe",
+			"-c",
+			[[&{Import-Module "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\Common7\Tools\Microsoft.VisualStudio.DevShell.dll"; Enter-VsDevShell f5ce53b2}]],
+		},
+	},
+	{
+		domain = { DomainName = "local" },
 		label = "fish",
 		args = { "fish" },
 	},
