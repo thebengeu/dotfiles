@@ -111,7 +111,6 @@ $pathsForTargets = @{
     "$Env:ProgramFiles\PostgreSQL\15\bin"
   )
   [EnvironmentVariableTarget]::User    = @(
-    "$Env:APPDATA\Python\Python311\Scripts"
     "$Env:USERPROFILE\.cargo\bin"
     "$Env:USERPROFILE\.local\bin"
     $Env:PNPM_HOME
