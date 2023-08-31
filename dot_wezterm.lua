@@ -1,14 +1,14 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
-local map = function(table, callback)
-	local mapped_table = {}
+local map = function(input_table, callback)
+	local output_table = {}
 
-	for key, value in pairs(table) do
-		mapped_table[key] = callback(value)
+	for key, value in pairs(input_table) do
+		table.insert(output_table, callback(value, key))
 	end
 
-	return mapped_table
+	return output_table
 end
 
 local config = {}
@@ -66,10 +66,7 @@ config.keys = {
 	{ key = "UpArrow", mods = "SHIFT", action = act.ScrollToPrompt(-1) },
 	{ key = "DownArrow", mods = "SHIFT", action = act.ScrollToPrompt(1) },
 }
-
-config.launch_menu = {}
-
-for label, args in pairs({
+config.launch_menu = map({
 	["Bash"] = { "bash" },
 	["Developer PowerShell for VS 2022"] = {
 		"powershell",
@@ -105,14 +102,13 @@ for label, args in pairs({
 		"-s",
 		"0",
 	},
-}) do
-	table.insert(config.launch_menu, {
+}, function(args, label)
+	return {
 		domain = { DomainName = "local" },
 		label = label,
 		args = args,
-	})
-end
-
+	}
+end)
 config.show_new_tab_button_in_tab_bar = false
 config.show_tab_index_in_tab_bar = false
 config.skip_close_confirmation_for_processes_named = {
