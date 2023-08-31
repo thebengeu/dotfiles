@@ -19,4 +19,4 @@ foreach ($chocoPackage in $chocoPackages)
 }
 
 choco install --ignore-dependencies neovide.install
-choco install --params '/Password:postgres' --params-global postgresql
+choco install --params '/Password:postgres /Port:5433' --params-global postgresql
