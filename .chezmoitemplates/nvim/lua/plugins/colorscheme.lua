@@ -391,6 +391,30 @@ return {
         },
         { "<leader>gC", "<Cmd>Telescope git_commits<CR>", desc = "commits" },
         {
+          "<leader>sf",
+          function()
+            local root = require("lazy.core.config").options.root
+            require("telescope.pickers")
+              .new({}, {
+                attach_mappings = function(prompt_bufnr)
+                  local actions = require("telescope.actions")
+                  actions.select_default:replace(function()
+                    actions.close(prompt_bufnr)
+                    local selection = require("telescope.actions.state").get_selected_entry()
+                    require("telescope.builtin").live_grep({
+                      cwd = root .. "/" .. selection[1],
+                    })
+                  end)
+                  return true
+                end,
+                finder = require("telescope.finders").new_table({ results = vim.fn.readdir(root) }),
+                sorter = require("telescope.config").values.file_sorter(),
+              })
+              :find()
+          end,
+          desc = "Grep Plugin Folder",
+        },
+        {
           "<leader>si",
           function()
             Util.telescope("live_grep", {
@@ -416,37 +440,22 @@ return {
           desc = "Grep (cwd ignored)",
         },
         {
-          "<leader>sp",
-          function()
-            local root = require("lazy.core.config").options.root
-            require("telescope.pickers")
-              .new({}, {
-                attach_mappings = function(prompt_bufnr)
-                  local actions = require("telescope.actions")
-                  actions.select_default:replace(function()
-                    actions.close(prompt_bufnr)
-                    local selection = require("telescope.actions.state").get_selected_entry()
-                    require("telescope.builtin").live_grep({
-                      cwd = root .. "/" .. selection[1],
-                    })
-                  end)
-                  return true
-                end,
-                finder = require("telescope.finders").new_table({ results = vim.fn.readdir(root) }),
-                sorter = require("telescope.config").values.file_sorter(),
-              })
-              :find()
-          end,
-          desc = "Grep Plugin Files",
-        },
-        {
-          "<leader>sv",
+          "<leader>sl",
           function()
             require("telescope.builtin").live_grep({
               cwd = require("lazy.core.config").options.root .. "/LazyVim",
             })
           end,
           desc = "Grep LazyVim",
+        },
+        {
+          "<leader>sp",
+          function()
+            require("telescope.builtin").live_grep({
+              cwd = require("lazy.core.config").options.root,
+            })
+          end,
+          desc = "Grep Plugins",
         },
         {
           "<leader>uC",
