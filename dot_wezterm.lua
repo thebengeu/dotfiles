@@ -11,6 +11,8 @@ local map = function(input_table, callback)
 	return output_table
 end
 
+local tmux_new_session = { "tmux", "new-session", "-A", "-s", "0" }
+
 local config = {}
 
 config.adjust_window_size_when_changing_font_size = false
@@ -138,7 +140,7 @@ config.ssh_domains = map({
 	}
 
 	if not ssh_domain:find("^dev%-") then
-		ssh_domain_config["default_prog"] = { "tmux", "new-session", "-A", "-s", "0" }
+		ssh_domain_config.default_prog = tmux_new_session
 	end
 
 	return ssh_domain_config
@@ -156,7 +158,7 @@ config.window_padding = {
 }
 config.wsl_domains = map(wezterm.default_wsl_domains(), function(wsl_domain)
 	wsl_domain.default_cwd = "~"
-	wsl_domain.default_prog = { "tmux", "new-session", "-A", "-s", "0" }
+	wsl_domain.default_prog = tmux_new_session
 	return wsl_domain
 end)
 
