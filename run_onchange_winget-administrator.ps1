@@ -66,3 +66,4 @@ foreach ($wingetPackageId in $wingetPackageIds)
 }
 
 winget pin add --exact --id JetBrains.WebStorm
+winget pin add --exact --id PostgreSQL.PostgreSQL
