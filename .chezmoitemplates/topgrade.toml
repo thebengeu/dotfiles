@@ -1,4 +1,5 @@
 [commands]
+corepack = "corepack prepare pnpm@latest --activate"
 just_fish_completions = "just --completions fish > $HOME/.config/fish/completions/just.fish"
 [misc]
 assume_yes = true
