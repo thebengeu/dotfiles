@@ -176,7 +176,9 @@ if (!(Test-Path $sshKeyPath))
 }
 
 go install cuelang.org/go/cmd/cue@latest
+cargo install bob-nvim
 cargo install broot
+cargo install just
 cargo install starship
 cargo install vivid
 cargo install zoxide

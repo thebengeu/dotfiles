@@ -9,6 +9,7 @@
       - --strip-components=1
     remote_src: true
     # yamllint disable-line rule:line-length
+
     src: https://get.pulumi.com/releases/sdk/pulumi-v3.76.0-linux-{{ (arch.stdout == 'amd64') | ternary('x64', arch.stdout) }}.tar.gz
 - ansible.builtin.file:
     mode: "755"
@@ -21,6 +22,7 @@
       - temporal
     remote_src: true
     # yamllint disable-line rule:line-length
+
     src: https://temporal.download/cli/archive/latest?platform=linux&arch={{ arch.stdout }}
 - ansible.builtin.file:
     mode: "755"
@@ -61,6 +63,7 @@
     dest: /tmp/rustup-init
     mode: "755"
     # yamllint disable-line rule:line-length
+
     url: https://static.rust-lang.org/rustup/dist/{{ ansible_machine }}-unknown-linux-gnu/rustup-init
 - ansible.builtin.command:
     cmd: /tmp/rustup-init --no-modify-path --profile minimal -y
@@ -93,7 +96,9 @@
   environment:
     PATH: /usr/bin:/home/{{ ansible_user_id }}/.cargo/bin
   loop:
+    - bob-nvim
     - broot
+    - just
     - starship
     - vivid
     - zoxide
