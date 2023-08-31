@@ -52,6 +52,7 @@ if (!$isMobile)
 {
   $wingetPackageIds += @(
     'BinaryFortress.DisplayFusion'
+    'Kensington.KensingtonWorks'
     'PlayStation.DualSenseFWUpdater'
     'Nvidia.GeForceExperience'
     'Valve.Steam'
