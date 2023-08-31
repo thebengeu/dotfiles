@@ -6,14 +6,14 @@ exports.async_run = function(command)
   end
 end
 
-exports.map = function(table, callback)
-  local mapped_table = {}
+exports.map = function(input_table, callback)
+  local output_table = {}
 
-  for key, value in pairs(table) do
-    mapped_table[key] = callback(value)
+  for key, value in pairs(input_table) do
+    table.insert(output_table, callback(value, key))
   end
 
-  return mapped_table
+  return output_table
 end
 
 return exports
