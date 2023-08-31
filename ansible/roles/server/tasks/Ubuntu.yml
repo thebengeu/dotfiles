@@ -37,7 +37,7 @@
     dest: ~/neovim
     force: true
     repo: https://github.com/neovim/neovim
-    version: b641fc3
+    version: a1bec02
 - ansible.builtin.command:
     chdir: ~/neovim
     cmd: make CMAKE_BUILD_TYPE=Release
