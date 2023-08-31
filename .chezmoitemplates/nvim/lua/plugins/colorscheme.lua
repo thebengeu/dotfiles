@@ -500,6 +500,7 @@ return {
           },
         },
         layout_strategy = "flex",
+        sorting_strategy = "ascending",
         vimgrep_arguments = vim.list_extend(
           vim.fn.copy(require("telescope.config").values.vimgrep_arguments),
           { "--hidden" }
