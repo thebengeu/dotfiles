@@ -13,6 +13,7 @@ $wingetPackageIds = @(
   'Armin2208.WindowsAutoNightMode'
   'Amazon.AWSCLI'
   'rsteube.Carapace'
+  'Google.Chrome'
   'Hibbiki.Chromium'
   'dandavison.delta'
   'Discord.Discord'
