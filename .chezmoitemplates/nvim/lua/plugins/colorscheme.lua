@@ -389,7 +389,9 @@ return {
           end,
           desc = "Find Plugin Files",
         },
-        { "<leader>gC", "<Cmd>Telescope git_commits<CR>", desc = "commits" },
+        { "<leader>gb", "<Cmd>Telescope git_bcommits<CR>", desc = "Buffer commits" },
+        { "<leader>gC", "<Cmd>Telescope git_commits<CR>", desc = "Commits" },
+        { "<leader>gc" },
         {
           "<leader>si",
           function()
