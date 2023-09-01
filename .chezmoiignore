@@ -20,3 +20,11 @@ AppData/
 AutoHotkey.ahk
 .wezterm.lua
 {{ end }}
+
+{{ if or (eq .chezmoi.hostname "ec2") (eq .chezmoi.hostname "prod") }}
+.ssh/id_ed25519.pub
+{{ end }}
+
+{{ if eq .chezmoi.hostname "ec2" }}
+.aws/private_credentials
+{{ end }}
