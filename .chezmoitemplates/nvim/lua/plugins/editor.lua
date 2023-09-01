@@ -75,7 +75,6 @@ return {
         before = true,
         rainbow = {
           enabled = true,
-          shade = 9,
         },
         reuse = "all",
       },
