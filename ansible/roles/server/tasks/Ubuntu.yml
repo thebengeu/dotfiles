@@ -96,7 +96,6 @@
   environment:
     PATH: /usr/bin:/home/{{ ansible_user_id }}/.cargo/bin
   loop:
-    - bob-nvim
     - broot
     - just
     - starship
