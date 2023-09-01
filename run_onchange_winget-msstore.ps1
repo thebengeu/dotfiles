@@ -4,6 +4,7 @@ $storeApps = @(
   'Apple Music Preview'
   '9PL8WPH0QK9M' # Cider (Preview)
   'iCloud'
+  'Netflix'
   '9NRX63209R7B' # Outlook for Windows
   'Raindrop.io'
   'Unigram—Telegram for Windows'
