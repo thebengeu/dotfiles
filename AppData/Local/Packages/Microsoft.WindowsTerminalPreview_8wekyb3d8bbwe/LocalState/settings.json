@@ -1,9 +1,16 @@
 {
     "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
+    "actions": [],
     "confirmCloseAllTabs": false,
     "copyOnSelect": true,
     "defaultProfile": "{6c9b8b4d-567c-4764-ab77-ef52f0e6016f}",
+    "newTabMenu": 
+    [
+        {
+            "type": "remainingProfiles"
+        }
+    ],
     "profiles": 
     {
         "defaults": 
@@ -72,10 +79,11 @@
                 "source": "Windows.Terminal.Wsl"
             },
             {
-                "commandline": "fish -c nvim",
+                "commandline": "fish",
                 "guid": "{6c9b8b4d-567c-4764-ab77-ef52f0e6016f}",
                 "hidden": false,
-                "name": "Neovim"
+                "name": "Fish",
+                "startingDirectory": "%USERPROFILE%"
             }
         ]
     },
