@@ -1,5 +1,3 @@
-local Util = require("lazyvim.util")
-
 local colorschemes = {
   { "bamboo" },
   { "bluloco" },
@@ -196,16 +194,6 @@ return {
   },
   {
     "LazyVim/LazyVim",
-    init = function()
-      if jit.os:find("Windows") then
-        local float_term = Util.float_term
-
-        ---@diagnostic disable-next-line: duplicate-set-field
-        Util.float_term = function(cmd, opts)
-          return float_term(cmd or { "fish" }, opts)
-        end
-      end
-    end,
     opts = {
       colorscheme = colorscheme[1],
     },
