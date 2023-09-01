@@ -6,7 +6,7 @@ return {
         "cueimports",
         "fixjson",
         "js-debug-adapter",
-        "prettier",
+        "prettierd",
         "shellcheck",
         "shellharden",
         "shfmt",
@@ -41,7 +41,7 @@ return {
         null_ls.builtins.formatting.cueimports,
         null_ls.builtins.formatting.fish_indent,
         null_ls.builtins.formatting.fixjson,
-        null_ls.builtins.formatting.prettier.with({
+        null_ls.builtins.formatting.prettierd.with({
           extra_filetypes = { "prisma" },
           runtime_condition = function(params)
             return not params.lsp_params.textDocument.uri:find("/ccxt/")
