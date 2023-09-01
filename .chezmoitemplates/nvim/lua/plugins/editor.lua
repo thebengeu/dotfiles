@@ -67,6 +67,26 @@ return {
     },
   },
   {
+    "folke/flash.nvim",
+    ---@type Flash.Config
+    opts = {
+      label = {
+        after = false,
+        before = true,
+        rainbow = {
+          enabled = true,
+          shade = 9,
+        },
+        reuse = "all",
+      },
+      modes = {
+        char = {
+          jump_labels = true,
+        },
+      },
+    },
+  },
+  {
     "chentoast/marks.nvim",
     event = { "BufNewFile", "BufReadPost" },
     opts = {
