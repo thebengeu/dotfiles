@@ -70,6 +70,9 @@ return {
     "folke/flash.nvim",
     ---@type Flash.Config
     opts = {
+      highlight = {
+        backdrop = false,
+      },
       label = {
         after = false,
         before = true,
@@ -80,7 +83,13 @@ return {
       },
       modes = {
         char = {
-          jump_labels = true,
+          autohide = true,
+          config = function(opts)
+            opts.jump_labels = vim.v.count == 0 and vim.fn.mode(true) == "n"
+          end,
+          highlight = {
+            backdrop = false,
+          },
         },
       },
     },
