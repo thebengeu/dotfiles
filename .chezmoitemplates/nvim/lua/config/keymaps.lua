@@ -31,6 +31,10 @@ vim.keymap.set("n", "u", "<Cmd>silent undo<CR>")
 vim.keymap.set("n", "<space>bo", "<Cmd>%bd|e#|bd#<CR>", { desc = "Delete other buffers" })
 vim.keymap.set("n", "<space>cs", edit_chezmoi_path("source"), { desc = "Chezmoi Source" })
 vim.keymap.set("n", "<space>ct", edit_chezmoi_path("target"), { desc = "Chezmoi Target" })
+vim.keymap.set("n", "<leader>um", function()
+  ---@diagnostic disable-next-line: undefined-field
+  vim.opt.mouse = vim.opt.mouse:get().a and "" or "a"
+end, { desc = "Toggle Mouse" })
 vim.keymap.set(
   "n",
   "[<space>",
