@@ -41,7 +41,6 @@ aliases: {
 	cr:   "chezmoi re-add"
 	cup:  "chezmoi update --apply --init"
 	ec2:  "ssh -t ec2 tmux new-session -A -s 0"
-	ez:   "exec zsh"
 	g:    "git"
 	j:    "just"
 	jd:   "just dev"
