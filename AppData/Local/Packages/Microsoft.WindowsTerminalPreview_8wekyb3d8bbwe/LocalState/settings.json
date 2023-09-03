@@ -7,14 +7,6 @@
             "command": 
             {
                 "action": "switchToTab",
-                "index": 0
-            },
-            "keys": "ctrl+shift+1"
-        },
-        {
-            "command": 
-            {
-                "action": "switchToTab",
                 "index": 7
             },
             "keys": "ctrl+shift+8"
@@ -56,16 +48,20 @@
             "keys": "ctrl+alt+9"
         },
         {
-            "command": "unbound",
-            "keys": "ctrl+shift+w"
-        },
-        {
             "command": 
             {
                 "action": "switchToTab",
                 "index": 4
             },
             "keys": "ctrl+shift+5"
+        },
+        {
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 0
+            },
+            "keys": "ctrl+shift+1"
         },
         {
             "command": 
@@ -95,17 +91,17 @@
             "command": 
             {
                 "action": "switchToTab",
-                "index": 6
+                "index": 5
             },
-            "keys": "ctrl+shift+7"
+            "keys": "ctrl+shift+6"
         },
         {
             "command": 
             {
                 "action": "switchToTab",
-                "index": 5
+                "index": 6
             },
-            "keys": "ctrl+shift+6"
+            "keys": "ctrl+shift+7"
         },
         {
             "command": 
@@ -118,6 +114,13 @@
         {
             "command": "closePane",
             "keys": "ctrl+alt+shift+0"
+        },
+        {
+            "command": 
+            {
+                "action": "closeTab"
+            },
+            "keys": "ctrl+shift+w"
         }
     ],
     "confirmCloseAllTabs": false,
