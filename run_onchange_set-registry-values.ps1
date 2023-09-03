@@ -8,6 +8,14 @@ function Set-Registry-Values($path, $values)
 
 $isMobile = (Get-CimInstance -Class Win32_ComputerSystem -Property PCSystemType).PCSystemType -eq 2
 
+Set-Registry-Values 'HKCU:\Control Panel\International' @{
+  sShortTime = 'HH:mm'
+  sTimeFormat = 'HH:mm:ss'
+}
+
+Set-ItemProperty 'HKCU:\Control Panel\Mouse' 'MouseSensitivity' 20
+Set-ItemProperty 'HKCU:\Software\Microsoft\Accessibility' 'CursorSize' 2
+
 Set-Registry-Values 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' @{
   Hidden          = 1
   HideFileExt     = 0
@@ -17,16 +25,14 @@ Set-Registry-Values 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Ad
   TaskbarMn = 0
 }
 
-Set-ItemProperty 'HKCU:\Control Panel\Mouse' 'MouseSensitivity' 20
-Set-ItemProperty 'HKCU:\Software\Microsoft\Accessibility' 'CursorSize' 2
-Set-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Search' 'SearchboxTaskbarMode' 0
-
 if ($isMobile)
 {
-  Set-Registry-Values "HKCU:\Software\Microsoft\Windows\CurrentVersion\PrecisionTouchPad" @{
+  Set-Registry-Values 'HKCU:\Software\Microsoft\Windows\CurrentVersion\PrecisionTouchPad' @{
     FourFingerSlideEnabled = 3
     FourFingerTapEnabled   = 3
     RightClickZoneEnabled  = 0
     ThreeFingerTapEnabled  = 4
   }
 }
+
+Set-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Search' 'SearchboxTaskbarMode' 0
