@@ -54,7 +54,6 @@ aliases: {
 	n:    "nvim"
 	p:    "pnpm"
 	pd:   "pnpm dev"
-	pp:   "psql postgresql://postgres:postgres@localhost:5432/postgres"
 	ppg:  "pnpm prisma generate"
 	pr:   "gh pr create -f"
 	prod: "ssh -t prod tmux new-session -A -s 0"
