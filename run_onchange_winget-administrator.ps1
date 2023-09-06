@@ -17,6 +17,7 @@ $wingetPackageIds = @(
   'Hibbiki.Chromium'
   'dandavison.delta'
   'Discord.Discord'
+  'Element.Element'
   'ExpressVPN.ExpressVPN'
   'flux.flux'
   'Mozilla.Firefox'
