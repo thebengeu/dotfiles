@@ -20,11 +20,6 @@ return {
     },
   },
   {
-    "smjonas/inc-rename.nvim",
-    config = true,
-    lazy = true,
-  },
-  {
     "Vigemus/iron.nvim",
     config = function()
       local config = require("iron.config")
