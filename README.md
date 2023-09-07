@@ -1,5 +1,5 @@
 ```powershell
-irm https://github.com/thebengeu/dotfiles/raw/master/run_onchange_init.ps1 | iex
+irm https://github.com/thebengeu/dotfiles/raw/master/run_onchange_init-admin.ps1 | iex
 ```
 
 ```console
