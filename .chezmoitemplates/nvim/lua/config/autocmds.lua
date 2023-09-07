@@ -6,7 +6,12 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 vim.api.nvim_create_autocmd("BufWritePost", {
-  callback = async_run("chezmoi apply --init"),
+  callback = function()
+    if vim.api.nvim_buf_get_name(0):find("%-admin%.ps1") then
+      return
+    end
+    async_run("chezmoi apply --init")()
+  end,
   pattern = "*/.local/share/chezmoi/*",
 })
 
