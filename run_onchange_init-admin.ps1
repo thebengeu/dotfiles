@@ -23,6 +23,7 @@ $wingetPackageIds = @(
   'Kitware.CMake'
   'Git.Git'
   'GoLang.Go'
+  'gerardog.gsudo'
   'MSYS2.MSYS2'
   'OpenJS.NodeJS'
   'Microsoft.PowerShell'
