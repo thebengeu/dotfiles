@@ -1,7 +1,7 @@
 [alias]
   lg = log --pretty='format:%Cgreen%ah%Creset %s'
-  rau = "!UPSTREAM_URL=$(curl https://api.github.com/repos/$(git ls-remote --get-url origin | cut --delimiter : --fields 2 | cut --delimiter . --fields -2) | jq -r .parent.ssh_url); if [ $UPSTREAM_URL != null ]; then git remote add upstream $UPSTREAM_URL; fi"
   s = status --short
+	rau = "!UPSTREAM_URL=$(curl --silent https://api.github.com/repos/$(git ls-remote --get-url origin | sed 's/\\.git$//' | sed 's/.*[/:]\\(.*\\/.*\\)$/\\1/') | jq -r .parent.ssh_url); if [ $UPSTREAM_URL != null ]; then git remote add upstream $UPSTREAM_URL; fi"
 [core]
   excludesFile = ~/.gitignore
   pager = delta
