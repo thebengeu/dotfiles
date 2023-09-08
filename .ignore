@@ -1,5 +1,5 @@
 AppData/**/*.tmpl
-private_dot_config/**/*.tmpl
-!private_dot_config/ghorg/*
-!private_dot_config/private_fish/**
-!private_dot_config/zsh*/*
+dot_config/**/*.tmpl
+!dot_config/ghorg/*
+!dot_config/fish/**
+!dot_config/zsh*/*

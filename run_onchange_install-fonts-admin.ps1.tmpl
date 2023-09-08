@@ -1,4 +1,4 @@
-# {{ output "powershell" "-NoProfile" "-Command" (print "(Get-ChildItem " .chezmoi.sourceDir "/private_dot_local/private_share/fonts | Get-FileHash).Hash") | sha256sum }}
+# {{ output "powershell" "-NoProfile" "-Command" (print "(Get-ChildItem " .chezmoi.sourceDir "/dot_local/share/fonts | Get-FileHash).Hash") | sha256sum }}
 if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator))
 {
   if (Get-Command gsudo)
@@ -12,7 +12,7 @@ if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
   Exit
 }
 
-$fontFolder = "$Env:USERPROFILE\.local\share\chezmoi\private_dot_local\private_share\fonts"
+$fontFolder = "$Env:USERPROFILE\.local\share\chezmoi\dot_local\share\fonts"
 $shellFolder = (New-Object -COMObject Shell.Application).Namespace($fontFolder)
 
 foreach ($fontFile in Get-ChildItem $fontFolder)
