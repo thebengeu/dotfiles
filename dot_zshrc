@@ -1,6 +1,6 @@
 # zmodload zsh/zprof
 
-source ~/.generated.zsh
+source ~/.config/zsh/generated.zsh
 
 HISTFILE=~/.zsh_history
 HISTSIZE=9223372036854775807
@@ -11,7 +11,7 @@ setopt EXTENDED_GLOB
 setopt HIST_FIND_NO_DUPS
 setopt SHARE_HISTORY
 
-fpath+=~/zsh-completions/src
+fpath+=~/.config/zsh/zsh-completions/src
 
 AGKOZAK_BLANK_LINES=1
 AGKOZAK_CUSTOM_SYMBOLS=( '⇣⇡' '⇣' '⇡' '+' 'x' '!' '>' '?' 'S')
@@ -20,12 +20,12 @@ AGKOZAK_PROMPT_DIRTRIM=0
 AGKOZAK_PROMPT_CHAR=( ❯ ❯ ❮ )
 AGKOZAK_SHOW_VIRTUALENV=0
 AGKOZAK_USER_HOST_DISPLAY=0
-source ~/agkozak-zsh-prompt/agkozak-zsh-prompt.plugin.zsh
+source ~/.config/zsh/agkozak-zsh-prompt/agkozak-zsh-prompt.plugin.zsh
 
-source ~/history-search-multi-word/history-search-multi-word.plugin.zsh
-source ~/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source ~/.config/zsh/history-search-multi-word/history-search-multi-word.plugin.zsh
+source ~/.config/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
-source ~/zsh-history-substring-search/zsh-history-substring-search.zsh
+source ~/.config/zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
@@ -36,9 +36,9 @@ if [ "$(find ~/.zcompdump -mtime 1)" ] ; then
 fi
 compinit -C
 
-source ~/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-source ~/fzf-tab/fzf-tab.plugin.zsh
+source ~/.config/zsh/fzf-tab/fzf-tab.plugin.zsh
 
 # zprof

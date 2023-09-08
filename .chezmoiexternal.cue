@@ -16,7 +16,6 @@ import "regexp"
 _gitRepos: [
 	"Aloxaf/fzf-tab",
 	"agkozak/agkozak-zsh-prompt",
-	"b4b4r07/enhancd",
 	"zdharma-continuum/fast-syntax-highlighting",
 	"zdharma-continuum/history-search-multi-word",
 	"zsh-users/zsh-autosuggestions",
@@ -25,7 +24,7 @@ _gitRepos: [
 ]
 
 for gitRepo in _gitRepos {
-	"\(regexp.Find("[^/]+$", gitRepo))": #GitRepo & {
+	".config/zsh/\(regexp.Find("[^/]+$", gitRepo))": #GitRepo & {
 		_gitRepo: gitRepo
 	}
 }
