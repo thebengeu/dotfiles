@@ -26,5 +26,5 @@ AutoHotkey.ahk
 {{ end }}
 
 {{ if eq .chezmoi.hostname "ec2" }}
-.aws/private_credentials
+.aws/credentials
 {{ end }}
