@@ -2,4 +2,4 @@ AppData/**/*.tmpl
 dot_config/**/*.tmpl
 !dot_config/ghorg/*
 !dot_config/fish/**
-!dot_config/zsh*/*
+!dot_config/zsh/*

@@ -1,3 +1,0 @@
-{{range $alias, $command := index .platformSpecificAliases .chezmoi.os | merge .aliases -}}
-abbr "{{$alias}}"="{{$command | replace "$HOME" "~" }}"
-{{end -}}
