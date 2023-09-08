@@ -30,7 +30,6 @@ $wingetPackageIds = @(
   'Flow-Launcher.Flow-Launcher'
   'junegunn.fzf'
   'GitHub.cli'
-  'gerardog.gsudo'
   'jqlang.jq'
   'DEVCOM.Lua'
   'jftuga.less'
