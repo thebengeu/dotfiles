@@ -5,12 +5,11 @@ README.md
 secrets.ejson
 
 {{ if eq .chezmoi.os "windows" }}
-.config/{bat,fd,gitui,glow,gup,lazygit,nvim,tealdeer}/
+.config/{bat,fd,gitui,glow,gup,lazygit,msmtp,nvim,tealdeer,yamlfmt}/
 .config/topgrade.toml
 .local/
 .ansible.cfg
 .inputrc
-.msmtprc
 run_onchange_init.sh
 {{ else }}
 .config/fish/conf.d/shell-integration.fish
