@@ -1,7 +1,7 @@
 [alias]
   lg = log --pretty='format:%Cgreen%ah%Creset %s'
   s = status --short
-  rau = "!UPSTREAM_URL=$(curl --silent https://api.github.com/repos/$(git ls-remote --get-url origin | sed 's/\\.git$//' | sed 's/.*[/:]\\(.*\\/.*\\)$/\\1/') | jq -r .parent.ssh_url); [ $UPSTREAM_URL != null ] && git remote add upstream $UPSTREAM_URL"
+  rau = "!repo=$(git ls-remote --get-url origin | sed 's/\\.git$//' | sed 's/.*[/:]\\(.*\\/.*\\)$/\\1/'); case $repo in thebengeu/*) upstream_url=$(curl --header 'Authorization: Bearer '{{ (ejsonDecrypt (print .chezmoi.sourceDir "/secrets.ejson")).github_token_repo }}'' --silent https://api.github.com/repos/$repo | jq -r .parent.ssh_url); if [ $upstream_url != null ]; then git remote add upstream $upstream_url; fi;; esac"
 [core]
   excludesFile = ~/.gitignore
   pager = delta
