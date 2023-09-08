@@ -29,6 +29,6 @@ for gitRepo in _gitRepos {
 	}
 }
 
-".tmux/plugins/tpm": #GitRepo & {
+".config/tmux/plugins/tpm": #GitRepo & {
 	_gitRepo: "tmux-plugins/tpm"
 }
