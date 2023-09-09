@@ -1,7 +1,7 @@
 [alias]
   lg = log --pretty='format:%Cgreen%ah%Creset %s'
   s = status --short
-  rau = "!repo=$(git ls-remote --get-url origin | sed 's/\\.git$//' | sed 's/.*[/:]\\(.*\\/.*\\)$/\\1/'); case $repo in thebengeu/*) upstream_url=$(curl --header 'Authorization: Bearer '{{ (ejsonDecrypt (print .chezmoi.sourceDir "/secrets.ejson")).github_token_repo }}'' --silent https://api.github.com/repos/$repo | jq -r .parent.ssh_url); if [ $upstream_url != null ]; then git remote add upstream $upstream_url; fi;; esac"
+	rau = "!GH_TOKEN=${GH_TOKEN:-$GITHUB_TOKEN}\nif [ \"$GH_TOKEN\" != \"\" ]; then\nheader_option=(-H \"Authorization: Bearer $GH_TOKEN\")\nfi\nbase_url='https://api.github.com'\ncurl_with_options=(curl \"${header_option[@]}\" -s)\nemail=$(git config user.email)\nif [ \"$GH_USERNAME\" = \"\" ]; then\nGH_USERNAME=$(\n\"${curl_with_options[@]}\" \"$base_url/search/users?q=$email%20in:email\" |\njq -r .items[0].login\n)\nfi\norigin=$(git ls-remote --get-url origin)\nif [[ $origin = *github.com*$GH_USERNAME/* ]]; then\nrepo=$(\necho \"$origin\" |\nsed 's/\\.git$//' |\nsed 's/.*[/:]\\(.*\\/.*\\)$/\\1/'\n)\nupstream_url=$(\n\"${curl_with_options[@]}\" \"$base_url/repos/$repo\" |\njq -r .parent.clone_url\n)\nif [ \"$upstream_url\" = null ]; then\nnot_you=\"^(?!$(git config user.name) <$email>$)\"\nlatest_hash_not_yours=$(\ngit log --author=\"$not_you\" --format=%H --perl-regexp --reverse |\nhead -1\n)\nquery=$(\n\"${curl_with_options[@]}\" \"$base_url/search/commits?q=hash:$latest_hash_not_yours\" |\njq -r .items[].repository.full_name |\nsed s/^/repo:/ |\npaste -sd +\n)\nupstream_url=$(\n\"${curl_with_options[@]}\" \"$base_url/search/repositories?q=$query\" |\njq -r '.items |\nsort_by(.stargazers_count, .watchers_count, .forks_count, .open_issues_count) |\nreverse |\n.[0].clone_url'\n)\nfi\nif [ \"$upstream_url\" != null ]; then\nset -x\ngit remote add upstream \"$upstream_url\"\nfi\nfi"
 [core]
   pager = delta
 [delta]
@@ -10,13 +10,15 @@
 [diff]
   colorMoved = default
 [init]
-  templateDir = ~/.config/git/template
+  templateDir = {{ .chezmoi.homeDir }}/.config/git/template
 [interactive]
   diffFilter = delta --color-only
 [merge]
   conflictstyle = diff3
 [pull]
   rebase = true
+[push]
+	autoSetupRemote = true
 [rebase]
   autoStash = true
 [safe]
