@@ -1,0 +1,41 @@
+{{range $environmentVariable, $value := .environmentVariables -}}
+export {{$environmentVariable}}={{$value}}
+{{end -}}
+{{range $path := .paths -}}
+export PATH={{$path}}:$PATH
+{{end -}}
+{{range $name, $lines_and_parameters := .functions -}}
+function {{$name}} () {
+{{- range $line := $lines_and_parameters.lines}}
+  {{- range $i, $parameter := $lines_and_parameters.parameters}}
+    {{- $line = $line | replace $parameter ($i | add1 | toString)}}
+  {{- end}}
+  {{$line}}
+{{- end}}
+}
+{{- end}}
+{{range $alias, $command := index .platformSpecificAliases .chezmoi.os | merge .aliases -}}
+function {{$alias}} () {
+  {{$command | replace "$HOME" "~"}} $@
+}
+{{end -}}
+
+function br {
+    local cmd cmd_file code
+    cmd_file=$(mktemp)
+    if broot --outcmd "$cmd_file" "$@"; then
+{{- if eq .chezmoi.os "windows" }}
+        eval $(cat $cmd_file | sd 'cd (.+)' 'cd $(cygpath "$1")')
+{{- else }}
+        cmd=$(<"$cmd_file")
+        eval "$cmd"
+{{- end }}
+        command rm -f "$cmd_file"
+    else
+        code=$?
+        command rm -f "$cmd_file"
+        return "$code"
+    fi
+}
+
+export LS_COLORS='{{ output "vivid" "generate" "catppuccin-mocha" | trim }}'
