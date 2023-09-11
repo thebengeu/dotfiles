@@ -189,9 +189,11 @@ cargo install starship
 cargo install vivid
 cargo install zoxide
 
-if (!(Test-Path "$Env:USERPROFILE\.local\share\chezmoi"))
+$chezmoiSourceDir="$Env:USERPROFILE\thebengeu\dotfiles"
+
+if (!(Test-Path $chezmoiSourceDir))
 {
-  chezmoi init --apply --ssh thebengeu
+  chezmoi init --apply --source $chezmoiSourceDir --ssh thebengeu
 }
 
 if (!$isMobile)
