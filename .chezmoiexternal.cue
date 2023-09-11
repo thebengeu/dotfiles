@@ -1,6 +1,7 @@
 import "regexp"
 
 #External: {
+	executable?:   bool
 	refreshPeriod: "168h"
 	type:          "file" | "git-repo"
 	url:           string
@@ -30,8 +31,9 @@ for gitRepo in _zshGitRepos {
 }
 
 ".config/git/template/hooks/add-upstream-auto-detected-url.sh": #External & {
-	type: "file"
-	url:  "https://raw.githubusercontent.com/thebengeu/auto-git-remote-add-upstream/master/add-upstream-auto-detected-url.sh"
+	executable: true
+	type:       "file"
+	url:        "https://raw.githubusercontent.com/thebengeu/auto-git-remote-add-upstream/master/add-upstream-auto-detected-url.sh"
 }
 ".config/tmux/plugins/tpm": #GitRepo & {
 	_gitRepo: "tmux-plugins/tpm"
