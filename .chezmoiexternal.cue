@@ -13,7 +13,7 @@ import "regexp"
 	url:      "https://github.com/\(_gitRepo)"
 }
 
-_gitRepos: [
+_zshGitRepos: [
 	"Aloxaf/fzf-tab",
 	"agkozak/agkozak-zsh-prompt",
 	"zdharma-continuum/fast-syntax-highlighting",
@@ -23,12 +23,16 @@ _gitRepos: [
 	"zsh-users/zsh-history-substring-search",
 ]
 
-for gitRepo in _gitRepos {
+for gitRepo in _zshGitRepos {
 	".config/zsh/\(regexp.Find("[^/]+$", gitRepo))": #GitRepo & {
 		_gitRepo: gitRepo
 	}
 }
 
+".config/git/template/hooks/add-upstream-auto-detected-url.sh": #External & {
+	type: "file"
+	url:  "https://raw.githubusercontent.com/thebengeu/auto-git-remote-add-upstream/master/add-upstream-auto-detected-url.sh"
+}
 ".config/tmux/plugins/tpm": #GitRepo & {
 	_gitRepo: "tmux-plugins/tpm"
 }
