@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+[ "$PS1" = "" ] && return
+
+HISTCONTROL=ignoreboth
+HISTFILESIZE=
+HISTSIZE=
+
+shopt -s checkwinsize
+shopt -s globstar
+shopt -s histappend
+
+# shellcheck source=/dev/null
+source ~/.config/bash/generated.sh
