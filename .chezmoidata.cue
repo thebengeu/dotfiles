@@ -44,6 +44,8 @@ aliases: {
 	cup:  "chezmoi update --apply --init"
 	ec2:  "ssh -t ec2 tmux new-session -A -s 0"
 	g:    "git"
+	hb:   "hyperfine 'bash -i -c exit'"
+	hbn:  "hyperfine 'bash --noprofile --norc -i -c exit'"
 	j:    "just"
 	jd:   "just dev"
 	l:    "lsd"
@@ -61,6 +63,8 @@ aliases: {
 	prod: "ssh -t prod tmux new-session -A -s 0"
 	prr:  "gh pr create -f -r"
 	scc:  "scc --not-match \"package-lock.json|pnpm-lock.yaml\""
+	tb:   "time bash -i -c exit"
+	tbn:  "time bash --noprofile --norc -i -c exit"
 	tns:  "tmux new-session -A -s"
 	t:    "pnpm tsx"
 	vim:  "nvim"
@@ -73,8 +77,8 @@ aliases: {
 		"zsh --interactive":  "--no-rcs"
 	}
 	for shellAndFlags, noConfigFlag in _noConfigFlags {
-		"h\(regexp.Find("^p?.", shellAndFlags))":  "hyperfine --shell sh 'time \(shellAndFlags) -c exit'"
-		"h\(regexp.Find("^p?.", shellAndFlags))n": "hyperfine --shell sh 'time \(shellAndFlags) \(noConfigFlag) -c exit'"
+		"h\(regexp.Find("^p?.", shellAndFlags))":  "hyperfine '\(shellAndFlags) -c exit'"
+		"h\(regexp.Find("^p?.", shellAndFlags))n": "hyperfine '\(shellAndFlags) \(noConfigFlag) -c exit'"
 		"t\(regexp.Find("^p?.", shellAndFlags))":  "time \(shellAndFlags) -c exit"
 		"t\(regexp.Find("^p?.", shellAndFlags))n": "time \(shellAndFlags) -\(noConfigFlag) -c exit"
 	}
