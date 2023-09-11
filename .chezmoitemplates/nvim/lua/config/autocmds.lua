@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     end
     async_run("chezmoi apply --init")()
   end,
-  pattern = "*/.local/share/chezmoi/*",
+  pattern = "*/thebengeu/dotfiles/*",
 })
 
 vim.api.nvim_create_autocmd("TextChanged", {
