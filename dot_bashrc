@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+# shellcheck shell=bash
 [ "$PS1" = "" ] && return
 
 HISTCONTROL=ignoreboth
@@ -11,3 +11,4 @@ shopt -s histappend
 
 # shellcheck source=/dev/null
 source ~/.config/bash/generated.sh
+source /usr/share/bash-completion/bash_completion
