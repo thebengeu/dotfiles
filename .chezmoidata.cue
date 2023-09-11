@@ -57,11 +57,12 @@ aliases: {
 	pd:   "pnpm dev"
 	ppg:  "pnpm prisma generate"
 	pr:   "gh pr create -f"
+	prm:  "pnpm remove"
 	prod: "ssh -t prod tmux new-session -A -s 0"
 	prr:  "gh pr create -f -r"
 	scc:  "scc --not-match \"package-lock.json|pnpm-lock.yaml\""
 	tns:  "tmux new-session -A -s"
-	tsx:  "pnpm tsx"
+	t:    "pnpm tsx"
 	vim:  "nvim"
 
 	_noConfigFlags: {
