@@ -22,6 +22,8 @@ _gitAliases: {
 	r:   "rebase"
 	rbc: "rebase --continue"
 	rhh: "reset --hard HEAD"
+	rru: "remote remove upstream"
+	rv:  "remote -v"
 	s:   "s"
 	sa:  "stash apply"
 	sP:  "stash push"
