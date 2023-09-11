@@ -3,12 +3,7 @@ return {
     "pearofducks/ansible-vim",
     ft = "yaml.ansible",
   },
-  {
-    "alker0/chezmoi.vim",
-    init = function()
-      vim.g["chezmoi#source_dir_path"] = vim.loop.os_homedir() .. "/thebengeu/dotfiles"
-    end,
-  },
+  { "alker0/chezmoi.vim" },
   {
     "LhKipp/nvim-nu",
     build = ":TSInstall nu",

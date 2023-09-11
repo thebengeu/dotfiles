@@ -4,8 +4,8 @@ import (
 )
 
 _aliasDirectories: {
-	c: "$HOME/thebengeu/dotfiles"
-	d: "$HOME/thebengeu/drakon"
+	c: "$HOME/.local/share/chezmoi"
+	d: "$HOME/drakon"
 }
 _gitAliases: {
 	aa:  "add -A"
