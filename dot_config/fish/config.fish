@@ -29,3 +29,11 @@ function fish_hybrid_key_bindings
 end
 
 set --global fish_key_bindings fish_hybrid_key_bindings
+
+function __wezterm_set_user_var --argument-names name value
+    if [ -z "$TMUX" ]
+        printf "\033]1337;SetUserVar=%s=%s\007" "$name" $(echo -n "$value" | base64)
+    else
+        printf "\033Ptmux;\033\033]1337;SetUserVar=%s=%s\007\033\\" "$name" $(echo -n "$value" | base64)
+    end
+end
