@@ -1,3 +1,4 @@
+local Util = require("lazyvim.util")
 local toggle_term_open_mapping = (vim.g.goneovim or vim.g.neovide) and "<C-/>" or "<C-_>"
 
 return {
@@ -64,14 +65,20 @@ return {
       {
         "<leader>fE",
         function()
-          require("neo-tree.command").execute({ toggle = true, dir = require("lazyvim.util").get_root() })
+          require("neo-tree.command").execute({
+            toggle = true,
+            dir = Util.get_root(),
+          })
         end,
         desc = "Explorer NeoTree (root dir)",
       },
       {
         "<leader>fe",
         function()
-          require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
+          require("neo-tree.command").execute({
+            toggle = true,
+            dir = vim.loop.cwd(),
+          })
         end,
         desc = "Explorer NeoTree (cwd)",
       },
@@ -117,6 +124,65 @@ return {
           require("telescope").extensions.smart_open.smart_open()
         end,
         desc = "Smart Open",
+      },
+    },
+  },
+  {
+    "mrjones2014/smart-splits.nvim",
+    cond = os.getenv("TMUX") == nil,
+    init = function()
+      Util.on_very_lazy(function()
+        require("smart-splits")
+      end)
+    end,
+    keys = {
+      {
+        "<A-h>",
+        function()
+          require("smart-splits").resize_left()
+        end,
+      },
+      {
+        "<A-j>",
+        function()
+          require("smart-splits").resize_down()
+        end,
+      },
+      {
+        "<A-k>",
+        function()
+          require("smart-splits").resize_up()
+        end,
+      },
+      {
+        "<A-l>",
+        function()
+          require("smart-splits").resize_right()
+        end,
+      },
+      {
+        "<C-h>",
+        function()
+          require("smart-splits").move_cursor_left()
+        end,
+      },
+      {
+        "<C-j>",
+        function()
+          require("smart-splits").move_cursor_down()
+        end,
+      },
+      {
+        "<C-k>",
+        function()
+          require("smart-splits").move_cursor_up()
+        end,
+      },
+      {
+        "<C-l>",
+        function()
+          require("smart-splits").move_cursor_right()
+        end,
       },
     },
   },
