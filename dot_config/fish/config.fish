@@ -30,10 +30,28 @@ end
 
 set --global fish_key_bindings fish_hybrid_key_bindings
 
+function __mark_prompt_start --on-event fish_prompt --on-event fish_cancel --on-event fish_posterror
+    test "$__prompt_state" != prompt-start
+    and echo -en "\e]133;D\a"
+    set --global __prompt_state prompt-start
+    echo -en "\e]133;A\a"
+end
+__mark_prompt_start
+
+function __mark_output_start --on-event fish_preexec
+    set --global __prompt_state pre-exec
+    echo -en "\e]133;C\a"
+end
+
+function __mark_output_end --on-event fish_postexec
+    set --global __prompt_state post-exec
+    echo -en "\e]133;D;$status\a"
+end
+
 function __wezterm_set_user_var --argument-names name value
-    if [ -z "$TMUX" ]
-        printf "\033]1337;SetUserVar=%s=%s\007" "$name" $(echo -n "$value" | base64)
-    else
+    if test -n "$TMUX"
         printf "\033Ptmux;\033\033]1337;SetUserVar=%s=%s\007\033\\" "$name" $(echo -n "$value" | base64)
+    else
+        printf "\033]1337;SetUserVar=%s=%s\007" "$name" $(echo -n "$value" | base64)
     end
 end
