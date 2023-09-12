@@ -33,8 +33,8 @@ return {
       local cwd = vim.loop.cwd()
       local homedir = vim.loop.os_homedir()
       local goneovim_folder = homedir .. "\\scoop\\apps\\goneovim\\current"
-      local neovide_folder = (os.getenv("ProgramFiles") or "") .. "\\Neovide"
-      local windir = os.getenv("windir")
+      local neovide_folder = (vim.env.ProgramFiles or "") .. "\\Neovide"
+      local windir = vim.env.windir
 
       return {
         auto_session_enable_last_session = cwd == goneovim_folder
@@ -112,7 +112,7 @@ return {
       "kkharji/sqlite.lua",
       config = function()
         if jit.os:find("Windows") then
-          vim.g.sqlite_clib_path = os.getenv("ChocolateyInstall") .. "/lib/SQLite/tools/sqlite3.dll"
+          vim.g.sqlite_clib_path = vim.env.ChocolateyInstall .. "/lib/SQLite/tools/sqlite3.dll"
         end
       end,
       enabled = true,
@@ -129,7 +129,7 @@ return {
   },
   {
     "mrjones2014/smart-splits.nvim",
-    cond = os.getenv("TMUX") == nil,
+    cond = vim.env.TMUX == nil,
     init = function()
       Util.on_very_lazy(function()
         require("smart-splits")
@@ -188,7 +188,7 @@ return {
   },
   {
     "aserowy/tmux.nvim",
-    cond = os.getenv("TMUX") ~= nil,
+    cond = vim.env.TMUX ~= nil,
     config = true,
     keys = {
       { "<A-j>", mode = { "i", "n", "v" } },
