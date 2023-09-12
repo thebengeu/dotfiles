@@ -6,7 +6,6 @@ HISTCONTROL=ignoreboth
 HISTFILESIZE=
 HISTSIZE=
 
-shopt -s checkwinsize
 shopt -s globstar
 shopt -s histappend
 
