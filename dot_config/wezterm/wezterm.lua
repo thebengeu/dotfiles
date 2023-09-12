@@ -189,6 +189,7 @@ config.ssh_domains = map({
 
 	return ssh_domain_config
 end)
+config.warn_about_missing_glyphs = false
 config.window_close_confirmation = "NeverPrompt"
 config.window_decorations = "INTEGRATED_BUTTONS | RESIZE"
 config.window_frame = {
