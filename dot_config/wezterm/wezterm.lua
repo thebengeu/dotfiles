@@ -11,10 +11,6 @@ local map = function(input_table, callback)
 	return output_table
 end
 
-local function is_vim(pane)
-	return pane:get_user_vars().IS_NVIM == "true"
-end
-
 local direction_keys = {
 	Left = "h",
 	Down = "j",
@@ -31,7 +27,8 @@ local function split_nav(resize_or_move, key)
 		key = key,
 		mods = resize_or_move == "resize" and "META" or "CTRL",
 		action = wezterm.action_callback(function(win, pane)
-			if is_vim(pane) then
+			local user_vars = pane:get_user_vars()
+			if user_vars.IS_NVIM == "true" or user_vars.WEZTERM_IN_TMUX == "1" then
 				win:perform_action({
 					SendKey = { key = key, mods = resize_or_move == "resize" and "META" or "CTRL" },
 				}, pane)
