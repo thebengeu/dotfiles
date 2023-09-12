@@ -94,8 +94,9 @@ aliases: {
 	for gitAlias, command in _directoryGitAliases & _gitAliases {
 		"g\(gitAlias)": "git \(command)"
 	}
-	for directoryGitAlias, command in _directoryGitAliases {
-		for prefix, directory in _aliasDirectories {
+	for prefix, directory in _aliasDirectories {
+		"\(prefix)g": "git -C \(directory)"
+		for directoryGitAlias, command in _directoryGitAliases {
 			"\(prefix)g\(directoryGitAlias)": "git -C \(directory) \(command)"
 		}
 	}
