@@ -12,6 +12,7 @@ secrets.ejson
 .inputrc
 run_onchange_init.sh
 {{ else }}
+.config/fish/completions/wezterm.fish
 .config/fish/conf.d/shell-integration.fish
 .config/wezterm/
 AppData/
