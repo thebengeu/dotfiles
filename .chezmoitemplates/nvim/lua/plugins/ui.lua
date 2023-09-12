@@ -1,3 +1,5 @@
+local map = require("util").map
+
 local create_colorscheme_autocmd = function(callback)
   return function()
     callback()
@@ -89,24 +91,18 @@ return {
   },
   {
     "kevinhwang91/nvim-hlslens",
-    keys = function()
-      local keys = {}
-
-      for _, key in ipairs({ "n", "N", "*", "#", "g*", "g#" }) do
-        table.insert(keys, {
-          key,
-          function()
-            vim.cmd.normal({
-              ((key == "n" or key == "N") and vim.v.count1 or "") .. key,
-              bang = true,
-            })
-            require("hlslens").start()
-          end,
-        })
-      end
-
-      return keys
-    end,
+    keys = map({ "n", "N", "*", "#", "g*", "g#" }, function(key)
+      return {
+        key,
+        function()
+          vim.cmd.normal({
+            ((key == "n" or key == "N") and vim.v.count1 or "") .. key,
+            bang = true,
+          })
+          require("hlslens").start()
+        end,
+      }
+    end),
     opts = {
       calm_down = true,
     },
