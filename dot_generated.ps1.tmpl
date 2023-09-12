@@ -7,8 +7,8 @@ function {{$name}} (
 )
 {
 {{- range $lines_and_parameters.lines}}
-  {{. -}}
-{{end}}
+  sh -c "{{.}}"
+{{- end}}
 }
 {{- end}}
 
