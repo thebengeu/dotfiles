@@ -43,7 +43,7 @@ aliases: {
 	ca:   "chezmoi apply --init"
 	cht:  "cht.sh"
 	cr:   "chezmoi re-add"
-	cup:  "chezmoi update; chezmoi apply --init"
+	cup:  "chezmoi update --apply=false; chezmoi apply --init"
 	ec2:  "ssh -t ec2 tmux new-session -A -s 0"
 	g:    "git"
 	hb:   "hyperfine 'bash -i -c exit'"
