@@ -141,7 +141,6 @@ $Env:PATH = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + [I
 $pacmanPackages = @(
   'fish'
   'parallel'
-  'tmux'
   'zsh'
 )
 
