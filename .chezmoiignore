@@ -18,7 +18,6 @@ run_onchange_init.sh
 AppData/
 *.ps1
 AutoHotkey.ahk
-.wezterm.lua
 {{ end }}
 
 {{ if or (eq .chezmoi.hostname "ec2") (eq .chezmoi.hostname "prod") }}
