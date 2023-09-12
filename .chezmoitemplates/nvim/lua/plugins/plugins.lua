@@ -193,41 +193,14 @@ return {
   {
     "aserowy/tmux.nvim",
     cond = vim.env.TMUX ~= nil,
-    config = true,
-    keys = {
-      { "<A-j>", mode = { "i", "n", "v" } },
-      { "<A-k>", mode = { "i", "n", "v" } },
-      "<C-h>",
-      "<C-j>",
-      "<C-k>",
-      "<C-l>",
-      {
-        "<C-h>",
-        function()
-          require("tmux").move_left()
-        end,
-        mode = "t",
+    enabled = vim.fn.executable("tmux") == 1,
+    event = { "BufNewFile", "BufReadPost" },
+    opts = {
+      navigation = {
+        enable_default_keybindings = false,
       },
-      {
-        "<C-j>",
-        function()
-          require("tmux").move_bottom()
-        end,
-        mode = "t",
-      },
-      {
-        "<C-k>",
-        function()
-          require("tmux").move_top()
-        end,
-        mode = "t",
-      },
-      {
-        "<C-l>",
-        function()
-          require("tmux").move_right()
-        end,
-        mode = "t",
+      resize = {
+        enable_default_keybindings = false,
       },
     },
   },
