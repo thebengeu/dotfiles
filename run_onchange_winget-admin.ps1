@@ -51,7 +51,6 @@ $wingetPackageIds = @(
   'StartIsBack.StartAllBack'
   'Microsoft.VisualStudioCode'
   'JetBrains.WebStorm'
-  'wez.wezterm'
   'JernejSimoncic.Wget'
   'Microsoft.WingetCreate'
   'Highresolution.X-MouseButtonControl'
