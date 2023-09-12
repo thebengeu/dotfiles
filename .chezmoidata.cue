@@ -7,24 +7,26 @@ _aliasDirectories: {
 	c: "$HOME/.local/share/chezmoi"
 	d: "$HOME/thebengeu/drakon"
 }
-_gitAliases: {
-	aa:  "add -A"
-	c:   "clone"
-	ca:  "commit --amend"
+_directoryGitAliases: {
 	cam: "commit -a -m"
-	cm:  "commit -m"
-	co:  "checkout"
 	d:   "diff"
 	l:   "lg"
 	lp:  "lg --patch"
 	P:   "push"
 	p:   "pull"
+	s:   "s"
+}
+_gitAliases: {
+	aa:  "add -A"
+	c:   "clone"
+	ca:  "commit --amend"
+	cm:  "commit -m"
+	co:  "checkout"
 	r:   "rebase"
 	rbc: "rebase --continue"
 	rhh: "reset --hard HEAD"
 	rru: "remote remove upstream"
 	rv:  "remote -v"
-	s:   "s"
 	sa:  "stash apply"
 	sP:  "stash push"
 	sp:  "stash pop"
@@ -89,10 +91,12 @@ aliases: {
 		"\(prefix)n":  "nvim --cmd 'cd \(strings.Replace(directory, "$HOME", "~", -1))'"
 	}
 
-	for gitAlias, command in _gitAliases {
+	for gitAlias, command in _directoryGitAliases & _gitAliases {
 		"g\(gitAlias)": "git \(command)"
+	}
+	for directoryGitAlias, command in _directoryGitAliases {
 		for prefix, directory in _aliasDirectories {
-			"\(prefix)g\(gitAlias)": "git -C \(directory) \(command)"
+			"\(prefix)g\(directoryGitAlias)": "git -C \(directory) \(command)"
 		}
 	}
 
