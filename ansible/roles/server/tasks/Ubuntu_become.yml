@@ -78,6 +78,7 @@
       - containerd.io
       - clangd-15
       - cmake
+      - composer
       - curl
       - docker-ce
       - docker-ce-cli
@@ -102,6 +103,9 @@
       - nodejs
       - ntpdate
       - openssh-server
+      - php-bcmath
+      - php-curl
+      - php-gmp
       - postgresql
       - postgresql-client
       - python3-pip
