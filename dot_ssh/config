@@ -1,3 +1,6 @@
+Host *
+  SendEnv TERM_PROGRAM
+
 Host dev-local
   Hostname 192.168.50.2
 
