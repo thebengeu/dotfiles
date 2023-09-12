@@ -3,7 +3,10 @@ hooks:
     pre:
       args:
         - -c
-        - cd $CHEZMOI_SOURCE_DIR; cue export --force --outfile .chezmoidata.yaml .chezmoidata.cue; cue export --force --outfile .chezmoiexternal.yaml .chezmoiexternal.cue
+        - >-
+          cd $CHEZMOI_SOURCE_DIR;
+          parallel cue export --force --outfile .chezmoi{}.yaml .chezmoi{}.cue
+          ::: data external
       command: sh
 interpreters:
   ps1:
