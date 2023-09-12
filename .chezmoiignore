@@ -13,7 +13,7 @@ secrets.ejson
 run_onchange_init.sh
 {{ else }}
 .config/fish/completions/wezterm.fish
-.config/fish/conf.d/shell-integration.fish
+.config/fish/conf.d/windows.fish
 .config/wezterm/
 AppData/
 *.ps1
