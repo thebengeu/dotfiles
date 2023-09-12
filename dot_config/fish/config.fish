@@ -55,3 +55,18 @@ function __wezterm_set_user_var --argument-names name value
         printf "\033]1337;SetUserVar=%s=%s\007" "$name" $(echo -n "$value" | base64)
     end
 end
+
+function __wezterm_user_vars_fish_prompt --on-event fish_prompt
+    __wezterm_set_user_var WEZTERM_PROG ""
+
+    if test -n "$TMUX"
+        __wezterm_set_user_var WEZTERM_IN_TMUX 1
+    else
+        __wezterm_set_user_var WEZTERM_IN_TMUX 0
+    end
+end
+
+
+function __wezterm_user_vars_preexec --on-event fish_preexec
+    __wezterm_set_user_var WEZTERM_PROG "$argv[1]"
+end
