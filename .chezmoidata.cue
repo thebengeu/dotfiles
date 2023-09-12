@@ -118,7 +118,7 @@ platformSpecificAliases: {
 	}
 	windows: {
 		fd: "fd --hidden --path-separator '//'"
-		tg: "powershell -NoProfile -Command gsudo topgrade"
+		tg: "gsudo topgrade"
 	}
 
 	for os, packageManagers in _packageManagers {
