@@ -139,7 +139,7 @@ environmentVariables: {
 }
 functions: wcss: {
 	lines: [
-		#"sh -c "parallel {} search $package ::: choco scoop winget""#,
+		"parallel {} search $package ::: choco scoop winget",
 	]
 	parameters: ["package"]
 }
