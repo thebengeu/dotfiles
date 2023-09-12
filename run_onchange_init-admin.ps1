@@ -191,7 +191,8 @@ cargo install zoxide
 
 if (!(Test-Path "$Env:USERPROFILE\.local\share\chezmoi"))
 {
-  chezmoi init --apply --ssh thebengeu
+  chezmoi init --ssh thebengeu
+  chezmoi apply --init
 }
 
 if (!$isMobile)
