@@ -107,13 +107,13 @@ aliases: {
 }
 _packageManagers: {
 	linux: [
+		"npm",
 		"pnpm",
 	]
-	windows: [
-		"choco",
-		"pnpm",
-		"scoop",
-		"winget",
+	windows: linux + [
+			"choco",
+			"scoop",
+			"winget",
 	]
 }
 platformSpecificAliases: {
