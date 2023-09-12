@@ -1,3 +1,5 @@
+local map = require("util").map
+
 return {
   {
     "DNLHC/glance.nvim",
@@ -64,16 +66,18 @@ return {
       local typescript = vim.tbl_extend("force", ts, {
         command = { "pnpm", "tsx" },
         format = function(lines)
-          for i, line in ipairs(lines) do
-            lines[i] = line
-              :gsub("const ", "var ")
-              :gsub("^import ", "var ")
-              :gsub("( from '%S+)%.js'$", "%1'")
-              :gsub("(, {.+} from '(%S+)')$", " = require('%2')%1")
-              :gsub(" from '(%S+)'$", " = require('%1')")
-              :gsub(" type ", " ")
-          end
-          return require("iron.fts.common").format(ts, lines)
+          return require("iron.fts.common").format(
+            ts,
+            map(lines, function(line)
+              return line
+                :gsub("const ", "var ")
+                :gsub("^import ", "var ")
+                :gsub("( from '%S+)%.js'$", "%1'")
+                :gsub("(, {.+} from '(%S+)')$", " = require('%2')%1")
+                :gsub(" from '(%S+)'$", " = require('%1')")
+                :gsub(" type ", " ")
+            end)
+          )
         end,
       })
 
