@@ -35,15 +35,3 @@ vim.keymap.set("n", "<leader>um", function()
   ---@diagnostic disable-next-line: undefined-field
   vim.opt.mouse = vim.opt.mouse:get().a and "" or "a"
 end, { desc = "Toggle Mouse" })
-vim.keymap.set(
-  "n",
-  "[<space>",
-  "<Cmd>put!=repeat(nr2char(10), v:count1)|silent ']+<CR>",
-  { desc = "Add blank lines above" }
-)
-vim.keymap.set(
-  "n",
-  "]<space>",
-  "<Cmd>put =repeat(nr2char(10), v:count1)|silent '[-<CR>",
-  { desc = "Add blank lines below" }
-)
