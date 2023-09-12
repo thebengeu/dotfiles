@@ -11,8 +11,6 @@ local map = function(input_table, callback)
 	return output_table
 end
 
-local tmux_new_session = { "tmux", "new-session", "-A", "-s", "0" }
-
 local function is_vim(pane)
 	return pane:get_user_vars().IS_NVIM == "true"
 end
@@ -184,7 +182,7 @@ config.ssh_domains = map({
 	}
 
 	if not ssh_domain:find("^dev%-") then
-		ssh_domain_config.default_prog = tmux_new_session
+		ssh_domain_config.default_prog = { "tmux", "new-session", "-A", "-s", "0" }
 	end
 
 	return ssh_domain_config
@@ -203,7 +201,6 @@ config.window_padding = {
 }
 config.wsl_domains = map(wezterm.default_wsl_domains(), function(wsl_domain)
 	wsl_domain.default_cwd = "~"
-	wsl_domain.default_prog = tmux_new_session
 	return wsl_domain
 end)
 
