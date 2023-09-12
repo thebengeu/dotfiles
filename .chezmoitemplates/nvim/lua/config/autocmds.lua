@@ -32,3 +32,11 @@ if os.getenv("TMUX") ~= nil then
     end,
   })
 end
+
+vim.api.nvim_create_autocmd("TermClose", {
+  callback = function(args)
+    if vim.v.event.status == 0 then
+      vim.cmd.bdelete({ args.buf, bang = true })
+    end
+  end,
+})
