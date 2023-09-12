@@ -1,6 +1,9 @@
 {{range $environmentVariable, $value := .environmentVariables -}}
 export {{$environmentVariable}}={{$value}}
 {{end -}}
+
+export GH_TOKEN={{ (ejsonDecrypt (print .chezmoi.sourceDir "/secrets.ejson")).github_token_repo }}
+
 {{range $path := .paths -}}
 export PATH={{$path}}:$PATH
 {{end -}}

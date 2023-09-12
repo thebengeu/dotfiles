@@ -139,6 +139,7 @@ platformSpecificAliases: {
 environmentVariables: {
 	EDITOR:              "nvim"
 	EJSON_KEYDIR:        "$HOME/.config/ejson/keys"
+	GH_USERNAME:         "thebengeu"
 	NODE_NO_WARNINGS:    "1"
 	RIPGREP_CONFIG_PATH: "$HOME/.ripgreprc"
 }

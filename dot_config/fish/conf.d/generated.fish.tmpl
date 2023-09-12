@@ -1,8 +1,9 @@
 {{range $environmentVariable, $value := .environmentVariables -}}
 set --export {{$environmentVariable}} {{$value}}
-{{end}}
+{{end -}}
+set --export GH_TOKEN {{ (ejsonDecrypt (print .chezmoi.sourceDir "/secrets.ejson")).github_token_repo }}
 
-{{ if eq .chezmoi.os "windows" }}
+{{ if eq .chezmoi.os "windows" -}}
 set --global fzf_fd_opts --hidden --path-separator //
 {{ else }}
 set --export PNPM_HOME ~/.local/share/pnpm
