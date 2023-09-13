@@ -23,7 +23,7 @@ return {
     opts = function(_, opts)
       local null_ls = require("null-ls")
       opts.on_init = function(client)
-        client.offset_encoding = "utf-32"
+        client.offset_encoding = "utf-16"
       end
       opts.sources = {
         null_ls.builtins.diagnostics.cue_fmt,
