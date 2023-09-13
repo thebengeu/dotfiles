@@ -53,7 +53,7 @@ aliases: {
 	cht: "cht.sh"
 	cr:  "chezmoi re-add"
 	cup: "chezmoi update --apply=false; chezmoi apply --init"
-	ec2: "ssh -t ec2 tmux new-session -A -s 0"
+	ec2: "ssh ec2"
 	g:   "git"
 	hb:  "hyperfine 'bash -i -c exit'"
 	hbn: "hyperfine 'bash --noprofile --norc -i -c exit'"
