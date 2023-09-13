@@ -193,6 +193,9 @@ config.launch_menu = map({
 		"wsl",
 		"--cd",
 		"~",
+		"--exec",
+		"dbus-launch",
+		"fish",
 	},
 }, function(args, label)
 	return {
@@ -249,6 +252,7 @@ config.window_padding = {
 }
 config.wsl_domains = map(wezterm.default_wsl_domains(), function(wsl_domain)
 	wsl_domain.default_cwd = "~"
+	wsl_domain.default_prog = { "dbus-launch", "fish" }
 	return wsl_domain
 end)
 
