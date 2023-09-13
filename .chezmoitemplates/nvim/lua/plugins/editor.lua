@@ -102,6 +102,62 @@ return {
     },
   },
   {
+    "echasnovski/mini.move",
+    keys = {
+      {
+        "<M-h>",
+        function()
+          require("mini.move").move_line("left")
+        end,
+        desc = "Move line left",
+        mode = "i",
+      },
+      {
+        "<M-j>",
+        function()
+          require("mini.move").move_line("down")
+        end,
+        desc = "Move line down",
+        mode = "i",
+      },
+      {
+        "<M-k>",
+        function()
+          require("mini.move").move_line("up")
+        end,
+        desc = "Move line up",
+        mode = "i",
+      },
+      {
+        "<M-l>",
+        function()
+          require("mini.move").move_line("right")
+        end,
+        desc = "Move line right",
+        mode = "i",
+      },
+      { "<M-h>", mode = "v" },
+      { "<M-j>", mode = "v" },
+      { "<M-k>", mode = "v" },
+      { "<M-l>", mode = "v" },
+      { "<S-Down>" },
+      { "<S-Left>" },
+      { "<S-Right>" },
+      { "<S-Up>" },
+    },
+    opts = {
+      mappings = {
+        line_down = "<S-Down>",
+        line_left = "<S-Left>",
+        line_right = "<S-Right>",
+        line_up = "<S-Up>",
+      },
+      options = {
+        reindent_linewise = false,
+      },
+    },
+  },
+  {
     "echasnovski/mini.pairs",
     enabled = false,
   },
