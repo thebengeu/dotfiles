@@ -1,7 +1,11 @@
 return {
   {
     "sindrets/diffview.nvim",
-    cmd = { "DiffviewFileHistory", "DiffviewOpen" },
+    keys = {
+      { "<Space>gF", "<Cmd>DiffviewFileHistory<CR>", desc = "Diffview History" },
+      { "<Space>gf", "<Cmd>DiffviewFileHistory %<CR>", desc = "Diffview File History" },
+      { "<Space>gf", ":DiffviewFileHistory<CR>", desc = "Diffview Range History", mode = "x" },
+    },
   },
   {
     "akinsho/git-conflict.nvim",
