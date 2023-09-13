@@ -22,9 +22,6 @@ return {
     "jose-elias-alvarez/null-ls.nvim",
     opts = function(_, opts)
       local null_ls = require("null-ls")
-      opts.on_init = function(client)
-        client.offset_encoding = "utf-16"
-      end
       opts.sources = {
         null_ls.builtins.diagnostics.cue_fmt,
         null_ls.builtins.diagnostics.fish,
@@ -109,6 +106,9 @@ return {
         },
       })
       opts.setup = vim.tbl_extend("force", opts.setup, {
+        clangd = function(_, clangd_opts)
+          clangd_opts.capabilities.offsetEncoding = { "utf-16" }
+        end,
         eslint = function()
           vim.api.nvim_create_autocmd("BufWritePre", {
             callback = function(event)
