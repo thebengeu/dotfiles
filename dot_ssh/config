@@ -1,15 +1,26 @@
 Host *
   SendEnv TERM_PROGRAM
 
-Host dev-local
+Host dev_local
   Hostname 192.168.50.2
 
-Host dev-remote
+Host dev_remote
   Hostname beng.asuscomm.com
+
+Host dev_wsl_local
+  Hostname 192.168.50.3
+
+Host dev_wsl_remote
+  Hostname 192.168.50.3
+  ProxyJump dev_remote
 
 Host ec2
   Hostname 13.213.181.86
   User ubuntu
 
-Host prod
+Host prod_local
   Hostname 192.168.50.4
+
+Host prod_remote
+  Hostname 192.168.50.4
+  ProxyJump dev_remote
