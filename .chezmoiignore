@@ -5,7 +5,7 @@ README.md
 secrets.ejson
 
 {{ if eq .chezmoi.os "windows" }}
-.config/{bat,fd,gitui,glow,gup,lazygit,msmtp,nvim,tealdeer,tmux,yamlfmt}/
+.config/{bat,fd,gitui,glow,gup,lazygit,lsd,msmtp,nvim,tealdeer,tmux,yamlfmt}/
 .config/topgrade.toml
 .local/
 .ansible.cfg
