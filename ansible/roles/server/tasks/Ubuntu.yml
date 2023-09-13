@@ -74,6 +74,7 @@
   loop:
     - nethogs
     - nix
+    - nushell
     - peco
 - ansible.builtin.git:
     dest: ~/bat-extras
