@@ -130,8 +130,9 @@ platformSpecificAliases: {
 		tg: "topgrade"
 	}
 	windows: {
-		fd: "fd --hidden --path-separator '//'"
-		tg: "gsudo topgrade"
+		fd:  "fd --hidden --path-separator '//'"
+		tg:  "gsudo topgrade"
+		wsk: "wezterm show-keys --lua"
 	}
 
 	for os, packageManagers in _packageManagers {
