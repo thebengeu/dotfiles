@@ -170,9 +170,8 @@ config.launch_menu = map({
 	["Bash"] = { "bash" },
 	["Developer PowerShell for VS 2022"] = {
 		"powershell",
-		"-noe",
 		"-c",
-		[[&{Import-Module "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\Common7\Tools\Microsoft.VisualStudio.DevShell.dll"; Enter-VsDevShell f5ce53b2}]],
+		[[Invoke-Expression ("pwsh " + (New-Object -ComObject WScript.Shell).CreateShortcut("$Env:ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2022\Visual Studio Tools\Developer PowerShell for VS 2022.lnk").Arguments.Replace('"""', "'"))]],
 	},
 	["fish"] = { "fish" },
 	["Nushell"] = { "nu" },
