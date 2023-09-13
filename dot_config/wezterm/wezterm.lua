@@ -193,12 +193,6 @@ config.launch_menu = map({
 		"wsl",
 		"--cd",
 		"~",
-		"--exec",
-		"tmux",
-		"new-session",
-		"-A",
-		"-s",
-		"0",
 	},
 }, function(args, label)
 	return {
