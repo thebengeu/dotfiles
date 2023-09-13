@@ -98,6 +98,8 @@ config.keys = {
 	{ key = "DownArrow", mods = "SHIFT|ALT|CTRL", action = act.ScrollToPrompt(1) },
 	{ key = "|", mods = "SHIFT|ALT|CTRL", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 	{ key = "_", mods = "SHIFT|ALT|CTRL", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
+	{ key = "\\", mods = "ALT|CTRL", action = act.SplitHorizontal({ domain = "DefaultDomain" }) },
+	{ key = "-", mods = "ALT|CTRL", action = act.SplitVertical({ domain = "DefaultDomain" }) },
 	{ key = "h", mods = "SHIFT|ALT|CTRL", action = act.ActivatePaneDirection("Left") },
 	{ key = "l", mods = "SHIFT|ALT|CTRL", action = act.ActivatePaneDirection("Right") },
 	{ key = "k", mods = "SHIFT|ALT|CTRL", action = act.ActivatePaneDirection("Up") },
