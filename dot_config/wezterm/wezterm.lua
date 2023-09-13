@@ -221,8 +221,8 @@ config.skip_close_confirmation_for_processes_named = {
 	"zsh.exe",
 }
 config.ssh_domains = map({
-	"dev-local",
-	"dev-remote",
+	"dev_local",
+	"dev_remote",
 	"ec2",
 	"prod",
 }, function(ssh_domain)
@@ -232,7 +232,7 @@ config.ssh_domains = map({
 		remote_address = ssh_domain,
 	}
 
-	if not ssh_domain:find("^dev%-") then
+	if not ssh_domain:find("^dev_") then
 		ssh_domain_config.default_prog = { "tmux", "new-session", "-A", "-s", "0" }
 	end
 
