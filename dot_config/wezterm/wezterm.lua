@@ -135,6 +135,35 @@ config.keys = {
 	split_nav("resize", "k"),
 	split_nav("resize", "l"),
 }
+
+for i, key in ipairs({
+	"!",
+	"@",
+	"#",
+	"$",
+	"%",
+	"^",
+	"&",
+	"*",
+	"(",
+}) do
+	table.insert(config.keys, {
+		key = key,
+		mods = "SHIFT|CTRL",
+		action = wezterm.action_callback(function(window)
+			local mux_window = window:mux_window()
+			local tabs = mux_window:tabs()
+			if i - #tabs > 0 then
+				for _ = 1, i - #tabs do
+					mux_window:spawn_tab({})
+				end
+			else
+				tabs[i]:activate()
+			end
+		end),
+	})
+end
+
 config.launch_menu = map({
 	["Bash"] = { "bash" },
 	["Developer PowerShell for VS 2022"] = {
