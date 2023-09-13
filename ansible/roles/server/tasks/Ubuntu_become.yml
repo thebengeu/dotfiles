@@ -122,6 +122,7 @@
       - nodejs
       - ntpdate
       - openssh-server
+      - parallel
       - php-bcmath
       - php-curl
       - php-gmp
