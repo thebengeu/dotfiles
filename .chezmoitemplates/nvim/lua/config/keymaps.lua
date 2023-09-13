@@ -35,3 +35,10 @@ vim.keymap.set("n", "<leader>um", function()
   ---@diagnostic disable-next-line: undefined-field
   vim.opt.mouse = vim.opt.mouse:get().a and "" or "a"
 end, { desc = "Toggle Mouse" })
+vim.keymap.set("n", "[<Space>", function()
+  vim.fn.append(vim.fn.line(".") - 1, "")
+end, { desc = "Add blank line above" })
+vim.keymap.set("n", "]<Space>", function()
+  ---@diagnostic disable-next-line: param-type-mismatch
+  vim.fn.append(vim.fn.line("."), "")
+end, { desc = "Add blank line below" })
