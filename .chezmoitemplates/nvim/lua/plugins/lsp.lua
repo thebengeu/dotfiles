@@ -22,6 +22,9 @@ return {
     "jose-elias-alvarez/null-ls.nvim",
     opts = function(_, opts)
       local null_ls = require("null-ls")
+      opts.on_init = function(client)
+        client.offset_encoding = "utf-32"
+      end
       opts.sources = {
         null_ls.builtins.diagnostics.cue_fmt,
         null_ls.builtins.diagnostics.fish,
