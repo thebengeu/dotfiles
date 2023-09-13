@@ -27,3 +27,7 @@ AutoHotkey.ahk
 {{ if eq .chezmoi.hostname "ec2" }}
 .aws/credentials
 {{ end }}
+
+{{ if ne .chezmoi.hostname "dev" }}
+.wslconfig
+{{ end }}
