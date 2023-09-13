@@ -18,6 +18,7 @@ $wingetPackageIds = @(
   'Twilio.Authy'
   'Armin2208.WindowsAutoNightMode'
   'Amazon.AWSCLI'
+  'AutoHotkey.AutoHotkey'
   'rsteube.Carapace'
   'Google.Chrome'
   'Hibbiki.Chromium'
