@@ -220,24 +220,6 @@ config.skip_close_confirmation_for_processes_named = {
 	"wslhost.exe",
 	"zsh.exe",
 }
-config.ssh_domains = map({
-	"dev_local",
-	"dev_remote",
-	"ec2",
-	"prod",
-}, function(ssh_domain)
-	local ssh_domain_config = {
-		name = "SSH:" .. ssh_domain,
-		multiplexing = "None",
-		remote_address = ssh_domain,
-	}
-
-	if not ssh_domain:find("^dev_") then
-		ssh_domain_config.default_prog = { "tmux", "new-session", "-A", "-s", "0" }
-	end
-
-	return ssh_domain_config
-end)
 config.warn_about_missing_glyphs = false
 config.window_close_confirmation = "NeverPrompt"
 config.window_decorations = "INTEGRATED_BUTTONS | RESIZE"
