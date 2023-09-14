@@ -82,11 +82,11 @@ local write_nr_sh = function(active_window, active_pane)
 
 	local file = io.open(wezterm.home_dir .. "/.local/bin/nr.sh", "w")
 	if file then
-		file:write(pane_to_activate and table.concat({
-			"nvr --servername localhost:" .. pane_to_activate:get_user_vars().NVIM_PORT .. ' "$@" &',
+		file:write((pane_to_activate and table.concat({
 			"nircmd win activate stitle " .. pane_to_activate:window():window_id() .. " &",
 			"wezterm cli activate-tab --tab-id " .. pane_to_activate:tab():tab_id() .. " &",
-		}, "\n") or 'nvim "@"')
+			"nvr -s --nostart --servername 127.0.0.1:" .. pane_to_activate:get_user_vars().NVIM_PORT .. ' "$@" || ',
+		}, "\n") or "") .. 'nvim "$@"\n')
 		file:close()
 	end
 end

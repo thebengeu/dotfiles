@@ -47,12 +47,12 @@ local set_nvim_port_user_var = function(port)
 end
 
 ServerstartUnusedPort = function(port)
-  vim.system({ "ncat", "-z", "--wait", "1ms", "localhost", port }, {}, function(system_obj)
+  vim.system({ "ncat", "-z", "--wait", "1ms", "127.0.0.1", port }, {}, function(system_obj)
     if system_obj.code == 0 then
       ServerstartUnusedPort(port + 1)
     else
       vim.schedule(function()
-        vim.fn.serverstart("localhost:" .. port)
+        vim.fn.serverstart("127.0.0.1:" .. port)
         set_nvim_port_user_var(port)
 
         vim.api.nvim_create_autocmd("VimLeave", {
