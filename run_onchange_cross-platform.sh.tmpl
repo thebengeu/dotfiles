@@ -1,5 +1,4 @@
 #!/usr/bin/env sh
-cargo install bob-nvim
 cargo install cargo-update
 cargo install hyperfine
 cargo install lsd
