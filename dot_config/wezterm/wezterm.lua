@@ -47,44 +47,36 @@ wezterm.on("format-window-title", function(tab)
 	return tab.window_id .. " " .. tab.active_pane.title
 end)
 
-local pane_if_has_nvim_port = function(pane)
+local nvim_port_pane_from_pane = function(pane)
 	if tonumber(pane:get_user_vars().NVIM_PORT) then
 		return pane
 	end
 end
 
-local nvim_port_pane_from_tab = function(tab)
-	for _, pane in ipairs(tab:panes()) do
-		local nvim_port_pane = pane_if_has_nvim_port(pane)
+local nvim_port_pane_from_components = function(components, nvim_port_pane_from_sub_component)
+	for _, component in ipairs(components) do
+		local nvim_port_pane = nvim_port_pane_from_sub_component(component)
 
 		if nvim_port_pane then
 			return nvim_port_pane
 		end
 	end
+end
+
+local nvim_port_pane_from_tab = function(tab)
+	return nvim_port_pane_from_components(tab:panes(), nvim_port_pane_from_pane)
 end
 
 local nvim_port_pane_from_window = function(window)
-	for _, tab in ipairs(window():tabs()) do
-		local nvim_port_pane = nvim_port_pane_from_tab(tab)
-
-		if nvim_port_pane then
-			return nvim_port_pane
-		end
-	end
+	return nvim_port_pane_from_components(window:mux_window():tabs(), nvim_port_pane_from_tab)
 end
 
 local nvim_port_pane_from_windows = function()
-	for _, window in ipairs(wezterm.gui.gui_windows()) do
-		local nvim_port_pane = nvim_port_pane_from_window(window)
-
-		if nvim_port_pane then
-			return nvim_port_pane
-		end
-	end
+	return nvim_port_pane_from_components(wezterm.gui.gui_windows(), nvim_port_pane_from_window)
 end
 
 local find_pane_to_activate = function(active_window, active_pane)
-	return pane_if_has_nvim_port(active_pane)
+	return nvim_port_pane_from_pane(active_pane)
 		or nvim_port_pane_from_tab(active_window:active_tab())
 		or nvim_port_pane_from_window(active_window)
 		or nvim_port_pane_from_windows()
