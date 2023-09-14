@@ -1,4 +1,5 @@
 local async_run = require("util").async_run
+local base64 = require("util.base64")
 
 vim.api.nvim_create_autocmd("BufEnter", {
   command = "startinsert",
@@ -40,3 +41,28 @@ vim.api.nvim_create_autocmd("TermClose", {
     end
   end,
 })
+
+local set_nvim_port_user_var = function(port)
+  vim.fn.chansend(vim.v.stderr, "\x1b]1337;SetUserVar=NVIM_PORT=" .. base64.encode(tostring(port)) .. "\x07")
+end
+
+ServerstartUnusedPort = function(port)
+  vim.system({ "ncat", "-z", "--wait", "1ms", "localhost", port }, {}, function(system_obj)
+    if system_obj.code == 0 then
+      ServerstartUnusedPort(port + 1)
+    else
+      vim.schedule(function()
+        vim.fn.serverstart("localhost:" .. port)
+        set_nvim_port_user_var(port)
+
+        vim.api.nvim_create_autocmd("VimLeave", {
+          callback = function()
+            set_nvim_port_user_var("")
+          end,
+        })
+      end)
+    end
+  end)
+end
+
+ServerstartUnusedPort(6789)
