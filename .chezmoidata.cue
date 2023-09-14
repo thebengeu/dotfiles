@@ -42,8 +42,8 @@ _shAliases: {
 		"\(alias_prefix)": "ssh \(alias_prefix)_$(if ncat -z --wait 100ms 192.168.50.\(last_octet) 22; then echo \"local\"; else echo \"remote\"; fi)"
 	}
 
-	nr:   #"printf "\e[6 q"; node"#
-	tsxr: #"printf "\e[6 q"; pnpm tsx"#
+	jsr: #"printf "\e[6 q"; node"#
+	tsr: #"printf "\e[6 q"; pnpm tsx"#
 }
 aliases: {
 	b:   "bat"
