@@ -53,6 +53,7 @@ aliases: {
 	cht: "cht.sh"
 	cr:  "chezmoi re-add"
 	cup: "chezmoi update --apply=false; chezmoi apply --init"
+	dpw: #"powershell -c 'Invoke-Expression ("pwsh " + (New-Object -ComObject WScript.Shell).CreateShortcut("$Env:ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2022\Visual Studio Tools\Developer PowerShell for VS 2022.lnk").Arguments.Replace(\'"""\', "\'"))'"#
 	ec2: "ssh ec2"
 	g:   "git"
 	hb:  "hyperfine 'bash -i -c exit'"
