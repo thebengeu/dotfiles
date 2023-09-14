@@ -47,51 +47,39 @@ wezterm.on("format-window-title", function(tab)
 	return tab.window_id .. " " .. tab.active_pane.title
 end)
 
-local make_nvim_port_pane_from_component = function(sub_component_getter, nvim_port_pane_from_sub_component)
-	return function(component)
-		for _, sub_component in ipairs(sub_component_getter(component)) do
-			local nvim_port_pane = nvim_port_pane_from_sub_component(sub_component)
+local nvim_port_pane_from_pane = function(pane)
+	if tonumber(pane:get_user_vars().NVIM_PORT) then
+		return pane
+	end
+end
 
-			if nvim_port_pane then
-				return nvim_port_pane
-			end
+local nvim_port_pane_from_components = function(components, nvim_port_pane_from_sub_component)
+	for _, component in ipairs(components) do
+		local nvim_port_pane = nvim_port_pane_from_sub_component(component)
+
+		if nvim_port_pane then
+			return nvim_port_pane
 		end
 	end
 end
 
+local nvim_port_pane_from_tab = function(tab)
+	return nvim_port_pane_from_components(tab:panes(), nvim_port_pane_from_pane)
+end
+
+local nvim_port_pane_from_window = function(window)
+	return nvim_port_pane_from_components(window:mux_window():tabs(), nvim_port_pane_from_tab)
+end
+
+local nvim_port_pane_from_windows = function()
+	return nvim_port_pane_from_components(wezterm.gui.gui_windows(), nvim_port_pane_from_window)
+end
+
 local find_pane_to_activate = function(active_window, active_pane)
-	local nvim_port_pane_from_component = function(pane)
-		if tonumber(pane:get_user_vars().NVIM_PORT) then
-			return pane
-		end
-	end
-	local component = active_pane
-
-	local components = { active_window:active_tab(), active_window }
-	local sub_components_getters = {
-		function(tab)
-			return tab:panes()
-		end,
-		function(window)
-			return window:mux_window():tabs()
-		end,
-		wezterm.gui.gui_windows,
-	}
-
-	local i = 1
-	while true do
-		local nvim_port_pane = nvim_port_pane_from_component(component)
-
-		if nvim_port_pane or component == nil then
-			return nvim_port_pane
-		end
-
-		component = components[i]
-		nvim_port_pane_from_component =
-			make_nvim_port_pane_from_component(sub_components_getters[i], nvim_port_pane_from_component)
-
-		i = i + 1
-	end
+	return nvim_port_pane_from_pane(active_pane)
+		or nvim_port_pane_from_tab(active_window:active_tab())
+		or nvim_port_pane_from_window(active_window)
+		or nvim_port_pane_from_windows()
 end
 
 local write_nr_sh = function(active_window, active_pane)
