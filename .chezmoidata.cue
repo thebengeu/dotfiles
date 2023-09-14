@@ -132,6 +132,7 @@ platformSpecificAliases: {
 	}
 	windows: {
 		fd:  "fd --hidden --path-separator '//'"
+		nr:  "sh $HOME/.local/bin/nr.sh"
 		tg:  "gsudo topgrade"
 		wsk: "wezterm show-keys --lua"
 	}
