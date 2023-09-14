@@ -47,34 +47,47 @@ wezterm.on("format-window-title", function(tab)
 	return tab.window_id .. " " .. tab.active_pane.title
 end)
 
-local find_pane_to_activate = function(active_window, active_pane)
-	if tonumber(active_pane:get_user_vars().NVIM_PORT) then
-		return active_pane
+local pane_if_has_nvim_port = function(pane)
+	if tonumber(pane:get_user_vars().NVIM_PORT) then
+		return pane
 	end
+end
 
-	for _, pane in ipairs(active_window:active_tab():panes()) do
-		if tonumber(pane:get_user_vars().NVIM_PORT) then
-			return pane
+local nvim_port_pane_from_tab = function(tab)
+	for _, pane in ipairs(tab:panes()) do
+		local nvim_port_pane = pane_if_has_nvim_port(pane)
+
+		if nvim_port_pane then
+			return nvim_port_pane
 		end
 	end
+end
 
-	for _, tab in ipairs(active_window:mux_window():tabs()) do
-		for _, pane in ipairs(tab:panes()) do
-			if tonumber(pane:get_user_vars().NVIM_PORT) then
-				return pane
-			end
+local nvim_port_pane_from_window = function(window)
+	for _, tab in ipairs(window():tabs()) do
+		local nvim_port_pane = nvim_port_pane_from_tab(tab)
+
+		if nvim_port_pane then
+			return nvim_port_pane
 		end
 	end
+end
 
+local nvim_port_pane_from_windows = function()
 	for _, window in ipairs(wezterm.gui.gui_windows()) do
-		for _, tab in ipairs(window:mux_window():tabs()) do
-			for _, pane in ipairs(tab:panes()) do
-				if tonumber(pane:get_user_vars().NVIM_PORT) then
-					return pane
-				end
-			end
+		local nvim_port_pane = nvim_port_pane_from_window(window)
+
+		if nvim_port_pane then
+			return nvim_port_pane
 		end
 	end
+end
+
+local find_pane_to_activate = function(active_window, active_pane)
+	return pane_if_has_nvim_port(active_pane)
+		or nvim_port_pane_from_tab(active_window:active_tab())
+		or nvim_port_pane_from_window(active_window)
+		or nvim_port_pane_from_windows()
 end
 
 local write_nr_sh = function(active_window, active_pane)
