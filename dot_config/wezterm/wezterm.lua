@@ -209,6 +209,7 @@ config.quick_select_patterns = {
 	-- https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file
 	[[(?:~|[A-Za-z]:)(?:\\[^<>:"/\|?*]+)+]],
 }
+config.scrollback_lines = 1000000
 config.show_new_tab_button_in_tab_bar = false
 -- config.show_tab_index_in_tab_bar = false
 config.skip_close_confirmation_for_processes_named = {
