@@ -43,6 +43,63 @@ local function split_nav(resize_or_move, key)
 	}
 end
 
+wezterm.on("format-window-title", function(tab)
+	return tab.window_id .. " " .. tab.active_pane.title
+end)
+
+local find_pane_to_activate = function(active_window, active_pane)
+	if tonumber(active_pane:get_user_vars().NVIM_PORT) then
+		return active_pane
+	end
+
+	for _, pane in ipairs(active_window:active_tab():panes()) do
+		if tonumber(pane:get_user_vars().NVIM_PORT) then
+			return pane
+		end
+	end
+
+	for _, tab in ipairs(active_window:mux_window():tabs()) do
+		for _, pane in ipairs(tab:panes()) do
+			if tonumber(pane:get_user_vars().NVIM_PORT) then
+				return pane
+			end
+		end
+	end
+
+	for _, window in ipairs(wezterm.gui.gui_windows()) do
+		for _, tab in ipairs(window:mux_window():tabs()) do
+			for _, pane in ipairs(tab:panes()) do
+				if tonumber(pane:get_user_vars().NVIM_PORT) then
+					return pane
+				end
+			end
+		end
+	end
+end
+
+local write_nr_sh = function(active_window, active_pane)
+	local pane_to_activate = find_pane_to_activate(active_window, active_pane)
+
+	local file = io.open(wezterm.home_dir .. "/.local/bin/nr.sh", "w")
+	if file then
+		file:write(pane_to_activate and table.concat({
+			"nvr --servername localhost:" .. pane_to_activate:get_user_vars().NVIM_PORT .. ' "$@" &',
+			"nircmd win activate stitle " .. pane_to_activate:window():window_id() .. " &",
+			"wezterm cli activate-tab --tab-id " .. pane_to_activate:tab():tab_id() .. " &",
+		}, "\n") or 'nvim "@"')
+		file:close()
+	end
+end
+
+wezterm.on("window-focus-changed", write_nr_sh)
+wezterm.on("user-var-changed", function(window, pane, name)
+	if name ~= "NVIM_PORT" then
+		return
+	end
+
+	write_nr_sh(window, pane)
+end)
+
 local config = {}
 
 config.adjust_window_size_when_changing_font_size = false
