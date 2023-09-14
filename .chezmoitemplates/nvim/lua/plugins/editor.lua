@@ -79,7 +79,7 @@ return {
         rainbow = {
           enabled = true,
         },
-        reuse = "all",
+        uppercase = false,
       },
       modes = {
         char = {
