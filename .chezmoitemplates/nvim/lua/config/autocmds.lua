@@ -46,10 +46,11 @@ local set_nvim_port_user_var = function(port)
   vim.fn.chansend(vim.v.stderr, "\x1b]1337;SetUserVar=NVIM_PORT=" .. base64.encode(tostring(port)) .. "\x07")
 end
 
-ServerstartUnusedPort = function(port)
+local serverstart_unused_port
+serverstart_unused_port = function(port)
   vim.system({ "ncat", "-z", "--wait", "1ms", "127.0.0.1", port }, {}, function(system_obj)
     if system_obj.code == 0 then
-      ServerstartUnusedPort(port + 1)
+      serverstart_unused_port(port + 1)
     else
       vim.schedule(function()
         vim.fn.serverstart("127.0.0.1:" .. port)
@@ -65,4 +66,4 @@ ServerstartUnusedPort = function(port)
   end)
 end
 
-ServerstartUnusedPort(6789)
+serverstart_unused_port(6789)
