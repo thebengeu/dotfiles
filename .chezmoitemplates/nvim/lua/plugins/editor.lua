@@ -76,6 +76,7 @@ return {
       label = {
         after = false,
         before = true,
+        current = false,
         rainbow = {
           enabled = true,
         },
@@ -89,6 +90,9 @@ return {
           end,
           highlight = {
             backdrop = false,
+          },
+          label = {
+            exclude = "acdhijklrx",
           },
         },
       },
