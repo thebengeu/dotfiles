@@ -183,6 +183,37 @@ return {
     end),
   },
   {
+    "ojroques/nvim-osc52",
+    cond = os.getenv("SSH_TTY") and os.getenv("TMUX") == nil,
+    init = function()
+      local copy = function(lines, _)
+        require("osc52").copy(table.concat(lines, "\n"))
+      end
+
+      local paste = function()
+        return {
+          vim.fn.split(vim.fn.getreg(""), "\n"),
+          vim.fn.getregtype(""),
+        }
+      end
+
+      vim.g.clipboard = {
+        copy = {
+          ["+"] = copy,
+          ["*"] = copy,
+        },
+        name = "osc52",
+        paste = {
+          ["+"] = paste,
+          ["*"] = paste,
+        },
+      }
+    end,
+    opts = {
+      silent = true,
+    },
+  },
+  {
     "linty-org/readline.nvim",
     keys = {
       {
