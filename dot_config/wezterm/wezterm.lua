@@ -122,7 +122,6 @@ config.keys = {
 	{ key = "l", mods = "SHIFT|ALT|CTRL", action = act.ActivatePaneDirection("Right") },
 	{ key = "k", mods = "SHIFT|ALT|CTRL", action = act.ActivatePaneDirection("Up") },
 	{ key = "j", mods = "SHIFT|ALT|CTRL", action = act.ActivatePaneDirection("Down") },
-	{ key = ")", mods = "SHIFT|ALT", action = act.Nop },
 	{
 		key = "n",
 		mods = "SHIFT|ALT|CTRL",
@@ -200,7 +199,6 @@ for i, key in ipairs({
 	"*",
 	"(",
 }) do
-	table.insert(config.keys, { key = key, mods = "SHIFT|ALT", action = act.Nop })
 	table.insert(config.keys, {
 		key = key,
 		mods = "SHIFT|CTRL",
