@@ -17,7 +17,6 @@ run_onchange_init.sh
 .config/wezterm/
 AppData/
 *.ps1
-AutoHotkey.ahk
 {{ end }}
 
 {{ if or (eq .chezmoi.hostname "ec2") (eq .chezmoi.hostname "prod") }}
