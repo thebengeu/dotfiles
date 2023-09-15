@@ -184,7 +184,7 @@ return {
   },
   {
     "ojroques/nvim-osc52",
-    cond = os.getenv("SSH_TTY") and os.getenv("TMUX") == nil,
+    cond = os.getenv("SSH_TTY") ~= nil and os.getenv("TMUX") == nil,
     init = function()
       local copy = function(lines, _)
         require("osc52").copy(table.concat(lines, "\n"))
