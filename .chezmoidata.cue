@@ -39,7 +39,7 @@ _shAliases: {
 	}
 
 	for alias_prefix, last_octet in _hosts {
-		"\(alias_prefix)": "ssh \(alias_prefix)-$(if ncat -z --wait 100ms 192.168.50.\(last_octet) 22; then echo \"local\"; else echo \"remote\"; fi)"
+		"\(alias_prefix)": "ssh \(alias_prefix)-$(if ncat -z --wait 50ms 192.168.50.\(last_octet) 22; then echo \"local\"; else echo \"remote\"; fi)"
 	}
 
 	jsr: #"printf "\e[6 q"; node"#
