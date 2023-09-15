@@ -32,5 +32,7 @@ if jit.os:find("Windows") then
 end
 
 vim.opt.title = true
-vim.opt.titlestring = "%F"
 vim.opt.wrap = true
+
+local title_prefix = os.getenv("TITLE_PREFIX")
+vim.opt.titlestring = (title_prefix and title_prefix .. ":" or "") .. "%F"
