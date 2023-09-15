@@ -176,6 +176,20 @@ config.keys = {
 	{ key = "*", mods = "SHIFT|ALT", action = act.Nop },
 	{ key = "(", mods = "SHIFT|ALT", action = act.Nop },
 	{ key = ")", mods = "SHIFT|ALT", action = act.Nop },
+	{ key = "!", mods = "SHIFT|ALT|CTRL", action = act.ActivateWindow(0) },
+	{
+		key = "@",
+		mods = "SHIFT|ALT|CTRL",
+		action = wezterm.action_callback(function()
+			local gui_window = wezterm.gui.gui_windows()[2]
+
+			if gui_window then
+				gui_window:focus()
+			else
+				wezterm.mux.spawn_window({})
+			end
+		end),
+	},
 	split_nav("move", "h"),
 	split_nav("move", "j"),
 	split_nav("move", "k"),
