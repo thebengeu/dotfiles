@@ -79,6 +79,8 @@ aliases: {
 	tns: "tmux new-session -A -s"
 	t:   "pnpm tsx"
 	vim: "nvim"
+	xi:  "pipx install"
+	xu:  "pipx uninstall"
 
 	_noConfigFlags: {
 		"fish --interactive": "--no-config"
@@ -116,11 +118,12 @@ aliases: {
 }
 _packageManagers: {
 	linux: [
+		"cargo",
 		"npm",
 		"pnpm",
 	]
 	windows: linux + [
-			"choco",
+			"gsudo choco",
 			"scoop",
 			"winget",
 	]
