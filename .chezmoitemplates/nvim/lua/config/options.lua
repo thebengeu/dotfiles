@@ -25,7 +25,7 @@ vim.opt.sessionoptions = {
   "winsize",
 }
 
-if jit.os:find("Windows") then
+if jit.os == "Windows" then
   vim.opt.shell = "sh"
   vim.opt.shellcmdflag = "-c"
   vim.opt.shellxquote = ""
