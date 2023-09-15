@@ -72,6 +72,10 @@
     cmd: nix profile install nixpkgs#{{ item }}
     creates: ~/.nix-profile/bin/{{ item }}
   loop:
+    - hledger
+    - hledger-ui
+    - hledger-web
+    - ledger
     - nethogs
     - nix
     - nushell
