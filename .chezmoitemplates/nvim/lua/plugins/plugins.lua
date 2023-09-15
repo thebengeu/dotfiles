@@ -111,7 +111,7 @@ return {
     dependencies = {
       "kkharji/sqlite.lua",
       config = function()
-        if jit.os:find("Windows") then
+        if jit.os == "Windows" then
           vim.g.sqlite_clib_path = vim.env.ChocolateyInstall .. "/lib/SQLite/tools/sqlite3.dll"
         end
       end,

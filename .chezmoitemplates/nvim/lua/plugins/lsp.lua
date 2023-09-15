@@ -15,7 +15,7 @@ return {
         "taplo",
         "yamlfmt",
         "yamllint",
-      }, jit.os:find("windows") and {} or { "ansible-lint" }),
+      }, jit.os == "Windows" and {} or { "ansible-lint" }),
     },
   },
   {
@@ -75,9 +75,6 @@ return {
         enabled = true,
       }
       opts.servers = vim.tbl_extend("force", opts.servers, {
-        ansiblels = {
-          autostart = not jit.os:find("windows"),
-        },
         bashls = {},
         clangd = {
           mason = false,
@@ -118,7 +115,7 @@ return {
             },
           },
         },
-      })
+      }, jit.os == "Windows" and {} or { ansiblels = {} })
       opts.setup = vim.tbl_extend("force", opts.setup, {
         clangd = function(_, clangd_opts)
           clangd_opts.capabilities.offsetEncoding = { "utf-16" }
