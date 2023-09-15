@@ -14,7 +14,7 @@ abbr --add man batman
 abbr --add os 'set COMMAND $(op signin) && test -n "$COMMAND" && eval $COMMAND && set --export OP_TIME $(date +%s)'
 
 if test -f /proc/sys/fs/binfmt_misc/WSLInterop
-    set --export TITLE_PREFIX WSL
+    set --export TITLE_PREFIX wsl
 end
 
 if set -q SSH_TTY
