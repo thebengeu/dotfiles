@@ -192,6 +192,9 @@
 - community.general.snap:
     name: chezmoi
     classic: true
+- community.general.snap:
+    name: micro
+    classic: true
 - ansible.builtin.get_url:
     dest: /tmp/nix-installer
     mode: "755"
