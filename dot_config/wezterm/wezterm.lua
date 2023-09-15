@@ -104,30 +104,7 @@ config.keys = {
 	{ key = "l", mods = "SHIFT|ALT|CTRL", action = act.ActivatePaneDirection("Right") },
 	{ key = "k", mods = "SHIFT|ALT|CTRL", action = act.ActivatePaneDirection("Up") },
 	{ key = "j", mods = "SHIFT|ALT|CTRL", action = act.ActivatePaneDirection("Down") },
-	{ key = "!", mods = "SHIFT|ALT", action = act.Nop },
-	{ key = "@", mods = "SHIFT|ALT", action = act.Nop },
-	{ key = "#", mods = "SHIFT|ALT", action = act.Nop },
-	{ key = "$", mods = "SHIFT|ALT", action = act.Nop },
-	{ key = "%", mods = "SHIFT|ALT", action = act.Nop },
-	{ key = "^", mods = "SHIFT|ALT", action = act.Nop },
-	{ key = "&", mods = "SHIFT|ALT", action = act.Nop },
-	{ key = "*", mods = "SHIFT|ALT", action = act.Nop },
-	{ key = "(", mods = "SHIFT|ALT", action = act.Nop },
 	{ key = ")", mods = "SHIFT|ALT", action = act.Nop },
-	{ key = "!", mods = "SHIFT|ALT|CTRL", action = act.ActivateWindow(0) },
-	{
-		key = "@",
-		mods = "SHIFT|ALT|CTRL",
-		action = wezterm.action_callback(function()
-			local gui_window = wezterm.gui.gui_windows()[2]
-
-			if gui_window then
-				gui_window:focus()
-			else
-				wezterm.mux.spawn_window({})
-			end
-		end),
-	},
 	{
 		key = "n",
 		mods = "SHIFT|ALT|CTRL",
@@ -190,6 +167,7 @@ for i, key in ipairs({
 	"*",
 	"(",
 }) do
+	table.insert(config.keys, { key = key, mods = "SHIFT|ALT", action = act.Nop })
 	table.insert(config.keys, {
 		key = key,
 		mods = "SHIFT|CTRL",
@@ -202,6 +180,19 @@ for i, key in ipairs({
 				end
 			else
 				tabs[i]:activate()
+			end
+		end),
+	})
+	table.insert(config.keys, {
+		key = key,
+		mods = "SHIFT|ALT|CTRL",
+		action = wezterm.action_callback(function()
+			local gui_window = wezterm.gui.gui_windows()[i]
+
+			if gui_window then
+				gui_window:focus()
+			else
+				wezterm.mux.spawn_window({})
 			end
 		end),
 	})
