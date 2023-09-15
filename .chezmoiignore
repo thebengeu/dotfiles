@@ -7,7 +7,7 @@ secrets.ejson
 {{ if eq .chezmoi.os "windows" }}
 .config/{bat,fd,gitui,glow,gup,lazygit,lsd,msmtp,nushell,nvim,tealdeer,tmux,yamlfmt}/
 .config/topgrade.toml
-.local/
+.local/share/
 .ansible.cfg
 .inputrc
 run_onchange_init.sh

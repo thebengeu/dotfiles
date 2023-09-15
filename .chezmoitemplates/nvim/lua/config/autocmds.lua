@@ -42,6 +42,10 @@ vim.api.nvim_create_autocmd("TermClose", {
   end,
 })
 
+local set_user_var = function(name, value)
+  vim.fn.chansend(vim.v.stderr, "\x1b]1337;SetUserVar=" .. name .. "=" .. base64.encode(tostring(value)) .. "\x07")
+end
+
 local set_nvim_port_user_var = function(port)
   vim.fn.chansend(vim.v.stderr, "\x1b]1337;SetUserVar=NVIM_PORT=" .. base64.encode(tostring(port)) .. "\x07")
 end
@@ -54,11 +58,19 @@ serverstart_unused_port = function(port)
     else
       vim.schedule(function()
         vim.fn.serverstart("127.0.0.1:" .. port)
-        set_nvim_port_user_var(port)
+        set_user_var("NVIM_PORT", port)
+        set_user_var("FOCUSED_NVIM_TIME", os.time())
+
+        vim.api.nvim_create_autocmd("FocusGained", {
+          callback = function()
+            set_user_var("FOCUSED_NVIM_TIME", os.time())
+          end,
+        })
 
         vim.api.nvim_create_autocmd("VimLeave", {
           callback = function()
-            set_nvim_port_user_var("")
+            set_user_var("NVIM_PORT", "")
+            set_user_var("FOCUSED_NVIM_TIME", 0)
           end,
         })
       end)

@@ -43,72 +43,6 @@ local function split_nav(resize_or_move, key)
 	}
 end
 
-local nvim_port_pane_from_pane = function(pane)
-	if tonumber(pane:get_user_vars().NVIM_PORT) then
-		return pane
-	end
-end
-
-local nvim_port_pane_from_components = function(components, nvim_port_pane_from_sub_component)
-	for _, component in ipairs(components) do
-		local nvim_port_pane = nvim_port_pane_from_sub_component(component)
-
-		if nvim_port_pane then
-			return nvim_port_pane
-		end
-	end
-end
-
-local nvim_port_pane_from_tab = function(tab)
-	return nvim_port_pane_from_components(tab:panes(), nvim_port_pane_from_pane)
-end
-
-local nvim_port_pane_from_window = function(window)
-	return nvim_port_pane_from_components(window:mux_window():tabs(), nvim_port_pane_from_tab)
-end
-
-local nvim_port_pane_from_windows = function()
-	return nvim_port_pane_from_components(wezterm.gui.gui_windows(), nvim_port_pane_from_window)
-end
-
-local write_nr_sh = function(active_window, active_pane, search_all_windows)
-	if active_window:is_focused() then
-		return
-	end
-
-	local pane_to_activate = nvim_port_pane_from_pane(active_pane)
-		or nvim_port_pane_from_tab(active_window:active_tab())
-		or nvim_port_pane_from_window(active_window)
-
-	if search_all_windows then
-		pane_to_activate = pane_to_activate or nvim_port_pane_from_windows()
-	elseif pane_to_activate == nil then
-		return
-	end
-
-	local file = io.open(wezterm.home_dir .. "/.local/bin/nr.sh", "w")
-	if file then
-		file:write((pane_to_activate and table.concat({
-			[["$PROGRAMFILES\AutoHotkey\v2\AutoHotkey64.exe" "$APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\AutoHotkey.ahk" ]]
-				.. pane_to_activate:window():gui_window():window_id() + 1
-				.. " "
-				.. pane_to_activate:tab():tab_id() + 1
-				.. " &",
-			"nvr -s --nostart --servername 127.0.0.1:" .. pane_to_activate:get_user_vars().NVIM_PORT .. ' "$@" || ',
-		}, "\n") or "") .. 'nvim "$@"\n')
-		file:close()
-	end
-end
-
-wezterm.on("window-focus-changed", write_nr_sh)
-wezterm.on("user-var-changed", function(window, pane, name, value)
-	if name ~= "NVIM_PORT" then
-		return
-	end
-
-	write_nr_sh(window, pane, value == "")
-end)
-
 local config = {}
 
 config.adjust_window_size_when_changing_font_size = false
@@ -191,6 +125,47 @@ config.keys = {
 				gui_window:focus()
 			else
 				wezterm.mux.spawn_window({})
+			end
+		end),
+	},
+	{
+		key = "n",
+		mods = "SHIFT|ALT|CTRL",
+		action = wezterm.action_callback(function()
+			local latest_focused_nvim_time = 0
+			local latest_focused_nvim_pane
+			local latest_focused_nvim_port
+
+			for _, window in ipairs(wezterm.gui.gui_windows()) do
+				for _, tab in ipairs(window:mux_window():tabs()) do
+					for _, pane in ipairs(tab:panes()) do
+						local user_vars = pane:get_user_vars()
+						local focused_nvim_time = tonumber(user_vars.FOCUSED_NVIM_TIME)
+
+						if focused_nvim_time and focused_nvim_time > latest_focused_nvim_time then
+							latest_focused_nvim_time = focused_nvim_time
+							latest_focused_nvim_pane = pane
+							latest_focused_nvim_port = user_vars.NVIM_PORT
+						end
+					end
+				end
+			end
+
+			if latest_focused_nvim_pane then
+				latest_focused_nvim_pane:window():gui_window():focus()
+				latest_focused_nvim_pane:activate()
+			end
+
+			local file = io.open(wezterm.home_dir .. "/.local/bin/nvr-latest-focused-nvim.sh", "w")
+			if file then
+				file:write(
+					(
+						latest_focused_nvim_port
+							and "nvr -s --nostart --servername 127.0.0.1:" .. latest_focused_nvim_port .. ' "$@" || '
+						or ""
+					) .. 'nvim "$@"\n'
+				)
+				file:close()
 			end
 		end),
 	},
