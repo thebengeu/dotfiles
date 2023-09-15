@@ -112,13 +112,16 @@ local activate_pane = function(pane)
 	end
 end
 
-local activate_or_spawn_pane = function(pane_condition, spawn_domain_name)
+local activate_or_spawn_pane = function(domain_name_or_getter)
 	return wezterm.action_callback(function(window)
 		local latest_prompt_time = 0
 		local latest_prompt_pane
 
+		local domain_name = type(domain_name_or_getter) == "function" and domain_name_or_getter()
+			or domain_name_or_getter
+
 		find_pane(function(pane)
-			if pane_condition(pane) then
+			if pane:get_domain_name() == domain_name and pane:get_user_vars().WEZTERM_PROG == "" then
 				local user_vars = pane:get_user_vars()
 				local prompt_time = tonumber(user_vars.PROMPT_TIME)
 
@@ -132,7 +135,7 @@ local activate_or_spawn_pane = function(pane_condition, spawn_domain_name)
 		activate_pane(latest_prompt_pane)
 
 		if latest_prompt_pane == nil then
-			window:mux_window():spawn_tab({ domain = { DomainName = spawn_domain_name } })
+			window:mux_window():spawn_tab({ domain = { DomainName = domain_name } })
 		end
 	end)
 end
@@ -195,18 +198,46 @@ config.keys = {
 		end),
 	},
 	{
+		key = "d",
+		mods = "SHIFT|ALT|CTRL",
+		action = activate_or_spawn_pane(function()
+			return wezterm.run_child_process({ "ncat", "-z", "--wait", "50ms", "192.168.50.2", "22" })
+					and "SSH:dev-local"
+				or "SSH:dev-remote"
+		end),
+	},
+	{
+		key = "e",
+		mods = "SHIFT|ALT|CTRL",
+		action = activate_or_spawn_pane("SSH:ec2"),
+	},
+	{
 		key = "l",
 		mods = "SHIFT|ALT|CTRL",
-		action = activate_or_spawn_pane(function(pane)
-			return pane:get_domain_name() == "local" and pane:get_user_vars().WEZTERM_PROG == ""
-		end, "local"),
+		action = activate_or_spawn_pane("local"),
+	},
+	{
+		key = "p",
+		mods = "SHIFT|ALT|CTRL",
+		action = activate_or_spawn_pane(function()
+			return wezterm.run_child_process({ "ncat", "-z", "--wait", "50ms", "192.168.50.4", "22" })
+					and "SSH:prod-local"
+				or "SSH:prod-remote"
+		end),
+	},
+	{
+		key = "v",
+		mods = "SHIFT|ALT|CTRL",
+		action = activate_or_spawn_pane(function()
+			return wezterm.run_child_process({ "ncat", "-z", "--wait", "50ms", "192.168.50.3", "22" })
+					and "SSH:dev-wsl-local"
+				or "SSH:dev-wsl-remote"
+		end),
 	},
 	{
 		key = "w",
 		mods = "SHIFT|ALT|CTRL",
-		action = activate_or_spawn_pane(function(pane)
-			return pane:get_domain_name() == first_wsl_domain_name
-		end, first_wsl_domain_name),
+		action = activate_or_spawn_pane(first_wsl_domain_name),
 	},
 	split_nav("move", "h"),
 	split_nav("move", "j"),
