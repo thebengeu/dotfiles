@@ -148,6 +148,7 @@ local first_wsl_domain_name = config.wsl_domains[1].name
 config.keys = {
 	{ key = "phys:Space", mods = "SHIFT|ALT|CTRL", action = act.QuickSelect },
 	{ key = "t", mods = "SHIFT|CTRL", action = act.SpawnTab("DefaultDomain") },
+	{ key = "t", mods = "ALT|CTRL", action = act.SpawnTab("CurrentPaneDomain") },
 	{ key = "w", mods = "SHIFT|CTRL", action = act.CloseCurrentTab({ confirm = false }) },
 	{ key = "UpArrow", mods = "SHIFT|ALT|CTRL", action = act.ScrollToPrompt(-1) },
 	{ key = "DownArrow", mods = "SHIFT|ALT|CTRL", action = act.ScrollToPrompt(1) },
