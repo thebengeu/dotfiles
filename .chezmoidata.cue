@@ -162,6 +162,18 @@ environmentVariables: {
 	RIPGREP_CONFIG_PATH: "$HOME/.ripgreprc"
 }
 functions: {
+	npi: {
+		lines: [
+			"nix profile install nixpkgs#$package",
+		]
+		parameters: ["package"]
+	}
+	npr: {
+		lines: [
+			"nix profile remove legacyPackages.x86_64-linux.$package",
+		]
+		parameters: ["package"]
+	}
 	nz: {
 		lines: [
 			"cd $directory; nvim",
