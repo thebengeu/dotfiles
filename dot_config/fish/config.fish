@@ -13,14 +13,26 @@ set --global sponge_purge_only_on_exit true
 abbr --add man batman
 abbr --add os 'set COMMAND $(op signin) && test -n "$COMMAND" && eval $COMMAND && set --export OP_TIME $(date +%s)'
 
+if test -f /proc/sys/fs/binfmt_misc/WSLInterop
+    set --export TITLE_PREFIX WSL
+end
+
+if set -q SSH_TTY
+    set --export TITLE_PREFIX $(prompt_hostname)
+end
+
 function fish_title
-    set --local full_prompt_pwd (prompt_pwd --dir-length=0)
+    set --local full_prompt_pwd $(prompt_pwd --dir-length=0)
 
     if test -n "$TMUX"
         tmux rename-window -t $(tmux display-message -p '#{window_index}') $full_prompt_pwd
     end
 
-    echo $full_prompt_pwd
+    if set -q TITLE_PREFIX
+        echo "$TITLE_PREFIX:$full_prompt_pwd"
+    else
+        echo $full_prompt_pwd
+    end
 end
 
 function fish_hybrid_key_bindings
