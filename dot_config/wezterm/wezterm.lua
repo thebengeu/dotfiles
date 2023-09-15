@@ -43,10 +43,6 @@ local function split_nav(resize_or_move, key)
 	}
 end
 
-wezterm.on("format-window-title", function(tab)
-	return tab.window_id .. " " .. tab.active_pane.title
-end)
-
 local nvim_port_pane_from_pane = function(pane)
 	if tonumber(pane:get_user_vars().NVIM_PORT) then
 		return pane
@@ -75,21 +71,29 @@ local nvim_port_pane_from_windows = function()
 	return nvim_port_pane_from_components(wezterm.gui.gui_windows(), nvim_port_pane_from_window)
 end
 
-local find_pane_to_activate = function(active_window, active_pane)
-	return nvim_port_pane_from_pane(active_pane)
+local write_nr_sh = function(active_window, active_pane, search_all_windows)
+	if active_window:is_focused() then
+		return
+	end
+
+	local pane_to_activate = nvim_port_pane_from_pane(active_pane)
 		or nvim_port_pane_from_tab(active_window:active_tab())
 		or nvim_port_pane_from_window(active_window)
-		or nvim_port_pane_from_windows()
-end
 
-local write_nr_sh = function(active_window, active_pane)
-	local pane_to_activate = find_pane_to_activate(active_window, active_pane)
+	if search_all_windows then
+		pane_to_activate = pane_to_activate or nvim_port_pane_from_windows()
+	elseif pane_to_activate == nil then
+		return
+	end
 
 	local file = io.open(wezterm.home_dir .. "/.local/bin/nr.sh", "w")
 	if file then
 		file:write((pane_to_activate and table.concat({
-			"nircmd win activate stitle " .. pane_to_activate:window():window_id() .. " &",
-			"wezterm cli activate-tab --tab-id " .. pane_to_activate:tab():tab_id() .. " &",
+			[["$PROGRAMFILES\AutoHotkey\v2\AutoHotkey64.exe" "$APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\AutoHotkey.ahk" ]]
+				.. pane_to_activate:window():gui_window():window_id() + 1
+				.. " "
+				.. pane_to_activate:tab():tab_id() + 1
+				.. " &",
 			"nvr -s --nostart --servername 127.0.0.1:" .. pane_to_activate:get_user_vars().NVIM_PORT .. ' "$@" || ',
 		}, "\n") or "") .. 'nvim "$@"\n')
 		file:close()
@@ -97,12 +101,12 @@ local write_nr_sh = function(active_window, active_pane)
 end
 
 wezterm.on("window-focus-changed", write_nr_sh)
-wezterm.on("user-var-changed", function(window, pane, name)
+wezterm.on("user-var-changed", function(window, pane, name, value)
 	if name ~= "NVIM_PORT" then
 		return
 	end
 
-	write_nr_sh(window, pane)
+	write_nr_sh(window, pane, value == "")
 end)
 
 local config = {}
