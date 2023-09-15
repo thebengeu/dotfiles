@@ -131,11 +131,13 @@ _packageManagers: {
 platformSpecificAliases: {
 	linux: {
 		fd: "fd --hidden"
+		rs: "rm ~/.local/share/nvim/sessions/*"
 		tg: "topgrade"
 	}
 	windows: {
 		fd:  "\(linux.fd) --path-separator '//'"
 		nr:  "sh $HOME/.local/bin/nr.sh"
+		rs:  "rm $LOCALAPPDATA/nvim-data/sessions/*"
 		tg:  "gsudo topgrade"
 		wsk: "wezterm show-keys --lua"
 	}
