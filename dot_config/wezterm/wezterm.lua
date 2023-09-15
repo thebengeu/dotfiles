@@ -91,11 +91,15 @@ config.font_rules = {
 }
 config.font_size = 13
 
-local for_each_pane = function(callback)
+local find_pane = function(callback)
 	for _, window in ipairs(wezterm.gui.gui_windows()) do
 		for _, tab in ipairs(window:mux_window():tabs()) do
 			for _, pane in ipairs(tab:panes()) do
-				callback(pane)
+				local found_pane = callback(pane)
+
+				if found_pane then
+					return found_pane
+				end
 			end
 		end
 	end
@@ -130,7 +134,7 @@ config.keys = {
 			local latest_focused_nvim_pane
 			local latest_focused_nvim_port
 
-			for_each_pane(function(pane)
+			find_pane(function(pane)
 				local user_vars = pane:get_user_vars()
 				local focused_nvim_time = tonumber(user_vars.FOCUSED_NVIM_TIME)
 
@@ -160,14 +164,13 @@ config.keys = {
 		key = "w",
 		mods = "SHIFT|ALT|CTRL",
 		action = wezterm.action_callback(function(window)
-			local wsl_pane
 			local wsl_domain_name
 
-			for_each_pane(function(pane)
+			local wsl_pane = find_pane(function(pane)
 				wsl_domain_name = pane:window():gui_window():effective_config().wsl_domains[1].name
 
 				if pane:get_domain_name() == wsl_domain_name then
-					wsl_pane = pane
+					return pane
 				end
 			end)
 
