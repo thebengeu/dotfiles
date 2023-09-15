@@ -1,17 +1,17 @@
 import "regexp"
 
 #External: {
-	executable?:   bool
-	refreshPeriod: "168h"
-	type:          "file" | "git-repo"
-	url:           string
+	executable?: bool
+	type:        "archive" | "file" | "git-repo"
+	url:         string
 }
 
 #GitRepo: {
 	#External
-	_gitRepo: string
-	type:     "git-repo"
-	url:      "https://github.com/\(_gitRepo)"
+	_gitRepo:      string
+	refreshPeriod: "168h"
+	type:          "git-repo"
+	url:           "https://github.com/\(_gitRepo)"
 }
 
 _zshGitRepos: [
@@ -37,4 +37,10 @@ for gitRepo in _zshGitRepos {
 }
 ".config/tmux/plugins/tpm": #GitRepo & {
 	_gitRepo: "tmux-plugins/tpm"
+}
+"AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup": {
+	include: [ "*/config.txt", "*/dual-key-remap.exe"]
+	stripComponents: 1
+	type:            "archive"
+	url:             "https://github.com/ililim/dual-key-remap/releases/download/v0.7/dual-key-remap-v0.7.zip"
 }
