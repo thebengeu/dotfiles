@@ -33,13 +33,13 @@ _gitAliases: {
 }
 _shAliases: {
 	_hosts: {
-		dev:     2
-		dev_wsl: 3
-		prod:    4
+		dev:       2
+		"dev-wsl": 3
+		prod:      4
 	}
 
 	for alias_prefix, last_octet in _hosts {
-		"\(alias_prefix)": "ssh \(alias_prefix)_$(if ncat -z --wait 100ms 192.168.50.\(last_octet) 22; then echo \"local\"; else echo \"remote\"; fi)"
+		"\(alias_prefix)": "ssh \(alias_prefix)-$(if ncat -z --wait 100ms 192.168.50.\(last_octet) 22; then echo \"local\"; else echo \"remote\"; fi)"
 	}
 
 	jsr: #"printf "\e[6 q"; node"#
