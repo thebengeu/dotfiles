@@ -72,7 +72,7 @@ aliases: {
 	ppg: "pnpm prisma generate"
 	pr:  "gh pr create -f"
 	prm: "pnpm remove"
-	prr: "gh pr create -f -r"
+	prr: "\(pr) -r"
 	scc: "scc --not-match \"package-lock.json|pnpm-lock.yaml\""
 	tb:  "time bash -i -c exit"
 	tbn: "time bash --noprofile --norc -i -c exit"
@@ -131,7 +131,7 @@ platformSpecificAliases: {
 		tg: "topgrade"
 	}
 	windows: {
-		fd:  "fd --hidden --path-separator '//'"
+		fd:  "\(linux.fd) --path-separator '//'"
 		nr:  "sh $HOME/.local/bin/nr.sh"
 		tg:  "gsudo topgrade"
 		wsk: "wezterm show-keys --lua"
