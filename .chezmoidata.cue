@@ -75,14 +75,14 @@ aliases: {
 	pr:  "gh pr create -f"
 	prm: "pnpm remove"
 	prr: "\(pr) -r"
+	pxi: "pipx install"
+	pxu: "pipx uninstall"
 	scc: "scc --not-match \"package-lock.json|pnpm-lock.yaml\""
 	tb:  "time bash -i -c exit"
 	tbn: "time bash --noprofile --norc -i -c exit"
 	tns: "tmux new-session -A -s"
 	t:   "pnpm tsx"
 	vim: "nvim"
-	xi:  "pipx install"
-	xu:  "pipx uninstall"
 
 	_noConfigFlags: {
 		"fish --interactive": "--no-config"
