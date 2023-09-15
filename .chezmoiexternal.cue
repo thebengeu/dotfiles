@@ -38,7 +38,7 @@ for gitRepo in _zshGitRepos {
 ".config/tmux/plugins/tpm": #GitRepo & {
 	_gitRepo: "tmux-plugins/tpm"
 }
-"AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup": {
+".local/bin": {
 	include: [ "*/config.txt", "*/dual-key-remap.exe"]
 	stripComponents: 1
 	type:            "archive"

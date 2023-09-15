@@ -13,3 +13,7 @@ foreach ($shortcutPath in $shortcutArguments.Keys)
   $shortcut.Arguments = $shortcutArguments[$shortcutPath]
   $shortcut.Save()
 }
+
+$shortcut = (New-Object -ComObject WScript.Shell).CreateShortCut("$Env:APPDATA\$startMenuPrograms\Startup\dual-key-remap.lnk")
+$shortcut.TargetPath = "$Env:USERPROFILE\.local\bin\dual-key-remap.exe"
+$shortcut.Save()
