@@ -161,11 +161,19 @@ environmentVariables: {
 	NODE_NO_WARNINGS:    "1"
 	RIPGREP_CONFIG_PATH: "$HOME/.ripgreprc"
 }
-functions: wcss: {
-	lines: [
-		"parallel {} search $package ::: choco scoop winget",
-	]
-	parameters: ["package"]
+functions: {
+	nz: {
+		lines: [
+			"cd $directory; nvim",
+		]
+		parameters: ["directory"]
+	}
+	wcss: {
+		lines: [
+			"parallel {} search $package ::: choco scoop winget",
+		]
+		parameters: ["package"]
+	}
 }
 paths: [
 	"/snap/bin",
