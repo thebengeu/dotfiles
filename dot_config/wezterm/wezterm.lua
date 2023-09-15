@@ -112,6 +112,39 @@ local activate_pane = function(pane)
 	end
 end
 
+local activate_or_spawn_pane = function(pane_condition, spawn_domain_name)
+	return wezterm.action_callback(function(window)
+		local latest_prompt_time = 0
+		local latest_prompt_pane
+
+		find_pane(function(pane)
+			if pane_condition(pane) then
+				local user_vars = pane:get_user_vars()
+				local prompt_time = tonumber(user_vars.PROMPT_TIME)
+
+				if prompt_time and prompt_time > latest_prompt_time then
+					latest_prompt_time = prompt_time
+					latest_prompt_pane = pane
+				end
+			end
+		end)
+
+		activate_pane(latest_prompt_pane)
+
+		if latest_prompt_pane == nil then
+			window:mux_window():spawn_tab({ domain = { DomainName = spawn_domain_name } })
+		end
+	end)
+end
+
+config.wsl_domains = map(wezterm.default_wsl_domains(), function(wsl_domain)
+	wsl_domain.default_cwd = "~"
+	wsl_domain.default_prog = { "fish", "-C", "tmux has-session -t 0 2>/dev/null || tmux new-session -d -s 0" }
+	return wsl_domain
+end)
+
+local first_wsl_domain_name = config.wsl_domains[1].name
+
 config.keys = {
 	{ key = "phys:Space", mods = "SHIFT|ALT|CTRL", action = act.QuickSelect },
 	{ key = "t", mods = "SHIFT|CTRL", action = act.SpawnTab("DefaultDomain") },
@@ -161,25 +194,18 @@ config.keys = {
 		end),
 	},
 	{
+		key = "l",
+		mods = "SHIFT|ALT|CTRL",
+		action = activate_or_spawn_pane(function(pane)
+			return pane:get_domain_name() == "local" and pane:get_user_vars().WEZTERM_PROG == ""
+		end, "local"),
+	},
+	{
 		key = "w",
 		mods = "SHIFT|ALT|CTRL",
-		action = wezterm.action_callback(function(window)
-			local wsl_domain_name
-
-			local wsl_pane = find_pane(function(pane)
-				wsl_domain_name = pane:window():gui_window():effective_config().wsl_domains[1].name
-
-				if pane:get_domain_name() == wsl_domain_name then
-					return pane
-				end
-			end)
-
-			activate_pane(wsl_pane)
-
-			if wsl_pane == nil then
-				window:mux_window():spawn_tab({ domain = { DomainName = wsl_domain_name } })
-			end
-		end),
+		action = activate_or_spawn_pane(function(pane)
+			return pane:get_domain_name() == first_wsl_domain_name
+		end, first_wsl_domain_name),
 	},
 	split_nav("move", "h"),
 	split_nav("move", "j"),
@@ -303,10 +329,5 @@ config.window_padding = {
 	top = 0,
 	bottom = 0,
 }
-config.wsl_domains = map(wezterm.default_wsl_domains(), function(wsl_domain)
-	wsl_domain.default_cwd = "~"
-	wsl_domain.default_prog = { "fish", "-C", "tmux has-session -t 0 2>/dev/null || tmux new-session -d -s 0" }
-	return wsl_domain
-end)
 
 return config
