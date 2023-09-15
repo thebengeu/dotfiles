@@ -46,6 +46,8 @@ _shAliases: {
 	tsr: #"printf "\e[6 q"; pnpm tsx"#
 }
 aliases: {
+	ai:  "sudo apt install"
+	ar:  "sudo apt remove"
 	b:   "bat"
 	cad: "chezmoi add"
 	cat: "bat"
