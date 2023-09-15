@@ -90,6 +90,24 @@ config.font_rules = {
 	},
 }
 config.font_size = 13
+
+local for_each_pane = function(callback)
+	for _, window in ipairs(wezterm.gui.gui_windows()) do
+		for _, tab in ipairs(window:mux_window():tabs()) do
+			for _, pane in ipairs(tab:panes()) do
+				callback(pane)
+			end
+		end
+	end
+end
+
+local activate_pane = function(pane)
+	if pane then
+		pane:window():gui_window():focus()
+		pane:activate()
+	end
+end
+
 config.keys = {
 	{ key = "phys:Space", mods = "SHIFT|ALT|CTRL", action = act.QuickSelect },
 	{ key = "t", mods = "SHIFT|CTRL", action = act.SpawnTab("DefaultDomain") },
@@ -113,25 +131,18 @@ config.keys = {
 			local latest_focused_nvim_pane
 			local latest_focused_nvim_port
 
-			for _, window in ipairs(wezterm.gui.gui_windows()) do
-				for _, tab in ipairs(window:mux_window():tabs()) do
-					for _, pane in ipairs(tab:panes()) do
-						local user_vars = pane:get_user_vars()
-						local focused_nvim_time = tonumber(user_vars.FOCUSED_NVIM_TIME)
+			for_each_pane(function(pane)
+				local user_vars = pane:get_user_vars()
+				local focused_nvim_time = tonumber(user_vars.FOCUSED_NVIM_TIME)
 
-						if focused_nvim_time and focused_nvim_time > latest_focused_nvim_time then
-							latest_focused_nvim_time = focused_nvim_time
-							latest_focused_nvim_pane = pane
-							latest_focused_nvim_port = user_vars.NVIM_PORT
-						end
-					end
+				if focused_nvim_time and focused_nvim_time > latest_focused_nvim_time then
+					latest_focused_nvim_time = focused_nvim_time
+					latest_focused_nvim_pane = pane
+					latest_focused_nvim_port = user_vars.NVIM_PORT
 				end
-			end
+			end)
 
-			if latest_focused_nvim_pane then
-				latest_focused_nvim_pane:window():gui_window():focus()
-				latest_focused_nvim_pane:activate()
-			end
+			activate_pane(latest_focused_nvim_pane)
 
 			local file = io.open(wezterm.home_dir .. "/.local/bin/nvr-latest-focused-nvim.sh", "w")
 			if file then
@@ -143,6 +154,28 @@ config.keys = {
 					) .. 'nvim "$@"\n'
 				)
 				file:close()
+			end
+		end),
+	},
+	{
+		key = "w",
+		mods = "SHIFT|ALT|CTRL",
+		action = wezterm.action_callback(function(window)
+			local wsl_pane
+			local wsl_domain_name
+
+			for_each_pane(function(pane)
+				wsl_domain_name = pane:window():gui_window():effective_config().wsl_domains[1].name
+
+				if pane:get_domain_name() == wsl_domain_name then
+					wsl_pane = pane
+				end
+			end)
+
+			activate_pane(wsl_pane)
+
+			if wsl_pane == nil then
+				window:mux_window():spawn_tab({ domain = { DomainName = wsl_domain_name } })
 			end
 		end),
 	},
@@ -187,12 +220,16 @@ for i, key in ipairs({
 		key = key,
 		mods = "SHIFT|ALT|CTRL",
 		action = wezterm.action_callback(function()
-			local gui_window = wezterm.gui.gui_windows()[i]
-
-			if gui_window then
-				gui_window:focus()
+			local windows = wezterm.gui.gui_windows()
+			if i - #windows > 0 then
+				for _ = 1, i - #windows do
+					wezterm.mux.spawn_window({})
+				end
 			else
-				wezterm.mux.spawn_window({})
+				table.sort(windows, function(win1, win2)
+					return win1:window_id() < win2:window_id()
+				end)
+				windows[i]:focus()
 			end
 		end),
 	})
