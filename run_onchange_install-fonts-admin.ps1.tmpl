@@ -1,4 +1,4 @@
-# {{ output "powershell" "-NoProfile" "-Command" (print "(Get-ChildItem " .chezmoi.sourceDir "/dot_local/share/fonts | Get-FileHash).Hash") | sha256sum }}
+# {{ output "pwsh" "-NoProfile" "-Command" (print "(Get-ChildItem " .chezmoi.sourceDir "/dot_local/share/fonts | Get-FileHash).Hash") | sha256sum }}
 if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator))
 {
   if (Get-Command gsudo)
