@@ -7,24 +7,31 @@ local colorschemes = {
   { "catppuccin-mocha" },
   { "dracula" },
   { "dracula-soft" },
+  { "duckbones" },
   { "duskfox" },
   { "edge", "aura" },
   { "edge", "default" },
   { "edge", "neon" },
   { "everforest" },
+  { "forestbones" },
   { "github_dark" },
   { "github_dark_dimmed" },
   { "github_dark_high_contrast" },
   { "gruvbox" },
-  { "gruvbox-material" },
   { "gruvbox-baby" },
+  { "gruvbox-material" },
   { "kanagawa-dragon" },
   { "kanagawa-wave" },
+  { "kanagawabones" },
   { "material", "darker" },
   { "material", "deep ocean" },
   { "material", "oceanic" },
   { "material", "palenight" },
+  { "moonfly" },
+  { "neobones" },
+  { "nightfly" },
   { "nightfox" },
+  { "nordbones" },
   { "nordfox" },
   { "nordic" },
   { "one_monokai" },
@@ -34,6 +41,8 @@ local colorschemes = {
   { "onenord" },
   { "poimandres" },
   { "rose-pine" },
+  { "rosebones" },
+  { "seoulbones" },
   { "sonokai", "andromeda" },
   { "sonokai", "atlantis" },
   { "sonokai", "default" },
@@ -41,11 +50,15 @@ local colorschemes = {
   { "sonokai", "maia" },
   { "sonokai", "shusia" },
   { "terafox" },
+  { "tokyobones" },
   { "tokyonight-moon" },
   { "tokyonight-night" },
   { "tokyonight-storm" },
   { "tundra" },
   { "vscode" },
+  { "zenbones" },
+  { "zenburned" },
+  { "zenwritten" },
 }
 
 local colorscheme_index
@@ -227,6 +240,16 @@ return {
     lazy = true,
   },
   {
+    "bluz71/vim-moonfly-colors",
+    name = "moonfly",
+    lazy = true,
+  },
+  {
+    "bluz71/vim-nightfly-colors",
+    name = "nightfly",
+    lazy = true,
+  },
+  {
     "EdenEast/nightfox.nvim",
     lazy = true,
   },
@@ -374,6 +397,28 @@ return {
           RainbowDelimiterCyan = { fg = colors.vscBlueGreen },
         },
       }
+    end,
+    lazy = true,
+  },
+  {
+    "mcchrish/zenbones.nvim",
+    init = function()
+      for _, scheme in ipairs(require("zenbones.util").get_colorscheme_list()) do
+        local palette = require(scheme.name .. ".palette")
+
+        vim.api.nvim_create_autocmd("ColorScheme", {
+          callback = function()
+            vim.api.nvim_set_hl(0, "RainbowDelimiterRed", { fg = palette.dark.rose.hex })
+            vim.api.nvim_set_hl(0, "RainbowDelimiterYellow", { fg = palette.dark.wood.hex })
+            vim.api.nvim_set_hl(0, "RainbowDelimiterBlue", { fg = palette.dark.water.hex })
+            vim.api.nvim_set_hl(0, "RainbowDelimiterOrange", { fg = palette.dark.fg.hex })
+            vim.api.nvim_set_hl(0, "RainbowDelimiterGreen", { fg = palette.dark.leaf.hex })
+            vim.api.nvim_set_hl(0, "RainbowDelimiterViolet", { fg = palette.dark.blossom.hex })
+            vim.api.nvim_set_hl(0, "RainbowDelimiterCyan", { fg = palette.dark.sky.hex })
+          end,
+          pattern = scheme.name,
+        })
+      end
     end,
     lazy = true,
   },
