@@ -1,7 +1,7 @@
 [alias]
   lg = log --pretty='format:%Cgreen%ah%Creset %s'
   rau = !{{ .chezmoi.homeDir }}/.config/git/template/hooks/add-upstream-auto-detected-url.sh
-  s = status --short
+  s = status --short --untracked-files
 [core]
   pager = delta
 [delta]
