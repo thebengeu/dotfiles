@@ -26,7 +26,7 @@ vim.api.nvim_create_autocmd("TextChanged", {
   pattern = "*.lua",
 })
 
-if vim.env.TMUX ~= nil then
+if vim.env.TMUX then
   vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained" }, {
     callback = function()
       vim.fn.system("tmux rename-window '" .. vim.fn.expand("%:p"):gsub(vim.loop.os_homedir() or "", "~") .. "'")
