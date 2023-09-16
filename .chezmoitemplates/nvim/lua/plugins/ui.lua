@@ -40,11 +40,6 @@ return {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
-    init = create_colorscheme_autocmd(function()
-      for i = 1, 7 do
-        vim.api.nvim_set_hl(0, "IndentBlanklineIndent" .. i, { link = "rainbowcol" .. i })
-      end
-    end),
     opts = {
       char_highlight_list = {
         "IndentBlanklineIndent1",
@@ -109,13 +104,45 @@ return {
   },
   {
     "HiPhish/rainbow-delimiters.nvim",
-    config = create_colorscheme_autocmd(function()
-      local rainbow_delimiters_highlight = require("rainbow-delimiters.default").highlight
+    config = function()
+      local rainbow_delimiters_hl = require("rainbow-delimiters.default").highlight
+
+      local ts_rainbow_2_hl = map(rainbow_delimiters_hl, function(hl)
+        return (hl:gsub("RainbowDelimiter", "TSRainbow"))
+      end)
+
+      local ts_rainbow_hl = {}
 
       for i = 1, 7 do
-        vim.api.nvim_set_hl(0, rainbow_delimiters_highlight[i], { link = "rainbowcol" .. i })
+        table.insert(ts_rainbow_hl, "rainbowcol" .. i)
       end
-    end),
+
+      local hl_is_not_default = function(hl_name)
+        local hl = vim.api.nvim_get_hl(0, { name = hl_name })
+        return next(hl) and not hl.default
+      end
+
+      create_colorscheme_autocmd(function()
+        for i = 1, 7 do
+          vim.api.nvim_set_hl(0, "IndentBlanklineIndent" .. i, { link = rainbow_delimiters_hl[i] })
+        end
+
+        if hl_is_not_default(rainbow_delimiters_hl[1]) then
+          return
+        end
+
+        local legacy_rainbow_hl = (hl_is_not_default(ts_rainbow_2_hl[1]) and ts_rainbow_2_hl)
+          or (hl_is_not_default(ts_rainbow_hl[1]) and ts_rainbow_hl)
+
+        if not legacy_rainbow_hl then
+          error()
+        end
+
+        for i = 1, 7 do
+          vim.api.nvim_set_hl(0, rainbow_delimiters_hl[i], { link = legacy_rainbow_hl[i] })
+        end
+      end)()
+    end,
     event = { "BufNewFile", "BufReadPost" },
   },
   {
