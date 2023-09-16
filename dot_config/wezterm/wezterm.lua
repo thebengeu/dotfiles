@@ -134,7 +134,7 @@ local activate_or_spawn_pane = function(domain_name_or_getter)
 
 		activate_pane(latest_prompt_pane)
 
-		if latest_prompt_pane == nil then
+		if not latest_prompt_pane then
 			window:mux_window():spawn_tab({ domain = { DomainName = domain_name } })
 		end
 	end)

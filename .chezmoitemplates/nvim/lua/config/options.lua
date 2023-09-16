@@ -35,5 +35,5 @@ end
 vim.opt.title = true
 vim.opt.wrap = true
 
-local title_prefix = os.getenv("TITLE_PREFIX")
+local title_prefix = vim.env.TITLE_PREFIX
 vim.opt.titlestring = (title_prefix and title_prefix .. ":" or "") .. "%F"
