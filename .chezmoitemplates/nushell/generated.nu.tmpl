@@ -9,9 +9,14 @@ def {{$name}} [{{$lines_and_parameters.parameters | join ", "}}] {
 }
 {{end}}
 
-{{range $alias, $command := index .platformSpecificAliases .chezmoi.os | merge .aliases -}}
-alias {{$alias}} = {{regexReplaceAll "\\\\([^\"])" (regexReplaceAll "\\${([^}]+)}" $command "$$env.${1}" | replace "\\$" "$") "\\\\${1}" | replace "$HOME" "~"}}
-{{end -}}
+{{- range $alias, $command := index .platformSpecificAliases .chezmoi.os | merge .aliases -}}
+  {{- if and (contains ";" $command) (not (hasPrefix "sh -c" $command))}}
+    {{- $command = regexReplaceAll "(.*)" $command "sh -c '${1}'"}}
+  {{- else}}
+    {{- $command = regexReplaceAll "\\\\([^\"])" (regexReplaceAll "\\${([^}]+)}" $command "$$env.${1}" | replace "\\$" "$") "\\\\${1}"}}
+  {{- end}}
+alias {{$alias}} = {{$command | replace "$HOME" "~"}}
+{{- end -}}
 {{output "broot" "--print-shell-function" "nushell"}}
 {{output "starship" "init" "nu"}}
 {{output "zoxide" "init" "--no-cmd" "nushell" | replace "__zoxide_z" "z"}}
