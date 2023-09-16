@@ -5,13 +5,20 @@ local colorschemes = {
   { "catppuccin-frappe" },
   { "catppuccin-macchiato" },
   { "catppuccin-mocha" },
+  { "darker" },
+  { "darksolar" },
+  { "deepocean" },
   { "dracula" },
   { "dracula-soft" },
+  { "dracula_blood" },
   { "duckbones" },
   { "duskfox" },
+  { "earlysummer" },
+  { "earlysummer_lighter" },
   { "edge", "aura" },
   { "edge", "default" },
   { "edge", "neon" },
+  { "emerald" },
   { "everforest" },
   { "forestbones" },
   { "github_dark" },
@@ -23,22 +30,30 @@ local colorschemes = {
   { "kanagawa-dragon" },
   { "kanagawa-wave" },
   { "kanagawabones" },
+  { "mariana" },
+  { "mariana_lighter" },
   { "material", "darker" },
   { "material", "deep ocean" },
   { "material", "oceanic" },
   { "material", "palenight" },
+  { "middlenight_blue" },
+  { "monokai" },
+  { "monokai_lighter" },
   { "moonfly" },
+  { "moonlight" },
   { "neobones" },
   { "nightfly" },
   { "nightfox" },
   { "nordbones" },
   { "nordfox" },
   { "nordic" },
+  { "oceanic" },
   { "one_monokai" },
   { "onedark" },
   { "onedark_dark" },
   { "onedark_vivid" },
   { "onenord" },
+  { "palenight" },
   { "poimandres" },
   { "rose-pine" },
   { "rosebones" },
@@ -49,6 +64,7 @@ local colorschemes = {
   { "sonokai", "espresso" },
   { "sonokai", "maia" },
   { "sonokai", "shusia" },
+  { "starry" },
   { "terafox" },
   { "tokyobones" },
   { "tokyonight-moon" },
@@ -342,6 +358,46 @@ return {
     lazy = true,
   },
   {
+    "ray-x/starry.nvim",
+    lazy = true,
+    init = function()
+      for _, colorscheme_name in ipairs({
+        "darker",
+        "darksolar",
+        "deepocean",
+        "dracula",
+        "dracula_blood",
+        "earlysummer",
+        "earlysummer_lighter",
+        "emerald",
+        "mariana",
+        "mariana_lighter",
+        "middlenight_blue",
+        "monokai",
+        "monokai_lighter",
+        "moonlight",
+        "oceanic",
+        "palenight",
+        "starry",
+      }) do
+        vim.api.nvim_create_autocmd("ColorScheme", {
+          callback = function()
+            local colors = require("starry.colors").color_table()
+
+            vim.api.nvim_set_hl(0, "RainbowDelimiterRed", { fg = colors.red })
+            vim.api.nvim_set_hl(0, "RainbowDelimiterYellow", { fg = colors.yellow })
+            vim.api.nvim_set_hl(0, "RainbowDelimiterBlue", { fg = colors.blue })
+            vim.api.nvim_set_hl(0, "RainbowDelimiterOrange", { fg = colors.orange })
+            vim.api.nvim_set_hl(0, "RainbowDelimiterGreen", { fg = colors.green })
+            vim.api.nvim_set_hl(0, "RainbowDelimiterViolet", { fg = colors.purple })
+            vim.api.nvim_set_hl(0, "RainbowDelimiterCyan", { fg = colors.cyan })
+          end,
+          pattern = colorscheme_name,
+        })
+      end
+    end,
+  },
+  {
     "nvim-telescope/telescope.nvim",
     keys = function(_, keys)
       vim.list_extend(keys, {
@@ -403,11 +459,23 @@ return {
   {
     "mcchrish/zenbones.nvim",
     init = function()
-      for _, scheme in ipairs(require("zenbones.util").get_colorscheme_list()) do
-        local palette = require(scheme.name .. ".palette")
-
+      for _, colorscheme_name in ipairs({
+        "duckbones",
+        "forestbones",
+        "kanagawabones",
+        "neobones",
+        "nordbones",
+        "rosebones",
+        "seoulbones",
+        "tokyobones",
+        "zenbones",
+        "zenburned",
+        "zenwritten",
+      }) do
         vim.api.nvim_create_autocmd("ColorScheme", {
           callback = function()
+            local palette = require(colorscheme_name .. ".palette")
+
             vim.api.nvim_set_hl(0, "RainbowDelimiterRed", { fg = palette.dark.rose.hex })
             vim.api.nvim_set_hl(0, "RainbowDelimiterYellow", { fg = palette.dark.wood.hex })
             vim.api.nvim_set_hl(0, "RainbowDelimiterBlue", { fg = palette.dark.water.hex })
@@ -416,7 +484,7 @@ return {
             vim.api.nvim_set_hl(0, "RainbowDelimiterViolet", { fg = palette.dark.blossom.hex })
             vim.api.nvim_set_hl(0, "RainbowDelimiterCyan", { fg = palette.dark.sky.hex })
           end,
-          pattern = scheme.name,
+          pattern = colorscheme_name,
         })
       end
     end,
