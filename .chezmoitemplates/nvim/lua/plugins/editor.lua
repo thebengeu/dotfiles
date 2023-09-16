@@ -73,9 +73,6 @@ return {
       highlight = {
         backdrop = false,
       },
-      jump = {
-        inclusive = false,
-      },
       label = {
         after = false,
         before = true,
