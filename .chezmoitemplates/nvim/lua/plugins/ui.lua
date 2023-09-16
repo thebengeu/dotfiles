@@ -85,6 +85,13 @@ return {
     },
   },
   {
+    "norcalli/nvim-colorizer.lua",
+    config = function()
+      require("colorizer").setup()
+    end,
+    ft = "lua",
+  },
+  {
     "kevinhwang91/nvim-hlslens",
     keys = map({ "n", "N", "*", "#", "g*", "g#" }, function(key)
       return {
