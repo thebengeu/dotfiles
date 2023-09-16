@@ -128,13 +128,13 @@ return {
       return {
         groups = {
           all = {
-            rainbowcol1 = { fg = "palette.red" },
-            rainbowcol2 = { fg = "palette.yellow" },
-            rainbowcol3 = { fg = "palette.blue" },
-            rainbowcol4 = { fg = "palette.pink" },
-            rainbowcol5 = { fg = "palette.green" },
-            rainbowcol6 = { fg = "palette.magenta" },
-            rainbowcol7 = { fg = "palette.cyan" },
+            RainbowDelimiterRed = { fg = "palette.red" },
+            RainbowDelimiterYellow = { fg = "palette.yellow" },
+            RainbowDelimiterBlue = { fg = "palette.blue" },
+            RainbowDelimiterOrange = { fg = "palette.pink" },
+            RainbowDelimiterGreen = { fg = "palette.green" },
+            RainbowDelimiterViolet = { fg = "palette.magenta" },
+            RainbowDelimiterCyan = { fg = "palette.cyan" },
           },
         },
       }
@@ -149,13 +149,13 @@ return {
 
       return {
         overrides = {
-          rainbowcol1 = { fg = colors.red },
-          rainbowcol2 = { fg = colors.yellow },
-          rainbowcol3 = { fg = colors.blue },
-          rainbowcol4 = { fg = colors.orange },
-          rainbowcol5 = { fg = colors.green },
-          rainbowcol6 = { fg = colors.purple },
-          rainbowcol7 = { fg = colors.cyan },
+          RainbowDelimiterRed = { fg = colors.red },
+          RainbowDelimiterYellow = { fg = colors.yellow },
+          RainbowDelimiterBlue = { fg = colors.blue },
+          RainbowDelimiterOrange = { fg = colors.orange },
+          RainbowDelimiterGreen = { fg = colors.green },
+          RainbowDelimiterViolet = { fg = colors.purple },
+          RainbowDelimiterCyan = { fg = colors.cyan },
         },
       }
     end,
@@ -180,13 +180,13 @@ return {
     opts = {
       overrides = function(colors)
         return {
-          rainbowcol1 = { fg = colors.palette.peachRed },
-          rainbowcol2 = { fg = colors.palette.carpYellow },
-          rainbowcol3 = { fg = colors.palette.crystalBlue },
-          rainbowcol4 = { fg = colors.palette.surimiOrange },
-          rainbowcol5 = { fg = colors.palette.springGreen },
-          rainbowcol6 = { fg = colors.palette.oniViolet },
-          rainbowcol7 = { fg = colors.palette.waveAqua2 },
+          RainbowDelimiterRed = { fg = colors.palette.peachRed },
+          RainbowDelimiterYellow = { fg = colors.palette.carpYellow },
+          RainbowDelimiterBlue = { fg = colors.palette.crystalBlue },
+          RainbowDelimiterOrange = { fg = colors.palette.surimiOrange },
+          RainbowDelimiterGreen = { fg = colors.palette.springGreen },
+          RainbowDelimiterViolet = { fg = colors.palette.oniViolet },
+          RainbowDelimiterCyan = { fg = colors.palette.waveAqua2 },
         }
       end,
     },
@@ -217,13 +217,13 @@ return {
 
       return {
         custom_highlights = {
-          rainbowcol1 = { fg = colors.main.red },
-          rainbowcol2 = { fg = colors.main.yellow },
-          rainbowcol3 = { fg = colors.main.blue },
-          rainbowcol4 = { fg = colors.main.orange },
-          rainbowcol5 = { fg = colors.main.green },
-          rainbowcol6 = { fg = colors.main.purple },
-          rainbowcol7 = { fg = colors.main.cyan },
+          RainbowDelimiterRed = { fg = colors.main.red },
+          RainbowDelimiterYellow = { fg = colors.main.yellow },
+          RainbowDelimiterBlue = { fg = colors.main.blue },
+          RainbowDelimiterOrange = { fg = colors.main.orange },
+          RainbowDelimiterGreen = { fg = colors.main.green },
+          RainbowDelimiterViolet = { fg = colors.main.purple },
+          RainbowDelimiterCyan = { fg = colors.main.cyan },
         },
         plugins = {
           "dap",
@@ -252,13 +252,13 @@ return {
 
       return {
         override = {
-          rainbowcol1 = { fg = colors.red.base },
-          rainbowcol2 = { fg = colors.yellow.base },
-          rainbowcol3 = { fg = colors.blue0 },
-          rainbowcol4 = { fg = colors.orange.base },
-          rainbowcol5 = { fg = colors.green.base },
-          rainbowcol6 = { fg = colors.magenta.base },
-          rainbowcol7 = { fg = colors.cyan.base },
+          RainbowDelimiterRed = { fg = colors.red.base },
+          RainbowDelimiterYellow = { fg = colors.yellow.base },
+          RainbowDelimiterBlue = { fg = colors.blue0 },
+          RainbowDelimiterOrange = { fg = colors.orange.base },
+          RainbowDelimiterGreen = { fg = colors.green.base },
+          RainbowDelimiterViolet = { fg = colors.magenta.base },
+          RainbowDelimiterCyan = { fg = colors.cyan.base },
         },
       }
     end,
@@ -300,13 +300,13 @@ return {
     opts = {
       themes = function(colors)
         return {
-          rainbowcol1 = { fg = colors.dark_red },
-          rainbowcol2 = { fg = colors.orange },
-          rainbowcol3 = { fg = colors.yellow },
-          rainbowcol4 = { fg = colors.green },
-          rainbowcol5 = { fg = colors.aqua },
-          rainbowcol6 = { fg = colors.purple },
-          rainbowcol7 = { fg = colors.cyan },
+          RainbowDelimiterRed = { fg = colors.dark_red },
+          RainbowDelimiterYellow = { fg = colors.orange },
+          RainbowDelimiterBlue = { fg = colors.yellow },
+          RainbowDelimiterOrange = { fg = colors.green },
+          RainbowDelimiterGreen = { fg = colors.aqua },
+          RainbowDelimiterViolet = { fg = colors.purple },
+          RainbowDelimiterCyan = { fg = colors.cyan },
         }
       end,
     },
@@ -325,13 +325,13 @@ return {
     name = "rose-pine",
     opts = {
       highlight_groups = {
-        rainbowcol1 = { fg = "love" },
-        rainbowcol2 = { fg = "gold" },
-        rainbowcol3 = { fg = "pine" },
-        rainbowcol4 = { fg = "rose" },
-        rainbowcol5 = { fg = "foam" },
-        rainbowcol6 = { fg = "iris" },
-        rainbowcol7 = { fg = "highlight_high" },
+        RainbowDelimiterRed = { fg = "love" },
+        RainbowDelimiterYellow = { fg = "gold" },
+        RainbowDelimiterBlue = { fg = "pine" },
+        RainbowDelimiterOrange = { fg = "rose" },
+        RainbowDelimiterGreen = { fg = "foam" },
+        RainbowDelimiterViolet = { fg = "iris" },
+        RainbowDelimiterCyan = { fg = "highlight_high" },
       },
     },
   },
@@ -394,13 +394,13 @@ return {
 
       return {
         group_overrides = {
-          rainbowcol1 = { fg = colors.vscRed },
-          rainbowcol2 = { fg = colors.vscYellow },
-          rainbowcol3 = { fg = colors.vscBlue },
-          rainbowcol4 = { fg = colors.vscOrange },
-          rainbowcol5 = { fg = colors.vscGreen },
-          rainbowcol6 = { fg = colors.vscViolet },
-          rainbowcol7 = { fg = colors.vscBlueGreen },
+          RainbowDelimiterRed = { fg = colors.vscRed },
+          RainbowDelimiterYellow = { fg = colors.vscYellow },
+          RainbowDelimiterBlue = { fg = colors.vscBlue },
+          RainbowDelimiterOrange = { fg = colors.vscOrange },
+          RainbowDelimiterGreen = { fg = colors.vscGreen },
+          RainbowDelimiterViolet = { fg = colors.vscViolet },
+          RainbowDelimiterCyan = { fg = colors.vscBlueGreen },
         },
       }
     end,
