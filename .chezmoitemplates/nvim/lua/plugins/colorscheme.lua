@@ -144,21 +144,6 @@ return {
   },
   {
     "ellisonleao/gruvbox.nvim",
-    opts = function()
-      local colors = require("gruvbox.palette").get_base_colors(vim.o.background, "")
-
-      return {
-        overrides = {
-          RainbowDelimiterRed = { fg = colors.red },
-          RainbowDelimiterYellow = { fg = colors.yellow },
-          RainbowDelimiterBlue = { fg = colors.blue },
-          RainbowDelimiterOrange = { fg = colors.orange },
-          RainbowDelimiterGreen = { fg = colors.green },
-          RainbowDelimiterViolet = { fg = colors.purple },
-          RainbowDelimiterCyan = { fg = colors.cyan },
-        },
-      }
-    end,
     lazy = true,
   },
   {
@@ -269,19 +254,18 @@ return {
     init = function()
       require("lazyvim.util").on_load("nvim-tundra", function()
         local colors = require("nvim-tundra.palette.arctic")
-        local rainbowcols = {
-          colors.red._500,
-          colors.sand._500,
-          colors.sky._500,
-          colors.orange._500,
-          colors.green._500,
-          colors.indigo._500,
-          colors.opal._500,
-        }
 
-        for i = 1, 7 do
-          vim.api.nvim_set_hl(0, "rainbowcol" .. i, { fg = rainbowcols[i] })
+        if not colors then
+          error()
         end
+
+        vim.api.nvim_set_hl(0, "RainbowDelimiterRed", { fg = colors.red._500 })
+        vim.api.nvim_set_hl(0, "RainbowDelimiterYellow", { fg = colors.sand._500 })
+        vim.api.nvim_set_hl(0, "RainbowDelimiterBlue", { fg = colors.sky._500 })
+        vim.api.nvim_set_hl(0, "RainbowDelimiterOrange", { fg = colors.orange._500 })
+        vim.api.nvim_set_hl(0, "RainbowDelimiterGreen", { fg = colors.green._500 })
+        vim.api.nvim_set_hl(0, "RainbowDelimiterViolet", { fg = colors.indigo._500 })
+        vim.api.nvim_set_hl(0, "RainbowDelimiterCyan", { fg = colors.opal._500 })
       end)
     end,
     lazy = true,
@@ -297,19 +281,6 @@ return {
   {
     "cpea2506/one_monokai.nvim",
     lazy = true,
-    opts = {
-      themes = function(colors)
-        return {
-          RainbowDelimiterRed = { fg = colors.dark_red },
-          RainbowDelimiterYellow = { fg = colors.orange },
-          RainbowDelimiterBlue = { fg = colors.yellow },
-          RainbowDelimiterOrange = { fg = colors.green },
-          RainbowDelimiterGreen = { fg = colors.aqua },
-          RainbowDelimiterViolet = { fg = colors.purple },
-          RainbowDelimiterCyan = { fg = colors.cyan },
-        }
-      end,
-    },
   },
   {
     "olimorris/onedarkpro.nvim",
