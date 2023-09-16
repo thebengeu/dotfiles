@@ -7,10 +7,10 @@ def {{$name}} [{{$lines_and_parameters.parameters | join ", "}}] {
     sh -c $"{{$line}}"
 {{- end}}
 }
-{{- end}}
+{{end}}
 
 {{range $alias, $command := index .platformSpecificAliases .chezmoi.os | merge .aliases -}}
-alias {{$alias}} = {{$command | replace "$HOME" "~"}}
+alias {{$alias}} = {{regexReplaceAll "\\\\([^\"])" (regexReplaceAll "\\${([^}]+)}" $command "$$env.${1}" | replace "\\$" "$") "\\\\${1}" | replace "$HOME" "~"}}
 {{end -}}
 {{output "broot" "--print-shell-function" "nushell"}}
 {{output "starship" "init" "nu"}}
