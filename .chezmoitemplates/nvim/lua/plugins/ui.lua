@@ -142,7 +142,7 @@ return {
           or (hl_is_not_default(ts_rainbow_hl[1]) and ts_rainbow_hl)
 
         if not legacy_rainbow_hl then
-          error()
+          error("No rainbow highlight groups found")
         end
 
         for i = 1, 7 do
