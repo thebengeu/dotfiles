@@ -42,6 +42,12 @@ vim.api.nvim_create_autocmd("TermClose", {
   end,
 })
 
+vim.api.nvim_create_autocmd("BufReadPost", {
+  callback = function()
+    vim.cmd.syntax("match", "CR", "/\r$/", "conceal")
+  end,
+})
+
 local set_user_var = function(name, value)
   vim.fn.chansend(vim.v.stderr, "\x1b]1337;SetUserVar=" .. name .. "=" .. base64.encode(tostring(value)) .. "\x07")
 end

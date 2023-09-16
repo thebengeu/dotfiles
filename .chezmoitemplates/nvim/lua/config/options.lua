@@ -8,6 +8,7 @@ vim.g.loaded_perl_provider = 0
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
 
+vim.opt.concealcursor = "cinv"
 vim.opt.guifont = "JetBrainsMono Nerd Font:h12"
 vim.opt.keywordprg = ":Search"
 vim.opt.linebreak = true
