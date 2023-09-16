@@ -209,6 +209,7 @@ return {
       vim.list_extend(opts.ensure_installed, {
         "cue",
         "fish",
+        "hjson",
         "gitignore",
         "prisma",
         "sql",
