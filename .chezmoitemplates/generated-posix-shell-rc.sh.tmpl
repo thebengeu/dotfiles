@@ -16,7 +16,7 @@ function {{$name}} () {
   {{$line}}
 {{- end}}
 }
-{{- end}}
+{{end}}
 {{range $alias, $command := index .platformSpecificAliases .chezmoi.os | merge .aliases -}}
 function {{$alias}} () {
   {{$command | replace "$HOME" "~"}} $@
