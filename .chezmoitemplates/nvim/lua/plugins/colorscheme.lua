@@ -37,6 +37,8 @@ local colorschemes = {
   { "material", "oceanic" },
   { "material", "palenight" },
   { "middlenight_blue" },
+  { "minicyan" },
+  { "minischeme" },
   { "monokai" },
   { "monokai_lighter" },
   { "moonfly" },
@@ -256,6 +258,10 @@ return {
         "which-key",
       },
     },
+    lazy = true,
+  },
+  {
+    "echasnovski/mini.base16",
     lazy = true,
   },
   {
