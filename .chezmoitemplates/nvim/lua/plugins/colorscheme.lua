@@ -205,6 +205,17 @@ return util.map({
     },
   },
   {
+    "loctvl842/monokai-pro.nvim",
+    colors_names = {
+      "monokai-pro",
+      "monokai-pro-classic",
+      "monokai-pro-machine",
+      "monokai-pro-octagon",
+      "monokai-pro-ristretto",
+      "monokai-pro-spectrum",
+    },
+  },
+  {
     "bluz71/vim-moonfly-colors",
     name = "moonfly",
   },
