@@ -80,21 +80,19 @@ return map({
   },
   {
     "projekt0n/github-nvim-theme",
-    opts = function()
-      return {
-        groups = {
-          all = rainbow_delimiter_highlights({
-            "palette.red",
-            "palette.yellow",
-            "palette.blue",
-            "palette.pink",
-            "palette.green",
-            "palette.magenta",
-            "palette.cyan",
-          }),
-        },
-      }
-    end,
+    opts = {
+      groups = {
+        all = rainbow_delimiter_highlights({
+          "palette.red",
+          "palette.yellow",
+          "palette.blue",
+          "palette.pink",
+          "palette.green",
+          "palette.magenta",
+          "palette.cyan",
+        }),
+      },
+    },
     main = "github-theme",
   },
   { "ellisonleao/gruvbox.nvim" },
