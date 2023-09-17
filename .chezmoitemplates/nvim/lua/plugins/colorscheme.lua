@@ -1,5 +1,24 @@
 local map = require("util").map
 
+local rainbow_delimiter_colors = {
+  "Red",
+  "Yellow",
+  "Blue",
+  "Orange",
+  "Green",
+  "Violet",
+  "Cyan",
+}
+local rainbow_delimiter_highlights = function(colors)
+  local highlights = {}
+
+  for i, color in ipairs(colors) do
+    highlights["RainbowDelimiter" .. rainbow_delimiter_colors[i]] = { fg = color }
+  end
+
+  return highlights
+end
+
 return map({
   { "ribru17/bamboo.nvim" },
   {
@@ -43,15 +62,15 @@ return map({
     opts = function()
       return {
         groups = {
-          all = {
-            RainbowDelimiterRed = { fg = "palette.red" },
-            RainbowDelimiterYellow = { fg = "palette.yellow" },
-            RainbowDelimiterBlue = { fg = "palette.blue" },
-            RainbowDelimiterOrange = { fg = "palette.pink" },
-            RainbowDelimiterGreen = { fg = "palette.green" },
-            RainbowDelimiterViolet = { fg = "palette.magenta" },
-            RainbowDelimiterCyan = { fg = "palette.cyan" },
-          },
+          all = rainbow_delimiter_highlights({
+            "palette.red",
+            "palette.yellow",
+            "palette.blue",
+            "palette.pink",
+            "palette.green",
+            "palette.magenta",
+            "palette.cyan",
+          }),
         },
       }
     end,
@@ -72,15 +91,15 @@ return map({
     "rebelot/kanagawa.nvim",
     opts = {
       overrides = function(colors)
-        return {
-          RainbowDelimiterRed = { fg = colors.palette.peachRed },
-          RainbowDelimiterYellow = { fg = colors.palette.carpYellow },
-          RainbowDelimiterBlue = { fg = colors.palette.crystalBlue },
-          RainbowDelimiterOrange = { fg = colors.palette.surimiOrange },
-          RainbowDelimiterGreen = { fg = colors.palette.springGreen },
-          RainbowDelimiterViolet = { fg = colors.palette.oniViolet },
-          RainbowDelimiterCyan = { fg = colors.palette.waveAqua2 },
-        }
+        return rainbow_delimiter_highlights({
+          colors.palette.peachRed,
+          colors.palette.carpYellow,
+          colors.palette.crystalBlue,
+          colors.palette.surimiOrange,
+          colors.palette.springGreen,
+          colors.palette.oniViolet,
+          colors.palette.waveAqua2,
+        })
       end,
     },
   },
@@ -127,15 +146,15 @@ return map({
       local colors = require("nordic.colors")
 
       return {
-        override = {
-          RainbowDelimiterRed = { fg = colors.red.base },
-          RainbowDelimiterYellow = { fg = colors.yellow.base },
-          RainbowDelimiterBlue = { fg = colors.blue0 },
-          RainbowDelimiterOrange = { fg = colors.orange.base },
-          RainbowDelimiterGreen = { fg = colors.green.base },
-          RainbowDelimiterViolet = { fg = colors.magenta.base },
-          RainbowDelimiterCyan = { fg = colors.cyan.base },
-        },
+        override = rainbow_delimiter_highlights({
+          colors.red.base,
+          colors.yellow.base,
+          colors.blue0,
+          colors.orange.base,
+          colors.green.base,
+          colors.magenta.base,
+          colors.cyan.base,
+        }),
       }
     end,
   },
@@ -178,15 +197,15 @@ return map({
     "rose-pine/neovim",
     name = "rose-pine",
     opts = {
-      highlight_groups = {
-        RainbowDelimiterRed = { fg = "love" },
-        RainbowDelimiterYellow = { fg = "gold" },
-        RainbowDelimiterBlue = { fg = "pine" },
-        RainbowDelimiterOrange = { fg = "rose" },
-        RainbowDelimiterGreen = { fg = "foam" },
-        RainbowDelimiterViolet = { fg = "iris" },
-        RainbowDelimiterCyan = { fg = "highlight_high" },
-      },
+      highlight_groups = rainbow_delimiter_highlights({
+        "love",
+        "gold",
+        "pine",
+        "rose",
+        "foam",
+        "iris",
+        "highlight_high",
+      }),
     },
   },
   { "olivercederborg/poimandres.nvim" },
@@ -242,15 +261,15 @@ return map({
       local colors = require("vscode.colors").get_colors()
 
       return {
-        group_overrides = {
-          RainbowDelimiterRed = { fg = colors.vscRed },
-          RainbowDelimiterYellow = { fg = colors.vscYellow },
-          RainbowDelimiterBlue = { fg = colors.vscBlue },
-          RainbowDelimiterOrange = { fg = colors.vscOrange },
-          RainbowDelimiterGreen = { fg = colors.vscGreen },
-          RainbowDelimiterViolet = { fg = colors.vscViolet },
-          RainbowDelimiterCyan = { fg = colors.vscBlueGreen },
-        },
+        group_overrides = rainbow_delimiter_highlights({
+          colors.vscRed,
+          colors.vscYellow,
+          colors.vscBlue,
+          colors.vscOrange,
+          colors.vscGreen,
+          colors.vscViolet,
+          colors.vscBlueGreen,
+        }),
       }
     end,
   },
