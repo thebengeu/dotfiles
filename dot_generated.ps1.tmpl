@@ -7,12 +7,16 @@ function {{$name}} (
 )
 {
 {{- range $lines_and_parameters.lines}}
+  {{- if contains "parallel " .}}
+  {{regexReplaceAll "(.*)" . "sh -c '${1}'"}}
+  {{- else}}
   {{.}}
+  {{- end}}
 {{- end}}
 }
 {{end}}
 
-{{range $alias, $command := index .platformSpecificAliases .chezmoi.os | merge .aliases -}}
+{{- range $alias, $command := index .platformSpecificAliases .chezmoi.os | merge .aliases -}}
 {{if $command | contains " " -}}
 function {{$alias}}
 {
@@ -26,7 +30,7 @@ function {{$alias}}
 }
 {{else -}}
 Set-Alias -Option AllScope {{$alias}} {{$command}}
-{{end}}
+{{end -}}
 {{end -}}
 {{output "broot" "--print-shell-function" "powershell"}}
 {{output "starship" "init" "powershell" "--print-full-init"}}
