@@ -25,41 +25,16 @@ return {
     "Vigemus/iron.nvim",
     config = function()
       local config = require("iron.config")
+      local lowlevel = require("iron.lowlevel")
+
+      local create_repl_on_current_window = lowlevel.create_repl_on_current_window
 
       ---@diagnostic disable-next-line: duplicate-set-field
-      require("iron.lowlevel").create_repl_on_current_window = function(ft, repl, bufnr, current_bufnr, opts)
-        vim.api.nvim_win_set_buf(0, bufnr)
-        -- TODO Move this out of this function
-        -- Checking config should be done on an upper layer.
-        -- This layer should be simpler
+      lowlevel.create_repl_on_current_window = function(ft, repl, bufnr, current_bufnr, opts)
         opts = opts or {}
-        opts.cwd = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(current_bufnr), ":h")
-        if config.close_window_on_exit then
-          opts.on_exit = function()
-            local bufwinid = vim.fn.bufwinid(bufnr)
-            while bufwinid ~= -1 do
-              vim.api.nvim_win_close(bufwinid, true)
-              bufwinid = vim.fn.bufwinid(bufnr)
-            end
-            vim.api.nvim_buf_delete(bufnr, { force = true })
-          end
-        end
+        opts.cwd = opts.cwd or vim.fn.fnamemodify(vim.api.nvim_buf_get_name(current_bufnr), ":h")
 
-        local cmd = repl.command
-        if type(repl.command) == "function" then
-          local meta = {
-            current_bufnr = current_bufnr,
-          }
-          cmd = repl.command(meta)
-        end
-        local job_id = vim.fn.termopen(cmd, opts)
-
-        return {
-          ft = ft,
-          bufnr = bufnr,
-          job = job_id,
-          repldef = repl,
-        }
+        return create_repl_on_current_window(ft, repl, bufnr, current_bufnr, opts)
       end
 
       local ts = require("iron.fts.typescript").ts
