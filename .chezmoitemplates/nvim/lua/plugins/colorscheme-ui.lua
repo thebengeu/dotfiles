@@ -44,7 +44,7 @@ end, { desc = "Colorscheme backward" })
 vim.keymap.set("n", "]S", function()
   set_colorscheme_style(colorscheme_index == #colorschemes and 1 or colorscheme_index + 1)
   vim.cmd.colorscheme(colorscheme[1])
-end, { desc = "Colorscheme backward" })
+end, { desc = "Colorscheme forward" })
 
 return {
   {
