@@ -12,7 +12,6 @@ vim.opt.concealcursor = "cinv"
 vim.opt.guifont = "JetBrainsMono Nerd Font:h12"
 vim.opt.keywordprg = ":Search"
 vim.opt.linebreak = true
-vim.opt.mouse = (vim.g.goneovim or vim.g.neovide) and "a" or ""
 vim.opt.report = 999
 vim.opt.sessionoptions = {
   "blank",
