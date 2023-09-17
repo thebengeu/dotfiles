@@ -182,6 +182,21 @@ return util.map({
       colors.main.cyan,
     }
   end),
+  add_init_colorscheme_autocmds({
+    "savq/melange-nvim",
+  }, function()
+    local palette = require("melange.palettes.dark")
+
+    return {
+      palette.b.red,
+      palette.b.yellow,
+      palette.b.blue,
+      palette.c.yellow,
+      palette.b.green,
+      palette.b.magenta,
+      palette.b.cyan,
+    }
+  end),
   {
     "echasnovski/mini.base16",
     colors_names = {
