@@ -1,12 +1,10 @@
-return {
-  {
-    "ribru17/bamboo.nvim",
-    lazy = true,
-  },
+local map = require("util").map
+
+return map({
+  { "ribru17/bamboo.nvim" },
   {
     "uloco/bluloco.nvim",
     dependencies = { "rktjmp/lush.nvim" },
-    lazy = true,
     opts = {
       italics = true,
     },
@@ -24,17 +22,13 @@ return {
       },
     },
   },
-  {
-    "Mofiqul/dracula.nvim",
-    lazy = true,
-  },
+  { "Mofiqul/dracula.nvim" },
   {
     "sainnhe/edge",
     config = function()
       vim.g.edge_better_performance = 1
       vim.g.edge_enable_italic = 1
     end,
-    lazy = true,
   },
   {
     "sainnhe/everforest",
@@ -43,7 +37,6 @@ return {
       vim.g.everforest_background = "hard"
       vim.g.everforest_enable_italic = 1
     end,
-    lazy = true,
   },
   {
     "projekt0n/github-nvim-theme",
@@ -62,17 +55,10 @@ return {
         },
       }
     end,
-    lazy = true,
     main = "github-theme",
   },
-  {
-    "ellisonleao/gruvbox.nvim",
-    lazy = true,
-  },
-  {
-    "luisiacc/gruvbox-baby",
-    lazy = true,
-  },
+  { "ellisonleao/gruvbox.nvim" },
+  { "luisiacc/gruvbox-baby" },
   {
     "sainnhe/gruvbox-material",
     config = function()
@@ -81,7 +67,6 @@ return {
       vim.g.gruvbox_material_enable_italic = 1
       vim.g.gruvbox_material_foreground = "original"
     end,
-    lazy = true,
   },
   {
     "rebelot/kanagawa.nvim",
@@ -98,7 +83,6 @@ return {
         }
       end,
     },
-    lazy = true,
   },
   {
     "marko-cerovac/material.nvim",
@@ -132,26 +116,11 @@ return {
         "which-key",
       },
     },
-    lazy = true,
   },
-  {
-    "echasnovski/mini.base16",
-    lazy = true,
-  },
-  {
-    "bluz71/vim-moonfly-colors",
-    name = "moonfly",
-    lazy = true,
-  },
-  {
-    "bluz71/vim-nightfly-colors",
-    name = "nightfly",
-    lazy = true,
-  },
-  {
-    "EdenEast/nightfox.nvim",
-    lazy = true,
-  },
+  { "echasnovski/mini.base16" },
+  { "bluz71/vim-moonfly-colors" },
+  { "bluz71/vim-nightfly-colors" },
+  { "EdenEast/nightfox.nvim" },
   {
     "AlexvZyl/nordic.nvim",
     opts = function()
@@ -169,7 +138,6 @@ return {
         },
       }
     end,
-    lazy = true,
   },
   {
     "sam4llis/nvim-tundra",
@@ -194,7 +162,6 @@ return {
         pattern = "tundra",
       })
     end,
-    lazy = true,
     opts = {
       plugins = {
         cmp = true,
@@ -204,21 +171,11 @@ return {
       },
     },
   },
-  {
-    "cpea2506/one_monokai.nvim",
-    lazy = true,
-  },
-  {
-    "olimorris/onedarkpro.nvim",
-    lazy = true,
-  },
-  {
-    "rmehri01/onenord.nvim",
-    lazy = true,
-  },
+  { "cpea2506/one_monokai.nvim" },
+  { "olimorris/onedarkpro.nvim" },
+  { "rmehri01/onenord.nvim" },
   {
     "rose-pine/neovim",
-    lazy = true,
     name = "rose-pine",
     opts = {
       highlight_groups = {
@@ -232,21 +189,16 @@ return {
       },
     },
   },
-  {
-    "olivercederborg/poimandres.nvim",
-    lazy = true,
-  },
+  { "olivercederborg/poimandres.nvim" },
   {
     "sainnhe/sonokai",
     config = function()
       vim.g.sonokai_better_performance = 1
       vim.g.sonokai_enable_italic = 1
     end,
-    lazy = true,
   },
   {
     "ray-x/starry.nvim",
-    lazy = true,
     init = function()
       for _, colorscheme_name in ipairs({
         "darker",
@@ -301,7 +253,6 @@ return {
         },
       }
     end,
-    lazy = true,
   },
   {
     "mcchrish/zenbones.nvim",
@@ -335,6 +286,8 @@ return {
         })
       end
     end,
-    lazy = true,
   },
-}
+}, function(colorscheme_spec)
+  colorscheme_spec.lazy = true
+  return colorscheme_spec
+end)
