@@ -226,33 +226,36 @@ return {
   },
   {
     "marko-cerovac/material.nvim",
-    opts = function()
-      local colors = require("material.colors")
+    init = function()
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        callback = function()
+          local colors = require("material.colors")
 
-      return {
-        custom_highlights = {
-          RainbowDelimiterRed = { fg = colors.main.red },
-          RainbowDelimiterYellow = { fg = colors.main.yellow },
-          RainbowDelimiterBlue = { fg = colors.main.blue },
-          RainbowDelimiterOrange = { fg = colors.main.orange },
-          RainbowDelimiterGreen = { fg = colors.main.green },
-          RainbowDelimiterViolet = { fg = colors.main.purple },
-          RainbowDelimiterCyan = { fg = colors.main.cyan },
-        },
-        plugins = {
-          "dap",
-          "gitsigns",
-          "indent-blankline",
-          "mini",
-          "nvim-cmp",
-          "nvim-navic",
-          "nvim-web-devicons",
-          "telescope",
-          "trouble",
-          "which-key",
-        },
-      }
+          vim.api.nvim_set_hl(0, "RainbowDelimiterRed", { fg = colors.main.red })
+          vim.api.nvim_set_hl(0, "RainbowDelimiterYellow", { fg = colors.main.yellow })
+          vim.api.nvim_set_hl(0, "RainbowDelimiterBlue", { fg = colors.main.blue })
+          vim.api.nvim_set_hl(0, "RainbowDelimiterOrange", { fg = colors.main.orange })
+          vim.api.nvim_set_hl(0, "RainbowDelimiterGreen", { fg = colors.main.green })
+          vim.api.nvim_set_hl(0, "RainbowDelimiterViolet", { fg = colors.main.purple })
+          vim.api.nvim_set_hl(0, "RainbowDelimiterCyan", { fg = colors.main.cyan })
+        end,
+        pattern = "material",
+      })
     end,
+    opts = {
+      plugins = {
+        "dap",
+        "gitsigns",
+        "indent-blankline",
+        "mini",
+        "nvim-cmp",
+        "nvim-navic",
+        "nvim-web-devicons",
+        "telescope",
+        "trouble",
+        "which-key",
+      },
+    },
     lazy = true,
   },
   {
@@ -291,21 +294,25 @@ return {
   {
     "sam4llis/nvim-tundra",
     init = function()
-      require("lazyvim.util").on_load("nvim-tundra", function()
-        local colors = require("nvim-tundra.palette.arctic")
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        callback = function()
+          local colors = require("nvim-tundra.palette.arctic")
 
-        if not colors then
-          error()
-        end
+          if not colors then
+            error()
+          end
 
-        vim.api.nvim_set_hl(0, "RainbowDelimiterRed", { fg = colors.red._500 })
-        vim.api.nvim_set_hl(0, "RainbowDelimiterYellow", { fg = colors.sand._500 })
-        vim.api.nvim_set_hl(0, "RainbowDelimiterBlue", { fg = colors.sky._500 })
-        vim.api.nvim_set_hl(0, "RainbowDelimiterOrange", { fg = colors.orange._500 })
-        vim.api.nvim_set_hl(0, "RainbowDelimiterGreen", { fg = colors.green._500 })
-        vim.api.nvim_set_hl(0, "RainbowDelimiterViolet", { fg = colors.indigo._500 })
-        vim.api.nvim_set_hl(0, "RainbowDelimiterCyan", { fg = colors.opal._500 })
-      end)
+          vim.api.nvim_set_hl(0, "RainbowDelimiterRed", { fg = colors.red._500 })
+          vim.api.nvim_set_hl(0, "RainbowDelimiterYellow", { fg = colors.sand._500 })
+          vim.api.nvim_set_hl(0, "RainbowDelimiterBlue", { fg = colors.sky._500 })
+          vim.api.nvim_set_hl(0, "RainbowDelimiterOrange", { fg = colors.orange._500 })
+          vim.api.nvim_set_hl(0, "RainbowDelimiterGreen", { fg = colors.green._500 })
+          vim.api.nvim_set_hl(0, "RainbowDelimiterViolet", { fg = colors.indigo._500 })
+          vim.api.nvim_set_hl(0, "RainbowDelimiterCyan", { fg = colors.opal._500 })
+          vim.api.nvim_set_hl(0, "RainbowDelimiterCyan", { fg = colors.cyan })
+        end,
+        pattern = "tundra",
+      })
     end,
     lazy = true,
     opts = {
