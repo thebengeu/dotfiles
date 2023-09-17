@@ -16,4 +16,8 @@ exports.map = function(input_table, callback)
   return output_table
 end
 
+exports.normname = function(name)
+  return (name:gsub("%.?nvim%-?", ""))
+end
+
 return exports
