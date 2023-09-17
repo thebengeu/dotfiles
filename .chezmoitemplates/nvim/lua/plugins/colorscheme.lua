@@ -218,7 +218,7 @@ return {
       sections = {
         lualine_z = {
           function()
-            return table.concat(colorscheme, "-")
+            return table.concat(colorscheme, "-"):gsub(" ", "_")
           end,
         },
       },
@@ -426,7 +426,7 @@ return {
                 finder = require("telescope.finders").new_table({
                   results = colorschemes,
                   entry_maker = function(entry)
-                    local colorscheme_and_style = table.concat(entry, "-")
+                    local colorscheme_and_style = table.concat(entry, "-"):gsub(" ", "_")
 
                     return {
                       display = colorscheme_and_style,
