@@ -52,10 +52,6 @@ local set_user_var = function(name, value)
   vim.fn.chansend(vim.v.stderr, "\x1b]1337;SetUserVar=" .. name .. "=" .. base64.encode(tostring(value)) .. "\x07")
 end
 
-local set_nvim_port_user_var = function(port)
-  vim.fn.chansend(vim.v.stderr, "\x1b]1337;SetUserVar=NVIM_PORT=" .. base64.encode(tostring(port)) .. "\x07")
-end
-
 local serverstart_unused_port
 serverstart_unused_port = function(port)
   vim.system({ "ncat", "-z", "--wait", "1ms", "127.0.0.1", port }, {}, function(system_obj)
