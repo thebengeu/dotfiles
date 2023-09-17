@@ -327,6 +327,22 @@ return util.map({
     }
   end),
   {
+    "tiagovla/tokyodark.nvim",
+    opts = {
+      custom_highlights = function(_, palette)
+        return rainbow_delimiter_highlights({
+          palette.red,
+          palette.yellow,
+          palette.blue,
+          palette.orange,
+          palette.green,
+          palette.purple,
+          palette.cyan,
+        })
+      end,
+    },
+  },
+  {
     "folke/tokyonight.nvim",
     colors_names = {
       "tokyonight-moon",
