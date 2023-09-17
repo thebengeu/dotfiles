@@ -144,6 +144,10 @@ return {
     },
   },
   {
+    "rafcamlet/nvim-luapad",
+    cmd = { "Luapad", "LuaRun" },
+  },
+  {
     "L3MON4D3/LuaSnip",
     keys = function()
       return {}
