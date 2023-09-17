@@ -19,6 +19,27 @@ local rainbow_delimiter_highlights = function(colors)
   return highlights
 end
 
+local create_colorscheme_autocmds = function(colors_names, get_highlights)
+  return function()
+    for _, colors_name in ipairs(type(colors_names) == "table" and colors_names or { colors_names }) do
+      local callback = function()
+        for name, highlight in pairs(rainbow_delimiter_highlights(get_highlights(colors_name))) do
+          vim.api.nvim_set_hl(0, name, highlight)
+        end
+      end
+
+      if vim.g.colors_name == colors_name then
+        callback()
+      end
+
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        callback = callback,
+        pattern = colors_name,
+      })
+    end
+  end
+end
+
 return map({
   { "ribru17/bamboo.nvim" },
   {
@@ -105,22 +126,19 @@ return map({
   },
   {
     "marko-cerovac/material.nvim",
-    init = function()
-      vim.api.nvim_create_autocmd("ColorScheme", {
-        callback = function()
-          local colors = require("material.colors")
+    init = create_colorscheme_autocmds("material", function()
+      local colors = require("material.colors")
 
-          vim.api.nvim_set_hl(0, "RainbowDelimiterRed", { fg = colors.main.red })
-          vim.api.nvim_set_hl(0, "RainbowDelimiterYellow", { fg = colors.main.yellow })
-          vim.api.nvim_set_hl(0, "RainbowDelimiterBlue", { fg = colors.main.blue })
-          vim.api.nvim_set_hl(0, "RainbowDelimiterOrange", { fg = colors.main.orange })
-          vim.api.nvim_set_hl(0, "RainbowDelimiterGreen", { fg = colors.main.green })
-          vim.api.nvim_set_hl(0, "RainbowDelimiterViolet", { fg = colors.main.purple })
-          vim.api.nvim_set_hl(0, "RainbowDelimiterCyan", { fg = colors.main.cyan })
-        end,
-        pattern = "material",
-      })
-    end,
+      return {
+        colors.main.red,
+        colors.main.yellow,
+        colors.main.blue,
+        colors.main.orange,
+        colors.main.green,
+        colors.main.purple,
+        colors.main.cyan,
+      }
+    end),
     opts = {
       plugins = {
         "dap",
@@ -160,27 +178,24 @@ return map({
   },
   {
     "sam4llis/nvim-tundra",
-    init = function()
-      vim.api.nvim_create_autocmd("ColorScheme", {
-        callback = function()
-          local colors = require("nvim-tundra.palette.arctic")
+    init = create_colorscheme_autocmds("tundra", function()
+      local colors = require("nvim-tundra.palette.arctic")
 
-          if not colors then
-            error()
-          end
+      if not colors then
+        error()
+      end
 
-          vim.api.nvim_set_hl(0, "RainbowDelimiterRed", { fg = colors.red._500 })
-          vim.api.nvim_set_hl(0, "RainbowDelimiterYellow", { fg = colors.sand._500 })
-          vim.api.nvim_set_hl(0, "RainbowDelimiterBlue", { fg = colors.sky._500 })
-          vim.api.nvim_set_hl(0, "RainbowDelimiterOrange", { fg = colors.orange._500 })
-          vim.api.nvim_set_hl(0, "RainbowDelimiterGreen", { fg = colors.green._500 })
-          vim.api.nvim_set_hl(0, "RainbowDelimiterViolet", { fg = colors.indigo._500 })
-          vim.api.nvim_set_hl(0, "RainbowDelimiterCyan", { fg = colors.opal._500 })
-          vim.api.nvim_set_hl(0, "RainbowDelimiterCyan", { fg = colors.cyan })
-        end,
-        pattern = "tundra",
-      })
-    end,
+      return {
+        colors.red._500,
+        colors.sand._500,
+        colors.sky._500,
+        colors.orange._500,
+        colors.green._500,
+        colors.indigo._500,
+        colors.opal._500,
+        colors.cyan,
+      }
+    end),
     opts = {
       plugins = {
         cmp = true,
@@ -218,42 +233,37 @@ return map({
   },
   {
     "ray-x/starry.nvim",
-    init = function()
-      for _, colorscheme_name in ipairs({
-        "darker",
-        "darksolar",
-        "deepocean",
-        "dracula",
-        "dracula_blood",
-        "earlysummer",
-        "earlysummer_lighter",
-        "emerald",
-        "mariana",
-        "mariana_lighter",
-        "middlenight_blue",
-        "monokai",
-        "monokai_lighter",
-        "moonlight",
-        "oceanic",
-        "palenight",
-        "starry",
-      }) do
-        vim.api.nvim_create_autocmd("ColorScheme", {
-          callback = function()
-            local colors = require("starry.colors").color_table()
+    init = create_colorscheme_autocmds({
+      "darker",
+      "darksolar",
+      "deepocean",
+      "dracula",
+      "dracula_blood",
+      "earlysummer",
+      "earlysummer_lighter",
+      "emerald",
+      "mariana",
+      "mariana_lighter",
+      "middlenight_blue",
+      "monokai",
+      "monokai_lighter",
+      "moonlight",
+      "oceanic",
+      "palenight",
+      "starry",
+    }, function()
+      local colors = require("starry.colors").color_table()
 
-            vim.api.nvim_set_hl(0, "RainbowDelimiterRed", { fg = colors.red })
-            vim.api.nvim_set_hl(0, "RainbowDelimiterYellow", { fg = colors.yellow })
-            vim.api.nvim_set_hl(0, "RainbowDelimiterBlue", { fg = colors.blue })
-            vim.api.nvim_set_hl(0, "RainbowDelimiterOrange", { fg = colors.orange })
-            vim.api.nvim_set_hl(0, "RainbowDelimiterGreen", { fg = colors.green })
-            vim.api.nvim_set_hl(0, "RainbowDelimiterViolet", { fg = colors.purple })
-            vim.api.nvim_set_hl(0, "RainbowDelimiterCyan", { fg = colors.cyan })
-          end,
-          pattern = colorscheme_name,
-        })
-      end
-    end,
+      return {
+        colors.red,
+        colors.yellow,
+        colors.blue,
+        colors.orange,
+        colors.green,
+        colors.purple,
+        colors.cyan,
+      }
+    end),
   },
   {
     "Mofiqul/vscode.nvim",
@@ -275,36 +285,31 @@ return map({
   },
   {
     "mcchrish/zenbones.nvim",
-    init = function()
-      for _, colorscheme_name in ipairs({
-        "duckbones",
-        "forestbones",
-        "kanagawabones",
-        "neobones",
-        "nordbones",
-        "rosebones",
-        "seoulbones",
-        "tokyobones",
-        "zenbones",
-        "zenburned",
-        "zenwritten",
-      }) do
-        vim.api.nvim_create_autocmd("ColorScheme", {
-          callback = function()
-            local palette = require(colorscheme_name .. ".palette")
+    init = create_colorscheme_autocmds({
+      "duckbones",
+      "forestbones",
+      "kanagawabones",
+      "neobones",
+      "nordbones",
+      "rosebones",
+      "seoulbones",
+      "tokyobones",
+      "zenbones",
+      "zenburned",
+      "zenwritten",
+    }, function(colorscheme_name)
+      local palette = require(colorscheme_name .. ".palette")
 
-            vim.api.nvim_set_hl(0, "RainbowDelimiterRed", { fg = palette.dark.rose.hex })
-            vim.api.nvim_set_hl(0, "RainbowDelimiterYellow", { fg = palette.dark.wood.hex })
-            vim.api.nvim_set_hl(0, "RainbowDelimiterBlue", { fg = palette.dark.water.hex })
-            vim.api.nvim_set_hl(0, "RainbowDelimiterOrange", { fg = palette.dark.fg.hex })
-            vim.api.nvim_set_hl(0, "RainbowDelimiterGreen", { fg = palette.dark.leaf.hex })
-            vim.api.nvim_set_hl(0, "RainbowDelimiterViolet", { fg = palette.dark.blossom.hex })
-            vim.api.nvim_set_hl(0, "RainbowDelimiterCyan", { fg = palette.dark.sky.hex })
-          end,
-          pattern = colorscheme_name,
-        })
-      end
-    end,
+      return {
+        palette.dark.rose.hex,
+        palette.dark.wood.hex,
+        palette.dark.water.hex,
+        palette.dark.fg.hex,
+        palette.dark.leaf.hex,
+        palette.dark.blossom.hex,
+        palette.dark.sky.hex,
+      }
+    end),
   },
 }, function(colorscheme_spec)
   colorscheme_spec.lazy = true
