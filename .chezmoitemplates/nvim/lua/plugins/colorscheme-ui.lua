@@ -1,83 +1,23 @@
-local colorschemes = {
-  { "bamboo" },
-  { "bluloco" },
-  { "carbonfox" },
-  { "catppuccin-frappe" },
-  { "catppuccin-macchiato" },
-  { "catppuccin-mocha" },
-  { "darker" },
-  { "darksolar" },
-  { "deepocean" },
-  { "dracula" },
-  { "dracula-soft" },
-  { "dracula_blood" },
-  { "duckbones" },
-  { "duskfox" },
-  { "earlysummer" },
-  { "earlysummer_lighter" },
-  { "edge", "aura" },
-  { "edge", "default" },
-  { "edge", "neon" },
-  { "emerald" },
-  { "everforest" },
-  { "forestbones" },
-  { "github_dark" },
-  { "github_dark_dimmed" },
-  { "github_dark_high_contrast" },
-  { "gruvbox" },
-  { "gruvbox-baby" },
-  { "gruvbox-material" },
-  { "kanagawa-dragon" },
-  { "kanagawa-wave" },
-  { "kanagawabones" },
-  { "mariana" },
-  { "mariana_lighter" },
-  { "material", "darker" },
-  { "material", "deep ocean" },
-  { "material", "oceanic" },
-  { "material", "palenight" },
-  { "middlenight_blue" },
-  { "minicyan" },
-  { "minischeme" },
-  { "monokai" },
-  { "monokai_lighter" },
-  { "moonfly" },
-  { "moonlight" },
-  { "neobones" },
-  { "nightfly" },
-  { "nightfox" },
-  { "nordbones" },
-  { "nordfox" },
-  { "nordic" },
-  { "oceanic" },
-  { "one_monokai" },
-  { "onedark" },
-  { "onedark_dark" },
-  { "onedark_vivid" },
-  { "onenord" },
-  { "palenight" },
-  { "poimandres" },
-  { "rose-pine" },
-  { "rosebones" },
-  { "seoulbones" },
-  { "sonokai", "andromeda" },
-  { "sonokai", "atlantis" },
-  { "sonokai", "default" },
-  { "sonokai", "espresso" },
-  { "sonokai", "maia" },
-  { "sonokai", "shusia" },
-  { "starry" },
-  { "terafox" },
-  { "tokyobones" },
-  { "tokyonight-moon" },
-  { "tokyonight-night" },
-  { "tokyonight-storm" },
-  { "tundra" },
-  { "vscode" },
-  { "zenbones" },
-  { "zenburned" },
-  { "zenwritten" },
-}
+local colorscheme_specs = require("plugins.colorscheme")
+local util = require("util")
+
+local colorschemes = {}
+
+for _, spec in ipairs(colorscheme_specs) do
+  local name = util.normname(spec.name)
+
+  if spec.colorscheme_styles then
+    for _, colorscheme_style in ipairs(spec.colorscheme_styles) do
+      table.insert(colorschemes, { name, colorscheme_style })
+    end
+  elseif spec.colors_names then
+    for _, colors_name in ipairs(spec.colors_names) do
+      table.insert(colorschemes, { colors_name })
+    end
+  else
+    table.insert(colorschemes, { name })
+  end
+end
 
 local colorscheme_index
 local colorscheme
