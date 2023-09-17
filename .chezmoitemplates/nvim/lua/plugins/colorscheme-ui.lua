@@ -73,7 +73,7 @@ return {
           "<leader>uC",
           function()
             require("telescope.pickers")
-              .new({}, {
+              .new({ sorting_strategy = "ascending" }, {
                 attach_mappings = function(prompt_bufnr)
                   local actions = require("telescope.actions")
                   actions.select_default:replace(function()
