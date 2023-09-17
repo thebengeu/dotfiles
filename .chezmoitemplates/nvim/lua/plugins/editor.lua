@@ -2,29 +2,6 @@ local map = require("util").map
 
 return {
   {
-    "ja-ford/delaytrain.nvim",
-    keys = {
-      "<Down>",
-      "<Left>",
-      "<Right>",
-      "<Up>",
-      "h",
-      "j",
-      "k",
-      "l",
-    },
-    opts = {
-      grace_period = 2,
-      ignore_filetypes = {
-        "lazy",
-        "mason",
-        "NeogitStatus",
-        "neo%-tree",
-        "qf",
-      },
-    },
-  },
-  {
     "monaqa/dial.nvim",
     config = function()
       local augend = require("dial.augend")
