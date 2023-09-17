@@ -223,6 +223,7 @@ return {
     keys = toggle_term_open_mapping,
     opts = {
       open_mapping = toggle_term_open_mapping,
+      persist_mode = false,
       shell = "fish",
     },
   },
