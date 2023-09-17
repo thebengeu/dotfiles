@@ -86,6 +86,22 @@ return util.map({
       vim.g.edge_enable_italic = 1
     end,
   },
+  add_init_colorscheme_autocmds({
+    "Everblush/nvim",
+    name = "everblush",
+  }, function()
+    local palette = require("everblush.palette")
+
+    return {
+      palette.color1,
+      palette.color3,
+      palette.color4,
+      palette.color7,
+      palette.color2,
+      palette.color5,
+      palette.color6,
+    }
+  end),
   {
     "sainnhe/everforest",
     config = function()
