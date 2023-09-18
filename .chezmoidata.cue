@@ -69,6 +69,7 @@ aliases: {
 	ls:  "lsd"
 	lg:  "lazygit"
 	n:   "nvim"
+	ni:  "npm install"
 	p:   "pnpm"
 	pd:  "pnpm dev"
 	ppg: "pnpm prisma generate"
