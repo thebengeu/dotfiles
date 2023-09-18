@@ -14,25 +14,27 @@ abbr --add man batman
 abbr --add os 'set COMMAND $(op signin) && test -n "$COMMAND" && eval $COMMAND && set --export OP_TIME $(date +%s)'
 
 if test -f /proc/sys/fs/binfmt_misc/WSLInterop
-    set --export TITLE_PREFIX wsl
+    set --export TITLE_PREFIX wsl:
 end
 
 if set -q SSH_TTY
-    set --export TITLE_PREFIX $(prompt_hostname)
+    set --export TITLE_PREFIX $(prompt_hostname):
 end
 
 function fish_title
-    set --local full_prompt_pwd $(prompt_pwd --dir-length=0)
+    set --function current_command (status current-command)
+
+    if test $current_command != fish
+        set --function title "$TITLE_PREFIX$current_command"
+    else
+        set --function title "$TITLE_PREFIX$(prompt_pwd --dir-length=0)"
+    end
 
     if test -n "$TMUX"
-        tmux rename-window -t $(tmux display-message -p '#{window_index}') $full_prompt_pwd
+        tmux rename-window -t $(tmux display-message -p '#{window_index}') $title
     end
 
-    if set -q TITLE_PREFIX
-        echo "$TITLE_PREFIX:$full_prompt_pwd"
-    else
-        echo $full_prompt_pwd
-    end
+    echo $title
 end
 
 function fish_hybrid_key_bindings
