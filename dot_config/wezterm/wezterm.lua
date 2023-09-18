@@ -409,6 +409,7 @@ config.launch_menu = map({
     args = args,
   }
 end)
+config.prefer_egl = true
 config.quick_select_patterns = {
   -- https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file
   [[(?:~|[A-Za-z]:)(?:\\[^<>:"/\|?*]+)+]],
