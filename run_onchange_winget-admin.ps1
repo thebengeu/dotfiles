@@ -34,6 +34,7 @@ $wingetPackageIds = @(
   'jqlang.jq'
   'DEVCOM.Lua'
   'jftuga.less'
+  'gokcehan.lf'
   'GnuWin32.Make'
   'ManicTime.ManicTime'
   'zyedidia.micro'
