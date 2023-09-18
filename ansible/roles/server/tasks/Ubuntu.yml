@@ -76,10 +76,13 @@
     - hledger-ui
     - hledger-web
     - ledger
+    - lf
     - nethogs
     - nix
+    - nnn
     - nushell
     - peco
+    - vifm
 - ansible.builtin.git:
     dest: ~/bat-extras
     repo: https://github.com/eth-p/bat-extras.git
