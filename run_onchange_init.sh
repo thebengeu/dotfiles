@@ -49,7 +49,7 @@ if [ ! "$CHEZMOI" = 1 ]; then
 
 	sudo add-apt-repository -y ppa:ansible/ansible
 	sudo apt install ansible
-	ansible-playbook --tags server "$CHEZMOI_SOURCE_DIR"/ansible/site.yml --ask-become-pass
+	ansible-playbook "$CHEZMOI_SOURCE_DIR"/ansible/site.yml --ask-become-pass
 
 	sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'postgres';"
 
