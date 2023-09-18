@@ -111,6 +111,22 @@ return util.map({
     end,
   },
   {
+    "maxmx03/fluoromachine.nvim",
+    opts = {
+      overrides = function(colors)
+        return rainbow_delimiter_highlights({
+          colors.red,
+          colors.yellow,
+          colors.pink,
+          colors.orange,
+          colors.green,
+          colors.purple,
+          colors.cyan,
+        })
+      end,
+    },
+  },
+  {
     "projekt0n/github-nvim-theme",
     colors_names = {
       "github_dark",
