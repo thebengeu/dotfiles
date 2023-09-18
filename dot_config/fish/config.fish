@@ -63,10 +63,12 @@ function __mark_output_end --on-event fish_postexec
 end
 
 function __wezterm_set_user_var --argument-names name value
+    set --function set_user_var "\033]1337;SetUserVar=$name=$(echo -n "$value" | base64)\007"
+
     if test -n "$TMUX"
-        printf "\033Ptmux;\033\033]1337;SetUserVar=%s=%s\007\033\\" "$name" $(echo -n "$value" | base64)
+        echo -en "\033Ptmux;\033$set_user_var\033\\"
     else
-        printf "\033]1337;SetUserVar=%s=%s\007" "$name" $(echo -n "$value" | base64)
+        echo -en $set_user_var
     end
 end
 
