@@ -20,9 +20,9 @@ local rainbow_delimiter_highlights = function(colors)
 end
 
 local add_init_colorscheme_autocmds = function(spec, get_highlights)
-  spec.init = function()
+  spec.init = function(plugin)
     for _, colors_name in
-      ipairs(spec.colors_names and spec.colors_names or { spec.name or util.normname(spec[1]:gsub(".*/", "")) })
+      ipairs(plugin.colors_names and plugin.colors_names or { util.normname(plugin.name:gsub(".*/", "")) })
     do
       local callback = function()
         for name, highlight in pairs(get_highlights(colors_name)) do
