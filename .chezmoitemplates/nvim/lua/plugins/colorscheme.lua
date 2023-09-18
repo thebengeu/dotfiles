@@ -258,6 +258,12 @@ return util.map({
     name = "moonfly",
   },
   {
+    "Tsuzat/NeoSolarized.nvim",
+    opts = {
+      transparent = false,
+    },
+  },
+  {
     "bluz71/vim-nightfly-colors",
     name = "nightfly",
   },
