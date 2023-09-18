@@ -44,3 +44,8 @@ for gitRepo in _zshGitRepos {
 	type:            "archive"
 	url:             "https://github.com/ililim/dual-key-remap/releases/download/v0.7/dual-key-remap-v0.7.zip"
 }
+".local/bin/cht.sh": {
+	executable: true
+	type:       "file"
+	url:        "https://cht.sh/:cht.sh"
+}
