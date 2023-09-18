@@ -45,7 +45,6 @@ return {
   },
   {
     "folke/flash.nvim",
-    ---@type Flash.Config
     opts = {
       highlight = {
         backdrop = false,
@@ -168,7 +167,7 @@ return {
 
       local paste = function()
         return {
-          vim.fn.split(vim.fn.getreg(""), "\n"),
+          vim.fn.split((vim.fn.getreg("") --[[@as string]]), "\n"),
           vim.fn.getregtype(""),
         }
       end

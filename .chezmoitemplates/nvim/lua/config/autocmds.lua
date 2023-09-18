@@ -18,7 +18,9 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 
 vim.api.nvim_create_autocmd("TextChanged", {
   callback = function()
-    if vim.fn.getline("."):find("^%s*,%s*$") then
+    if
+      (vim.fn.getline(".") --[[@as string]]):find("^%s*,%s*$")
+    then
       vim.cmd.undojoin()
       vim.fn.deletebufline("", vim.fn.line("."))
     end
@@ -31,7 +33,10 @@ if vim.env.TMUX then
     callback = function()
       vim.fn.system(
         "tmux rename-window '"
-          .. vim.fn.expand("%:p"):gsub(vim.loop.os_homedir() or "", "~")
+          .. (vim.fn.expand("%:p") --[[@as string]]):gsub(
+            vim.loop.os_homedir() or "",
+            "~"
+          )
           .. "'"
       )
     end,
