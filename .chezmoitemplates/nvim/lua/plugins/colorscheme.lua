@@ -21,9 +21,11 @@ end
 
 local add_init_colorscheme_autocmds = function(spec, get_highlights)
   spec.init = function()
-    for _, colors_name in ipairs(spec.colors_names and spec.colors_names or { util.normname(spec[1]:gsub(".*/", "")) }) do
+    for _, colors_name in
+      ipairs(spec.colors_names and spec.colors_names or { spec.name or util.normname(spec[1]:gsub(".*/", "")) })
+    do
       local callback = function()
-        for name, highlight in pairs(rainbow_delimiter_highlights(get_highlights(colors_name))) do
+        for name, highlight in pairs(get_highlights(colors_name)) do
           vim.api.nvim_set_hl(0, name, highlight)
         end
       end
@@ -92,7 +94,7 @@ return util.map({
   }, function()
     local palette = require("everblush.palette")
 
-    return {
+    return rainbow_delimiter_highlights({
       palette.color1,
       palette.color3,
       palette.color4,
@@ -100,7 +102,7 @@ return util.map({
       palette.color2,
       palette.color5,
       palette.color6,
-    }
+    })
   end),
   {
     "sainnhe/everforest",
@@ -188,7 +190,7 @@ return util.map({
   }, function()
     local colors = require("material.colors")
 
-    return {
+    return rainbow_delimiter_highlights({
       colors.main.red,
       colors.main.yellow,
       colors.main.blue,
@@ -196,14 +198,14 @@ return util.map({
       colors.main.green,
       colors.main.purple,
       colors.main.cyan,
-    }
+    })
   end),
   add_init_colorscheme_autocmds({
     "savq/melange-nvim",
   }, function()
     local palette = require("melange.palettes.dark")
 
-    return {
+    return rainbow_delimiter_highlights({
       palette.b.red,
       palette.b.yellow,
       palette.b.blue,
@@ -211,7 +213,7 @@ return util.map({
       palette.b.green,
       palette.b.magenta,
       palette.b.cyan,
-    }
+    })
   end),
   add_init_colorscheme_autocmds({
     "ramojus/mellifluous.nvim",
@@ -225,7 +227,7 @@ return util.map({
       error()
     end
 
-    return {
+    return rainbow_delimiter_highlights({
       colors.red.hex,
       colors.yellow.hex,
       colors.blue.hex,
@@ -233,7 +235,7 @@ return util.map({
       colors.green.hex,
       colors.purple.hex,
       colors.cyan.hex,
-    }
+    })
   end),
   {
     "echasnovski/mini.base16",
@@ -321,14 +323,22 @@ return util.map({
     },
   },
   { "olivercederborg/poimandres.nvim" },
-  {
+  add_init_colorscheme_autocmds({
     colors_names = {
       "selenized-black",
       "selenized-dark",
       "solarized-dark",
     },
     url = "https://gitlab.com/HiPhish/resolarized.nvim.git",
-  },
+  }, function()
+    local highlights = {}
+
+    for _, color in ipairs(rainbow_delimiter_colors) do
+      highlights["RainbowDelimiter" .. color] = { link = "Rainbow" .. color }
+    end
+
+    return highlights
+  end),
   {
     "sainnhe/sonokai",
     colorscheme_styles = {
@@ -368,7 +378,7 @@ return util.map({
   }, function()
     local colors = require("starry.colors").color_table()
 
-    return {
+    return rainbow_delimiter_highlights({
       colors.red,
       colors.yellow,
       colors.blue,
@@ -376,7 +386,7 @@ return util.map({
       colors.green,
       colors.purple,
       colors.cyan,
-    }
+    })
   end),
   {
     "tiagovla/tokyodark.nvim",
@@ -419,7 +429,7 @@ return util.map({
       error()
     end
 
-    return {
+    return rainbow_delimiter_highlights({
       colors.red._500,
       colors.sand._500,
       colors.sky._500,
@@ -428,7 +438,7 @@ return util.map({
       colors.indigo._500,
       colors.opal._500,
       colors.cyan,
-    }
+    })
   end),
   {
     "Mofiqul/vscode.nvim",
@@ -466,7 +476,7 @@ return util.map({
   }, function(colors_name)
     local palette = require(colors_name .. ".palette")
 
-    return {
+    return rainbow_delimiter_highlights({
       palette.dark.rose.hex,
       palette.dark.wood.hex,
       palette.dark.water.hex,
@@ -474,7 +484,7 @@ return util.map({
       palette.dark.leaf.hex,
       palette.dark.blossom.hex,
       palette.dark.sky.hex,
-    }
+    })
   end),
 }, function(colorscheme_spec)
   colorscheme_spec.lazy = true
