@@ -7,7 +7,11 @@ return {
       { "gd", "<Cmd>Glance definitions<cr>", desc = "Goto Definition" },
       { "gI", "<Cmd>Glance implementations<cr>", desc = "Goto Implementation" },
       { "gr", "<Cmd>Glance references<cr>", desc = "References" },
-      { "gt", "<Cmd>Glance type_definitions<cr>", desc = "Goto Type Definition" },
+      {
+        "gt",
+        "<Cmd>Glance type_definitions<cr>",
+        desc = "Goto Type Definition",
+      },
     },
     opts = {
       hooks = {
@@ -27,14 +31,28 @@ return {
       local config = require("iron.config")
       local lowlevel = require("iron.lowlevel")
 
-      local create_repl_on_current_window = lowlevel.create_repl_on_current_window
+      local create_repl_on_current_window =
+        lowlevel.create_repl_on_current_window
 
       ---@diagnostic disable-next-line: duplicate-set-field
-      lowlevel.create_repl_on_current_window = function(ft, repl, bufnr, current_bufnr, opts)
+      lowlevel.create_repl_on_current_window = function(
+        ft,
+        repl,
+        bufnr,
+        current_bufnr,
+        opts
+      )
         opts = opts or {}
-        opts.cwd = opts.cwd or vim.fn.fnamemodify(vim.api.nvim_buf_get_name(current_bufnr), ":h")
+        opts.cwd = opts.cwd
+          or vim.fn.fnamemodify(vim.api.nvim_buf_get_name(current_bufnr), ":h")
 
-        return create_repl_on_current_window(ft, repl, bufnr, current_bufnr, opts)
+        return create_repl_on_current_window(
+          ft,
+          repl,
+          bufnr,
+          current_bufnr,
+          opts
+        )
       end
 
       local ts = require("iron.fts.typescript").ts
@@ -60,7 +78,10 @@ return {
         config = {
           repl_definition = {
             sql = {
-              command = { "psql", "postgresql://postgres:postgres@localhost:5432/postgres" },
+              command = {
+                "psql",
+                "postgresql://postgres:postgres@localhost:5432/postgres",
+              },
             },
             typescript = typescript,
             typescriptreact = typescript,

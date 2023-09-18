@@ -1,5 +1,6 @@
 local Util = require("lazyvim.util")
-local toggle_term_open_mapping = (vim.g.goneovim or vim.g.neovide) and "<C-/>" or "<C-_>"
+local toggle_term_open_mapping = (vim.g.goneovim or vim.g.neovide) and "<C-/>"
+  or "<C-_>"
 
 return {
   {
@@ -88,8 +89,18 @@ return {
         end,
         desc = "Explorer NeoTree (cwd)",
       },
-      { "<leader>e", "<leader>fe", desc = "Explorer NeoTree (cwd)", remap = true },
-      { "<leader>E", "<leader>fE", desc = "Explorer NeoTree (root dir)", remap = true },
+      {
+        "<leader>e",
+        "<leader>fe",
+        desc = "Explorer NeoTree (cwd)",
+        remap = true,
+      },
+      {
+        "<leader>E",
+        "<leader>fE",
+        desc = "Explorer NeoTree (root dir)",
+        remap = true,
+      },
     },
     opts = {
       filesystem = {
@@ -118,7 +129,8 @@ return {
       "kkharji/sqlite.lua",
       config = function()
         if jit.os == "Windows" then
-          vim.g.sqlite_clib_path = vim.env.ChocolateyInstall .. "/lib/SQLite/tools/sqlite3.dll"
+          vim.g.sqlite_clib_path = vim.env.ChocolateyInstall
+            .. "/lib/SQLite/tools/sqlite3.dll"
         end
       end,
       enabled = true,

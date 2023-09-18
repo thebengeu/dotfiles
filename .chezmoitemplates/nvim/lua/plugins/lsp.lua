@@ -133,7 +133,10 @@ return {
               })[1]
               if client then
                 local diag = vim.diagnostic.get(event.buf, {
-                  namespace = vim.lsp.diagnostic.get_namespace(client.id, false),
+                  namespace = vim.lsp.diagnostic.get_namespace(
+                    client.id,
+                    false
+                  ),
                 })
                 if #diag > 0 then
                   vim.cmd.EslintFixAll()

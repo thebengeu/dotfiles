@@ -38,11 +38,15 @@ vim.keymap.set("n", "<leader>uR", function()
   vim.cmd.colorscheme(colorscheme[1])
 end, { desc = "Randomise Colorscheme" })
 vim.keymap.set("n", "[S", function()
-  set_colorscheme_style(colorscheme_index == 1 and #colorschemes or colorscheme_index - 1)
+  set_colorscheme_style(
+    colorscheme_index == 1 and #colorschemes or colorscheme_index - 1
+  )
   vim.cmd.colorscheme(colorscheme[1])
 end, { desc = "Colorscheme backward" })
 vim.keymap.set("n", "]S", function()
-  set_colorscheme_style(colorscheme_index == #colorschemes and 1 or colorscheme_index + 1)
+  set_colorscheme_style(
+    colorscheme_index == #colorschemes and 1 or colorscheme_index + 1
+  )
   vim.cmd.colorscheme(colorscheme[1])
 end, { desc = "Colorscheme forward" })
 
@@ -78,7 +82,8 @@ return {
                   local actions = require("telescope.actions")
                   actions.select_default:replace(function()
                     actions.close(prompt_bufnr)
-                    local selection = require("telescope.actions.state").get_selected_entry()
+                    local selection =
+                      require("telescope.actions.state").get_selected_entry()
                     set_colorscheme_style(selection.index)
                     vim.cmd.colorscheme(colorscheme[1])
                   end)
@@ -87,7 +92,8 @@ return {
                 finder = require("telescope.finders").new_table({
                   results = colorschemes,
                   entry_maker = function(entry)
-                    local colorscheme_and_style = table.concat(entry, "-"):gsub(" ", "_")
+                    local colorscheme_and_style =
+                      table.concat(entry, "-"):gsub(" ", "_")
 
                     return {
                       display = colorscheme_and_style,

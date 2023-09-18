@@ -11,10 +11,22 @@ return {
     },
     keys = function(_, keys)
       vim.list_extend(keys, {
-        { "<leader>/", Util.telescope("live_grep", { cwd = false }), desc = "Grep (cwd)" },
+        {
+          "<leader>/",
+          Util.telescope("live_grep", { cwd = false }),
+          desc = "Grep (cwd)",
+        },
         { "<leader><space>", false },
-        { "<leader>fF", Util.telescope("find_files"), desc = "Find Files (root dir)" },
-        { "<leader>ff", Util.telescope("find_files", { cwd = false }), desc = "Find Files (cwd)" },
+        {
+          "<leader>fF",
+          Util.telescope("find_files"),
+          desc = "Find Files (root dir)",
+        },
+        {
+          "<leader>ff",
+          Util.telescope("find_files", { cwd = false }),
+          desc = "Find Files (cwd)",
+        },
         {
           "<leader>fi",
           function()
@@ -31,16 +43,27 @@ return {
           end,
           desc = "Find Plugin Files",
         },
-        { "<leader>gb", "<Cmd>Telescope git_bcommits<CR>", desc = "Buffer commits" },
+        {
+          "<leader>gb",
+          "<Cmd>Telescope git_bcommits<CR>",
+          desc = "Buffer commits",
+        },
         { "<leader>gC", "<Cmd>Telescope git_commits<CR>", desc = "Commits" },
         { "<leader>gc" },
-        { "<leader>gr", "<Cmd>Telescope git_bcommits_range<CR>", desc = "Range commits", mode = "x" },
+        {
+          "<leader>gr",
+          "<Cmd>Telescope git_bcommits_range<CR>",
+          desc = "Range commits",
+          mode = "x",
+        },
         {
           "<leader>si",
           function()
             Util.telescope("live_grep", {
               vimgrep_arguments = vim.list_extend(
-                vim.fn.copy(require("telescope.config").values.vimgrep_arguments),
+                vim.fn.copy(
+                  require("telescope.config").values.vimgrep_arguments
+                ),
                 { "--no-ignore" }
               ),
             })()
@@ -53,7 +76,9 @@ return {
             Util.telescope("live_grep", {
               cwd = false,
               vimgrep_arguments = vim.list_extend(
-                vim.fn.copy(require("telescope.config").values.vimgrep_arguments),
+                vim.fn.copy(
+                  require("telescope.config").values.vimgrep_arguments
+                ),
                 { "--no-ignore" }
               ),
             })()
@@ -88,14 +113,17 @@ return {
                   local actions = require("telescope.actions")
                   actions.select_default:replace(function()
                     actions.close(prompt_bufnr)
-                    local selection = require("telescope.actions.state").get_selected_entry()
+                    local selection =
+                      require("telescope.actions.state").get_selected_entry()
                     require("telescope.builtin").live_grep({
                       cwd = root .. "/" .. selection[1],
                     })
                   end)
                   return true
                 end,
-                finder = require("telescope.finders").new_table({ results = vim.fn.readdir(root) }),
+                finder = require("telescope.finders").new_table({
+                  results = vim.fn.readdir(root),
+                }),
                 sorter = require("telescope.config").values.file_sorter(),
               })
               :find()

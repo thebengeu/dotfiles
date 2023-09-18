@@ -2,9 +2,22 @@ return {
   {
     "sindrets/diffview.nvim",
     keys = {
-      { "<Space>gF", "<Cmd>DiffviewFileHistory<CR>", desc = "Diffview History" },
-      { "<Space>gf", "<Cmd>DiffviewFileHistory %<CR>", desc = "Diffview File History" },
-      { "<Space>gf", ":DiffviewFileHistory<CR>", desc = "Diffview Range History", mode = "x" },
+      {
+        "<Space>gF",
+        "<Cmd>DiffviewFileHistory<CR>",
+        desc = "Diffview History",
+      },
+      {
+        "<Space>gf",
+        "<Cmd>DiffviewFileHistory %<CR>",
+        desc = "Diffview File History",
+      },
+      {
+        "<Space>gf",
+        ":DiffviewFileHistory<CR>",
+        desc = "Diffview Range History",
+        mode = "x",
+      },
     },
   },
   {
@@ -37,7 +50,12 @@ return {
         map("n", "<leader>hD", function()
           gs.diffthis("~")
         end, "Diff This ~")
-        map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
+        map(
+          { "o", "x" },
+          "ih",
+          ":<C-U>Gitsigns select_hunk<CR>",
+          "GitSigns Select Hunk"
+        )
       end,
     },
   },

@@ -13,7 +13,8 @@ local rainbow_delimiter_highlights = function(colors)
   local highlights = {}
 
   for i, color in ipairs(colors) do
-    highlights["RainbowDelimiter" .. rainbow_delimiter_colors[i]] = { fg = color }
+    highlights["RainbowDelimiter" .. rainbow_delimiter_colors[i]] =
+      { fg = color }
   end
 
   return highlights
@@ -21,7 +22,12 @@ end
 
 local add_colorscheme_autocmds_on_config = function(spec, get_highlights)
   spec.config = function(plugin)
-    for _, colors_name in ipairs(plugin.colors_names and plugin.colors_names or { util.normname(plugin.name) }) do
+    for _, colors_name in
+      ipairs(
+        plugin.colors_names and plugin.colors_names
+          or { util.normname(plugin.name) }
+      )
+    do
       vim.api.nvim_create_autocmd("ColorScheme", {
         callback = function()
           for name, highlight in pairs(get_highlights(colors_name)) do

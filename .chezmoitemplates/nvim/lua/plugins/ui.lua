@@ -112,7 +112,8 @@ return {
   {
     "HiPhish/rainbow-delimiters.nvim",
     config = function()
-      local rainbow_delimiters_hl = require("rainbow-delimiters.default").highlight
+      local rainbow_delimiters_hl =
+        require("rainbow-delimiters.default").highlight
 
       local ts_rainbow_2_hl = map(rainbow_delimiters_hl, function(hl)
         return (hl:gsub("RainbowDelimiter", "TSRainbow"))
@@ -131,7 +132,11 @@ return {
 
       create_colorscheme_autocmd(function()
         for i = 1, 7 do
-          vim.api.nvim_set_hl(0, "IndentBlanklineIndent" .. i, { link = rainbow_delimiters_hl[i] })
+          vim.api.nvim_set_hl(
+            0,
+            "IndentBlanklineIndent" .. i,
+            { link = rainbow_delimiters_hl[i] }
+          )
         end
 
         vim.schedule(function()
@@ -139,7 +144,9 @@ return {
             return
           end
 
-          local legacy_rainbow_hl = (hl_is_not_default(ts_rainbow_2_hl[1]) and ts_rainbow_2_hl)
+          local legacy_rainbow_hl = (
+            hl_is_not_default(ts_rainbow_2_hl[1]) and ts_rainbow_2_hl
+          )
             or (hl_is_not_default(ts_rainbow_hl[1]) and ts_rainbow_hl)
 
           if not legacy_rainbow_hl then
@@ -147,7 +154,11 @@ return {
           end
 
           for i = 1, 7 do
-            vim.api.nvim_set_hl(0, rainbow_delimiters_hl[i], { link = legacy_rainbow_hl[i] })
+            vim.api.nvim_set_hl(
+              0,
+              rainbow_delimiters_hl[i],
+              { link = legacy_rainbow_hl[i] }
+            )
           end
         end)
       end)()
