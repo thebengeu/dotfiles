@@ -19,8 +19,8 @@ local rainbow_delimiter_highlights = function(colors)
   return highlights
 end
 
-local add_init_colorscheme_autocmds = function(spec, get_highlights)
-  spec.init = function(plugin)
+local add_colorscheme_autocmds_on_config = function(spec, get_highlights)
+  spec.config = function(plugin)
     for _, colors_name in
       ipairs(plugin.colors_names and plugin.colors_names or { util.normname(plugin.name:gsub(".*/", "")) })
     do
@@ -88,7 +88,7 @@ return util.map({
       vim.g.edge_enable_italic = 1
     end,
   },
-  add_init_colorscheme_autocmds({
+  add_colorscheme_autocmds_on_config({
     "Everblush/nvim",
     name = "everblush",
   }, function()
@@ -165,7 +165,7 @@ return util.map({
       end,
     },
   },
-  add_init_colorscheme_autocmds({
+  add_colorscheme_autocmds_on_config({
     "marko-cerovac/material.nvim",
     colorscheme_styles = {
       "darker",
@@ -200,7 +200,7 @@ return util.map({
       colors.main.cyan,
     })
   end),
-  add_init_colorscheme_autocmds({
+  add_colorscheme_autocmds_on_config({
     "savq/melange-nvim",
   }, function()
     local palette = require("melange.palettes.dark")
@@ -215,7 +215,7 @@ return util.map({
       palette.b.cyan,
     })
   end),
-  add_init_colorscheme_autocmds({
+  add_colorscheme_autocmds_on_config({
     "ramojus/mellifluous.nvim",
     opts = {
       color_set = "mountain",
@@ -323,7 +323,7 @@ return util.map({
     },
   },
   { "olivercederborg/poimandres.nvim" },
-  add_init_colorscheme_autocmds({
+  add_colorscheme_autocmds_on_config({
     colors_names = {
       "selenized-black",
       "selenized-dark",
@@ -354,7 +354,7 @@ return util.map({
       vim.g.sonokai_enable_italic = 1
     end,
   },
-  add_init_colorscheme_autocmds({
+  add_colorscheme_autocmds_on_config({
     "ray-x/starry.nvim",
     colors_names = {
       "darker",
@@ -412,7 +412,7 @@ return util.map({
       "tokyonight-storm",
     },
   },
-  add_init_colorscheme_autocmds({
+  add_colorscheme_autocmds_on_config({
     "sam4llis/nvim-tundra",
     opts = {
       plugins = {
@@ -458,7 +458,7 @@ return util.map({
       }
     end,
   },
-  add_init_colorscheme_autocmds({
+  add_colorscheme_autocmds_on_config({
     "mcchrish/zenbones.nvim",
     colors_names = {
       "duckbones",
