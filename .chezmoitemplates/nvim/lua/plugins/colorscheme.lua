@@ -322,6 +322,14 @@ return util.map({
   },
   { "olivercederborg/poimandres.nvim" },
   {
+    colors_names = {
+      "selenized-black",
+      "selenized-dark",
+      "solarized-dark",
+    },
+    url = "https://gitlab.com/HiPhish/resolarized.nvim.git",
+  },
+  {
     "sainnhe/sonokai",
     colorscheme_styles = {
       "andromeda",
