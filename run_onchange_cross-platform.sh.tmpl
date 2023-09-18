@@ -25,9 +25,6 @@ pnpm add --global npm-check-updates
 pnpm add --global pino-pretty
 pnpm add --global pm2
 
-CHT_SH_PATH=~/.local/bin/cht.sh
-curl -s https://cht.sh/:cht.sh >$CHT_SH_PATH
-
 {{ if or (ne .chezmoi.os "windows") (ne .chezmoi.arch "arm64") }}
 cargo install tealdeer
 cargo install xh
@@ -42,6 +39,4 @@ cargo install bat
 cargo install fd-find
 {{ else }}
 cargo install gitui
-
-chmod +x $CHT_SH_PATH
 {{ end }}
