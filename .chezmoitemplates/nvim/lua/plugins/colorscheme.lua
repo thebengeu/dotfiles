@@ -21,21 +21,13 @@ end
 
 local add_colorscheme_autocmds_on_config = function(spec, get_highlights)
   spec.config = function(plugin)
-    for _, colors_name in
-      ipairs(plugin.colors_names and plugin.colors_names or { util.normname(plugin.name:gsub(".*/", "")) })
-    do
-      local callback = function()
-        for name, highlight in pairs(get_highlights(colors_name)) do
-          vim.api.nvim_set_hl(0, name, highlight)
-        end
-      end
-
-      if vim.g.colors_name == colors_name then
-        callback()
-      end
-
+    for _, colors_name in ipairs(plugin.colors_names and plugin.colors_names or { util.normname(plugin.name) }) do
       vim.api.nvim_create_autocmd("ColorScheme", {
-        callback = callback,
+        callback = function()
+          for name, highlight in pairs(get_highlights(colors_name)) do
+            vim.api.nvim_set_hl(0, name, highlight)
+          end
+        end,
         pattern = colors_name,
       })
     end
