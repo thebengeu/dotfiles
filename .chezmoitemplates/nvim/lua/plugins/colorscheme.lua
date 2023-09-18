@@ -162,7 +162,7 @@ return util.map({
   {
     "rebelot/kanagawa.nvim",
     colors_names = {
-      "kanagawa-drakon",
+      "kanagawa-dragon",
       "kanagawa-wave",
     },
     opts = {
