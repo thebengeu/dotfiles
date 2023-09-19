@@ -39,7 +39,7 @@ _shAliases: {
 	}
 
 	for alias_prefix, last_octet in _hosts {
-		"\(alias_prefix)": "ssh \(alias_prefix)-$(if ncat -z --wait 50ms 192.168.50.\(last_octet) 22; then echo \"local\"; else echo \"remote\"; fi)"
+		"\(alias_prefix)": #"ssh \(alias_prefix)-$(if ncat -z --wait 50ms 192.168.50.\(last_octet) 22; then echo "local"; else echo "remote"; fi)"#
 	}
 
 	jsr: #"printf "\e[6 q"; node"#
@@ -77,7 +77,7 @@ aliases: {
 	prr: "\(pr) -r"
 	pxi: "pipx install"
 	pxu: "pipx uninstall"
-	scc: "scc --not-match \"package-lock.json|pnpm-lock.yaml\""
+	scc: #"scc --not-match "package-lock.json|pnpm-lock.yaml""#
 	tb:  "time bash -i -c exit"
 	tbn: "time bash --noprofile --norc -i -c exit"
 	tns: "tmux new-session -A -s"
