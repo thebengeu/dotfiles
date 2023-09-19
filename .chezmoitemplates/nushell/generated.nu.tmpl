@@ -2,7 +2,7 @@
 def {{$name}} [{{$lines_and_parameters.parameters | join ", "}}] {
 {{- range $line := $lines_and_parameters.lines}}
   {{- range $i, $parameter := $lines_and_parameters.parameters}}
-    {{- $line = regexReplaceAll (print "(\\$" $parameter ")") $line "(${1})"}}
+    {{- $line = $line | replaceAllRegex (print "(\\$" $parameter ")") "(${1})"}}
   {{- end}}
     {{$line | replace "cd " "z "}}
 {{- end}}
@@ -11,9 +11,9 @@ def {{$name}} [{{$lines_and_parameters.parameters | join ", "}}] {
 
 {{- range $alias, $command := .aliases -}}
   {{- if and (contains ";" $command) (not (hasPrefix "sh -c" $command))}}
-    {{- $command = regexReplaceAll "(.*)" $command "sh -c '${1}'"}}
+    {{- $command = $command | replaceAllRegex "(.*)" "sh -c '${1}'"}}
   {{- else}}
-    {{- $command = regexReplaceAll "\\\\([^\"])" (regexReplaceAll "\\${([^}]+)}" $command "$$env.${1}" | replace "\\$" "$") "\\\\${1}"}}
+    {{- $command = $command | replaceAllRegex "\\${([^}]+)}" "$$env.${1}" | replace "\\$" "$" | replaceAllRegex "\\\\([^\"])" "\\\\${1}"}}
   {{- end}}
 alias {{$alias}} = {{$command | replace "$HOME" "~"}}
 {{- end -}}
