@@ -60,6 +60,13 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  callback = function()
+    vim.bo.commentstring = "// %s"
+  end,
+  pattern = "cue",
+})
+
 local set_user_var = function(name, value)
   vim.fn.chansend(
     vim.v.stderr,
