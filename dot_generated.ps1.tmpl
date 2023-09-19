@@ -8,7 +8,7 @@ function {{$name}} (
 {
 {{- range $lines_and_parameters.lines}}
   {{- if contains "parallel " .}}
-  {{regexReplaceAll "(.*)" . "sh -c '${1}'"}}
+  {{. | replaceAllRegex "(.*)" "sh -c '${1}'"}}
   {{- else}}
   {{.}}
   {{- end}}
@@ -23,9 +23,9 @@ function {{$alias}}
   {{- if $command | hasPrefix (print $alias " ") }}
   & $(Get-Command -CommandType Application {{$alias}}){{ $command | trimPrefix $alias }} $args
   {{- else if regexMatch "powershell -c \".*\"" $command}}
-  {{regexReplaceAll "powershell -c \"(.*)\"" $command "${1}" | replace "\\\"" "\"" | replace "\\$" "$"}}
+  {{$command | replaceAllRegex "powershell -c \"(.*)\"" "${1}" | replace "\\\"" "\"" | replace "\\$" "$"}}
   {{- else}}
-  {{regexReplaceAll "\\${([^}]+)}" $command "$$Env:${1}" | replace "/" "\\"}} $args
+  {{$command | replaceAllRegex "\\${([^}]+)}" "$$Env:${1}" | replace "/" "\\"}} $args
   {{- end}}
 }
 {{else -}}
