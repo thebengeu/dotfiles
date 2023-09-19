@@ -62,6 +62,9 @@ vim.keymap.set(
   edit_chezmoi_path("target"),
   { desc = "Chezmoi Target" }
 )
+vim.keymap.set("n", "<leader>ua", function()
+  vim.g.skip_chezmoi_apply = not vim.g.skip_chezmoi_apply
+end, { desc = "Toggle Chezmoi Apply" })
 vim.keymap.set("n", "<leader>um", function()
   ---@diagnostic disable-next-line: undefined-field
   vim.opt.mouse = vim.opt.mouse:get().a and "" or "a"
