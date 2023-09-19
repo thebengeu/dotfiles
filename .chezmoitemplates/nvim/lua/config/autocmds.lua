@@ -22,25 +22,25 @@ vim.api.nvim_create_autocmd("BufWritePost", {
       async_run({ "chezmoi", "apply", "--include", "templates" })
     elseif source_path:find("%.chezmoiexternal.cue") then
       async_run({ "chezmoi", "apply", "--include", "externals" })
+    elseif source_path:find("%.chezmoitemplates") then
+      local rg_command_prefix = "rg --files-with-matches --glob '*.tmpl' "
+        .. source_path:gsub(".*%.chezmoitemplates.", ""):gsub("\\", "/")
+        .. " ~/.local/share/chezmoi/"
+      source_path = "$(test $OS = Windows_NT && "
+        .. rg_command_prefix
+        .. "AppData || "
+        .. rg_command_prefix
+        .. "dot_config)"
+      async_run({ "sh", "-c", "chezmoi apply --source-path " .. source_path })
+    elseif source_path:find("chezmoi[/\\]%.") then
+      async_run({ "chezmoi", "apply", "--init" })
     else
-      if source_path:find("%.chezmoitemplates") then
-        local rg_command_prefix = "rg --files-with-matches --glob '*.tmpl' "
-          .. source_path:gsub(".*%.chezmoitemplates.", ""):gsub("\\", "/")
-          .. " ~/.local/share/chezmoi/"
-        source_path = "$(test $OS = Windows_NT && "
-          .. rg_command_prefix
-          .. "AppData || "
-          .. rg_command_prefix
-          .. "dot_config)"
-        async_run({ "sh", "-c", "chezmoi apply --source-path " .. source_path })
-      else
-        async_run({
-          "chezmoi",
-          "apply",
-          "--source-path",
-          source_path,
-        })
-      end
+      async_run({
+        "chezmoi",
+        "apply",
+        "--source-path",
+        source_path,
+      })
     end
   end,
   pattern = "*/.local/share/chezmoi/*",
