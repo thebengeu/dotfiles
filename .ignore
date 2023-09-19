@@ -4,4 +4,5 @@ dot_config/**/*.tmpl
 !dot_config/bash/*
 !dot_config/ghorg/*
 !dot_config/fish/**
+!dot_config/msmtp/*
 !dot_config/zsh/*
