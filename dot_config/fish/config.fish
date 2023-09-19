@@ -10,7 +10,6 @@ set --global fzf_directory_opts --preview '_fzf_preview_file_custom {}'
 set --global fzf_git_log_format '%C(bold blue)%h%Creset %s'
 set --global sponge_purge_only_on_exit true
 
-abbr --add man batman
 abbr --add os 'set COMMAND $(op signin) && test -n "$COMMAND" && eval $COMMAND && set --export OP_TIME $(date +%s)'
 
 if test -f /proc/sys/fs/binfmt_misc/WSLInterop

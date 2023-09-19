@@ -48,15 +48,12 @@ _shAliases: {
 	tsr: #"printf "\e[6 q"; pnpm tsx"#
 }
 aliases: {
-	ai:  "sudo apt install"
-	ar:  "sudo apt remove"
 	b:   "bat"
 	cad: "chezmoi add"
 	cat: "bat"
 	ca:  "chezmoi apply --init"
 	cr:  "chezmoi re-add"
 	cup: "chezmoi update --apply=false; chezmoi apply --init"
-	dpw: #"powershell -c "Invoke-Expression (\"pwsh \" + (New-Object -ComObject WScript.Shell).CreateShortcut(\"\$Env:ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2022\Visual Studio Tools\Developer PowerShell for VS 2022.lnk\").Arguments.Replace('\"\"\"', \"'\"))""#
 	ec2: "ssh ec2"
 	g:   "git"
 	hb:  "hyperfine 'bash -i -c exit'"
@@ -82,8 +79,6 @@ aliases: {
 	scc: #"scc --not-match "package-lock.json|pnpm-lock.yaml""#
 	tb:  "time bash -i -c exit"
 	tbn: "time bash --noprofile --norc -i -c exit"
-	tm:  "tmux new-session -A -s 0"
-	tns: "tmux new-session -A -s"
 	t:   "pnpm tsx"
 	vim: "nvim"
 
@@ -123,14 +118,20 @@ aliases: {
 
 	{
 		linux: {
-			fd: "fd --hidden"
-			rs: "rm ~/.local/share/nvim/sessions/*"
-			tg: "topgrade"
+			ai:  "sudo apt install"
+			ar:  "sudo apt remove"
+			fd:  "fd --hidden"
+			man: "batman"
+			rs:  "rm ~/.local/share/nvim/sessions/*"
+			tg:  "topgrade"
+			tm:  "tmux new-session -A -s 0"
+			tns: "tmux new-session -A -s"
 		}
 		windows: {
 			chi: "gsudo choco install"
 			chs: "choco search"
 			chu: "gsudo choco uninstall"
+			dpw: #"powershell -c "Invoke-Expression (\"pwsh \" + (New-Object -ComObject WScript.Shell).CreateShortcut(\"\$Env:ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2022\Visual Studio Tools\Developer PowerShell for VS 2022.lnk\").Arguments.Replace('\"\"\"', \"'\"))""#
 			fd:  "\(linux.fd) --path-separator '//'"
 			nrs: "rm $HOME/AppData/Local/nvim-data/sessions/*"
 			tg:  "gsudo topgrade"
@@ -154,10 +155,14 @@ aliases: {
 	}
 }
 environmentVariables: {
-	EDITOR:              "nvim"
-	EJSON_KEYDIR:        "$HOME/.config/ejson/keys"
-	GH_USERNAME:         "thebengeu"
-	NODE_NO_WARNINGS:    "1"
+	EDITOR:           "nvim"
+	EJSON_KEYDIR:     "$HOME/.config/ejson/keys"
+	GH_USERNAME:      "thebengeu"
+	NODE_NO_WARNINGS: "1"
+	PNPM_HOME:        {
+		linux:   "~/.local/share/pnpm"
+		windows: "$LOCALAPPDATA/pnpm"
+	}[_os]
 	RIPGREP_CONFIG_PATH: "$HOME/.ripgreprc"
 }
 functions: {
