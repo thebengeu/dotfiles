@@ -2,7 +2,7 @@
 export {{$environmentVariable}}={{$value}}
 {{end -}}
 
-export GH_TOKEN={{ (ejsonDecrypt (joinPath .chezmoi.sourceDir ".secrets.ejson")).github_token_repo }}
+export GH_TOKEN={{ (joinPath .chezmoi.sourceDir ".secrets.ejson" | ejsonDecrypt).github_token_repo }}
 
 {{range $path := .paths -}}
 export PATH={{$path}}:$PATH
