@@ -4,10 +4,6 @@ local toggle_term_open_mapping = (vim.g.goneovim or vim.g.neovide) and "<C-/>"
 
 return {
   {
-    "skywind3000/asyncrun.vim",
-    cmd = "AsyncRun",
-  },
-  {
     "max397574/better-escape.nvim",
     config = true,
     event = "InsertEnter",

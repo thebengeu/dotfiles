@@ -14,9 +14,11 @@ local update_commit_push = function(flags)
   return function()
     vim.cmd.update()
     local commit_summary = vim.fn.input("Commit summary: "):gsub('"', '\\"')
-    async_run(
-      "git commit -" .. flags .. 'm "' .. commit_summary .. '" && git push'
-    )()
+    async_run({
+      "sh",
+      "-c",
+      "git commit -" .. flags .. 'm "' .. commit_summary .. '" && git push',
+    })
   end
 end
 
@@ -40,8 +42,12 @@ vim.keymap.set(
   update_commit_push(""),
   { desc = "Git commit" }
 )
-vim.keymap.set("n", "<leader>gP", async_run("git push"), { desc = "Git push" })
-vim.keymap.set("n", "<leader>gp", async_run("git pull"), { desc = "Git pull" })
+vim.keymap.set("n", "<leader>gP", function()
+  async_run({ "git", "push" })
+end, { desc = "Git push" })
+vim.keymap.set("n", "<leader>gp", function()
+  async_run({ "git", "pull" })
+end, { desc = "Git pull" })
 vim.keymap.set("n", "<C-r>", "<Cmd>silent redo<CR>")
 vim.keymap.set("n", "u", "<Cmd>silent undo<CR>")
 vim.keymap.set(

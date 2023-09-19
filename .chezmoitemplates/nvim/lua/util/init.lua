@@ -1,19 +1,54 @@
 local exports = {}
 
-exports.async_run = function(command)
-  return function()
-    vim.cmd.AsyncRun("-mode=term -rows=5 " .. command)
+local map = function(input, callback)
+  local output = {}
+
+  if type(input) == "table" then
+    for key, value in pairs(input) do
+      table.insert(output, callback(value, key))
+    end
+  else
+    for value in input do
+      table.insert(output, callback(value))
+    end
   end
+
+  return output
 end
 
-exports.map = function(input_table, callback)
-  local output_table = {}
+exports.map = map
 
-  for key, value in pairs(input_table) do
-    table.insert(output_table, callback(value, key))
-  end
+local add_lines_to_qf = function(lines)
+  vim.fn.setqflist(
+    map(lines:gmatch("[^%c]+"), function(line)
+      return { text = line }
+    end),
+    "a"
+  )
+end
 
-  return output_table
+exports.async_run = function(command)
+  add_lines_to_qf(table.concat(command, " "))
+
+  local start_time = vim.loop.hrtime()
+
+  vim.system(command, {}, function(system_obj)
+    vim.schedule(function()
+      local end_time = vim.loop.hrtime()
+
+      add_lines_to_qf(system_obj.stdout)
+      add_lines_to_qf(system_obj.stderr)
+
+      if system_obj.code == 0 then
+        add_lines_to_qf(
+          "Executed in " .. math.floor((end_time - start_time) / 1e6) .. "ms"
+        )
+      else
+        vim.cmd.copen()
+        vim.cmd.clast()
+      end
+    end)
+  end)
 end
 
 exports.normname = function(name)
