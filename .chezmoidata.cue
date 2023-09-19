@@ -80,6 +80,7 @@ aliases: {
 	scc: #"scc --not-match "package-lock.json|pnpm-lock.yaml""#
 	tb:  "time bash -i -c exit"
 	tbn: "time bash --noprofile --norc -i -c exit"
+	tm:  "tmux new-session -A -s 0"
 	tns: "tmux new-session -A -s"
 	t:   "pnpm tsx"
 	vim: "nvim"
