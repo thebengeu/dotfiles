@@ -71,8 +71,10 @@ return {
       routes = {
         {
           filter = {
-            event = "msg_show",
-            kind = "search_count",
+            any = {
+              { find = "%d+L, %d+B" },
+              { kind = "search_count" },
+            },
           },
           opts = {
             skip = true,
