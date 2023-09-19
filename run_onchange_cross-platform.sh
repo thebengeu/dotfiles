@@ -24,19 +24,3 @@ pipx install visidata
 pnpm add --global npm-check-updates
 pnpm add --global pino-pretty
 pnpm add --global pm2
-
-{{ if or (ne .chezmoi.os "windows") (ne .chezmoi.arch "arm64") }}
-cargo install tealdeer
-cargo install xh
-
-pipx install howdoi
-
-pnpm add --global https://github.com/thebengeu/ts-node.git
-{{ end }}
-
-{{ if eq .chezmoi.os "windows" }}
-cargo install bat
-cargo install fd-find
-{{ else }}
-cargo install gitui
-{{ end }}
