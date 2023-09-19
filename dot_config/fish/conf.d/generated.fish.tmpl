@@ -17,7 +17,7 @@ fish_add_path --global {{$path}}
 
 status is-interactive || exit
 
-{{range $alias, $command := index .platformSpecificAliases .chezmoi.os | merge .aliases -}}
+{{range $alias, $command := index .aliases -}}
 abbr --add {{$alias}} '{{regexReplaceAll "\\${([^}]+)}" $command "$$${1}" | replace "\\" "\\\\" | replace "'" "\\'" | replace "$HOME" "~" }}'
 {{end}}
 {{range $name, $lines_and_parameters := .functions -}}

@@ -3,6 +3,8 @@ import (
 	"strings"
 )
 
+_os: string | *"" @tag(os,var=os)
+
 _aliasDirectories: {
 	c: "$HOME/.local/share/chezmoi"
 	d: "$HOME/thebengeu/drakon"
@@ -118,38 +120,36 @@ aliases: {
 	for shAlias, command in _shAliases {
 		"\(shAlias)": "sh -c '\(command)'"
 	}
-}
-_packageManagers: {
-	linux: [
-		"cargo",
-		"pnpm",
-	]
-	windows: linux + [
-			"gsudo choco",
-			"scoop",
-			"winget",
-	]
-}
-platformSpecificAliases: {
-	linux: {
-		fd: "fd --hidden"
-		rs: "rm ~/.local/share/nvim/sessions/*"
-		tg: "topgrade"
-	}
-	windows: {
-		fd:  "\(linux.fd) --path-separator '//'"
-		nrs: "rm $HOME/AppData/Local/nvim-data/sessions/*"
-		tg:  "gsudo topgrade"
-		wsk: "wezterm show-keys --lua"
-	}
 
-	for os, packageManagers in _packageManagers {
-		"\(os)": {
-			for packageManager in packageManagers {
-				for subCommand in ["install", "search", "uninstall"] {
-					"\(regexp.Find("^.", packageManager)+regexp.Find("^.", subCommand))": "\(packageManager) \(subCommand)"
-				}
-			}
+	{
+		linux: {
+			fd: "fd --hidden"
+			rs: "rm ~/.local/share/nvim/sessions/*"
+			tg: "topgrade"
+		}
+		windows: {
+			chi: "gsudo choco install"
+			chs: "choco search"
+			chu: "gsudo choco uninstall"
+			fd:  "\(linux.fd) --path-separator '//'"
+			nrs: "rm $HOME/AppData/Local/nvim-data/sessions/*"
+			tg:  "gsudo topgrade"
+			wsk: "wezterm show-keys --lua"
+		}
+	}[_os]
+
+	for packageManager in {
+		linux: [
+			"cargo",
+			"pnpm",
+		]
+		windows: linux + [
+				"scoop",
+				"winget",
+		]
+	}[_os] {
+		for subCommand in ["install", "search", "uninstall"] {
+			"\(regexp.Find("^.", packageManager)+regexp.Find("^.", subCommand))": "\(packageManager) \(subCommand)"
 		}
 	}
 }

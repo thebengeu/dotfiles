@@ -16,7 +16,7 @@ function {{$name}} (
 }
 {{end}}
 
-{{- range $alias, $command := index .platformSpecificAliases .chezmoi.os | merge .aliases -}}
+{{- range $alias, $command := .aliases -}}
 {{if $command | contains " " -}}
 function {{$alias}}
 {

@@ -9,7 +9,7 @@ def {{$name}} [{{$lines_and_parameters.parameters | join ", "}}] {
 }
 {{end}}
 
-{{- range $alias, $command := index .platformSpecificAliases .chezmoi.os | merge .aliases -}}
+{{- range $alias, $command := .aliases -}}
   {{- if and (contains ";" $command) (not (hasPrefix "sh -c" $command))}}
     {{- $command = regexReplaceAll "(.*)" $command "sh -c '${1}'"}}
   {{- else}}
