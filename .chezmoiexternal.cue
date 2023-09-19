@@ -14,6 +14,8 @@ import "regexp"
 	url:           "https://github.com/\(_gitRepo)"
 }
 
+_os: string | *"" @tag(os,var=os)
+
 _zshGitRepos: [
 	"Aloxaf/fzf-tab",
 	"agkozak/agkozak-zsh-prompt",
@@ -35,14 +37,18 @@ for gitRepo in _zshGitRepos {
 	type:       "file"
 	url:        "https://raw.githubusercontent.com/thebengeu/auto-git-remote-add-upstream/master/add-upstream-auto-detected-url.sh"
 }
-".config/tmux/plugins/tpm": #GitRepo & {
-	_gitRepo: "tmux-plugins/tpm"
+if _os != "windows" {
+	".config/tmux/plugins/tpm": #GitRepo & {
+		_gitRepo: "tmux-plugins/tpm"
+	}
 }
-".local/bin": {
-	include: [ "*/config.txt", "*/dual-key-remap.exe"]
-	stripComponents: 1
-	type:            "archive"
-	url:             "https://github.com/ililim/dual-key-remap/releases/download/v0.7/dual-key-remap-v0.7.zip"
+if _os == "windows" {
+	".local/bin": {
+		include: [ "*/config.txt", "*/dual-key-remap.exe"]
+		stripComponents: 1
+		type:            "archive"
+		url:             "https://github.com/ililim/dual-key-remap/releases/download/v0.7/dual-key-remap-v0.7.zip"
+	}
 }
 ".local/bin/cht": {
 	executable: true
