@@ -38,7 +38,7 @@ exports.async_run = function(command)
     type = "I",
   }
 
-  add_lines_to_qf(table.concat(command, " "), qf_item)
+  add_lines_to_qf(table.concat(command, " "):gsub("^sh %-c ", ""), qf_item)
 
   local start_time = vim.loop.hrtime()
 
