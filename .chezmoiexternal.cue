@@ -37,21 +37,24 @@ for gitRepo in _zshGitRepos {
 	type:       "file"
 	url:        "https://raw.githubusercontent.com/thebengeu/auto-git-remote-add-upstream/master/add-upstream-auto-detected-url.sh"
 }
-if _os != "windows" {
-	".config/tmux/plugins/tpm": #GitRepo & {
-		_gitRepo: "tmux-plugins/tpm"
-	}
-}
-if _os == "windows" {
-	".local/bin": {
-		include: [ "*/config.txt", "*/dual-key-remap.exe"]
-		stripComponents: 1
-		type:            "archive"
-		url:             "https://github.com/ililim/dual-key-remap/releases/download/v0.7/dual-key-remap-v0.7.zip"
-	}
-}
 ".local/bin/cht": {
 	executable: true
 	type:       "file"
 	url:        "https://cht.sh/:cht.sh"
 }
+
+{
+	linux: {
+		".config/tmux/plugins/tpm": #GitRepo & {
+			_gitRepo: "tmux-plugins/tpm"
+		}
+	}
+	windows: {
+		".local/bin": {
+			include: [ "*/config.txt", "*/dual-key-remap.exe"]
+			stripComponents: 1
+			type:            "archive"
+			url:             "https://github.com/ililim/dual-key-remap/releases/download/v0.7/dual-key-remap-v0.7.zip"
+		}
+	}
+}[_os]
