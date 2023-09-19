@@ -8,7 +8,7 @@ README.md
 .local/share/
 .ansible.cfg
 .inputrc
-run_onchange_init.sh
+*.linux.sh
 {{ else }}
 .config/fish/completions/wezterm.fish
 .config/fish/conf.d/windows.fish
