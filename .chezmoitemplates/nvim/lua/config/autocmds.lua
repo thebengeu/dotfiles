@@ -19,9 +19,9 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     end
 
     if source_path:find("%.chezmoidata.cue") then
-      async_run("chezmoi apply --include templates")()
+      async_run({ "chezmoi", "apply", "--include", "templates" })
     elseif source_path:find("%.chezmoiexternal.cue") then
-      async_run("chezmoi apply --include externals")()
+      async_run({ "chezmoi", "apply", "--include", "externals" })
     else
       if source_path:find("%.chezmoitemplates") then
         local rg_command_prefix = "rg --files-with-matches --glob '*.tmpl' "
@@ -32,9 +32,15 @@ vim.api.nvim_create_autocmd("BufWritePost", {
           .. "AppData || "
           .. rg_command_prefix
           .. "dot_config)"
+        async_run({ "sh", "-c", "chezmoi apply --source-path " .. source_path })
+      else
+        async_run({
+          "chezmoi",
+          "apply",
+          "--source-path",
+          source_path,
+        })
       end
-
-      async_run("chezmoi apply --source-path " .. source_path)()
     end
   end,
   pattern = "*/.local/share/chezmoi/*",
