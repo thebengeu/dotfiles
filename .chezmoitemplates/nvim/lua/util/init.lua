@@ -18,17 +18,27 @@ end
 
 exports.map = map
 
-local add_lines_to_qf = function(lines)
+local add_lines_to_qf = function(lines, qf_item)
   vim.fn.setqflist(
     map(lines:gmatch("[^%c]+"), function(line)
-      return { text = line }
+      return vim.tbl_extend("force", qf_item, {
+        text = line,
+      })
     end),
     "a"
   )
 end
 
 exports.async_run = function(command)
-  add_lines_to_qf(table.concat(command, " "))
+  local cursor = vim.api.nvim_win_get_cursor(0)
+  local qf_item = {
+    col = cursor[2],
+    filename = vim.api.nvim_buf_get_name(0),
+    lnum = cursor[1],
+    type = "I",
+  }
+
+  add_lines_to_qf(table.concat(command, " "), qf_item)
 
   local start_time = vim.loop.hrtime()
 
@@ -36,12 +46,17 @@ exports.async_run = function(command)
     vim.schedule(function()
       local end_time = vim.loop.hrtime()
 
-      add_lines_to_qf(system_obj.stdout)
-      add_lines_to_qf(system_obj.stderr)
+      if system_obj.code ~= 0 then
+        qf_item.type = "E"
+      end
+
+      add_lines_to_qf(system_obj.stdout, qf_item)
+      add_lines_to_qf(system_obj.stderr, qf_item)
 
       if system_obj.code == 0 then
         add_lines_to_qf(
-          "Executed in " .. math.floor((end_time - start_time) / 1e6) .. "ms"
+          "Executed in " .. math.floor((end_time - start_time) / 1e6) .. "ms",
+          qf_item
         )
       else
         vim.cmd.copen()
