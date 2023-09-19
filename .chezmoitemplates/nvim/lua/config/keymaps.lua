@@ -2,22 +2,20 @@ local async_run = require("util").async_run
 
 local edit_chezmoi_path = function(source_or_target)
   return function()
-    vim.cmd.edit(
-      vim.fn.system({
-        "chezmoi",
-        source_or_target .. "-path",
-        vim.api.nvim_buf_get_name(0),
-      })
-    )
+    vim.cmd.edit(vim.fn.system({
+      "chezmoi",
+      source_or_target .. "-path",
+      vim.api.nvim_buf_get_name(0),
+    }))
   end
 end
 
 local update_commit_push = function(flags)
   return function()
     vim.cmd.update()
-    local commit_summary = vim.fn.input("Commit summary: "):gsub("'", "\\'")
+    local commit_summary = vim.fn.input("Commit summary: "):gsub('"', '\\"')
     async_run(
-      "git commit -" .. flags .. "m '" .. commit_summary .. "' && git push"
+      "git commit -" .. flags .. 'm "' .. commit_summary .. '" && git push'
     )()
   end
 end
