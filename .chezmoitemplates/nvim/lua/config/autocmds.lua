@@ -8,13 +8,34 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 vim.api.nvim_create_autocmd("BufWritePost", {
   callback = function()
+    local source_path = vim.api.nvim_buf_get_name(0)
+
     if
-      vim.api.nvim_buf_get_name(0):find("%-admin%.ps1")
+      source_path:find("run_onchange_")
+      or source_path:find("ansible")
       or vim.g.skip_chezmoi_apply
     then
       return
     end
-    async_run("chezmoi apply --init")()
+
+    if source_path:find("%.chezmoidata.cue") then
+      async_run("chezmoi apply --include templates")()
+    elseif source_path:find("%.chezmoiexternal.cue") then
+      async_run("chezmoi apply --include externals")()
+    else
+      if source_path:find("%.chezmoitemplates") then
+        local rg_command_prefix = "rg --files-with-matches --glob '*.tmpl' "
+          .. source_path:gsub(".*%.chezmoitemplates.", ""):gsub("\\", "/")
+          .. " ~/.local/share/chezmoi/"
+        source_path = "$(test $OS = Windows_NT && "
+          .. rg_command_prefix
+          .. "AppData || "
+          .. rg_command_prefix
+          .. "dot_config)"
+      end
+
+      async_run("chezmoi apply --source-path " .. source_path)()
+    end
   end,
   pattern = "*/.local/share/chezmoi/*",
 })
