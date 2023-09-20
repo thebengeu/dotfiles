@@ -3,7 +3,6 @@ return {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = vim.list_extend({
-        "cueimports",
         "fixjson",
         "js-debug-adapter",
         "prettierd",
@@ -36,7 +35,6 @@ return {
             return not params.lsp_params.textDocument.uri:find("/Pulumi%.")
           end,
         }),
-        null_ls.builtins.formatting.cueimports,
         null_ls.builtins.formatting.fish_indent,
         null_ls.builtins.formatting.fixjson,
         null_ls.builtins.formatting.prettierd.with({
