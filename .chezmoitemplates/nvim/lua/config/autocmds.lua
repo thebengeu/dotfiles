@@ -23,14 +23,15 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     elseif source_path:find("%.chezmoiexternal.cue") then
       async_run({ "chezmoi", "apply", "--include", "externals" })
     elseif source_path:find("%.chezmoitemplates") then
-      local rg_command_prefix = "rg --files-with-matches --glob '*.tmpl' "
+      local chezmoi_source_dir = " ~/.local/share/chezmoi/"
+      local app_data_if_windows = package.config:sub(1, 1) == "\\"
+          and chezmoi_source_dir .. "AppData"
+        or ""
+      source_path = "$(rg --files-with-matches --glob '*.tmpl' "
         .. source_path:gsub(".*%.chezmoitemplates.", ""):gsub("\\", "/")
-        .. " ~/.local/share/chezmoi/"
-      source_path = "$(test $OS = Windows_NT && "
-        .. rg_command_prefix
-        .. "AppData || "
-        .. rg_command_prefix
-        .. "dot_config)"
+        .. app_data_if_windows
+        .. chezmoi_source_dir
+        .. "dot_config | sort | head -n1)"
       async_run({ "sh", "-c", "chezmoi apply --source-path " .. source_path })
     elseif source_path:find("%.chezmoi%.yaml%.tmpl") then
       async_run({ "chezmoi", "init" })
