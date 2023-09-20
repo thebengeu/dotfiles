@@ -54,6 +54,15 @@ return {
           desc = "Find Files (cwd)",
         },
         {
+          "<leader>fl",
+          function()
+            require("telescope.builtin").find_files({
+              cwd = require("lazy.core.config").options.root .. "/LazyVim",
+            })
+          end,
+          desc = "Find LazyVim Files",
+        },
+        {
           "<leader>fi",
           function()
             require("telescope.builtin").find_files({ no_ignore = true })
