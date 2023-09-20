@@ -174,6 +174,11 @@ config.keys = {
     mods = "SHIFT|CTRL",
     action = act.CloseCurrentTab({ confirm = false }),
   },
+  {
+    key = "v",
+    mods = "CTRL",
+    action = act.PasteFrom("Clipboard"),
+  },
   { key = "UpArrow", mods = "SHIFT|ALT|CTRL", action = act.ScrollToPrompt(-1) },
   {
     key = "DownArrow",
