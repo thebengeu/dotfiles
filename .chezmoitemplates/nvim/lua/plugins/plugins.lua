@@ -160,56 +160,112 @@ return {
         function()
           require("smart-splits").resize_left()
         end,
-        mode = { "n", "t" },
+        mode = "n",
       },
       {
         "<A-j>",
         function()
           require("smart-splits").resize_down()
         end,
-        mode = { "n", "t" },
+        mode = "n",
       },
       {
         "<A-k>",
         function()
           require("smart-splits").resize_up()
         end,
-        mode = { "n", "t" },
+        mode = "n",
       },
       {
         "<A-l>",
         function()
           require("smart-splits").resize_right()
         end,
-        mode = { "n", "t" },
+        mode = "n",
       },
       {
         "<C-h>",
         function()
           require("smart-splits").move_cursor_left()
         end,
-        mode = { "n", "t" },
+        mode = "n",
       },
       {
         "<C-j>",
         function()
           require("smart-splits").move_cursor_down()
         end,
-        mode = { "n", "t" },
+        mode = "n",
       },
       {
         "<C-k>",
         function()
           require("smart-splits").move_cursor_up()
         end,
-        mode = { "n", "t" },
+        mode = "n",
       },
       {
         "<C-l>",
         function()
           require("smart-splits").move_cursor_right()
         end,
-        mode = { "n", "t" },
+        mode = "n",
+      },
+      {
+        "<A-h>",
+        function()
+          require("smart-splits").resize_left()
+        end,
+        mode = "t",
+      },
+      {
+        "<A-j>",
+        function()
+          require("smart-splits").resize_down()
+        end,
+        mode = "t",
+      },
+      {
+        "<A-k>",
+        function()
+          require("smart-splits").resize_up()
+        end,
+        mode = "t",
+      },
+      {
+        "<A-l>",
+        function()
+          require("smart-splits").resize_right()
+        end,
+        mode = "t",
+      },
+      {
+        "<C-h>",
+        function()
+          require("smart-splits").move_cursor_left()
+        end,
+        mode = "t",
+      },
+      {
+        "<C-j>",
+        function()
+          require("smart-splits").move_cursor_down()
+        end,
+        mode = "t",
+      },
+      {
+        "<C-k>",
+        function()
+          require("smart-splits").move_cursor_up()
+        end,
+        mode = "t",
+      },
+      {
+        "<C-l>",
+        function()
+          require("smart-splits").move_cursor_right()
+        end,
+        mode = "t",
       },
     },
   },
