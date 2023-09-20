@@ -1,4 +1,4 @@
-Host *
+Host dev-* ec2 prod-*
   RemoteForward 2489 127.0.0.1:2490
   SendEnv TERM_PROGRAM
 
