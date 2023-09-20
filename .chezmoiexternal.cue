@@ -48,7 +48,7 @@ for gitRepo in _zshGitRepos {
 		".config/tmux/plugins/tpm": #GitRepo & {
 			_gitRepo: "tmux-plugins/tpm"
 		}
-		".local/bin/lemonade": {
+		".local/bin/lmn": {
 			path: "lemonade"
 			type: "archive-file"
 			url:  "https://github.com/lemonade-command/lemonade/releases/download/v1.1.1/lemonade_linux_amd64.tar.gz"
@@ -67,7 +67,7 @@ for gitRepo in _zshGitRepos {
 			type:            "archive-file"
 			url:             "https://github.com/ililim/dual-key-remap/releases/download/v0.7/dual-key-remap-v0.7.zip"
 		}
-		".local/bin/lemon.exe": {
+		".local/bin/lmn.exe": {
 			path: "lemonade.exe"
 			type: "archive-file"
 			url:  "https://github.com/lemonade-command/lemonade/releases/download/v1.1.1/lemonade_windows_amd64.zip"
