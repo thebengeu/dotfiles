@@ -1,2 +1,2 @@
 Set Shell = CreateObject("WScript.Shell")
-Shell.Run "lemon server", 0
+Shell.Run "lmn server --port 2490", 0
