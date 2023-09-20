@@ -73,7 +73,7 @@ aliases: {
 		lp:  "lg --patch"
 		P:   "push"
 		p:   "pull"
-		rhh: "reset --hard HEAD"
+		rh: "reset --hard HEAD"
 		s:   "s"
 	}
 	_gitAliases: {
