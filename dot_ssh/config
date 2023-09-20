@@ -1,4 +1,5 @@
 Host *
+  RemoteForward 2489 127.0.0.1:2489
   SendEnv TERM_PROGRAM
 
 Host dev-local
