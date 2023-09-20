@@ -159,7 +159,7 @@ return {
   },
   {
     "ojroques/nvim-osc52",
-    cond = vim.env.SSH_TTY and not vim.env.TMUX,
+    cond = vim.env.SSH_TTY ~= nil and not vim.env.TMUX,
     init = function()
       local copy = function(lines, _)
         require("osc52").copy(table.concat(lines, "\n"))
