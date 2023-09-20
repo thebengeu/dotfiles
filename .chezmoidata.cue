@@ -161,7 +161,7 @@ environmentVariables: {
 	NODE_NO_WARNINGS: "1"
 	PNPM_HOME:        {
 		linux:   "~/.local/share/pnpm"
-		windows: "$LOCALAPPDATA\\pnpm"
+		windows: "$LOCALAPPDATA\\\\pnpm"
 	}[_os]
 	RIPGREP_CONFIG_PATH: "$HOME/.ripgreprc"
 }
