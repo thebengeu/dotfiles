@@ -5,48 +5,6 @@ import (
 
 _os: string | *"" @tag(os,var=os)
 
-_aliasDirectories: {
-	c: "$HOME/.local/share/chezmoi"
-	d: "$HOME/thebengeu/drakon"
-}
-_directoryGitAliases: {
-	cam: "commit -a -m"
-	d:   "diff"
-	l:   "lg"
-	lp:  "lg --patch"
-	P:   "push"
-	p:   "pull"
-	s:   "s"
-}
-_gitAliases: {
-	aa:  "add -A"
-	c:   "clone"
-	ca:  "commit --amend"
-	cm:  "commit -m"
-	co:  "checkout"
-	r:   "rebase"
-	rbc: "rebase --continue"
-	rhh: "reset --hard HEAD"
-	rru: "remote remove upstream"
-	rv:  "remote -v"
-	sa:  "stash apply"
-	sP:  "stash push"
-	sp:  "stash pop"
-}
-_shAliases: {
-	_hosts: {
-		dev:       2
-		"dev-wsl": 3
-		prod:      4
-	}
-
-	for alias_prefix, last_octet in _hosts {
-		"\(alias_prefix)": #"ssh \(alias_prefix)-$(if ncat -z --wait 50ms 192.168.50.\(last_octet) 22; then echo "local"; else echo "remote"; fi)"#
-	}
-
-	jsr: #"printf "\e[6 q"; node"#
-	tsr: #"printf "\e[6 q"; pnpm tsx"#
-}
 aliases: {
 	b:   "bat"
 	cad: "chezmoi add"
@@ -82,14 +40,13 @@ aliases: {
 	t:   "pnpm tsx"
 	vim: "nvim"
 
-	_noConfigFlags: {
+	for shellAndFlags, noConfigFlag in {
 		"fish --interactive": "--no-config"
 		"nu --interactive":   "--no-config-file"
 		"powershell":         "-NoProfile"
 		"pwsh --interactive": "-NoProfile"
 		"zsh --interactive":  "--no-rcs"
-	}
-	for shellAndFlags, noConfigFlag in _noConfigFlags {
+	} {
 		let _shell_prefix = "\(regexp.Find("^p?.", shellAndFlags))"
 
 		"h\(_shell_prefix)":  "hyperfine '\(shellAndFlags) -c exit'"
@@ -98,10 +55,40 @@ aliases: {
 		"t\(_shell_prefix)n": "time \(shellAndFlags) -\(noConfigFlag) -c exit"
 	}
 
+	_aliasDirectories: {
+		c: "$HOME/.local/share/chezmoi"
+		d: "$HOME/thebengeu/drakon"
+	}
+
 	for prefix, directory in _aliasDirectories {
 		"\(prefix)cd": "cd \(directory)"
 		"\(prefix)lg": "lazygit --path \(directory)"
 		"\(prefix)n":  "nvim --cmd 'cd \(strings.Replace(directory, "$HOME", "~", -1))'"
+	}
+
+	_directoryGitAliases: {
+		cam: "commit -a -m"
+		d:   "diff"
+		l:   "lg"
+		lp:  "lg --patch"
+		P:   "push"
+		p:   "pull"
+		s:   "s"
+	}
+	_gitAliases: {
+		aa:  "add -A"
+		c:   "clone"
+		ca:  "commit --amend"
+		cm:  "commit -m"
+		co:  "checkout"
+		r:   "rebase"
+		rbc: "rebase --continue"
+		rhh: "reset --hard HEAD"
+		rru: "remote remove upstream"
+		rv:  "remote -v"
+		sa:  "stash apply"
+		sP:  "stash push"
+		sp:  "stash pop"
 	}
 
 	for gitAlias, command in _directoryGitAliases & _gitAliases {
@@ -114,7 +101,18 @@ aliases: {
 		}
 	}
 
-	for shAlias, command in _shAliases {
+	for shAlias, command in {
+		for host_prefix, last_octet in {
+			dev:       2
+			"dev-wsl": 3
+			prod:      4
+		} {
+			"\(host_prefix)": #"ssh \(host_prefix)-$(if ncat -z --wait 50ms 192.168.50.\(last_octet) 22; then echo "local"; else echo "remote"; fi)"#
+		}
+
+		jsr: #"printf "\e[6 q"; node"#
+		tsr: #"printf "\e[6 q"; pnpm tsx"#
+	} {
 		"\(shAlias)": "sh -c '\(command)'"
 	}
 
