@@ -60,11 +60,11 @@ aliases: {
 	hbn: "hyperfine 'bash --noprofile --norc -i -c exit'"
 	j:   "just"
 	jd:  "just dev"
-	l:   "lsd"
-	la:  "lsd -a"
-	ll:  "lsd -l"
-	lla: "lsd -la"
 	ls:  "lsd"
+	l:   "\(ls)"
+	la:  "\(ls) -a"
+	ll:  "\(ls) -l"
+	lla: "\(ls) -la"
 	lg:  "lazygit"
 	n:   "nvim"
 	ni:  "npm install"
@@ -90,10 +90,12 @@ aliases: {
 		"zsh --interactive":  "--no-rcs"
 	}
 	for shellAndFlags, noConfigFlag in _noConfigFlags {
-		"h\(regexp.Find("^p?.", shellAndFlags))":  "hyperfine '\(shellAndFlags) -c exit'"
-		"h\(regexp.Find("^p?.", shellAndFlags))n": "hyperfine '\(shellAndFlags) \(noConfigFlag) -c exit'"
-		"t\(regexp.Find("^p?.", shellAndFlags))":  "time \(shellAndFlags) -c exit"
-		"t\(regexp.Find("^p?.", shellAndFlags))n": "time \(shellAndFlags) -\(noConfigFlag) -c exit"
+		let _shell_prefix = "\(regexp.Find("^p?.", shellAndFlags))"
+
+		"h\(_shell_prefix)":  "hyperfine '\(shellAndFlags) -c exit'"
+		"h\(_shell_prefix)n": "hyperfine '\(shellAndFlags) \(noConfigFlag) -c exit'"
+		"t\(_shell_prefix)":  "time \(shellAndFlags) -c exit"
+		"t\(_shell_prefix)n": "time \(shellAndFlags) -\(noConfigFlag) -c exit"
 	}
 
 	for prefix, directory in _aliasDirectories {
@@ -124,8 +126,8 @@ aliases: {
 			man: "batman"
 			rs:  "rm ~/.local/share/nvim/sessions/*"
 			tg:  "topgrade"
-			tm:  "tmux new-session -A -s 0"
 			tns: "tmux new-session -A -s"
+			tm:  "\(tns) 0"
 		}
 		windows: {
 			chi: "gsudo choco install"
@@ -198,23 +200,18 @@ functions: {
 		}
 	}[_os]
 }
-_paths: [
+paths: [
 	"~/.cargo/bin",
 	"~/.local/bin",
 	"~/go/bin",
 	"$PNPM_HOME",
-]
-{
-	linux: {
-		paths: _paths + [
-			"/snap/bin",
-			"~/.pulumi/bin",
-			"~/.temporalio/bin",
-		]
-	}
-	windows: {
-		paths: _paths + [
-			"/usr/bin",
-		]
-	}
+] + {
+	linux: [
+		"/snap/bin",
+		"~/.pulumi/bin",
+		"~/.temporalio/bin",
+	]
+	windows: [
+		"/usr/bin",
+	]
 }[_os]
