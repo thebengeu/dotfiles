@@ -62,6 +62,10 @@ function __mark_output_end --on-event fish_postexec
 end
 
 if test "$TERM_PROGRAM" = WezTerm
+    set --export IN_WEZTERM true
+end
+
+if test -n "$IN_WEZTERM"
     function __wezterm_set_user_var --argument-names name value
         set --function set_user_var "\033]1337;SetUserVar=$name=$(echo -n "$value" | base64)\007"
 
