@@ -161,7 +161,32 @@ return {
     "ojroques/nvim-osc52",
     cond = vim.env.SSH_TTY ~= nil,
     init = function()
-      vim.system({ "lmn", "paste" }, {}, function(system_obj)
+      if not vim.env.TMUX then
+        local copy = function(lines, _)
+          require("osc52").copy(table.concat(lines, "\n"))
+        end
+
+        local paste = function()
+          return {
+            vim.fn.split((vim.fn.getreg("") --[[@as string]]), "\n"),
+            vim.fn.getregtype(""),
+          }
+        end
+
+        vim.g.clipboard = {
+          copy = {
+            ["+"] = copy,
+            ["*"] = copy,
+          },
+          name = "osc52",
+          paste = {
+            ["+"] = paste,
+            ["*"] = paste,
+          },
+        }
+      end
+
+      vim.system({ "lmn", "paste" }, nil, function(system_obj)
         if system_obj.code == 0 then
           vim.g.clipboard = {
             cache_enabled = 1,
@@ -173,29 +198,6 @@ return {
             paste = {
               ["*"] = { "lmn", "paste" },
               ["+"] = { "lmn", "paste" },
-            },
-          }
-        elseif not vim.env.TMUX then
-          local copy = function(lines, _)
-            require("osc52").copy(table.concat(lines, "\n"))
-          end
-
-          local paste = function()
-            return {
-              vim.fn.split((vim.fn.getreg("") --[[@as string]]), "\n"),
-              vim.fn.getregtype(""),
-            }
-          end
-
-          vim.g.clipboard = {
-            copy = {
-              ["+"] = copy,
-              ["*"] = copy,
-            },
-            name = "osc52",
-            paste = {
-              ["+"] = paste,
-              ["*"] = paste,
             },
           }
         end
