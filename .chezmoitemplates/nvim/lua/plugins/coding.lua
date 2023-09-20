@@ -28,7 +28,6 @@ return {
   {
     "Vigemus/iron.nvim",
     config = function()
-      local config = require("iron.config")
       local lowlevel = require("iron.lowlevel")
 
       local create_repl_on_current_window =
@@ -77,6 +76,7 @@ return {
       require("iron.core").setup({
         config = {
           repl_definition = {
+            ["lua.chezmoitmpl"] = require("iron.fts.lua").lua,
             sql = {
               command = {
                 "psql",
