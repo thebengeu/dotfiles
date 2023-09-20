@@ -73,6 +73,7 @@ aliases: {
 		lp:  "lg --patch"
 		P:   "push"
 		p:   "pull"
+		rhh: "reset --hard HEAD"
 		s:   "s"
 	}
 	_gitAliases: {
@@ -83,7 +84,6 @@ aliases: {
 		co:  "checkout"
 		r:   "rebase"
 		rbc: "rebase --continue"
-		rhh: "reset --hard HEAD"
 		rru: "remote remove upstream"
 		rv:  "remote -v"
 		sa:  "stash apply"
