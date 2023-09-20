@@ -10,6 +10,32 @@ return {
       end,
     },
     keys = function(_, keys)
+      local get_plugin_folder = function(telescope_builtin)
+        return function()
+          local root = require("lazy.core.config").options.root
+          require("telescope.pickers")
+            .new({}, {
+              attach_mappings = function(prompt_bufnr)
+                local actions = require("telescope.actions")
+                actions.select_default:replace(function()
+                  actions.close(prompt_bufnr)
+                  local selection =
+                    require("telescope.actions.state").get_selected_entry()
+                  require("telescope.builtin")[telescope_builtin]({
+                    cwd = root .. "/" .. selection[1],
+                  })
+                end)
+                return true
+              end,
+              finder = require("telescope.finders").new_table({
+                results = vim.fn.readdir(root),
+              }),
+              sorter = require("telescope.config").values.file_sorter(),
+            })
+            :find()
+        end
+      end
+
       vim.list_extend(keys, {
         {
           "<leader>/",
@@ -35,13 +61,18 @@ return {
           desc = "Find Files (ignored)",
         },
         {
-          "<leader>fp",
+          "<leader>fP",
           function()
             require("telescope.builtin").find_files({
               cwd = require("lazy.core.config").options.root,
             })
           end,
           desc = "Find Plugin Files",
+        },
+        {
+          "<leader>fp",
+          get_plugin_folder("find_files"),
+          desc = "Find Plugin's Files",
         },
         {
           "<leader>gb",
@@ -105,30 +136,8 @@ return {
         },
         {
           "<leader>sp",
-          function()
-            local root = require("lazy.core.config").options.root
-            require("telescope.pickers")
-              .new({}, {
-                attach_mappings = function(prompt_bufnr)
-                  local actions = require("telescope.actions")
-                  actions.select_default:replace(function()
-                    actions.close(prompt_bufnr)
-                    local selection =
-                      require("telescope.actions.state").get_selected_entry()
-                    require("telescope.builtin").live_grep({
-                      cwd = root .. "/" .. selection[1],
-                    })
-                  end)
-                  return true
-                end,
-                finder = require("telescope.finders").new_table({
-                  results = vim.fn.readdir(root),
-                }),
-                sorter = require("telescope.config").values.file_sorter(),
-              })
-              :find()
-          end,
-          desc = "Grep Plugin Folder",
+          get_plugin_folder("live_grep"),
+          desc = "Grep Plugin",
         },
       })
     end,
