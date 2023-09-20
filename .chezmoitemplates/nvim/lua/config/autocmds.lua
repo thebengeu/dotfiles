@@ -24,7 +24,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
       async_run({ "chezmoi", "apply", "--include", "externals" })
     elseif source_path:find("%.chezmoitemplates") then
       local chezmoi_source_dir = " ~/.local/share/chezmoi/"
-      local app_data_if_windows = package.config:sub(1, 1) == "\\"
+      local app_data_if_windows = jit.os == "Windows"
           and chezmoi_source_dir .. "AppData"
         or ""
       source_path = "$(rg --files-with-matches --glob '*.tmpl' "
