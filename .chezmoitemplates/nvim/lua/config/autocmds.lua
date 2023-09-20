@@ -112,7 +112,7 @@ local serverstart_unused_port
 serverstart_unused_port = function(port)
   vim.system(
     { "ncat", "-z", "--wait", "1ms", "127.0.0.1", port },
-    {},
+    nil,
     function(system_obj)
       if system_obj.code == 0 then
         serverstart_unused_port(port + 1)

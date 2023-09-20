@@ -42,14 +42,14 @@ exports.async_run = function(command)
 
   local start_time = vim.loop.hrtime()
 
-  vim.system(command, {}, function(system_obj)
+  vim.system(command, nil, function(system_obj)
+    local end_time = vim.loop.hrtime()
+
+    if system_obj.code ~= 0 then
+      qf_item.type = "E"
+    end
+
     vim.schedule(function()
-      local end_time = vim.loop.hrtime()
-
-      if system_obj.code ~= 0 then
-        qf_item.type = "E"
-      end
-
       add_lines_to_qf(system_obj.stdout, qf_item)
       add_lines_to_qf(system_obj.stderr, qf_item)
 
