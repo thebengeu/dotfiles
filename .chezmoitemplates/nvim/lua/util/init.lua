@@ -60,8 +60,9 @@ exports.async_run = function(command)
         )
       else
         vim.cmd.copen()
-        vim.cmd.clast()
       end
+
+      vim.cmd.clast()
     end)
   end)
 end
