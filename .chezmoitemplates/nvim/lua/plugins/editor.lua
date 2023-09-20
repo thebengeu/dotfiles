@@ -161,30 +161,7 @@ return {
     "ojroques/nvim-osc52",
     cond = vim.env.SSH_TTY ~= nil,
     init = function()
-      if not vim.env.TMUX then
-        local copy = function(lines, _)
-          require("osc52").copy(table.concat(lines, "\n"))
-        end
-
-        local paste = function()
-          return {
-            vim.fn.split((vim.fn.getreg("") --[[@as string]]), "\n"),
-            vim.fn.getregtype(""),
-          }
-        end
-
-        vim.g.clipboard = {
-          copy = {
-            ["+"] = copy,
-            ["*"] = copy,
-          },
-          name = "osc52",
-          paste = {
-            ["+"] = paste,
-            ["*"] = paste,
-          },
-        }
-      end
+      local tmux = vim.env.TMUX
 
       vim.system({ "lmn", "paste" }, nil, function(system_obj)
         if system_obj.code == 0 then
@@ -200,6 +177,20 @@ return {
               ["+"] = { "lmn", "paste" },
             },
           }
+        elseif not tmux then
+          vim.schedule(function()
+            vim.opt.clipboard = ""
+
+            vim.api.nvim_create_autocmd("TextYankPost", {
+              callback = function()
+                if
+                  vim.v.event.operator == "y" and vim.v.event.regname == ""
+                then
+                  require("osc52").copy_register("")
+                end
+              end,
+            })
+          end)
         end
       end)
     end,
