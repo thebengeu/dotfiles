@@ -5,6 +5,7 @@ local toggle_term_open_mapping = (vim.g.goneovim or vim.g.neovide) and "<C-/>"
 return {
   {
     "max397574/better-escape.nvim",
+    cond = vim.fn.hostname() == "MINIBOOK",
     config = true,
     event = "InsertEnter",
   },
