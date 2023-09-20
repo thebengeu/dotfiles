@@ -32,8 +32,10 @@ vim.api.nvim_create_autocmd("BufWritePost", {
         .. rg_command_prefix
         .. "dot_config)"
       async_run({ "sh", "-c", "chezmoi apply --source-path " .. source_path })
+    elseif source_path:find("%.chezmoi%.yaml%.tmpl") then
+      async_run({ "chezmoi", "init" })
     elseif source_path:find("chezmoi[/\\]%.") then
-      async_run({ "chezmoi", "apply", "--init" })
+      async_run({ "chezmoi", "apply" })
     else
       async_run({
         "chezmoi",
