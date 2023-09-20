@@ -8,13 +8,13 @@ README.md
 .local/share/
 .ansible.cfg
 .inputrc
-*.linux.sh
+.chezmoiscripts/linux/*
 {{ else }}
 .config/fish/completions/wezterm.fish
 .config/fish/conf.d/windows.fish
 .config/wezterm/
 AppData/
-*.ps1
+**/*.ps1
 {{ end }}
 
 {{ if or (eq .chezmoi.hostname "ec2") (eq .chezmoi.hostname "prod") }}
