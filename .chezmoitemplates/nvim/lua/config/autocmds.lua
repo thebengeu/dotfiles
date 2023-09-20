@@ -11,7 +11,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     local source_path = vim.api.nvim_buf_get_name(0)
 
     if
-      source_path:find("run_onchange_")
+      source_path:find("%.chezmoiscripts")
       or source_path:find("ansible")
       or vim.g.skip_chezmoi_apply
     then
