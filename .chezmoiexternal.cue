@@ -2,7 +2,7 @@ import "regexp"
 
 #External: {
 	executable?: bool
-	type:        "archive" | "file" | "git-repo"
+	type:        "archive-file" | "file" | "git-repo"
 	url:         string
 }
 
@@ -48,13 +48,29 @@ for gitRepo in _zshGitRepos {
 		".config/tmux/plugins/tpm": #GitRepo & {
 			_gitRepo: "tmux-plugins/tpm"
 		}
+		".local/bin/lemonade": {
+			path: "lemonade"
+			type: "archive-file"
+			url:  "https://github.com/lemonade-command/lemonade/releases/download/v1.1.1/lemonade_linux_amd64.tar.gz"
+		}
 	}
 	windows: {
-		".local/bin": {
-			include: [ "*/config.txt", "*/dual-key-remap.exe"]
+		".local/bin/config.txt": {
+			path:            "config.txt"
 			stripComponents: 1
-			type:            "archive"
+			type:            "archive-file"
 			url:             "https://github.com/ililim/dual-key-remap/releases/download/v0.7/dual-key-remap-v0.7.zip"
+		}
+		".local/bin/dual-key-remap.exe": {
+			path:            "dual-key-remap.exe"
+			stripComponents: 1
+			type:            "archive-file"
+			url:             "https://github.com/ililim/dual-key-remap/releases/download/v0.7/dual-key-remap-v0.7.zip"
+		}
+		".local/bin/lemon.exe": {
+			path: "lemonade.exe"
+			type: "archive-file"
+			url:  "https://github.com/lemonade-command/lemonade/releases/download/v1.1.1/lemonade_windows_amd64.zip"
 		}
 	}
 }[_os]
