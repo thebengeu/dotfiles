@@ -166,38 +166,55 @@ environmentVariables: {
 	RIPGREP_CONFIG_PATH: "$HOME/.ripgreprc"
 }
 functions: {
-	npi: {
-		lines: [
-			"nix profile install nixpkgs#$package",
-		]
-		parameters: ["package"]
-	}
-	npr: {
-		lines: [
-			"nix profile remove legacyPackages.x86_64-linux.$package",
-		]
-		parameters: ["package"]
-	}
 	nz: {
 		lines: [
 			"cd $directory; nvim",
 		]
 		parameters: ["directory"]
 	}
-	wcss: {
-		lines: [
-			"parallel {} search $package ::: choco scoop winget",
-		]
-		parameters: ["package"]
-	}
+
+	{
+		linux: {
+			npi: {
+				lines: [
+					"nix profile install nixpkgs#$package",
+				]
+				parameters: ["package"]
+			}
+			npr: {
+				lines: [
+					"nix profile remove legacyPackages.x86_64-linux.$package",
+				]
+				parameters: ["package"]
+			}
+		}
+		windows: {
+			wcss: {
+				lines: [
+					"parallel {} search $package ::: choco scoop winget",
+				]
+				parameters: ["package"]
+			}
+		}
+	}[_os]
 }
-paths: [
-	"/snap/bin",
-	"/usr/bin",
+_paths: [
 	"~/.cargo/bin",
 	"~/.local/bin",
-	"~/.pulumi/bin",
-	"~/.temporalio/bin",
 	"~/go/bin",
 	"$PNPM_HOME",
 ]
+{
+	linux: {
+		paths: _paths + [
+			"/snap/bin",
+			"~/.pulumi/bin",
+			"~/.temporalio/bin",
+		]
+	}
+	windows: {
+		paths: _paths + [
+			"/usr/bin",
+		]
+	}
+}[_os]
