@@ -330,6 +330,7 @@ return {
       "\\\\A",
     },
   },
+  { "svban/YankAssassin.vim" },
   {
     "gbprod/yanky.nvim",
     keys = {
