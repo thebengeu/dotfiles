@@ -214,20 +214,6 @@ return {
     },
   },
   {
-    "aserowy/tmux.nvim",
-    cond = vim.env.TMUX ~= nil,
-    enabled = vim.fn.executable("tmux") == 1,
-    event = { "BufNewFile", "BufReadPost" },
-    opts = {
-      navigation = {
-        enable_default_keybindings = false,
-      },
-      resize = {
-        enable_default_keybindings = false,
-      },
-    },
-  },
-  {
     "akinsho/toggleterm.nvim",
     keys = toggle_term_open_mapping,
     opts = {
