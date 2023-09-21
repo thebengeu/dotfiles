@@ -1,11 +1,10 @@
 vim.api.nvim_create_user_command("Search", function(opts)
-  vim.fn.system(
-    jit.os == "Windows" and "start"
-      or (vim.fn.executable("wslview") == 1 and "wslview" or "lmn open")
-        .. " 'https://www.google.com/search?q="
-        .. opts.fargs[1]
-        .. "'"
-  )
+  vim.system(vim.list_extend(jit.os == "Windows" and {
+    vim.env["ProgramFiles(x86)"] .. "/Microsoft/Edge/Application/msedge.exe",
+  } or (vim.fn.executable("wslview") == 1 and { "wslview" } or {
+    "lmn",
+    "open",
+  }), { "https://www.google.com/search?q=" .. opts.fargs[1] }))
 end, { nargs = 1 })
 
 vim.g.db = "postgresql://postgres:postgres@localhost:5432/postgres"
