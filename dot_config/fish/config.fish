@@ -61,17 +61,6 @@ function __mark_output_end --on-event fish_postexec
     echo -en "\e]133;D;$status\a"
 end
 
-function __wezterm_user_vars_fish_prompt --on-event fish_prompt
-    __wezterm_set_user_var WEZTERM_PROG ""
-    __wezterm_set_user_var PROMPT_TIME $(date +%s)
-
-    if test -n "$TMUX"
-        __wezterm_set_user_var WEZTERM_IN_TMUX 1
-    else
-        __wezterm_set_user_var WEZTERM_IN_TMUX 0
-    end
-end
-
 function __wezterm_user_vars_preexec --on-event fish_preexec
     __wezterm_set_user_var WEZTERM_PROG "$argv[1]"
 end

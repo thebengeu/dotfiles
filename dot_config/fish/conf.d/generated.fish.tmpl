@@ -9,7 +9,17 @@ fish_add_path --global {{$path}}
 
 status is-interactive || exit
 
-__wezterm_set_user_var WEZTERM_HOSTNAME {{.chezmoi.hostname}}
+function __wezterm_user_vars_fish_prompt --on-event fish_prompt
+    __wezterm_set_user_var PROMPT_TIME $(date +%s)
+    __wezterm_set_user_var WEZTERM_HOSTNAME {{.chezmoi.hostname}}
+    __wezterm_set_user_var WEZTERM_PROG ""
+
+    if test -n "$TMUX"
+        __wezterm_set_user_var WEZTERM_IN_TMUX 1
+    else
+        __wezterm_set_user_var WEZTERM_IN_TMUX 0
+    end
+end
 
 {{ if eq .chezmoi.os "windows" -}}
 set --global fzf_fd_opts --hidden --path-separator //
