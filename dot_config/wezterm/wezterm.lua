@@ -80,6 +80,12 @@ config.default_cursor_style = "SteadyBar"
 if package.config:sub(1, 1) == "\\" then
   config.default_prog = { "fish" }
 end
+config.exec_domains = map(wezterm.enumerate_ssh_hosts(), function(_, host)
+  return wezterm.exec_domain(host, function(cmd)
+    cmd.args = { "ssh", host }
+    return cmd
+  end)
+end)
 -- config.font = wezterm.font("PragmataProLiga NF")
 -- config.font_rules = {
 -- 	{
@@ -149,7 +155,9 @@ local activate_or_spawn_pane = function(hostname, domain_name)
     activate_pane(latest_prompt_pane)
 
     if not latest_prompt_pane then
-      window:mux_window():spawn_tab({ domain = { DomainName = domain_name } })
+      window
+        :mux_window()
+        :spawn_tab({ domain = { DomainName = domain_name or hostname } })
     end
   end)
 end
@@ -269,12 +277,12 @@ config.keys = {
   {
     key = "d",
     mods = "SHIFT|ALT|CTRL",
-    action = activate_or_spawn_pane("dev", "SSH:dev"),
+    action = activate_or_spawn_pane("dev"),
   },
   {
     key = "e",
     mods = "SHIFT|ALT|CTRL",
-    action = activate_or_spawn_pane("ec2", "SSH:ec2"),
+    action = activate_or_spawn_pane("ec2"),
   },
   {
     key = "l",
@@ -284,12 +292,12 @@ config.keys = {
   {
     key = "p",
     mods = "SHIFT|ALT|CTRL",
-    action = activate_or_spawn_pane("prod", "SSH:prod"),
+    action = activate_or_spawn_pane("prod"),
   },
   {
     key = "v",
     mods = "SHIFT|ALT|CTRL",
-    action = activate_or_spawn_pane("dev-wsl", "SSH:dev-wsl"),
+    action = activate_or_spawn_pane("dev-wsl"),
   },
   {
     key = "w",
