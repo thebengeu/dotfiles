@@ -97,14 +97,17 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = "cue",
 })
 
-local set_user_var = function(name, value)
+local wezterm_set_user_var = function(name, value)
+  local set_user_var = "\x1b]1337;SetUserVar="
+
   vim.fn.chansend(
     vim.v.stderr,
-    "\x1b]1337;SetUserVar="
-      .. name
-      .. "="
-      .. base64.encode(tostring(value))
-      .. "\x07"
+    vim.env.TMUX and "\x1bPtmux;\x1b" .. set_user_var .. "\x1b\\"
+      or set_user_var
+        .. name
+        .. "="
+        .. base64.encode(tostring(value))
+        .. "\x07"
   )
 end
 
@@ -119,18 +122,18 @@ serverstart_unused_port = function(port)
       else
         vim.schedule(function()
           vim.fn.serverstart("127.0.0.1:" .. port)
-          set_user_var("NVIM_PORT", port)
+          wezterm_set_user_var("NVIM_PORT", port)
 
           vim.api.nvim_create_autocmd("FocusGained", {
             callback = function()
-              set_user_var("FOCUSED_NVIM_TIME", os.time())
+              wezterm_set_user_var("FOCUSED_NVIM_TIME", os.time())
             end,
           })
 
           vim.api.nvim_create_autocmd("VimLeave", {
             callback = function()
-              set_user_var("NVIM_PORT", "")
-              set_user_var("FOCUSED_NVIM_TIME", "")
+              wezterm_set_user_var("NVIM_PORT", "")
+              wezterm_set_user_var("FOCUSED_NVIM_TIME", "")
             end,
           })
         end)
@@ -139,5 +142,5 @@ serverstart_unused_port = function(port)
   )
 end
 
-set_user_var("FOCUSED_NVIM_TIME", os.time())
+wezterm_set_user_var("FOCUSED_NVIM_TIME", os.time())
 serverstart_unused_port(6789)
