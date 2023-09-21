@@ -89,3 +89,4 @@ vim.keymap.set("n", "<leader>cu", function()
     "chezmoi update --apply=false; chezmoi init; chezmoi apply",
   })
 end, { desc = "Chezmoi update" })
+vim.keymap.set("n", "<leader>cL", ":lua =", { desc = "Execute Lua Chunk" })
