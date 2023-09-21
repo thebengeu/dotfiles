@@ -145,16 +145,6 @@ return {
   },
   {
     "mrjones2014/smart-splits.nvim",
-    init = function()
-      if vim.env.TERM_PROGRAM == "WezTerm" then
-        vim.api.nvim_create_autocmd("User", {
-          pattern = "LazyVimKeymaps",
-          callback = function()
-            require("lazy").load({ plugins = { "smart-splits.nvim" } })
-          end,
-        })
-      end
-    end,
     keys = {
       {
         "<A-h>",
