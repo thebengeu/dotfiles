@@ -156,7 +156,7 @@ end
 config.wsl_domains = map(wezterm.default_wsl_domains(), function(wsl_domain)
   wsl_domain.default_cwd = "~"
   wsl_domain.default_prog = {
-    "fish",
+    "/usr/bin/fish",
     "-C",
     "tmux has-session -t 0 2>/dev/null || tmux new-session -d -s 0",
   }
@@ -382,7 +382,7 @@ config.launch_menu = map({
     "--cd",
     "~",
     "--exec",
-    "fish -C 'tmux has-session -t 0 2>/dev/null || tmux new-session -d -s 0'",
+    "/usr/bin/fish -C 'tmux has-session -t 0 2>/dev/null || tmux new-session -d -s 0'",
   },
 }, function(args, label)
   return {
