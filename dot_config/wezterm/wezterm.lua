@@ -237,8 +237,9 @@ config.keys = {
       local latest_focused_nvim_port
 
       find_pane(function(pane)
-        if pane:get_domain_name() == "local" then
-          local user_vars = pane:get_user_vars()
+        local user_vars = pane:get_user_vars()
+
+        if user_vars.WEZTERM_HOSTNAME == wezterm.hostname() then
           local focused_nvim_time = tonumber(user_vars.FOCUSED_NVIM_TIME)
 
           if
