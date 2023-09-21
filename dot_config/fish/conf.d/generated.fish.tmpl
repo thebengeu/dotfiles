@@ -3,17 +3,19 @@ set --export {{$environmentVariable}} {{$value}}
 {{end -}}
 set --export GH_TOKEN {{ (joinPath .chezmoi.sourceDir ".secrets.ejson" | ejsonDecrypt).github_token_repo }}
 
-{{ if eq .chezmoi.os "windows" -}}
-set --global fzf_fd_opts --hidden --path-separator //
-{{ else }}
-set --global fzf_fd_opts --hidden
-{{ end }}
-
 {{- range $path := .paths}}
 fish_add_path --global {{$path}}
 {{- end}}
 
 status is-interactive || exit
+
+__wezterm_set_user_var WEZTERM_HOSTNAME {{.chezmoi.hostname}}
+
+{{ if eq .chezmoi.os "windows" -}}
+set --global fzf_fd_opts --hidden --path-separator //
+{{ else }}
+set --global fzf_fd_opts --hidden
+{{ end }}
 
 {{range $alias, $command := index .aliases -}}
 abbr --add {{$alias}} '{{$command | replaceAllRegex "\\${([^}]+)}" "$$${1}" | replace "\\" "\\\\" | replace "'" "\\'" | replace "$HOME" "~" }}'
