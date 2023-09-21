@@ -31,6 +31,7 @@ $wingetPackageIds = @(
   'Flow-Launcher.Flow-Launcher'
   'junegunn.fzf'
   'GitHub.cli'
+  'Helix.Helix'
   'jqlang.jq'
   'DEVCOM.Lua'
   'jftuga.less'
