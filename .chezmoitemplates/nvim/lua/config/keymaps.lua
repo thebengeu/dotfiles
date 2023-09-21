@@ -82,3 +82,13 @@ vim.keymap.set("n", "]<Space>", function()
   ---@diagnostic disable-next-line: param-type-mismatch
   vim.fn.append(vim.fn.line("."), "")
 end, { desc = "Add blank line below" })
+vim.keymap.set("n", "<leader>ca", function()
+  async_run({ "chezmoi", "apply" })
+end, { desc = "Chezmoi apply" })
+vim.keymap.set("n", "<leader>cu", function()
+  async_run({
+    "sh",
+    "-c",
+    "chezmoi update --apply=false; chezmoi init; chezmoi apply",
+  })
+end, { desc = "Chezmoi update" })
