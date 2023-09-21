@@ -170,9 +170,6 @@
     cmd: ssh-keygen -A
     creates: /etc/ssh/ssh_host_*
 - ansible.builtin.lineinfile:
-    line: AcceptEnv TERM_PROGRAM
-    path: /etc/ssh/sshd_config
-- ansible.builtin.lineinfile:
     line: PasswordAuthentication no
     path: /etc/ssh/sshd_config
     search_string: PasswordAuthentication
