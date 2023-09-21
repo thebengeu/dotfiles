@@ -29,7 +29,7 @@ local function split_nav(resize_or_move, key)
     action = wezterm.action_callback(function(win, pane)
       local user_vars = pane:get_user_vars()
       if
-        tonumber(user_vars.FOCUSED_NVIM_TIME) > 0
+        tonumber(user_vars.FOCUSED_NVIM_TIME) ~= nil
         or user_vars.WEZTERM_IN_TMUX == "1"
       then
         win:perform_action({
