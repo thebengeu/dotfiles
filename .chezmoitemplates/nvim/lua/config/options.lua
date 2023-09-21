@@ -1,5 +1,11 @@
 vim.api.nvim_create_user_command("Search", function(opts)
-  vim.fn.system("start https://www.google.com/search?q=" .. opts.fargs[1])
+  vim.fn.system(
+    jit.os == "Windows" and "start"
+      or (vim.fn.executable("wslview") == 1 and "wslview" or "lmn open")
+        .. " 'https://www.google.com/search?q="
+        .. opts.fargs[1]
+        .. "'"
+  )
 end, { nargs = 1 })
 
 vim.g.db = "postgresql://postgres:postgres@localhost:5432/postgres"
