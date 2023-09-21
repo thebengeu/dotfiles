@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
-# {{ include "ansible/roles/server/tasks/Ubuntu.yml" | sha1sum }}
-# {{ include "ansible/roles/server/tasks/Ubuntu_become.yml" | sha1sum }}
+{{ range joinPath .chezmoi.sourceDir "ansible/**/*.*" | glob }}
+# {{ include . | sha1sum }}
+{{ end}}
 ansible-playbook "$CHEZMOI_SOURCE_DIR"/ansible/site.yml
