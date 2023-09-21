@@ -26,5 +26,6 @@ AppData/
 {{ end }}
 
 {{ if ne .chezmoi.hostname "dev" }}
+AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/wsl.vbs
 .wslconfig
 {{ end }}
