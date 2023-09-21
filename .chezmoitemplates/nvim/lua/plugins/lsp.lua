@@ -35,6 +35,7 @@ return {
             return not params.lsp_params.textDocument.uri:find("/Pulumi%.")
           end,
         }),
+        null_ls.builtins.formatting.cue_fmt,
         null_ls.builtins.formatting.fish_indent,
         null_ls.builtins.formatting.fixjson,
         null_ls.builtins.formatting.prettierd.with({
