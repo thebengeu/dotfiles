@@ -111,6 +111,7 @@
       - libluajit-5.1-dev
       - libpq-dev
       - libsqlite3-dev
+      - lua5.4
       - make
       - moreutils
       - mosh
