@@ -240,28 +240,6 @@ return util.map({
       palette.b.cyan,
     })
   end),
-  add_colorscheme_autocmds_on_config({
-    "ramojus/mellifluous.nvim",
-    opts = {
-      color_set = "mountain",
-    },
-  }, function()
-    local colors = require("mellifluous.colors").get_colors()
-
-    if not colors then
-      error()
-    end
-
-    return rainbow_delimiter_highlights({
-      colors.red.hex,
-      colors.yellow.hex,
-      colors.blue.hex,
-      colors.orange.hex,
-      colors.green.hex,
-      colors.purple.hex,
-      colors.cyan.hex,
-    })
-  end),
   {
     "echasnovski/mini.base16",
     colors_names = {
