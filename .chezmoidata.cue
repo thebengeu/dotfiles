@@ -12,7 +12,6 @@ aliases: {
 	ca:  "chezmoi apply"
 	cr:  "chezmoi re-add"
 	cup: "chezmoi update --apply=false; chezmoi init; chezmoi apply"
-	ec2: "ssh ec2"
 	g:   "git"
 	hb:  "hyperfine 'bash -i -c exit'"
 	hbn: "hyperfine 'bash --noprofile --norc -i -c exit'"
@@ -101,15 +100,11 @@ aliases: {
 		}
 	}
 
-	for shAlias, command in {
-		for host_prefix, last_octet in {
-			dev:       2
-			"dev-wsl": 3
-			prod:      4
-		} {
-			"\(host_prefix)": "ssh \(host_prefix)-$(if ncat -z --wait 50ms 192.168.50.\(last_octet) 22; then echo \"local\"; else echo \"remote\"; fi)"
-		}
+	for hostname in ["dev", "dev-wsl", "ec2", "prod"] {
+		"\(hostname)": "ssh \(hostname)"
+	}
 
+	for shAlias, command in {
 		jsr: #"printf "\e[6 q"; node"#
 		tsr: #"printf "\e[6 q"; pnpm tsx"#
 	} {
