@@ -285,7 +285,7 @@ config.keys = {
     action = activate_or_spawn_pane("ec2"),
   },
   {
-    key = "l",
+    key = "a",
     mods = "SHIFT|ALT|CTRL",
     action = activate_or_spawn_pane(wezterm.hostname(), "local"),
   },
