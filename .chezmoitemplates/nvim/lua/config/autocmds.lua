@@ -120,7 +120,6 @@ serverstart_unused_port = function(port)
         vim.schedule(function()
           vim.fn.serverstart("127.0.0.1:" .. port)
           set_user_var("NVIM_PORT", port)
-          set_user_var("FOCUSED_NVIM_TIME", os.time())
 
           vim.api.nvim_create_autocmd("FocusGained", {
             callback = function()
@@ -131,7 +130,7 @@ serverstart_unused_port = function(port)
           vim.api.nvim_create_autocmd("VimLeave", {
             callback = function()
               set_user_var("NVIM_PORT", "")
-              set_user_var("FOCUSED_NVIM_TIME", 0)
+              set_user_var("FOCUSED_NVIM_TIME", "")
             end,
           })
         end)
@@ -140,4 +139,5 @@ serverstart_unused_port = function(port)
   )
 end
 
+set_user_var("FOCUSED_NVIM_TIME", os.time())
 serverstart_unused_port(6789)
