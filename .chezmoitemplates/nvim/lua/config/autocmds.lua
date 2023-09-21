@@ -99,15 +99,15 @@ vim.api.nvim_create_autocmd("FileType", {
 
 local wezterm_set_user_var = function(name, value)
   local set_user_var = "\x1b]1337;SetUserVar="
+    .. name
+    .. "="
+    .. base64.encode(tostring(value))
+    .. "\x07"
 
   vim.fn.chansend(
     vim.v.stderr,
     vim.env.TMUX and "\x1bPtmux;\x1b" .. set_user_var .. "\x1b\\"
       or set_user_var
-        .. name
-        .. "="
-        .. base64.encode(tostring(value))
-        .. "\x07"
   )
 end
 
