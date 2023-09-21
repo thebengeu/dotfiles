@@ -237,15 +237,17 @@ config.keys = {
       local latest_focused_nvim_port
 
       find_pane(function(pane)
-        local user_vars = pane:get_user_vars()
-        local focused_nvim_time = tonumber(user_vars.FOCUSED_NVIM_TIME)
+        if pane:get_domain_name() == "local" then
+          local user_vars = pane:get_user_vars()
+          local focused_nvim_time = tonumber(user_vars.FOCUSED_NVIM_TIME)
 
-        if
-          focused_nvim_time and focused_nvim_time > latest_focused_nvim_time
-        then
-          latest_focused_nvim_time = focused_nvim_time
-          latest_focused_nvim_pane = pane
-          latest_focused_nvim_port = user_vars.NVIM_PORT
+          if
+            focused_nvim_time and focused_nvim_time > latest_focused_nvim_time
+          then
+            latest_focused_nvim_time = focused_nvim_time
+            latest_focused_nvim_pane = pane
+            latest_focused_nvim_port = user_vars.NVIM_PORT
+          end
         end
       end)
 
