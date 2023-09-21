@@ -122,7 +122,7 @@ aliases: {
 			ar:  "sudo apt remove"
 			fd:  "fd --hidden"
 			man: "batman"
-			rs:  "rm ~/.local/share/nvim/sessions/*"
+			rns: "rm ~/.local/share/nvim/sessions/*"
 			tg:  "topgrade"
 			tns: "tmux new-session -A -s"
 			tm:  "\(tns) 0"
@@ -133,7 +133,7 @@ aliases: {
 			chu: "gsudo choco uninstall"
 			dpw: #"powershell -c "Invoke-Expression (\"pwsh \" + (New-Object -ComObject WScript.Shell).CreateShortcut(\"\$Env:ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2022\Visual Studio Tools\Developer PowerShell for VS 2022.lnk\").Arguments.Replace('\"\"\"', \"'\"))""#
 			fd:  "\(linux.fd) --path-separator '//'"
-			nrs: "rm $HOME/AppData/Local/nvim-data/sessions/*"
+			rns: "rm $HOME/AppData/Local/nvim-data/sessions/*"
 			tg:  "gsudo topgrade"
 			wsk: "wezterm show-keys --lua"
 		}
