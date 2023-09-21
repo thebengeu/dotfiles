@@ -42,6 +42,10 @@ for gitRepo in _zshGitRepos {
 	type:       "file"
 	url:        "https://cht.sh/:cht.sh"
 }
+".config/fish/completions/nvr.fish": {
+	type: "file"
+	url:  "https://raw.githubusercontent.com/mhinz/neovim-remote/master/contrib/completion.fish"
+}
 
 {
 	linux: {
