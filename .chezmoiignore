@@ -6,6 +6,7 @@ README.md
 .config/{bat,fd,gitui,glow,gup,lazygit,lsd,msmtp,nushell,nvim,tealdeer,tmux,yamlfmt}/
 .config/topgrade.toml
 .local/share/
+.ssh/control-master.conf
 .ansible.cfg
 .inputrc
 .chezmoiscripts/linux/*
