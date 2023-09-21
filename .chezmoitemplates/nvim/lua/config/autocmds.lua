@@ -64,14 +64,16 @@ vim.api.nvim_create_autocmd("TextChanged", {
 if vim.env.TMUX then
   vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained" }, {
     callback = function()
-      vim.fn.system(
-        "tmux rename-window '"
-          .. (vim.fn.expand("%:p") --[[@as string]]):gsub(
+      vim.system({
+        "tmux",
+        "rename-window",
+        (
+          (vim.fn.expand("%:p") --[[@as string]]):gsub(
             vim.loop.os_homedir() or "",
             "~"
           )
-          .. "'"
-      )
+        ),
+      })
     end,
   })
 end
