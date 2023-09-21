@@ -29,7 +29,7 @@ local function split_nav(resize_or_move, key)
     action = wezterm.action_callback(function(win, pane)
       local user_vars = pane:get_user_vars()
       if
-        tonumber(user_vars.FOCUSED_NVIM_TIME) ~= nil
+        tonumber(user_vars.FOCUSED_NVIM_TIME) > 0
         or user_vars.WEZTERM_IN_TMUX == "1"
       then
         win:perform_action({
@@ -124,21 +124,18 @@ local activate_pane = function(pane)
   end
 end
 
-local activate_or_spawn_pane = function(domain_name_or_getter)
+local activate_or_spawn_pane = function(hostname, domain_name)
   return wezterm.action_callback(function(window)
     local latest_prompt_time = 0
     local latest_prompt_pane
 
-    local domain_name = type(domain_name_or_getter) == "function"
-        and domain_name_or_getter()
-      or domain_name_or_getter
-
     find_pane(function(pane)
+      local user_vars = pane:get_user_vars()
+
       if
-        pane:get_domain_name() == domain_name
-        and pane:get_user_vars().WEZTERM_PROG == ""
+        user_vars.WEZTERM_HOSTNAME == hostname
+        and user_vars.WEZTERM_PROG == ""
       then
-        local user_vars = pane:get_user_vars()
         local prompt_time = tonumber(user_vars.PROMPT_TIME)
 
         if prompt_time and prompt_time > latest_prompt_time then
@@ -165,8 +162,6 @@ config.wsl_domains = map(wezterm.default_wsl_domains(), function(wsl_domain)
   }
   return wsl_domain
 end)
-
-local first_wsl_domain_name = config.wsl_domains[1].name
 
 config.keys = {
   { key = "phys:Space", mods = "SHIFT|ALT|CTRL", action = act.QuickSelect },
@@ -273,59 +268,35 @@ config.keys = {
   {
     key = "d",
     mods = "SHIFT|ALT|CTRL",
-    action = activate_or_spawn_pane(function()
-      return wezterm.run_child_process({
-        "ncat",
-        "-z",
-        "--wait",
-        "50ms",
-        "192.168.50.2",
-        "22",
-      }) and "SSH:dev-local" or "SSH:dev-remote"
-    end),
+    action = activate_or_spawn_pane("dev", "SSH:dev"),
   },
   {
     key = "e",
     mods = "SHIFT|ALT|CTRL",
-    action = activate_or_spawn_pane("SSH:ec2"),
+    action = activate_or_spawn_pane("ec2", "SSH:ec2"),
   },
   {
     key = "l",
     mods = "SHIFT|ALT|CTRL",
-    action = activate_or_spawn_pane("local"),
+    action = activate_or_spawn_pane(wezterm.hostname(), "local"),
   },
   {
     key = "p",
     mods = "SHIFT|ALT|CTRL",
-    action = activate_or_spawn_pane(function()
-      return wezterm.run_child_process({
-        "ncat",
-        "-z",
-        "--wait",
-        "50ms",
-        "192.168.50.4",
-        "22",
-      }) and "SSH:prod-local" or "SSH:prod-remote"
-    end),
+    action = activate_or_spawn_pane("prod", "SSH:prod"),
   },
   {
     key = "v",
     mods = "SHIFT|ALT|CTRL",
-    action = activate_or_spawn_pane(function()
-      return wezterm.run_child_process({
-        "ncat",
-        "-z",
-        "--wait",
-        "50ms",
-        "192.168.50.3",
-        "22",
-      }) and "SSH:dev-wsl-local" or "SSH:dev-wsl-remote"
-    end),
+    action = activate_or_spawn_pane("dev-wsl", "SSH:dev-wsl"),
   },
   {
     key = "w",
     mods = "SHIFT|ALT|CTRL",
-    action = activate_or_spawn_pane(first_wsl_domain_name),
+    action = activate_or_spawn_pane(
+      wezterm.hostname() .. "-wsl",
+      config.wsl_domains[1].name
+    ),
   },
   split_nav("move", "h"),
   split_nav("move", "j"),
