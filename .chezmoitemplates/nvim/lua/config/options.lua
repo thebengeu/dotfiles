@@ -34,7 +34,5 @@ if jit.os == "Windows" then
 end
 
 vim.opt.title = true
+vim.opt.titlestring = (vim.env.TITLE_PREFIX or "") .. "%F"
 vim.opt.wrap = true
-
-local title_prefix = vim.env.TITLE_PREFIX
-vim.opt.titlestring = (title_prefix or "") .. "%F"

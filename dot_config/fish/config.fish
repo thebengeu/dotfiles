@@ -24,16 +24,16 @@ function fish_title
     set --function current_command (status current-command)
 
     if test "$current_command" != fish
-        set --function title "$TITLE_PREFIX$current_command"
+        set --function title "$current_command"
     else
-        set --function title "$TITLE_PREFIX$(prompt_pwd --dir-length=0)"
+        set --function title "$(prompt_pwd --dir-length=0)"
     end
 
     if test -n "$TMUX"
         tmux rename-window -t $(tmux display-message -p '#{window_index}') $title
     end
 
-    echo $title
+    echo "$TITLE_PREFIX$title"
 end
 
 function fish_hybrid_key_bindings
