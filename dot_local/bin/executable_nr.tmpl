@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 {{ if eq .chezmoi.os "windows" }}
-"$PROGRAMFILES\AutoHotkey\v2\AutoHotkey64.exe" "$APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\activate-wezterm-tab.ahk" n 0
+"$PROGRAMFILES\AutoHotkey\v2\AutoHotkey64.exe" "$APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\activate-wezterm-tab.ahk" n 0 &
 sh ~/.local/bin/nvr-latest-focused-nvim.sh "$@"
 {{ else }}
 nvr -s --nostart --servername 127.0.0.1:6789 "$@" || nvim "$@"
