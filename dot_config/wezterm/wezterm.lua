@@ -55,7 +55,8 @@ local function split_nav(resize_or_move, key)
   }
 end
 
-local config = {}
+local config = wezterm.config_builder()
+config:set_strict_mode(true)
 
 config.adjust_window_size_when_changing_font_size = false
 config.color_scheme = "Catppuccin Mocha"
