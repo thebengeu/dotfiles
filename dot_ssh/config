@@ -5,7 +5,7 @@ Host dev* ec2 prod
 Host dev
   Hostname 192.168.50.2
 
-Match !exec "ncat -z --wait 50ms %h %p" originalhost dev
+Match originalhost dev !exec "ncat -z --wait 50ms %h %p"
   Hostname beng.asuscomm.com
 
 Host ec2
@@ -18,5 +18,5 @@ Host dev-wsl
 Host prod
   Hostname 192.168.50.4
 
-Match !exec "ncat -z --wait 50ms %h %p" originalhost dev-wsl,prod
+Match originalhost dev-wsl,prod !exec "ncat -z --wait 50ms %h %p"
   ProxyJump dev
