@@ -409,6 +409,14 @@ config.skip_close_confirmation_for_processes_named = {
   "wslhost.exe",
   "zsh.exe",
 }
+config.ssh_domains = wezterm.default_ssh_domains()
+
+table.insert(config.ssh_domains, {
+  name = "SSH:dev-remote",
+  multiplexing = "None",
+  remote_address = "beng.asuscomm.com",
+})
+
 config.warn_about_missing_glyphs = false
 config.window_close_confirmation = "NeverPrompt"
 config.window_decorations = "INTEGRATED_BUTTONS | RESIZE"
