@@ -172,6 +172,37 @@ config.wsl_domains = map(wezterm.default_wsl_domains(), function(wsl_domain)
   return wsl_domain
 end)
 
+local ssh_command = "ssh dev.local"
+local tmux_command = {
+  "tmux",
+  "new-session",
+  "-A",
+  "-s",
+  "dev",
+  ssh_command,
+  ";",
+  "set-option",
+  "default-command",
+  ssh_command,
+}
+
+if wezterm.hostname() == "dev" then
+  table.insert(config.wsl_domains, {
+    default_prog = tmux_command,
+    distribution = "Ubuntu",
+    name = "dev-tmux",
+  })
+else
+  table.insert(
+    config.exec_domains,
+    wezterm.exec_domain("dev-tmux", function(cmd)
+      cmd.args =
+        { "ssh", "-t", "dev-wsl", wezterm.shell_join_args(tmux_command) }
+      return cmd
+    end)
+  )
+end
+
 config.keys = {
   { key = "phys:Space", mods = "SHIFT|ALT|CTRL", action = act.QuickSelect },
   { key = "t", mods = "SHIFT|CTRL", action = act.SpawnTab("DefaultDomain") },
