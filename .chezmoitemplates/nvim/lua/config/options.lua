@@ -30,7 +30,6 @@ vim.opt.sessionoptions = {
   "winpos",
   "winsize",
 }
-vim.opt.swapfile = false
 
 if jit.os == "Windows" then
   vim.opt.shell = "sh"
