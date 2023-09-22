@@ -10,8 +10,9 @@ Host ec2
   Hostname 13.213.181.86
   User ubuntu
 
-Host dev-wsl
-  Hostname 192.168.50.3
+Host wsl, dev-wsl
+  Hostname 127.0.0.1
+  Port 23
 
 Host prod
   Hostname 192.168.50.4
