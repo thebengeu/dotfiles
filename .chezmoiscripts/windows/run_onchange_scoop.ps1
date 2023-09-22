@@ -6,7 +6,6 @@ $scoopPackages = @(
   'nmap'
   'python'
   'sed'
-  'wezterm-nightly'
 )
 
 foreach ($scoopPackage in $scoopPackages)
