@@ -80,15 +80,17 @@ for gitRepo in _zshGitRepos {
 			url:             "https://github.com/ililim/dual-key-remap/releases/download/v0.7/dual-key-remap-v0.7.zip"
 		}
 		".local/bin/dual-key-remap.exe": {
+			executable:      true
 			path:            "dual-key-remap.exe"
 			stripComponents: 1
 			type:            "archive-file"
 			url:             "https://github.com/ililim/dual-key-remap/releases/download/v0.7/dual-key-remap-v0.7.zip"
 		}
 		".local/bin/lmn.exe": {
-			path: "lemonade.exe"
-			type: "archive-file"
-			url:  "https://github.com/lemonade-command/lemonade/releases/download/v1.1.1/lemonade_windows_amd64.zip"
+			executable: true
+			path:       "lemonade.exe"
+			type:       "archive-file"
+			url:        "https://github.com/lemonade-command/lemonade/releases/download/v1.1.1/lemonade_windows_amd64.zip"
 		}
 	}
 }[_os]
