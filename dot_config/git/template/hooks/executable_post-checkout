@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-.git/hooks/add-upstream-auto-detected-url.sh && sed -i'' /add-upstream-auto-detected-url.sh/d .git/hooks/post-checkout
+"$GIT_DIR/hooks/add-upstream-auto-detected-url.sh" && sed -i'' /add-upstream-auto-detected-url.sh/d "$GIT_DIR/hooks/post-checkout"
