@@ -1,4 +1,8 @@
-import "regexp"
+import (
+	"regexp"
+	"strings"
+	"github.com/thebengeu/dotfiles/common"
+)
 
 #External: {
 	executable?: bool
@@ -14,7 +18,17 @@ import "regexp"
 	url:           "https://github.com/\(_gitRepo)"
 }
 
-_os: string | *"" @tag(os,var=os)
+_os:            string | *"" @tag(os,var=os)
+_xdgConfigHome: {
+	linux:   ".config"
+	windows: "AppData/Local"
+}[_os]
+
+for gitRepo, appName in common.nvimConfigs {
+	"\(_xdgConfigHome)/\(appName)": #GitRepo & {
+		_gitRepo: gitRepo
+	}
+}
 
 _zshGitRepos: [
 	"Aloxaf/fzf-tab",
