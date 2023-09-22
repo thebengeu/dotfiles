@@ -113,6 +113,7 @@ return {
   },
   {
     "HiPhish/rainbow-delimiters.nvim",
+    branch = "use-children",
     config = function()
       local rainbow_delimiters_hl =
         require("rainbow-delimiters.default").highlight
