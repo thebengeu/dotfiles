@@ -172,4 +172,20 @@ return {
       }
     end,
   },
+  {
+    "nvim-telescope/telescope-file-browser.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+    keys = {
+      {
+        "<leader>fb",
+        function()
+          require("telescope").extensions.file_browser.file_browser()
+        end,
+        desc = "File Browser",
+      },
+    },
+  },
 }
