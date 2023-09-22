@@ -109,7 +109,7 @@ config.font_rules = {
   },
 }
 config.font_size = 13
--- config.front_end = "OpenGL"
+config.front_end = "OpenGL"
 
 local find_pane = function(callback)
   for _, window in ipairs(wezterm.gui.gui_windows()) do
