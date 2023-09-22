@@ -17,6 +17,7 @@ pipx install khal
 pipx install neovim-remote
 pipx install qmk
 pipx install sqlfluff
+pipx install thefuck
 pipx install tox
 pipx install virtualenv
 pipx install visidata
