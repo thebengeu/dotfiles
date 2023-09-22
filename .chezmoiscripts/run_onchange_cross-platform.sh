@@ -2,6 +2,7 @@
 cargo install cargo-update
 cargo install hyperfine
 cargo install lsd
+cargo install onefetch
 cargo install sd
 cargo install tere
 cargo install tokei
