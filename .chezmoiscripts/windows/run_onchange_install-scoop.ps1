@@ -5,3 +5,4 @@ if ($nul -eq (Get-Command -ErrorAction SilentlyContinue scoop))
 
 scoop bucket add extras
 scoop bucket add nerd-fonts
+scoop bucket add versions

@@ -45,7 +45,6 @@ $wingetPackageIds = @(
   'Microsoft.OpenSSH.Beta'
   'Microsoft.PowerToys'
   'Microsoft.Sysinternals.ProcessMonitor'
-  'Neovim.Neovim.Nightly'
   'Pulumi.Pulumi'
   'QMK.QMKToolbox'
   'BurntSushi.ripgrep.MSVC'

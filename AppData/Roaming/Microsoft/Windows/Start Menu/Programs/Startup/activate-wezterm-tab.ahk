@@ -6,7 +6,7 @@ ActivateWezTermTab(WindowNumber, TabNumber) {
   if WinExist(WinTitle) {
     WinActivate ;
   } else {
-    Run "C:\Program Files\WezTerm\wezterm-gui.exe"
+    Run A_Programs . "\Scoop Apps\WezTerm.lnk"
   }
   WinWaitActive(WinTitle)
   Send "+!^" . WindowNumber
