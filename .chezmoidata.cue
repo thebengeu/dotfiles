@@ -1,6 +1,7 @@
 import (
 	"regexp"
 	"strings"
+	"github.com/thebengeu/dotfiles/common"
 )
 
 _os: string | *"" @tag(os,var=os)
@@ -109,6 +110,10 @@ aliases: {
 		tsr: #"printf "\e[6 q"; pnpm tsx"#
 	} {
 		"\(shAlias)": "sh -c '\(command)'"
+	}
+
+	for appName in common.nvimConfigs {
+		"\(appName)": "NVIM_APPNAME=\(appName) nvim"
 	}
 
 	{
