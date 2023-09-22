@@ -109,10 +109,13 @@ aliases: {
 	_ssh_command:  "'ssh dev.local'"
 	_tmux_command: "tmux new-session -A -s dev \(_ssh_command) \\; set-option default-command \(_ssh_command)"
 
+	if _hostname == "dev" {
+		"dev-tmux": "wsl --exec \(_tmux_command)"
+	}
 	if _hostname == "dev-wsl" {
 		"dev-tmux": _tmux_command
 	}
-	if _hostname != "dev-wsl" {
+	if _hostname != "dev" && _hostname != "dev-wsl" {
 		"dev-tmux": "ssh -t dev-wsl \"\(_tmux_command)\""
 	}
 
