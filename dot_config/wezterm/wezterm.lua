@@ -109,6 +109,7 @@ config.font_rules = {
   },
 }
 config.font_size = 13
+-- config.front_end = "OpenGL"
 
 local find_pane = function(callback)
   for _, window in ipairs(wezterm.gui.gui_windows()) do
@@ -458,6 +459,7 @@ table.insert(config.ssh_domains, {
 })
 
 config.warn_about_missing_glyphs = false
+config.webgpu_power_preference = "HighPerformance"
 config.window_close_confirmation = "NeverPrompt"
 config.window_decorations = "INTEGRATED_BUTTONS | RESIZE"
 config.window_frame = {
