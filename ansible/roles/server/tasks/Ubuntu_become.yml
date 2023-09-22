@@ -3,25 +3,6 @@
   register: arch
 - community.general.timezone:
     name: Asia/Singapore
-- ansible.builtin.template:
-    dest: /lib/systemd/network/wsl_external.network
-    mode: "644"
-    src: wsl_external.network.j2
-  when: address is defined
-- ansible.builtin.service:
-    enabled: true
-    name: systemd-networkd
-  when: address is defined
-- ansible.builtin.copy:
-    dest: /etc/wsl.conf
-    mode: "644"
-    src: wsl.conf
-  when: address is defined
-- ansible.builtin.copy:
-    dest: /etc/resolv.conf
-    mode: "644"
-    src: resolv.conf
-  when: address is defined
 - community.general.sudoers:
     commands: ALL
     name: "{{ ansible_user_id }}"
@@ -184,6 +165,11 @@
     path: /etc/ssh/sshd_config
     regexp: ^#(ListenAddress 0.0.0.0)$
     replace: \1
+- ansible.builtin.lineinfile:
+    line: Port 23
+    path: /etc/ssh/sshd_config
+    search_string: Port 22
+  when: ansible_virtualization_type == "wsl"
 - ansible.builtin.service:
     name: ssh
     state: reloaded
