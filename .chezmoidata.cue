@@ -4,7 +4,8 @@ import (
 	"github.com/thebengeu/dotfiles/common"
 )
 
-_os: string | *"" @tag(os,var=os)
+_hostname: string | *"" @tag(hostname,var=hostname)
+_os:       string | *"" @tag(os,var=os)
 
 aliases: {
 	b:   "bat"
@@ -103,6 +104,16 @@ aliases: {
 
 	for hostname in ["dev", "dev-wsl", "ec2", "prod"] {
 		"\(hostname)": "ssh \(hostname)"
+	}
+
+	_ssh_command:  "'ssh dev.local'"
+	_tmux_command: "tmux new-session -A -s dev \(_ssh_command) \\; set-option default-command \(_ssh_command)"
+
+	if _hostname == "dev-wsl" {
+		"dev-tmux": _tmux_command
+	}
+	if _hostname != "dev-wsl" {
+		"dev-tmux": "ssh -t dev-wsl \"\(_tmux_command)\""
 	}
 
 	for shAlias, command in {
