@@ -1,12 +1,13 @@
 #!/usr/bin/env sh
-cargo install cargo-update
-cargo install hyperfine
-cargo install lsd
-cargo install onefetch
-cargo install sd
-cargo install tere
-cargo install tokei
-cargo install topgrade
+cargo install \
+  cargo-update \
+  hyperfine \
+  lsd \
+  onefetch \
+  sd \
+  tere \
+  tokei \
+  topgrade
 
 go install github.com/nao1215/gup@latest
 
@@ -23,6 +24,7 @@ pipx install tox
 pipx install virtualenv
 pipx install visidata
 
-pnpm add --global npm-check-updates
-pnpm add --global pino-pretty
-pnpm add --global pm2
+pnpm add --global \
+  npm-check-updates \
+  pino-pretty \
+  pm2

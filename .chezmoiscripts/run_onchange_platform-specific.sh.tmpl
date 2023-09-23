@@ -1,7 +1,8 @@
 #!/usr/bin/env sh
 {{ if or (ne .chezmoi.os "windows") (ne .chezmoi.arch "arm64") }}
-cargo install tealdeer
-cargo install xh
+cargo install \
+  tealdeer \
+  xh
 
 pipx install howdoi
 
@@ -9,8 +10,9 @@ pnpm add --global https://github.com/thebengeu/ts-node.git
 {{ end }}
 
 {{ if eq .chezmoi.os "windows" }}
-cargo install bat
-cargo install fd-find
+cargo install \
+  bat \
+  fd-find
 {{ else }}
 cargo install gitui
 {{ end }}
