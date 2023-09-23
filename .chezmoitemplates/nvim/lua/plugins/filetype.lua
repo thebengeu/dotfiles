@@ -3,7 +3,10 @@ return {
     "pearofducks/ansible-vim",
     ft = "yaml.ansible",
   },
-  { "alker0/chezmoi.vim" },
+  {
+    "alker0/chezmoi.vim",
+    cond = vim.loop.cwd():find("chezmoi") ~= nil,
+  },
   {
     "LhKipp/nvim-nu",
     build = ":TSInstall nu",
