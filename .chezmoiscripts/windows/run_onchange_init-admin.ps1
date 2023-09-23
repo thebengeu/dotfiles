@@ -117,6 +117,7 @@ $pathsForTargets = @{
   [EnvironmentVariableTarget]::Machine = @(
     'C:\msys64\usr\bin'
     "$Env:ProgramFiles\PostgreSQL\15\bin"
+    "${Env:ProgramFiles(x86)}\nvim\bin"
   )
   [EnvironmentVariableTarget]::User    = @(
     "$Env:USERPROFILE\.cargo\bin"
