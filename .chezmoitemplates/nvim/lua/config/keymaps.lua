@@ -1,15 +1,5 @@
 local async_run = require("util").async_run
 
-local edit_chezmoi_path = function(source_or_target)
-  return function()
-    vim.cmd.edit(vim.fn.system({
-      "chezmoi",
-      source_or_target .. "-path",
-      vim.api.nvim_buf_get_name(0),
-    }))
-  end
-end
-
 local update_commit_push = function(flags)
   return function()
     vim.cmd.update()
@@ -56,21 +46,6 @@ vim.keymap.set(
   "<Cmd>%bd|e#|bd#<CR>",
   { desc = "Delete other buffers" }
 )
-vim.keymap.set(
-  "n",
-  "<space>cs",
-  edit_chezmoi_path("source"),
-  { desc = "Chezmoi Source" }
-)
-vim.keymap.set(
-  "n",
-  "<space>ct",
-  edit_chezmoi_path("target"),
-  { desc = "Chezmoi Target" }
-)
-vim.keymap.set("n", "<leader>ua", function()
-  vim.g.skip_chezmoi_apply = not vim.g.skip_chezmoi_apply
-end, { desc = "Toggle Chezmoi Apply" })
 vim.keymap.set("n", "<leader>um", function()
   ---@diagnostic disable-next-line: undefined-field
   vim.opt.mouse = vim.opt.mouse:get().a and "" or "a"
