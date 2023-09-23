@@ -21,7 +21,4 @@ if (!$isMobile)
   )
 }
 
-foreach ($ignoreSecurityHashWingetPackageId in $ignoreSecurityHashWingetPackageIds)
-{
-  winget install --exact --ignore-security-hash --silent --id $ignoreSecurityHashWingetPackageId
-}
+winget install --exact --ignore-security-hash --silent --id $ignoreSecurityHashWingetPackageIds

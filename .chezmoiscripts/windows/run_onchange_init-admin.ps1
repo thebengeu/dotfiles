@@ -30,11 +30,7 @@ $wingetPackageIds = @(
   'Rustlang.Rustup'
 )
 
-foreach ($wingetPackageId in $wingetPackageIds)
-{
-  $wingetPackageId
-  winget install --exact --no-upgrade --silent --id $wingetPackageId
-}
+Winget install --exact --no-upgrade --silent --id $wingetPackageIds
 
 $buildToolsOverride = '--add Microsoft.VisualStudio.Workload.VCTools --includeRecommended --quiet --wait'
 
@@ -152,12 +148,12 @@ foreach ($pacmanPackage in $pacmanPackages)
 {
   if (!(Get-Command $pacmanPackage))
   {
-    sh --login -c "pacman -Suy --noconfirm; pacman -Suy --noconfirm; pacman -S --needed --noconfirm $pacmanPackage"
+    sh --login -c "pacman -Suy --noconfirm; pacman -Suy --noconfirm; pacman -S --needed --noconfirm $pacmanPackages"
+    break
   }
 }
 
 corepack enable
-
 
 $ejsonPublicKey = "5df4cad7a4c3a2937a863ecf18c56c23274cb048624bc9581ecaac56f2813107"
 $ejsonKeyPath = "$HOME/.config/ejson/keys/$ejsonPublicKey"
@@ -186,11 +182,16 @@ if (!(Test-Path $sshKeyPath))
 }
 
 go install cuelang.org/go/cmd/cue@latest
-cargo install broot
-cargo install just
-cargo install starship
-cargo install vivid
-cargo install zoxide
+
+$cargoPackages = @(
+  'broot'
+  'just'
+  'starship'
+  'vivid'
+  'zoxide'
+)
+
+cargo install $cargoPackages
 
 if (!(Test-Path "$Env:USERPROFILE\.local\share\chezmoi"))
 {

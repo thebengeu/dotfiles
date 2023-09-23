@@ -21,10 +21,6 @@ $chocoPackages = @(
   'tableplus'
 )
 
-foreach ($chocoPackage in $chocoPackages)
-{
-  choco install $chocoPackage
-}
-
+choco install $chocoPackages
 choco install --ignore-dependencies neovide.install
 choco install --params '/Password:postgres /Port:5433' --params-global postgresql

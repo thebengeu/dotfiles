@@ -25,7 +25,4 @@ if ($isMobile)
   )
 }
 
-foreach ($storeApps in $storeApps)
-{
-  winget install --accept-package-agreements --source msstore $storeApps
-}
+winget install --accept-package-agreements --source msstore $storeApps

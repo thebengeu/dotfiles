@@ -72,11 +72,7 @@ if (!$isMobile)
   )
 }
 
-foreach ($wingetPackageId in $wingetPackageIds)
-{
-  $wingetPackageId
-  winget install --exact --no-upgrade --silent --id $wingetPackageId
-}
+winget install --exact --no-upgrade --silent --id $wingetPackageIds
 
 winget pin add --exact --id JetBrains.WebStorm
 winget pin add --exact --id PostgreSQL.PostgreSQL

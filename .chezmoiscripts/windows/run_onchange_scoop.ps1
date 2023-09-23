@@ -8,9 +8,5 @@ $scoopPackages = @(
   'sed'
 )
 
-foreach ($scoopPackage in $scoopPackages)
-{
-  scoop install $scoopPackage
-}
-
+scoop install $scoopPackages
 scoop install --skip neovim-nightly
