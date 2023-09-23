@@ -171,12 +171,6 @@ return {
   },
   {
     "hrsh7th/nvim-cmp",
-    dependencies = {
-      {
-        "kristijanhusak/vim-dadbod-completion",
-        dependencies = { "tpope/vim-dadbod" },
-      },
-    },
     opts = function(_, opts)
       local cmp = require("cmp")
       local luasnip = require("luasnip")
@@ -196,9 +190,6 @@ return {
           end
         end, { "i", "s" }),
       })
-      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, {
-        { name = "vim-dadbod-completion" },
-      }))
     end,
   },
   {
@@ -284,8 +275,37 @@ return {
     },
   },
   {
-    "tpope/vim-dadbod",
-    cmd = "DB",
+    "kristijanhusak/vim-dadbod-completion",
+    dependencies = {
+      "tpope/vim-dadbod",
+      "hrsh7th/nvim-cmp",
+    },
+    ft = "sql",
+    init = function()
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function()
+          require("cmp").setup.buffer({
+            sources = {
+              { name = "vim-dadbod-completion" },
+            },
+          })
+        end,
+        pattern = "sql",
+      })
+    end,
+  },
+  {
+    "kristijanhusak/vim-dadbod-ui",
+    config = function()
+      vim.g.db_ui_use_nerd_fonts = 1
+    end,
+    dependencies = {
+      "tpope/vim-dadbod",
+      "kristijanhusak/vim-dadbod-completion",
+    },
+    keys = {
+      { "<leader>cD", "<Cmd>DBUIToggle<CR>", desc = "Dadbod UI" },
+    },
   },
   {
     "andymass/vim-matchup",
