@@ -330,7 +330,10 @@ return {
       "\\\\A",
     },
   },
-  { "svban/YankAssassin.vim" },
+  {
+    "svban/YankAssassin.vim",
+    event = { "BufNewFile", "BufReadPost" },
+  },
   {
     "gbprod/yanky.nvim",
     keys = {
