@@ -74,5 +74,8 @@ if (!$isMobile)
 
 winget install --exact --no-upgrade --silent --id $wingetPackageIds
 
+$override = '--add Microsoft.VisualStudio.Workload.NativeDesktop --includeRecommended --quiet --wait'
+winget install --exact --no-upgrade --override $override --silent --id Microsoft.VisualStudio.2022.Community
+
 winget pin add --exact --id JetBrains.WebStorm
 winget pin add --exact --id PostgreSQL.PostgreSQL
