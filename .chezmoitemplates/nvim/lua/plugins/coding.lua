@@ -234,7 +234,7 @@ return {
   {
     "windwp/nvim-ts-autotag",
     config = true,
-    event = "InsertEnter",
+    ft = "typescriptreact",
   },
   {
     "chrisgrieser/nvim-various-textobjs",
