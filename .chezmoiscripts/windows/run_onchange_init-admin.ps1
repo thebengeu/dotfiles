@@ -138,6 +138,7 @@ $Env:PATH = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + [I
 
 $pacmanPackages = @(
   'fish'
+  'make'
   'nnn'
   'parallel'
   'vifm'
