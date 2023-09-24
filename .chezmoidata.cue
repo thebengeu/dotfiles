@@ -178,7 +178,7 @@ environmentVariables: {
 		linux:   "~/.local/share/pnpm"
 		windows: "$LOCALAPPDATA\\\\pnpm"
 	}[_os]
-	RIPGREP_CONFIG_PATH: "$HOME/.ripgreprc"
+	RIPGREP_CONFIG_PATH: "$HOME/.config/ripgrep/config"
 }
 functions: {
 	nz: {
