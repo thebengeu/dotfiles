@@ -61,6 +61,7 @@ return {
   },
   {
     "direnv/direnv.vim",
+    cond = vim.loop.cwd():find("thebengeu") ~= nil,
     config = function()
       vim.g.direnv_silent_load = 1
     end,
