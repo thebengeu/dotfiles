@@ -315,6 +315,37 @@ return vim.list_extend(
       },
     },
     {
+      "tpope/vim-dadbod",
+      ft = "sql",
+      init = function()
+        vim.api.nvim_create_autocmd("FileType", {
+          callback = function()
+            vim.keymap.set("n", "<space>cq", function()
+              local cursor = vim.api.nvim_win_get_cursor(0)
+              local row = cursor[1] - 1
+
+              local parser = vim.treesitter.get_parser(0, "sql")
+              local query = vim.treesitter.query.parse("sql", "(statement) @_")
+
+              ---@diagnostic disable-next-line: missing-parameter
+              for _, node in query:iter_captures(parser:parse()[1]:root()) do
+                local start_row, _, end_row, _ = node:range()
+
+                if row >= start_row and row <= end_row then
+                  vim.cmd.DB({ range = { start_row + 1, end_row + 1 } })
+                  break
+                end
+              end
+            end, {
+              buffer = 0,
+              desc = "Query DB",
+            })
+          end,
+          pattern = "sql",
+        })
+      end,
+    },
+    {
       "kristijanhusak/vim-dadbod-completion",
       dependencies = {
         "tpope/vim-dadbod",
