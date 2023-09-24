@@ -2,6 +2,7 @@ $scoopPackages = @(
   'gcc'
   'git-filter-repo'
   'goneovim'
+  'make'
   'nerd-fonts/JetBrainsMono-NF'
   'nmap'
   'python'
