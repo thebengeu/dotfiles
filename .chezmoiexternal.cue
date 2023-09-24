@@ -12,6 +12,12 @@ import (
 	url:              string
 }
 
+#ExecutableFile: {
+	#External
+	executable: true
+	type:       "file"
+}
+
 #GitRepo: {
 	#External
 	_gitRepo:      string
@@ -48,20 +54,14 @@ for gitRepo in _zshGitRepos {
 	}
 }
 
-".config/git/template/hooks/add-upstream-auto-detected-url.sh": #External & {
-	executable: true
-	type:       "file"
-	url:        "https://raw.githubusercontent.com/thebengeu/auto-git-remote-add-upstream/master/add-upstream-auto-detected-url.sh"
+".config/git/template/hooks/add-upstream-auto-detected-url.sh": #ExecutableFile & {
+	url: "https://raw.githubusercontent.com/thebengeu/auto-git-remote-add-upstream/master/add-upstream-auto-detected-url.sh"
 }
-".config/git/template/hooks/post-checkout": #External & {
-	executable: true
-	type:       "file"
-	url:        "https://raw.githubusercontent.com/thebengeu/auto-git-remote-add-upstream/master/post-checkout"
+".config/git/template/hooks/post-checkout": #ExecutableFile & {
+	url: "https://raw.githubusercontent.com/thebengeu/auto-git-remote-add-upstream/master/post-checkout"
 }
-".local/bin/cht": #External & {
-	executable: true
-	type:       "file"
-	url:        "https://cht.sh/:cht.sh"
+".local/bin/cht": #ExecutableFile & {
+	url: "https://cht.sh/:cht.sh"
 }
 ".config/fish/completions/nvr.fish": #External & {
 	type: "file"
