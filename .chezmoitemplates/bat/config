@@ -1,3 +1,2 @@
 --italic-text always
---pager 'less --mouse --quit-if-one-screen --RAW-CONTROL-CHARS'
 --style header-filename,rule
