@@ -209,6 +209,11 @@ config.keys = {
   { key = "t", mods = "SHIFT|CTRL", action = act.SpawnTab("DefaultDomain") },
   { key = "t", mods = "ALT|CTRL", action = act.SpawnTab("CurrentPaneDomain") },
   {
+    key = ")",
+    mods = "SHIFT|ALT|CTRL",
+    action = act.CloseCurrentPane({ confirm = false }),
+  },
+  {
     key = "w",
     mods = "SHIFT|CTRL",
     action = act.CloseCurrentTab({ confirm = false }),
