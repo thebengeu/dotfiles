@@ -72,6 +72,7 @@
     cmd: nix profile install nixpkgs#{{ item }}
     creates: ~/.nix-profile/bin/{{ item }}
   loop:
+    - direnv
     - hledger
     - hledger-ui
     - hledger-web
