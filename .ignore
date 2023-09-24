@@ -3,6 +3,7 @@ dot_config/**/*.tmpl
 !AppData/Roaming/nushell/*
 !dot_config/bash/*
 !dot_config/ghorg/*
+!dot_config/git/*
 !dot_config/fish/**
 !dot_config/msmtp/*
 !dot_config/zsh/*
