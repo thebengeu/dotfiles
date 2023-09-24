@@ -18,6 +18,11 @@ return {
         desc = "Diffview Range History",
         mode = "x",
       },
+      {
+        "<Space>gS",
+        "<Cmd>DiffviewFileHistory --walk-reflogs --range=stash<CR>",
+        desc = "Diffview Stash",
+      },
     },
   },
   {
