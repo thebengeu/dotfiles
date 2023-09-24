@@ -7,9 +7,12 @@ vim.api.nvim_create_user_command("Search", function(opts)
   }), { "https://www.google.com/search?q=" .. opts.fargs[1] }))
 end, { nargs = 1 })
 
-vim.g.db = "postgresql://postgres:postgres@localhost:543"
-  .. (jit.os == "Windows" and 3 or 2)
-  .. "/postgres"
+vim.g.db = vim.env.DATABASE_URL
+  or (
+    "postgresql://postgres:postgres@localhost:543"
+    .. (jit.os == "Windows" and 3 or 2)
+    .. "/postgres"
+  )
 vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_python3_provider = 0
