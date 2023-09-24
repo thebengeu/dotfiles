@@ -186,6 +186,12 @@ functions: {
 		]
 		parameters: ["directory"]
 	}
+	pp: {
+		lines: [
+			"tac $log_file | pino-pretty --colorize --translateTime 'yyyy-mm-dd HH:MM:ss' | less",
+		]
+		parameters: ["log_file"]
+	}
 
 	{
 		linux: {
