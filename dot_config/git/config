@@ -1,0 +1,28 @@
+[alias]
+	lg = log --pretty='format:%Cgreen%ah%Creset %s'
+	rau = !~/.config/git/template/hooks/add-upstream-auto-detected-url.sh
+	s = status --short --untracked-files
+[core]
+	pager = delta
+[delta]
+	navigate = true
+	theme = Catppuccin-mocha
+[diff]
+	colorMoved = default
+[init]
+	templateDir = ~/.config/git/template
+[interactive]
+	diffFilter = delta --color-only
+[merge]
+	conflictstyle = diff3
+[pull]
+	rebase = true
+[push]
+	autoSetupRemote = true
+[rebase]
+	autoStash = true
+[safe]
+	directory = *
+[user]
+	email = beng@bengeu.com
+	name = Beng Eu
