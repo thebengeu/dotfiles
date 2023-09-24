@@ -132,14 +132,15 @@ aliases: {
 
 	{
 		linux: {
-			ai:  "sudo apt install"
-			ar:  "sudo apt remove"
-			fd:  "fd --hidden"
-			man: "batman"
-			rns: "rm ~/.local/share/nvim/sessions/*"
-			tg:  "topgrade"
-			tns: "tmux new-session -A -s"
-			tm:  "\(tns) 0"
+			ai:          "sudo apt install"
+			ar:          "sudo apt remove"
+			fd:          "fd --hidden"
+			man:         "batman"
+			rns:         "rm ~/.local/share/nvim/sessions/*"
+			tg:          "topgrade"
+			tns:         "tmux new-session -A -s"
+			tm:          "\(tns) 0"
+			"xdg-ninja": "nix run github:b3nj5m1n/xdg-ninja"
 		}
 		windows: {
 			chi: "gsudo choco install"
