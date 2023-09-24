@@ -69,9 +69,9 @@ return {
           local buf_name = vim.api.nvim_buf_get_name(0)
           local source_or_target = buf_name:find(
             "[/\\]%.local[/\\]share[/\\]chezmoi[/\\]"
-          ) and "target" or "source"
+          ) and "Target" or "Source"
 
-          if source_or_target == "target" and not buf_name:find("%.tmpl$") then
+          if source_or_target == "Target" and not buf_name:find("%.tmpl$") then
             return
           end
 
@@ -86,8 +86,9 @@ return {
               local path = system_obj.stdout:gsub("\n", "")
 
               if
-                source_or_target == "target"
-                and vim.fn.filereadable(path) == 0
+                source_or_target == "Target"
+                  and vim.fn.filereadable(path) == 0
+                or not buf_name:find("%.tmpl$")
               then
                 return
               end
@@ -97,7 +98,7 @@ return {
                   vim.cmd.edit(path)
                 end, {
                   buffer = 0,
-                  desc = "Toggle Chezmoi Source/Target",
+                  desc = "Chezmoi Edit " .. source_or_target,
                 })
               end)
             end
