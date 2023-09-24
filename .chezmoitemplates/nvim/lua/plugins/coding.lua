@@ -108,10 +108,17 @@ return vim.list_extend(
             repl_definition = {
               ["lua.chezmoitmpl"] = require("iron.fts.lua").lua,
               sql = {
-                command = {
-                  "psql",
-                  "postgresql://postgres:postgres@localhost:5432/postgres",
-                },
+                command = function()
+                  return {
+                    "psql",
+                    vim.env.DATABASE_URL
+                      or (
+                        "postgresql://postgres:postgres@localhost:543"
+                        .. (jit.os == "Windows" and 3 or 2)
+                        .. "/postgres"
+                      ),
+                  }
+                end,
               },
               typescript = typescript,
               typescriptreact = typescript,
