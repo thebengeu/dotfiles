@@ -6,6 +6,9 @@ import (
 )
 
 nvimConfigs: {
+	"ecosse3/nvim":    "ecovim"
+	"LazyVim/starter": "lazyvim"
+
 	for gitRepo in [
 		"AstroNvim/AstroNvim",
 		"NvChad/NvChad",
