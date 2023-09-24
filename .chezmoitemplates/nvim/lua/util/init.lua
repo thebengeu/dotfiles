@@ -1,5 +1,17 @@
 local exports = {}
 
+exports.filter = function(input, callback)
+  local output = {}
+
+  for _, value in ipairs(input) do
+    if callback(value) then
+      table.insert(output, value)
+    end
+  end
+
+  return output
+end
+
 local map = function(input, callback)
   local output = {}
 
