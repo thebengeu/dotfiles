@@ -76,6 +76,7 @@
     - hledger-ui
     - hledger-web
     - ledger
+    - less
     - lf
     - nethogs
     - nix
