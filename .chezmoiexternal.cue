@@ -5,9 +5,11 @@ import (
 )
 
 #External: {
-	executable?: bool
-	type:        "archive-file" | "file" | "git-repo"
-	url:         string
+	executable?:      bool
+	path?:            string
+	stripComponents?: number
+	type:             "archive-file" | "file" | "git-repo"
+	url:              string
 }
 
 #GitRepo: {
@@ -51,12 +53,17 @@ for gitRepo in _zshGitRepos {
 	type:       "file"
 	url:        "https://raw.githubusercontent.com/thebengeu/auto-git-remote-add-upstream/master/add-upstream-auto-detected-url.sh"
 }
-".local/bin/cht": {
+".config/git/template/hooks/post-checkout": #External & {
+	executable: true
+	type:       "file"
+	url:        "https://raw.githubusercontent.com/thebengeu/auto-git-remote-add-upstream/master/post-checkout"
+}
+".local/bin/cht": #External & {
 	executable: true
 	type:       "file"
 	url:        "https://cht.sh/:cht.sh"
 }
-".config/fish/completions/nvr.fish": {
+".config/fish/completions/nvr.fish": #External & {
 	type: "file"
 	url:  "https://raw.githubusercontent.com/mhinz/neovim-remote/master/contrib/completion.fish"
 }
@@ -73,20 +80,20 @@ for gitRepo in _zshGitRepos {
 		}
 	}
 	windows: {
-		".local/bin/config.txt": {
+		".local/bin/config.txt": #External & {
 			path:            "config.txt"
 			stripComponents: 1
 			type:            "archive-file"
 			url:             "https://github.com/ililim/dual-key-remap/releases/download/v0.7/dual-key-remap-v0.7.zip"
 		}
-		".local/bin/dual-key-remap.exe": {
+		".local/bin/dual-key-remap.exe": #External & {
 			executable:      true
 			path:            "dual-key-remap.exe"
 			stripComponents: 1
 			type:            "archive-file"
 			url:             "https://github.com/ililim/dual-key-remap/releases/download/v0.7/dual-key-remap-v0.7.zip"
 		}
-		".local/bin/lmn.exe": {
+		".local/bin/lmn.exe": #External & {
 			executable: true
 			path:       "lemonade.exe"
 			type:       "archive-file"
