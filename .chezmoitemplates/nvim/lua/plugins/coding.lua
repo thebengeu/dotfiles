@@ -340,6 +340,10 @@ return vim.list_extend(
               buffer = 0,
               desc = "Query DB",
             })
+            vim.keymap.set("x", "<space>cq", ":DB<CR>", {
+              buffer = 0,
+              desc = "Query DB",
+            })
           end,
           pattern = "sql",
         })
