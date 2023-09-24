@@ -89,13 +89,15 @@ return vim.list_extend(
             return require("iron.fts.common").format(
               ts,
               util.map(lines, function(line)
-                return line
-                  :gsub("const ", "var ")
-                  :gsub("^import ", "var ")
-                  :gsub("( from '%S+)%.js'$", "%1'")
-                  :gsub("(, {.+} from '(%S+)')$", " = require('%2')%1")
-                  :gsub(" from '(%S+)'$", " = require('%1')")
-                  :gsub(" type ", " ")
+                return (
+                  line
+                    :gsub("const ", "var ")
+                    :gsub("^import ", "var ")
+                    :gsub("( from '%S+)%.js'$", "%1'")
+                    :gsub("(, {.+} from '(%S+)')$", " = require('%2')%1")
+                    :gsub(" from '(%S+)'$", " = require('%1')")
+                    :gsub(" type ", " ")
+                )
               end)
             )
           end,
