@@ -36,7 +36,6 @@ $wingetPackageIds = @(
   'DEVCOM.Lua'
   'jftuga.less'
   'gokcehan.lf'
-  'GnuWin32.Make'
   'ManicTime.ManicTime'
   'zyedidia.micro'
   'Notion.Notion'
