@@ -322,7 +322,7 @@ return vim.list_extend(
           callback = function()
             vim.keymap.set("n", "<space>cq", function()
               local cursor = vim.api.nvim_win_get_cursor(0)
-              local row = cursor[1] - 1
+              local current_row = cursor[1]
 
               local parser = vim.treesitter.get_parser(0, "sql")
               local query = vim.treesitter.query.parse("sql", "(statement) @_")
@@ -330,9 +330,11 @@ return vim.list_extend(
               ---@diagnostic disable-next-line: missing-parameter
               for _, node in query:iter_captures(parser:parse()[1]:root()) do
                 local start_row, _, end_row, _ = node:range()
+                start_row = start_row + 1
+                end_row = end_row + 1
 
-                if row >= start_row and row <= end_row then
-                  vim.cmd.DB({ range = { start_row + 1, end_row + 1 } })
+                if current_row >= start_row and current_row <= end_row then
+                  vim.cmd.DB({ range = { start_row, end_row } })
                   break
                 end
               end
