@@ -367,7 +367,6 @@ return util.map({
       "dracula_blood",
       "earlysummer",
       "earlysummer_lighter",
-      "emerald",
       "mariana",
       "mariana_lighter",
       "middlenight_blue",
