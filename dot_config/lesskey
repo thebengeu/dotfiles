@@ -1,2 +1,2 @@
 #env
-LESS = --RAW-CONTROL-CHARS
+LESS = --quit-if-one-screen --RAW-CONTROL-CHARS
