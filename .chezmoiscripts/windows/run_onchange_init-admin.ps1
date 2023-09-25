@@ -39,7 +39,11 @@ if (!(Get-Command choco))
   choco feature enable -n allowGlobalConfirmation
 }
 
-Install-PackageProvider NuGet -Force
+if (!(Get-PackageProvider NuGet))
+{
+  Install-PackageProvider NuGet -Force
+}
+
 Set-PSRepository PSGallery -InstallationPolicy Trusted
 
 Install-Module PSFzf
