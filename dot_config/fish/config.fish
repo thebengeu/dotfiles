@@ -12,6 +12,8 @@ set --global sponge_purge_only_on_exit true
 
 abbr --add os 'set COMMAND $(op signin) && test -n "$COMMAND" && eval $COMMAND && set --export OP_TIME $(date +%s)'
 
+chcp.com 1252 >/dev/null
+
 if test -f /proc/sys/fs/binfmt_misc/WSLInterop
     set --export TITLE_PREFIX wsl:
 end
