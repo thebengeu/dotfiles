@@ -132,7 +132,7 @@ return vim.list_extend(
             ),
           },
           keymaps = {
-            send_motion = "<space>z",
+            send_motion = "<space>cz",
             visual_send = "<C-z>",
           },
         })
@@ -175,13 +175,15 @@ return vim.list_extend(
             vim.api.nvim_win_set_cursor(0, cursor)
           end,
         },
-        { "<space>r", "<Cmd>IronRepl<CR>", desc = "REPL" },
-        { "<space>z", desc = "Send to REPL" },
+        { "<space>cR", "<Cmd>IronRepl<CR>", desc = "REPL" },
+        { "<space>cz", desc = "Send to REPL" },
       },
     },
     {
       "rafcamlet/nvim-luapad",
-      cmd = { "Luapad", "LuaRun" },
+      keys = {
+        { "<space>cL", "<Cmd>Luapad<CR>", desc = "Luapad" },
+      },
     },
     {
       "L3MON4D3/LuaSnip",
