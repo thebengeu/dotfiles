@@ -9,7 +9,7 @@
       - --strip-components=1
     remote_src: true
     # yamllint disable-line rule:line-length
-    src: https://get.pulumi.com/releases/sdk/pulumi-v3.76.0-linux-{{ (arch.stdout == 'amd64') | ternary('x64', arch.stdout) }}.tar.gz
+    src: https://get.pulumi.com/releases/sdk/pulumi-v3.85.0-linux-{{ (arch.stdout == 'amd64') | ternary('x64', arch.stdout) }}.tar.gz
 - ansible.builtin.file:
     mode: "755"
     path: ~/.temporalio/bin
@@ -30,7 +30,7 @@
     creates: ~/.local/bin/bandwhich
     dest: ~/.local/bin
     remote_src: true
-    src: https://github.com/imsnif/bandwhich/releases/download/0.20.0/bandwhich-v0.20.0-x86_64-unknown-linux-musl.tar.gz
+    src: https://github.com/imsnif/bandwhich/releases/download/v0.21.0/bandwhich-v0.21.0-x86_64-unknown-linux-musl.tar.gz
 - ansible.builtin.git:
     dest: ~/neovim
     force: true
