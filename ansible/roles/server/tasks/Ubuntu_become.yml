@@ -150,7 +150,7 @@
     - http://ftp.debian.org/debian/pool/main/t/tmux/tmux_3.3a-4_{{ arch.stdout }}.deb
     # yamllint enable rule:line-length
 - ansible.builtin.apt:
-    deb: "https://github.com/wez/wezterm/releases/download/nightly/wezterm-nightly.Ubuntu22.04.deb"
+    deb: "https://github.com/wez/wezterm/releases/download/20230712-072601-f4abf8fd/wezterm-20230712-072601-f4abf8fd.Ubuntu22.04.deb"
   when: ansible_machine != "aarch64"
 - ansible.builtin.group:
     name: docker
