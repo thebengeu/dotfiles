@@ -15,7 +15,7 @@ aliases: {
 	cat: "bat"
 	ca:  "chezmoi apply"
 	cr:  "chezmoi re-add"
-	cup: "chezmoi update --apply=false; chezmoi init; chezmoi apply"
+	cup: "chezmoi update --apply=false; chezmoi init; chezmoi apply --exclude scripts; chezmoi apply --include scripts"
 	g:   "git"
 	hb:  "hyperfine 'bash -i -c exit'"
 	hbn: "hyperfine 'bash --noprofile --norc -i -c exit'"

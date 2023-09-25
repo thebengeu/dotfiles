@@ -61,6 +61,6 @@ vim.keymap.set("n", "<leader>cu", function()
   async_run({
     "sh",
     "-c",
-    "chezmoi update --apply=false; chezmoi init; chezmoi apply",
+    "chezmoi update --apply=false; chezmoi init; chezmoi apply --exclude scripts; chezmoi apply --include scripts",
   })
 end, { desc = "Chezmoi update" })
