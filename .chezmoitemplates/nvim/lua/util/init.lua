@@ -47,7 +47,7 @@ exports.async_run = function(command)
     col = cursor[2],
     filename = vim.api.nvim_buf_get_name(0),
     lnum = cursor[1],
-    type = "I",
+    type = "E",
   }
 
   add_lines_to_qf(table.concat(command, " "):gsub("^sh %-c ", ""), qf_item)
@@ -57,20 +57,19 @@ exports.async_run = function(command)
   vim.system(command, nil, function(system_obj)
     local end_time = vim.loop.hrtime()
 
-    if system_obj.code ~= 0 then
-      qf_item.type = "E"
-    end
-
     vim.schedule(function()
-      add_lines_to_qf(system_obj.stdout, qf_item)
-      add_lines_to_qf(system_obj.stderr, qf_item)
-
       if system_obj.code == 0 then
-        add_lines_to_qf(
-          "Executed in " .. math.floor((end_time - start_time) / 1e6) .. "ms",
-          qf_item
+        vim.notify(
+          system_obj.stdout
+            .. system_obj.stderr
+            .. "Executed in "
+            .. math.floor((end_time - start_time) / 1e6)
+            .. "ms"
         )
       else
+        add_lines_to_qf(system_obj.stdout, qf_item)
+        add_lines_to_qf(system_obj.stderr, qf_item)
+
         vim.cmd.copen()
       end
 
