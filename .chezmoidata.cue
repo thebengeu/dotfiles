@@ -1,9 +1,11 @@
 import (
 	"regexp"
 	"strings"
+
 	"github.com/thebengeu/dotfiles/common"
 )
 
+_arch:     string | *"" @tag(arch,var=arch)
 _hostname: string | *"" @tag(hostname,var=hostname)
 _os:       string | *"" @tag(os,var=os)
 
@@ -203,7 +205,7 @@ functions: {
 			}
 			npr: {
 				lines: [
-					"nix profile remove legacyPackages.x86_64-linux.$package",
+					"nix profile remove legacyPackages.\({amd64: "x86_64", arm64: "aarch64"}[_arch])-linux.$package",
 				]
 				parameters: ["package"]
 			}
