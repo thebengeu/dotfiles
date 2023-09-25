@@ -24,6 +24,9 @@ return {
       opts.sources = {
         null_ls.builtins.diagnostics.fish,
         null_ls.builtins.diagnostics.shellcheck.with({
+          runtime_condition = function(params)
+            return not params.lsp_params.textDocument.uri:find("%.env")
+          end,
           extra_args = { "-e", "SC1017" },
         }),
         null_ls.builtins.diagnostics.sqlfluff.with({
