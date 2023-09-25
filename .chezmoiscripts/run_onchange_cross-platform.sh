@@ -15,6 +15,8 @@ pip install --user pipx
 
 pipx install beancount
 pipx install fava
+pipx install http-prompt
+pipx install httpie
 pipx install khal
 pipx install neovim-remote
 pipx install qmk
