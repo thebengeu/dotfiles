@@ -168,11 +168,12 @@ aliases: {
 	}
 }
 environmentVariables: {
-	EDITOR:           "nvim"
-	EJSON_KEYDIR:     "$HOME/.config/ejson/keys"
-	GH_USERNAME:      "thebengeu"
-	NODE_NO_WARNINGS: "1"
-	PNPM_HOME:        {
+	DIRENV_LOG_FORMAT: ""
+	EDITOR:            "nvim"
+	EJSON_KEYDIR:      "$HOME/.config/ejson/keys"
+	GH_USERNAME:       "thebengeu"
+	NODE_NO_WARNINGS:  "1"
+	PNPM_HOME:         {
 		linux:   "~/.local/share/pnpm"
 		windows: "$LOCALAPPDATA\\\\pnpm"
 	}[_os]
