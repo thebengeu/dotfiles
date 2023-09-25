@@ -32,15 +32,6 @@ $wingetPackageIds = @(
 
 Winget install --exact --no-upgrade --silent --id $wingetPackageIds
 
-$buildToolsOverride = '--add Microsoft.VisualStudio.Workload.VCTools --includeRecommended --quiet --wait'
-
-if ($Env:PROCESSOR_ARCHITECTURE -eq 'ARM64')
-{
-  $buildToolsOverride += ' --add Microsoft.VisualStudio.Component.VC.Tools.ARM64'
-}
-
-winget install --exact --no-upgrade --override $buildToolsOverride --silent --id Microsoft.VisualStudio.2022.BuildTools
-
 if (!(Get-Command choco))
 {
   Set-ExecutionPolicy Unrestricted
