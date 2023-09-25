@@ -142,28 +142,26 @@ return {
           )
         end
 
-        vim.schedule(function()
-          if hl_is_not_default(rainbow_delimiters_hl[1]) then
-            return
-          end
+        if hl_is_not_default(rainbow_delimiters_hl[1]) then
+          return
+        end
 
-          local legacy_rainbow_hl = (
-            hl_is_not_default(ts_rainbow_2_hl[1]) and ts_rainbow_2_hl
+        local legacy_rainbow_hl = (
+          hl_is_not_default(ts_rainbow_2_hl[1]) and ts_rainbow_2_hl
+        )
+          or (hl_is_not_default(ts_rainbow_hl[1]) and ts_rainbow_hl)
+
+        if not legacy_rainbow_hl then
+          error("No rainbow highlight groups found")
+        end
+
+        for i = 1, 7 do
+          vim.api.nvim_set_hl(
+            0,
+            rainbow_delimiters_hl[i],
+            { link = legacy_rainbow_hl[i] }
           )
-            or (hl_is_not_default(ts_rainbow_hl[1]) and ts_rainbow_hl)
-
-          if not legacy_rainbow_hl then
-            error("No rainbow highlight groups found")
-          end
-
-          for i = 1, 7 do
-            vim.api.nvim_set_hl(
-              0,
-              rainbow_delimiters_hl[i],
-              { link = legacy_rainbow_hl[i] }
-            )
-          end
-        end)
+        end
       end)()
     end,
     event = { "BufNewFile", "BufReadPost" },
