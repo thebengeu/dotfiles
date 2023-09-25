@@ -46,7 +46,7 @@ return {
             for _, win in ipairs(vim.api.nvim_list_wins()) do
               local buf = vim.api.nvim_win_get_buf(win)
               local filetype = vim.bo[buf].filetype
-              if filetype == "noice" or filetype == "qf" then
+              if filetype == "" or filetype == "noice" or filetype == "qf" then
                 vim.api.nvim_win_close(win, true)
               end
             end
