@@ -47,7 +47,7 @@ exports.async_run = function(command)
     col = cursor[2],
     filename = vim.api.nvim_buf_get_name(0),
     lnum = cursor[1],
-    type = "E",
+    type = "I",
   }
 
   add_lines_to_qf(table.concat(command, " "):gsub("^sh %-c ", ""), qf_item)
@@ -67,6 +67,8 @@ exports.async_run = function(command)
             .. "ms"
         )
       else
+        qf_item.type = "E"
+
         add_lines_to_qf(system_obj.stdout, qf_item)
         add_lines_to_qf(system_obj.stderr, qf_item)
 
