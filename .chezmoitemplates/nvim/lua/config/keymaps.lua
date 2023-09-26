@@ -64,3 +64,5 @@ vim.keymap.set("n", "<leader>cu", function()
     "chezmoi update --apply=false; chezmoi init; chezmoi apply --exclude scripts; chezmoi apply --include scripts",
   })
 end, { desc = "Chezmoi update" })
+-- https://nanotipsforvim.prose.sh/repeated-v-in-visual-line-mode
+vim.keymap.set("x", "V", "j")
