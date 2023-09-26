@@ -75,7 +75,7 @@ exports.async_run = function(command)
         vim.cmd.copen()
       end
 
-      vim.cmd.clast()
+      vim.cmd.cbottom()
     end)
   end)
 end
