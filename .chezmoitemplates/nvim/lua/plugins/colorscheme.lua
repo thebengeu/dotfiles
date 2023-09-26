@@ -442,34 +442,6 @@ return util.map({
       }
     end,
   },
-  add_colorscheme_autocmds_on_config({
-    "mcchrish/zenbones.nvim",
-    colors_names = {
-      "duckbones",
-      "forestbones",
-      "kanagawabones",
-      "neobones",
-      "nordbones",
-      "rosebones",
-      "seoulbones",
-      "tokyobones",
-      "zenbones",
-      "zenburned",
-      "zenwritten",
-    },
-  }, function(colors_name)
-    local palette = require(colors_name .. ".palette")
-
-    return rainbow_delimiter_highlights({
-      palette.dark.rose.hex,
-      palette.dark.wood.hex,
-      palette.dark.water.hex,
-      palette.dark.fg.hex,
-      palette.dark.leaf.hex,
-      palette.dark.blossom.hex,
-      palette.dark.sky.hex,
-    })
-  end),
 }, function(colorscheme_spec)
   colorscheme_spec.lazy = true
   colorscheme_spec.priority = 1000
