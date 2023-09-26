@@ -3,58 +3,6 @@ local Input = require("nui.input")
 local Layout = require("nui.layout")
 local Popup = require("nui.popup")
 
-local update_commit_push = function(flags)
-  return function()
-    vim.cmd.update()
-
-    local input = Input({ border = "single" }, {
-      on_submit = function(commit_summary)
-        if commit_summary ~= "" then
-          async_run({
-            "sh",
-            "-c",
-            "git commit -"
-              .. flags
-              .. 'm "'
-              .. commit_summary:gsub('"', '\\"')
-              .. '" && git push',
-          })
-        end
-      end,
-      prompt = "Commit summary: ",
-    })
-
-    local unmount = input.unmount
-    input.unmount = function(self)
-      if self._.loading then
-        return
-      end
-
-      unmount(self)
-    end
-
-    local term = Popup({ border = "single" })
-
-    vim.api.nvim_buf_call(term.bufnr, function()
-      vim.b.leave_open = true
-      vim.fn.termopen("git diff | delta --pager never")
-    end)
-
-    local layout = Layout(
-      {
-        position = "50%",
-        size = "90%",
-      },
-      Layout.Box({
-        Layout.Box(input, { size = 3 }),
-        Layout.Box(term, { grow = 1 }),
-      }, { dir = "col" })
-    )
-
-    layout:mount()
-  end
-end
-
 vim.keymap.del("x", "j")
 vim.keymap.del("x", "k")
 
@@ -65,19 +13,63 @@ vim.keymap.set(
   { desc = "Delete other buffers" }
 )
 
-vim.keymap.set(
-  "n",
-  "<leader>ga",
-  update_commit_push("a"),
-  { desc = "Git commit all" }
-)
+vim.keymap.set("n", "<leader>gc", function()
+  vim.cmd.update()
 
-vim.keymap.set(
-  "n",
-  "<leader>gc",
-  update_commit_push(""),
-  { desc = "Git commit" }
-)
+  local has_staged = vim
+    .system({ "git", "diff", "--cached", "--quiet" })
+    :wait().code ~= 0
+
+  local input = Input({ border = "single" }, {
+    on_submit = function(commit_summary)
+      if commit_summary ~= "" then
+        async_run({
+          "sh",
+          "-c",
+          "git commit -"
+            .. (has_staged and "" or "a")
+            .. 'm "'
+            .. commit_summary:gsub('"', '\\"')
+            .. '" && git push',
+        })
+      end
+    end,
+    prompt = "Commit summary: ",
+  })
+
+  local unmount = input.unmount
+  input.unmount = function(self)
+    if self._.loading then
+      return
+    end
+
+    unmount(self)
+  end
+
+  local term = Popup({ border = "single" })
+
+  vim.api.nvim_buf_call(term.bufnr, function()
+    vim.b.leave_open = true
+    vim.fn.termopen(
+      "git diff"
+        .. (has_staged and " --cached" or "")
+        .. " | delta --pager never"
+    )
+  end)
+
+  local layout = Layout(
+    {
+      position = "50%",
+      size = "90%",
+    },
+    Layout.Box({
+      Layout.Box(input, { size = 3 }),
+      Layout.Box(term, { grow = 1 }),
+    }, { dir = "col" })
+  )
+
+  layout:mount()
+end, { desc = "Git commit" })
 
 vim.keymap.set("n", "<leader>gP", function()
   async_run({ "git", "push" })
