@@ -13,6 +13,12 @@ vim.keymap.set(
   { desc = "Delete other buffers" }
 )
 
+local delete_trailing_blank_lines = function(bufnr)
+  while vim.api.nvim_buf_get_lines(bufnr, -2, -1, true)[1] == "" do
+    vim.api.nvim_buf_set_lines(bufnr, -2, -1, true, {})
+  end
+end
+
 vim.keymap.set("n", "<leader>k", function()
   if
     vim
@@ -27,9 +33,6 @@ vim.keymap.set("n", "<leader>k", function()
     return
   end
 
-  local has_staged = vim
-    .system({ "git", "diff", "--cached", "--quiet" })
-    :wait().code ~= 0
   local current_bufnr = vim.fn.bufnr("%")
   vim.cmd.bufdo("update")
   vim.api.nvim_set_current_buf(current_bufnr --[[@as integer]])
@@ -41,7 +44,6 @@ vim.keymap.set("n", "<leader>k", function()
           "sh",
           "-c",
           "git commit -"
-            .. (has_staged and "" or "a")
             .. 'm "'
             .. commit_summary:gsub('"', '\\"')
             .. '" && git push',
@@ -107,54 +109,39 @@ vim.keymap.set("n", "<leader>k", function()
   local term_bufnr = term.bufnr
 
   vim.api.nvim_buf_call(term_bufnr, function()
-    vim.fn.termopen(
-      "git diff"
-        .. (has_staged and " --cached" or "")
-        .. " | delta --pager never",
-      {
-        on_exit = function()
-          local interval = 1
-          local timer = vim.uv.new_timer()
+    vim.fn.termopen("git diff --cached | delta --pager never", {
+      on_exit = function()
+        local interval = 10
+        local timer = vim.uv.new_timer()
 
-          timer:start(
-            interval,
-            interval,
-            vim.schedule_wrap(function()
-              if vim.api.nvim_buf_is_valid(term_bufnr) then
-                if
-                  vim.api.nvim_buf_get_lines(term_bufnr, -2, -1, true)[1]
-                  ~= "[Process exited 0]"
-                then
-                  return
-                end
+        timer:start(
+          interval,
+          interval,
+          vim.schedule_wrap(function()
+            if vim.api.nvim_buf_is_valid(term_bufnr) then
+              vim.api.nvim_buf_set_option(term_bufnr, "modifiable", true)
 
-                vim.api.nvim_buf_set_option(term_bufnr, "modifiable", true)
+              delete_trailing_blank_lines(term_bufnr)
 
-                vim.api.nvim_buf_set_lines(term_bufnr, -2, -1, true, {})
-
-                while
-                  vim.api.nvim_buf_get_lines(term_bufnr, -2, -1, true)[1]
-                  == ""
-                do
-                  vim.api.nvim_buf_set_lines(term_bufnr, -2, -1, true, {})
-                end
-
-                vim.api.nvim_buf_set_option(term_bufnr, "modifiable", false)
+              if
+                vim.api.nvim_buf_get_lines(term_bufnr, -2, -1, true)[1]
+                ~= "[Process exited 0]"
+              then
+                return
               end
 
-              timer:close()
-            end)
-          )
-        end,
-        on_stdout = function()
-          if vim.api.nvim_buf_get_lines(term_bufnr, 0, 1, true)[1] == "" then
-            vim.api.nvim_buf_set_option(term_bufnr, "modifiable", true)
-            vim.api.nvim_buf_set_lines(term_bufnr, 0, 1, true, {})
-            vim.api.nvim_buf_set_option(term_bufnr, "modifiable", false)
-          end
-        end,
-      }
-    )
+              vim.api.nvim_buf_set_lines(term_bufnr, -2, -1, true, {})
+
+              delete_trailing_blank_lines(term_bufnr)
+
+              vim.api.nvim_buf_set_option(term_bufnr, "modifiable", false)
+            end
+
+            timer:close()
+          end)
+        )
+      end,
+    })
   end)
 end, { desc = "Git commit" })
 
