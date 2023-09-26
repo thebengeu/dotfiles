@@ -48,15 +48,6 @@ vim.keymap.set("n", "<leader>gc", function()
 
   local term = Popup({ border = "single" })
 
-  vim.api.nvim_buf_call(term.bufnr, function()
-    vim.b.leave_open = true
-    vim.fn.termopen(
-      "git diff"
-        .. (has_staged and " --cached" or "")
-        .. " | delta --pager never"
-    )
-  end)
-
   input:map("i", "<C-b>", function()
     vim.api.nvim_win_set_cursor(term.winid, {
       math.max(
@@ -82,7 +73,10 @@ vim.keymap.set("n", "<leader>gc", function()
   local layout = Layout(
     {
       position = "50%",
-      size = "90%",
+      size = {
+        height = "100%",
+        width = 80,
+      },
     },
     Layout.Box({
       Layout.Box(input, { size = 3 }),
@@ -91,6 +85,15 @@ vim.keymap.set("n", "<leader>gc", function()
   )
 
   layout:mount()
+
+  vim.api.nvim_buf_call(term.bufnr, function()
+    vim.b.leave_open = true
+    vim.fn.termopen(
+      "git diff"
+        .. (has_staged and " --cached" or "")
+        .. " | delta --pager never"
+    )
+  end)
 end, { desc = "Git commit" })
 
 vim.keymap.set("n", "<leader>gP", function()
