@@ -14,6 +14,18 @@ vim.keymap.set(
 )
 
 vim.keymap.set("n", "<leader>k", function()
+  if
+    vim
+      .system({
+        "sh",
+        "-c",
+        "git diff --cached --quiet && git add --all && git diff --cached --quiet",
+      })
+      :wait().code == 0
+  then
+    vim.notify("No changes found", vim.log.levels.WARN)
+    return
+  end
 
   local has_staged = vim
     .system({ "git", "diff", "--cached", "--quiet" })
