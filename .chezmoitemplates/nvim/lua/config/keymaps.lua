@@ -51,6 +51,7 @@ vim.keymap.set("n", "<leader>k", function()
   local layout = Layout(
     {
       position = "50%",
+      relative = "editor",
       size = {
         height = "100%",
         width = 80,
