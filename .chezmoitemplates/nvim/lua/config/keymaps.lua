@@ -13,7 +13,7 @@ vim.keymap.set(
   { desc = "Delete other buffers" }
 )
 
-vim.keymap.set("n", "<leader>gc", function()
+vim.keymap.set("n", "<leader>k", function()
   vim.cmd.update()
 
   local has_staged = vim
