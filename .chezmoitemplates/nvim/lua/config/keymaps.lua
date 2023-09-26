@@ -1,14 +1,57 @@
 local async_run = require("util").async_run
+local Input = require("nui.input")
+local Layout = require("nui.layout")
+local Popup = require("nui.popup")
 
 local update_commit_push = function(flags)
   return function()
     vim.cmd.update()
-    local commit_summary = vim.fn.input("Commit summary: "):gsub('"', '\\"')
-    async_run({
-      "sh",
-      "-c",
-      "git commit -" .. flags .. 'm "' .. commit_summary .. '" && git push',
+
+    local input = Input({ border = "single" }, {
+      on_submit = function(commit_summary)
+        if commit_summary ~= "" then
+          async_run({
+            "sh",
+            "-c",
+            "git commit -"
+              .. flags
+              .. 'm "'
+              .. commit_summary:gsub('"', '\\"')
+              .. '" && git push',
+          })
+        end
+      end,
+      prompt = "Commit summary: ",
     })
+
+    local unmount = input.unmount
+    input.unmount = function(self)
+      if self._.loading then
+        return
+      end
+
+      unmount(self)
+    end
+
+    local term = Popup({ border = "single" })
+
+    vim.api.nvim_buf_call(term.bufnr, function()
+      vim.b.leave_open = true
+      vim.fn.termopen("git diff | delta --pager never")
+    end)
+
+    local layout = Layout(
+      {
+        position = "50%",
+        size = "90%",
+      },
+      Layout.Box({
+        Layout.Box(input, { size = 3 }),
+        Layout.Box(term, { grow = 1 }),
+      }, { dir = "col" })
+    )
+
+    layout:mount()
   end
 end
 
