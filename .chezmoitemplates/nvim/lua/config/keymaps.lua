@@ -60,6 +60,12 @@ vim.keymap.set("n", "]<Space>", function()
   vim.fn.append(vim.fn.line("."), "")
 end, { desc = "Add blank line below" })
 
+-- https://nanotipsforvim.prose.sh/keeping-your-register-clean-from-dd
+vim.keymap.set("n", "c", '"_c')
+vim.keymap.set("n", "dd", function()
+  return vim.fn.getline(".") == "" and '"_dd' or "dd"
+end, { expr = true })
+
 vim.keymap.set("n", "u", "<Cmd>silent undo<CR>")
 
 vim.keymap.set("n", "<leader>cu", function()
