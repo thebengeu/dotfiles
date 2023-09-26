@@ -490,5 +490,6 @@ return util.map({
   end),
 }, function(colorscheme_spec)
   colorscheme_spec.lazy = true
+  colorscheme_spec.priority = 1000
   return colorscheme_spec
 end)
