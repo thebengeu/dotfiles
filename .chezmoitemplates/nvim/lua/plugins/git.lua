@@ -1,3 +1,5 @@
+local util = require("util")
+
 return {
   {
     "sindrets/diffview.nvim",
@@ -42,7 +44,7 @@ return {
 
         local gs_visual = function(operation)
           return function()
-            gs[operation]({ vim.fn.line("."), vim.fn.line("v") })
+            gs[operation](util.visual_lines())
           end
         end
 
