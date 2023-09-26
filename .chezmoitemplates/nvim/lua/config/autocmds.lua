@@ -19,7 +19,9 @@ vim.api.nvim_create_autocmd("TextChanged", {
 
 vim.api.nvim_create_autocmd("TermClose", {
   callback = function(args)
-    if vim.v.event.status == 0 then
+    if
+      not vim.fn.getbufvar(args.buf, "leave_open") and vim.v.event.status == 0
+    then
       vim.cmd.bdelete({ args.buf, bang = true })
     end
   end,
