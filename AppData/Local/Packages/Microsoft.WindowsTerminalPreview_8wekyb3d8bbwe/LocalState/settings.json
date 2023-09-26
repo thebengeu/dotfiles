@@ -7,9 +7,17 @@
             "command": 
             {
                 "action": "switchToTab",
-                "index": 7
+                "index": 0
             },
-            "keys": "ctrl+shift+8"
+            "keys": "ctrl+shift+1"
+        },
+        {
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 4
+            },
+            "keys": "ctrl+shift+5"
         },
         {
             "command": "unbound",
@@ -51,17 +59,9 @@
             "command": 
             {
                 "action": "switchToTab",
-                "index": 4
+                "index": 7
             },
-            "keys": "ctrl+shift+5"
-        },
-        {
-            "command": 
-            {
-                "action": "switchToTab",
-                "index": 0
-            },
-            "keys": "ctrl+shift+1"
+            "keys": "ctrl+shift+8"
         },
         {
             "command": 
@@ -170,18 +170,6 @@
                 "source": "Windows.Terminal.PowershellCore"
             },
             {
-                "guid": "{6fde321e-eb35-5ccf-b20d-0b09a6e95ee9}",
-                "hidden": false,
-                "name": "Developer Command Prompt for VS 2022",
-                "source": "Windows.Terminal.VisualStudio"
-            },
-            {
-                "guid": "{9134b8df-82cf-5e33-8b46-4a13a18f7dfd}",
-                "hidden": false,
-                "name": "Developer PowerShell for VS 2022",
-                "source": "Windows.Terminal.VisualStudio"
-            },
-            {
                 "guid": "{aab79973-318f-43b6-a9bc-b4096493753f}",
                 "hidden": false,
                 "name": "Nushell",
@@ -205,6 +193,18 @@
                 "hidden": false,
                 "name": "Fish",
                 "startingDirectory": "%USERPROFILE%"
+            },
+            {
+                "guid": "{55472544-8fa7-5a2c-9fb2-9e081fa9b68a}",
+                "hidden": false,
+                "name": "Developer Command Prompt for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{8b895c13-a774-5f12-ad18-315ae3d66c5a}",
+                "hidden": false,
+                "name": "Developer PowerShell for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
             }
         ]
     },
