@@ -43,24 +43,6 @@ end
 
 return util.map({
   { "ribru17/bamboo.nvim" },
-  add_colorscheme_autocmds_on_config({
-    "uloco/bluloco.nvim",
-    dependencies = { "rktjmp/lush.nvim" },
-    opts = {
-      italics = true,
-      terminal = true,
-    },
-  }, function()
-    return rainbow_delimiter_highlights({
-      vim.g.terminal_color_1,
-      vim.g.terminal_color_11,
-      vim.g.terminal_color_4,
-      vim.g.terminal_color_3,
-      vim.g.terminal_color_2,
-      vim.g.terminal_color_5,
-      vim.g.terminal_color_6,
-    })
-  end),
   {
     "catppuccin",
     colors_names = {
