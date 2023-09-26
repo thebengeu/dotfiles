@@ -94,7 +94,7 @@ return {
               end
 
               vim.schedule(function()
-                vim.keymap.set("n", "<space>fc", function()
+                vim.keymap.set("n", "<leader>fc", function()
                   vim.cmd.edit(path)
                 end, {
                   buffer = 0,

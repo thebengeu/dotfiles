@@ -8,7 +8,7 @@ vim.keymap.del("x", "k")
 
 vim.keymap.set(
   "n",
-  "<space>bo",
+  "<leader>bo",
   "<Cmd>%bd|e#|bd#<CR>",
   { desc = "Delete other buffers" }
 )

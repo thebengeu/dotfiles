@@ -6,7 +6,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 
 vim.api.nvim_create_autocmd("BufReadPost", {
   callback = function()
-    vim.keymap.set("x", "<Space>cL", function()
+    vim.keymap.set("x", "<leader>cL", function()
       pcall(
         loadstring(
           table.concat(

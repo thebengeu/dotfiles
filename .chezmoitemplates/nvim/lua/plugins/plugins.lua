@@ -13,12 +13,12 @@ return {
     "rmagatti/auto-session",
     keys = {
       {
-        "<space>qd",
+        "<leader>qd",
         "<Cmd>Autosession delete<CR>",
         desc = "Delete Session",
       },
       {
-        "<space>ql",
+        "<leader>ql",
         function()
           require("auto-session").setup_session_lens()
           require("auto-session.session-lens").search_session()
@@ -287,7 +287,7 @@ return {
         ["<leader>h"] = "+hunks",
       },
       operators = {
-        ["<space>z"] = "Send to REPL",
+        ["<leader>cz"] = "Send to REPL",
       },
     },
   },

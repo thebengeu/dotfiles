@@ -3,23 +3,23 @@ return {
     "sindrets/diffview.nvim",
     keys = {
       {
-        "<Space>gF",
+        "<leader>gF",
         "<Cmd>DiffviewFileHistory<CR>",
         desc = "Diffview History",
       },
       {
-        "<Space>gf",
+        "<leader>gf",
         "<Cmd>DiffviewFileHistory %<CR>",
         desc = "Diffview File History",
       },
       {
-        "<Space>gf",
+        "<leader>gf",
         ":DiffviewFileHistory<CR>",
         desc = "Diffview Range History",
         mode = "x",
       },
       {
-        "<Space>gS",
+        "<leader>gS",
         "<Cmd>DiffviewFileHistory --walk-reflogs --range=stash<CR>",
         desc = "Diffview Stash",
       },
