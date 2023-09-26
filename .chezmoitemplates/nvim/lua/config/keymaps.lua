@@ -1,7 +1,7 @@
-local async_run = require("util").async_run
 local Input = require("nui.input")
 local Layout = require("nui.layout")
 local Popup = require("nui.popup")
+local util = require("util")
 
 vim.keymap.del("x", "j")
 vim.keymap.del("x", "k")
@@ -23,7 +23,7 @@ vim.keymap.set("n", "<leader>k", function()
   local input = Input({ border = "single" }, {
     on_submit = function(commit_summary)
       if commit_summary ~= "" then
-        async_run({
+        util.async_run({
           "sh",
           "-c",
           "git commit -"
@@ -48,32 +48,6 @@ vim.keymap.set("n", "<leader>k", function()
 
   local term = Popup({ border = "single" })
 
-  input:map("i", "<C-b>", function()
-    vim.api.nvim_win_set_cursor(term.winid, {
-      math.max(
-        vim.api.nvim_win_get_cursor(term.winid)[1]
-          - vim.fn.winheight(term.winid),
-        1
-      ),
-      1,
-    })
-  end)
-
-  input:map("i", "<C-f>", function()
-    vim.api.nvim_win_set_cursor(term.winid, {
-      math.min(
-        vim.api.nvim_win_get_cursor(term.winid)[1]
-          + vim.fn.winheight(term.winid),
-        vim.api.nvim_buf_line_count(term.bufnr)
-      ),
-      1,
-    })
-  end)
-
-  input:map("n", "<Esc>", function()
-    input:unmount()
-  end)
-
   local layout = Layout(
     {
       position = "50%",
@@ -88,6 +62,31 @@ vim.keymap.set("n", "<leader>k", function()
     }, { dir = "col" })
   )
 
+  term:map("n", "<Esc>", function()
+    layout:unmount()
+  end)
+
+  term:map("n", "<C-k>", function()
+    vim.api.nvim_set_current_win(input.winid)
+  end)
+
+  for _, key in ipairs({ "b", "d", "e", "f", "u", "y" }) do
+    local ctrl_key = "<C-" .. key .. ">"
+    input:map("i", ctrl_key, function()
+      vim.fn.win_execute(term.winid, 'execute "normal \\' .. ctrl_key .. '"')
+    end)
+  end
+
+  for _, mode in ipairs({ "i", "n" }) do
+    input:map(mode, "<C-j>", function()
+      vim.api.nvim_set_current_win(term.winid)
+    end)
+  end
+
+  input:map("n", "<Esc>", function()
+    layout:unmount()
+  end)
+
   layout:mount()
 
   vim.api.nvim_buf_call(term.bufnr, function()
@@ -101,11 +100,11 @@ vim.keymap.set("n", "<leader>k", function()
 end, { desc = "Git commit" })
 
 vim.keymap.set("n", "<leader>gP", function()
-  async_run({ "git", "push" })
+  util.async_run({ "git", "push" })
 end, { desc = "Git push" })
 
 vim.keymap.set("n", "<leader>gp", function()
-  async_run({ "git", "pull" })
+  util.async_run({ "git", "pull" })
 end, { desc = "Git pull" })
 
 vim.keymap.set("n", "<leader>um", function()
@@ -133,7 +132,7 @@ end, { expr = true })
 vim.keymap.set("n", "u", "<Cmd>silent undo<CR>")
 
 vim.keymap.set("n", "<leader>cu", function()
-  async_run({
+  util.async_run({
     "sh",
     "-c",
     "chezmoi update --apply=false; chezmoi init; chezmoi apply --exclude scripts; chezmoi apply --include scripts",
