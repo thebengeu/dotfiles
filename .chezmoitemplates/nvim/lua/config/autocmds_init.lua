@@ -1,3 +1,5 @@
+local util = require("util")
+
 vim.api.nvim_create_autocmd("BufReadPost", {
   callback = function()
     vim.cmd.syntax("match", "CR", "/\r$/", "conceal")
@@ -7,16 +9,14 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 vim.api.nvim_create_autocmd("BufReadPost", {
   callback = function()
     vim.keymap.set("x", "<leader>cL", function()
+      local lines = util.visual_lines()
+
+      ---@cast lines -nil
       pcall(
         loadstring(
           table.concat(
             (
-              vim.fn.getline(
-                (
-                  vim.fn.line("'<") --[[@as integer]]
-                ),
-                vim.fn.line("'>")
-              ) --[=[@as string[]]=]
+              vim.fn.getline(lines[1], lines[2]) --[=[@as string[]]=]
             ),
             "\n"
           )

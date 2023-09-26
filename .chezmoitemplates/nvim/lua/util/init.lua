@@ -84,4 +84,12 @@ exports.normname = function(name)
   return (name:gsub("[%.%-]?nvim%-?", ""))
 end
 
+exports.visual_lines = function()
+  local lines = { vim.fn.line("v"), vim.fn.line(".") }
+
+  table.sort(lines)
+
+  return lines
+end
+
 return exports
