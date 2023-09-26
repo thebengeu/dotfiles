@@ -14,11 +14,13 @@ vim.keymap.set(
 )
 
 vim.keymap.set("n", "<leader>k", function()
-  vim.cmd.update()
 
   local has_staged = vim
     .system({ "git", "diff", "--cached", "--quiet" })
     :wait().code ~= 0
+  local current_bufnr = vim.fn.bufnr("%")
+  vim.cmd.bufdo("update")
+  vim.api.nvim_set_current_buf(current_bufnr --[[@as integer]])
 
   local input = Input({ border = "single" }, {
     on_submit = function(commit_summary)
