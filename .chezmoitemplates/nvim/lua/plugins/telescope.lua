@@ -88,8 +88,6 @@ return {
           "<Cmd>Telescope git_bcommits<CR>",
           desc = "Buffer commits",
         },
-        { "<leader>gC", "<Cmd>Telescope git_commits<CR>", desc = "Commits" },
-        { "<leader>gc" },
         {
           "<leader>gr",
           "<Cmd>Telescope git_bcommits_range<CR>",
