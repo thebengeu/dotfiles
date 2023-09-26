@@ -91,7 +91,6 @@ vim.keymap.set("n", "<leader>k", function()
   layout:mount()
 
   vim.api.nvim_buf_call(term.bufnr, function()
-    vim.b.leave_open = true
     vim.fn.termopen(
       "git diff"
         .. (has_staged and " --cached" or "")

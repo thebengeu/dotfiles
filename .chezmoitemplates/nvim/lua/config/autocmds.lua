@@ -17,16 +17,6 @@ vim.api.nvim_create_autocmd("TextChanged", {
   pattern = "*.lua",
 })
 
-vim.api.nvim_create_autocmd("TermClose", {
-  callback = function(args)
-    if
-      not vim.fn.getbufvar(args.buf, "leave_open") and vim.v.event.status == 0
-    then
-      vim.cmd.bdelete({ args.buf, bang = true })
-    end
-  end,
-})
-
 local wezterm_set_user_var = function(name, value)
   local set_user_var = "\x1b]1337;SetUserVar="
     .. name
