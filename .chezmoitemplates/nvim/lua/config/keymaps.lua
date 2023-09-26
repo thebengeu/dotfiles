@@ -69,7 +69,7 @@ vim.keymap.set("n", "<leader>k", function()
       position = "50%",
       relative = "editor",
       size = {
-        height = "100%",
+        height = "90%",
         width = 80,
       },
     },
