@@ -70,6 +70,10 @@ vim.keymap.set("n", "<leader>gc", function()
     })
   end)
 
+  input:map("n", "<Esc>", function()
+    input:unmount()
+  end)
+
   local layout = Layout(
     {
       position = "50%",
