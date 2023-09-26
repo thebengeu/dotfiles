@@ -57,6 +57,28 @@ vim.keymap.set("n", "<leader>gc", function()
     )
   end)
 
+  input:map("i", "<C-b>", function()
+    vim.api.nvim_win_set_cursor(term.winid, {
+      math.max(
+        vim.api.nvim_win_get_cursor(term.winid)[1]
+          - vim.fn.winheight(term.winid),
+        1
+      ),
+      1,
+    })
+  end)
+
+  input:map("i", "<C-f>", function()
+    vim.api.nvim_win_set_cursor(term.winid, {
+      math.min(
+        vim.api.nvim_win_get_cursor(term.winid)[1]
+          + vim.fn.winheight(term.winid),
+        vim.api.nvim_buf_line_count(term.bufnr)
+      ),
+      1,
+    })
+  end)
+
   local layout = Layout(
     {
       position = "50%",
