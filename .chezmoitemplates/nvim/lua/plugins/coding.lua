@@ -132,7 +132,7 @@ return vim.list_extend(
             ),
           },
           keymaps = {
-            send_motion = "<space>cz",
+            send_motion = "<leader>cz",
             visual_send = "<C-z>",
           },
         })
@@ -175,14 +175,14 @@ return vim.list_extend(
             vim.api.nvim_win_set_cursor(0, cursor)
           end,
         },
-        { "<space>cR", "<Cmd>IronRepl<CR>", desc = "REPL" },
-        { "<space>cz", desc = "Send to REPL" },
+        { "<leader>cR", "<Cmd>IronRepl<CR>", desc = "REPL" },
+        { "<leader>cz", desc = "Send to REPL" },
       },
     },
     {
       "rafcamlet/nvim-luapad",
       keys = {
-        { "<space>cL", "<Cmd>Luapad<CR>", desc = "Luapad" },
+        { "<leader>cL", "<Cmd>Luapad<CR>", desc = "Luapad" },
       },
     },
     {
@@ -322,7 +322,7 @@ return vim.list_extend(
       init = function()
         vim.api.nvim_create_autocmd("FileType", {
           callback = function()
-            vim.keymap.set("n", "<space>cq", function()
+            vim.keymap.set("n", "<leader>cq", function()
               local cursor = vim.api.nvim_win_get_cursor(0)
               local current_row = cursor[1]
 
@@ -344,7 +344,7 @@ return vim.list_extend(
               buffer = 0,
               desc = "Query DB",
             })
-            vim.keymap.set("x", "<space>cq", ":DB<CR>", {
+            vim.keymap.set("x", "<leader>cq", ":DB<CR>", {
               buffer = 0,
               desc = "Query DB",
             })
