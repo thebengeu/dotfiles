@@ -31,4 +31,5 @@ end
 
 vim.opt.title = true
 vim.opt.titlestring = (vim.env.TITLE_PREFIX or "") .. "%F"
+vim.opt.winblend = 5
 vim.opt.wrap = true
