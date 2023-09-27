@@ -30,24 +30,27 @@ local set_colorscheme_style = function(index)
   end
 end
 
+local refresh_colorscheme = function(index)
+  set_colorscheme_style(index)
+  vim.cmd.colorscheme(colorscheme[1])
+  require("lualine").refresh()
+end
+
 math.randomseed(os.time())
 set_colorscheme_style(math.random(#colorschemes))
 
 vim.keymap.set("n", "<leader>uR", function()
-  set_colorscheme_style(math.random(#colorschemes))
-  vim.cmd.colorscheme(colorscheme[1])
+  refresh_colorscheme(math.random(#colorschemes))
 end, { desc = "Randomise Colorscheme" })
 vim.keymap.set("n", "[S", function()
-  set_colorscheme_style(
+  refresh_colorscheme(
     colorscheme_index == 1 and #colorschemes or colorscheme_index - 1
   )
-  vim.cmd.colorscheme(colorscheme[1])
 end, { desc = "Colorscheme backward" })
 vim.keymap.set("n", "]S", function()
-  set_colorscheme_style(
+  refresh_colorscheme(
     colorscheme_index == #colorschemes and 1 or colorscheme_index + 1
   )
-  vim.cmd.colorscheme(colorscheme[1])
 end, { desc = "Colorscheme forward" })
 
 return {
