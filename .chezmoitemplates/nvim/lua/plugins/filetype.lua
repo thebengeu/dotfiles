@@ -76,7 +76,7 @@ return {
           end
 
           vim.system(
-            { "chezmoi", source_or_target .. "-path", buf_name },
+            { "chezmoi", source_or_target:lower() .. "-path", buf_name },
             nil,
             function(system_obj)
               if system_obj.code ~= 0 then
