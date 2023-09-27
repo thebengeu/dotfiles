@@ -126,11 +126,12 @@ return {
                   height = #colorschemes + 5,
                   width = 30,
                 },
+                prompt_title = "Colorschemes",
                 sorter = require("telescope.config").values.generic_sorter(),
               })
               :find()
           end,
-          desc = "Colorscheme",
+          desc = "Colorschemes",
         },
       })
     end,
