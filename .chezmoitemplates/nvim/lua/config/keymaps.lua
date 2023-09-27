@@ -19,25 +19,36 @@ local delete_trailing_blank_lines = function(bufnr)
   end
 end
 
+local system_sh_code = function(cmd)
+  return vim.system({ "sh", "-c", cmd }):wait().code
+end
+
 vim.keymap.set("n", "<leader>k", function()
+  vim.cmd.update()
+
+  local has_staged = system_sh_code("git diff --cached --quiet") ~= 0
+
   if
-    vim
-      .system({
-        "sh",
-        "-c",
-        "git diff --cached --quiet && git add --all && git diff --cached --quiet",
-      })
-      :wait().code == 0
+    not has_staged
+    and system_sh_code("git add --all && git diff --cached --quiet") == 0
   then
     vim.notify("No changes found", vim.log.levels.WARN)
     return
   end
 
-  local current_bufnr = vim.fn.bufnr("%")
-  vim.cmd.bufdo("update")
-  vim.api.nvim_set_current_buf(current_bufnr --[[@as integer]])
+  local popup_options = {
+    border = "rounded",
+    win_options = {
+      winhighlight = "FloatBorder:Normal,Normal:Normal",
+    },
+  }
 
-  local input = Input({ border = "single" }, {
+  local input = Input(vim.deepcopy(popup_options), {
+    on_close = function()
+      if not has_staged then
+        vim.system({ "git", "reset" })
+      end
+    end,
     on_submit = function(commit_summary)
       if commit_summary ~= "" then
         util.async_run({
@@ -62,7 +73,7 @@ vim.keymap.set("n", "<leader>k", function()
     unmount(self)
   end
 
-  local term = Popup({ border = "single" })
+  local term = Popup(vim.deepcopy(popup_options))
 
   local layout = Layout(
     {
