@@ -76,6 +76,7 @@ aliases: {
 		p:   "pull"
 		rh:  "reset --hard HEAD"
 		s:   "s"
+		w:   "wip"
 	}
 	_gitAliases: {
 		aa:  "add -A"
