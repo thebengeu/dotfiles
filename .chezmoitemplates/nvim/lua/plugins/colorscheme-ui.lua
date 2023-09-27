@@ -122,6 +122,10 @@ return {
                     }
                   end,
                 }),
+                layout_config = {
+                  height = #colorschemes + 5,
+                  width = 30,
+                },
                 sorter = require("telescope.config").values.generic_sorter(),
               })
               :find()
