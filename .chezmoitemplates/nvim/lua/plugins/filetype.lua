@@ -1,4 +1,4 @@
-local async_run = require("util").async_run
+local util = require("util")
 
 return {
   {
@@ -24,11 +24,16 @@ return {
           end
 
           if source_path:find("%.chezmoidata.cue") then
-            async_run({ "chezmoi", "apply", "--include", "templates" })
+            util.async_run({ "chezmoi", "apply", "--include", "templates" })
           elseif source_path:find("%.chezmoiexternal.cue") then
-            async_run({ "chezmoi", "apply", "--include", "externals" })
+            util.async_run({ "chezmoi", "apply", "--include", "externals" })
           elseif source_path:find("%.cue") then
-            async_run({ "chezmoi", "apply", "--include", "externals,templates" })
+            util.async_run({
+              "chezmoi",
+              "apply",
+              "--include",
+              "externals,templates",
+            })
           elseif source_path:find("%.chezmoitemplates") then
             local chezmoi_source_dir = " ~/.local/share/chezmoi/"
             local app_data_if_windows = jit.os == "Windows"
@@ -39,17 +44,13 @@ return {
               .. app_data_if_windows
               .. chezmoi_source_dir
               .. "dot_config | sort | head -n1)"
-            async_run({
-              "sh",
-              "-c",
-              "chezmoi apply --source-path " .. source_path,
-            })
+            util.async_run_sh("chezmoi apply --source-path " .. source_path)
           elseif source_path:find("%.chezmoi%.yaml%.tmpl") then
-            async_run({ "chezmoi", "init" })
+            util.async_run({ "chezmoi", "init" })
           elseif source_path:find("chezmoi[/\\]%.") then
-            async_run({ "chezmoi", "apply" })
+            util.async_run({ "chezmoi", "apply" })
           else
-            async_run({
+            util.async_run({
               "chezmoi",
               "apply",
               "--source-path",
