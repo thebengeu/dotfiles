@@ -51,14 +51,12 @@ vim.keymap.set("n", "<leader>k", function()
     end,
     on_submit = function(commit_summary)
       if commit_summary ~= "" then
-        util.async_run({
-          "sh",
-          "-c",
+        util.async_run_sh(
           "git commit -"
             .. 'm "'
             .. commit_summary:gsub('"', '\\"')
-            .. '" && git push',
-        })
+            .. '" && git push'
+        )
       end
     end,
     prompt = "Commit summary: ",
@@ -213,11 +211,9 @@ end, { expr = true })
 vim.keymap.set("n", "u", "<Cmd>silent undo<CR>")
 
 vim.keymap.set("n", "<leader>cu", function()
-  util.async_run({
-    "sh",
-    "-c",
-    "chezmoi update --apply=false; chezmoi init; chezmoi apply --exclude scripts; chezmoi apply --include scripts",
-  })
+  util.async_run_sh(
+    "chezmoi update --apply=false; chezmoi init; chezmoi apply --exclude scripts; chezmoi apply --include scripts"
+  )
 end, { desc = "Chezmoi update" })
 
 -- https://nanotipsforvim.prose.sh/repeated-v-in-visual-line-mode
