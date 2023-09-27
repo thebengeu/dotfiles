@@ -79,17 +79,34 @@ return {
         {
           "<leader>uC",
           function()
+            local actions = require("telescope.actions")
+            local action_set = require("telescope.actions.set")
+            local actions_state = require("telescope.actions.state")
+
             require("telescope.pickers")
               .new({ sorting_strategy = "ascending" }, {
                 attach_mappings = function(prompt_bufnr)
-                  local actions = require("telescope.actions")
+                  local selected_index = colorscheme_index
+
+                  action_set.shift_selection:enhance({
+                    post = function()
+                      refresh_colorscheme(
+                        actions_state.get_selected_entry().index
+                      )
+                    end,
+                  })
+
                   actions.select_default:replace(function()
+                    selected_index = actions_state.get_selected_entry().index
                     actions.close(prompt_bufnr)
-                    local selection =
-                      require("telescope.actions.state").get_selected_entry()
-                    set_colorscheme_style(selection.index)
-                    vim.cmd.colorscheme(colorscheme[1])
                   end)
+
+                  actions.close:enhance({
+                    post = function()
+                      refresh_colorscheme(selected_index)
+                    end,
+                  })
+
                   return true
                 end,
                 finder = require("telescope.finders").new_table({
