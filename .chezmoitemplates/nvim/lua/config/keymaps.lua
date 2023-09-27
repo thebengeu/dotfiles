@@ -153,6 +153,10 @@ vim.keymap.set("n", "<leader>gp", function()
   util.async_run({ "git", "pull" })
 end, { desc = "Git pull" })
 
+vim.keymap.set("n", "<leader>gw", function()
+  util.async_run({ "git", "wip" })
+end, { desc = "Git commit WIP" })
+
 vim.keymap.set("n", "<leader>um", function()
   ---@diagnostic disable-next-line: undefined-field
   vim.opt.mouse = vim.opt.mouse:get().a and "" or "a"
