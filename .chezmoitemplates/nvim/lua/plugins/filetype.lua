@@ -63,48 +63,6 @@ return {
       vim.keymap.set("n", "<leader>ua", function()
         skip_chezmoi_apply = not skip_chezmoi_apply
       end, { desc = "Toggle Chezmoi Apply" })
-
-      vim.api.nvim_create_autocmd("BufReadPost", {
-        callback = function()
-          local buf_name = vim.api.nvim_buf_get_name(0)
-          local source_or_target = buf_name:find(
-            "[/\\]%.local[/\\]share[/\\]chezmoi[/\\]"
-          ) and "Target" or "Source"
-
-          if source_or_target == "Target" and not buf_name:find("%.tmpl$") then
-            return
-          end
-
-          vim.system(
-            { "chezmoi", source_or_target:lower() .. "-path", buf_name },
-            nil,
-            function(system_obj)
-              if system_obj.code ~= 0 then
-                return
-              end
-
-              local path = system_obj.stdout:gsub("\n", "")
-
-              if
-                source_or_target == "Target"
-                  and vim.fn.filereadable(path) == 0
-                or not buf_name:find("%.tmpl$")
-              then
-                return
-              end
-
-              vim.schedule(function()
-                vim.keymap.set("n", "<leader>fc", function()
-                  vim.cmd.edit(path)
-                end, {
-                  buffer = 0,
-                  desc = "Chezmoi Edit " .. source_or_target,
-                })
-              end)
-            end
-          )
-        end,
-      })
     end,
   },
   {
