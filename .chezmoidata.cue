@@ -171,6 +171,7 @@ aliases: {
 	}
 }
 environmentVariables: {
+	BAT_THEME:         "Catppuccin-mocha"
 	DIRENV_LOG_FORMAT: ""
 	EDITOR:            "nvim"
 	EJSON_KEYDIR:      "$HOME/.config/ejson/keys"
