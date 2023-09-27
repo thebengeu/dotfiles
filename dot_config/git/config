@@ -7,7 +7,10 @@
 	pager = delta
 [delta]
 	navigate = true
-	theme = Catppuccin-mocha
+	minus-emph-style = normal "#3E4B6B"
+	minus-style = normal "#443244"
+	plus-emph-style = syntax "#3E4B6B"
+	plus-style = syntax "#364143"
 [diff]
 	colorMoved = default
 [init]
