@@ -133,6 +133,7 @@ aliases: {
 
 	{
 		linux: {
+			aar:         "sudo apt autoremove"
 			ai:          "sudo apt install"
 			ar:          "sudo apt remove"
 			fd:          "fd --hidden"
