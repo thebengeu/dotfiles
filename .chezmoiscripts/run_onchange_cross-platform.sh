@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 cargo install \
   cargo-update \
+  du-dust \
   hyperfine \
   lsd \
   onefetch \
