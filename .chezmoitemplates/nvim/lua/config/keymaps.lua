@@ -87,10 +87,14 @@ vim.keymap.set("n", "<leader>k", function()
     vim.api.nvim_set_current_win(input.winid)
   end)
 
+  local term_win_exec_normal = function(key)
+    vim.fn.win_execute(term.winid, 'execute "normal \\' .. key .. '"')
+  end
+
   for _, key in ipairs({ "b", "d", "e", "f", "u", "y" }) do
     local ctrl_key = "<C-" .. key .. ">"
     input:map("i", ctrl_key, function()
-      vim.fn.win_execute(term.winid, 'execute "normal \\' .. ctrl_key .. '"')
+      term_win_exec_normal(ctrl_key)
     end)
   end
 
@@ -140,6 +144,22 @@ vim.keymap.set("n", "<leader>k", function()
             timer:close()
           end)
         )
+      end,
+      on_stdout = function()
+        local first_visible_line_num = vim.fn.line("w0", term.winid)
+
+        if
+          first_visible_line_num
+          and vim.api.nvim_buf_get_lines(
+              term_bufnr,
+              first_visible_line_num - 1,
+              first_visible_line_num,
+              true
+            )[1]
+            == ""
+        then
+          term_win_exec_normal("<C-e>")
+        end
       end,
     })
   end)
