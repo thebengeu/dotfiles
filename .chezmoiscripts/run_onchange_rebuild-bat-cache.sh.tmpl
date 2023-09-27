@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+{{ range joinPath .chezmoi.sourceDir ".chezmoitemplates/bat/themes/*" | glob }}
+# {{ include . | sha1sum }}
+{{ end}}
+bat cache --build
