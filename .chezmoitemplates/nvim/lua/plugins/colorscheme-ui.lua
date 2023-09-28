@@ -19,6 +19,13 @@ for _, spec in ipairs(colorscheme_specs) do
   end
 end
 
+local max_colorscheme_name_length = 0
+
+for _, colorscheme in ipairs(colorschemes) do
+  max_colorscheme_name_length =
+    math.max(#table.concat(colorscheme, "-"), max_colorscheme_name_length)
+end
+
 local colorscheme_index
 local colorscheme
 
@@ -125,7 +132,7 @@ return {
                 layout_config = {
                   anchor = "E",
                   height = #colorschemes + 5,
-                  width = 30,
+                  width = max_colorscheme_name_length + 6,
                 },
                 prompt_title = "Colorschemes",
                 sorter = require("telescope.config").values.generic_sorter(),
