@@ -13,7 +13,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 
       ---@cast lines -nil
       pcall(
-        loadstring(
+        load(
           table.concat(
             (
               vim.fn.getline(lines[1], lines[2]) --[=[@as string[]]=]
