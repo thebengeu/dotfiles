@@ -47,7 +47,9 @@ return {
           elseif source_path:find("%.chezmoi%.yaml%.tmpl") then
             util.async_run({ "chezmoi", "init" })
           elseif source_path:find("chezmoi[/\\]%.") then
-            util.async_run({ "chezmoi", "apply" })
+            util.async_run_sh(
+              "chezmoi apply --exclude scripts; chezmoi apply --include scripts"
+            )
           else
             util.async_run({
               "chezmoi",
