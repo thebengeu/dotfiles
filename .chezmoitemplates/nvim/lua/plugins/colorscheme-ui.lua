@@ -31,28 +31,28 @@ for _, colorscheme in ipairs(colorschemes) do
 end
 
 local colorscheme_index
-local colorscheme
 
-local set_colorscheme_style = function(index)
-  colorscheme_index = index
-  colorscheme = colorschemes[index]
+math.randomseed(os.time())
+
+local refresh_colorscheme = function(index)
+  colorscheme_index = (index and index >= 1 and index <= #colorschemes)
+      and index
+    or math.random(#colorschemes)
+  local colorscheme = colorschemes[colorscheme_index]
   if colorscheme[2] then
     vim.g[colorscheme[1] .. "_style"] = colorscheme[2]
   end
-end
-
-local refresh_colorscheme = function(index)
-  set_colorscheme_style(index)
   vim.cmd.colorscheme(colorscheme[1])
   require("lualine").refresh()
 end
 
-math.randomseed(os.time())
-set_colorscheme_style(math.random(#colorschemes))
-
 vim.keymap.set("n", "<leader>uR", function()
-  refresh_colorscheme(math.random(#colorschemes))
+  vim.g.COLORSCHEME_INDEX = 0
+  refresh_colorscheme()
 end, { desc = "Randomise Colorscheme" })
+vim.keymap.set("n", "<leader>uS", function()
+  vim.g.COLORSCHEME_INDEX = colorscheme_index
+end, { desc = "Save Colorscheme" })
 vim.keymap.set("n", "[S", function()
   refresh_colorscheme(
     colorscheme_index == 1 and #colorschemes or colorscheme_index - 1
@@ -68,7 +68,9 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = colorscheme[1],
+      colorscheme = vim.schedule_wrap(function()
+        refresh_colorscheme(vim.g.COLORSCHEME_INDEX)
+      end),
     },
   },
   {
@@ -77,7 +79,7 @@ return {
       sections = {
         lualine_z = {
           function()
-            return get_colorscheme_name(colorscheme)
+            return get_colorscheme_name(colorschemes[colorscheme_index])
           end,
         },
       },
