@@ -72,3 +72,12 @@ for gitRepo in _zshGitRepos {
 		}
 	}
 }[_os]
+
+_btop_config_home: {
+	linux:   "snap/btop/655/.config"
+	windows: "scoop/persist"
+}[_os]
+
+"\(_btop_config_home)/btop/themes/catppuccin_mocha.theme": #File & {
+	url: "https://raw.githubusercontent.com/catppuccin/btop/main/themes/catppuccin_mocha.theme"
+}
