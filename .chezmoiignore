@@ -1,6 +1,4 @@
 ansible/
-common/
-cue.mod/
 manifests/
 README.md
 

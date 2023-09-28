@@ -1,11 +1,10 @@
-package externals
+package dotfiles
 
 import (
 	"regexp"
-	"github.com/thebengeu/dotfiles/common"
 )
 
-for gitRepo, appName in common.nvimConfigs {
+for gitRepo, appName in _nvimConfigs {
 	"\(_xdgConfigHomeLocal)/\(appName)": #GitRepo & {
 		_gitRepo: gitRepo
 	}

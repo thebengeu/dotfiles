@@ -1,8 +1,8 @@
+package dotfiles
+
 import (
 	"regexp"
 	"strings"
-
-	"github.com/thebengeu/dotfiles/common"
 )
 
 _arch:     string | *"" @tag(arch,var=arch)
@@ -127,7 +127,7 @@ aliases: {
 		"\(shAlias)": "sh -c '\(command)'"
 	}
 
-	for appName in common.nvimConfigs {
+	for appName in _nvimConfigs {
 		"\(appName)": "NVIM_APPNAME=\(appName) nvim"
 	}
 
