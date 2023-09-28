@@ -5,8 +5,10 @@ hooks:
         - -c
         - >-
           cd $CHEZMOI_SOURCE_DIR;
-          parallel cue export --force --inject-vars --outfile .chezmoi{}.yaml .chezmoi{}.cue
-          ::: data external
+          cue export --force --inject-vars --outfile .chezmoidata.yaml .chezmoidata.cue;
+          cd .chezmoiexternals;
+          cue export --force --inject-vars --outfile bat.yaml .{common,bat}.cue;
+          cue export --force --inject-vars --outfile externals.yaml .{common,externals}.cue
       command: sh
 interpreters:
   ps1:
