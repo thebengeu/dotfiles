@@ -46,12 +46,19 @@ local refresh_colorscheme = function(index)
   require("lualine").refresh()
 end
 
+local colorscheme_index_path = vim.fn.stdpath("data") .. "/colorscheme_index"
+
 vim.keymap.set("n", "<leader>uR", function()
-  vim.g.COLORSCHEME_INDEX = 0
+  os.remove(colorscheme_index_path)
   refresh_colorscheme()
 end, { desc = "Randomise Colorscheme" })
 vim.keymap.set("n", "<leader>uS", function()
-  vim.g.COLORSCHEME_INDEX = colorscheme_index
+  local file = io.open(colorscheme_index_path, "w")
+
+  if file then
+    file:write(colorscheme_index, "\n")
+    file:close()
+  end
 end, { desc = "Save Colorscheme" })
 vim.keymap.set("n", "[S", function()
   refresh_colorscheme(
@@ -68,9 +75,17 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = vim.schedule_wrap(function()
-        refresh_colorscheme(vim.g.COLORSCHEME_INDEX)
-      end),
+      colorscheme = function()
+        local index
+        local file = io.open(colorscheme_index_path)
+
+        if file then
+          index = file:read("n")
+          file:close()
+        end
+
+        refresh_colorscheme(index)
+      end,
     },
   },
   {
