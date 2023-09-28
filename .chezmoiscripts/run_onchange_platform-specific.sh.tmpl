@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-{{ if or (ne .chezmoi.os "windows") (ne .chezmoi.arch "arm64") }}
+{{ if not (and (eq .chezmoi.os "windows") (eq .chezmoi.arch "arm64")) }}
 cargo install \
   tealdeer \
   xh
