@@ -5,10 +5,10 @@ hooks:
         - -c
         - >-
           cd $CHEZMOI_SOURCE_DIR;
-          cue export --force --inject-vars --outfile .chezmoidata.yaml .chezmoidata.cue;
+          cue export --force --inject-vars --outfile .chezmoidata.yaml .nvim-configs.cue .chezmoidata.cue;
           cd .chezmoiexternals;
-          cue export --force --inject-vars --outfile bat.yaml .{common,bat}.cue;
-          cue export --force --inject-vars --outfile externals.yaml .{common,externals}.cue
+          cue export --force --inject-vars --outfile bat.yaml .common.cue .bat.cue;
+          cue export --force --inject-vars --outfile externals.yaml ../.nvim-configs.cue .common.cue .externals.cue
       command: sh
 interpreters:
   ps1:

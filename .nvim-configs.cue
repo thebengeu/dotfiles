@@ -1,11 +1,11 @@
-package common
+package dotfiles
 
 import (
 	"regexp"
 	"strings"
 )
 
-nvimConfigs: {
+_nvimConfigs: {
 	"ecosse3/nvim":    "ecovim"
 	"LazyVim/starter": "lazyvim"
 

@@ -1,4 +1,4 @@
-package externals
+package dotfiles
 
 #External: {
 	executable?:      bool
