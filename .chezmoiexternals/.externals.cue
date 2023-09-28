@@ -81,3 +81,7 @@ _btop_config_home: {
 "\(_btop_config_home)/btop/themes/catppuccin_mocha.theme": #File & {
 	url: "https://raw.githubusercontent.com/catppuccin/btop/main/themes/catppuccin_mocha.theme"
 }
+
+"\(_xdgConfigHomeRoaming)/lazygit/mocha-lavender.yml": #File & {
+	url: "https://raw.githubusercontent.com/catppuccin/lazygit/main/themes-mergable/mocha/mocha-lavender.yml"
+}
