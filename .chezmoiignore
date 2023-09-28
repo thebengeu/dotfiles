@@ -10,12 +10,14 @@ README.md
 .ansible.cfg
 .inputrc
 .chezmoiscripts/linux/*
+snap/
 {{ else }}
 .config/fish/completions/wezterm.fish
 .config/fish/conf.d/windows.fish
 .config/wezterm/
 .ssh/windows.conf
 AppData/
+scoop/
 **/*.ps1
 {{ end }}
 
