@@ -73,6 +73,15 @@ for gitRepo in _zshGitRepos {
 	}
 }[_os]
 
+_broot_config_home: {
+	linux:   "broot"
+	windows: "dystroy/broot/config"
+}[_os]
+
+"\(_xdgConfigHomeRoaming)/\(_broot_config_home)/skins/catppuccin-mocha.hjson": #File & {
+	url: "https://raw.githubusercontent.com/Canop/broot/main/resources/default-conf/skins/catppuccin-mocha.hjson"
+}
+
 _btop_config_home: {
 	linux:   "snap/btop/655/.config"
 	windows: "scoop/persist"
