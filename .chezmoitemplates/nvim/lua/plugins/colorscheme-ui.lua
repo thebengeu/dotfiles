@@ -123,6 +123,7 @@ return {
                   end,
                 }),
                 layout_config = {
+                  anchor = "E",
                   height = #colorschemes + 5,
                   width = 30,
                 },
