@@ -43,24 +43,6 @@ end
 
 return util.map({
   { "ribru17/bamboo.nvim" },
-  add_colorscheme_autocmds_on_config({
-    "uloco/bluloco.nvim",
-    dependencies = { "rktjmp/lush.nvim" },
-    opts = {
-      italics = true,
-      terminal = true,
-    },
-  }, function()
-    return rainbow_delimiter_highlights({
-      vim.g.terminal_color_1,
-      vim.g.terminal_color_11,
-      vim.g.terminal_color_4,
-      vim.g.terminal_color_3,
-      vim.g.terminal_color_2,
-      vim.g.terminal_color_5,
-      vim.g.terminal_color_6,
-    })
-  end),
   {
     "catppuccin",
     colors_names = {
@@ -82,6 +64,7 @@ return util.map({
   {
     "Mofiqul/dracula.nvim",
     colors_names = {
+      "dracula",
       "dracula-soft",
     },
   },
@@ -137,28 +120,6 @@ return util.map({
       end,
     },
   },
-  {
-    "projekt0n/github-nvim-theme",
-    colors_names = {
-      "github_dark",
-      "github_dark_dimmed",
-      "github_dark_high_contrast",
-    },
-    opts = {
-      groups = {
-        all = rainbow_delimiter_highlights({
-          "palette.red",
-          "palette.yellow",
-          "palette.blue",
-          "palette.pink",
-          "palette.green",
-          "palette.magenta",
-          "palette.cyan",
-        }),
-      },
-    },
-    main = "github-theme",
-  },
   { "ellisonleao/gruvbox.nvim" },
   { "luisiacc/gruvbox-baby" },
   {
@@ -191,41 +152,6 @@ return util.map({
     },
   },
   add_colorscheme_autocmds_on_config({
-    "marko-cerovac/material.nvim",
-    colorscheme_styles = {
-      "darker",
-      "deep ocean",
-      "oceanic",
-      "palenight",
-    },
-    opts = {
-      plugins = {
-        "dap",
-        "gitsigns",
-        "indent-blankline",
-        "mini",
-        "nvim-cmp",
-        "nvim-navic",
-        "nvim-web-devicons",
-        "telescope",
-        "trouble",
-        "which-key",
-      },
-    },
-  }, function()
-    local colors = require("material.colors")
-
-    return rainbow_delimiter_highlights({
-      colors.main.red,
-      colors.main.yellow,
-      colors.main.blue,
-      colors.main.orange,
-      colors.main.green,
-      colors.main.purple,
-      colors.main.cyan,
-    })
-  end),
-  add_colorscheme_autocmds_on_config({
     "savq/melange-nvim",
   }, function()
     local palette = require("melange.palettes.dark")
@@ -240,13 +166,6 @@ return util.map({
       palette.b.cyan,
     })
   end),
-  {
-    "echasnovski/mini.base16",
-    colors_names = {
-      "minicyan",
-      "minischeme",
-    },
-  },
   {
     "loctvl842/monokai-pro.nvim",
     colors_names = {
@@ -325,7 +244,6 @@ return util.map({
       }),
     },
   },
-  { "olivercederborg/poimandres.nvim" },
   add_colorscheme_autocmds_on_config({
     colors_names = {
       "selenized-black",
@@ -357,55 +275,6 @@ return util.map({
       vim.g.sonokai_enable_italic = 1
     end,
   },
-  add_colorscheme_autocmds_on_config({
-    "ray-x/starry.nvim",
-    colors_names = {
-      "darker",
-      "darksolar",
-      "deepocean",
-      "dracula",
-      "dracula_blood",
-      "earlysummer",
-      "earlysummer_lighter",
-      "mariana",
-      "mariana_lighter",
-      "middlenight_blue",
-      "monokai",
-      "monokai_lighter",
-      "moonlight",
-      "oceanic",
-      "palenight",
-      "starry",
-    },
-  }, function()
-    local colors = require("starry.colors").color_table()
-
-    return rainbow_delimiter_highlights({
-      colors.red,
-      colors.yellow,
-      colors.blue,
-      colors.orange,
-      colors.green,
-      colors.purple,
-      colors.cyan,
-    })
-  end),
-  {
-    "tiagovla/tokyodark.nvim",
-    opts = {
-      custom_highlights = function(_, palette)
-        return rainbow_delimiter_highlights({
-          palette.red,
-          palette.yellow,
-          palette.blue,
-          palette.orange,
-          palette.green,
-          palette.purple,
-          palette.cyan,
-        })
-      end,
-    },
-  },
   {
     "folke/tokyonight.nvim",
     colors_names = {
@@ -414,34 +283,6 @@ return util.map({
       "tokyonight-storm",
     },
   },
-  add_colorscheme_autocmds_on_config({
-    "sam4llis/nvim-tundra",
-    opts = {
-      plugins = {
-        cmp = true,
-        gitsigns = true,
-        neogit = true,
-        telescope = true,
-      },
-    },
-  }, function()
-    local colors = require("nvim-tundra.palette.arctic")
-
-    if not colors then
-      error()
-    end
-
-    return rainbow_delimiter_highlights({
-      colors.red._500,
-      colors.sand._500,
-      colors.sky._500,
-      colors.orange._500,
-      colors.green._500,
-      colors.indigo._500,
-      colors.opal._500,
-      colors.cyan,
-    })
-  end),
   {
     "Mofiqul/vscode.nvim",
     opts = function()
