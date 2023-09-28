@@ -7,7 +7,6 @@ return {
   },
   {
     "alker0/chezmoi.vim",
-    cond = vim.loop.cwd():find("chezmoi") ~= nil,
     config = function()
       local skip_chezmoi_apply
 
