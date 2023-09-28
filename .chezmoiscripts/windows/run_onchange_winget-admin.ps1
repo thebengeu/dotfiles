@@ -39,7 +39,6 @@ $wingetPackageIds = @(
   'gokcehan.lf'
   'ManicTime.ManicTime'
   'zyedidia.micro'
-  'EclipseFoundation.Mosquitto'
   'Notion.Notion'
   'Nushell.Nushell'
   'Obsidian.Obsidian'
@@ -69,6 +68,7 @@ if (!$isMobile)
     'Kensington.KensingtonWorks'
     'PlayStation.DualSenseFWUpdater'
     'Nvidia.GeForceExperience'
+    'EclipseFoundation.Mosquitto'
     'Valve.Steam'
     'xanderfrangos.twinkletray'
   )
