@@ -171,17 +171,23 @@ aliases: {
 	}
 }
 environmentVariables: {
-	BAT_THEME:         "Catppuccin-mocha"
-	DIRENV_LOG_FORMAT: ""
-	EDITOR:            "nvim"
-	EJSON_KEYDIR:      "$HOME/.config/ejson/keys"
-	GH_USERNAME:       "thebengeu"
-	NODE_NO_WARNINGS:  "1"
-	PNPM_HOME:         {
-		linux:   "~/.local/share/pnpm"
-		windows: "$LOCALAPPDATA\\\\pnpm"
-	}[_os]
+	BAT_THEME:           "Catppuccin-mocha"
+	DIRENV_LOG_FORMAT:   ""
+	EDITOR:              "nvim"
+	EJSON_KEYDIR:        "$HOME/.config/ejson/keys"
+	GH_USERNAME:         "thebengeu"
 	RIPGREP_CONFIG_PATH: "$HOME/.config/ripgrep/config"
+
+	{
+		linux: {
+			LG_CONFIG_FILE: "$HOME/.config/lazygit/config.yml,$HOME/.config/lazygit/mocha-lavender.yml"
+			PNPM_HOME:      "~/.local/share/pnpm"
+		}
+		windows: {
+			LG_CONFIG_FILE: "$APPDATA\\\\lazygit\\\\config.yml,$APPDATA\\\\lazygit\\\\mocha-lavender.yml"
+			PNPM_HOME:      "$LOCALAPPDATA\\\\pnpm"
+		}
+	}[_os]
 }
 functions: {
 	nz: {
