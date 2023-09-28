@@ -110,6 +110,10 @@ config.font_rules = {
 }
 config.font_size = 13
 config.front_end = "OpenGL"
+config.inactive_pane_hsb = {
+  saturation = 0.75,
+  brightness = 0.75,
+}
 
 local find_pane = function(callback)
   for _, window in ipairs(wezterm.gui.gui_windows()) do
