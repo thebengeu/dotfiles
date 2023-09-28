@@ -12,10 +12,14 @@ import (
 	url:              string
 }
 
-#ExecutableFile: {
+#File: {
 	#External
+	type: "file"
+}
+
+#ExecutableFile: {
+	#File
 	executable: true
-	type:       "file"
 }
 
 #GitRepo: {
@@ -26,14 +30,22 @@ import (
 	url:           "https://github.com/\(_gitRepo)"
 }
 
-_os:            string | *"" @tag(os,var=os)
-_xdgConfigHome: {
-	linux:   ".config"
-	windows: "AppData/Local"
-}[_os]
+_os: string | *"" @tag(os,var=os)
+
+#XdgConfigHome: {
+	_localOrRoaming: "Local" | "Roaming"
+	linux:           ".config"
+	windows:         "AppData/\(_localOrRoaming)"
+}
+_xdgConfigHomeLocal: (#XdgConfigHome & {
+	_localOrRoaming: "Local"
+})[_os]
+_xdgConfigHomeRoaming: (#XdgConfigHome & {
+	_localOrRoaming: "Roaming"
+})[_os]
 
 for gitRepo, appName in common.nvimConfigs {
-	"\(_xdgConfigHome)/\(appName)": #GitRepo & {
+	"\(_xdgConfigHomeLocal)/\(appName)": #GitRepo & {
 		_gitRepo: gitRepo
 	}
 }
@@ -63,9 +75,8 @@ for gitRepo in _zshGitRepos {
 ".local/bin/cht": #ExecutableFile & {
 	url: "https://cht.sh/:cht.sh"
 }
-".config/fish/completions/nvr.fish": #External & {
-	type: "file"
-	url:  "https://raw.githubusercontent.com/mhinz/neovim-remote/master/contrib/completion.fish"
+".config/fish/completions/nvr.fish": #File & {
+	url: "https://raw.githubusercontent.com/mhinz/neovim-remote/master/contrib/completion.fish"
 }
 
 {
@@ -101,3 +112,7 @@ for gitRepo in _zshGitRepos {
 		}
 	}
 }[_os]
+
+"\(_xdgConfigHomeRoaming)/bat/themes/Catppuccin-mocha.tmTheme": #File & {
+	url: "https://raw.githubusercontent.com/catppuccin/bat/main/Catppuccin-mocha.tmTheme"
+}
