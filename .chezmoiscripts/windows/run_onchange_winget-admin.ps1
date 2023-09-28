@@ -39,6 +39,7 @@ $wingetPackageIds = @(
   'gokcehan.lf'
   'ManicTime.ManicTime'
   'zyedidia.micro'
+  'EclipseFoundation.Mosquitto'
   'Notion.Notion'
   'Nushell.Nushell'
   'Obsidian.Obsidian'
