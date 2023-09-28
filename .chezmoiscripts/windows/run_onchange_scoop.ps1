@@ -1,4 +1,5 @@
 $scoopPackages = @(
+  'btop'
   'gcc'
   'git-filter-repo'
   'goneovim'
