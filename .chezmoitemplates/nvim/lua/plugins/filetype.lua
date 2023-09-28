@@ -24,6 +24,13 @@ return {
 
           if source_path:find("%.chezmoidata.cue") then
             util.async_run({ "chezmoi", "apply", "--include", "templates" })
+          elseif source_path:find("%.bat%.cue") then
+            util.async_run({
+              "chezmoi",
+              "apply",
+              "--include",
+              "externals,scripts",
+            })
           elseif source_path:find("%.chezmoiexternals%%.cue") then
             util.async_run({ "chezmoi", "apply", "--include", "externals" })
           elseif source_path:find("%.cue") then
