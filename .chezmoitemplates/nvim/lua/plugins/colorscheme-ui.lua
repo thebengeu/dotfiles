@@ -19,11 +19,15 @@ for _, spec in ipairs(colorscheme_specs) do
   end
 end
 
+local get_colorscheme_name = function(colorscheme)
+  return table.concat(colorscheme, "-"):gsub(" ", "_")
+end
+
 local max_colorscheme_name_length = 0
 
 for _, colorscheme in ipairs(colorschemes) do
   max_colorscheme_name_length =
-    math.max(#table.concat(colorscheme, "-"), max_colorscheme_name_length)
+    math.max(#get_colorscheme_name(colorscheme), max_colorscheme_name_length)
 end
 
 local colorscheme_index
@@ -73,7 +77,7 @@ return {
       sections = {
         lualine_z = {
           function()
-            return table.concat(colorscheme, "-"):gsub(" ", "_")
+            return get_colorscheme_name(colorscheme)
           end,
         },
       },
@@ -119,12 +123,11 @@ return {
                 finder = require("telescope.finders").new_table({
                   results = colorschemes,
                   entry_maker = function(entry)
-                    local colorscheme_and_style =
-                      table.concat(entry, "-"):gsub(" ", "_")
+                    local colorscheme_name = get_colorscheme_name(entry)
 
                     return {
-                      display = colorscheme_and_style,
-                      ordinal = colorscheme_and_style,
+                      display = colorscheme_name,
+                      ordinal = colorscheme_name,
                       value = entry,
                     }
                   end,
