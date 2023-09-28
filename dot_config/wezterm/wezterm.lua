@@ -463,10 +463,9 @@ table.insert(config.ssh_domains, {
   remote_address = "beng.asuscomm.com",
 })
 
-config.text_background_opacity = 0.7
 config.warn_about_missing_glyphs = false
 config.webgpu_power_preference = "HighPerformance"
-config.window_background_opacity = 0.9
+config.window_background_opacity = 0.95
 config.window_close_confirmation = "NeverPrompt"
 config.window_decorations = "INTEGRATED_BUTTONS | RESIZE"
 config.window_frame = {
