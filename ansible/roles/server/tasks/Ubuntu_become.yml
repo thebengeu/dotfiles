@@ -143,6 +143,7 @@
     deb: "{{ item }}"
   loop:
     # yamllint disable rule:line-length
+    - https://github.com/lsd-rs/lsd/releases/download/v1.0.0/lsd-musl_1.0.0_{{ arch.stdout }}.deb
     - https://github.com/sharkdp/bat/releases/download/v0.23.0/bat_0.23.0_{{ arch.stdout }}.deb
     - https://github.com/sharkdp/fd/releases/download/v8.7.0/fd_8.7.0_{{ arch.stdout }}.deb
     - http://ftp.debian.org/debian/pool/main/f/fzf/fzf_0.42.0-1+b2_{{ arch.stdout }}.deb

@@ -4,7 +4,6 @@ cargo install \
   cargo-update \
   du-dust \
   hyperfine \
-  lsd \
   onefetch \
   sd \
   tere \
