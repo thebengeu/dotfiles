@@ -54,7 +54,7 @@ vim.keymap.set("n", "<leader>k", function()
         util.async_run_sh(
           "git commit -"
             .. 'm "'
-            .. commit_summary:gsub('"', '\\"')
+            .. commit_summary:gsub('["`]', "\\%1")
             .. '" && git push'
         )
       end
