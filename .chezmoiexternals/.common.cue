@@ -1,11 +1,16 @@
 package dotfiles
 
 #External: {
-	executable?:      bool
-	path?:            string
+	executable?: bool
+	type:        "archive-file" | "file" | "git-repo"
+	url:         string
+}
+
+#ArchiveFile: {
+	#External
+	path:             string
 	stripComponents?: number
-	type:             "archive-file" | "file" | "git-repo"
-	url:              string
+	type:             "archive-file"
 }
 
 #File: {
