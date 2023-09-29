@@ -18,7 +18,7 @@ return {
     },
   },
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     opts = function(_, opts)
       local null_ls = require("null-ls")
       opts.sources = {
@@ -51,6 +51,7 @@ return {
         null_ls.builtins.formatting.shellharden,
         null_ls.builtins.formatting.stylua,
         null_ls.builtins.formatting.taplo,
+        require("typescript.extensions.null-ls.code-actions"),
         null_ls.builtins.formatting.yamlfmt,
       }
     end,
@@ -145,7 +146,15 @@ return {
             end,
           })
         end,
+        tsserver = function(_, server)
+          require("typescript").setup({ server = server })
+          return true
+        end,
       })
     end,
+  },
+  {
+    "jose-elias-alvarez/typescript.nvim",
+    lazy = true,
   },
 }
