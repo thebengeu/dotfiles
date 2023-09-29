@@ -7,6 +7,9 @@
     commands: ALL
     name: "{{ ansible_user_id }}"
     user: "{{ ansible_user_id }}"
+- ansible.builtin.apt_repository:
+    filename: fury
+    repo: deb [trusted=yes] https://apt.fury.io/rsteube/ /
 - ansible.builtin.apt_key:
     keyring: /etc/apt/keyrings/docker.gpg
     url: https://download.docker.com/linux/ubuntu/gpg
@@ -81,6 +84,7 @@
     repo: ppa:wslutilities/wslu
 - ansible.builtin.apt:
     name:
+      - carapace-bin
       - containerd.io
       - clangd-15
       - cmake
