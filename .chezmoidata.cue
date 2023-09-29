@@ -35,6 +35,7 @@ aliases: {
 	prr: "\(pr) -r"
 	pxi: "pipx install"
 	pxu: "pipx uninstall"
+	rm:  "trash"
 	scc: #"scc --not-match "package-lock.json|pnpm-lock.yaml""#
 	tb:  "time bash -i -c exit"
 	tbn: "time bash --noprofile --norc -i -c exit"
