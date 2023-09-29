@@ -50,6 +50,11 @@ for gitRepo in _zshGitRepos {
 		}
 	}
 	windows: {
+		".config/fish/completions/lsd.fish": #ArchiveFile & {
+			path:            "autocomplete/lsd.fish"
+			stripComponents: 1
+			url:             "https://github.com/lsd-rs/lsd/releases/download/v1.0.0/lsd-v1.0.0-x86_64-pc-windows-msvc.zip"
+		}
 		".config/fish/completions/rg.fish": #ArchiveFile & {
 			path:            "complete/rg.fish"
 			stripComponents: 1
