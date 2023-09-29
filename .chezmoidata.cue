@@ -86,7 +86,7 @@ aliases: {
 		cm:  "commit -m"
 		co:  "checkout"
 		r:   "rebase"
-		rbc: "rebase --continue"
+		rc:  "rebase --continue"
 		rru: "remote remove upstream"
 		rv:  "remote -v"
 		sa:  "stash apply"
