@@ -9,6 +9,14 @@ _arch:     string | *"" @tag(arch,var=arch)
 _hostname: string | *"" @tag(hostname,var=hostname)
 _os:       string | *"" @tag(os,var=os)
 
+nonExpandedAliases: {
+	ls:  "eza --group-directories-first --hyperlink --icons"
+	l:   "\(ls)"
+	la:  "\(ls) --all"
+	ll:  "\(ls) --git --no-user --long"
+	lla: "\(ll) --all"
+}
+
 aliases: {
 	"-": "cd -"
 	b:   "bat"
@@ -23,11 +31,6 @@ aliases: {
 	hbn: "hyperfine 'bash --noprofile --norc -i -c exit'"
 	j:   "just"
 	jd:  "just dev"
-	ls:  "lsd"
-	l:   "\(ls)"
-	la:  "\(ls) -a"
-	ll:  "\(ls) -l"
-	lla: "\(ls) -la"
 	lg:  "lazygit"
 	man: "batman"
 	n:   "nvim"

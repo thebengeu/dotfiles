@@ -16,7 +16,7 @@ function {{$name}} (
 }
 {{end}}
 
-{{- range $alias, $command := .aliases -}}
+{{- range $alias, $command := .nonExpandedAliases | merge .aliases -}}
 {{if $command | contains " " -}}
 function {{$alias}}
 {

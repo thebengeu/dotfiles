@@ -29,6 +29,9 @@ set --global --append fish_complete_path /usr/share/fish/completions/completions
 
 set --global fzf_fd_opts --hidden{{if eq .chezmoi.os "windows"}} --path-separator //{{end}}
 
+{{range $alias, $command := index .nonExpandedAliases -}}
+alias {{$alias}} '{{$command}}'
+{{end}}
 {{range $alias, $command := index .aliases -}}
 abbr --add {{$alias}} '{{$command | replaceAllRegex "\\${([^}]+)}" "$$${1}" | replace "\\" "\\\\" | replace "'" "\\'" | replace "$HOME" "~" }}'
 {{end}}
