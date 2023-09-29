@@ -9,7 +9,7 @@ def {{$name}} [{{$lines_and_parameters.parameters | join ", "}}] {
 }
 {{end}}
 
-{{- range $alias, $command := .aliases -}}
+{{- range $alias, $command := .nonExpandedAliases | merge .aliases -}}
   {{- if and (contains ";" $command) (not (hasPrefix "sh -c" $command))}}
     {{- $command = $command | replaceAllRegex "(.*)" "sh -c '${1}'"}}
   {{- else}}
