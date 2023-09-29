@@ -10,10 +10,9 @@ _hostname: string | *"" @tag(hostname,var=hostname)
 _os:       string | *"" @tag(os,var=os)
 
 nonExpandedAliases: {
-	ls:  "eza --group-directories-first --hyperlink --icons"
-	l:   "\(ls)"
-	la:  "\(ls) --all"
-	ll:  "\(ls) --git --no-user --long"
+	l:   "eza --group-directories-first --hyperlink --icons"
+	la:  "\(l) --all"
+	ll:  "\(l) --git --no-user --long"
 	lla: "\(ll) --all"
 }
 
