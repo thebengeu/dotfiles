@@ -3,6 +3,7 @@ cargo install \
   atuin \
   cargo-update \
   du-dust \
+  eza \
   hyperfine \
   onefetch \
   sd \
