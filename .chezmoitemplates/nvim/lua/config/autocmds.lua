@@ -56,12 +56,13 @@ vim.api.nvim_create_autocmd("BufWritePost", {
         "chezmoi apply --exclude scripts; chezmoi apply --include scripts"
       )
     else
-      util.async_run({
-        "chezmoi",
-        "apply",
-        "--source-path",
-        source_path,
-      })
+      util.async_run_sh(
+        "! chezmoi managed -p source-absolute --include files | rg --quiet "
+          .. source_path:gsub("\\", "/")
+          .. " || chezmoi apply --source-path '"
+          .. source_path
+          .. "'"
+      )
     end
   end,
   pattern = "*/.local/share/chezmoi/*",
