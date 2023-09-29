@@ -12,7 +12,8 @@ pnpm add --global https://github.com/thebengeu/ts-node.git
 {{ if eq .chezmoi.os "windows" }}
 cargo install \
   bat \
-  fd-find
+  fd-find \
+  lsd
 {{ else }}
 cargo install gitui
 {{ end }}
