@@ -238,6 +238,7 @@ paths: [
 	"$PNPM_HOME",
 ] + {
 	linux: [
+		"/snap/aws-cli/current/bin",
 		"/snap/bin",
 		"~/.pulumi/bin",
 		"~/.temporalio/bin",
