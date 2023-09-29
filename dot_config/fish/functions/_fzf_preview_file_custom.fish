@@ -12,7 +12,7 @@ function _fzf_preview_file_custom
     else if test -f "$file_path" # regular file
         bat --color always --style plain "$file_path"
     else if test -d "$file_path" # directory
-        command lsd --color always --icon always "$file_path"
+        command eza --color always --group-directories-first --icons "$file_path"
     else if test -c "$file_path"
         _fzf_report_file_type "$file_path" "character device file"
     else if test -b "$file_path"
