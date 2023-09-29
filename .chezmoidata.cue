@@ -11,6 +11,7 @@ _os:       string | *"" @tag(os,var=os)
 
 aliases: {
 	b:   "bat"
+	brg: "batgrep"
 	cad: "chezmoi add"
 	cat: "bat"
 	ca:  "chezmoi apply --exclude scripts; chezmoi apply --include scripts"
