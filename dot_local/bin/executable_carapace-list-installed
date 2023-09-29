@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-carapace --list | awk '{print $1}' | xargs which 2>/dev/null | rg --invert-match usr/bin | sed 's \(.*\)/\([^/]*\)$ \2:\1 ' | column -s : -t
+carapace --list | awk '{print $1}' | xargs which 2>/dev/null | rg --invert-match 'usr/s?bin' | sed 's \(.*\)/\([^/]*\)$ \2:\1 ' | column -s : -t
