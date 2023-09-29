@@ -26,20 +26,30 @@ for gitRepo in _zshGitRepos {
 	}
 }
 
+".config/fish/completions/nvr.fish": #File & {
+	url: "https://raw.githubusercontent.com/mhinz/neovim-remote/master/contrib/completion.fish"
+}
+".config/fish/completions/tldr.fish": #File & {
+	url: "https://raw.githubusercontent.com/dbrgn/tealdeer/main/completion/fish_tealdeer"
+}
 ".config/git/template/hooks/add-upstream-auto-detected-url.sh": #ExecutableFile & {
 	url: "https://raw.githubusercontent.com/thebengeu/auto-git-remote-add-upstream/master/add-upstream-auto-detected-url.sh"
 }
 ".config/git/template/hooks/post-checkout": #ExecutableFile & {
 	url: "https://raw.githubusercontent.com/thebengeu/auto-git-remote-add-upstream/master/post-checkout"
 }
+".local/bin/batman": #ArchiveFile & {
+	executable: true
+	path:       "bin/batman"
+	url:        "https://github.com/eth-p/bat-extras/releases/download/v2023.09.19/bat-extras-202309.19.zip"
+}
+".local/bin/batgrep": #ArchiveFile & {
+	executable: true
+	path:       "bin/batgrep"
+	url:        "https://github.com/eth-p/bat-extras/releases/download/v2023.09.19/bat-extras-202309.19.zip"
+}
 ".local/bin/cht": #ExecutableFile & {
 	url: "https://cht.sh/:cht.sh"
-}
-".config/fish/completions/nvr.fish": #File & {
-	url: "https://raw.githubusercontent.com/mhinz/neovim-remote/master/contrib/completion.fish"
-}
-".config/fish/completions/tldr.fish": #File & {
-	url: "https://raw.githubusercontent.com/dbrgn/tealdeer/main/completion/fish_tealdeer"
 }
 
 {
@@ -74,15 +84,13 @@ for gitRepo in _zshGitRepos {
 			url:             "https://github.com/ililim/dual-key-remap/releases/download/v0.7/dual-key-remap-v0.7.zip"
 		}
 		".local/bin/dual-key-remap.exe": #ArchiveFile & {
-			executable:      true
 			path:            "dual-key-remap.exe"
 			stripComponents: 1
 			url:             "https://github.com/ililim/dual-key-remap/releases/download/v0.7/dual-key-remap-v0.7.zip"
 		}
 		".local/bin/lmn.exe": #ArchiveFile & {
-			executable: true
-			path:       "lemonade.exe"
-			url:        "https://github.com/lemonade-command/lemonade/releases/download/v1.1.1/lemonade_windows_amd64.zip"
+			path: "lemonade.exe"
+			url:  "https://github.com/lemonade-command/lemonade/releases/download/v1.1.1/lemonade_windows_amd64.zip"
 		}
 	}
 }[_os]

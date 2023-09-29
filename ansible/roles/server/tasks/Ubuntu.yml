@@ -66,9 +66,6 @@
     cmd: /tmp/rustup-init --no-modify-path --profile minimal -y
     creates: ~/.cargo/env
 - ansible.builtin.command:
-    cmd: /usr/bin/bat cache --build
-    creates: ~/.cache/bat/themes.bin
-- ansible.builtin.command:
     cmd: nix profile install nixpkgs#{{ item }}
     creates: ~/.nix-profile/bin/{{ item }}
   loop:
@@ -85,15 +82,6 @@
     - nushell
     - peco
     - vifm
-- ansible.builtin.git:
-    dest: ~/bat-extras
-    repo: https://github.com/eth-p/bat-extras.git
-    version: ceaac1b917a8516763a834cb8504bce5a1270f88
-- ansible.builtin.command:
-    chdir: /home/{{ ansible_user_id }}/bat-extras
-    cmd: ./build.sh --install --minify all
-    creates: /usr/local/bin/batman
-  become: true
 - ansible.builtin.command:
     cmd: go install cuelang.org/go/cmd/cue@latest
     creates: ~/go/bin/cue
