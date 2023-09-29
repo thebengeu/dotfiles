@@ -20,7 +20,6 @@ pipx install http-prompt
 pipx install httpie
 pipx install khal
 pipx install neovim-remote
-pipx install qmk
 pipx install sqlfluff
 pipx install thefuck
 pipx install tox
