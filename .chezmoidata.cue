@@ -10,6 +10,7 @@ _hostname: string | *"" @tag(hostname,var=hostname)
 _os:       string | *"" @tag(os,var=os)
 
 aliases: {
+	"-": "cd -"
 	b:   "bat"
 	brg: "batgrep"
 	cad: "chezmoi add"
