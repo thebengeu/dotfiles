@@ -30,4 +30,5 @@ pipx install visidata
 pnpm add --global \
   npm-check-updates \
   pino-pretty \
-  pm2
+  pm2 \
+  trash-cli
