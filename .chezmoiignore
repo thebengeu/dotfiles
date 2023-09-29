@@ -4,6 +4,7 @@ README.md
 
 {{ if eq .chezmoi.os "windows" }}
 .config/{bat,broot,fd,gitui,glow,gup,lazygit,lsd,msmtp,nushell,nvim,tealdeer,tmux,yamlfmt}/
+.config/fish/completions/batman.fish
 .config/topgrade.toml
 .local/share/
 .ssh/control-master.conf
