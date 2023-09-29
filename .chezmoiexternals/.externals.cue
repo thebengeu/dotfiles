@@ -44,36 +44,31 @@ for gitRepo in _zshGitRepos {
 		".config/tmux/plugins/tpm": #GitRepo & {
 			_gitRepo: "tmux-plugins/tpm"
 		}
-		".local/bin/lmn": {
+		".local/bin/lmn": #ArchiveFile & {
 			path: "lemonade"
-			type: "archive-file"
 			url:  "https://github.com/lemonade-command/lemonade/releases/download/v1.1.1/lemonade_linux_amd64.tar.gz"
 		}
 	}
 	windows: {
-		".config/fish/completions/rg.fish": #External & {
+		".config/fish/completions/rg.fish": #ArchiveFile & {
 			path:            "complete/rg.fish"
 			stripComponents: 1
-			type:            "archive-file"
 			url:             "https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep-13.0.0-x86_64-pc-windows-msvc.zip"
 		}
-		".local/bin/config.txt": #External & {
+		".local/bin/config.txt": #ArchiveFile & {
 			path:            "config.txt"
 			stripComponents: 1
-			type:            "archive-file"
 			url:             "https://github.com/ililim/dual-key-remap/releases/download/v0.7/dual-key-remap-v0.7.zip"
 		}
-		".local/bin/dual-key-remap.exe": #External & {
+		".local/bin/dual-key-remap.exe": #ArchiveFile & {
 			executable:      true
 			path:            "dual-key-remap.exe"
 			stripComponents: 1
-			type:            "archive-file"
 			url:             "https://github.com/ililim/dual-key-remap/releases/download/v0.7/dual-key-remap-v0.7.zip"
 		}
-		".local/bin/lmn.exe": #External & {
+		".local/bin/lmn.exe": #ArchiveFile & {
 			executable: true
 			path:       "lemonade.exe"
-			type:       "archive-file"
 			url:        "https://github.com/lemonade-command/lemonade/releases/download/v1.1.1/lemonade_windows_amd64.zip"
 		}
 	}
