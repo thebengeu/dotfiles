@@ -51,6 +51,12 @@ for gitRepo in _zshGitRepos {
 		}
 	}
 	windows: {
+		".config/fish/completions/rg.fish": #External & {
+			path:            "complete/rg.fish"
+			stripComponents: 1
+			type:            "archive-file"
+			url:             "https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep-13.0.0-x86_64-pc-windows-msvc.zip"
+		}
 		".local/bin/config.txt": #External & {
 			path:            "config.txt"
 			stripComponents: 1
