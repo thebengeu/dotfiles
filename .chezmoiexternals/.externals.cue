@@ -38,6 +38,9 @@ for gitRepo in _zshGitRepos {
 ".config/fish/completions/nvr.fish": #File & {
 	url: "https://raw.githubusercontent.com/mhinz/neovim-remote/master/contrib/completion.fish"
 }
+".config/fish/completions/tldr.fish": #File & {
+	url: "https://raw.githubusercontent.com/dbrgn/tealdeer/main/completion/fish_tealdeer"
+}
 
 {
 	linux: {
