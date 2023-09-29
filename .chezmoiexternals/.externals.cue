@@ -26,6 +26,9 @@ for gitRepo in _zshGitRepos {
 	}
 }
 
+".config/fish/completions/eza.fish": #File & {
+	url: "https://raw.githubusercontent.com/eza-community/eza/main/completions/fish/eza.fish"
+}
 ".config/fish/completions/nvr.fish": #File & {
 	url: "https://raw.githubusercontent.com/mhinz/neovim-remote/master/contrib/completion.fish"
 }
