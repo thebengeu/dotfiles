@@ -23,6 +23,8 @@ end
 
 {{- if eq .chezmoi.os "windows"}}
 chcp.com 1252 >/dev/null
+{{- else}}
+set --global --append fish_complete_path /usr/share/fish/completions/completions
 {{- end}}
 
 set --global fzf_fd_opts --hidden{{if eq .chezmoi.os "windows"}} --path-separator //{{end}}
