@@ -55,6 +55,7 @@ function br --wraps=broot
     end
 end
 
+{{output "atuin" "init" "fish" "--disable-ctrl-r" "--disable-up-arrow"}}
 {{output "direnv" "hook" "fish"}}
 {{output "fish" "-c" "starship init fish --print-full-init"}}
 {{output "zoxide" "init" "--cmd" "cd" "fish"}}
