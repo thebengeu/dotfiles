@@ -1,2 +1,3 @@
 {{- template "generated-posix-shell-rc.sh.tmpl" . -}}
+{{output "atuin" "init" "zsh" "--disable-ctrl-r" "--disable-up-arrow"}}
 {{output "zoxide" "init" "--cmd" "cd" "zsh"}}
