@@ -41,6 +41,9 @@ for gitRepo in _zshGitRepos {
 ".config/git/template/hooks/post-checkout": #ExecutableFile & {
 	url: "https://raw.githubusercontent.com/thebengeu/auto-git-remote-add-upstream/master/post-checkout"
 }
+".config/micro/colorschemes/catppuccin-mocha.micro": #File & {
+	url: "https://raw.githubusercontent.com/catppuccin/micro/main/src/catppuccin-mocha.micro"
+}
 ".local/bin/batman": #ArchiveFile & {
 	executable: true
 	path:       "bin/batman"
