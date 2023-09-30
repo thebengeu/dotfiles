@@ -88,6 +88,20 @@ exports.normname = function(name)
   return (name:gsub("[%.%-]?nvim%-?", ""))
 end
 
+exports.rainbow_colors = {
+  "Red",
+  "Yellow",
+  "Blue",
+  "Orange",
+  "Green",
+  "Violet",
+  "Cyan",
+}
+
+exports.rainbow_delimiters_hl = map(exports.rainbow_colors, function(color)
+  return "RainbowDelimiter" .. color
+end)
+
 exports.visual_lines = function()
   local lines = { vim.fn.line("v"), vim.fn.line(".") }
 

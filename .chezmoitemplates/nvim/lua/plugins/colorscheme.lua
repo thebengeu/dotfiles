@@ -1,20 +1,10 @@
 local util = require("util")
 
-local rainbow_delimiter_colors = {
-  "Red",
-  "Yellow",
-  "Blue",
-  "Orange",
-  "Green",
-  "Violet",
-  "Cyan",
-}
 local rainbow_delimiter_highlights = function(colors)
   local highlights = {}
 
   for i, color in ipairs(colors) do
-    highlights["RainbowDelimiter" .. rainbow_delimiter_colors[i]] =
-      { fg = color }
+    highlights[util.rainbow_delimiters_hl[i]] = { fg = color }
   end
 
   return highlights
@@ -254,7 +244,7 @@ return util.map({
   }, function()
     local highlights = {}
 
-    for _, color in ipairs(rainbow_delimiter_colors) do
+    for _, color in ipairs(util.rainbow_colors) do
       highlights["RainbowDelimiter" .. color] = { link = "Rainbow" .. color }
     end
 
