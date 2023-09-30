@@ -88,11 +88,10 @@ return {
     end,
     opts = {
       indent = {
-        char = "▏",
         highlight = util.rainbow_delimiters_hl,
       },
       scope = {
-        char = "▎",
+        char = "┃",
         enabled = true,
         highlight = util.rainbow_delimiters_hl,
       },
