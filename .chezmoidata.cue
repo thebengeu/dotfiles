@@ -11,9 +11,9 @@ _os:       string | *"" @tag(os,var=os)
 
 nonExpandedAliases: {
 	l:   "eza --group-directories-first --hyperlink --icons"
-	la:  "\(l) --all"
-	ll:  "\(l) --git --no-user --long"
-	lla: "\(ll) --all"
+	la:  "l --all"
+	ll:  "l --git --no-user --long"
+	lla: "ll --all"
 }
 
 aliases: {
