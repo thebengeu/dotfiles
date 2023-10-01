@@ -77,6 +77,7 @@ config.colors = {
   },
 }
 config.default_cursor_style = "SteadyBar"
+config.default_domain = "SSH:wsl"
 if package.config:sub(1, 1) == "\\" then
   config.default_prog = { "fish" }
 end
