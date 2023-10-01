@@ -1,6 +1,5 @@
 {
     "autosu": true,
-    "colorcolumn": 80,
     "colorscheme": "catppuccin-mocha",
     "mkparents": true,
     "savecursor": true,
