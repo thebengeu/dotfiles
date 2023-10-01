@@ -10,12 +10,16 @@ Host ec2
   Hostname 13.213.181.86
   User ubuntu
 
-Host wsl, dev-wsl
+Host wsl dev-wsl
   Hostname 127.0.0.1
   Port 23
+
+Host dev-wsl
+  HostKeyAlias dev-wsl
+  ProxyJump dev
 
 Host prod
   Hostname 192.168.50.4
 
-Match originalhost dev-wsl,prod !exec "ncat -z --wait 50ms %h %p"
+Match originalhost prod !exec "ncat -z --wait 50ms %h %p"
   ProxyJump dev
