@@ -467,6 +467,7 @@ table.insert(config.ssh_domains, {
   remote_address = "beng.asuscomm.com",
 })
 
+config.term = "wezterm"
 config.underline_position = -10
 config.warn_about_missing_glyphs = false
 config.webgpu_power_preference = "HighPerformance"
