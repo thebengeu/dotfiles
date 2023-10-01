@@ -194,14 +194,19 @@ if (!(Test-Path "$Env:USERPROFILE\.local\share\chezmoi"))
   chezmoi apply --init
 }
 
-if (!$isMobile)
+$installSshdPath = "$Env:ProgramFiles\OpenSSH\install-sshd.ps1"
+
+if (!(Test-Path $installSshdPath))
 {
-  Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
-  Start-Service sshd
-  Set-Service sshd -StartupType 'Automatic'
+  Invoke-WebRequest https://raw.githubusercontent.com/PowerShell/openssh-portable/latestw_all/contrib/win32/openssh/install-sshd.ps1 -OutFile $installSshdPath
+  & $installSshdPath
+
   New-ItemProperty HKLM:\SOFTWARE\OpenSSH DefaultShell -Force -PropertyType String -Value "C:\msys64\usr\bin\fish.exe"
 
   $authorizedKeysPath = "$Env:ProgramData\ssh\administrators_authorized_keys"
   Copy-Item $Env:USERPROFILE\.ssh\authorized_keys $authorizedKeysPath
   icacls $authorizedKeysPath /inheritance:r /grant Administrators:F /grant SYSTEM:F
+
+  Start-Service sshd
+  Set-Service sshd -StartupType 'Automatic'
 }
