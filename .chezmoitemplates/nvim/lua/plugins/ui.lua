@@ -86,6 +86,10 @@ return {
         end
       end)
     end,
+    dependencies = {
+      "HiPhish/rainbow-delimiters.nvim",
+      branch = "use-children",
+    },
     opts = {
       indent = {
         highlight = util.rainbow_delimiters_hl,
@@ -153,11 +157,6 @@ return {
     opts = {
       calm_down = true,
     },
-  },
-  {
-    "HiPhish/rainbow-delimiters.nvim",
-    branch = "use-children",
-    event = { "BufNewFile", "BufReadPost" },
   },
   {
     "lewis6991/satellite.nvim",
