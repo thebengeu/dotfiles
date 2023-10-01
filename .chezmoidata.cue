@@ -32,7 +32,7 @@ aliases: {
 	jd:  "just dev"
 	lg:  "lazygit"
 	man: "batman"
-	n:   "TERM=wezterm nvim"
+	n:   "nvim"
 	ni:  "npm install"
 	p:   "pnpm"
 	pr:  "gh pr create -f"
@@ -45,7 +45,7 @@ aliases: {
 	tb:  "time bash -i -c exit"
 	tbn: "time bash --noprofile --norc -i -c exit"
 	t:   "pnpm tsx"
-	vim: "TERM=wezterm nvim"
+	vim: "nvim"
 
 	for shellAndFlags, noConfigFlag in {
 		"fish --interactive": "--no-config"
@@ -70,7 +70,7 @@ aliases: {
 	for prefix, directory in _aliasDirectories {
 		"\(prefix)cd": "cd \(directory)"
 		"\(prefix)lg": "lazygit --path \(directory)"
-		"\(prefix)n":  "TERM=wezterm nvim --cmd 'cd \(strings.Replace(directory, "$HOME", "~", -1))'"
+		"\(prefix)n":  "nvim --cmd 'cd \(strings.Replace(directory, "$HOME", "~", -1))'"
 	}
 
 	_directoryGitAliases: {
@@ -134,7 +134,7 @@ aliases: {
 	}
 
 	for appName in _nvimConfigs {
-		"\(appName)": "NVIM_APPNAME=\(appName) TERM=wezterm nvim"
+		"\(appName)": "NVIM_APPNAME=\(appName) nvim"
 	}
 
 	{
@@ -200,8 +200,7 @@ environmentVariables: {
 functions: {
 	nz: {
 		lines: [
-			"cd $directory",
-			"TERM=wezterm nvim",
+			"cd $directory; nvim",
 		]
 		parameters: ["directory"]
 	}

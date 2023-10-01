@@ -307,7 +307,7 @@ config.keys = {
         file:write(
           (
             latest_focused_nvim_port
-              and "TERM=wezterm nvr -s --nostart --servername 127.0.0.1:" .. latest_focused_nvim_port .. ' "$@" || '
+              and "nvr -s --nostart --servername 127.0.0.1:" .. latest_focused_nvim_port .. ' "$@" || '
             or ""
           ) .. 'nvim "$@"\n'
         )

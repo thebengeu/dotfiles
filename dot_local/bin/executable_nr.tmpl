@@ -3,5 +3,5 @@
 "$PROGRAMFILES\AutoHotkey\v2\AutoHotkey64.exe" "$APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\activate-wezterm-tab.ahk" n 0 &
 sh ~/.local/bin/nvr-latest-focused-nvim.sh "$@"
 {{ else }}
-TERM=wezterm nvr -s --nostart --servername $(nvr --serverlist | sed '$a127.0.0.1:6789' | rg 127.0.0.1: | head -n1) "$@" || nvim "$@"
+nvr -s --nostart --servername $(nvr --serverlist | sed '$a127.0.0.1:6789' | rg 127.0.0.1: | head -n1) "$@" || nvim "$@"
 {{ end }}
