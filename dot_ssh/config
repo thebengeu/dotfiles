@@ -13,15 +13,14 @@ Match originalhost prod exec "ncat -z --wait 10ms 192.168.50.1 8443"
 Host dev dev-wsl prod
   Hostname beng.asuscomm.com
 
-Host dev-wsl
-  Port 25
+Host dev-wsl wsl
+  Port 24
 
 Host prod
-  Port 24
+  Port 26
 
 Host wsl
   Hostname 127.0.0.1
-  Port 23
 
 Host ec2
   Hostname 13.213.181.86

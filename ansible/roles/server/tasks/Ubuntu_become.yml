@@ -172,9 +172,9 @@
     regexp: ^#(ListenAddress 0.0.0.0)$
     replace: \1
 - ansible.builtin.lineinfile:
-    line: Port 23
+    line: Port 24
     path: /etc/ssh/sshd_config
-    search_string: Port 22
+    regexp: ^#?Port \d+$
   when: ansible_virtualization_type == "wsl"
 - ansible.builtin.service:
     name: ssh
