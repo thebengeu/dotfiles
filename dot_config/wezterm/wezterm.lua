@@ -190,7 +190,7 @@ table.insert(config.ssh_domains, {
   name = "SSH:dev-wsl-remote",
   multiplexing = "None",
   ssh_option = {
-    port = "25",
+    port = "24",
   },
   remote_address = "beng.asuscomm.com",
 })
@@ -198,7 +198,7 @@ table.insert(config.ssh_domains, {
   name = "SSH:prod-remote",
   multiplexing = "None",
   ssh_option = {
-    port = "24",
+    port = "26",
   },
   remote_address = "beng.asuscomm.com",
 })
@@ -239,7 +239,7 @@ else
     name = "SSH:dev-tmux",
     multiplexing = "None",
     ssh_option = {
-      port = "23",
+      port = "24",
     },
     remote_address = "192.168.50.3",
   })
@@ -248,13 +248,13 @@ else
     name = "SSH:dev-tmux-remote",
     multiplexing = "None",
     ssh_option = {
-      port = "25",
+      port = "24",
     },
     remote_address = "beng.asuscomm.com",
   })
 end
 
-local activate_or_spawn_ssh_pane = function(host, last_octet, port)
+local activate_or_spawn_ssh_pane = function(host)
   return activate_or_spawn_pane(host, function()
     return "SSH:"
       .. host
@@ -263,9 +263,9 @@ local activate_or_spawn_ssh_pane = function(host, last_octet, port)
             "ncat",
             "-z",
             "--wait",
-            "50ms",
-            "192.168.50." .. last_octet,
-            port or "22",
+            "10ms",
+            "192.168.50.1",
+            "8443",
           })
           and ""
         or "-remote"
@@ -383,7 +383,7 @@ config.keys = {
   {
     key = "d",
     mods = "ALT|CTRL",
-    action = activate_or_spawn_ssh_pane("dev", 2),
+    action = activate_or_spawn_ssh_pane("dev"),
   },
   {
     key = "e",
@@ -398,12 +398,12 @@ config.keys = {
   {
     key = "p",
     mods = "ALT|CTRL",
-    action = activate_or_spawn_ssh_pane("prod", 4),
+    action = activate_or_spawn_ssh_pane("prod"),
   },
   {
     key = "v",
     mods = "ALT|CTRL",
-    action = activate_or_spawn_ssh_pane("dev-wsl", 3, "23"),
+    action = activate_or_spawn_ssh_pane("dev-wsl"),
   },
   {
     key = "w",
