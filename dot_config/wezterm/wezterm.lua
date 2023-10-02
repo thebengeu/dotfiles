@@ -1,18 +1,6 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
-local filter = function(input, callback)
-  local output = {}
-
-  for _, value in ipairs(input) do
-    if callback(value) then
-      table.insert(output, value)
-    end
-  end
-
-  return output
-end
-
 local map = function(input_table, callback)
   local output_table = {}
 
@@ -93,12 +81,6 @@ config.default_domain = "SSH:wsl"
 if package.config:sub(1, 1) == "\\" then
   config.default_prog = { "fish" }
 end
-config.exec_domains = map(wezterm.enumerate_ssh_hosts(), function(_, host)
-  return wezterm.exec_domain(host, function(cmd)
-    cmd.args = { "ssh", host }
-    return cmd
-  end)
-end)
 -- config.font = wezterm.font("PragmataProLiga NF")
 -- config.font_rules = {
 -- 	{
@@ -149,7 +131,7 @@ local activate_pane = function(pane)
   end
 end
 
-local activate_or_spawn_pane = function(hostname, domain_name)
+local activate_or_spawn_pane = function(hostname, domain_name_or_getter)
   return wezterm.action_callback(function(window)
     local latest_prompt_time = 0
     local latest_prompt_pane
@@ -173,12 +155,55 @@ local activate_or_spawn_pane = function(hostname, domain_name)
     activate_pane(latest_prompt_pane)
 
     if not latest_prompt_pane then
-      window
-        :mux_window()
-        :spawn_tab({ domain = { DomainName = domain_name or hostname } })
+      window:mux_window():spawn_tab({
+        domain = {
+          DomainName = type(domain_name_or_getter) == "function"
+              and domain_name_or_getter()
+            or domain_name_or_getter,
+        },
+      })
     end
   end)
 end
+
+config.ssh_domains = map(wezterm.default_ssh_domains(), function(domain)
+  if domain.name:match("%:wsl$") then
+    domain.assume_shell = "Posix"
+    domain.default_prog = {
+      "fish",
+      "-C",
+      "set --export SSH_ORIGIN_HOSTNAME "
+        .. wezterm.hostname()
+        .. "; fish_add_path --global /mnt/c/Users/"
+        .. os.getenv("USERNAME")
+        .. "/scoop/shims",
+    }
+  end
+
+  return domain
+end)
+
+table.insert(config.ssh_domains, {
+  name = "SSH:dev-remote",
+  multiplexing = "None",
+  remote_address = "beng.asuscomm.com",
+})
+table.insert(config.ssh_domains, {
+  name = "SSH:dev-wsl-remote",
+  multiplexing = "None",
+  ssh_option = {
+    port = "23",
+  },
+  remote_address = "beng.asuscomm.com",
+})
+table.insert(config.ssh_domains, {
+  name = "SSH:prod-remote",
+  multiplexing = "None",
+  ssh_option = {
+    port = "24",
+  },
+  remote_address = "beng.asuscomm.com",
+})
 
 config.wsl_domains = map(wezterm.default_wsl_domains(), function(wsl_domain)
   wsl_domain.default_cwd = "~"
@@ -211,14 +236,24 @@ if wezterm.hostname() == "dev" then
     name = "dev-tmux",
   })
 else
-  table.insert(
-    config.exec_domains,
-    wezterm.exec_domain("dev-tmux", function(cmd)
-      cmd.args =
-        { "ssh", "-t", "dev-wsl", wezterm.shell_join_args(tmux_command) }
-      return cmd
-    end)
-  )
+  table.insert(config.ssh_domains, {
+    default_prog = tmux_command,
+    name = "SSH:dev-tmux",
+    multiplexing = "None",
+    ssh_option = {
+      port = "23",
+    },
+    remote_address = "192.168.50.3",
+  })
+  table.insert(config.ssh_domains, {
+    default_prog = tmux_command,
+    name = "SSH:dev-tmux-remote",
+    multiplexing = "None",
+    ssh_option = {
+      port = "23",
+    },
+    remote_address = "beng.asuscomm.com",
+  })
 end
 
 config.keys = {
@@ -331,12 +366,26 @@ config.keys = {
   {
     key = "d",
     mods = "ALT|CTRL",
-    action = activate_or_spawn_pane("dev"),
+    action = activate_or_spawn_pane("dev", function()
+      return "SSH:dev"
+        .. (
+          wezterm.run_child_process({
+              "ncat",
+              "-z",
+              "--wait",
+              "50ms",
+              "192.168.50.2",
+              "22",
+            })
+            and ""
+          or "-remote"
+        )
+    end),
   },
   {
     key = "e",
     mods = "ALT|CTRL",
-    action = activate_or_spawn_pane("ec2"),
+    action = activate_or_spawn_pane("ec2", "SSH:ec2"),
   },
   {
     key = "a",
@@ -346,20 +395,45 @@ config.keys = {
   {
     key = "p",
     mods = "ALT|CTRL",
-    action = activate_or_spawn_pane("prod"),
+    action = activate_or_spawn_pane("prod", function()
+      return "SSH:prod"
+        .. (
+          wezterm.run_child_process({
+              "ncat",
+              "-z",
+              "--wait",
+              "50ms",
+              "192.168.50.4",
+              "22",
+            })
+            and ""
+          or "-remote"
+        )
+    end),
   },
   {
     key = "v",
     mods = "ALT|CTRL",
-    action = activate_or_spawn_pane("dev-wsl"),
+    action = activate_or_spawn_pane("dev-wsl", function()
+      return "SSH:dev-wsl"
+        .. (
+          wezterm.run_child_process({
+              "ncat",
+              "-z",
+              "--wait",
+              "50ms",
+              "192.168.50.3",
+              "23",
+            })
+            and ""
+          or "-remote"
+        )
+    end),
   },
   {
     key = "w",
     mods = "ALT|CTRL",
-    action = activate_or_spawn_pane(
-      wezterm.hostname() .. "-wsl",
-      config.wsl_domains[1].name
-    ),
+    action = activate_or_spawn_pane(wezterm.hostname() .. "-wsl", "SSH:wsl"),
   },
   split_nav("move", "h"),
   split_nav("move", "j"),
@@ -504,29 +578,6 @@ config.skip_close_confirmation_for_processes_named = {
   "wslhost.exe",
   "zsh.exe",
 }
-config.ssh_domains = filter(wezterm.default_ssh_domains(), function(domain)
-  if domain.name:match("%:wsl$") then
-    domain.assume_shell = "Posix"
-    domain.default_prog = {
-      "fish",
-      "-C",
-      "set --export SSH_ORIGIN_HOSTNAME "
-        .. wezterm.hostname()
-        .. "; fish_add_path --global /mnt/c/Users/"
-        .. os.getenv("USERNAME")
-        .. "/scoop/shims",
-    }
-  end
-
-  return not domain.name:match("%:dev-wsl$")
-end)
-
-table.insert(config.ssh_domains, {
-  name = "SSH:dev-remote",
-  multiplexing = "None",
-  remote_address = "beng.asuscomm.com",
-})
-
 config.term = "wezterm"
 config.underline_position = "-0.2cell"
 config.underline_thickness = "0.05cell"
