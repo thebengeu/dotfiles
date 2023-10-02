@@ -1,8 +1,9 @@
 [alias]
+	grep-all = !git rev-list --all | xargs git grep
 	lg = log --pretty='format:%Cgreen%ah%Creset %s'
 	rau = !~/.config/git/template/hooks/add-upstream-auto-detected-url.sh
 	s = status --short --untracked-files
-  wip = !git add --all && git commit -m 'WIP' && git push
+	wip = !git add --all && git commit -m 'WIP' && git push
 [core]
 	pager = delta
 [delta]
