@@ -474,6 +474,7 @@ config.skip_close_confirmation_for_processes_named = {
 }
 config.ssh_domains = filter(wezterm.default_ssh_domains(), function(domain)
   if domain.name:match("%:wsl$") then
+    domain.assume_shell = "Posix"
     domain.default_prog = {
       "fish",
       "-C",
