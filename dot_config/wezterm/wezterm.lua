@@ -241,7 +241,7 @@ else
     ssh_option = {
       port = "24",
     },
-    remote_address = "192.168.50.3",
+    remote_address = "192.168.50.2",
   })
   table.insert(config.ssh_domains, {
     default_prog = tmux_command,
