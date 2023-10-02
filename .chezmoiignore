@@ -3,7 +3,7 @@ manifests/
 README.md
 
 {{ if eq .chezmoi.os "windows" }}
-.config/{bat,broot,fd,gitui,glow,gup,lazygit,lsd,msmtp,nushell,nvim,tealdeer,tmux,yamlfmt}/
+.config/{bat,broot,fd,gitui,glow,gup,helix,lazygit,lsd,msmtp,nushell,nvim,tealdeer,tmux,yamlfmt}/
 .config/fish/completions/pipx.fish
 .config/fish/completions/qmk.fish
 .config/topgrade.toml
