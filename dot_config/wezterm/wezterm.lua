@@ -1,6 +1,18 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
+local filter = function(input, callback)
+  local output = {}
+
+  for _, value in ipairs(input) do
+    if callback(value) then
+      table.insert(output, value)
+    end
+  end
+
+  return output
+end
+
 local map = function(input_table, callback)
   local output_table = {}
 
@@ -460,7 +472,21 @@ config.skip_close_confirmation_for_processes_named = {
   "wslhost.exe",
   "zsh.exe",
 }
-config.ssh_domains = wezterm.default_ssh_domains()
+config.ssh_domains = filter(wezterm.default_ssh_domains(), function(domain)
+  if domain.name:match("%:wsl$") then
+    domain.default_prog = {
+      "fish",
+      "-C",
+      "set --export SSH_ORIGIN_HOSTNAME "
+        .. wezterm.hostname()
+        .. "; fish_add_path --global /mnt/c/Users/"
+        .. os.getenv("USERNAME")
+        .. "/scoop/shims",
+    }
+  end
+
+  return not domain.name:match("%:dev-wsl$")
+end)
 
 table.insert(config.ssh_domains, {
   name = "SSH:dev-remote",
