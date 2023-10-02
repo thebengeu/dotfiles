@@ -469,7 +469,8 @@ table.insert(config.ssh_domains, {
 })
 
 config.term = "wezterm"
-config.underline_position = -10
+config.underline_position = "-0.2cell"
+config.underline_thickness = "0.05cell"
 config.warn_about_missing_glyphs = false
 config.webgpu_power_preference = "HighPerformance"
 config.window_background_opacity = 0.95
