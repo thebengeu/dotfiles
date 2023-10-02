@@ -78,9 +78,7 @@ config.colors = {
 }
 config.default_cursor_style = "SteadyBar"
 config.default_domain = "SSH:wsl"
-if package.config:sub(1, 1) == "\\" then
-  config.default_prog = { "fish" }
-end
+config.default_prog = { "fish", "-C", "set --export TERM xterm-256color" }
 -- config.font = wezterm.font("PragmataProLiga NF")
 -- config.font_rules = {
 -- 	{
