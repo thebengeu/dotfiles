@@ -256,6 +256,25 @@ else
   })
 end
 
+local activate_or_spawn_ssh_pane = function(host, last_octet, port)
+  return activate_or_spawn_pane(host, function()
+    return "SSH:"
+      .. host
+      .. (
+        wezterm.run_child_process({
+            "ncat",
+            "-z",
+            "--wait",
+            "50ms",
+            "192.168.50." .. last_octet,
+            port or "22",
+          })
+          and ""
+        or "-remote"
+      )
+  end)
+end
+
 config.keys = {
   { key = "phys:Space", mods = "SHIFT|ALT|CTRL", action = act.QuickSelect },
   { key = "t", mods = "SHIFT|CTRL", action = act.SpawnTab("DefaultDomain") },
@@ -366,21 +385,7 @@ config.keys = {
   {
     key = "d",
     mods = "ALT|CTRL",
-    action = activate_or_spawn_pane("dev", function()
-      return "SSH:dev"
-        .. (
-          wezterm.run_child_process({
-              "ncat",
-              "-z",
-              "--wait",
-              "50ms",
-              "192.168.50.2",
-              "22",
-            })
-            and ""
-          or "-remote"
-        )
-    end),
+    action = activate_or_spawn_ssh_pane("dev", 2),
   },
   {
     key = "e",
@@ -395,40 +400,12 @@ config.keys = {
   {
     key = "p",
     mods = "ALT|CTRL",
-    action = activate_or_spawn_pane("prod", function()
-      return "SSH:prod"
-        .. (
-          wezterm.run_child_process({
-              "ncat",
-              "-z",
-              "--wait",
-              "50ms",
-              "192.168.50.4",
-              "22",
-            })
-            and ""
-          or "-remote"
-        )
-    end),
+    action = activate_or_spawn_ssh_pane("prod", 4),
   },
   {
     key = "v",
     mods = "ALT|CTRL",
-    action = activate_or_spawn_pane("dev-wsl", function()
-      return "SSH:dev-wsl"
-        .. (
-          wezterm.run_child_process({
-              "ncat",
-              "-z",
-              "--wait",
-              "50ms",
-              "192.168.50.3",
-              "23",
-            })
-            and ""
-          or "-remote"
-        )
-    end),
+    action = activate_or_spawn_ssh_pane("dev-wsl", 3, "23"),
   },
   {
     key = "w",
