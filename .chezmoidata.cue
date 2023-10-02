@@ -109,10 +109,6 @@ aliases: {
 		}
 	}
 
-	for hostname in ["dev", "dev-wsl", "ec2", "prod"] {
-		"\(hostname)": "ssh \(hostname)"
-	}
-
 	_ssh_command:  "'ssh dev.local'"
 	_tmux_command: "tmux new-session -A -s dev \(_ssh_command) \\; set-option default-command \(_ssh_command)"
 
