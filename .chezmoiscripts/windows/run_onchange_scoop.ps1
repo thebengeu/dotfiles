@@ -8,6 +8,7 @@ $scoopPackages = @(
   'nmap'
   'python'
   'sed'
+  'win32yank'
 )
 
 scoop install $scoopPackages
