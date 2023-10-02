@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 {{ if not (and (eq .chezmoi.os "windows") (eq .chezmoi.arch "arm64")) }}
 cargo install \
   tealdeer \
@@ -15,6 +15,8 @@ cargo install \
   fd-find \
   lsd
 {{ else }}
+tic -x <(curl https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo)
+
 cargo install gitui
 
 pipx install qmk

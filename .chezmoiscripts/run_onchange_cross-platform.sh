@@ -32,5 +32,3 @@ pnpm add --global \
   pino-pretty \
   pm2 \
   trash-cli
-
-bash -c 'tic -x <(curl https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo)'
