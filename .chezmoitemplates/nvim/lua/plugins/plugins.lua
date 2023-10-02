@@ -1,5 +1,10 @@
 local Util = require("lazyvim.util")
-local toggle_term_open_mapping = (vim.g.goneovim or vim.g.neovide) and "<C-/>"
+local toggle_term_open_mapping = (
+  vim.g.goneovim
+  or vim.g.neovide
+  or (vim.env.SSH_TTY and not vim.env.TMUX)
+)
+    and "<C-/>"
   or "<C-_>"
 
 return {
