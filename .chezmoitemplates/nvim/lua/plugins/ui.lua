@@ -1,23 +1,5 @@
 local util = require("util")
 
-local create_colorscheme_autocmd = function(callback)
-  return function()
-    callback()
-
-    vim.api.nvim_create_autocmd("ColorScheme", {
-      callback = callback,
-    })
-  end
-end
-
-local add_bold_and_underline = function(name)
-  vim.api.nvim_set_hl(0, name, {
-    bold = true,
-    fg = vim.api.nvim_get_hl(0, { name = name }).fg,
-    underline = true,
-  })
-end
-
 return {
   {
     "goolord/alpha-nvim",
@@ -25,17 +7,33 @@ return {
   },
   {
     "jinh0/eyeliner.nvim",
-    config = create_colorscheme_autocmd(function()
-      local eyeliner = require("eyeliner")
+    config = function()
+      local add_bold_and_underline = function(name)
+        vim.api.nvim_set_hl(0, name, {
+          bold = true,
+          fg = vim.api.nvim_get_hl(0, { name = name }).fg,
+          underline = true,
+        })
+      end
 
-      eyeliner.disable()
-      eyeliner.enable()
+      local callback = function()
+        local eyeliner = require("eyeliner")
 
-      add_bold_and_underline("EyelinerPrimary")
-      add_bold_and_underline("EyelinerSecondary")
+        eyeliner.disable()
+        eyeliner.enable()
 
-      vim.api.nvim_exec_autocmds("CursorMoved", { group = "Eyeliner" })
-    end),
+        add_bold_and_underline("EyelinerPrimary")
+        add_bold_and_underline("EyelinerSecondary")
+
+        vim.api.nvim_exec_autocmds("CursorMoved", { group = "Eyeliner" })
+      end
+
+      callback()
+
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        callback = callback,
+      })
+    end,
     event = { "BufNewFile", "BufReadPre" },
   },
   {
