@@ -288,7 +288,7 @@ config.keys = {
   },
   {
     key = "n",
-    mods = "SHIFT|ALT|CTRL",
+    mods = "ALT|CTRL",
     action = wezterm.action_callback(function()
       local latest_focused_nvim_time = 0
       local latest_focused_nvim_pane
@@ -330,32 +330,32 @@ config.keys = {
   },
   {
     key = "d",
-    mods = "SHIFT|ALT|CTRL",
+    mods = "ALT|CTRL",
     action = activate_or_spawn_pane("dev"),
   },
   {
     key = "e",
-    mods = "SHIFT|ALT|CTRL",
+    mods = "ALT|CTRL",
     action = activate_or_spawn_pane("ec2"),
   },
   {
     key = "a",
-    mods = "SHIFT|ALT|CTRL",
+    mods = "ALT|CTRL",
     action = activate_or_spawn_pane(wezterm.hostname(), "local"),
   },
   {
     key = "p",
-    mods = "SHIFT|ALT|CTRL",
+    mods = "ALT|CTRL",
     action = activate_or_spawn_pane("prod"),
   },
   {
     key = "v",
-    mods = "SHIFT|ALT|CTRL",
+    mods = "ALT|CTRL",
     action = activate_or_spawn_pane("dev-wsl"),
   },
   {
     key = "w",
-    mods = "SHIFT|ALT|CTRL",
+    mods = "ALT|CTRL",
     action = activate_or_spawn_pane(
       wezterm.hostname() .. "-wsl",
       config.wsl_domains[1].name
@@ -371,6 +371,51 @@ config.keys = {
   split_nav("resize", "l"),
 }
 
+local spawn_or_focus_window = function(i)
+  local windows = wezterm.gui.gui_windows()
+  if i - #windows > 0 then
+    for _ = 1, i - #windows do
+      local _, _, window = wezterm.mux.spawn_window({})
+      return window:gui_window()
+    end
+  else
+    table.sort(windows, function(win1, win2)
+      return win1:window_id() < win2:window_id()
+    end)
+    windows[i]:focus()
+    return windows[i]
+  end
+end
+
+local spawn_or_activate_tab = function(i)
+  return function(window)
+    local mux_window = window:mux_window()
+    local tabs = mux_window:tabs()
+    if i - #tabs > 0 then
+      for _ = 1, i - #tabs do
+        mux_window:spawn_tab({})
+      end
+    else
+      tabs[i]:activate()
+    end
+  end
+end
+
+table.insert(config.keys, {
+  key = "0",
+  mods = "ALT|CTRL",
+  action = wezterm.action_callback(function()
+    spawn_or_focus_window(1)
+  end),
+})
+table.insert(config.keys, {
+  key = ")",
+  mods = "SHIFT|ALT",
+  action = wezterm.action_callback(function()
+    spawn_or_focus_window(2)
+  end),
+})
+
 for i, key in ipairs({
   "!",
   "@",
@@ -385,33 +430,20 @@ for i, key in ipairs({
   table.insert(config.keys, {
     key = key,
     mods = "SHIFT|CTRL",
-    action = wezterm.action_callback(function(window)
-      local mux_window = window:mux_window()
-      local tabs = mux_window:tabs()
-      if i - #tabs > 0 then
-        for _ = 1, i - #tabs do
-          mux_window:spawn_tab({})
-        end
-      else
-        tabs[i]:activate()
-      end
+    action = wezterm.action_callback(spawn_or_activate_tab(i)),
+  })
+  table.insert(config.keys, {
+    key = tostring(i),
+    mods = "ALT|CTRL",
+    action = wezterm.action_callback(function()
+      spawn_or_activate_tab(i)(spawn_or_focus_window(1))
     end),
   })
   table.insert(config.keys, {
     key = key,
-    mods = "SHIFT|ALT|CTRL",
+    mods = "SHIFT|ALT",
     action = wezterm.action_callback(function()
-      local windows = wezterm.gui.gui_windows()
-      if i - #windows > 0 then
-        for _ = 1, i - #windows do
-          wezterm.mux.spawn_window({})
-        end
-      else
-        table.sort(windows, function(win1, win2)
-          return win1:window_id() < win2:window_id()
-        end)
-        windows[i]:focus()
-      end
+      spawn_or_activate_tab(i)(spawn_or_focus_window(2))
     end),
   })
 end
