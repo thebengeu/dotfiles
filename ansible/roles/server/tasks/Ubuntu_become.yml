@@ -93,6 +93,7 @@
       - docker-ce
       - docker-ce-cli
       - docker-compose-plugin
+      - dos2unix
       - et
       - fish
       - gettext
