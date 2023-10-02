@@ -57,9 +57,9 @@ vim.api.nvim_create_autocmd("BufWritePost", {
       )
     else
       util.async_run_sh(
-        "! chezmoi managed -p source-absolute --include files | rg --quiet "
+        "! chezmoi managed -p source-absolute --include files | rg --quiet '"
           .. source_path:gsub("\\", "/")
-          .. " || chezmoi apply --source-path '"
+          .. "' || chezmoi apply --source-path '"
           .. source_path
           .. "'"
       )
