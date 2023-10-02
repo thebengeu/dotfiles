@@ -190,7 +190,7 @@ table.insert(config.ssh_domains, {
   name = "SSH:dev-wsl-remote",
   multiplexing = "None",
   ssh_option = {
-    port = "23",
+    port = "25",
   },
   remote_address = "beng.asuscomm.com",
 })
@@ -248,7 +248,7 @@ else
     name = "SSH:dev-tmux-remote",
     multiplexing = "None",
     ssh_option = {
-      port = "23",
+      port = "25",
     },
     remote_address = "beng.asuscomm.com",
   })
