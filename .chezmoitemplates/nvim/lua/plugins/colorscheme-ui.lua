@@ -122,6 +122,7 @@ return {
                 attach_mappings = function(prompt_bufnr)
                   local selected_index = colorscheme_index
 
+                  ---@diagnostic disable-next-line: undefined-field
                   action_set.shift_selection:enhance({
                     post = function()
                       refresh_colorscheme(
@@ -135,6 +136,7 @@ return {
                     actions.close(prompt_bufnr)
                   end)
 
+                  ---@diagnostic disable-next-line: undefined-field
                   actions.close:enhance({
                     post = function()
                       refresh_colorscheme(selected_index)
