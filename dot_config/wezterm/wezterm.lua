@@ -179,6 +179,8 @@ local activate_or_spawn_pane = function(hostname, domain_name)
 end
 
 config.ssh_domains = map(wezterm.default_ssh_domains(), function(domain)
+  domain.local_echo_threshold_ms = 1000
+
   if domain.name:find("%:wsl$") then
     domain.assume_shell = "Posix"
     domain.default_prog = {
