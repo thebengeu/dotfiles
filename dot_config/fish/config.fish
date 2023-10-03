@@ -12,15 +12,15 @@ set --global sponge_purge_only_on_exit true
 
 abbr --add os 'set COMMAND $(op signin) && test -n "$COMMAND" && eval $COMMAND && set --export OP_TIME $(date +%s)'
 
-if test -f /proc/sys/fs/binfmt_misc/WSLInterop
-    set --export TITLE_PREFIX wsl:
-end
-
-if test -n "$WEZTERM_UNIX_SOCKET"
+if set -q WEZTERM_UNIX_SOCKET
     set --export SSH_CONNECTION
+    set --export SSH_ORIGIN_HOSTNAME $(wezterm cli list-clients --format json | jq -r ".[] | select(.focused_pane_id == $WEZTERM_PANE) | .hostname")
 end
 
-if test -n "$SSH_CONNECTION"
+if test $(prompt_hostname) = "$SSH_ORIGIN_HOSTNAME-wsl"
+    set --export TITLE_PREFIX wsl:
+    fish_add_path --global "/mnt/c/Users/$USER/scoop/shims"
+else if set -q SSH_CONNECTION
     set --export TITLE_PREFIX $(prompt_hostname):
 end
 
@@ -33,7 +33,7 @@ function fish_title
         set --function title "$(prompt_pwd --dir-length=0)"
     end
 
-    if test -n "$TMUX"
+    if set -q TMUX
         tmux rename-window -t $(tmux display-message -p '#{window_index}') $title
     end
 
