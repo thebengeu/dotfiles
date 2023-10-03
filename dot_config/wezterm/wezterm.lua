@@ -522,19 +522,13 @@ wezterm.on("format-tab-title", function(tab)
   local hostname = user_vars.WEZTERM_HOSTNAME
   local prog = (user_vars.WEZTERM_PROG or ""):gsub(" .*", "")
 
-  local icon = prog == "nvim" and nerdfonts.custom_vim
-    or (
-      hostname == (wezterm.hostname() .. "-wsl")
-        and nerdfonts.cod_terminal_linux
-      or (
-        user_vars.WEZTERM_IN_TMUX == "1" and nerdfonts.cod_terminal_tmux
-        or (
-          (hostname and hostname ~= wezterm.hostname() and nerdfonts.md_ssh)
-          or process_name_icons[foreground_process_name]
-          or ""
-        )
-      )
-    )
+  local icon = (prog == "nvim" and nerdfonts.custom_vim)
+    or (hostname == (wezterm.hostname() .. "-wsl") and nerdfonts.cod_terminal_linux)
+    or (user_vars.WEZTERM_IN_TMUX == "1" and nerdfonts.cod_terminal_tmux)
+    or (hostname and hostname ~= wezterm.hostname() and nerdfonts.md_ssh)
+    or (active_pane.domain_name == "SSHMUX:localhost" and nerdfonts.md_microsoft_windows)
+    or process_name_icons[foreground_process_name]
+    or ""
 
   return tab.tab_index + 1
     .. ": "
