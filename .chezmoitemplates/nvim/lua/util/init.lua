@@ -1,5 +1,7 @@
 local exports = {}
 
+exports.extra_specs = {}
+
 exports.filter = function(input, callback)
   local output = {}
 
