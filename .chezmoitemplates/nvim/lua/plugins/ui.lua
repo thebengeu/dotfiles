@@ -32,8 +32,6 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     config = function(_, opts)
-      require("ibl").setup(opts)
-
       local hooks = require("ibl.hooks")
 
       local ts_rainbow_2_hl = util.map(
@@ -78,6 +76,8 @@ return {
           )
         end
       end)
+
+      require("ibl").setup(opts)
     end,
     opts = {
       indent = {
