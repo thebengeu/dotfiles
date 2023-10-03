@@ -85,7 +85,7 @@ config.colors = {
 }
 config.default_cursor_style = "SteadyBar"
 config.default_domain = "SSHMUX:wsl"
-config.default_prog = { "fish", "-C", "set --export TERM xterm-256color" }
+config.default_prog = { "fish" }
 -- config.font = wezterm.font("PragmataProLiga NF")
 -- config.font_rules = {
 -- 	{
@@ -480,7 +480,6 @@ config.skip_close_confirmation_for_processes_named = {
   "wslhost.exe",
   "zsh.exe",
 }
-config.term = "wezterm"
 config.underline_position = "-0.2cell"
 config.underline_thickness = "0.05cell"
 config.warn_about_missing_glyphs = false
