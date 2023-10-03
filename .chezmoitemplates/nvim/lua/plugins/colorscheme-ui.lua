@@ -36,9 +36,8 @@ for i = 1, 7 do
   table.insert(ts_rainbow_hl, "rainbowcol" .. i)
 end
 
-local hl_is_not_default = function(hl_name)
-  local hl = vim.api.nvim_get_hl(0, { name = hl_name })
-  return next(hl) and not hl.default
+local rainbow_hl_if_exists = function(rainbow_hl)
+  return vim.fn.hlexists(rainbow_hl[1]) == 1 and rainbow_hl
 end
 
 vim.api.nvim_create_autocmd("ColorScheme", {
@@ -51,12 +50,9 @@ vim.api.nvim_create_autocmd("ColorScheme", {
       end
     end
 
-    local rainbow_delimiters_hl = util.rainbow_delimiters_hl
-    local rainbow_hl = (
-      hl_is_not_default(rainbow_delimiters_hl[1]) and rainbow_delimiters_hl
-    )
-      or (hl_is_not_default(ts_rainbow_2_hl[1]) and ts_rainbow_2_hl)
-      or (hl_is_not_default(ts_rainbow_hl[1]) and ts_rainbow_hl)
+    local rainbow_hl = rainbow_hl_if_exists(util.rainbow_delimiters_hl)
+      or rainbow_hl_if_exists(ts_rainbow_2_hl)
+      or rainbow_hl_if_exists(ts_rainbow_hl)
 
     if not rainbow_hl then
       error("No rainbow highlight groups found")
@@ -65,7 +61,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     for i, hl_name in ipairs(rainbow_hl) do
       vim.api.nvim_set_hl(
         0,
-        rainbow_delimiters_hl[i],
+        util.rainbow_delimiters_hl[i],
         { fg = vim.api.nvim_get_hl(0, { link = false, name = hl_name }).fg }
       )
     end
