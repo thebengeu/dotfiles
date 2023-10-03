@@ -144,13 +144,17 @@ local activate_or_spawn_pane = function(hostname, domain_name)
     local latest_prompt_pane
 
     find_pane(function(pane)
+      local matched
       local user_vars = pane:get_user_vars()
 
-      if
-        user_vars.WEZTERM_HOSTNAME
-          and (user_vars.WEZTERM_HOSTNAME == hostname and user_vars.WEZTERM_PROG == "")
-        or (pane:get_domain_name() == domain_name)
-      then
+      if user_vars.WEZTERM_HOSTNAME then
+        matched = user_vars.WEZTERM_HOSTNAME == hostname
+          and user_vars.WEZTERM_PROG == ""
+      else
+        matched = (pane:get_domain_name() == domain_name)
+      end
+
+      if matched then
         local prompt_time = tonumber(user_vars.PROMPT_TIME) or 0
 
         if prompt_time >= latest_prompt_time then
