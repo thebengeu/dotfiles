@@ -31,6 +31,54 @@ return {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
+    config = function(_, opts)
+      require("ibl").setup(opts)
+
+      local hooks = require("ibl.hooks")
+
+      local ts_rainbow_2_hl = util.map(
+        util.rainbow_colors,
+        function(rainbow_color)
+          return "TSRainbow" .. rainbow_color
+        end
+      )
+
+      local ts_rainbow_hl = {}
+
+      for i = 1, 7 do
+        table.insert(ts_rainbow_hl, "rainbowcol" .. i)
+      end
+
+      local rainbow_hl_if_exists = function(rainbow_hl)
+        return vim.fn.hlexists(rainbow_hl[1]) == 1 and rainbow_hl
+      end
+
+      hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+        local get_highlights = util.highlights[vim.g.colors_name]
+
+        if get_highlights then
+          for name, highlight in pairs(get_highlights()) do
+            vim.api.nvim_set_hl(0, name, highlight)
+          end
+        end
+
+        local rainbow_hl = rainbow_hl_if_exists(util.rainbow_delimiters_hl)
+          or rainbow_hl_if_exists(ts_rainbow_2_hl)
+          or rainbow_hl_if_exists(ts_rainbow_hl)
+
+        if not rainbow_hl then
+          error("No rainbow highlight groups found")
+        end
+
+        for i, hl_name in ipairs(rainbow_hl) do
+          vim.api.nvim_set_hl(
+            0,
+            util.rainbow_delimiters_hl[i],
+            { fg = vim.api.nvim_get_hl(0, { link = false, name = hl_name }).fg }
+          )
+        end
+      end)
+    end,
     opts = {
       indent = {
         highlight = util.rainbow_delimiters_hl,

@@ -86,6 +86,8 @@ exports.async_run_sh = function(command)
   exports.async_run({ "sh", "-c", command })
 end
 
+exports.highlights = {}
+
 exports.normname = function(name)
   return (name:gsub("[%.%-]?nvim%-?", ""))
 end
