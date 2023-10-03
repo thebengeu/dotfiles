@@ -24,6 +24,10 @@ end
 {{- if eq .chezmoi.os "windows"}}
 chcp.com 1252 >/dev/null
 {{- else}}
+if test "$TERM_PROGRAM" = "WezTerm"
+    set --export TERM wezterm
+end
+
 set --global --append fish_complete_path /usr/share/fish/completions/completions
 {{- end}}
 
