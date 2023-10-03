@@ -156,7 +156,7 @@ local activate_or_spawn_pane = function(hostname, domain_name_or_getter)
       window:mux_window():spawn_tab({
         domain = {
           DomainName = type(domain_name_or_getter) == "function"
-              and domain_name_or_getter()
+              and domain_name_or_getter(hostname)
             or domain_name_or_getter,
         },
       })
@@ -254,23 +254,21 @@ else
   })
 end
 
-local activate_or_spawn_ssh_pane = function(host)
-  return activate_or_spawn_pane(host, function()
-    return "SSH:"
-      .. host
-      .. (
-        wezterm.run_child_process({
-            "ncat",
-            "-z",
-            "--wait",
-            "10ms",
-            "192.168.50.1",
-            "8443",
-          })
-          and ""
-        or "-remote"
-      )
-  end)
+local local_or_remote_ssh_domain = function(hostname)
+  return "SSH:"
+    .. hostname
+    .. (
+      wezterm.run_child_process({
+          "ncat",
+          "-z",
+          "--wait",
+          "10ms",
+          "192.168.50.1",
+          "8443",
+        })
+        and ""
+      or "-remote"
+    )
 end
 
 config.keys = {
@@ -383,7 +381,7 @@ config.keys = {
   {
     key = "d",
     mods = "ALT|CTRL",
-    action = activate_or_spawn_ssh_pane("dev"),
+    action = activate_or_spawn_pane("dev", local_or_remote_ssh_domain),
   },
   {
     key = "e",
@@ -398,12 +396,12 @@ config.keys = {
   {
     key = "p",
     mods = "ALT|CTRL",
-    action = activate_or_spawn_ssh_pane("prod"),
+    action = activate_or_spawn_pane("prod", local_or_remote_ssh_domain),
   },
   {
     key = "v",
     mods = "ALT|CTRL",
-    action = activate_or_spawn_ssh_pane("dev-wsl"),
+    action = activate_or_spawn_pane("dev-wsl", local_or_remote_ssh_domain),
   },
   {
     key = "w",
