@@ -18,6 +18,7 @@ Host prod
 
 Host wsl
   Hostname 127.0.0.1
+  SendEnv USERDOMAIN
 
 Host ec2
   Hostname 13.213.181.86

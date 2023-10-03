@@ -160,7 +160,10 @@ return {
   {
     "ojroques/nvim-osc52",
     cond = vim.env.SSH_CONNECTION ~= nil
-      and vim.fn.hostname() ~= (vim.env.SSH_ORIGIN_HOSTNAME or "") .. "-wsl",
+      and not (
+        vim.env.USERDOMAIN
+        and vim.fn.hostname() == vim.env.USERDOMAIN:lower() .. "-wsl"
+      ),
     init = function()
       local tmux = vim.env.TMUX
 
