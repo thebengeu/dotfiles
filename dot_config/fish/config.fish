@@ -14,12 +14,11 @@ abbr --add os 'set COMMAND $(op signin) && test -n "$COMMAND" && eval $COMMAND &
 
 if set -q WEZTERM_UNIX_SOCKET
     set --export SSH_CONNECTION
-    set --export USERDOMAIN $(wezterm cli list-clients --format json | jq -r ".[] | select(.focused_pane_id == $WEZTERM_PANE) | .hostname" | string upper)
+    set --export USERDOMAIN $(wezterm cli list-clients --format json | jq -r ".[] | select(.focused_pane_id == $WEZTERM_PANE) | .hostname")
 end
 
-if test $(prompt_hostname) = "$(string lower $USERDOMAIN)-wsl"
-    set --export TITLE_PREFIX wsl:
-    fish_add_path --global "/mnt/c/Users/$USER/scoop/shims"
+if test $(prompt_hostname) = "$(string lower $USERDOMAIN | sed s/\r//)-wsl"
+    setup_local_wsl
 else if set -q SSH_CONNECTION
     set --export TITLE_PREFIX $(prompt_hostname):
 end
