@@ -38,7 +38,6 @@ return {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
-    commit = "af58360b3070650b0d151210e9c63df92ce78f3e",
     opts = {
       indent = {
         highlight = util.rainbow_delimiters_hl,
