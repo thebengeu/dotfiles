@@ -16,7 +16,11 @@ if test -f /proc/sys/fs/binfmt_misc/WSLInterop
     set --export TITLE_PREFIX wsl:
 end
 
-if test -n "$SSH_TTY" -o -n "$WEZTERM_UNIX_SOCKET"
+if test -n "$WEZTERM_UNIX_SOCKET"
+    set --export SSH_TTY /dev/pts/0
+end
+
+if test -n "$SSH_TTY"
     set --export TITLE_PREFIX $(prompt_hostname):
 end
 
