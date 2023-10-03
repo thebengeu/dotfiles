@@ -13,6 +13,7 @@ disabled = true
 ignore_branches = ['main', 'master']
 
 [hostname]
+# detect_env_vars = ["WEZTERM_UNIX_SOCKET"]
 format = "[$hostname]($style) "
 
 [line_break]
