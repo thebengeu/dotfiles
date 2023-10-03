@@ -137,6 +137,8 @@ local activate_pane = function(pane)
 end
 
 local activate_or_spawn_pane = function(hostname, domain_name)
+  domain_name = domain_name or ("SSHMUX:" .. hostname)
+
   return wezterm.action_callback(function(window, event_pane)
     local latest_prompt_time = 0
     local latest_prompt_pane
@@ -145,12 +147,13 @@ local activate_or_spawn_pane = function(hostname, domain_name)
       local user_vars = pane:get_user_vars()
 
       if
-        user_vars.WEZTERM_HOSTNAME == hostname
-        and user_vars.WEZTERM_PROG == ""
+        user_vars.WEZTERM_HOSTNAME
+          and (user_vars.WEZTERM_HOSTNAME == hostname and user_vars.WEZTERM_PROG == "")
+        or (pane:get_domain_name() == domain_name)
       then
-        local prompt_time = tonumber(user_vars.PROMPT_TIME)
+        local prompt_time = tonumber(user_vars.PROMPT_TIME) or 0
 
-        if prompt_time and prompt_time > latest_prompt_time then
+        if prompt_time >= latest_prompt_time then
           latest_prompt_time = prompt_time
           latest_prompt_pane = pane
         end
@@ -160,8 +163,6 @@ local activate_or_spawn_pane = function(hostname, domain_name)
     activate_pane(latest_prompt_pane)
 
     if not latest_prompt_pane then
-      domain_name = domain_name or ("SSHMUX:" .. hostname)
-
       if domain_name:find("^SSHMUX%:") then
         window:perform_action(act.AttachDomain(domain_name), event_pane)
         wezterm.sleep_ms(200)
