@@ -241,6 +241,7 @@ return vim.list_extend(
 
         vim.list_extend(opts.ensure_installed, {
           "cue",
+          "fennel",
           "fish",
           "hjson",
           "gitignore",

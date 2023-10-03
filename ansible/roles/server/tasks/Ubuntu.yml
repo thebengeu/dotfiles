@@ -70,6 +70,7 @@
     creates: ~/.nix-profile/bin/{{ item }}
   loop:
     - direnv
+    - fennel
     - hledger
     - hledger-ui
     - hledger-web
