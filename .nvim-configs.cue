@@ -6,8 +6,9 @@ import (
 )
 
 _nvimConfigs: {
-	"ecosse3/nvim":    "ecovim"
-	"LazyVim/starter": "lazyvim"
+	"ecosse3/nvim":            "ecovim"
+	"nvim-lua/kickstart.nvim": "kickstart"
+	"LazyVim/starter":         "lazyvim"
 
 	for gitRepo in [
 		"AstroNvim/AstroNvim",
