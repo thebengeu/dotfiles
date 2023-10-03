@@ -6,7 +6,7 @@ return {
     enabled = false,
   },
   {
-    "jinh0/eyeliner.nvim",
+    "thebengeu/eyeliner.nvim",
     config = function()
       local add_bold_and_underline = function(name)
         vim.api.nvim_set_hl(0, name, {
@@ -17,15 +17,8 @@ return {
       end
 
       local callback = function()
-        local eyeliner = require("eyeliner")
-
-        eyeliner.disable()
-        eyeliner.enable()
-
         add_bold_and_underline("EyelinerPrimary")
         add_bold_and_underline("EyelinerSecondary")
-
-        vim.api.nvim_exec_autocmds("CursorMoved", { group = "Eyeliner" })
       end
 
       callback()
