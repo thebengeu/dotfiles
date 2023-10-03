@@ -149,7 +149,7 @@ return {
   },
   {
     "HiPhish/rainbow-delimiters.nvim",
-    branch = "use-children",
+    event = { "BufNewFile", "BufReadPost" },
   },
   {
     "lewis6991/satellite.nvim",
