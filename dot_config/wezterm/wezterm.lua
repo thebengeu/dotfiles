@@ -207,9 +207,8 @@ config.wsl_domains = map(wezterm.default_wsl_domains(), function(wsl_domain)
 end)
 
 config.keys = {
-  { key = "phys:Space", mods = "SHIFT|ALT|CTRL", action = act.QuickSelect },
-  { key = "t", mods = "SHIFT|CTRL", action = act.SpawnTab("DefaultDomain") },
-  { key = "t", mods = "ALT|CTRL", action = act.SpawnTab("CurrentPaneDomain") },
+  { key = "phys:Space", mods = "SHIFT|ALT", action = act.QuickSelect },
+  { key = "t", mods = "SHIFT|ALT", action = act.SpawnTab("DefaultDomain") },
   {
     key = ")",
     mods = "SHIFT|ALT|CTRL",
@@ -225,55 +224,55 @@ config.keys = {
     mods = "CTRL",
     action = act.PasteFrom("Clipboard"),
   },
-  { key = "UpArrow", mods = "SHIFT|ALT|CTRL", action = act.ScrollToPrompt(-1) },
+  { key = "UpArrow", mods = "SHIFT|ALT", action = act.ScrollToPrompt(-1) },
   {
     key = "DownArrow",
-    mods = "SHIFT|ALT|CTRL",
+    mods = "SHIFT|ALT",
     action = act.ScrollToPrompt(1),
   },
   {
     key = "|",
-    mods = "SHIFT|ALT|CTRL",
+    mods = "SHIFT|ALT",
     action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }),
   },
   {
     key = "_",
-    mods = "SHIFT|ALT|CTRL",
+    mods = "SHIFT|ALT",
     action = act.SplitVertical({ domain = "CurrentPaneDomain" }),
   },
   {
     key = "\\",
     mods = "ALT|CTRL",
-    action = act.SplitHorizontal({ domain = "DefaultDomain" }),
+    action = act.SplitHorizontal({ domain = { DomainName = "SSH:wsl" } }),
   },
   {
     key = "-",
     mods = "ALT|CTRL",
-    action = act.SplitVertical({ domain = "DefaultDomain" }),
+    action = act.SplitVertical({ domain = { DomainName = "SSH:wsl" } }),
   },
   {
     key = "h",
-    mods = "SHIFT|ALT|CTRL",
+    mods = "SHIFT|ALT",
     action = act.ActivatePaneDirection("Left"),
   },
   {
     key = "l",
-    mods = "SHIFT|ALT|CTRL",
+    mods = "SHIFT|ALT",
     action = act.ActivatePaneDirection("Right"),
   },
   {
     key = "k",
-    mods = "SHIFT|ALT|CTRL",
+    mods = "SHIFT|ALT",
     action = act.ActivatePaneDirection("Up"),
   },
   {
     key = "j",
-    mods = "SHIFT|ALT|CTRL",
+    mods = "SHIFT|ALT",
     action = act.ActivatePaneDirection("Down"),
   },
   {
     key = "n",
-    mods = "ALT|CTRL",
+    mods = "SHIFT|ALT",
     action = wezterm.action_callback(function()
       local latest_focused_nvim_time = 0
       local latest_focused_nvim_pane
@@ -315,32 +314,32 @@ config.keys = {
   },
   {
     key = "d",
-    mods = "ALT|CTRL",
+    mods = "SHIFT|ALT",
     action = activate_or_spawn_pane("dev"),
   },
   {
     key = "e",
-    mods = "ALT|CTRL",
+    mods = "SHIFT|ALT",
     action = activate_or_spawn_pane("ec2"),
   },
   {
     key = "a",
-    mods = "ALT|CTRL",
+    mods = "SHIFT|ALT",
     action = activate_or_spawn_pane(wezterm.hostname(), "SSHMUX:localhost"),
   },
   {
     key = "p",
-    mods = "ALT|CTRL",
+    mods = "SHIFT|ALT",
     action = activate_or_spawn_pane("prod"),
   },
   {
     key = "v",
-    mods = "ALT|CTRL",
+    mods = "SHIFT|ALT",
     action = activate_or_spawn_pane("dev-wsl"),
   },
   {
     key = "w",
-    mods = "ALT|CTRL",
+    mods = "SHIFT|ALT",
     action = activate_or_spawn_pane(wezterm.hostname() .. "-wsl", "SSHMUX:wsl"),
   },
   split_nav("move", "h"),
@@ -415,15 +414,15 @@ for i, key in ipairs({
     action = wezterm.action_callback(spawn_or_activate_tab(i)),
   })
   table.insert(config.keys, {
-    key = tostring(i),
-    mods = "ALT|CTRL",
+    key = key,
+    mods = "SHIFT|ALT",
     action = wezterm.action_callback(function()
       spawn_or_activate_tab(i)(spawn_or_focus_window(1))
     end),
   })
   table.insert(config.keys, {
-    key = key,
-    mods = "SHIFT|ALT",
+    key = tostring(i),
+    mods = "ALT|CTRL",
     action = wezterm.action_callback(function()
       spawn_or_activate_tab(i)(spawn_or_focus_window(2))
     end),
