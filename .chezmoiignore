@@ -7,6 +7,7 @@ README.md
 .config/fish/completions/pipx.fish
 .config/fish/completions/qmk.fish
 .config/topgrade.toml
+.hushlogin
 .local/bin/build_and_install_nvim
 .local/share/
 .ssh/control-master.conf
