@@ -1,6 +1,13 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
+if wezterm.GLOBAL.is_remote == nil then
+  local _, stdout, _ = wezterm.run_child_process({ "ipconfig" })
+  wezterm.GLOBAL.is_remote = not stdout:find("192%.168%.50%.1")
+end
+
+local is_remote = wezterm.GLOBAL.is_remote
+
 local map = function(input_table, callback)
   local output_table = {}
 
@@ -77,7 +84,7 @@ config.colors = {
   },
 }
 config.default_cursor_style = "SteadyBar"
-config.default_domain = "SSH:wsl"
+config.default_domain = "SSHMUX:wsl"
 config.default_prog = { "fish", "-C", "set --export TERM xterm-256color" }
 -- config.font = wezterm.font("PragmataProLiga NF")
 -- config.font_rules = {
@@ -129,8 +136,8 @@ local activate_pane = function(pane)
   end
 end
 
-local activate_or_spawn_pane = function(hostname, domain_name_or_getter)
-  return wezterm.action_callback(function(window)
+local activate_or_spawn_pane = function(hostname, domain_name)
+  return wezterm.action_callback(function(window, event_pane)
     local latest_prompt_time = 0
     local latest_prompt_pane
 
@@ -153,19 +160,16 @@ local activate_or_spawn_pane = function(hostname, domain_name_or_getter)
     activate_pane(latest_prompt_pane)
 
     if not latest_prompt_pane then
-      window:mux_window():spawn_tab({
-        domain = {
-          DomainName = type(domain_name_or_getter) == "function"
-              and domain_name_or_getter(hostname)
-            or domain_name_or_getter,
-        },
-      })
+      domain_name = domain_name or ("SSHMUX:" .. hostname)
+      window:perform_action(act.AttachDomain(domain_name), event_pane)
+      wezterm.sleep_ms(200)
+      window:perform_action(act.ActivateTab(-1), event_pane)
     end
   end)
 end
 
 config.ssh_domains = map(wezterm.default_ssh_domains(), function(domain)
-  if domain.name:match("%:wsl$") then
+  if domain.name:find("%:wsl$") then
     domain.assume_shell = "Posix"
     domain.default_prog = {
       "fish",
@@ -176,31 +180,20 @@ config.ssh_domains = map(wezterm.default_ssh_domains(), function(domain)
         .. os.getenv("USERNAME")
         .. "/scoop/shims",
     }
+  elseif is_remote and not domain.name:find("%:ec2$") then
+    domain.remote_address = "beng.asuscomm.com"
+    domain.ssh_option = {
+      port = domain.name:find("%:dev-wsl$") and "24"
+        or (domain.name:find("%:prod$") and "26" or "22"),
+    }
   end
 
   return domain
 end)
 
 table.insert(config.ssh_domains, {
-  name = "SSH:dev-remote",
-  multiplexing = "None",
-  remote_address = "beng.asuscomm.com",
-})
-table.insert(config.ssh_domains, {
-  name = "SSH:dev-wsl-remote",
-  multiplexing = "None",
-  ssh_option = {
-    port = "24",
-  },
-  remote_address = "beng.asuscomm.com",
-})
-table.insert(config.ssh_domains, {
-  name = "SSH:prod-remote",
-  multiplexing = "None",
-  ssh_option = {
-    port = "26",
-  },
-  remote_address = "beng.asuscomm.com",
+  name = "SSHMUX:localhost",
+  remote_address = "localhost",
 })
 
 config.wsl_domains = map(wezterm.default_wsl_domains(), function(wsl_domain)
@@ -212,23 +205,6 @@ config.wsl_domains = map(wezterm.default_wsl_domains(), function(wsl_domain)
   }
   return wsl_domain
 end)
-
-local local_or_remote_ssh_domain = function(hostname)
-  return "SSH:"
-    .. hostname
-    .. (
-      wezterm.run_child_process({
-          "ncat",
-          "-z",
-          "--wait",
-          "10ms",
-          "192.168.50.1",
-          "8443",
-        })
-        and ""
-      or "-remote"
-    )
-end
 
 config.keys = {
   { key = "phys:Space", mods = "SHIFT|ALT|CTRL", action = act.QuickSelect },
@@ -340,32 +316,32 @@ config.keys = {
   {
     key = "d",
     mods = "ALT|CTRL",
-    action = activate_or_spawn_pane("dev", local_or_remote_ssh_domain),
+    action = activate_or_spawn_pane("dev"),
   },
   {
     key = "e",
     mods = "ALT|CTRL",
-    action = activate_or_spawn_pane("ec2", "SSH:ec2"),
+    action = activate_or_spawn_pane("ec2"),
   },
   {
     key = "a",
     mods = "ALT|CTRL",
-    action = activate_or_spawn_pane(wezterm.hostname(), "local"),
+    action = activate_or_spawn_pane(wezterm.hostname(), "SSHMUX:localhost"),
   },
   {
     key = "p",
     mods = "ALT|CTRL",
-    action = activate_or_spawn_pane("prod", local_or_remote_ssh_domain),
+    action = activate_or_spawn_pane("prod"),
   },
   {
     key = "v",
     mods = "ALT|CTRL",
-    action = activate_or_spawn_pane("dev-wsl", local_or_remote_ssh_domain),
+    action = activate_or_spawn_pane("dev-wsl"),
   },
   {
     key = "w",
     mods = "ALT|CTRL",
-    action = activate_or_spawn_pane(wezterm.hostname() .. "-wsl", "SSH:wsl"),
+    action = activate_or_spawn_pane(wezterm.hostname() .. "-wsl", "SSHMUX:wsl"),
   },
   split_nav("move", "h"),
   split_nav("move", "j"),
