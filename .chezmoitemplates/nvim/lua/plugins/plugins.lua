@@ -1,11 +1,4 @@
 local Util = require("lazyvim.util")
-local toggle_term_open_mapping = (
-  vim.g.goneovim
-  or vim.g.neovide
-  or (vim.env.SSH_TTY and not vim.env.TMUX)
-)
-    and "<C-/>"
-  or "<C-_>"
 
 return {
   {
@@ -274,9 +267,9 @@ return {
   },
   {
     "akinsho/toggleterm.nvim",
-    keys = toggle_term_open_mapping,
+    keys = "<C-/>",
     opts = {
-      open_mapping = toggle_term_open_mapping,
+      open_mapping = "<C-/>",
       persist_mode = false,
       shell = "fish",
     },
