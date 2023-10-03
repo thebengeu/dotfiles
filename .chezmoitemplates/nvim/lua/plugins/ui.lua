@@ -39,56 +39,6 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     commit = "af58360b3070650b0d151210e9c63df92ce78f3e",
-    config = function(_, opts)
-      require("ibl").setup(opts)
-
-      local hooks = require("ibl.hooks")
-
-      local ts_rainbow_2_hl = util.map(
-        util.rainbow_colors,
-        function(rainbow_color)
-          return rainbow_color .. "TSRainbow"
-        end
-      )
-
-      local ts_rainbow_hl = {}
-
-      for i = 1, 7 do
-        table.insert(ts_rainbow_hl, "rainbowcol" .. i)
-      end
-
-      local hl_is_not_default = function(hl_name)
-        local hl = vim.api.nvim_get_hl(0, { name = hl_name })
-        return next(hl) and not hl.default
-      end
-
-      hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-        if hl_is_not_default(util.rainbow_delimiters_hl[1]) then
-          return
-        end
-
-        local legacy_rainbow_hl = (
-          hl_is_not_default(ts_rainbow_2_hl[1]) and ts_rainbow_2_hl
-        )
-          or (hl_is_not_default(ts_rainbow_hl[1]) and ts_rainbow_hl)
-
-        if not legacy_rainbow_hl then
-          error("No rainbow highlight groups found")
-        end
-
-        for i = 1, 7 do
-          vim.api.nvim_set_hl(
-            0,
-            util.rainbow_delimiters_hl[i],
-            { link = legacy_rainbow_hl[i] }
-          )
-        end
-      end)
-    end,
-    dependencies = {
-      "HiPhish/rainbow-delimiters.nvim",
-      branch = "use-children",
-    },
     opts = {
       indent = {
         highlight = util.rainbow_delimiters_hl,
@@ -156,6 +106,10 @@ return {
     opts = {
       calm_down = true,
     },
+  },
+  {
+    "HiPhish/rainbow-delimiters.nvim",
+    branch = "use-children",
   },
   {
     "lewis6991/satellite.nvim",

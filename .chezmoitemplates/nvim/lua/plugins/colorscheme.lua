@@ -10,27 +10,6 @@ local rainbow_delimiter_highlights = function(colors)
   return highlights
 end
 
-local add_colorscheme_autocmds_on_config = function(spec, get_highlights)
-  spec.config = function(plugin)
-    for _, colors_name in
-      ipairs(
-        plugin.colors_names and plugin.colors_names
-          or { util.normname(plugin.name) }
-      )
-    do
-      vim.api.nvim_create_autocmd("ColorScheme", {
-        callback = function()
-          for name, highlight in pairs(get_highlights(colors_name)) do
-            vim.api.nvim_set_hl(0, name, highlight)
-          end
-        end,
-        pattern = colors_name,
-      })
-    end
-  end
-  return spec
-end
-
 return util.map({
   { "ribru17/bamboo.nvim" },
   {
@@ -46,8 +25,8 @@ return util.map({
           enable_ui = true,
           enabled = true,
         },
+        rainbow_delimiters = true,
         treesitter_context = true,
-        ts_rainbow = true,
       },
     },
   },
@@ -70,22 +49,24 @@ return util.map({
       vim.g.edge_enable_italic = 1
     end,
   },
-  add_colorscheme_autocmds_on_config({
+  {
     "Everblush/nvim",
-    name = "everblush",
-  }, function()
-    local palette = require("everblush.palette")
+    highlights = function()
+      local palette = require("everblush.palette")
 
-    return rainbow_delimiter_highlights({
-      palette.color1,
-      palette.color3,
-      palette.color4,
-      palette.color7,
-      palette.color2,
-      palette.color5,
-      palette.color6,
-    })
-  end),
+      return rainbow_delimiter_highlights({
+        palette.color1,
+        palette.color3,
+        palette.color4,
+        palette.color7,
+        palette.color2,
+        palette.color5,
+        palette.color6,
+      })
+    end,
+    name = "everblush",
+  },
+
   {
     "sainnhe/everforest",
     config = function()
@@ -110,7 +91,18 @@ return util.map({
       end,
     },
   },
-  { "ellisonleao/gruvbox.nvim" },
+  {
+    "ellisonleao/gruvbox.nvim",
+    opts = function()
+      local gruvbox = require("gruvbox")
+
+      return {
+        overrides = {
+          TSRainbowCyan = { fg = gruvbox.palette.neutral_blue },
+        },
+      }
+    end,
+  },
   { "luisiacc/gruvbox-baby" },
   {
     "sainnhe/gruvbox-material",
@@ -141,21 +133,22 @@ return util.map({
       end,
     },
   },
-  add_colorscheme_autocmds_on_config({
+  {
     "savq/melange-nvim",
-  }, function()
-    local palette = require("melange.palettes.dark")
+    highlights = function()
+      local palette = require("melange.palettes.dark")
 
-    return rainbow_delimiter_highlights({
-      palette.b.red,
-      palette.b.yellow,
-      palette.b.blue,
-      palette.c.yellow,
-      palette.b.green,
-      palette.b.magenta,
-      palette.b.cyan,
-    })
-  end),
+      return rainbow_delimiter_highlights({
+        palette.b.red,
+        palette.b.yellow,
+        palette.b.blue,
+        palette.c.yellow,
+        palette.b.green,
+        palette.b.magenta,
+        palette.b.cyan,
+      })
+    end,
+  },
   {
     "loctvl842/monokai-pro.nvim",
     colors_names = {
@@ -234,22 +227,23 @@ return util.map({
       }),
     },
   },
-  add_colorscheme_autocmds_on_config({
+  {
     colors_names = {
       "selenized-black",
       "selenized-dark",
       "solarized-dark",
     },
+    highlights = function()
+      local highlights = {}
+
+      for _, color in ipairs(util.rainbow_colors) do
+        highlights["RainbowDelimiter" .. color] = { link = "Rainbow" .. color }
+      end
+
+      return highlights
+    end,
     url = "https://gitlab.com/HiPhish/resolarized.nvim.git",
-  }, function()
-    local highlights = {}
-
-    for _, color in ipairs(util.rainbow_colors) do
-      highlights["RainbowDelimiter" .. color] = { link = "Rainbow" .. color }
-    end
-
-    return highlights
-  end),
+  },
   {
     "sainnhe/sonokai",
     colorscheme_styles = {
@@ -292,6 +286,17 @@ return util.map({
     end,
   },
 }, function(colorscheme_spec)
+  local extra_spec = {}
+
+  for _, key in ipairs({ "colors_names", "colorscheme_styles", "highlights" }) do
+    extra_spec[key] = colorscheme_spec[key]
+    colorscheme_spec[key] = nil
+  end
+
+  if next(extra_spec) then
+    util.extra_specs[colorscheme_spec[1] or colorscheme_spec.url] = extra_spec
+  end
+
   colorscheme_spec.lazy = true
   colorscheme_spec.priority = 1000
   return colorscheme_spec
