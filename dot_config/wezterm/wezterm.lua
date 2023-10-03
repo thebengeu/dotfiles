@@ -213,47 +213,6 @@ config.wsl_domains = map(wezterm.default_wsl_domains(), function(wsl_domain)
   return wsl_domain
 end)
 
-local ssh_command = "ssh dev.local"
-local tmux_command = {
-  "tmux",
-  "new-session",
-  "-A",
-  "-s",
-  "dev",
-  ssh_command,
-  ";",
-  "set-option",
-  "default-command",
-  ssh_command,
-}
-
-if wezterm.hostname() == "dev" then
-  table.insert(config.wsl_domains, {
-    default_prog = tmux_command,
-    distribution = "Ubuntu",
-    name = "dev-tmux",
-  })
-else
-  table.insert(config.ssh_domains, {
-    default_prog = tmux_command,
-    name = "SSH:dev-tmux",
-    multiplexing = "None",
-    ssh_option = {
-      port = "24",
-    },
-    remote_address = "192.168.50.2",
-  })
-  table.insert(config.ssh_domains, {
-    default_prog = tmux_command,
-    name = "SSH:dev-tmux-remote",
-    multiplexing = "None",
-    ssh_option = {
-      port = "24",
-    },
-    remote_address = "beng.asuscomm.com",
-  })
-end
-
 local local_or_remote_ssh_domain = function(hostname)
   return "SSH:"
     .. hostname

@@ -109,19 +109,6 @@ aliases: {
 		}
 	}
 
-	_ssh_command:  "'ssh dev.local'"
-	_tmux_command: "tmux new-session -A -s dev \(_ssh_command) \\; set-option default-command \(_ssh_command)"
-
-	if _hostname == "dev" {
-		"dev-tmux": "wsl --exec \(_tmux_command)"
-	}
-	if _hostname == "dev-wsl" {
-		"dev-tmux": _tmux_command
-	}
-	if _hostname != "dev" && _hostname != "dev-wsl" {
-		"dev-tmux": "ssh -t dev-wsl \"\(_tmux_command)\""
-	}
-
 	for shAlias, command in {
 		jsr: #"printf "\e[6 q"; node"#
 		tsr: #"printf "\e[6 q"; pnpm tsx"#
