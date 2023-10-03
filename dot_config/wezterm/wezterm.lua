@@ -183,8 +183,9 @@ config.ssh_domains = map(wezterm.default_ssh_domains(), function(domain)
   elseif is_remote and not domain.name:find("%:ec2$") then
     domain.remote_address = "beng.asuscomm.com"
     domain.ssh_option = {
-      port = domain.name:find("%:dev-wsl$") and "24"
-        or (domain.name:find("%:prod$") and "26" or "22"),
+      port = (domain.name:find("%:dev%-wsl$") and "24") or (domain.name:find(
+        "%:prod$"
+      ) and "26") or "22",
     }
   end
 
