@@ -3,7 +3,7 @@ return {
     "pearofducks/ansible-vim",
     ft = "yaml.ansible",
   },
-  { "alker0/chezmoi.vim" },
+  "alker0/chezmoi.vim",
   {
     "LhKipp/nvim-nu",
     build = ":TSInstall nu",
