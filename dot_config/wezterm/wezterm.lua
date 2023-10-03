@@ -191,11 +191,6 @@ config.ssh_domains = map(wezterm.default_ssh_domains(), function(domain)
   return domain
 end)
 
-table.insert(config.ssh_domains, {
-  name = "SSHMUX:localhost",
-  remote_address = "localhost",
-})
-
 config.wsl_domains = map(wezterm.default_wsl_domains(), function(wsl_domain)
   wsl_domain.default_cwd = "~"
   wsl_domain.default_prog = {
@@ -325,7 +320,7 @@ config.keys = {
   {
     key = "a",
     mods = "SHIFT|ALT",
-    action = activate_or_spawn_pane(wezterm.hostname(), "SSHMUX:localhost"),
+    action = activate_or_spawn_pane(wezterm.hostname(), "local"),
   },
   {
     key = "p",
@@ -526,7 +521,6 @@ wezterm.on("format-tab-title", function(tab)
     or (hostname == (wezterm.hostname() .. "-wsl") and nerdfonts.cod_terminal_linux)
     or (user_vars.WEZTERM_IN_TMUX == "1" and nerdfonts.cod_terminal_tmux)
     or (hostname and hostname ~= wezterm.hostname() and nerdfonts.md_ssh)
-    or (active_pane.domain_name == "SSHMUX:localhost" and nerdfonts.md_microsoft_windows)
     or process_name_icons[foreground_process_name]
     or ""
 
