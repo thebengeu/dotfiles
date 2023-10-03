@@ -161,9 +161,18 @@ local activate_or_spawn_pane = function(hostname, domain_name)
 
     if not latest_prompt_pane then
       domain_name = domain_name or ("SSHMUX:" .. hostname)
-      window:perform_action(act.AttachDomain(domain_name), event_pane)
-      wezterm.sleep_ms(200)
-      window:perform_action(act.ActivateTab(-1), event_pane)
+
+      if domain_name:find("^SSHMUX%:") then
+        window:perform_action(act.AttachDomain(domain_name), event_pane)
+        wezterm.sleep_ms(200)
+        window:perform_action(act.ActivateTab(-1), event_pane)
+      else
+        window:mux_window():spawn_tab({
+          domain = {
+            DomainName = domain_name,
+          },
+        })
+      end
     end
   end)
 end
