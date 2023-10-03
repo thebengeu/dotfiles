@@ -13,6 +13,25 @@ end
 return util.map({
   { "ribru17/bamboo.nvim" },
   {
+    "uloco/bluloco.nvim",
+    dependencies = { "rktjmp/lush.nvim" },
+    highlights = function()
+      return rainbow_delimiter_highlights({
+        vim.g.terminal_color_1,
+        vim.g.terminal_color_11,
+        vim.g.terminal_color_4,
+        vim.g.terminal_color_3,
+        vim.g.terminal_color_2,
+        vim.g.terminal_color_5,
+        vim.g.terminal_color_6,
+      })
+    end,
+    opts = {
+      italics = true,
+      terminal = true,
+    },
+  },
+  {
     "catppuccin",
     colors_names = {
       "catppuccin-frappe",
@@ -148,6 +167,29 @@ return util.map({
         palette.b.cyan,
       })
     end,
+  },
+  {
+    "ramojus/mellifluous.nvim",
+    highlights = function()
+      local colors = require("mellifluous.colors").get_colors()
+
+      if not colors then
+        error()
+      end
+
+      return rainbow_delimiter_highlights({
+        colors.red.hex,
+        colors.yellow.hex,
+        colors.blue.hex,
+        colors.orange.hex,
+        colors.green.hex,
+        colors.purple.hex,
+        colors.cyan.hex,
+      })
+    end,
+    opts = {
+      color_set = "mountain",
+    },
   },
   {
     "loctvl842/monokai-pro.nvim",
