@@ -186,7 +186,7 @@ config.ssh_domains = map(wezterm.default_ssh_domains(), function(domain)
     domain.default_prog = {
       "fish",
       "-C",
-      "set --export SSH_ORIGIN_HOSTNAME " .. wezterm.hostname(),
+      "set --export USERDOMAIN " .. os.getenv("USERDOMAIN"),
     }
   elseif is_remote and not domain.name:find("%:ec2$") then
     domain.remote_address = "beng.asuscomm.com"
