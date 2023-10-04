@@ -122,7 +122,7 @@ local find_pane = function(callback)
         local found_pane = callback(pane)
 
         if found_pane then
-          return found_pane
+          return pane
         end
       end
     end
@@ -169,8 +169,17 @@ local activate_or_spawn_pane = function(hostname, domain_name)
     if not latest_prompt_pane then
       if domain_name:find("^SSHMUX%:") then
         window:perform_action(act.AttachDomain(domain_name), event_pane)
-        wezterm.sleep_ms(200)
-        window:perform_action(act.ActivateTab(-1), event_pane)
+
+        local domain_pane
+
+        while not domain_pane do
+          wezterm.sleep_ms(1)
+          domain_pane = find_pane(function(pane)
+            return pane:get_domain_name() == domain_name
+          end)
+        end
+
+        activate_pane(domain_pane)
       else
         window:mux_window():spawn_tab({
           domain = {
