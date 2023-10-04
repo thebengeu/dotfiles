@@ -232,11 +232,11 @@ config.ssh_domains = map(wezterm.default_ssh_domains(), function(domain)
 end)
 
 local tmux_detached_session =
-  "tmux has-session -t 0 2>/dev/null || tmux new-session -d -s 0"
+  "tmux has-session -t 0 2>/dev/null || tmux new-session -c ~ -d -s 0"
 local fish_tmux_detached_session = {
   "/usr/bin/fish",
   "-C",
-  "tmux has-session -t 0 2>/dev/null || tmux new-session -d -s 0",
+  tmux_detached_session,
 }
 
 config.wsl_domains = map(wezterm.default_wsl_domains(), function(wsl_domain)
