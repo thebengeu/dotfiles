@@ -6,7 +6,6 @@ $scoopPackages = @(
   'make'
   'nerd-fonts/JetBrainsMono-NF'
   'nmap'
-  'python'
   'sed'
   'win32yank'
 )

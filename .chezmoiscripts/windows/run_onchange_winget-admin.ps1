@@ -47,6 +47,7 @@ $wingetPackageIds = @(
   'Microsoft.PowerToys'
   'Microsoft.Sysinternals.ProcessMonitor'
   'Pulumi.Pulumi'
+  'Python.Python.3.11'
   'QMK.QMKToolbox'
   'BurntSushi.ripgrep.MSVC'
   'SlackTechnologies.Slack'
