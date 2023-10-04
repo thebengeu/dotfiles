@@ -67,7 +67,7 @@ return {
             backdrop = false,
           },
           label = {
-            exclude = "acdhijklrx",
+            exclude = "acdghijklrx",
           },
         },
       },
