@@ -26,7 +26,7 @@ end
 
 function fish_title
     if test -n "$WEZTERM_UNIX_SOCKET" -a -n "$WSL_HOSTNAME_PREFIX"
-        if test "$WSL_HOSTNAME_PREFIX" = "$(wezterm cli list-clients --format json | jq -r 'min_by(.idle_time.nanos).hostname')"
+        if test "$WSL_HOSTNAME_PREFIX" = "$(wezterm cli list-clients --format json | jq -r 'min_by(.idle_time.secs + .idle_time.nanos / 1e9).hostname')"
             set --export TITLE_PREFIX wsl:
         else
             set --export TITLE_PREFIX $(prompt_hostname):
