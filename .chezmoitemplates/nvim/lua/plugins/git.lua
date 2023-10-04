@@ -30,7 +30,7 @@ return {
   {
     "akinsho/git-conflict.nvim",
     config = true,
-    event = { "BufNewFile", "BufReadPost" },
+    event = "LazyFile",
   },
   {
     "lewis6991/gitsigns.nvim",
