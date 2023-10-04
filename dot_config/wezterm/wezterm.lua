@@ -317,7 +317,7 @@ config.keys = {
   {
     key = "d",
     mods = "SHIFT|ALT",
-    action = activate_or_spawn_pane("dev", "SSH:dev"),
+    action = activate_or_spawn_pane("dev"),
   },
   {
     key = "d",
