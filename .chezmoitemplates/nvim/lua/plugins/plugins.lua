@@ -67,7 +67,7 @@ return {
   {
     "echasnovski/mini.bracketed",
     config = true,
-    event = { "BufNewFile", "BufReadPost" },
+    event = "LazyFile",
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
@@ -280,7 +280,7 @@ return {
   },
   {
     "wakatime/vim-wakatime",
-    event = { "BufNewFile", "BufReadPost" },
+    event = "LazyFile",
   },
   {
     "folke/which-key.nvim",

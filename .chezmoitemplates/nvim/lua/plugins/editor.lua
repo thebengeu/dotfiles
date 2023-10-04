@@ -75,7 +75,7 @@ return {
   },
   {
     "chentoast/marks.nvim",
-    event = { "BufNewFile", "BufReadPost" },
+    event = "LazyFile",
     opts = {
       sign_priority = 13,
     },
@@ -342,7 +342,7 @@ return {
   },
   {
     "svban/YankAssassin.vim",
-    event = { "BufNewFile", "BufReadPost" },
+    event = "LazyFile",
   },
   {
     "gbprod/yanky.nvim",

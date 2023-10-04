@@ -27,7 +27,7 @@ return {
         callback = callback,
       })
     end,
-    event = { "BufNewFile", "BufReadPre" },
+    event = "LazyFile",
   },
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -149,17 +149,17 @@ return {
   },
   {
     "HiPhish/rainbow-delimiters.nvim",
-    event = { "BufNewFile", "BufReadPost" },
+    event = "LazyFile",
   },
   {
     "lewis6991/satellite.nvim",
     config = true,
     enabled = vim.version().minor >= 10,
-    event = { "BufNewFile", "BufReadPost" },
+    event = "LazyFile",
   },
   {
     "luukvbaal/statuscol.nvim",
-    event = { "BufNewFile", "BufReadPost" },
+    event = "LazyFile",
     opts = {
       setopt = true,
     },

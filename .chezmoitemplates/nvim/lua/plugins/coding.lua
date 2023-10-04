@@ -281,7 +281,7 @@ return vim.list_extend(
     },
     {
       "chrisgrieser/nvim-various-textobjs",
-      event = { "BufNewFile", "BufReadPost" },
+      event = "LazyFile",
       opts = {
         useDefaultKeymaps = true,
       },
@@ -396,7 +396,7 @@ return vim.list_extend(
           ["i%"] = "inner any block",
         }, { mode = "o" })
       end,
-      event = { "BufNewFile", "BufReadPost" },
+      event = "LazyFile",
     },
   }
 )
