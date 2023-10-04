@@ -36,7 +36,3 @@ scoop/
 {{ if ne .chezmoi.hostname "dev" }}
 AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/wsl.vbs
 {{ end }}
-
-{{ if not (and (eq .chezmoi.os "linux") (.chezmoi.kernel.osrelease | lower | contains "microsoft")) }}
-.config/fish/functions/setup_local_wsl.fish
-{{ end }}

@@ -14,16 +14,25 @@ abbr --add os 'set COMMAND $(op signin) && test -n "$COMMAND" && eval $COMMAND &
 
 if set -q WEZTERM_UNIX_SOCKET
     set --export SSH_CONNECTION
-    set --export USERDOMAIN $(wezterm cli list-clients --format json | jq -r ".[] | select(.focused_pane_id == $WEZTERM_PANE) | .hostname")
 end
 
-if test $(prompt_hostname) = "$(string lower $USERDOMAIN | sed s/\r//)-wsl"
-    setup_local_wsl
+set --export WSL_HOSTNAME_PREFIX $(string match --groups-only --regex '(.*)-wsl$' $(prompt_hostname))
+
+if test -n "$WSL_HOSTNAME_PREFIX" -a \( -z "$USERDOMAIN" -o "$WSL_HOSTNAME_PREFIX" = "$(string lower $USERDOMAIN | sed s/\r//)" \)
+    set --export TITLE_PREFIX wsl:
 else if set -q SSH_CONNECTION
     set --export TITLE_PREFIX $(prompt_hostname):
 end
 
 function fish_title
+    if test -n "$WEZTERM_UNIX_SOCKET" -a -n "$WSL_HOSTNAME_PREFIX"
+        if test "$WSL_HOSTNAME_PREFIX" = "$(wezterm cli list-clients --format json | jq -r 'min_by(.idle_time.nanos).hostname')"
+            set --export TITLE_PREFIX wsl:
+        else
+            set --export TITLE_PREFIX $(prompt_hostname):
+        end
+    end
+
     set --function current_command (status current-command)
 
     if test "$current_command" != fish

@@ -199,7 +199,7 @@ config.ssh_domains = map(wezterm.default_ssh_domains(), function(domain)
     domain.default_prog = {
       "fish",
       "-C",
-      "setup_local_wsl",
+      "set --export TITLE_PREFIX wsl:",
     }
   elseif is_remote and not domain.name:find("%:ec2$") then
     domain.remote_address = "beng.asuscomm.com"
