@@ -292,48 +292,6 @@ config.keys = {
     action = act.ActivatePaneDirection("Down"),
   },
   {
-    key = "n",
-    mods = "SHIFT|ALT",
-    action = wezterm.action_callback(function()
-      local latest_focused_nvim_time = 0
-      local latest_focused_nvim_pane
-      local latest_focused_nvim_port
-
-      find_pane(function(pane)
-        local user_vars = pane:get_user_vars()
-
-        if user_vars.WEZTERM_HOSTNAME == wezterm.hostname() then
-          local focused_nvim_time = tonumber(user_vars.FOCUSED_NVIM_TIME)
-
-          if
-            focused_nvim_time and focused_nvim_time > latest_focused_nvim_time
-          then
-            latest_focused_nvim_time = focused_nvim_time
-            latest_focused_nvim_pane = pane
-            latest_focused_nvim_port = user_vars.NVIM_PORT
-          end
-        end
-      end)
-
-      activate_pane(latest_focused_nvim_pane)
-
-      local file = io.open(
-        wezterm.home_dir .. "/.local/bin/nvr-latest-focused-nvim.sh",
-        "w"
-      )
-      if file then
-        file:write(
-          (
-            latest_focused_nvim_port
-              and "nvr -s --nostart --servername 127.0.0.1:" .. latest_focused_nvim_port .. ' "$@" || '
-            or ""
-          ) .. 'nvim "$@"\n'
-        )
-        file:close()
-      end
-    end),
-  },
-  {
     key = "d",
     mods = "SHIFT|ALT",
     action = activate_or_spawn_pane("dev", "SSH:dev"),
@@ -372,6 +330,56 @@ config.keys = {
   split_nav("resize", "k"),
   split_nav("resize", "l"),
 }
+
+local add_nvim_key = function(mods, hostname, home_dir)
+  table.insert(config.keys, {
+    key = "n",
+    mods = mods,
+    action = wezterm.action_callback(function()
+      local latest_focused_nvim_time = 0
+      local latest_focused_nvim_pane
+      local latest_focused_nvim_port
+
+      find_pane(function(pane)
+        local user_vars = pane:get_user_vars()
+
+        if user_vars.WEZTERM_HOSTNAME == hostname then
+          local focused_nvim_time = tonumber(user_vars.FOCUSED_NVIM_TIME)
+
+          if
+            focused_nvim_time and focused_nvim_time > latest_focused_nvim_time
+          then
+            latest_focused_nvim_time = focused_nvim_time
+            latest_focused_nvim_pane = pane
+            latest_focused_nvim_port = user_vars.NVIM_PORT
+          end
+        end
+      end)
+
+      activate_pane(latest_focused_nvim_pane)
+
+      local file =
+        io.open(home_dir .. "/.local/bin/nvr-latest-focused-nvim.sh", "w")
+      if file then
+        file:write(
+          (
+            latest_focused_nvim_port
+              and "nvr -s --nostart --servername 127.0.0.1:" .. latest_focused_nvim_port .. ' "$@" || '
+            or ""
+          ) .. 'nvim "$@"\n'
+        )
+        file:close()
+      end
+    end),
+  })
+end
+
+add_nvim_key(
+  "SHIFT|ALT",
+  wezterm.hostname() .. "-wsl",
+  [[\\wsl.localhost\Ubuntu\home\]] .. os.getenv("USERNAME")
+)
+add_nvim_key("SHIFT|ALT|CTRL", wezterm.hostname(), wezterm.home_dir)
 
 local spawn_or_focus_window = function(i)
   local windows = wezterm.gui.gui_windows()
