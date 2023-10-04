@@ -181,6 +181,13 @@ environmentVariables: {
 	}[_os]
 }
 functions: {
+	md: {
+		lines: [
+			"mkdir -p \"$directory\"",
+			"cd \"$directory\"",
+		]
+		parameters: ["directory"]
+	}
 	nz: {
 		lines: [
 			"cd $directory; nvim",
