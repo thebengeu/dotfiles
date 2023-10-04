@@ -9,28 +9,6 @@ fish_add_path --global {{$path}}
 
 status is-interactive || exit
 
-function __wezterm_user_vars_fish_prompt --on-event fish_prompt
-    __wezterm_set_user_var PROMPT_TIME $(date +%s)
-    __wezterm_set_user_var WEZTERM_HOSTNAME {{.chezmoi.hostname}}
-    __wezterm_set_user_var WEZTERM_PROG ""
-
-    if test -n "$TMUX"
-        __wezterm_set_user_var WEZTERM_IN_TMUX 1
-    else
-        __wezterm_set_user_var WEZTERM_IN_TMUX 0
-    end
-end
-
-{{- if eq .chezmoi.os "windows"}}
-chcp.com 1252 >/dev/null
-{{- else}}
-if test "$TERM_PROGRAM" = "WezTerm"
-    set --export TERM wezterm
-end
-
-set --global --append fish_complete_path /usr/share/fish/completions/completions
-{{- end}}
-
 set --global fzf_fd_opts --hidden{{if eq .chezmoi.os "windows"}} --path-separator //{{end}}
 
 {{range $alias, $command := index .nonExpandedAliases -}}
