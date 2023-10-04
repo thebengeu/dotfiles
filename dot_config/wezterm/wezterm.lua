@@ -231,6 +231,11 @@ config.ssh_domains = map(wezterm.default_ssh_domains(), function(domain)
   return domain
 end)
 
+table.insert(config.ssh_domains, {
+  name = "SSHMUX:localhost",
+  remote_address = "localhost",
+})
+
 local tmux_detached_session =
   "tmux has-session -t 0 2>/dev/null || tmux new-session -c ~ -d -s 0"
 local fish_tmux_detached_session = {
