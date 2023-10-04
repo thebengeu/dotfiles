@@ -249,8 +249,8 @@ config.keys = {
   { key = "phys:Space", mods = "SHIFT|ALT", action = act.QuickSelect },
   { key = "t", mods = "SHIFT|ALT", action = act.SpawnTab("DefaultDomain") },
   {
-    key = ")",
-    mods = "SHIFT|ALT|CTRL",
+    key = "x",
+    mods = "SHIFT|ALT",
     action = act.CloseCurrentPane({ confirm = false }),
   },
   {
@@ -460,15 +460,15 @@ local spawn_or_activate_tab = function(i)
 end
 
 table.insert(config.keys, {
-  key = "0",
-  mods = "ALT|CTRL",
+  key = ")",
+  mods = "SHIFT|ALT",
   action = wezterm.action_callback(function()
     spawn_or_focus_window(1)
   end),
 })
 table.insert(config.keys, {
   key = ")",
-  mods = "SHIFT|ALT",
+  mods = "SHIFT|ALT|CTRL",
   action = wezterm.action_callback(function()
     spawn_or_focus_window(2)
   end),
@@ -498,8 +498,8 @@ for i, key in ipairs({
     end),
   })
   table.insert(config.keys, {
-    key = tostring(i),
-    mods = "ALT|CTRL",
+    key = key,
+    mods = "SHIFT|ALT|CTRL",
     action = wezterm.action_callback(function()
       spawn_or_activate_tab(i)(spawn_or_focus_window(2))
     end),
