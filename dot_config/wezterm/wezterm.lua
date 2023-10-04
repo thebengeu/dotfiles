@@ -204,13 +204,17 @@ config.ssh_domains = map(wezterm.default_ssh_domains(), function(domain)
   return domain
 end)
 
+local tmux_detached_session =
+  "tmux has-session -t 0 2>/dev/null || tmux new-session -d -s 0"
+local fish_tmux_detached_session = {
+  "/usr/bin/fish",
+  "-C",
+  "tmux has-session -t 0 2>/dev/null || tmux new-session -d -s 0",
+}
+
 config.wsl_domains = map(wezterm.default_wsl_domains(), function(wsl_domain)
   wsl_domain.default_cwd = "~"
-  wsl_domain.default_prog = {
-    "/usr/bin/fish",
-    "-C",
-    "tmux has-session -t 0 2>/dev/null || tmux new-session -d -s 0",
-  }
+  wsl_domain.default_prog = fish_tmux_detached_session
   return wsl_domain
 end)
 
@@ -466,7 +470,7 @@ config.launch_menu = map({
     "--cd",
     "~",
     "--exec",
-    "/usr/bin/fish -C 'tmux has-session -t 0 2>/dev/null || tmux new-session -d -s 0'",
+    wezterm.shell_join_args(fish_tmux_detached_session),
   },
 }, function(args, label)
   return {
@@ -541,6 +545,17 @@ wezterm.on("format-tab-title", function(tab)
     .. icon
     .. " "
     .. active_pane.title:gsub("%.exe$", "")
+end)
+
+wezterm.on("gui-startup", function()
+  wezterm.run_child_process({
+    "wsl",
+    "--exec",
+    "sh",
+    "-c",
+    tmux_detached_session,
+  })
+  wezterm.mux.get_domain(config.default_domain):attach()
 end)
 
 return config
