@@ -391,10 +391,12 @@ return vim.list_extend(
     {
       "andymass/vim-matchup",
       config = function()
-        require("which-key").register({
-          ["a%"] = "any block",
-          ["i%"] = "inner any block",
-        }, { mode = "o" })
+        require("lazyvim.util").on_load("which-key.nvim", function()
+          require("which-key").register({
+            ["a%"] = "any block",
+            ["i%"] = "inner any block",
+          }, { mode = "o" })
+        end)
       end,
       event = "LazyFile",
     },
