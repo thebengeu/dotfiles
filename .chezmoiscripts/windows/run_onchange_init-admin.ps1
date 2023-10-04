@@ -97,7 +97,6 @@ function SetEnvironmentVariable($variable, $value, $target)
 }
 
 SetEnvironmentVariable 'EJSON_KEYDIR' "$Env:USERPROFILE\.config\ejson\keys" 'User'
-SetEnvironmentVariable 'GIT_SSH' (Get-Command ssh).Source 'Machine'
 SetEnvironmentVariable 'GH_USERNAME' "thebengeu" 'User'
 SetEnvironmentVariable 'HOME' $Env:USERPROFILE 'User'
 SetEnvironmentVariable 'MSYS2_PATH_TYPE' 'inherit' 'Machine'
