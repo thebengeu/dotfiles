@@ -191,6 +191,24 @@ local activate_or_spawn_pane = function(hostname, domain_name)
   end)
 end
 
+local split_pane = function(domain_name, direction)
+  return wezterm.action_callback(function(window, pane)
+    local sshmux_hostname = pane:get_domain_name():match("^SSHMUX:(.*)")
+
+    if sshmux_hostname then
+      local _, spawned_pane, _ = window:mux_window():spawn_tab({
+        domain = { DomainName = "SSH:" .. sshmux_hostname },
+      })
+      pane = spawned_pane
+    end
+
+    pane:split({
+      direction = direction or "Right",
+      domain = { DomainName = domain_name },
+    })
+  end)
+end
+
 config.ssh_domains = map(wezterm.default_ssh_domains(), function(domain)
   domain.local_echo_threshold_ms = 1000
 
@@ -262,14 +280,14 @@ config.keys = {
     action = act.SplitVertical({ domain = "CurrentPaneDomain" }),
   },
   {
-    key = "\\",
-    mods = "ALT|CTRL",
-    action = act.SplitHorizontal({ domain = { DomainName = "SSH:wsl" } }),
+    key = "|",
+    mods = "SHIFT|ALT|CTRL",
+    action = split_pane("SSH:wsl"),
   },
   {
-    key = "-",
-    mods = "ALT|CTRL",
-    action = act.SplitVertical({ domain = { DomainName = "SSH:wsl" } }),
+    key = "_",
+    mods = "SHIFT|ALT|CTRL",
+    action = split_pane("SSH:wsl", "Bottom"),
   },
   {
     key = "h",
@@ -297,9 +315,19 @@ config.keys = {
     action = activate_or_spawn_pane("dev", "SSH:dev"),
   },
   {
+    key = "d",
+    mods = "SHIFT|ALT|CTRL",
+    action = split_pane("SSH:dev"),
+  },
+  {
     key = "e",
     mods = "SHIFT|ALT",
     action = activate_or_spawn_pane("ec2"),
+  },
+  {
+    key = "e",
+    mods = "SHIFT|ALT|CTRL",
+    action = split_pane("SSH:ec2"),
   },
   {
     key = "a",
@@ -307,9 +335,19 @@ config.keys = {
     action = activate_or_spawn_pane(wezterm.hostname(), "local"),
   },
   {
+    key = "a",
+    mods = "SHIFT|ALT|CTRL",
+    action = split_pane("local"),
+  },
+  {
     key = "p",
     mods = "SHIFT|ALT",
     action = activate_or_spawn_pane("prod"),
+  },
+  {
+    key = "p",
+    mods = "SHIFT|ALT|CTRL",
+    action = split_pane("SSH:prod"),
   },
   {
     key = "v",
@@ -317,9 +355,19 @@ config.keys = {
     action = activate_or_spawn_pane("dev-wsl"),
   },
   {
+    key = "v",
+    mods = "SHIFT|ALT|CTRL",
+    action = split_pane("SSH:dev-wsl"),
+  },
+  {
     key = "w",
     mods = "SHIFT|ALT",
     action = activate_or_spawn_pane(wezterm.hostname() .. "-wsl", "SSHMUX:wsl"),
+  },
+  {
+    key = "w",
+    mods = "SHIFT|ALT|CTRL",
+    action = split_pane("SSH:wsl"),
   },
   split_nav("move", "h"),
   split_nav("move", "j"),
