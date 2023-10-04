@@ -159,7 +159,17 @@ return {
   },
   {
     "ojroques/nvim-osc52",
-    cond = vim.env.SSH_CONNECTION ~= nil and vim.env.TITLE_PREFIX ~= "wsl:",
+    cond = function()
+      if vim.env.TITLE_PREFIX == "wsl:" then
+        vim.env.PATH = vim.env.PATH
+          .. ":/mnt/c/Users/"
+          .. vim.env.USER
+          .. "/scoop/shims"
+        return false
+      end
+
+      return vim.env.SSH_CONNECTION ~= nil
+    end,
     init = function()
       local tmux = vim.env.TMUX
 
