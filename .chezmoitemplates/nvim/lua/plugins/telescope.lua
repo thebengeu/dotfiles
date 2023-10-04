@@ -4,10 +4,16 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
-      "nvim-telescope/telescope-fzy-native.nvim",
-      config = function()
-        require("telescope").load_extension("fzy_native")
-      end,
+      {
+        "prochri/telescope-all-recent.nvim",
+        config = true,
+      },
+      {
+        "nvim-telescope/telescope-fzy-native.nvim",
+        config = function()
+          require("telescope").load_extension("fzy_native")
+        end,
+      },
     },
     keys = function(_, keys)
       local get_plugin_folder = function(telescope_builtin)
