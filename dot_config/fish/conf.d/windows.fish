@@ -1,5 +1,6 @@
-#!/bin/fish
 status is-interactive || exit
+
+chcp.com 1252 >/dev/null
 
 function __on_fish_prompt --on-event fish_prompt
     functions --erase __on_fish_prompt

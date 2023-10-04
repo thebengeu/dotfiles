@@ -6,6 +6,7 @@ README.md
 .config/{bat,broot,fd,gitui,glow,gup,helix,lazygit,lsd,msmtp,nushell,nvim,tealdeer,tmux,yamlfmt}/
 .config/fish/completions/pipx.fish
 .config/fish/completions/qmk.fish
+.config/fish/conf.d/linux.fish
 .config/topgrade.toml
 .hushlogin
 .local/bin/build_and_install_nvim
