@@ -17,7 +17,6 @@ README.md
 snap/
 {{ else }}
 .config/fish/completions/fd.fish
-.config/fish/completions/wezterm.fish
 .config/fish/conf.d/windows.fish
 .config/wezterm/
 .ssh/windows.conf
