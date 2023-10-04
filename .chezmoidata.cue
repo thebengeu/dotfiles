@@ -229,10 +229,11 @@ functions: {
 	}[_os]
 }
 paths: [
+	"$PNPM_HOME",
 	"~/.cargo/bin",
 	"~/.local/bin",
 	"~/go/bin",
-	"$PNPM_HOME",
+	"~/AppData/Roaming/Python/Python311/Scripts",
 ] + {
 	linux: [
 		"/snap/aws-cli/current/bin",
