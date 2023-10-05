@@ -19,6 +19,7 @@ vim.opt.guifont = "JetBrainsMono Nerd Font:h12"
 vim.opt.keywordprg = ":Search"
 vim.opt.linebreak = true
 vim.opt.report = 999
+vim.opt.scrolloff = 999
 vim.opt.sessionoptions = {
   "curdir",
   "winsize",
