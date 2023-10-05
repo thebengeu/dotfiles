@@ -7,6 +7,7 @@ return {
       {
         "prochri/telescope-all-recent.nvim",
         config = true,
+        dependencies = "kkharji/sqlite.lua",
       },
       {
         "nvim-telescope/telescope-fzy-native.nvim",

@@ -128,16 +128,7 @@ return {
   },
   {
     "thebengeu/smart-open.nvim",
-    dependencies = {
-      "kkharji/sqlite.lua",
-      config = function()
-        if jit.os == "Windows" then
-          vim.g.sqlite_clib_path = vim.env.ChocolateyInstall
-            .. "/lib/SQLite/tools/sqlite3.dll"
-        end
-      end,
-      enabled = true,
-    },
+    dependencies = "kkharji/sqlite.lua",
     keys = {
       {
         "<leader><space>",
@@ -264,6 +255,16 @@ return {
         mode = "t",
       },
     },
+  },
+  {
+    "kkharji/sqlite.lua",
+    config = function()
+      if jit.os == "Windows" then
+        vim.g.sqlite_clib_path = vim.env.ChocolateyInstall
+          .. "/lib/SQLite/tools/sqlite3.dll"
+      end
+    end,
+    enabled = true,
   },
   {
     "akinsho/toggleterm.nvim",

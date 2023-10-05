@@ -14,7 +14,7 @@ return util.map({
   { "ribru17/bamboo.nvim" },
   {
     "uloco/bluloco.nvim",
-    dependencies = { "rktjmp/lush.nvim" },
+    dependencies = "rktjmp/lush.nvim",
     highlights = function()
       return rainbow_delimiter_highlights({
         vim.g.terminal_color_1,
