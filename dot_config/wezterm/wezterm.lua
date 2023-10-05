@@ -180,6 +180,9 @@ local activate_or_spawn_pane = function(hostname, domain_name)
         end
 
         activate_pane(domain_pane)
+        wezterm.sleep_ms(100)
+        window:toggle_fullscreen()
+        window:toggle_fullscreen()
       else
         window:mux_window():spawn_tab({
           domain = {
