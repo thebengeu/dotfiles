@@ -524,12 +524,6 @@ config.launch_menu = map({
   ["Windows PowerShell"] = { "powershell", "-NoLogo" },
   ["zsh"] = { "zsh" },
   ["Restart WSL"] = {
-    "wezterm",
-    "cli",
-    "spawn",
-    "--domain-name",
-    "local",
-    "--",
     "powershell",
     "-NoProfile",
     "-Command",
