@@ -7,6 +7,7 @@ $storeApps = @(
   'Netflix'
   '9NRX63209R7B' # Outlook for Windows
   'Raindrop.io'
+  'Sysinternals Suite'
   'Unigram—Telegram for Windows'
   'WhatsApp'
   'Windows Terminal Preview'
