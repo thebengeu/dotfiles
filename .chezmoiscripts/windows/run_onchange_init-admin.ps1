@@ -170,6 +170,7 @@ if (!(Test-Path $sshKeyPath))
 {
   mkdir "$Env:USERPROFILE\.ssh"
   op read 'op://Personal/Ed25519 SSH Key/id_ed25519' --out-file $sshKeyPath
+  ((Get-Content $sshKeyPath) -join "`n") + "`n" | Set-Content -NoNewline $sshKeyPath
   Get-Service ssh-agent | Set-Service -StartupType Automatic
   Start-Service ssh-agent
   ssh-add $sshKeyPath
