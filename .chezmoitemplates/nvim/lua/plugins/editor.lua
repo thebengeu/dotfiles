@@ -168,9 +168,10 @@ return {
         return false
       end
 
-      return vim.env.SSH_CONNECTION ~= nil
-    end,
-    init = function()
+      if not vim.env.SSH_CONNECTION then
+        return false
+      end
+
       local tmux = vim.env.TMUX
 
       vim.system({ "lmn", "paste" }, nil, function(system_obj)
@@ -203,6 +204,8 @@ return {
           end)
         end
       end)
+
+      return not tmux
     end,
     lazy = true,
     opts = {
