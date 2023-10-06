@@ -51,18 +51,18 @@ return {
         },
         {
           "<leader><space>",
-          Util.telescope("files", { cwd = false }),
+          Util.telescope("find_files", { cwd = false }),
           desc = "Find Files (cwd)",
         },
         {
           "<leader>fF",
-          Util.telescope("find_files"),
-          desc = "Find Files (root dir)",
+          Util.telescope("find_files", { cwd = false }),
+          desc = "Find Files (cwd)",
         },
         {
           "<leader>ff",
-          Util.telescope("find_files", { cwd = false }),
-          desc = "Find Files (cwd)",
+          Util.telescope("find_files"),
+          desc = "Find Files (root dir)",
         },
         {
           "<leader>fl",
