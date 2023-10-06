@@ -183,11 +183,11 @@ local activate_or_spawn_pane = function(hostname, domain_name)
 
         activate_pane(domain_pane)
 
-        local domain_pane_dimensions = domain_pane:get_dimensions()
+        local domain_tab_size = domain_pane:tab():get_size()
 
         if
-          domain_pane_dimensions.pixel_height ~= tab_size.pixel_height
-          or domain_pane_dimensions.pixel_width ~= tab_size.pixel_width
+          domain_tab_size.pixel_height ~= tab_size.pixel_height
+          or domain_tab_size.pixel_width ~= tab_size.pixel_width
         then
           local window_dimensions = window:get_dimensions()
 
