@@ -168,7 +168,7 @@ local activate_or_spawn_pane = function(hostname, domain_name)
 
     if not latest_prompt_pane then
       if domain_name:find("^SSHMUX%:") then
-        local event_pane_dimensions = event_pane:get_dimensions()
+        local tab_size = window:active_tab():get_size()
 
         window:perform_action(act.AttachDomain(domain_name), event_pane)
 
@@ -186,14 +186,30 @@ local activate_or_spawn_pane = function(hostname, domain_name)
         local domain_pane_dimensions = domain_pane:get_dimensions()
 
         if
-          event_pane_dimensions.pixel_height
-            ~= domain_pane_dimensions.pixel_height
-          or event_pane_dimensions.pixel_width
-            ~= domain_pane_dimensions.pixel_width
+          domain_pane_dimensions.pixel_height ~= tab_size.pixel_height
+          or domain_pane_dimensions.pixel_width ~= tab_size.pixel_width
         then
-          wezterm.sleep_ms(100)
-          window:toggle_fullscreen()
-          window:toggle_fullscreen()
+          local window_dimensions = window:get_dimensions()
+
+          if
+            wezterm.hostname() == "yoga"
+            and window_dimensions.pixel_width == 3840
+            and window_dimensions.pixel_height == 2320
+          then
+            wezterm.sleep_ms(100)
+            window:toggle_fullscreen()
+            window:toggle_fullscreen()
+          else
+            wezterm.sleep_ms(10)
+            window:set_inner_size(
+              window_dimensions.pixel_width - 1,
+              window_dimensions.pixel_height - 59
+            )
+            window:set_inner_size(
+              window_dimensions.pixel_width,
+              window_dimensions.pixel_height - 58
+            )
+          end
         end
       else
         window:mux_window():spawn_tab({
