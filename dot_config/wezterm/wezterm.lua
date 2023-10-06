@@ -168,6 +168,8 @@ local activate_or_spawn_pane = function(hostname, domain_name)
 
     if not latest_prompt_pane then
       if domain_name:find("^SSHMUX%:") then
+        local event_pane_dimensions = event_pane:get_dimensions()
+
         window:perform_action(act.AttachDomain(domain_name), event_pane)
 
         local domain_pane
@@ -180,9 +182,19 @@ local activate_or_spawn_pane = function(hostname, domain_name)
         end
 
         activate_pane(domain_pane)
-        wezterm.sleep_ms(100)
-        window:toggle_fullscreen()
-        window:toggle_fullscreen()
+
+        local domain_pane_dimensions = domain_pane:get_dimensions()
+
+        if
+          event_pane_dimensions.pixel_height
+            ~= domain_pane_dimensions.pixel_height
+          or event_pane_dimensions.pixel_width
+            ~= domain_pane_dimensions.pixel_width
+        then
+          wezterm.sleep_ms(100)
+          window:toggle_fullscreen()
+          window:toggle_fullscreen()
+        end
       else
         window:mux_window():spawn_tab({
           domain = {
