@@ -283,6 +283,11 @@ end)
 
 config.keys = {
   { key = "phys:Space", mods = "SHIFT|ALT", action = act.QuickSelect },
+  {
+    key = "d",
+    mods = "SHIFT|CTRL",
+    action = act.DetachDomain("CurrentPaneDomain"),
+  },
   { key = "t", mods = "SHIFT|ALT", action = act.SpawnTab("DefaultDomain") },
   {
     key = "x",
