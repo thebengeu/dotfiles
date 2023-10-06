@@ -129,19 +129,6 @@ return {
     enabled = false,
   },
   {
-    "thebengeu/smart-open.nvim",
-    dependencies = "kkharji/sqlite.lua",
-    keys = {
-      {
-        "<leader><space>",
-        function()
-          require("telescope").extensions.smart_open.smart_open()
-        end,
-        desc = "Smart Open",
-      },
-    },
-  },
-  {
     "mrjones2014/smart-splits.nvim",
     keys = {
       {

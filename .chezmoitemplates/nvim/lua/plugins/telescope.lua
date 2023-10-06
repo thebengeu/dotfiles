@@ -49,7 +49,11 @@ return {
           Util.telescope("live_grep", { cwd = false }),
           desc = "Grep (cwd)",
         },
-        { "<leader><space>", false },
+        {
+          "<leader><space>",
+          Util.telescope("files", { cwd = false }),
+          desc = "Find Files (cwd)",
+        },
         {
           "<leader>fF",
           Util.telescope("find_files"),
