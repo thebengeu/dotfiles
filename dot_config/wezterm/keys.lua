@@ -1,4 +1,4 @@
-local common = require("common")
+local keys_nvim = require("keys_nvim")
 local keys_pane = require("keys_pane")
 local keys_split_nav = require("keys_split_nav")
 local wezterm = require("wezterm")
@@ -67,57 +67,6 @@ function M.apply_to_config(config)
       action = act.ActivatePaneDirection("Down"),
     },
   }
-
-  local add_nvim_key = function(mods, hostname, home_dir)
-    table.insert(config.keys, {
-      key = "n",
-      mods = mods,
-      action = wezterm.action_callback(function()
-        local latest_focused_nvim_time = 0
-        local latest_focused_nvim_pane
-        local latest_focused_nvim_port
-
-        common.find_pane(function(pane)
-          local user_vars = pane:get_user_vars()
-
-          if user_vars.WEZTERM_HOSTNAME == hostname then
-            local focused_nvim_time = tonumber(user_vars.FOCUSED_NVIM_TIME)
-
-            if
-              focused_nvim_time
-              and focused_nvim_time > latest_focused_nvim_time
-            then
-              latest_focused_nvim_time = focused_nvim_time
-              latest_focused_nvim_pane = pane
-              latest_focused_nvim_port = user_vars.NVIM_PORT
-            end
-          end
-        end)
-
-        common.activate_pane(latest_focused_nvim_pane)
-
-        local file =
-          io.open(home_dir .. "/.local/bin/nvr-latest-focused-nvim.sh", "w")
-        if file then
-          file:write(
-            (
-              latest_focused_nvim_port
-                and "nvr -s --nostart --servername 127.0.0.1:" .. latest_focused_nvim_port .. ' "$@" || '
-              or ""
-            ) .. 'nvim "$@"\n'
-          )
-          file:close()
-        end
-      end),
-    })
-  end
-
-  add_nvim_key(
-    "SHIFT|ALT",
-    wezterm.hostname() .. "-wsl",
-    [[\\wsl.localhost\Ubuntu\home\]] .. os.getenv("USERNAME")
-  )
-  add_nvim_key("SHIFT|ALT|CTRL", wezterm.hostname(), wezterm.home_dir)
 
   local spawn_or_focus_window = function(i)
     local windows = wezterm.gui.gui_windows()
@@ -196,6 +145,7 @@ function M.apply_to_config(config)
     })
   end
 
+  keys_nvim.apply_to_config(config)
   keys_pane.apply_to_config(config)
   keys_split_nav.apply_to_config(config)
 end
