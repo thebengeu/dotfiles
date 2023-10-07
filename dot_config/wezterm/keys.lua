@@ -1,6 +1,7 @@
 local keys_nvim = require("keys_nvim")
 local keys_pane = require("keys_pane")
 local keys_split_nav = require("keys_split_nav")
+local keys_window_tab = require("keys_window_tab")
 local wezterm = require("wezterm")
 local act = wezterm.action
 
@@ -68,86 +69,10 @@ function M.apply_to_config(config)
     },
   }
 
-  local spawn_or_focus_window = function(i)
-    local windows = wezterm.gui.gui_windows()
-    if i - #windows > 0 then
-      for _ = 1, i - #windows do
-        local _, _, window = wezterm.mux.spawn_window({})
-        return window:gui_window()
-      end
-    else
-      table.sort(windows, function(win1, win2)
-        return win1:window_id() < win2:window_id()
-      end)
-      windows[i]:focus()
-      return windows[i]
-    end
-  end
-
-  local spawn_or_activate_tab = function(i)
-    return function(window)
-      local mux_window = window:mux_window()
-      local tabs = mux_window:tabs()
-      if i - #tabs > 0 then
-        for _ = 1, i - #tabs do
-          mux_window:spawn_tab({})
-        end
-      else
-        tabs[i]:activate()
-      end
-    end
-  end
-
-  table.insert(config.keys, {
-    key = ")",
-    mods = "SHIFT|ALT",
-    action = wezterm.action_callback(function()
-      spawn_or_focus_window(1)
-    end),
-  })
-  table.insert(config.keys, {
-    key = ")",
-    mods = "SHIFT|ALT|CTRL",
-    action = wezterm.action_callback(function()
-      spawn_or_focus_window(2)
-    end),
-  })
-
-  for i, key in ipairs({
-    "!",
-    "@",
-    "#",
-    "$",
-    "%",
-    "^",
-    "&",
-    "*",
-    "(",
-  }) do
-    table.insert(config.keys, {
-      key = key,
-      mods = "SHIFT|CTRL",
-      action = wezterm.action_callback(spawn_or_activate_tab(i)),
-    })
-    table.insert(config.keys, {
-      key = key,
-      mods = "SHIFT|ALT",
-      action = wezterm.action_callback(function()
-        spawn_or_activate_tab(i)(spawn_or_focus_window(1))
-      end),
-    })
-    table.insert(config.keys, {
-      key = key,
-      mods = "SHIFT|ALT|CTRL",
-      action = wezterm.action_callback(function()
-        spawn_or_activate_tab(i)(spawn_or_focus_window(2))
-      end),
-    })
-  end
-
   keys_nvim.apply_to_config(config)
   keys_pane.apply_to_config(config)
   keys_split_nav.apply_to_config(config)
+  keys_window_tab.apply_to_config(config)
 end
 
 return M
