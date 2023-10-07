@@ -8,6 +8,12 @@ M.fish_tmux_detached_session = {
   M.tmux_detached_session,
 }
 
+M.list_extend = function(dst, src)
+  for _, item in ipairs(src) do
+    table.insert(dst, item)
+  end
+end
+
 M.map = function(input_table, callback)
   local output_table = {}
 
