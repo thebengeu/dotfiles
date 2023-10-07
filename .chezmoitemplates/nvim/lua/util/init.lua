@@ -1,8 +1,8 @@
-local exports = {}
+local M = {}
 
-exports.extra_specs = {}
+M.extra_specs = {}
 
-exports.filter = function(input, callback)
+M.filter = function(input, callback)
   local output = {}
 
   for _, value in ipairs(input) do
@@ -30,7 +30,7 @@ local map = function(input, callback)
   return output
 end
 
-exports.map = map
+M.map = map
 
 local add_lines_to_qf = function(lines, qf_item)
   vim.fn.setqflist(
@@ -43,7 +43,7 @@ local add_lines_to_qf = function(lines, qf_item)
   )
 end
 
-exports.async_run = function(command)
+M.async_run = function(command)
   local cursor = vim.api.nvim_win_get_cursor(0)
   local qf_item = {
     col = cursor[2],
@@ -82,17 +82,17 @@ exports.async_run = function(command)
   end)
 end
 
-exports.async_run_sh = function(command)
-  exports.async_run({ "sh", "-c", command })
+M.async_run_sh = function(command)
+  M.async_run({ "sh", "-c", command })
 end
 
-exports.highlights = {}
+M.highlights = {}
 
-exports.normname = function(name)
+M.normname = function(name)
   return (name:gsub("[%.%-]?nvim%-?", ""))
 end
 
-exports.rainbow_colors = {
+M.rainbow_colors = {
   "Red",
   "Yellow",
   "Blue",
@@ -102,11 +102,11 @@ exports.rainbow_colors = {
   "Cyan",
 }
 
-exports.rainbow_delimiters_hl = map(exports.rainbow_colors, function(color)
+M.rainbow_delimiters_hl = map(M.rainbow_colors, function(color)
   return "RainbowDelimiter" .. color
 end)
 
-exports.visual_lines = function()
+M.visual_lines = function()
   local lines = { vim.fn.line("v"), vim.fn.line(".") }
 
   table.sort(lines)
@@ -114,4 +114,4 @@ exports.visual_lines = function()
   return lines
 end
 
-return exports
+return M
