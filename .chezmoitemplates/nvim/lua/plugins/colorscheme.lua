@@ -317,6 +317,41 @@ return util.map({
     },
   },
   {
+    "sam4llis/nvim-tundra",
+    opts = {
+      plugins = {
+        cmp = true,
+        gitsigns = true,
+        neogit = true,
+        telescope = true,
+      },
+    },
+    highlights = function()
+      local colors = require("nvim-tundra.palette.arctic")
+
+      if not colors then
+        error()
+      end
+
+      return vim.tbl_extend(
+        "force",
+        rainbow_delimiter_highlights({
+          colors.red._500,
+          colors.sand._500,
+          colors.sky._500,
+          colors.orange._500,
+          colors.green._500,
+          colors.indigo._500,
+          colors.opal._500,
+          colors.cyan,
+        }),
+        {
+          LspInlayHint = { link = "Comment" },
+        }
+      )
+    end,
+  },
+  {
     "Mofiqul/vscode.nvim",
     opts = function()
       local colors = require("vscode.colors").get_colors()
