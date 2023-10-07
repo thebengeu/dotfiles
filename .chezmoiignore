@@ -39,5 +39,5 @@ AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/wsl.vbs
 {{ end }}
 
 {{ if and (eq .chezmoi.os "windows") (eq .chezmoi.arch "arm64") }}
-.chezmoiscripts/run_onchange_non-windows-arm64.sh
+.chezmoiscripts/non-windows-arm64/*
 {{ end }}
