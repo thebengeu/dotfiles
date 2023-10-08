@@ -16,30 +16,24 @@ return {
       {
         "<C-a>",
         "<Plug>(dial-increment)",
+        mode = { "n", "x" },
       },
       {
         "<C-x>",
         "<Plug>(dial-decrement)",
-      },
-      {
-        "<C-a>",
-        "<Plug>(dial-increment)",
-        { mode = "v" },
-      },
-      {
-        "<C-x>",
-        "<Plug>(dial-decrement)",
-        { mode = "v" },
+        mode = { "n", "x" },
       },
       {
         "g<C-a>",
         "g<Plug>(dial-increment)",
-        { mode = "v" },
+        mode = { "n", "x" },
+        remap = true,
       },
       {
         "g<C-x>",
         "g<Plug>(dial-decrement)",
-        { mode = "v" },
+        mode = { "n", "x" },
+        remap = true,
       },
     },
   },
@@ -84,14 +78,14 @@ return {
     "echasnovski/mini.move",
     keys = vim.list_extend(
       {
+        "<S-Down>",
+        "<S-Left>",
+        "<S-Right>",
+        "<S-Up>",
         { "<M-h>", mode = "v" },
         { "<M-j>", mode = "v" },
         { "<M-k>", mode = "v" },
         { "<M-l>", mode = "v" },
-        { "<S-Down>" },
-        { "<S-Left>" },
-        { "<S-Right>" },
-        { "<S-Up>" },
         {
           "[e",
           function()
