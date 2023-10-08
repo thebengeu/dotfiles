@@ -321,33 +321,32 @@ return vim.list_extend(
     },
     {
       "tpope/vim-dadbod",
-      ft = "sql",
-      init = function()
-        vim.api.nvim_create_autocmd("FileType", {
-          callback = function()
-            vim.keymap.set("n", "<leader>cq", function()
-              local node = vim.treesitter.get_node()
+      keys = {
+        {
+          "<leader>cq",
+          function()
+            local node = vim.treesitter.get_node()
 
-              while node and node:type() ~= "statement" do
-                node = node:parent()
-              end
+            while node and node:type() ~= "statement" do
+              node = node:parent()
+            end
 
-              if node then
-                local start_row, _, end_row, _ = node:range()
-                vim.cmd.DB({ range = { start_row + 1, end_row + 1 } })
-              end
-            end, {
-              buffer = 0,
-              desc = "Query DB",
-            })
-            vim.keymap.set("x", "<leader>cq", ":DB<CR>", {
-              buffer = 0,
-              desc = "Query DB",
-            })
+            if node then
+              local start_row, _, end_row, _ = node:range()
+              vim.cmd.DB({ range = { start_row + 1, end_row + 1 } })
+            end
           end,
-          pattern = "sql",
-        })
-      end,
+          desc = "Query DB",
+          ft = "sql",
+        },
+        {
+          "<leader>cq",
+          ":DB<CR>",
+          desc = "Query DB",
+          ft = "sql",
+          mode = "x",
+        },
+      },
     },
     {
       "kristijanhusak/vim-dadbod-completion",
