@@ -283,9 +283,32 @@ return vim.list_extend(
     },
     {
       "chrisgrieser/nvim-various-textobjs",
-      event = "LazyFile",
+      keys = util.map({
+        iS = { "inner", "subword" },
+        aS = { "outer", "subword" },
+        C = { "toNextClosingBracket" },
+        Q = { "toNextQuotationMark" },
+        gG = { "entireBuffer" },
+        i_ = { "inner", "lineCharacterwise" },
+        a_ = { "outer", "lineCharacterwise" },
+        iv = { "inner", "value" },
+        av = { "outer", "value" },
+        ik = { "inner", "key" },
+        ak = { "outer", "key" },
+      }, function(textobj, lhs)
+        return {
+          lhs,
+          "<Cmd>lua require('various-textobjs')."
+            .. textobj[#textobj]
+            .. "("
+            .. (#textobj == 2 and "'" .. textobj[1] .. "'" or "")
+            .. ")<CR>",
+          desc = table.concat(textobj, " "),
+          mode = { "o", "x" },
+        }
+      end),
       opts = {
-        useDefaultKeymaps = true,
+        useDefaultKeymaps = false,
       },
     },
     {
