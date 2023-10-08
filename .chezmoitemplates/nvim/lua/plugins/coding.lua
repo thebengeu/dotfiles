@@ -324,22 +324,16 @@ return vim.list_extend(
         vim.api.nvim_create_autocmd("FileType", {
           callback = function()
             vim.keymap.set("n", "<leader>cq", function()
-              local cursor = vim.api.nvim_win_get_cursor(0)
-              local current_row = cursor[1]
+              local node =
+                require("nvim-treesitter.ts_utils").get_node_at_cursor()
 
-              local parser = vim.treesitter.get_parser(0, "sql")
-              local query = vim.treesitter.query.parse("sql", "(statement) @_")
+              repeat
+                node = node:parent()
+              until node == nil or node:type() == "statement"
 
-              ---@diagnostic disable-next-line: missing-parameter
-              for _, node in query:iter_captures(parser:parse()[1]:root()) do
+              if node then
                 local start_row, _, end_row, _ = node:range()
-                start_row = start_row + 1
-                end_row = end_row + 1
-
-                if current_row >= start_row and current_row <= end_row then
-                  vim.cmd.DB({ range = { start_row, end_row } })
-                  break
-                end
+                vim.cmd.DB({ range = { start_row + 1, end_row + 1 } })
               end
             end, {
               buffer = 0,
