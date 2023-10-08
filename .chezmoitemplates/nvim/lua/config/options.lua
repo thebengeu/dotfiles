@@ -1,9 +1,10 @@
 vim.api.nvim_create_user_command("Search", function(opts)
-  vim.system(vim.list_extend(jit.os == "Windows" and {
-    vim.env["ProgramFiles(x86)"] .. "/Microsoft/Edge/Application/msedge.exe",
-  } or (vim.fn.executable("wslview") == 1 and { "wslview" } or {
-    "lmn",
-    "open",
+  local edge_path = "/Microsoft/Edge/Application/msedge.exe"
+
+  vim.system(vim.list_extend(vim.env.TITLE_PREFIX == "wsl:" and {
+    "/mnt/c/Program Files (x86)" .. edge_path,
+  } or (vim.env.SSH_CONNECTION and { "lmn", "open" } or {
+    vim.env["ProgramFiles(x86)"] .. edge_path,
   }), { "https://www.google.com/search?q=" .. opts.fargs[1] }))
 end, { nargs = 1 })
 
