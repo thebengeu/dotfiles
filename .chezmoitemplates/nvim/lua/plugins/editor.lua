@@ -76,16 +76,8 @@ return {
   },
   {
     "echasnovski/mini.move",
-    keys = vim.list_extend(
-      {
-        "<S-Down>",
-        "<S-Left>",
-        "<S-Right>",
-        "<S-Up>",
-        { "<M-h>", mode = "v" },
-        { "<M-j>", mode = "v" },
-        { "<M-k>", mode = "v" },
-        { "<M-l>", mode = "v" },
+    keys = function()
+      local keys = {
         {
           "[e",
           function()
@@ -100,23 +92,28 @@ return {
           end,
           desc = "Move line down",
         },
-      },
-      map({
-        h = "left",
-        j = "down",
-        k = "up",
-        l = "right",
-      }, function(direction, key)
-        return {
+      }
+
+      for key, direction in pairs({
+        h = "Left",
+        j = "Down",
+        k = "Up",
+        l = "Right",
+      }) do
+        table.insert(keys, "<S-" .. direction .. ">")
+        table.insert(keys, { "<M-" .. key .. ">", mode = "v" })
+        table.insert(keys, {
           "<M-" .. key .. ">",
           function()
-            require("mini.move").move_line(direction)
+            require("mini.move").move_line(direction:lower())
           end,
-          desc = "Move line " .. direction,
+          desc = "Move line " .. direction:lower(),
           mode = "i",
-        }
-      end)
-    ),
+        })
+      end
+
+      return keys
+    end,
     opts = {
       mappings = {
         line_down = "<S-Down>",
