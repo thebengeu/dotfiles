@@ -327,9 +327,9 @@ return vim.list_extend(
               local node =
                 require("nvim-treesitter.ts_utils").get_node_at_cursor()
 
-              repeat
+              while node ~= nil and node:type() ~= "statement" do
                 node = node:parent()
-              until node == nil or node:type() == "statement"
+              end
 
               if node then
                 local start_row, _, end_row, _ = node:range()
