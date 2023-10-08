@@ -1,11 +1,7 @@
-vim.api.nvim_create_user_command("Search", function(opts)
-  local edge_path = "/Microsoft/Edge/Application/msedge.exe"
+local util = require("util")
 
-  vim.system(vim.list_extend(vim.env.TITLE_PREFIX == "wsl:" and {
-    "/mnt/c/Program Files (x86)" .. edge_path,
-  } or (vim.env.SSH_CONNECTION and { "lmn", "open" } or {
-    vim.env["ProgramFiles(x86)"] .. edge_path,
-  }), { "https://www.google.com/search?q=" .. opts.fargs[1] }))
+vim.api.nvim_create_user_command("Search", function(opts)
+  util.open_url("https://www.google.com/search?q=" .. opts.fargs[1])
 end, { nargs = 1 })
 
 vim.g.loaded_node_provider = 0

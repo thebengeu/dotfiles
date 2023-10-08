@@ -92,6 +92,16 @@ M.normname = function(name)
   return (name:gsub("[%.%-]?nvim%-?", ""))
 end
 
+M.open_url = function(url)
+  local edge_path = "/Microsoft/Edge/Application/msedge.exe"
+
+  vim.system(vim.list_extend(vim.env.TITLE_PREFIX == "wsl:" and {
+    "/mnt/c/Program Files (x86)" .. edge_path,
+  } or (vim.env.SSH_CONNECTION and { "lmn", "open" } or {
+    vim.env["ProgramFiles(x86)"] .. edge_path,
+  }), { url }))
+end
+
 M.rainbow_colors = {
   "Red",
   "Yellow",
