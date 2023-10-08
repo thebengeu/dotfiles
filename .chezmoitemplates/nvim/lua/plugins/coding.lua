@@ -324,10 +324,9 @@ return vim.list_extend(
         vim.api.nvim_create_autocmd("FileType", {
           callback = function()
             vim.keymap.set("n", "<leader>cq", function()
-              local node =
-                require("nvim-treesitter.ts_utils").get_node_at_cursor()
+              local node = vim.treesitter.get_node()
 
-              while node ~= nil and node:type() ~= "statement" do
+              while node and node:type() ~= "statement" do
                 node = node:parent()
               end
 
