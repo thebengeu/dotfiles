@@ -8,6 +8,24 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 
 vim.api.nvim_create_autocmd("BufReadPost", {
   callback = function()
+    vim.keymap.set("n", "<leader>K", function()
+      local node = vim.treesitter.get_node()
+
+      if node and node:type() == "string_content" then
+        local node_text = vim.treesitter.get_node_text(node, 0)
+
+        if node_text:match("^[^/]+/[^/]+$") then
+          util.open_url("https://github.com/" .. node_text)
+          return
+        end
+      end
+
+      vim.cmd.normal({
+        "K",
+        bang = true,
+      })
+    end, { buffer = 0, desc = "Keywordprg" })
+
     vim.keymap.set("x", "<leader>cL", function()
       local lines = util.visual_lines()
 
