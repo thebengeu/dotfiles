@@ -195,11 +195,13 @@ return vim.list_extend(
       "echasnovski/mini.ai",
       init = function()
         require("lazyvim.util").on_load("mini.ai", function()
-          require("which-key").register({
-            af = "Function call",
-            ["if"] = "Function call",
-            mode = { "o", "x" },
-          })
+          require("lazyvim.util").on_load("which-key.nvim", function()
+            require("which-key").register({
+              af = "Function call",
+              ["if"] = "Function call",
+              mode = { "o", "x" },
+            })
+          end)
         end)
       end,
       keys = {
