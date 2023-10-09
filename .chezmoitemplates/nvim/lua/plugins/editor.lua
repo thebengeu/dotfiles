@@ -340,6 +340,7 @@ return {
   },
   {
     "gbprod/yanky.nvim",
+    dependencies = "kkharji/sqlite.lua",
     keys = {
       { "y", false, mode = { "n", "x" } },
     },
