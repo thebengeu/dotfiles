@@ -254,6 +254,7 @@ return {
       end
     end,
     enabled = true,
+    lazy = true,
   },
   {
     "akinsho/toggleterm.nvim",
