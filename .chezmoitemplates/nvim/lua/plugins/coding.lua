@@ -378,19 +378,6 @@ return vim.list_extend(
         "hrsh7th/nvim-cmp",
       },
       ft = "sql",
-      init = function()
-        vim.api.nvim_create_autocmd("FileType", {
-          callback = function()
-            ---@diagnostic disable-next-line: missing-fields
-            require("cmp").setup.buffer({
-              sources = {
-                { name = "vim-dadbod-completion" },
-              },
-            })
-          end,
-          pattern = "sql",
-        })
-      end,
     },
     {
       "kristijanhusak/vim-dadbod-ui",
