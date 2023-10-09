@@ -86,13 +86,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   end,
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-  callback = function()
-    vim.bo.commentstring = "// %s"
-  end,
-  pattern = "cue",
-})
-
 if vim.env.TMUX then
   vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained" }, {
     callback = function()
