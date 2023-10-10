@@ -63,7 +63,9 @@ vim.keymap.set("n", "<leader>k", function()
   })
 
   local unmount = input.unmount
+  ---@diagnostic disable-next-line: duplicate-set-field
   input.unmount = function(self)
+    ---@diagnostic disable-next-line: invisible
     if self._.loading then
       return
     end
@@ -132,7 +134,11 @@ vim.keymap.set("n", "<leader>k", function()
           interval,
           vim.schedule_wrap(function()
             if vim.api.nvim_buf_is_valid(term_bufnr) then
-              vim.api.nvim_buf_set_option(term_bufnr, "modifiable", true)
+              vim.api.nvim_set_option_value(
+                "modifiable",
+                true,
+                { buf = term_bufnr }
+              )
 
               delete_trailing_blank_lines(term_bufnr)
 
@@ -147,7 +153,11 @@ vim.keymap.set("n", "<leader>k", function()
 
               delete_trailing_blank_lines(term_bufnr)
 
-              vim.api.nvim_buf_set_option(term_bufnr, "modifiable", false)
+              vim.api.nvim_set_option_value(
+                "modifiable",
+                false,
+                { buf = term_bufnr }
+              )
             end
 
             timer:close()
