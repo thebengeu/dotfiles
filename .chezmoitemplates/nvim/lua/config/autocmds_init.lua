@@ -64,7 +64,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
           return
         end
 
-        local path = system_obj.stdout:gsub("\n", "")
+        local path = system_obj.stdout:gsub("\n$", "")
 
         if
           source_or_target == "Target" and vim.fn.filereadable(path) == 0

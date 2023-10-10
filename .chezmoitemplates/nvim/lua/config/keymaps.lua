@@ -23,7 +23,7 @@ local system_sh_code = function(cmd)
   return vim.system({ "sh", "-c", cmd }):wait().code
 end
 
-vim.keymap.set("n", "<leader>k", function()
+local git_commit = function(default_message, flags)
   vim.cmd.update()
 
   local has_staged = system_sh_code("git diff --cached --quiet") ~= 0
@@ -44,6 +44,7 @@ vim.keymap.set("n", "<leader>k", function()
   }
 
   local input = Input(vim.deepcopy(popup_options), {
+    default_value = default_message or "",
     on_close = function()
       if not has_staged then
         vim.system({ "git", "reset" })
@@ -52,10 +53,11 @@ vim.keymap.set("n", "<leader>k", function()
     on_submit = function(commit_summary)
       if commit_summary ~= "" then
         util.async_run_sh(
-          "git commit -"
-            .. 'm "'
+          "git commit"
+            .. (flags or "")
+            .. ' -m "'
             .. commit_summary:gsub('["`$]', "\\%1")
-            .. '" && git push',
+            .. '" && git push --force-with-lease',
           function()
             require("gitsigns").refresh()
           end
@@ -185,19 +187,30 @@ vim.keymap.set("n", "<leader>k", function()
       end,
     })
   end)
-end, { desc = "Git commit" })
+end
+
+vim.keymap.set("n", "<leader>k", git_commit, { desc = "Commit" })
+vim.keymap.set("n", "<leader>ga", function()
+  git_commit(
+    vim
+      .system({ "git", "show", "--format=%s", "--no-patch" })
+      :wait().stdout
+      :gsub("\n$", ""),
+    " --amend"
+  )
+end, { desc = "Amend" })
 
 vim.keymap.set("n", "<leader>gP", function()
   util.async_run({ "git", "push" })
-end, { desc = "Git push" })
+end, { desc = "Push" })
 
 vim.keymap.set("n", "<leader>gp", function()
   util.async_run({ "git", "pull" })
-end, { desc = "Git pull" })
+end, { desc = "Pull" })
 
 vim.keymap.set("n", "<leader>gw", function()
   util.async_run({ "git", "wip" })
-end, { desc = "Git commit WIP" })
+end, { desc = "Commit WIP" })
 
 vim.keymap.set("n", "<leader>um", function()
   ---@diagnostic disable-next-line: undefined-field
