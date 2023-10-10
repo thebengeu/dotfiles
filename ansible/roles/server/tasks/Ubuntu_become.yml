@@ -7,9 +7,6 @@
     commands: ALL
     name: "{{ ansible_user_id }}"
     user: "{{ ansible_user_id }}"
-- ansible.builtin.apt_repository:
-    filename: fury
-    repo: deb [trusted=yes] https://apt.fury.io/rsteube/ /
 - ansible.builtin.apt_key:
     keyring: /etc/apt/keyrings/docker.gpg
     url: https://download.docker.com/linux/ubuntu/gpg
@@ -84,7 +81,6 @@
     repo: ppa:wslutilities/wslu
 - ansible.builtin.apt:
     name:
-      - carapace-bin
       - containerd.io
       - clangd-15
       - cmake
@@ -149,6 +145,7 @@
   loop:
     # yamllint disable rule:line-length
     - https://github.com/lsd-rs/lsd/releases/download/v1.0.0/lsd-musl_1.0.0_{{ arch.stdout }}.deb
+    - https://github.com/rsteube/carapace-bin/releases/download/v0.27.0/carapace-bin_0.27.0_linux_{{ arch.stdout }}.deb
     - https://github.com/sharkdp/bat/releases/download/v0.23.0/bat_0.23.0_{{ arch.stdout }}.deb
     - https://github.com/sharkdp/fd/releases/download/v8.7.0/fd_8.7.0_{{ arch.stdout }}.deb
     - http://ftp.debian.org/debian/pool/main/f/fzf/fzf_0.42.0-1+b2_{{ arch.stdout }}.deb
