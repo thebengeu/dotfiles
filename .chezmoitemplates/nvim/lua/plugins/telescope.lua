@@ -10,9 +10,15 @@ return {
         dependencies = "kkharji/sqlite.lua",
       },
       {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        enabled = false,
+      },
+      {
         "nvim-telescope/telescope-fzy-native.nvim",
         config = function()
-          require("telescope").load_extension("fzy_native")
+          Util.on_load("telescope.nvim", function()
+            require("telescope").load_extension("fzy_native")
+          end)
         end,
       },
     },
