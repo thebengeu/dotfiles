@@ -43,7 +43,7 @@ local add_lines_to_qf = function(lines, qf_item)
   )
 end
 
-M.async_run = function(command)
+M.async_run = function(command, callback)
   local cursor = vim.api.nvim_win_get_cursor(0)
   local qf_item = {
     col = cursor[2],
@@ -56,7 +56,7 @@ M.async_run = function(command)
 
   local start_time = vim.loop.hrtime()
 
-  vim.system(command, nil, function(system_obj)
+  return vim.system(command, nil, function(system_obj)
     local end_time = vim.loop.hrtime()
 
     vim.schedule(function()
@@ -78,12 +78,16 @@ M.async_run = function(command)
       end
 
       vim.cmd.cbottom()
+
+      if callback then
+        callback(system_obj)
+      end
     end)
   end)
 end
 
-M.async_run_sh = function(command)
-  M.async_run({ "sh", "-c", command })
+M.async_run_sh = function(command, callback)
+  return M.async_run({ "sh", "-c", command }, callback)
 end
 
 M.highlights = {}
