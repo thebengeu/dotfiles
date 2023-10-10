@@ -32,20 +32,20 @@
     remote_src: true
     src: https://github.com/imsnif/bandwhich/releases/download/v0.21.0/bandwhich-v0.21.0-x86_64-unknown-linux-musl.tar.gz
 - ansible.builtin.git:
-    dest: ~/neovim
+    dest: ~/thebengeu/neovim
     force: true
-    repo: https://github.com/neovim/neovim
-    version: 5d8ab32
+    repo: https://github.com/thebengeu/neovim
+    version: 7ef1321d88a84cebf62a34cc2d79ebef91f74ea9
 - ansible.builtin.command:
-    chdir: ~/neovim
+    chdir: ~/thebengeu/neovim
     cmd: make CMAKE_BUILD_TYPE=Release
-    creates: ~/neovim/build/
+    creates: ~/thebengeu/neovim/build/
 - ansible.builtin.command:
-    chdir: ~/neovim/build
+    chdir: ~/thebengeu/neovim/build
     cmd: cpack -G DEB
-    creates: ~/neovim/build/nvim-linux64.deb
+    creates: ~/thebengeu/neovim/build/nvim-linux64.deb
 - ansible.builtin.apt:
-    deb: /home/{{ ansible_user_id }}/neovim/build/nvim-linux64.deb
+    deb: /home/{{ ansible_user_id }}/thebengeu/neovim/build/nvim-linux64.deb
   become: true
 - community.general.alternatives:
     name: editor
