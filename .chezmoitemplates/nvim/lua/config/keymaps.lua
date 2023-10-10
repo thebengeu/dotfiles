@@ -57,7 +57,7 @@ local git_commit = function(default_message, flags)
             .. (flags or "")
             .. ' -m "'
             .. commit_summary:gsub('["`$]', "\\%1")
-            .. '" && git push --force-with-lease',
+            .. '" && git push --force-if-includes --force-with-lease',
           function()
             require("gitsigns").refresh()
           end

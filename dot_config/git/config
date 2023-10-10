@@ -1,7 +1,7 @@
 [alias]
 	grep-all = !git rev-list --all | xargs git grep
 	lg = log --pretty='format:%Cgreen%ah%Creset %s'
-	pf = push --force-with-lease
+	pf = push --force-if-includes --force-with-lease
 	pu = !git pull upstream $(git branch --show-current)
 	rau = !~/.config/git/template/hooks/add-upstream-auto-detected-url.sh
 	s = status --short --untracked-files
