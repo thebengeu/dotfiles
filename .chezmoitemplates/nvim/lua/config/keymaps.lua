@@ -55,7 +55,10 @@ vim.keymap.set("n", "<leader>k", function()
           "git commit -"
             .. 'm "'
             .. commit_summary:gsub('["`$]', "\\%1")
-            .. '" && git push'
+            .. '" && git push',
+          function()
+            require("gitsigns").refresh()
+          end
         )
       end
     end,
