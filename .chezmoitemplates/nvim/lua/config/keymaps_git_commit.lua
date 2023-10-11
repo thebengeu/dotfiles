@@ -132,11 +132,14 @@ local termopen_git_diff = function(term, no_changes)
         on_exit = function()
           local interval = 10
           local timer = vim.uv.new_timer()
+          local timer_closing
 
-          timer:start(
-            interval,
-            interval,
-            vim.schedule_wrap(function()
+          timer:start(interval, interval, function()
+            if timer_closing then
+              return
+            end
+
+            vim.schedule(function()
               if vim.api.nvim_buf_is_valid(term_bufnr) then
                 set_modifiable(true)
                 delete_trailing_blank_lines()
@@ -157,8 +160,9 @@ local termopen_git_diff = function(term, no_changes)
 
               timer:stop()
               timer:close()
+              timer_closing = true
             end)
-          )
+          end)
         end,
         on_stdout = function()
           local first_visible_line_num = vim.fn.line("w0", term.winid)
