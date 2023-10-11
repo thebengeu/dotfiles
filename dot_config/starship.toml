@@ -34,6 +34,15 @@ disabled = true
 [php]
 disabled = true
 
+[pulumi]
+disabled = true
+
+[python]
+disabled = true
+
+[username]
+disabled = true
+
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
 flamingo = "#f2cdcd"
@@ -61,9 +70,3 @@ surface0 = "#313244"
 base = "#1e1e2e"
 mantle = "#181825"
 crust = "#11111b"
-
-[python]
-disabled = true
-
-[username]
-disabled = true
