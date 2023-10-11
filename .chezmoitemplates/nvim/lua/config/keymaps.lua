@@ -128,6 +128,10 @@ local git_commit = function(default_message, flags)
 
   local term_bufnr = term.bufnr
 
+  local set_modifiable = function(value)
+    vim.api.nvim_set_option_value("modifiable", value, { buf = term_bufnr })
+  end
+
   vim.api.nvim_buf_call(term_bufnr, function()
     vim.fn.termopen("git diff --cached | delta --pager never", {
       on_exit = function()
@@ -139,13 +143,9 @@ local git_commit = function(default_message, flags)
           interval,
           vim.schedule_wrap(function()
             if vim.api.nvim_buf_is_valid(term_bufnr) then
-              vim.api.nvim_set_option_value(
-                "modifiable",
-                true,
-                { buf = term_bufnr }
-              )
-
+              set_modifiable(true)
               delete_trailing_blank_lines(term_bufnr)
+              set_modifiable(false)
 
               if
                 vim.api.nvim_buf_get_lines(term_bufnr, -2, -1, true)[1]
@@ -154,15 +154,10 @@ local git_commit = function(default_message, flags)
                 return
               end
 
+              set_modifiable(true)
               vim.api.nvim_buf_set_lines(term_bufnr, -2, -1, true, {})
-
               delete_trailing_blank_lines(term_bufnr)
-
-              vim.api.nvim_set_option_value(
-                "modifiable",
-                false,
-                { buf = term_bufnr }
-              )
+              set_modifiable(false)
             end
 
             timer:stop()
