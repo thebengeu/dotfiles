@@ -17,12 +17,6 @@ local popup_options = function(title)
   }
 end
 
-local delete_trailing_blank_lines = function(bufnr)
-  while vim.api.nvim_buf_get_lines(bufnr, -2, -1, true)[1] == "" do
-    vim.api.nvim_buf_set_lines(bufnr, -2, -1, true, {})
-  end
-end
-
 local win_exec_normal = function(winid, key)
   vim.fn.win_execute(winid, 'execute "normal \\' .. key .. '"')
 end
@@ -117,6 +111,12 @@ local termopen_git_diff = function(term, no_changes)
     vim.api.nvim_set_option_value("modifiable", value, { buf = term_bufnr })
   end
 
+  local delete_trailing_blank_lines = function()
+    while vim.api.nvim_buf_get_lines(term_bufnr, -2, -1, true)[1] == "" do
+      vim.api.nvim_buf_set_lines(term_bufnr, -2, -1, true, {})
+    end
+  end
+
   vim.api.nvim_buf_call(term_bufnr, function()
     vim.fn.termopen(
       "git diff "
@@ -133,7 +133,7 @@ local termopen_git_diff = function(term, no_changes)
             vim.schedule_wrap(function()
               if vim.api.nvim_buf_is_valid(term_bufnr) then
                 set_modifiable(true)
-                delete_trailing_blank_lines(term_bufnr)
+                delete_trailing_blank_lines()
                 set_modifiable(false)
 
                 if
@@ -145,7 +145,7 @@ local termopen_git_diff = function(term, no_changes)
 
                 set_modifiable(true)
                 vim.api.nvim_buf_set_lines(term_bufnr, -2, -1, true, {})
-                delete_trailing_blank_lines(term_bufnr)
+                delete_trailing_blank_lines()
                 set_modifiable(false)
               end
 
