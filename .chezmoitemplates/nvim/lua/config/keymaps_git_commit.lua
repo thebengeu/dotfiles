@@ -3,12 +3,19 @@ local Layout = require("nui.layout")
 local Popup = require("nui.popup")
 local util = require("util")
 
-local popup_options = {
-  border = "rounded",
-  win_options = {
-    winhighlight = "FloatBorder:Normal,Normal:Normal",
-  },
-}
+local popup_options = function(title)
+  return {
+    border = {
+      style = "rounded",
+      text = {
+        top = " " .. title .. " ",
+      },
+    },
+    win_options = {
+      winhighlight = "FloatBorder:Normal,Normal:Normal",
+    },
+  }
+end
 
 local delete_trailing_blank_lines = function(bufnr)
   while vim.api.nvim_buf_get_lines(bufnr, -2, -1, true)[1] == "" do
@@ -21,7 +28,7 @@ local win_exec_normal = function(winid, key)
 end
 
 local setup_input = function(amend, reset_on_close)
-  local input = Input(vim.deepcopy(popup_options), {
+  local input = Input(popup_options("Commit Summary"), {
     default_value = amend and vim
       .system({ "git", "show", "--format=%s", "--no-patch" })
       :wait().stdout
@@ -43,7 +50,6 @@ local setup_input = function(amend, reset_on_close)
         )
       end
     end,
-    prompt = "Commit summary: ",
   })
 
   local unmount = input.unmount
@@ -186,7 +192,7 @@ local git_commit = function(amend)
   end
 
   local input = setup_input(amend, not has_staged and not no_changes)
-  local term = Popup(vim.deepcopy(popup_options))
+  local term = Popup(popup_options("Diff"))
   local layout = setup_layout(input, term)
 
   layout:mount()
