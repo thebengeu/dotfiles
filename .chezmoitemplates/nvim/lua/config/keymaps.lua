@@ -165,6 +165,7 @@ local git_commit = function(default_message, flags)
               )
             end
 
+            timer:stop()
             timer:close()
           end)
         )
