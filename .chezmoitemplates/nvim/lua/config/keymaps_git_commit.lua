@@ -3,36 +3,24 @@ local Layout = require("nui.layout")
 local Popup = require("nui.popup")
 local util = require("util")
 
+local popup_options = {
+  border = "rounded",
+  win_options = {
+    winhighlight = "FloatBorder:Normal,Normal:Normal",
+  },
+}
+
 local delete_trailing_blank_lines = function(bufnr)
   while vim.api.nvim_buf_get_lines(bufnr, -2, -1, true)[1] == "" do
     vim.api.nvim_buf_set_lines(bufnr, -2, -1, true, {})
   end
 end
 
-local system_sh_code = function(cmd)
-  return vim.system({ "sh", "-c", cmd }):wait().code
+local win_exec_normal = function(winid, key)
+  vim.fn.win_execute(winid, 'execute "normal \\' .. key .. '"')
 end
 
-local git_commit = function(default_message, flags)
-  vim.cmd.update()
-
-  local has_staged = system_sh_code("git diff --cached --quiet") ~= 0
-
-  if
-    not has_staged
-    and system_sh_code("git add --all && git diff --cached --quiet") == 0
-  then
-    vim.notify("No changes found", vim.log.levels.WARN)
-    return
-  end
-
-  local popup_options = {
-    border = "rounded",
-    win_options = {
-      winhighlight = "FloatBorder:Normal,Normal:Normal",
-    },
-  }
-
+local setup_input = function(default_message, has_staged, flags)
   local input = Input(vim.deepcopy(popup_options), {
     default_value = default_message or "",
     on_close = function()
@@ -68,8 +56,10 @@ local git_commit = function(default_message, flags)
     unmount(self)
   end
 
-  local term = Popup(vim.deepcopy(popup_options))
+  return input
+end
 
+local setup_layout = function(input, term)
   local layout = Layout(
     {
       position = "50%",
@@ -93,14 +83,10 @@ local git_commit = function(default_message, flags)
     vim.api.nvim_set_current_win(input.winid)
   end)
 
-  local term_win_exec_normal = function(key)
-    vim.fn.win_execute(term.winid, 'execute "normal \\' .. key .. '"')
-  end
-
   for _, key in ipairs({ "b", "d", "e", "f", "u", "y" }) do
     local ctrl_key = "<C-" .. key .. ">"
     input:map("i", ctrl_key, function()
-      term_win_exec_normal(ctrl_key)
+      win_exec_normal(term.winid, ctrl_key)
     end)
   end
 
@@ -114,8 +100,10 @@ local git_commit = function(default_message, flags)
     layout:unmount()
   end)
 
-  layout:mount()
+  return layout
+end
 
+local termopen_git_diff = function(term)
   local term_bufnr = term.bufnr
 
   local set_modifiable = function(value)
@@ -168,11 +156,37 @@ local git_commit = function(default_message, flags)
             )[1]
             == ""
         then
-          term_win_exec_normal("<C-e>")
+          win_exec_normal(term.winid, "<C-e>")
         end
       end,
     })
   end)
+end
+
+local system_sh_code = function(cmd)
+  return vim.system({ "sh", "-c", cmd }):wait().code
+end
+
+local git_commit = function(default_message, flags)
+  vim.cmd.update()
+
+  local has_staged = system_sh_code("git diff --cached --quiet") ~= 0
+
+  if
+    not has_staged
+    and system_sh_code("git add --all && git diff --cached --quiet") == 0
+    and not default_message
+  then
+    vim.notify("No changes found", vim.log.levels.WARN)
+    return
+  end
+
+  local input = setup_input(default_message, has_staged, flags)
+  local term = Popup(vim.deepcopy(popup_options))
+  local layout = setup_layout(input, term)
+
+  layout:mount()
+  termopen_git_diff(term)
 end
 
 vim.keymap.set("n", "<leader>k", git_commit, { desc = "Commit" })
