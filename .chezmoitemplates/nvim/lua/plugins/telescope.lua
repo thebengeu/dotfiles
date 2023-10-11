@@ -8,6 +8,13 @@ return {
         "prochri/telescope-all-recent.nvim",
         config = true,
         dependencies = "kkharji/sqlite.lua",
+        opts = {
+          pickers = {
+            git_commits = {
+              disable = true,
+            },
+          },
+        },
       },
       {
         "nvim-telescope/telescope-fzf-native.nvim",
