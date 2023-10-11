@@ -44,7 +44,7 @@ aliases: {
 	scc: #"scc --not-match "package-lock.json|pnpm-lock.yaml""#
 	tb:  "time bash -i -c exit"
 	tbn: "time bash --noprofile --norc -i -c exit"
-	t:   "pnpm tsx"
+	t:   "tsx"
 	vim: "nvim"
 
 	for shellAndFlags, noConfigFlag in {
@@ -113,7 +113,7 @@ aliases: {
 
 	for shAlias, command in {
 		jsr: #"printf "\e[6 q"; node"#
-		tsr: #"printf "\e[6 q"; pnpm tsx"#
+		tsr: #"printf "\e[6 q"; tsx"#
 	} {
 		"\(shAlias)": "sh -c '\(command)'"
 	}
