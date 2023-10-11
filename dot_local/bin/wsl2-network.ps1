@@ -1,3 +1,4 @@
+#!/usr/bin/env powershell
 if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator))
 {
   if (Get-Command gsudo)
