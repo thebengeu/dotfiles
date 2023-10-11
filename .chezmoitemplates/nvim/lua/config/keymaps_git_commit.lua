@@ -23,12 +23,9 @@ end
 
 local saved_commit_summary
 
-local setup_input = function(amend, reset_on_close)
+local setup_input = function(reset_on_close, git_command, default_message)
   local input = Input(popup_options("Commit Summary"), {
-    default_value = amend and vim
-      .system({ "git", "show", "--format=%s", "--no-patch" })
-      :wait().stdout
-      :gsub("\n$", "") or saved_commit_summary,
+    default_value = default_message or saved_commit_summary,
     on_change = function(commit_summary)
       saved_commit_summary = commit_summary
     end,
@@ -38,8 +35,7 @@ local setup_input = function(amend, reset_on_close)
     on_submit = function(commit_summary)
       if commit_summary ~= "" then
         util.async_run_sh(
-          "git commit"
-            .. (amend and " --amend" or "")
+          git_command
             .. ' -m "'
             .. commit_summary:gsub('["`$]', "\\%1")
             .. '" && git push --force-if-includes --force-with-lease',
@@ -191,19 +187,18 @@ local system_sh_code = function(cmd)
   return vim.system({ "sh", "-c", cmd }):wait().code
 end
 
-local git_commit = function(amend)
-  vim.cmd.update()
-
+local git_commit = function(git_command, default_message)
   local has_staged = system_sh_code("git diff --cached --quiet") ~= 0
   local no_changes = not has_staged
     and system_sh_code("git add --all && git diff --cached --quiet") == 0
 
-  if no_changes and not amend then
+  if no_changes and not default_message then
     vim.notify("No changes found", vim.log.levels.WARN)
     return
   end
 
-  local input = setup_input(amend, not has_staged and not no_changes)
+  local input =
+    setup_input(not has_staged and not no_changes, git_command, default_message)
   local term = Popup(popup_options("Diff"))
   local layout = setup_layout(input, term)
 
@@ -211,7 +206,40 @@ local git_commit = function(amend)
   termopen_git_diff(term, no_changes)
 end
 
-vim.keymap.set("n", "<leader>k", git_commit, { desc = "Commit" })
+vim.keymap.set("n", "<leader>k", function()
+  vim.cmd.update()
+  git_commit("git commit")
+end, { desc = "Commit" })
+
+vim.keymap.set("n", "<leader>gA", function()
+  vim.cmd.update()
+
+  require("telescope.builtin").git_commits({
+    attach_mappings = function()
+      local actions = require("telescope.actions")
+
+      actions.select_default:replace(function(prompt_bufnr)
+        local selected_entry =
+          require("telescope.actions.state").get_selected_entry()
+        actions.close(prompt_bufnr)
+
+        vim.schedule(function()
+          git_commit("git revise " .. selected_entry.value, selected_entry.msg)
+        end)
+      end)
+
+      return true
+    end,
+  })
+end, { desc = "Amend Selected Commit" })
+
 vim.keymap.set("n", "<leader>ga", function()
-  git_commit(true)
+  vim.cmd.update()
+  git_commit(
+    "git commit --amend",
+    vim
+      .system({ "git", "show", "--format=%s", "--no-patch" })
+      :wait().stdout
+      :gsub("\n$", "")
+  )
 end, { desc = "Amend" })
