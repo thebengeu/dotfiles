@@ -21,12 +21,17 @@ local win_exec_normal = function(winid, key)
   vim.fn.win_execute(winid, 'execute "normal \\' .. key .. '"')
 end
 
+local saved_commit_summary
+
 local setup_input = function(amend, reset_on_close)
   local input = Input(popup_options("Commit Summary"), {
     default_value = amend and vim
       .system({ "git", "show", "--format=%s", "--no-patch" })
       :wait().stdout
-      :gsub("\n$", "") or nil,
+      :gsub("\n$", "") or saved_commit_summary,
+    on_change = function(commit_summary)
+      saved_commit_summary = commit_summary
+    end,
     on_close = reset_on_close and function()
       vim.system({ "git", "reset" })
     end or nil,
@@ -39,6 +44,7 @@ local setup_input = function(amend, reset_on_close)
             .. commit_summary:gsub('["`$]', "\\%1")
             .. '" && git push --force-if-includes --force-with-lease',
           function()
+            saved_commit_summary = nil
             require("gitsigns").refresh()
           end
         )
