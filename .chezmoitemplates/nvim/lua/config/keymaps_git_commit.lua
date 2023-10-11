@@ -71,7 +71,7 @@ local setup_layout = function(input, term)
       },
     },
     Layout.Box({
-      Layout.Box(input, { size = 3 }),
+      Layout.Box(input, { size = 4 }),
       Layout.Box(term, { grow = 1 }),
     }, { dir = "col" })
   )
