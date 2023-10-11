@@ -20,19 +20,20 @@ local win_exec_normal = function(winid, key)
   vim.fn.win_execute(winid, 'execute "normal \\' .. key .. '"')
 end
 
-local setup_input = function(default_message, has_staged, flags)
+local setup_input = function(amend, reset_on_close)
   local input = Input(vim.deepcopy(popup_options), {
-    default_value = default_message or "",
-    on_close = function()
-      if not has_staged then
-        vim.system({ "git", "reset" })
-      end
-    end,
+    default_value = amend and vim
+      .system({ "git", "show", "--format=%s", "--no-patch" })
+      :wait().stdout
+      :gsub("\n$", "") or nil,
+    on_close = reset_on_close and function()
+      vim.system({ "git", "reset" })
+    end or nil,
     on_submit = function(commit_summary)
       if commit_summary ~= "" then
         util.async_run_sh(
           "git commit"
-            .. (flags or "")
+            .. (amend and " --amend" or "")
             .. ' -m "'
             .. commit_summary:gsub('["`$]', "\\%1")
             .. '" && git push --force-if-includes --force-with-lease',
@@ -103,7 +104,7 @@ local setup_layout = function(input, term)
   return layout
 end
 
-local termopen_git_diff = function(term)
+local termopen_git_diff = function(term, no_changes)
   local term_bufnr = term.bufnr
 
   local set_modifiable = function(value)
@@ -111,55 +112,60 @@ local termopen_git_diff = function(term)
   end
 
   vim.api.nvim_buf_call(term_bufnr, function()
-    vim.fn.termopen("git diff --cached | delta --pager never", {
-      on_exit = function()
-        local interval = 10
-        local timer = vim.uv.new_timer()
+    vim.fn.termopen(
+      "git diff "
+        .. (no_changes and "@^" or "--cached")
+        .. " | delta --pager never",
+      {
+        on_exit = function()
+          local interval = 10
+          local timer = vim.uv.new_timer()
 
-        timer:start(
-          interval,
-          interval,
-          vim.schedule_wrap(function()
-            if vim.api.nvim_buf_is_valid(term_bufnr) then
-              set_modifiable(true)
-              delete_trailing_blank_lines(term_bufnr)
-              set_modifiable(false)
+          timer:start(
+            interval,
+            interval,
+            vim.schedule_wrap(function()
+              if vim.api.nvim_buf_is_valid(term_bufnr) then
+                set_modifiable(true)
+                delete_trailing_blank_lines(term_bufnr)
+                set_modifiable(false)
 
-              if
-                vim.api.nvim_buf_get_lines(term_bufnr, -2, -1, true)[1]
-                ~= "[Process exited 0]"
-              then
-                return
+                if
+                  vim.api.nvim_buf_get_lines(term_bufnr, -2, -1, true)[1]
+                  ~= "[Process exited 0]"
+                then
+                  return
+                end
+
+                set_modifiable(true)
+                vim.api.nvim_buf_set_lines(term_bufnr, -2, -1, true, {})
+                delete_trailing_blank_lines(term_bufnr)
+                set_modifiable(false)
               end
 
-              set_modifiable(true)
-              vim.api.nvim_buf_set_lines(term_bufnr, -2, -1, true, {})
-              delete_trailing_blank_lines(term_bufnr)
-              set_modifiable(false)
-            end
+              timer:stop()
+              timer:close()
+            end)
+          )
+        end,
+        on_stdout = function()
+          local first_visible_line_num = vim.fn.line("w0", term.winid)
 
-            timer:stop()
-            timer:close()
-          end)
-        )
-      end,
-      on_stdout = function()
-        local first_visible_line_num = vim.fn.line("w0", term.winid)
-
-        if
-          first_visible_line_num
-          and vim.api.nvim_buf_get_lines(
-              term_bufnr,
-              first_visible_line_num - 1,
-              first_visible_line_num,
-              true
-            )[1]
-            == ""
-        then
-          win_exec_normal(term.winid, "<C-e>")
-        end
-      end,
-    })
+          if
+            first_visible_line_num
+            and vim.api.nvim_buf_get_lines(
+                term_bufnr,
+                first_visible_line_num - 1,
+                first_visible_line_num,
+                true
+              )[1]
+              == ""
+          then
+            win_exec_normal(term.winid, "<C-e>")
+          end
+        end,
+      }
+    )
   end)
 end
 
@@ -167,35 +173,27 @@ local system_sh_code = function(cmd)
   return vim.system({ "sh", "-c", cmd }):wait().code
 end
 
-local git_commit = function(default_message, flags)
+local git_commit = function(amend)
   vim.cmd.update()
 
   local has_staged = system_sh_code("git diff --cached --quiet") ~= 0
-
-  if
-    not has_staged
+  local no_changes = not has_staged
     and system_sh_code("git add --all && git diff --cached --quiet") == 0
-    and not default_message
-  then
+
+  if no_changes and not amend then
     vim.notify("No changes found", vim.log.levels.WARN)
     return
   end
 
-  local input = setup_input(default_message, has_staged, flags)
+  local input = setup_input(amend, not has_staged and not no_changes)
   local term = Popup(vim.deepcopy(popup_options))
   local layout = setup_layout(input, term)
 
   layout:mount()
-  termopen_git_diff(term)
+  termopen_git_diff(term, no_changes)
 end
 
 vim.keymap.set("n", "<leader>k", git_commit, { desc = "Commit" })
 vim.keymap.set("n", "<leader>ga", function()
-  git_commit(
-    vim
-      .system({ "git", "show", "--format=%s", "--no-patch" })
-      :wait().stdout
-      :gsub("\n$", ""),
-    " --amend"
-  )
+  git_commit(true)
 end, { desc = "Amend" })
