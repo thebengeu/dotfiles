@@ -17,6 +17,7 @@ pip install --user pipx
 
 pipx install beancount
 pipx install fava
+pipx install git-revise
 pipx install http-prompt
 pipx install httpie
 pipx install khal
