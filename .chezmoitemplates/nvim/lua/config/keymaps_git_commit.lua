@@ -23,7 +23,7 @@ end
 
 local saved_commit_summary
 
-local setup_input = function(reset_on_close, git_command, default_message)
+local setup_input = function(reset_on_close, git_subcommand, default_message)
   local input = Input(popup_options("Commit Summary"), {
     default_value = default_message or saved_commit_summary,
     on_change = function(commit_summary)
@@ -35,7 +35,8 @@ local setup_input = function(reset_on_close, git_command, default_message)
     on_submit = function(commit_summary)
       if commit_summary ~= "" then
         util.async_run_sh(
-          git_command
+          "git "
+            .. git_subcommand
             .. ' -m "'
             .. commit_summary:gsub('["`$]', "\\%1")
             .. '" && git push --force-if-includes --force-with-lease',
@@ -208,7 +209,7 @@ end
 
 vim.keymap.set("n", "<leader>k", function()
   vim.cmd.update()
-  git_commit("git commit")
+  git_commit("commit")
 end, { desc = "Commit" })
 
 vim.keymap.set("n", "<leader>gA", function()
@@ -224,7 +225,7 @@ vim.keymap.set("n", "<leader>gA", function()
         actions.close(prompt_bufnr)
 
         vim.schedule(function()
-          git_commit("git revise " .. selected_entry.value, selected_entry.msg)
+          git_commit("revise " .. selected_entry.value, selected_entry.msg)
         end)
       end)
 
@@ -236,7 +237,7 @@ end, { desc = "Amend Selected Commit" })
 vim.keymap.set("n", "<leader>ga", function()
   vim.cmd.update()
   git_commit(
-    "git commit --amend",
+    "commit --amend",
     vim
       .system({ "git", "show", "--format=%s", "--no-patch" })
       :wait().stdout
