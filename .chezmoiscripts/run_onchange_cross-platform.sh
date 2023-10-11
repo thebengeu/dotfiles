@@ -31,4 +31,5 @@ pnpm add --global \
   npm-check-updates \
   pino-pretty \
   pm2 \
-  trash-cli
+  trash-cli \
+  tsx
