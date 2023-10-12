@@ -150,9 +150,34 @@ return {
         },
         {
           "<leader>gr",
-          "<Cmd>Telescope git_bcommits_range<CR>",
+          function()
+            delta_diffview_git_picker(
+              "bcommits_range",
+              " -- " .. vim.api.nvim_buf_get_name(0)
+            )
+          end,
           desc = "Range commits",
           mode = "x",
+        },
+        {
+          "<leader>gs",
+          function()
+            require("telescope.builtin").git_status({
+              previewer = require("telescope.previewers").new_termopen_previewer({
+                get_command = function(entry)
+                  if
+                    entry.status
+                    and (entry.status == "??" or entry.status == "A ")
+                  then
+                    return { "bat", "--plain", entry.value }
+                  else
+                    return { "git", "diff", "HEAD", "--", entry.value }
+                  end
+                end,
+              }),
+            })
+          end,
+          desc = "Status",
         },
         {
           "<leader>si",
