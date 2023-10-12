@@ -20,7 +20,6 @@ pipx install fava
 pipx install git-revise
 pipx install http-prompt
 pipx install httpie
-pipx install jtbl
 pipx install khal
 pipx install neovim-remote
 pipx install sqlfluff
