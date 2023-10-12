@@ -30,6 +30,30 @@ return {
       },
     },
     keys = function(_, keys)
+      local delta_diffview_git_picker = function(picker, diffview_open_append)
+        require("telescope.builtin")["git_" .. picker]({
+          attach_mappings = function()
+            local actions = require("telescope.actions")
+
+            actions.select_default:replace(function(prompt_bufnr)
+              actions.close(prompt_bufnr)
+              vim.cmd.DiffviewOpen(
+                require("telescope.actions.state").get_selected_entry().value
+                  .. "^!"
+                  .. (diffview_open_append or "")
+              )
+            end)
+
+            return true
+          end,
+          previewer = require("telescope.previewers").new_termopen_previewer({
+            get_command = function(entry)
+              return { "git", "diff", entry.value .. "^!" }
+            end,
+          }),
+        })
+      end
+
       local get_plugin_folder = function(telescope_builtin)
         return function()
           local root = require("lazy.core.config").options.root
@@ -110,29 +134,19 @@ return {
         {
           "<leader>gb",
           function()
-            require("telescope.builtin").git_bcommits({
-              attach_mappings = function()
-                local actions = require("telescope.actions")
-
-                actions.select_default:replace(function(prompt_bufnr)
-                  actions.close(prompt_bufnr)
-                  vim.cmd.DiffviewOpen(
-                    require("telescope.actions.state").get_selected_entry().value
-                      .. "^! -- "
-                      .. vim.api.nvim_buf_get_name(0)
-                  )
-                end)
-
-                return true
-              end,
-              previewer = require("telescope.previewers").new_termopen_previewer({
-                get_command = function(entry)
-                  return { "git", "diff", entry.value .. "^!" }
-                end,
-              }),
-            })
+            delta_diffview_git_picker(
+              "bcommits",
+              " -- " .. vim.api.nvim_buf_get_name(0)
+            )
           end,
           desc = "Buffer commits",
+        },
+        {
+          "<leader>gc",
+          function()
+            delta_diffview_git_picker("commits")
+          end,
+          desc = "Commits",
         },
         {
           "<leader>gr",
