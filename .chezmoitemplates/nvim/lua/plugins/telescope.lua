@@ -186,23 +186,31 @@ return {
         ),
         winblend = 5,
       })
+
+      local undo_opts = {
+        diff_context_lines = 5,
+        use_custom_command = {
+          "sh",
+          "-c",
+          "echo '$DIFF' | delta",
+        },
+      }
+
+      if vim.o.columns > 90 then
+        undo_opts.layout_config = {
+          preview_height = 0.7,
+        }
+        undo_opts.layout_strategy = "vertical"
+        undo_opts.use_custom_command[3] = undo_opts.use_custom_command[3]
+          .. " --side-by-side"
+      end
+
       opts.extensions = {
         fzy_native = {
           override_file_sorter = true,
           override_generic_sorter = true,
         },
-        undo = {
-          diff_context_lines = 5,
-          layout_config = {
-            preview_height = 0.7,
-          },
-          layout_strategy = "vertical",
-          use_custom_command = {
-            "sh",
-            "-c",
-            "echo '$DIFF' | delta --side-by-side",
-          },
-        },
+        undo = undo_opts,
       }
     end,
   },
