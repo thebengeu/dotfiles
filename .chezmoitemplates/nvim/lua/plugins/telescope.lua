@@ -109,7 +109,28 @@ return {
         },
         {
           "<leader>gb",
-          "<Cmd>Telescope git_bcommits<CR>",
+          function()
+            require("telescope.builtin").git_bcommits({
+              attach_mappings = function()
+                local actions = require("telescope.actions")
+
+                actions.select_default:replace(function(prompt_bufnr)
+                  actions.close(prompt_bufnr)
+                  vim.cmd.DiffviewOpen(
+                    require("telescope.actions.state").get_selected_entry().value
+                      .. "^!"
+                  )
+                end)
+
+                return true
+              end,
+              previewer = require("telescope.previewers").new_termopen_previewer({
+                get_command = function(entry)
+                  return { "git", "diff", entry.value .. "^!" }
+                end,
+              }),
+            })
+          end,
           desc = "Buffer commits",
         },
         {

@@ -3,6 +3,7 @@ local util = require("util")
 return {
   {
     "sindrets/diffview.nvim",
+    cmd = "DiffviewOpen",
     keys = {
       {
         "<leader>gF",
