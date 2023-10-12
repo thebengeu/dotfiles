@@ -5,7 +5,7 @@ return {
   },
   {
     "alker0/chezmoi.vim",
-    cond = vim.loop.cwd():find("chezmoi") ~= nil,
+    cond = vim.loop.cwd():match("chezmoi") ~= nil,
   },
   {
     "LhKipp/nvim-nu",

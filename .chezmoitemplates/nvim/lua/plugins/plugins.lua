@@ -4,7 +4,7 @@ return {
   {
     "max397574/better-escape.nvim",
     config = true,
-    enabled = vim.fn.hostname():lower():find("minibook") ~= nil,
+    enabled = vim.fn.hostname():lower():match("minibook") ~= nil,
     event = "InsertEnter",
   },
   {
@@ -59,7 +59,7 @@ return {
   },
   {
     "direnv/direnv.vim",
-    cond = vim.loop.cwd():find("thebengeu") ~= nil,
+    cond = vim.loop.cwd():match("thebengeu") ~= nil,
     config = function()
       vim.g.direnv_silent_load = 1
     end,
