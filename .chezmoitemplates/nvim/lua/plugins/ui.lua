@@ -156,6 +156,14 @@ return {
     config = true,
     enabled = vim.version().minor >= 10,
     event = "LazyFile",
+    init = function()
+      require("lazyvim.util").on_load("which-key.nvim", function()
+        require("which-key").register({
+          ["<LeftMouse>"] = "which_key_ignore",
+          mode = { "i", "n", "o", "v" },
+        })
+      end)
+    end,
   },
   {
     "luukvbaal/statuscol.nvim",

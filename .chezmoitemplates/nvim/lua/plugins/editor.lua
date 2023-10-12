@@ -39,6 +39,15 @@ return {
   },
   {
     "folke/flash.nvim",
+    init = function()
+      require("lazyvim.util").on_load("which-key.nvim", function()
+        require("which-key").register({
+          [","] = "Previous match",
+          [";"] = "Next match",
+          mode = { "n", "o", "x" },
+        })
+      end)
+    end,
     opts = {
       highlight = {
         backdrop = false,
@@ -326,6 +335,17 @@ return {
     "cappyzawa/trim.nvim",
     config = true,
     event = "BufWritePre",
+  },
+  {
+    "RRethy/vim-illuminate",
+    init = function()
+      require("lazyvim.util").on_load("which-key.nvim", function()
+        require("which-key").register({
+          ["<M-i>"] = "Reference",
+          mode = { "o", "x" },
+        })
+      end)
+    end,
   },
   {
     "mg979/vim-visual-multi",
