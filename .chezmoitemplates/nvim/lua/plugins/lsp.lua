@@ -1,5 +1,13 @@
 return {
   {
+    "stevearc/conform.nvim",
+    enabled = false,
+  },
+  {
+    "mfussenegger/nvim-lint",
+    enabled = false,
+  },
+  {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = vim.list_extend({
