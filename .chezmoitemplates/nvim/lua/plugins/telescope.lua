@@ -173,6 +173,8 @@ return {
       })
     end,
     opts = function(_, opts)
+      local actions = require("telescope.actions")
+
       opts.defaults = vim.tbl_extend("force", opts.defaults, {
         layout_config = {
           flex = {
@@ -182,7 +184,9 @@ return {
         layout_strategy = "flex",
         mappings = {
           i = {
-            ["<Esc>"] = require("telescope.actions").close,
+            ["<C-a>"] = actions.cycle_previewers_prev,
+            ["<C-s>"] = actions.cycle_previewers_next,
+            ["<Esc>"] = actions.close,
           },
         },
         vimgrep_arguments = vim.list_extend(
