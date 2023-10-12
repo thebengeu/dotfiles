@@ -70,11 +70,11 @@ local setup_layout = function(input, term)
       relative = "editor",
       size = {
         height = "90%",
-        width = 80,
+        width = "160",
       },
     },
     Layout.Box({
-      Layout.Box(input, { size = 4 }),
+      Layout.Box(input, { size = 3 }),
       Layout.Box(term, { grow = 1 }),
     }, { dir = "col" })
   )
@@ -124,7 +124,7 @@ local termopen_git_diff = function(term, no_changes)
     vim.fn.termopen(
       "git diff "
         .. (no_changes and "@^" or "--cached")
-        .. " | delta --pager never",
+        .. " | delta --pager never --side-by-side",
       {
         on_exit = function()
           local interval = 10
