@@ -139,6 +139,15 @@ return {
     },
   },
   {
+    "kevinhwang91/nvim-fundo",
+    dependencies = "kevinhwang91/promise-async",
+    event = "LazyFile",
+    config = true,
+    make = function()
+      require("fundo").install()
+    end,
+  },
+  {
     "chrisgrieser/nvim-spider",
     keys = map({ "b", "e", "ge", "w" }, function(key)
       return {
