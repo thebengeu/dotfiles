@@ -21,11 +21,11 @@ function M.apply_to_config(config)
           "-C",
           "set --export TITLE_PREFIX wsl:",
         }
-      elseif wezterm.GLOBAL.is_remote and not domain.name:find("%:ec2$") then
-        domain.remote_address = "p.he.sg"
+      elseif wezterm.GLOBAL.is_remote and not domain.name:find("%:prod$") then
+        domain.remote_address = "h.he.sg"
         domain.ssh_option = {
           port = (domain.name:find("%:dev%-wsl$") and "24")
-            or (domain.name:find("%:prod$") and "26")
+            or (domain.name:find("%:staging$") and "26")
             or "22",
         }
       end

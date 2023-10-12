@@ -1,7 +1,7 @@
 Remove-Item $env:OneDrive\Desktop\*.lnk
 Remove-Item $env:PUBLIC\Desktop\*.lnk
 
-$proxyServerArgument = '--proxy-server=t.he.sg:8888'
+$proxyServerArgument = '--proxy-server=in.he.sg:8888'
 $startMenuPrograms = 'Microsoft\Windows\Start Menu\Programs'
 
 $startMenuShortcutArguments = @{

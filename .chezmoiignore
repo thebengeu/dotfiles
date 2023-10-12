@@ -26,11 +26,11 @@ scoop/
 **/*.ps1
 {{ end }}
 
-{{ if or (eq .chezmoi.hostname "ec2") (eq .chezmoi.hostname "prod") }}
+{{ if or (eq .chezmoi.hostname "prod") (eq .chezmoi.hostname "staging") }}
 .ssh/id_ed25519.pub
 {{ end }}
 
-{{ if eq .chezmoi.hostname "ec2" }}
+{{ if eq .chezmoi.hostname "prod" }}
 .aws/credentials
 {{ end }}
 
