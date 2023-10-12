@@ -5,6 +5,7 @@ $scoopPackages = @(
   'git-filter-repo'
   'goneovim'
   'make'
+  'miller'
   'nerd-fonts/JetBrainsMono-NF'
   'nmap'
   'sed'
