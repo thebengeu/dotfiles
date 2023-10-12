@@ -180,6 +180,11 @@ return {
           },
         },
         layout_strategy = "flex",
+        mappings = {
+          i = {
+            ["<Esc>"] = require("telescope.actions").close,
+          },
+        },
         vimgrep_arguments = vim.list_extend(
           vim.fn.copy(require("telescope.config").values.vimgrep_arguments),
           { "--hidden" }
