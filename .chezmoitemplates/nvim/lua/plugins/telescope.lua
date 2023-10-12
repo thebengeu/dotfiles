@@ -191,6 +191,18 @@ return {
           override_file_sorter = true,
           override_generic_sorter = true,
         },
+        undo = {
+          diff_context_lines = 5,
+          layout_config = {
+            preview_height = 0.7,
+          },
+          layout_strategy = "vertical",
+          use_custom_command = {
+            "sh",
+            "-c",
+            "echo '$DIFF' | delta --side-by-side",
+          },
+        },
       }
     end,
   },
@@ -207,6 +219,18 @@ return {
           require("telescope").extensions.file_browser.file_browser()
         end,
         desc = "File Browser",
+      },
+    },
+    {
+      "debugloop/telescope-undo.nvim",
+      keys = {
+        {
+          "<leader>su",
+          function()
+            require("telescope").extensions.undo.undo()
+          end,
+          desc = "Undo",
+        },
       },
     },
   },
