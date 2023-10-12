@@ -118,7 +118,8 @@ return {
                   actions.close(prompt_bufnr)
                   vim.cmd.DiffviewOpen(
                     require("telescope.actions.state").get_selected_entry().value
-                      .. "^!"
+                      .. "^! -- "
+                      .. vim.api.nvim_buf_get_name(0)
                   )
                 end)
 
