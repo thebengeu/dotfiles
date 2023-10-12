@@ -30,17 +30,21 @@ return {
       },
     },
     keys = function(_, keys)
-      local delta_diffview_git_picker = function(picker, diffview_open_append)
+      local delta_diffview_git_picker = function(picker)
+        local is_bcommits = picker:match("bcommits")
+
         require("telescope.builtin")["git_" .. picker]({
           attach_mappings = function()
             local actions = require("telescope.actions")
 
             actions.select_default:replace(function(prompt_bufnr)
               actions.close(prompt_bufnr)
+              local entry =
+                require("telescope.actions.state").get_selected_entry()
               vim.cmd.DiffviewOpen(
-                require("telescope.actions.state").get_selected_entry().value
+                entry.value
                   .. "^!"
-                  .. (diffview_open_append or "")
+                  .. (is_bcommits and (" -- " .. entry.current_file) or "")
               )
             end)
 
@@ -48,7 +52,10 @@ return {
           end,
           previewer = require("telescope.previewers").new_termopen_previewer({
             get_command = function(entry)
-              return { "git", "diff", entry.value .. "^!" }
+              return vim.list_extend(
+                { "git", "diff", entry.value .. "^!" },
+                is_bcommits and { "--", entry.current_file } or {}
+              )
             end,
           }),
         })
@@ -134,10 +141,7 @@ return {
         {
           "<leader>gb",
           function()
-            delta_diffview_git_picker(
-              "bcommits",
-              " -- " .. vim.api.nvim_buf_get_name(0)
-            )
+            delta_diffview_git_picker("bcommits")
           end,
           desc = "Buffer commits",
         },
@@ -151,10 +155,7 @@ return {
         {
           "<leader>gr",
           function()
-            delta_diffview_git_picker(
-              "bcommits_range",
-              " -- " .. vim.api.nvim_buf_get_name(0)
-            )
+            delta_diffview_git_picker("bcommits_range")
           end,
           desc = "Range commits",
           mode = "x",
