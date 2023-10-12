@@ -48,11 +48,11 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 vim.api.nvim_create_autocmd("BufReadPost", {
   callback = function()
     local buf_name = vim.api.nvim_buf_get_name(0)
-    local source_or_target = buf_name:find(
+    local source_or_target = buf_name:match(
       "[/\\]%.local[/\\]share[/\\]chezmoi[/\\]"
     ) and "Target" or "Source"
 
-    if source_or_target == "Target" and not buf_name:find("%.tmpl$") then
+    if source_or_target == "Target" and not buf_name:match("%.tmpl$") then
       return
     end
 
@@ -68,7 +68,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 
         if
           source_or_target == "Target" and vim.fn.filereadable(path) == 0
-          or not buf_name:find("%.tmpl$")
+          or not buf_name:match("%.tmpl$")
         then
           return
         end

@@ -33,7 +33,7 @@ return {
         null_ls.builtins.diagnostics.fish,
         null_ls.builtins.diagnostics.shellcheck.with({
           runtime_condition = function(params)
-            return not params.lsp_params.textDocument.uri:find("%.env")
+            return not params.lsp_params.textDocument.uri:match("%.env")
           end,
           extra_args = { "-e", "SC1017" },
         }),
@@ -43,7 +43,7 @@ return {
         }),
         null_ls.builtins.diagnostics.yamllint.with({
           runtime_condition = function(params)
-            return not params.lsp_params.textDocument.uri:find("/Pulumi%.")
+            return not params.lsp_params.textDocument.uri:match("/Pulumi%.")
           end,
         }),
         null_ls.builtins.formatting.cue_fmt,
@@ -52,7 +52,7 @@ return {
         null_ls.builtins.formatting.prettierd.with({
           extra_filetypes = { "prisma" },
           runtime_condition = function(params)
-            return not params.lsp_params.textDocument.uri:find("/ccxt/")
+            return not params.lsp_params.textDocument.uri:match("/ccxt/")
           end,
         }),
         null_ls.builtins.formatting.shfmt,
@@ -97,7 +97,7 @@ return {
             client.server_capabilities.documentFormattingProvider = false
             vim.api.nvim_create_autocmd("BufWritePre", {
               callback = function()
-                if vim.api.nvim_buf_get_name(0):find("/ccxt/") then
+                if vim.api.nvim_buf_get_name(0):match("/ccxt/") then
                   return
                 end
                 local actions = require("typescript").actions
@@ -132,7 +132,7 @@ return {
         eslint = function()
           vim.api.nvim_create_autocmd("BufWritePre", {
             callback = function(event)
-              if vim.api.nvim_buf_get_name(0):find("/ccxt/") then
+              if vim.api.nvim_buf_get_name(0):match("/ccxt/") then
                 return
               end
 

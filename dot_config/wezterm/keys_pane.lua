@@ -33,7 +33,7 @@ local activate_or_spawn_pane = function(hostname, domain_name)
     common.activate_pane(latest_prompt_pane)
 
     if not latest_prompt_pane then
-      if domain_name:find("^SSHMUX%:") then
+      if domain_name:match("^SSHMUX%:") then
         local tab_size = window:active_tab():get_size()
 
         window:perform_action(act.AttachDomain(domain_name), event_pane)

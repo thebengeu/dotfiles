@@ -13,32 +13,32 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     local source_path = vim.api.nvim_buf_get_name(0)
 
     if
-      source_path:find("%.chezmoiscripts")
-      or source_path:find("ansible")
+      source_path:match("%.chezmoiscripts")
+      or source_path:match("ansible")
       or skip_chezmoi_apply
     then
       return
     end
 
-    if source_path:find("%.chezmoidata.cue") then
+    if source_path:match("%.chezmoidata.cue") then
       util.async_run({ "chezmoi", "apply", "--include", "templates" })
-    elseif source_path:find("%.bat%.cue") then
+    elseif source_path:match("%.bat%.cue") then
       util.async_run({
         "chezmoi",
         "apply",
         "--include",
         "externals,scripts",
       })
-    elseif source_path:find("%.chezmoiexternals%%.cue") then
+    elseif source_path:match("%.chezmoiexternals%%.cue") then
       util.async_run({ "chezmoi", "apply", "--include", "externals" })
-    elseif source_path:find("%.cue") then
+    elseif source_path:match("%.cue") then
       util.async_run({
         "chezmoi",
         "apply",
         "--include",
         "externals,templates",
       })
-    elseif source_path:find("%.chezmoitemplates") then
+    elseif source_path:match("%.chezmoitemplates") then
       local chezmoi_source_dir = " ~/.local/share/chezmoi/"
       local app_data_if_windows = jit.os == "Windows"
           and chezmoi_source_dir .. "AppData"
@@ -49,9 +49,9 @@ vim.api.nvim_create_autocmd("BufWritePost", {
         .. chezmoi_source_dir
         .. "dot_config | sort | head -n1)"
       util.async_run_sh("chezmoi apply --source-path " .. source_path)
-    elseif source_path:find("%.chezmoi%.yaml%.tmpl") then
+    elseif source_path:match("%.chezmoi%.yaml%.tmpl") then
       util.async_run({ "chezmoi", "init" })
-    elseif source_path:find("chezmoi[/\\]%.") then
+    elseif source_path:match("chezmoi[/\\]%.") then
       util.async_run_sh(
         "chezmoi apply --exclude scripts; chezmoi apply --include scripts"
       )
@@ -130,7 +130,7 @@ vim.api.nvim_create_autocmd("TermClose", {
 vim.api.nvim_create_autocmd("TextChanged", {
   callback = function()
     if
-      (vim.fn.getline(".") --[[@as string]]):find("^%s*,%s*$")
+      (vim.fn.getline(".") --[[@as string]]):match("^%s*,%s*$")
     then
       vim.cmd.undojoin()
       vim.fn.deletebufline("", vim.fn.line("."))
