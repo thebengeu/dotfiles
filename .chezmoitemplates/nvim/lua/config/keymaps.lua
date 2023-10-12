@@ -41,7 +41,7 @@ end, { desc = "Add blank line below" })
 -- https://nanotipsforvim.prose.sh/keeping-your-register-clean-from-dd
 vim.keymap.set("n", "dd", function()
   return vim.fn.getline(".") == "" and '"_dd' or "dd"
-end, { expr = true })
+end, { desc = "Line", expr = true })
 
 vim.keymap.set("n", "u", "<Cmd>silent undo<CR>")
 
