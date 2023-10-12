@@ -131,16 +131,6 @@ function M.apply_to_config(config)
       action = split_pane("SSH:dev"),
     },
     {
-      key = "e",
-      mods = "SHIFT|ALT",
-      action = activate_or_spawn_pane("ec2"),
-    },
-    {
-      key = "e",
-      mods = "SHIFT|ALT|CTRL",
-      action = split_pane("SSH:ec2"),
-    },
-    {
       key = "a",
       mods = "SHIFT|ALT",
       action = activate_or_spawn_pane(wezterm.hostname(), "local"),
@@ -159,6 +149,16 @@ function M.apply_to_config(config)
       key = "p",
       mods = "SHIFT|ALT|CTRL",
       action = split_pane("SSH:prod"),
+    },
+    {
+      key = "s",
+      mods = "SHIFT|ALT",
+      action = activate_or_spawn_pane("staging"),
+    },
+    {
+      key = "s",
+      mods = "SHIFT|ALT|CTRL",
+      action = split_pane("SSH:staging"),
     },
     {
       key = "v",
