@@ -26,6 +26,9 @@ return {
         desc = "Diffview Stash",
       },
     },
+    opts = {
+      enhanced_diff_hl = true,
+    },
   },
   {
     "akinsho/git-conflict.nvim",
