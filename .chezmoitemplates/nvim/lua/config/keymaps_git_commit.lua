@@ -108,69 +108,20 @@ local setup_layout = function(input, term)
 end
 
 local termopen_git_diff = function(term, no_changes)
-  local term_bufnr = term.bufnr
-
-  local set_modifiable = function(value)
-    vim.api.nvim_set_option_value("modifiable", value, { buf = term_bufnr })
-  end
-
-  local delete_trailing_blank_lines = function()
-    while vim.api.nvim_buf_get_lines(term_bufnr, -2, -1, true)[1] == "" do
-      vim.api.nvim_buf_set_lines(term_bufnr, -2, -1, true, {})
-    end
-  end
-
-  vim.api.nvim_buf_call(term_bufnr, function()
+  vim.api.nvim_buf_call(term.bufnr, function()
     vim.fn.termopen(
       "git diff "
         .. (no_changes and "@^" or "--cached")
         .. " | delta --pager never"
         .. (vim.o.columns > 160 and " --side-by-side" or ""),
       {
-        on_exit = function()
-          local interval = 10
-          local timer = vim.uv.new_timer()
-          local timer_closing
-
-          timer:start(
-            interval,
-            interval,
-            vim.schedule_wrap(function()
-              if timer_closing then
-                return
-              end
-
-              if vim.api.nvim_buf_is_valid(term_bufnr) then
-                set_modifiable(true)
-                delete_trailing_blank_lines()
-                set_modifiable(false)
-
-                if
-                  vim.api.nvim_buf_get_lines(term_bufnr, -2, -1, true)[1]
-                  ~= "[Process exited 0]"
-                then
-                  return
-                end
-
-                set_modifiable(true)
-                vim.api.nvim_buf_set_lines(term_bufnr, -2, -1, true, {})
-                delete_trailing_blank_lines()
-                set_modifiable(false)
-              end
-
-              timer:stop()
-              timer:close()
-              timer_closing = true
-            end)
-          )
-        end,
         on_stdout = function()
           local first_visible_line_num = vim.fn.line("w0", term.winid)
 
           if
             first_visible_line_num
             and vim.api.nvim_buf_get_lines(
-                term_bufnr,
+                term.bufnr,
                 first_visible_line_num - 1,
                 first_visible_line_num,
                 true

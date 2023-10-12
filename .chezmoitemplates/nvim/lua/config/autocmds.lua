@@ -72,6 +72,60 @@ vim.keymap.set("n", "<leader>ua", function()
   skip_chezmoi_apply = not skip_chezmoi_apply
 end, { desc = "Toggle Chezmoi Apply" })
 
+vim.api.nvim_create_autocmd("TermClose", {
+  callback = function(args)
+    local buf = args.buf
+    local interval = 10
+    local timer = vim.uv.new_timer()
+    local timer_closing
+
+    local set_modifiable = function(value)
+      vim.api.nvim_set_option_value("modifiable", value, { buf = buf })
+    end
+
+    local delete_trailing_blank_lines = function()
+      while vim.api.nvim_buf_get_lines(buf, -2, -1, true)[1] == "" do
+        vim.api.nvim_buf_set_lines(buf, -2, -1, true, {})
+      end
+    end
+
+    timer:start(
+      interval,
+      interval,
+      vim.schedule_wrap(function()
+        if timer_closing then
+          return
+        end
+
+        if vim.api.nvim_buf_is_valid(buf) then
+          local modifiable =
+            vim.api.nvim_get_option_value("modifiable", { buf = buf })
+
+          set_modifiable(true)
+          delete_trailing_blank_lines()
+          set_modifiable(modifiable)
+
+          if
+            vim.api.nvim_buf_get_lines(buf, -2, -1, true)[1]
+            ~= "[Process exited 0]"
+          then
+            return
+          end
+
+          set_modifiable(true)
+          vim.api.nvim_buf_set_lines(buf, -2, -1, true, {})
+          delete_trailing_blank_lines()
+          set_modifiable(modifiable)
+        end
+
+        timer:stop()
+        timer:close()
+        timer_closing = true
+      end)
+    )
+  end,
+})
+
 vim.api.nvim_create_autocmd("TextChanged", {
   callback = function()
     if
