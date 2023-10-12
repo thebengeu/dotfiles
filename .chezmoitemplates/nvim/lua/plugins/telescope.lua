@@ -176,7 +176,7 @@ return {
       opts.defaults = vim.tbl_extend("force", opts.defaults, {
         layout_config = {
           flex = {
-            flip_columns = 120,
+            flip_columns = 160,
           },
         },
         layout_strategy = "flex",
@@ -201,7 +201,7 @@ return {
         },
       }
 
-      if vim.o.columns > 90 then
+      if vim.o.columns > 160 then
         undo_opts.layout_config = {
           preview_height = 0.7,
         }
