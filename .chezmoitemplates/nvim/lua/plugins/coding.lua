@@ -322,7 +322,7 @@ return vim.list_extend(
     {
       "axelvc/template-string.nvim",
       config = true,
-      ft = "typescript",
+      ft = { "typescript", "typescriptreact" },
     },
     {
       "folke/todo-comments.nvim",
