@@ -96,6 +96,7 @@
       - gh
       - golang-go
       - jq
+      - libcurl4-openssl-dev
       - libluajit-5.1-dev
       - libpq-dev
       - libsqlite3-dev
