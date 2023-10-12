@@ -277,11 +277,6 @@ return vim.list_extend(
       end,
     },
     {
-      "windwp/nvim-ts-autotag",
-      config = true,
-      ft = "typescriptreact",
-    },
-    {
       "chrisgrieser/nvim-various-textobjs",
       keys = util.map({
         iS = { "inner", "subword" },
