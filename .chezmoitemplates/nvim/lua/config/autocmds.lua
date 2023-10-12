@@ -106,8 +106,9 @@ vim.api.nvim_create_autocmd("TermClose", {
           set_modifiable(modifiable)
 
           if
-            vim.api.nvim_buf_get_lines(buf, -2, -1, true)[1]
-            ~= "[Process exited 0]"
+            not vim.api
+              .nvim_buf_get_lines(buf, -2, -1, true)[1]
+              :match("Process exited 0")
           then
             return
           end
