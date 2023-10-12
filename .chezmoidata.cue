@@ -128,6 +128,7 @@ aliases: {
 			ai:          "sudo apt install"
 			ar:          "sudo apt remove"
 			fd:          "fd --hidden"
+			ns:          "nix search nixpkgs"
 			rns:         "rm ~/.local/share/nvim/sessions/*"
 			tg:          "topgrade"
 			tns:         "tmux new-session -A -s"
