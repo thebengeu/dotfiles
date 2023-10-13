@@ -2,7 +2,7 @@ local util = require("util")
 
 return {
   {
-    "goolord/alpha-nvim",
+    "glepnir/dashboard-nvim",
     enabled = false,
   },
   {
