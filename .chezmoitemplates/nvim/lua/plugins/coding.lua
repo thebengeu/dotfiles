@@ -194,8 +194,10 @@ return vim.list_extend(
     {
       "echasnovski/mini.ai",
       init = function()
-        require("lazyvim.util").on_load("mini.ai", function()
-          require("lazyvim.util").on_load("which-key.nvim", function()
+        local Util = require("lazyvim.util")
+
+        Util.on_load("mini.ai", function()
+          Util.on_load("which-key.nvim", function()
             require("which-key").register({
               af = "Function call",
               ["if"] = "Function call",
