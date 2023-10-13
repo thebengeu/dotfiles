@@ -10,13 +10,13 @@ return {
   {
     "LhKipp/nvim-nu",
     build = ":TSInstall nu",
-    config = true,
     ft = "nu",
+    opts = {},
   },
   {
     "vuki656/package-info.nvim",
-    config = true,
     ft = "json",
+    opts = {},
   },
   {
     "blankname/vim-fish",

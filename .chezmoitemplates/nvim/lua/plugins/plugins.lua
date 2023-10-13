@@ -3,9 +3,9 @@ local Util = require("lazyvim.util")
 return {
   {
     "max397574/better-escape.nvim",
-    config = true,
     enabled = vim.fn.hostname():lower():match("minibook") ~= nil,
     event = "InsertEnter",
+    opts = {},
   },
   {
     "rmagatti/auto-session",
@@ -66,8 +66,8 @@ return {
   },
   {
     "echasnovski/mini.bracketed",
-    config = true,
     event = "LazyFile",
+    opts = {},
   },
   {
     "nvim-neo-tree/neo-tree.nvim",

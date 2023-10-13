@@ -6,7 +6,6 @@ return {
     dependencies = {
       {
         "prochri/telescope-all-recent.nvim",
-        config = true,
         dependencies = "kkharji/sqlite.lua",
         opts = {
           pickers = {
