@@ -20,6 +20,7 @@ return {
         "sqlfluff",
         "stylua",
         "taplo",
+        "typescript-language-server",
         "yamlfmt",
         "yamllint",
       }, jit.os == "Windows" and {} or { "ansible-lint" }),
@@ -59,7 +60,6 @@ return {
         null_ls.builtins.formatting.shellharden,
         null_ls.builtins.formatting.stylua,
         null_ls.builtins.formatting.taplo,
-        require("typescript.extensions.null-ls.code-actions"),
         null_ls.builtins.formatting.yamlfmt,
       }
     end,
@@ -93,76 +93,53 @@ return {
         powershell_es = {},
         prismals = {},
         tsserver = {
-          on_attach = function(client)
-            client.server_capabilities.documentFormattingProvider = false
-            vim.api.nvim_create_autocmd("BufWritePre", {
-              callback = function()
-                if vim.api.nvim_buf_get_name(0):match("/ccxt/") then
-                  return
-                end
-                local actions = require("typescript").actions
-                actions.removeUnused({ sync = true })
-                actions.addMissingImports({ sync = true })
-                actions.organizeImports({ sync = true })
-                vim.lsp.buf.format()
-              end,
-              pattern = "<buffer>",
-            })
-          end,
-          settings = {
-            typescript = {
-              inlayHints = {
-                includeInlayEnumMemberValueHints = true,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayParameterNameHints = "literals",
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayVariableTypeHints = false,
-                includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-              },
-            },
-          },
+          enabled = false,
         },
       }, jit.os == "Windows" and {} or { ansiblels = {} })
       opts.setup = vim.tbl_extend("force", opts.setup, {
         clangd = function(_, clangd_opts)
           clangd_opts.capabilities.offsetEncoding = { "utf-16" }
         end,
-        eslint = function()
-          vim.api.nvim_create_autocmd("BufWritePre", {
-            callback = function(event)
-              if vim.api.nvim_buf_get_name(0):match("/ccxt/") then
-                return
-              end
-
-              local client = vim.lsp.get_clients({
-                bufnr = event.buf,
-                name = "eslint",
-              })[1]
-              if client then
-                local diag = vim.diagnostic.get(event.buf, {
-                  namespace = vim.lsp.diagnostic.get_namespace(
-                    client.id,
-                    false
-                  ),
-                })
-                if #diag > 0 then
-                  vim.cmd.EslintFixAll()
-                end
-              end
-            end,
-          })
-        end,
-        tsserver = function(_, server)
-          require("typescript").setup({ server = server })
-          return true
-        end,
       })
     end,
   },
   {
-    "jose-elias-alvarez/typescript.nvim",
-    lazy = true,
+    "pmizio/typescript-tools.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "neovim/nvim-lspconfig",
+    },
+    ft = {
+      "typescript",
+      "typescriptreact",
+    },
+    opts = {
+      on_attach = function()
+        vim.api.nvim_create_autocmd("BufWritePre", {
+          callback = function()
+            if vim.api.nvim_buf_get_name(0):match("/ccxt/") then
+              return
+            end
+            vim.cmd.TSToolsRemoveUnused("sync")
+            vim.cmd.TSToolsAddMissingImports("sync")
+            vim.cmd.TSToolsOrganizeImports("sync")
+            vim.cmd.TSToolsFixAll("sync")
+          end,
+          pattern = "<buffer>",
+        })
+      end,
+      settings = {
+        tsserver_file_preferences = {
+          includeInlayEnumMemberValueHints = true,
+          includeInlayFunctionLikeReturnTypeHints = true,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayParameterNameHints = "literals",
+          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayVariableTypeHints = false,
+          includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+        },
+      },
+    },
   },
 }

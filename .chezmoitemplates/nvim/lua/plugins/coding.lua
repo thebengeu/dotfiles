@@ -321,7 +321,10 @@ return vim.list_extend(
     },
     {
       "axelvc/template-string.nvim",
-      ft = { "typescript", "typescriptreact" },
+      ft = {
+        "typescript",
+        "typescriptreact",
+      },
       opts = {},
     },
     {
