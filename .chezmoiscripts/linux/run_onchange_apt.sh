@@ -1,0 +1,30 @@
+#!/usr/bin/env sh
+sudo apt install \
+  composer \
+  dos2unix \
+  et \
+  gh \
+  jq \
+  libcurl4-openssl-dev \
+  libluajit-5.1-dev \
+  libpq-dev \
+  libsqlite3-dev \
+  lua5.4 \
+  make \
+  moreutils \
+  mosh \
+  mosquitto-clients \
+  msmtp-mta \
+  ncat \
+  needrestart \
+  ntpdate \
+  parallel \
+  php-bcmath \
+  php-curl \
+  php-gmp \
+  postgresql \
+  postgresql-client \
+  ripgrep \
+  speedtest \
+  sqlite3 \
+  zsh
