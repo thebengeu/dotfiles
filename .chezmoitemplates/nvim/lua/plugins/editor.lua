@@ -151,10 +151,10 @@ return {
     "kevinhwang91/nvim-fundo",
     dependencies = "kevinhwang91/promise-async",
     event = "LazyFile",
-    config = true,
     make = function()
       require("fundo").install()
     end,
+    opts = {},
   },
   {
     "chrisgrieser/nvim-spider",
@@ -326,15 +326,15 @@ return {
   },
   {
     "johmsalas/text-case.nvim",
-    config = true,
     keys = {
       { "ga", desc = "+text-case" },
     },
+    opts = {},
   },
   {
     "cappyzawa/trim.nvim",
-    config = true,
     event = "BufWritePre",
+    opts = {},
   },
   {
     "RRethy/vim-illuminate",

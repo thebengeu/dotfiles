@@ -153,7 +153,6 @@ return {
   },
   {
     "lewis6991/satellite.nvim",
-    config = true,
     enabled = vim.version().minor >= 10,
     event = "LazyFile",
     init = function()
@@ -164,6 +163,7 @@ return {
         })
       end)
     end,
+    opts = {},
   },
   {
     "luukvbaal/statuscol.nvim",
