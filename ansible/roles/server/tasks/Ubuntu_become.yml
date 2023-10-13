@@ -81,51 +81,23 @@
     repo: ppa:wslutilities/wslu
 - ansible.builtin.apt:
     name:
-      - containerd.io
       - clangd-15
+      - containerd.io
       - cmake
-      - composer
       - curl
       - docker-ce
       - docker-ce-cli
       - docker-compose-plugin
-      - dos2unix
-      - et
       - fish
       - gettext
-      - gh
       - golang-go
-      - jq
-      - libcurl4-openssl-dev
-      - libluajit-5.1-dev
-      - libpq-dev
-      - libsqlite3-dev
-      - lua5.4
-      - make
-      - moreutils
-      - mosh
       - mosquitto
-      - mosquitto-clients
-      - msmtp-mta
-      - ncat
-      - needrestart
       - ninja-build
       - nodejs
-      - ntpdate
       - openssh-server
-      - parallel
-      - php-bcmath
-      - php-curl
-      - php-gmp
-      - postgresql
-      - postgresql-client
       - python3-pip
       - python3-venv
-      - ripgrep
-      - speedtest
-      - sqlite3
       - unzip
-      - zsh
     update_cache: true
 - ansible.builtin.apt:
     name:
