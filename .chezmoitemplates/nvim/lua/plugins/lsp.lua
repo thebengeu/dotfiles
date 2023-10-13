@@ -105,6 +105,85 @@ return {
   },
   {
     "pmizio/typescript-tools.nvim",
+    config = function(_, opts)
+      local Util = require("lazyvim.util")
+
+      require("typescript-tools").setup(opts)
+
+      local function get_client(buf)
+        return Util.lsp.get_clients({
+          name = "typescript-tools",
+          bufnr = buf,
+        })[1]
+      end
+
+      Util.format.register(Util.lsp.formatter({
+        name = "typescript-tools",
+        primary = false,
+        priority = 300,
+        filter = "typescript-tools",
+        sources = function(buf)
+          local client = get_client(buf)
+          return client and { "typescript-tools" } or {}
+        end,
+        format = function(buf)
+          local c = require("typescript-tools.protocol.constants")
+
+          local client = get_client(buf)
+
+          if client then
+            local diagnostics = vim.diagnostic.get(buf)
+
+            for _, error_codes_and_fix_names in ipairs({
+              {
+                { 2420, 1308, 7027 },
+                {
+                  "fixClassIncorrectlyImplementsInterface",
+                  "fixAwaitInSyncFunction",
+                  "fixUnreachableCode",
+                },
+              },
+              {
+                { 6196, 6133 },
+                { "unusedIdentifier" },
+              },
+              {
+                { 2552, 2304 },
+                { "import" },
+              },
+            }) do
+              local res =
+                client.request_sync(c.CustomMethods.BatchCodeActions, {
+                  bufnr = buf,
+                  diagnostics = diagnostics,
+                  error_codes = error_codes_and_fix_names[1],
+                  fix_names = error_codes_and_fix_names[2],
+                }, 1000, buf)
+
+              if res and not res.err then
+                vim.lsp.util.apply_workspace_edit(res.result.edit, "utf-8")
+              end
+            end
+
+            local res =
+              vim.lsp.buf_request_sync(buf, c.CustomMethods.OrganizeImports, {
+                file = vim.api.nvim_buf_get_name(buf),
+                mode = c.OrganizeImportsMode.All,
+              }, 1000)
+
+            if res then
+              local typescript_client_res = res[client.id]
+              if not typescript_client_res.err then
+                vim.lsp.util.apply_workspace_edit(
+                  typescript_client_res.result,
+                  "utf-8"
+                )
+              end
+            end
+          end
+        end,
+      }))
+    end,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "neovim/nvim-lspconfig",
@@ -114,20 +193,6 @@ return {
       "typescriptreact",
     },
     opts = {
-      on_attach = function()
-        vim.api.nvim_create_autocmd("BufWritePre", {
-          callback = function()
-            if vim.api.nvim_buf_get_name(0):match("/ccxt/") then
-              return
-            end
-            vim.cmd.TSToolsRemoveUnused("sync")
-            vim.cmd.TSToolsAddMissingImports("sync")
-            vim.cmd.TSToolsOrganizeImports("sync")
-            vim.cmd.TSToolsFixAll("sync")
-          end,
-          pattern = "<buffer>",
-        })
-      end,
       settings = {
         tsserver_file_preferences = {
           includeInlayEnumMemberValueHints = true,
