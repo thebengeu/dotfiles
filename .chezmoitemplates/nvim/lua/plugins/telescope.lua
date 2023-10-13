@@ -30,34 +30,36 @@ return {
     },
     keys = function(_, keys)
       local delta_diffview_git_picker = function(picker)
-        local is_bcommits = picker:match("bcommits")
+        return function()
+          local is_bcommits = picker:match("bcommits")
 
-        require("telescope.builtin")["git_" .. picker]({
-          attach_mappings = function()
-            local actions = require("telescope.actions")
+          require("telescope.builtin")["git_" .. picker]({
+            attach_mappings = function()
+              local actions = require("telescope.actions")
 
-            actions.select_default:replace(function(prompt_bufnr)
-              actions.close(prompt_bufnr)
-              local entry =
-                require("telescope.actions.state").get_selected_entry()
-              vim.cmd.DiffviewOpen(
-                entry.value
-                  .. "^!"
-                  .. (is_bcommits and (" -- " .. entry.current_file) or "")
-              )
-            end)
+              actions.select_default:replace(function(prompt_bufnr)
+                actions.close(prompt_bufnr)
+                local entry =
+                  require("telescope.actions.state").get_selected_entry()
+                vim.cmd.DiffviewOpen(
+                  entry.value
+                    .. "^!"
+                    .. (is_bcommits and (" -- " .. entry.current_file) or "")
+                )
+              end)
 
-            return true
-          end,
-          previewer = require("telescope.previewers").new_termopen_previewer({
-            get_command = function(entry)
-              return vim.list_extend(
-                { "git", "diff", entry.value .. "^!" },
-                is_bcommits and { "--", entry.current_file } or {}
-              )
+              return true
             end,
-          }),
-        })
+            previewer = require("telescope.previewers").new_termopen_previewer({
+              get_command = function(entry)
+                return vim.list_extend(
+                  { "git", "diff", entry.value .. "^!" },
+                  is_bcommits and { "--", entry.current_file } or {}
+                )
+              end,
+            }),
+          })
+        end
       end
 
       local get_plugin_folder = function(telescope_builtin)
@@ -71,9 +73,10 @@ return {
                   actions.close(prompt_bufnr)
                   local selection =
                     require("telescope.actions.state").get_selected_entry()
-                  require("telescope.builtin")[telescope_builtin]({
-                    cwd = root .. "/" .. selection[1],
-                  })
+                  Util.telescope(
+                    telescope_builtin,
+                    { cwd = root .. "/" .. selection[1] }
+                  )()
                 end)
                 return true
               end,
@@ -88,48 +91,27 @@ return {
 
       vim.list_extend(keys, {
         {
-          "<leader>/",
-          Util.telescope("live_grep", { cwd = false }),
-          desc = "Grep (cwd)",
-        },
-        {
           "<leader><space>",
-          Util.telescope("find_files", { cwd = false }),
-          desc = "Find Files (cwd)",
-        },
-        {
-          "<leader>fF",
-          Util.telescope("find_files", { cwd = false }),
-          desc = "Find Files (cwd)",
-        },
-        {
-          "<leader>ff",
           Util.telescope("find_files"),
           desc = "Find Files (root dir)",
         },
         {
           "<leader>fl",
-          function()
-            require("telescope.builtin").find_files({
-              cwd = require("lazy.core.config").options.root .. "/LazyVim",
-            })
-          end,
+          Util.telescope("find_files", {
+            cwd = require("lazy.core.config").options.root .. "/LazyVim",
+          }),
           desc = "Find LazyVim Files",
         },
         {
           "<leader>fi",
-          function()
-            require("telescope.builtin").find_files({ no_ignore = true })
-          end,
+          Util.telescope("find_files", { no_ignore = true }),
           desc = "Find Files (ignored)",
         },
         {
           "<leader>fP",
-          function()
-            require("telescope.builtin").find_files({
-              cwd = require("lazy.core.config").options.root,
-            })
-          end,
+          Util.telescope("find_files", {
+            cwd = require("lazy.core.config").options.root,
+          }),
           desc = "Find Plugin Files",
         },
         {
@@ -139,23 +121,17 @@ return {
         },
         {
           "<leader>gb",
-          function()
-            delta_diffview_git_picker("bcommits")
-          end,
+          delta_diffview_git_picker("bcommits"),
           desc = "Buffer commits",
         },
         {
           "<leader>gc",
-          function()
-            delta_diffview_git_picker("commits")
-          end,
+          delta_diffview_git_picker("commits"),
           desc = "Commits",
         },
         {
           "<leader>gr",
-          function()
-            delta_diffview_git_picker("bcommits_range")
-          end,
+          delta_diffview_git_picker("bcommits_range"),
           desc = "Range commits",
           mode = "x",
         },
@@ -210,20 +186,16 @@ return {
         },
         {
           "<leader>sl",
-          function()
-            require("telescope.builtin").live_grep({
-              cwd = require("lazy.core.config").options.root .. "/LazyVim",
-            })
-          end,
+          Util.telescope("live_grep", {
+            cwd = require("lazy.core.config").options.root .. "/LazyVim",
+          }),
           desc = "Grep LazyVim",
         },
         {
           "<leader>sP",
-          function()
-            require("telescope.builtin").live_grep({
-              cwd = require("lazy.core.config").options.root,
-            })
-          end,
+          Util.telescope("live_grep", {
+            cwd = require("lazy.core.config").options.root,
+          }),
           desc = "Grep Plugins",
         },
         {
