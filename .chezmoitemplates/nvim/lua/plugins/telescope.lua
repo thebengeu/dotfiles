@@ -271,20 +271,20 @@ return {
         desc = "File Browser",
       },
     },
-    {
-      "debugloop/telescope-undo.nvim",
-      dependencies = {
-        "nvim-lua/plenary.nvim",
-        "nvim-telescope/telescope.nvim",
-      },
-      keys = {
-        {
-          "<leader>su",
-          function()
-            require("telescope").extensions.undo.undo()
-          end,
-          desc = "Undo",
-        },
+  },
+  {
+    "debugloop/telescope-undo.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+    keys = {
+      {
+        "<leader>su",
+        function()
+          require("telescope").extensions.undo.undo()
+        end,
+        desc = "Undo",
       },
     },
   },
