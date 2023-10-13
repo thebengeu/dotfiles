@@ -66,25 +66,6 @@
     cmd: /tmp/rustup-init --no-modify-path --profile minimal -y
     creates: ~/.cargo/env
 - ansible.builtin.command:
-    cmd: nix profile install nixpkgs#{{ item }}
-    creates: ~/.nix-profile/bin/{{ item }}
-  loop:
-    - direnv
-    - fennel
-    - hledger
-    - hledger-ui
-    - hledger-web
-    - ledger
-    - less
-    - lf
-    - miller
-    - nethogs
-    - nix
-    - nnn
-    - nushell
-    - peco
-    - vifm
-- ansible.builtin.command:
     cmd: go install cuelang.org/go/cmd/cue@latest
     creates: ~/go/bin/cue
 - ansible.builtin.command:
