@@ -134,7 +134,31 @@ return {
           if client then
             local diagnostics = vim.diagnostic.get(buf)
 
+            local request = function()
+              vim.lsp.buf_request(buf, c.CustomMethods.OrganizeImports, {
+                file = vim.api.nvim_buf_get_name(buf),
+                mode = c.OrganizeImportsMode.All,
+              }, function(err, result)
+                vim.lsp.handlers[c.CustomMethods.OrganizeImports](err, result)
+
+                vim.api.nvim_buf_call(buf, function()
+                  local autoformat = vim.b.autoformat
+                  vim.b.autoformat = false
+                  vim.cmd.update()
+                  vim.b.autoformat = autoformat
+                end)
+              end)
+            end
+
             for _, error_codes_and_fix_names in ipairs({
+              {
+                { 2552, 2304 },
+                { "import" },
+              },
+              {
+                { 6196, 6133 },
+                { "unusedIdentifier" },
+              },
               {
                 { 2420, 1308, 7027 },
                 {
@@ -143,43 +167,24 @@ return {
                   "fixUnreachableCode",
                 },
               },
-              {
-                { 6196, 6133 },
-                { "unusedIdentifier" },
-              },
-              {
-                { 2552, 2304 },
-                { "import" },
-              },
             }) do
-              local res =
-                client.request_sync(c.CustomMethods.BatchCodeActions, {
+              local callback = request
+              request = function()
+                client.request(c.CustomMethods.BatchCodeActions, {
                   bufnr = buf,
                   diagnostics = diagnostics,
                   error_codes = error_codes_and_fix_names[1],
                   fix_names = error_codes_and_fix_names[2],
-                }, 1000, buf)
-
-              if res and not res.err then
-                vim.lsp.util.apply_workspace_edit(res.result.edit, "utf-8")
+                }, function(err, res)
+                  if not err then
+                    vim.lsp.util.apply_workspace_edit(res.edit, "utf-8")
+                  end
+                  callback()
+                end, buf)
               end
             end
 
-            local res =
-              vim.lsp.buf_request_sync(buf, c.CustomMethods.OrganizeImports, {
-                file = vim.api.nvim_buf_get_name(buf),
-                mode = c.OrganizeImportsMode.All,
-              }, 1000)
-
-            if res then
-              local typescript_client_res = res[client.id]
-              if not typescript_client_res.err then
-                vim.lsp.util.apply_workspace_edit(
-                  typescript_client_res.result,
-                  "utf-8"
-                )
-              end
-            end
+            request()
           end
         end,
       }))
