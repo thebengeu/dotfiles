@@ -169,14 +169,6 @@ return {
   {
     "ojroques/nvim-osc52",
     cond = function()
-      if vim.env.TITLE_PREFIX == "wsl:" then
-        vim.env.PATH = vim.env.PATH
-          .. ":/mnt/c/Users/"
-          .. vim.env.USER
-          .. "/scoop/shims"
-        return false
-      end
-
       if not vim.env.SSH_CONNECTION then
         return false
       end
