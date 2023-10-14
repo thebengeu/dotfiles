@@ -96,6 +96,12 @@ return {
           desc = "Find Files (root dir)",
         },
         {
+          "<leader>ff",
+          Util.telescope("find_files", { cwd = false }),
+          desc = "Find Files (cwd)",
+        },
+        { "<leader>fF", false },
+        {
           "<leader>fl",
           Util.telescope("find_files", {
             cwd = require("lazy.core.config").options.root .. "/LazyVim",
@@ -155,6 +161,12 @@ return {
           end,
           desc = "Status",
         },
+        {
+          "<leader>sg",
+          Util.telescope("live_grep", { cwd = false }),
+          desc = "Grep (cwd)",
+        },
+        { "<leader>sG", false },
         {
           "<leader>si",
           function()
