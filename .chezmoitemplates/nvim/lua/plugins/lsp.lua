@@ -112,44 +112,43 @@ return {
 
       require("typescript-tools").setup(opts)
 
-      local function get_client(buf)
+      local function get_client(bufnr)
         return Util.lsp.get_clients({
           name = "typescript-tools",
-          bufnr = buf,
+          bufnr = bufnr,
         })[1]
       end
 
       Util.format.register(Util.lsp.formatter({
         name = "typescript-tools",
         primary = false,
-        priority = 300,
+        priority = 50,
         filter = "typescript-tools",
-        sources = function(buf)
-          local client = get_client(buf)
+        sources = function(bufnr)
+          local client = get_client(bufnr)
           return client and { "typescript-tools" } or {}
         end,
-        format = function(buf)
+        format = function(bufnr)
+          local api = require("typescript-tools.api")
           local c = require("typescript-tools.protocol.constants")
 
-          local client = get_client(buf)
+          local client = get_client(bufnr)
 
           if client then
-            local diagnostics = vim.diagnostic.get(buf)
-
             local request = function()
-              vim.lsp.buf_request(buf, c.CustomMethods.OrganizeImports, {
-                file = vim.api.nvim_buf_get_name(buf),
+              client.request(c.CustomMethods.OrganizeImports, {
+                file = vim.api.nvim_buf_get_name(bufnr),
                 mode = c.OrganizeImportsMode.All,
               }, function(err, result)
                 vim.lsp.handlers[c.CustomMethods.OrganizeImports](err, result)
 
-                vim.api.nvim_buf_call(buf, function()
+                vim.api.nvim_buf_call(bufnr, function()
                   local autoformat = vim.b.autoformat
                   vim.b.autoformat = false
                   vim.cmd.update()
                   vim.b.autoformat = autoformat
                 end)
-              end)
+              end, bufnr)
             end
 
             for _, error_codes_and_fix_names in ipairs({
@@ -170,19 +169,28 @@ return {
                 },
               },
             }) do
+              local error_codes, fix_names =
+                error_codes_and_fix_names[1], error_codes_and_fix_names[2]
+
               local callback = request
               request = function()
                 client.request(c.CustomMethods.BatchCodeActions, {
-                  bufnr = buf,
-                  diagnostics = diagnostics,
-                  error_codes = error_codes_and_fix_names[1],
-                  fix_names = error_codes_and_fix_names[2],
-                }, function(err, res)
-                  if not err then
-                    vim.lsp.util.apply_workspace_edit(res.edit, "utf-8")
+                  bufnr = bufnr,
+                  diagnostics = vim.diagnostic.get(bufnr),
+                  error_codes = error_codes,
+                  fix_names = fix_names,
+                }, function(_, result)
+                  if result.edit.changes then
+                    vim.lsp.util.apply_workspace_edit(result.edit, "utf-8")
+
+                    if fix_names[1] ~= "import" then
+                      api.request_diagnostics(callback)
+                      return
+                    end
                   end
+
                   callback()
-                end, buf)
+                end, bufnr)
               end
             end
 
