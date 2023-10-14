@@ -187,6 +187,19 @@ return vim.list_extend(
     },
     {
       "L3MON4D3/LuaSnip",
+      dependencies = {
+        {
+          "rafamadriz/friendly-snippets",
+          enabled = false,
+        },
+        {
+          "thebengeu/friendly-snippets",
+          config = function()
+            require("luasnip.loaders.from_vscode").lazy_load()
+          end,
+          name = "my-friendly-snippets",
+        },
+      },
       keys = function()
         return {}
       end,
