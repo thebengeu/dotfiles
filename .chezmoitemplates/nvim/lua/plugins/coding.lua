@@ -292,6 +292,12 @@ return vim.list_extend(
       end,
     },
     {
+      "nvim-treesitter/nvim-treesitter-context",
+      opts = {
+        multiline_threshold = 1,
+      },
+    },
+    {
       "chrisgrieser/nvim-various-textobjs",
       keys = util.map({
         iS = { "inner", "subword" },
