@@ -140,14 +140,6 @@ return {
     enabled = false,
   },
   {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    opts = {
-      map_c_h = true,
-      map_c_w = true,
-    },
-  },
-  {
     "kevinhwang91/nvim-fundo",
     dependencies = "kevinhwang91/promise-async",
     event = "LazyFile",
@@ -334,6 +326,11 @@ return {
   {
     "cappyzawa/trim.nvim",
     event = "BufWritePre",
+    opts = {},
+  },
+  {
+    "altermo/ultimate-autopair.nvim",
+    event = { "CmdlineEnter", "InsertEnter" },
     opts = {},
   },
   {
