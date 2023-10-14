@@ -90,7 +90,9 @@ return {
         },
         dagger = {},
         graphql = {},
-        powershell_es = {},
+        powershell_es = {
+          enabled = vim.fn.executable("pwsh") == 1,
+        },
         prismals = {},
         tsserver = {
           enabled = false,
