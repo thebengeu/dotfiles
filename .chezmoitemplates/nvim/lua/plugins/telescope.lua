@@ -208,7 +208,7 @@ return {
     opts = function(_, opts)
       local actions = require("telescope.actions")
 
-      opts.defaults = vim.tbl_extend("force", opts.defaults, {
+      opts.defaults = vim.tbl_deep_extend("force", opts.defaults, {
         layout_config = {
           flex = {
             flip_columns = 160,

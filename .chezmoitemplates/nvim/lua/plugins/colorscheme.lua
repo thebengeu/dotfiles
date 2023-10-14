@@ -334,7 +334,7 @@ return util.map({
       end
 
       return vim.tbl_extend(
-        "force",
+        "error",
         rainbow_delimiter_highlights({
           colors.red._500,
           colors.sand._500,

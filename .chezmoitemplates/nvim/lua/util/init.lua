@@ -35,7 +35,7 @@ M.map = map
 local add_lines_to_qf = function(lines, qf_item)
   vim.fn.setqflist(
     map(lines:gmatch("[^%c]+"), function(line)
-      return vim.tbl_extend("force", qf_item, {
+      return vim.tbl_extend("error", qf_item, {
         text = line,
       })
     end),
