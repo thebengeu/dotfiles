@@ -29,7 +29,7 @@ function M.apply_to_config(config)
     {
       key = "v",
       mods = "CTRL",
-      action = act.PasteFrom("Clipboard"),
+      action = act.DisableDefaultAssignment,
     },
     { key = "UpArrow", mods = "SHIFT|ALT", action = act.ScrollToPrompt(-1) },
     {
