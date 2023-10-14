@@ -79,11 +79,12 @@ return {
       table.insert(keys, { "gr", false })
       table.insert(keys, { "gt", false })
     end,
-    opts = function(_, opts)
-      opts.inlay_hints = {
+    opts = {
+      inlay_hints = {
         enabled = true,
-      }
-      opts.servers = vim.tbl_extend("force", opts.servers, {
+      },
+      servers = {
+        ansiblels = jit.os == "Windows" and {} or nil,
         bashls = {},
         clangd = {
           mason = false,
@@ -97,13 +98,13 @@ return {
         tsserver = {
           enabled = false,
         },
-      }, jit.os == "Windows" and {} or { ansiblels = {} })
-      opts.setup = vim.tbl_extend("force", opts.setup, {
-        clangd = function(_, clangd_opts)
-          clangd_opts.capabilities.offsetEncoding = { "utf-16" }
+      },
+      setup = {
+        clangd = function(_, opts)
+          opts.capabilities.offsetEncoding = { "utf-16" }
         end,
-      })
-    end,
+      },
+    },
   },
   {
     "pmizio/typescript-tools.nvim",
