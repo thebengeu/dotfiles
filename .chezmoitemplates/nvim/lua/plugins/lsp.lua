@@ -83,8 +83,7 @@ return {
       inlay_hints = {
         enabled = true,
       },
-      servers = {
-        ansiblels = jit.os == "Windows" and {} or nil,
+      servers = vim.tbl_extend("error", {
         bashls = {},
         clangd = {
           mason = false,
@@ -98,7 +97,7 @@ return {
         tsserver = {
           enabled = false,
         },
-      },
+      }, jit.os == "Windows" and {} or { ansiblels = {} }),
       setup = {
         clangd = function(_, opts)
           opts.capabilities.offsetEncoding = { "utf-16" }
