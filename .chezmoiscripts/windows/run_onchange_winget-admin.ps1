@@ -22,6 +22,7 @@ $wingetPackageIds = @(
   'rsteube.Carapace'
   'Google.Chrome'
   'dandavison.delta'
+  'Ditto.Ditto'
   'direnv.direnv'
   'Discord.Discord'
   'Element.Element'
