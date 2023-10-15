@@ -9,7 +9,6 @@ $scoopPackages = @(
   'nerd-fonts/JetBrainsMono-NF'
   'nmap'
   'sed'
-  'win32yank'
 )
 
 scoop install $scoopPackages
