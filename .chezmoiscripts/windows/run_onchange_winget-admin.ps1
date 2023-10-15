@@ -21,7 +21,6 @@ $wingetPackageIds = @(
   'AutoHotkey.AutoHotkey'
   'rsteube.Carapace'
   'Google.Chrome'
-  'Hibbiki.Chromium'
   'dandavison.delta'
   'direnv.direnv'
   'Discord.Discord'
