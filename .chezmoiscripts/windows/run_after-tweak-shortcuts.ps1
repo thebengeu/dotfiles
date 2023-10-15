@@ -1,11 +1,13 @@
 Remove-Item $env:OneDrive\Desktop\*.lnk
 Remove-Item $env:PUBLIC\Desktop\*.lnk
 
-$proxyServerArgument = '--proxy-server=in.he.sg:8888'
+$idProxyServerArgument = '--proxy-server=id.he.sg:8888'
+$inProxyServerArgument = '--proxy-server=in.he.sg:8888'
 $startMenuPrograms = 'Microsoft\Windows\Start Menu\Programs'
 
 $startMenuShortcutArguments = @{
-  "$Env:APPDATA\$startMenuPrograms\Chromium.lnk"    = $proxyServerArgument
+  "$Env:APPDATA\$startMenuPrograms\Scoop Apps\Chromium.lnk"    = $inProxyServerArgument
+  "$Env:APPDATA\$startMenuPrograms\Scoop Apps\Chromium (Dev).lnk"    = $idProxyServerArgument
 }
 
 foreach ($shortcutPath in $startMenuShortcutArguments.Keys)
@@ -20,7 +22,8 @@ $shortcut.TargetPath = "$Env:USERPROFILE\.local\bin\dual-key-remap.exe"
 $shortcut.Save()
 
 $pinnedShortcutArguments = @{
-  "Chromium" = $proxyServerArgument
+  "Chromium" = $inProxyServerArgument
+  "Chromium (Dev)" = $idProxyServerArgument
 }
 
 foreach ($appName in $pinnedShortcutArguments.Keys)
