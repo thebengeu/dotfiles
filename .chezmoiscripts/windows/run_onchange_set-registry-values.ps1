@@ -36,3 +36,5 @@ if ($isMobile)
 }
 
 Set-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Search' 'SearchboxTaskbarMode' 0
+
+Set-ItemProperty 'HKCU:\Software\Ditto\PasteStrings' 'wezterm-gui.exe' '^+v'
