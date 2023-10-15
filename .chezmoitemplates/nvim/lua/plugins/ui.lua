@@ -2,7 +2,7 @@ local util = require("util")
 
 return {
   {
-    "glepnir/dashboard-nvim",
+    "nvimdev/dashboard-nvim",
     enabled = false,
   },
   {
