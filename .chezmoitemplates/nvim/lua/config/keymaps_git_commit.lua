@@ -100,7 +100,7 @@ local setup_layout = function(input, term)
     end)
   end
 
-  input:map("n", "<Esc>", function()
+  input:map("i", "<Esc>", function()
     layout:unmount()
   end)
 
