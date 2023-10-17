@@ -3,13 +3,6 @@ local util = require("util")
 vim.keymap.del({ "n", "x" }, "j")
 vim.keymap.del({ "n", "x" }, "k")
 
-vim.keymap.set(
-  "n",
-  "<leader>bo",
-  "<Cmd>%bd|e#|bd#<CR>",
-  { desc = "Delete other buffers" }
-)
-
 vim.keymap.set("n", "<leader>gP", function()
   util.async_run({ "git", "push" })
 end, { desc = "Push" })
