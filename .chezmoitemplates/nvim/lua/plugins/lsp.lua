@@ -94,6 +94,35 @@ return {
           enabled = vim.fn.executable("pwsh") == 1,
         },
         prismals = {},
+        pyright = {
+          on_attach = function(client)
+            client.handlers["textDocument/publishDiagnostics"] = function(
+              _,
+              result,
+              context,
+              config
+            )
+              local diagnostics = {}
+
+              for _, diagnostic in ipairs(result.diagnostics) do
+                if
+                  not string.match(diagnostic.message, '"_.+" is not accessed')
+                then
+                  table.insert(diagnostics, diagnostic)
+                end
+              end
+
+              result.diagnostics = diagnostics
+
+              vim.lsp.diagnostic.on_publish_diagnostics(
+                _,
+                result,
+                context,
+                config
+              )
+            end
+          end,
+        },
         tsserver = {
           enabled = false,
         },
