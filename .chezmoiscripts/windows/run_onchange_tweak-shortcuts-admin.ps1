@@ -1,13 +1,23 @@
-Remove-Item $env:OneDrive\Desktop\*.lnk
-Remove-Item $env:PUBLIC\Desktop\*.lnk
+if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator))
+{
+  if (Get-Command gsudo)
+  {
+    gsudo "& '$($MyInvocation.MyCommand.Path)'"
+  } else
+  {
+    $CommandLine = "-NoExit -NoProfile -File `"" + $MyInvocation.MyCommand.Path + "`""
+    Start-Process -Wait -FilePath powershell -Verb Runas -ArgumentList $CommandLine
+  }
+  Exit
+}
 
 $idProxyServerArgument = '--proxy-server=id.he.sg:8888'
 $inProxyServerArgument = '--proxy-server=in.he.sg:8888'
 $startMenuPrograms = 'Microsoft\Windows\Start Menu\Programs'
 
 $startMenuShortcutArguments = @{
-  "$Env:APPDATA\$startMenuPrograms\Scoop Apps\Chromium.lnk"    = $inProxyServerArgument
-  "$Env:APPDATA\$startMenuPrograms\Scoop Apps\Chromium (Dev).lnk"    = $idProxyServerArgument
+  "$Env:ProgramData\$startMenuPrograms\Microsoft Edge Beta.lnk" = $inProxyServerArgument
+  "$Env:ProgramData\$startMenuPrograms\Microsoft Edge Dev.lnk" = $idProxyServerArgument
 }
 
 foreach ($shortcutPath in $startMenuShortcutArguments.Keys)
@@ -22,8 +32,8 @@ $shortcut.TargetPath = "$Env:USERPROFILE\.local\bin\dual-key-remap.exe"
 $shortcut.Save()
 
 $pinnedShortcutArguments = @{
-  "Chromium" = $inProxyServerArgument
-  "Chromium (Dev)" = $idProxyServerArgument
+  "Microsoft Edge Beta" = $inProxyServerArgument
+  "Microsoft Edge Dev" = $idProxyServerArgument
 }
 
 foreach ($appName in $pinnedShortcutArguments.Keys)
