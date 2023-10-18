@@ -89,7 +89,7 @@ winget pin add --exact --id PostgreSQL.PostgreSQL
 $idProxyServerArgument = '--proxy-server=id.he.sg:8888'
 $inProxyServerArgument = '--proxy-server=in.he.sg:8888'
 
-$startMenuProgramsPath = '$Env:ProgramData\Microsoft\Windows\Start Menu\Programs'
+$startMenuProgramsPath = "$Env:ProgramData\Microsoft\Windows\Start Menu\Programs"
 $pinnedShortcutsPath = "$Env:APPDATA\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar"
 
 $shortcutArguments = @{
@@ -101,7 +101,10 @@ $shortcutArguments = @{
 
 foreach ($shortcutPath in $shortcutArguments.Keys)
 {
-  $shortcut = (New-Object -ComObject WScript.Shell).CreateShortCut($shortcutPath)
-  $shortcut.Arguments = $shortcutArguments[$shortcutPath]
-  $shortcut.Save()
+  if ((Test-Path $shortcutPath))
+  {
+    $shortcut = (New-Object -ComObject WScript.Shell).CreateShortCut($shortcutPath)
+    $shortcut.Arguments = $shortcutArguments[$shortcutPath]
+    $shortcut.Save()
+  }
 }
