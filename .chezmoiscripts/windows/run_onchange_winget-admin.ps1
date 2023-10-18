@@ -43,6 +43,8 @@ $wingetPackageIds = @(
   'Notion.Notion'
   'Nushell.Nushell'
   'Obsidian.Obsidian'
+  'Microsoft.Edge.Beta'
+  'Microsoft.Edge.Dev'
   'Microsoft.OpenSSH.Beta'
   'Microsoft.PowerToys'
   'Microsoft.Sysinternals.ProcessMonitor'
