@@ -93,9 +93,9 @@ $startMenuProgramsPath = "$Env:ProgramData\Microsoft\Windows\Start Menu\Programs
 $pinnedShortcutsPath = "$Env:APPDATA\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar"
 
 $shortcutArguments = @{
-  "$startMenuPrograms\Microsoft Edge Beta.lnk" = $inProxyServerArgument
+  "$startMenuProgramsPath\Microsoft Edge Beta.lnk" = $inProxyServerArgument
   "$pinnedShortcutsPath\Microsoft Edge Beta.lnk" = $inProxyServerArgument
-  "$startMenuPrograms\Microsoft Edge Dev.lnk" = $idProxyServerArgument
+  "$startMenuProgramsPath\Microsoft Edge Dev.lnk" = $idProxyServerArgument
   "$pinnedShortcutsPath\Microsoft Edge Dev.lnk" = $idProxyServerArgument
 }
 
