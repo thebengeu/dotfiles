@@ -1,7 +1,5 @@
 $scoopPackages = @(
   'btop'
-  'chromium'
-  'chromium-dev'
   'dos2unix'
   'gcc'
   'git-filter-repo'
