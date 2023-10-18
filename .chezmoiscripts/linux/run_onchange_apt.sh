@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-sudo apt install \
+sudo apt --assume-yes install \
   composer \
   dos2unix \
   gh \
