@@ -214,67 +214,6 @@ return {
     },
   },
   {
-    "linty-org/readline.nvim",
-    keys = {
-      {
-        "<C-a>",
-        function()
-          require("readline").dwim_beginning_of_line()
-        end,
-        mode = "!",
-      },
-      {
-        "<C-e>",
-        function()
-          require("readline").end_of_line()
-        end,
-        mode = "!",
-      },
-      {
-        "<C-u>",
-        function()
-          require("readline").dwim_backward_kill_line()
-        end,
-        mode = "!",
-      },
-      {
-        "<C-w>",
-        function()
-          require("readline").unix_word_rubout()
-        end,
-        mode = "!",
-      },
-      {
-        "<M-BS>",
-        function()
-          require("readline").backward_kill_word()
-        end,
-        mode = "!",
-      },
-      {
-        "<M-b>",
-        function()
-          require("readline").backward_word()
-        end,
-        mode = "!",
-      },
-      {
-        "<M-d>",
-        function()
-          require("readline").kill_word()
-        end,
-        mode = "!",
-      },
-      {
-        "<M-f>",
-        function()
-          require("readline").forward_word()
-        end,
-        mode = "!",
-      },
-    },
-  },
-  {
     "gbprod/substitute.nvim",
     opts = {
       on_substitute = function()
