@@ -88,33 +88,20 @@ winget pin add --exact --id PostgreSQL.PostgreSQL
 
 $idProxyServerArgument = '--proxy-server=id.he.sg:8888'
 $inProxyServerArgument = '--proxy-server=in.he.sg:8888'
-$startMenuPrograms = 'Microsoft\Windows\Start Menu\Programs'
 
-$startMenuShortcutArguments = @{
-  "$Env:ProgramData\$startMenuPrograms\Microsoft Edge Beta.lnk" = $inProxyServerArgument
-  "$Env:ProgramData\$startMenuPrograms\Microsoft Edge Dev.lnk" = $idProxyServerArgument
+$startMenuProgramsPath = '$Env:ProgramData\Microsoft\Windows\Start Menu\Programs'
+$pinnedShortcutsPath = "$Env:APPDATA\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar"
+
+$shortcutArguments = @{
+  "$startMenuPrograms\Microsoft Edge Beta.lnk" = $inProxyServerArgument
+  "$pinnedShortcutsPath\Microsoft Edge Beta.lnk" = $inProxyServerArgument
+  "$startMenuPrograms\Microsoft Edge Dev.lnk" = $idProxyServerArgument
+  "$pinnedShortcutsPath\Microsoft Edge Dev.lnk" = $idProxyServerArgument
 }
 
-foreach ($shortcutPath in $startMenuShortcutArguments.Keys)
+foreach ($shortcutPath in $shortcutArguments.Keys)
 {
   $shortcut = (New-Object -ComObject WScript.Shell).CreateShortCut($shortcutPath)
-  $shortcut.Arguments = $startMenuShortcutArguments[$shortcutPath]
+  $shortcut.Arguments = $shortcutArguments[$shortcutPath]
   $shortcut.Save()
-}
-
-$pinnedShortcutArguments = @{
-  "Microsoft Edge Beta" = $inProxyServerArgument
-  "Microsoft Edge Dev" = $idProxyServerArgument
-}
-
-foreach ($appName in $pinnedShortcutArguments.Keys)
-{
-  $shortcutPath = "$Env:APPDATA\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar\$appName.lnk"
-
-  if ((Test-Path $shortcutPath))
-  {
-    $shortcut = (New-Object -ComObject WScript.Shell).CreateShortCut($shortcutPath)
-    $shortcut.Arguments = $pinnedShortcutArguments[$appName]
-    $shortcut.Save()
-  }
 }
