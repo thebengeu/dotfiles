@@ -2,7 +2,6 @@
 sudo apt install \
   composer \
   dos2unix \
-  et \
   gh \
   jq \
   libcurl4-openssl-dev \
