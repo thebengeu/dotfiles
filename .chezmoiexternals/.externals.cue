@@ -74,11 +74,6 @@ for gitRepo in _zshGitRepos {
 			stripComponents: 1
 			url:             "https://github.com/sharkdp/bat/releases/download/v0.23.0/bat-v0.23.0-x86_64-unknown-linux-musl.tar.gz"
 		}
-		".config/fish/completions/lsd.fish": #ArchiveFile & {
-			path:            "autocomplete/lsd.fish"
-			stripComponents: 1
-			url:             "https://github.com/lsd-rs/lsd/releases/download/v1.0.0/lsd-v1.0.0-x86_64-unknown-linux-musl.tar.gz"
-		}
 		".config/fish/completions/rg.fish": #ArchiveFile & {
 			path:            "complete/rg.fish"
 			stripComponents: 1

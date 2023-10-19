@@ -117,7 +117,6 @@
     deb: "{{ item }}"
   loop:
     # yamllint disable rule:line-length
-    - https://github.com/lsd-rs/lsd/releases/download/v1.0.0/lsd-musl_1.0.0_{{ arch.stdout }}.deb
     - https://github.com/rsteube/carapace-bin/releases/download/v0.27.0/carapace-bin_0.27.0_linux_{{ arch.stdout }}.deb
     - https://github.com/sharkdp/bat/releases/download/v0.23.0/bat_0.23.0_{{ arch.stdout }}.deb
     - https://github.com/sharkdp/fd/releases/download/v8.7.0/fd_8.7.0_{{ arch.stdout }}.deb
