@@ -49,6 +49,7 @@ config.font_rules = {
   },
 }
 config.font_size = wezterm.hostname() == "Bengs-MBP" and 15 or 13
+config.front_end = "OpenGL"
 config.inactive_pane_hsb = {
   saturation = 0.75,
   brightness = 0.75,
@@ -94,6 +95,7 @@ config.launch_menu = common.map(launch_menu, function(args, label)
     args = args,
   }
 end)
+config.prefer_egl = true
 config.quick_select_patterns = {
   -- https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file
   [[(?:~|[A-Za-z]:)(?:\\[^<>:"/\|?*]+)+]],
