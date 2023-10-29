@@ -26,4 +26,5 @@ sudo apt --assume-yes install \
   ripgrep \
   speedtest \
   sqlite3 \
+  trash-cli \
   zsh
