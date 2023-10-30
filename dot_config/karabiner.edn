@@ -1,0 +1,35 @@
+{:profiles {:Default {:default true
+                      ;; :alone   1000
+                      ;; :delay   500
+                      ;; $ defaults read -g InitialKeyRepeat
+                      ;; :held    500
+                      ;; :sim     50
+                     }}
+ :main [{:des "Layer 3"
+         :rules [[:##q :page_up ["layer" 3]]
+                 [:##w :home ["layer" 3]]
+                 [:##e :up_arrow ["layer" 3]]
+                 [:##r :end ["layer" 3]]
+                 [:##u :1 ["layer" 3]]
+                 [:##i :2 ["layer" 3]]
+                 [:##o :3 ["layer" 3]]
+                 [:##a :page_down ["layer" 3]]
+                 [:##s :left_arrow ["layer" 3]]
+                 [:##d :down_arrow ["layer" 3]]
+                 [:##f :right_arrow ["layer" 3]]
+                 [:##j :4 ["layer" 3]]
+                 [:##k :5 ["layer" 3]]
+                 [:##l :6 ["layer" 3]]
+                 [:##m :7 ["layer" 3]]
+                 [:##comma :8 ["layer" 3]]
+                 [:##period :9 ["layer" 3]]]}
+        {:des "caps_lock to control and escape"
+         :rules [[:##caps_lock :left_control nil {:alone :escape}]]}
+        {:des "left_control to control and escape"
+         :rules [[:##left_control :left_control nil {:alone :escape}]]}
+        {:des "left_option to delete_forward"
+         :rules [[:##left_option :left_option nil {:alone :delete_forward}]]}
+        {:des "left_command to backspace"
+         :rules [[:##left_command :left_command nil {:alone :delete_or_backspace}]]}
+        {:des "right_command to layer 3"
+         :rules [[:##right_command ["layer" 3] nil {:alone :return_or_enter :afterup ["layer" 0]}]]}]}
