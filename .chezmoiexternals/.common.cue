@@ -35,6 +35,7 @@ _os: string | *"" @tag(os,var=os)
 
 #XdgConfigHome: {
 	_localOrRoaming: "Local" | "Roaming"
+	darwin:          ".config"
 	linux:           ".config"
 	windows:         "AppData/\(_localOrRoaming)"
 }
