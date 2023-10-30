@@ -180,6 +180,7 @@ go install cuelang.org/go/cmd/cue@latest
 
 $cargoPackages = @(
   'broot'
+  'fnm'
   'just'
   'starship'
   'vivid'
