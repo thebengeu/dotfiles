@@ -157,6 +157,7 @@ aliases: {
 		]
 		darwin: linux + [
 			"brew",
+			"mas",
 		]
 		windows: linux + [
 				"scoop",
