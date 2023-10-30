@@ -23,6 +23,7 @@ return {
         "typescript-language-server",
         "yamlfmt",
         "yamllint",
+        "zprint",
       }, jit.os == "Windows" and {} or { "ansible-lint" }),
     },
   },
@@ -61,6 +62,7 @@ return {
         null_ls.builtins.formatting.stylua,
         null_ls.builtins.formatting.taplo,
         null_ls.builtins.formatting.yamlfmt,
+        null_ls.builtins.formatting.zprint,
       }
     end,
   },
