@@ -59,10 +59,12 @@ for gitRepo in _zshGitRepos {
 }
 
 {
-	linux: {
+	darwin: {
 		".config/tmux/plugins/tpm": #GitRepo & {
 			_gitRepo: "tmux-plugins/tpm"
 		}
+	}
+	linux: darwin & {
 		".local/bin/lmn": #ArchiveFile & {
 			path: "lemonade"
 			url:  "https://github.com/lemonade-command/lemonade/releases/download/v1.1.1/lemonade_linux_amd64.tar.gz"
@@ -97,6 +99,7 @@ for gitRepo in _zshGitRepos {
 }[_os]
 
 _broot_config_home: {
+	darwin:  "broot"
 	linux:   "broot"
 	windows: "dystroy/broot/config"
 }[_os]
@@ -106,6 +109,7 @@ _broot_config_home: {
 }
 
 _btop_config_home: {
+	darwin:  ".config"
 	linux:   "snap/btop/655/.config"
 	windows: "scoop/persist"
 }[_os]

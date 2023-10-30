@@ -26,8 +26,12 @@ config.colors = {
   },
 }
 config.default_cursor_style = "SteadyBar"
-config.default_domain = "SSHMUX:wsl"
-config.default_prog = { "fish" }
+
+if wezterm.target_triple:match("%-pc-windows-msvc$") then
+  config.default_domain = "SSHMUX:wsl"
+  config.default_prog = { "fish" }
+end
+
 -- config.font = wezterm.font("PragmataProLiga NF")
 -- config.font_rules = {
 -- 	{

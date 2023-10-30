@@ -12,7 +12,7 @@ set --global sponge_purge_only_on_exit true
 
 abbr --add os 'set COMMAND $(op signin) && test -n "$COMMAND" && eval $COMMAND && set --export OP_TIME $(date +%s)'
 
-if set -q WEZTERM_UNIX_SOCKET
+if test $(uname) != Darwin; and set -q WEZTERM_UNIX_SOCKET
     set --export SSH_CONNECTION '127.0.0.1 22 127.0.0.1 22'
 end
 

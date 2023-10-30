@@ -35,9 +35,11 @@ aliases: {
 	n:   "TERM=wezterm nvim"
 	ni:  "npm install"
 	p:   "pnpm"
+	pi:  "pnpm install"
 	pr:  "gh pr create -f"
 	prm: "pnpm remove"
 	prr: "\(pr) -r"
+	pu:  "pnpm uninstall"
 	pxi: "pipx install"
 	pxu: "pipx uninstall"
 	rm:  "trash"
@@ -123,16 +125,18 @@ aliases: {
 	}
 
 	{
-		linux: {
+		darwin: {
+			fd:  "fd --hidden"
+			rns: "rm ~/.local/share/nvim/sessions/*"
+			tg:  "topgrade"
+			tns: "tmux new-session -A -s"
+			tm:  "\(tns) 0"
+		}
+		linux: darwin & {
 			aar:         "sudo apt autoremove"
 			ai:          "sudo apt install"
 			ar:          "sudo apt remove"
-			fd:          "fd --hidden"
 			ns:          "nix search nixpkgs"
-			rns:         "rm ~/.local/share/nvim/sessions/*"
-			tg:          "topgrade"
-			tns:         "tmux new-session -A -s"
-			tm:          "\(tns) 0"
 			"xdg-ninja": "nix run github:b3nj5m1n/xdg-ninja"
 		}
 		windows: {
@@ -150,7 +154,9 @@ aliases: {
 	for packageManager in {
 		linux: [
 			"cargo",
-			"pnpm",
+		]
+		darwin: linux + [
+			"brew",
 		]
 		windows: linux + [
 				"scoop",
@@ -174,10 +180,11 @@ environmentVariables: {
 	RIPGREP_CONFIG_PATH:      "$HOME/.config/ripgrep/config"
 
 	{
-		linux: {
+		darwin: {
 			LG_CONFIG_FILE: "$HOME/.config/lazygit/config.yml,$HOME/.config/lazygit/mocha-lavender.yml"
 			PNPM_HOME:      "~/.local/share/pnpm"
 		}
+		linux: darwin
 		windows: {
 			LG_CONFIG_FILE: "$APPDATA\\\\lazygit\\\\config.yml,$APPDATA\\\\lazygit\\\\mocha-lavender.yml"
 			PNPM_HOME:      "$LOCALAPPDATA\\\\pnpm"
@@ -206,6 +213,7 @@ functions: {
 	}
 
 	{
+		darwin: {}
 		linux: {
 			npi: {
 				lines: [
@@ -235,8 +243,10 @@ paths: [
 	"~/.cargo/bin",
 	"~/.local/bin",
 	"~/go/bin",
-	"~/AppData/Roaming/Python/Python311/Scripts",
 ] + {
+	darwin: [
+		"~/Library/Python/3.11/bin",
+	]
 	linux: [
 		"/snap/aws-cli/current/bin",
 		"/snap/bin",
@@ -244,6 +254,7 @@ paths: [
 		"~/.temporalio/bin",
 	]
 	windows: [
+		"~/AppData/Roaming/Python/Python311/Scripts",
 		"/usr/bin",
 	]
 }[_os]

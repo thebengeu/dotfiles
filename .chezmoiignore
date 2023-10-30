@@ -6,10 +6,8 @@ README.md
 .config/{bat,broot,fd,gitui,glow,gup,helix,lazygit,msmtp,nushell,nvim,tealdeer,tmux,yamlfmt}/
 .config/fish/completions/pipx.fish
 .config/fish/completions/qmk.fish
-.config/fish/conf.d/linux.fish
 .config/topgrade.toml
 .hushlogin
-.local/bin/build_and_install_nvim
 .local/share/
 .ssh/control-master.conf
 .ansible.cfg
@@ -19,11 +17,22 @@ snap/
 {{ else }}
 .config/fish/completions/fd.fish
 .config/fish/conf.d/windows.fish
-.config/wezterm/
 .ssh/windows.conf
 AppData/
 scoop/
 **/*.ps1
+{{ end }}
+
+{{ if ne .chezmoi.os "darwin" }}
+.chezmoiscripts/darwin/*
+Library/
+{{ end }}
+
+{{ if eq .chezmoi.os "linux" }}
+.config/wezterm/
+{{ else }}
+.chezmoiscripts/linux/*
+.local/bin/build_and_install_nvim
 {{ end }}
 
 {{ if or (eq .chezmoi.hostname "prod") (eq .chezmoi.hostname "staging") }}
