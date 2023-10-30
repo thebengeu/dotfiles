@@ -125,14 +125,17 @@ aliases: {
 	}
 
 	{
-		darwin: {
+		_common: {
 			fd:  "fd --hidden"
 			rns: "rm ~/.local/share/nvim/sessions/*"
 			tg:  "topgrade"
 			tns: "tmux new-session -A -s"
 			tm:  "\(tns) 0"
 		}
-		linux: darwin & {
+		darwin: _common & {
+			bbd: "brew bundle dump --file ~/.local/share/chezmoi/Brewfile --force"
+		}
+		linux: _common & {
 			aar:         "sudo apt autoremove"
 			ai:          "sudo apt install"
 			ar:          "sudo apt remove"
