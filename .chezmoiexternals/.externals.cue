@@ -59,12 +59,18 @@ for gitRepo in _zshGitRepos {
 }
 
 {
-	darwin: {
+	_tpm: {
 		".config/tmux/plugins/tpm": #GitRepo & {
 			_gitRepo: "tmux-plugins/tpm"
 		}
 	}
-	linux: darwin & {
+	darwin: _tpm & {
+		".local/bin/lmn": #ArchiveFile & {
+			path: "lemonade"
+			url:  "https://github.com/lemonade-command/lemonade/releases/download/v1.1.1/lemonade_darwin_amd64.tar.gz"
+		}
+	}
+	linux: _tpm & {
 		".local/bin/lmn": #ArchiveFile & {
 			path: "lemonade"
 			url:  "https://github.com/lemonade-command/lemonade/releases/download/v1.1.1/lemonade_linux_amd64.tar.gz"
