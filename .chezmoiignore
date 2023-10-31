@@ -3,6 +3,11 @@ manifests/
 README.md
 
 {{ if eq .chezmoi.os "windows" }}
+{{ if eq .chezmoi.arch "arm64" }}
+.chezmoiscripts/non-windows-arm64/*
+{{ end }}
+
+.chezmoiscripts/non-windows/*
 .config/{bat,broot,fd,gitui,glow,gup,helix,lazygit,msmtp,nushell,nvim,tealdeer,tmux,yamlfmt}/
 .config/fish/completions/pipx.fish
 .config/fish/completions/qmk.fish
@@ -45,8 +50,4 @@ Library/
 
 {{ if ne .chezmoi.hostname "dev" }}
 AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/wsl.vbs
-{{ end }}
-
-{{ if and (eq .chezmoi.os "windows") (eq .chezmoi.arch "arm64") }}
-.chezmoiscripts/non-windows-arm64/*
 {{ end }}
