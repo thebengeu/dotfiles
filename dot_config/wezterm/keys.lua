@@ -27,6 +27,11 @@ function M.apply_to_config(config)
       action = act.CloseCurrentTab({ confirm = false }),
     },
     {
+      key = "w",
+      mods = "SUPER",
+      action = act.CloseCurrentTab({ confirm = false }),
+    },
+    {
       key = "v",
       mods = "CTRL",
       action = act.DisableDefaultAssignment,
