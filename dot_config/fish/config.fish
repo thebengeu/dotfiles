@@ -75,7 +75,7 @@ end
 
 function __wezterm_user_vars_fish_prompt --on-event fish_prompt
     __wezterm_set_user_var PROMPT_TIME $(date +%s)
-    __wezterm_set_user_var WEZTERM_HOSTNAME $(prompt_hostname)
+    __wezterm_set_user_var WEZTERM_HOSTNAME $(hostname)
     __wezterm_set_user_var WEZTERM_PROG ""
 
     if test -n "$TMUX"
