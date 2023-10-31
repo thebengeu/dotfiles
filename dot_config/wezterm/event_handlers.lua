@@ -37,16 +37,18 @@ function M.apply_to_config(config)
       .. active_pane.title:gsub("%.exe$", "")
   end)
 
-  wezterm.on("gui-startup", function()
-    wezterm.run_child_process({
-      "wsl",
-      "--exec",
-      "sh",
-      "-c",
-      common.tmux_detached_session,
-    })
-    wezterm.mux.get_domain(config.default_domain):attach()
-  end)
+  if wezterm.target_triple:match("%-pc-windows-msvc$") then
+    wezterm.on("gui-startup", function()
+      wezterm.run_child_process({
+        "wsl",
+        "--exec",
+        "sh",
+        "-c",
+        common.tmux_detached_session,
+      })
+      wezterm.mux.get_domain(config.default_domain):attach()
+    end)
+  end
 
   wezterm.on("update-status", function(window, pane)
     window:set_right_status(pane:get_domain_name())

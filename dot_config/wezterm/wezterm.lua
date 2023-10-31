@@ -26,12 +26,6 @@ config.colors = {
   },
 }
 config.default_cursor_style = "SteadyBar"
-
-if wezterm.target_triple:match("%-pc-windows-msvc$") then
-  config.default_domain = "SSHMUX:wsl"
-  config.default_prog = { "fish" }
-end
-
 -- config.font = wezterm.font("PragmataProLiga NF")
 -- config.font_rules = {
 -- 	{
@@ -59,19 +53,26 @@ config.inactive_pane_hsb = {
   saturation = 0.75,
   brightness = 0.75,
 }
-config.launch_menu = common.map({
+
+local launch_menu = {
   ["Bash"] = { "bash" },
-  ["Developer PowerShell for VS 2022"] = {
+  ["fish"] = { "fish" },
+  ["Nushell"] = { "nu" },
+  ["zsh"] = { "zsh" },
+}
+
+if wezterm.target_triple:match("%-pc-windows-msvc$") then
+  config.default_domain = "SSHMUX:wsl"
+  config.default_prog = { "fish" }
+
+  launch_menu["Developer PowerShell for VS 2022"] = {
     "powershell",
     "-c",
     [[Invoke-Expression ("pwsh " + (New-Object -ComObject WScript.Shell).CreateShortcut("$Env:ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2022\Visual Studio Tools\Developer PowerShell for VS 2022.lnk").Arguments.Replace('"""', "'"))]],
-  },
-  ["fish"] = { "fish" },
-  ["Nushell"] = { "nu" },
-  ["PowerShell"] = { "pwsh", "-NoLogo" },
-  ["Windows PowerShell"] = { "powershell", "-NoLogo" },
-  ["zsh"] = { "zsh" },
-  ["Restart WSL"] = {
+  }
+  launch_menu["PowerShell"] = { "pwsh", "-NoLogo" }
+  launch_menu["Windows PowerShell"] = { "powershell", "-NoLogo" }
+  launch_menu["Restart WSL"] = {
     "powershell",
     "-NoProfile",
     "-Command",
@@ -83,8 +84,10 @@ config.launch_menu = common.map({
     "~",
     "--exec",
     wezterm.shell_join_args(common.fish_tmux_detached_session),
-  },
-}, function(args, label)
+  }
+end
+
+config.launch_menu = common.map(launch_menu, function(args, label)
   return {
     domain = { DomainName = "local" },
     label = label,
