@@ -200,13 +200,6 @@ return util.map({
       "monokai-pro-ristretto",
       "monokai-pro-spectrum",
     },
-    opts = {
-      override = function()
-        return {
-          LspInlayHint = { link = "Comment" },
-        }
-      end,
-    },
   },
   {
     "bluz71/vim-moonfly-colors",
