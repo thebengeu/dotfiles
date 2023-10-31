@@ -49,7 +49,7 @@ local M = {}
 
 function M.apply_to_config(config)
   common.list_extend(config.keys, {
-    wezterm.target_triple:match("%-pc-windows-msvc$") and activate_nvim(
+    wezterm.target_triple:match("%%-pc%-windows%-msvc$") and activate_nvim(
       "SHIFT|ALT",
       wezterm.hostname() .. "-wsl",
       [[\\wsl.localhost\Ubuntu\home\]] .. os.getenv("USERNAME")
