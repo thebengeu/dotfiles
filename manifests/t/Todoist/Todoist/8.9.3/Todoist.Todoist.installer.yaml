@@ -1,0 +1,12 @@
+# Created using wingetcreate 1.5.5.0
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.installer.1.5.0.schema.json
+
+PackageIdentifier: Todoist.Todoist
+PackageVersion: 8.9.3
+InstallerType: nullsoft
+Installers:
+- InstallerUrl: https://electron-dl.todoist.net/windows/Todoist-win32-8.9.3.exe
+  Architecture: x64
+  InstallerSha256: 55FDD8D3F740C85A7DB0C4B6958E9C9FBA3BC851965EE48F1F1C697FFF49CC34
+ManifestType: installer
+ManifestVersion: 1.5.0

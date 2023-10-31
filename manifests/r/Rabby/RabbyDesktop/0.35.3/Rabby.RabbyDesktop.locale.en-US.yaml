@@ -1,8 +1,8 @@
-# Created using wingetcreate 1.2.8.0
-# yaml-language-server: $schema=https://aka.ms/winget-manifest.defaultLocale.1.4.0.schema.json
+# Created using wingetcreate 1.5.5.0
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.defaultLocale.1.5.0.schema.json
 
 PackageIdentifier: Rabby.RabbyDesktop
-PackageVersion: 0.31.0
+PackageVersion: 0.35.3
 PackageLocale: en-US
 Publisher: Rabby
 PackageName: Rabby Desktop
@@ -10,4 +10,4 @@ License: MIT License
 Copyright: Copyright © 2022 rabby.io
 ShortDescription: Rabby’s desktop application, for WEB3 users
 ManifestType: defaultLocale
-ManifestVersion: 1.4.0
+ManifestVersion: 1.5.0
