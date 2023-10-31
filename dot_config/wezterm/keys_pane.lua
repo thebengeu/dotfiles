@@ -113,12 +113,19 @@ function M.apply_to_config(config)
     {
       key = "|",
       mods = "SHIFT|ALT|CTRL",
-      action = split_pane("SSH:wsl"),
+      action = split_pane(
+        wezterm.target_triple:match("%-pc-windows-msvc$") and "SSH:wsl"
+          or "local"
+      ),
     },
     {
       key = "_",
       mods = "SHIFT|ALT|CTRL",
-      action = split_pane("SSH:wsl", "Bottom"),
+      action = split_pane(
+        wezterm.target_triple:match("%-pc-windows-msvc$") and "SSH:wsl"
+          or "local",
+        "Bottom"
+      ),
     },
     {
       key = "d",
