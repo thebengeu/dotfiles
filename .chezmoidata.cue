@@ -148,7 +148,7 @@ aliases: {
 			chs: "choco search"
 			chu: "gsudo choco uninstall"
 			dpw: #"powershell -c "Invoke-Expression (\"pwsh \" + (New-Object -ComObject WScript.Shell).CreateShortcut(\"\$Env:ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2022\Visual Studio Tools\Developer PowerShell for VS 2022.lnk\").Arguments.Replace('\"\"\"', \"'\"))""#
-			fd:  "\(linux.fd) --path-separator '//'"
+			fd:  "\(_common.fd) --path-separator '//'"
 			rns: "rm $HOME/AppData/Local/nvim-data/sessions/*"
 			tg:  "winget upgrade spotify; gsudo topgrade"
 			wsk: "wezterm show-keys --lua"
@@ -156,14 +156,15 @@ aliases: {
 	}[_os]
 
 	for packageManager in {
-		linux: [
+		_common: [
 			"cargo",
 		]
-		darwin: linux + [
+		darwin: _common + [
 			"brew",
 			"mas",
 		]
-		windows: linux + [
+		linux:   _common
+		windows: _common + [
 				"scoop",
 				"winget",
 		]
@@ -185,11 +186,12 @@ environmentVariables: {
 	RIPGREP_CONFIG_PATH:      "$HOME/.config/ripgrep/config"
 
 	{
-		darwin: {
+		_common: {
 			LG_CONFIG_FILE: "$HOME/.config/lazygit/config.yml,$HOME/.config/lazygit/mocha-lavender.yml"
 			PNPM_HOME:      "~/.local/share/pnpm"
 		}
-		linux: darwin
+		darwin: _common
+		linux:  _common
 		windows: {
 			LG_CONFIG_FILE: "$APPDATA\\\\lazygit\\\\config.yml,$APPDATA\\\\lazygit\\\\mocha-lavender.yml"
 			PNPM_HOME:      "$LOCALAPPDATA\\\\pnpm"
