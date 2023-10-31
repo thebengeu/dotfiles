@@ -62,7 +62,7 @@ local launch_menu = {
   ["zsh"] = { "zsh" },
 }
 
-if wezterm.target_triple:match("%-pc-windows-msvc$") then
+if wezterm.target_triple:match("%%-pc%-windows%-msvc$") then
   config.default_domain = "SSHMUX:wsl"
   config.default_prog = { "fish" }
 

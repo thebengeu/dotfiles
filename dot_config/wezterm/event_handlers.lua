@@ -37,7 +37,7 @@ function M.apply_to_config(config)
       .. active_pane.title:gsub("%.exe$", "")
   end)
 
-  if wezterm.target_triple:match("%-pc-windows-msvc$") then
+  if wezterm.target_triple:match("%%-pc%-windows%-msvc$") then
     wezterm.on("gui-startup", function()
       wezterm.run_child_process({
         "wsl",

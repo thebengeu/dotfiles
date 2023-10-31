@@ -114,7 +114,7 @@ function M.apply_to_config(config)
       key = "|",
       mods = "SHIFT|ALT|CTRL",
       action = split_pane(
-        wezterm.target_triple:match("%-pc-windows-msvc$") and "SSH:wsl"
+        wezterm.target_triple:match("%%-pc%-windows%-msvc$") and "SSH:wsl"
           or "local"
       ),
     },
@@ -122,7 +122,7 @@ function M.apply_to_config(config)
       key = "_",
       mods = "SHIFT|ALT|CTRL",
       action = split_pane(
-        wezterm.target_triple:match("%-pc-windows-msvc$") and "SSH:wsl"
+        wezterm.target_triple:match("%%-pc%-windows%-msvc$") and "SSH:wsl"
           or "local",
         "Bottom"
       ),
