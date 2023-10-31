@@ -134,6 +134,7 @@ aliases: {
 		}
 		darwin: _common & {
 			bbd: "brew bundle dump --file ~/.local/share/chezmoi/Brewfile --force"
+			wsk: "wezterm show-keys --lua"
 		}
 		linux: _common & {
 			aar:         "sudo apt autoremove"
