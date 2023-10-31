@@ -54,7 +54,7 @@ config.font_rules = {
     italic = true,
   },
 }
-config.font_size = 13
+config.font_size = wezterm.hostname() == "Bengs-MBP" and 15 or 13
 config.inactive_pane_hsb = {
   saturation = 0.75,
   brightness = 0.75,
