@@ -32,4 +32,6 @@
         {:des "left_command to backspace"
          :rules [[:##left_command :left_command nil {:alone :delete_or_backspace}]]}
         {:des "right_command to layer 3"
-         :rules [[:##right_command ["layer" 3] nil {:alone :return_or_enter :afterup ["layer" 0]}]]}]}
+         :rules [[:##right_command ["layer" 3] nil {:alone :return_or_enter :afterup ["layer" 0]}]]}
+        {:des "right_option to control-command-shift"
+         :rules [[:##right_option :!TCright_shift nil {:alone :backslash}]]}]}
