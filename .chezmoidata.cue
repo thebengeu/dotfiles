@@ -134,6 +134,8 @@ aliases: {
 		}
 		darwin: _common & {
 			bbd: "brew bundle dump --file ~/.local/share/chezmoi/Brewfile --force"
+			meb: #"open -a /Applications/Microsoft\ Edge\ Beta.app --args --proxy-server=in.he.sg:8888"#
+			med: #"open -a /Applications/Microsoft\ Edge\ Dev.app --args --proxy-server=id.he.sg:8888"#
 			wsk: "wezterm show-keys --lua"
 		}
 		linux: _common & {
