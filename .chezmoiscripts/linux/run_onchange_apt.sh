@@ -3,6 +3,7 @@ sudo apt --assume-yes install \
   composer \
   dos2unix \
   gh \
+  helix \
   jq \
   libcurl4-openssl-dev \
   libluajit-5.1-dev \
