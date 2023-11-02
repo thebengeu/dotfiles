@@ -263,7 +263,7 @@ paths: [
 		"~/.temporalio/bin",
 	]
 	windows: [
-		"~/AppData/Roaming/Python/Python311/Scripts",
+		"~/AppData/Roaming/Python/Python312/Scripts",
 		"/usr/bin",
 	]
 }[_os]
