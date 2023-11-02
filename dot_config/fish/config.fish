@@ -12,7 +12,7 @@ set --global sponge_purge_only_on_exit true
 
 abbr --add os 'set COMMAND $(op signin) && test -n "$COMMAND" && eval $COMMAND && set --export OP_TIME $(date +%s)'
 
-if test $(uname) != Darwin; and set -q WEZTERM_UNIX_SOCKET
+if test -z "$WEZTERM_CONFIG_DIR" -a -n "$WEZTERM_UNIX_SOCKET"
     set --export SSH_CONNECTION '127.0.0.1 22 127.0.0.1 22'
 end
 
@@ -20,7 +20,7 @@ set --export WSL_HOSTNAME_PREFIX $(string match --groups-only --regex '(.*)-wsl$
 
 if test -n "$WSL_HOSTNAME_PREFIX" -a \( -z "$USERDOMAIN" -o "$WSL_HOSTNAME_PREFIX" = "$(string lower $USERDOMAIN | sed s/\r//)" \)
     set --export TITLE_PREFIX wsl:
-else if set -q SSH_CONNECTION
+else if test -n "$SSH_CONNECTION"
     set --export TITLE_PREFIX $(prompt_hostname):
 end
 
@@ -41,7 +41,7 @@ function fish_title
         set --function title "$(prompt_pwd --dir-length=0)"
     end
 
-    if set -q TMUX
+    if test -n "$TMUX"
         tmux rename-window -t $(tmux display-message -p '#{window_index}') $title
     end
 
