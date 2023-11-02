@@ -13,7 +13,9 @@ cargo install \
 
 go install github.com/nao1215/gup@latest
 
-pip3 install --user pipx
+pip3 install --upgrade --user \
+  pipx \
+  setuptools
 
 pipx install beancount
 pipx install fava
