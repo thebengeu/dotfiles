@@ -23,7 +23,9 @@ scoop/
 **/*.ps1
 {{ end }}
 
-{{ if ne .chezmoi.os "darwin" }}
+{{ if eq .chezmoi.os "darwin" }}
+.config/fish/completions/{chezmoi,fnm,just,pulumi}.fish
+{{ else }}
 .chezmoiscripts/darwin/*
 .config/btop/
 .config/karabiner.edn
