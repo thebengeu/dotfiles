@@ -12,13 +12,8 @@ README.md
 .config/fish/completions/pipx.fish
 .config/fish/completions/qmk.fish
 .config/topgrade.toml
-.hushlogin
-.local/share/
 .ssh/control-master.conf
-.ansible.cfg
 .inputrc
-.chezmoiscripts/linux/*
-snap/
 {{ else }}
 .config/fish/completions/fd.fish
 .config/fish/conf.d/windows.fish
@@ -40,8 +35,12 @@ Library/
 {{ if eq .chezmoi.os "linux" }}
 .config/wezterm/
 {{ else }}
+.ansible.cfg
 .chezmoiscripts/linux/*
+.hushlogin
 .local/bin/build_and_install_nvim
+.local/share/
+snap/
 {{ end }}
 
 {{ if or (eq .chezmoi.hostname "prod") (eq .chezmoi.hostname "staging") }}
