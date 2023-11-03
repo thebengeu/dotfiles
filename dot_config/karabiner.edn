@@ -23,6 +23,8 @@
                  [:##m :7 ["layer" 3]]
                  [:##comma :8 ["layer" 3]]
                  [:##period :9 ["layer" 3]]]}
+        {:des "tab to control-command-option"
+         :rules [[:##tab :!TCleft_option nil {:alone :tab}]]}
         {:des "caps_lock to control and escape"
          :rules [[:##caps_lock :left_control nil {:alone :escape}]]}
         {:des "left_control to control and escape"
@@ -34,4 +36,4 @@
         {:des "right_command to layer 3"
          :rules [[:##right_command ["layer" 3] nil {:alone :return_or_enter :afterup ["layer" 0]}]]}
         {:des "right_option to control-command-shift"
-         :rules [[:##right_option :!TCright_shift nil {:alone :backslash}]]}]}
+         :rules [[:##right_option :!TCright_shift nil {:alone :tab}]]}]}
