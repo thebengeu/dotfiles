@@ -1,4 +1,6 @@
 #!/usr/bin/env sh
+cargo install cargo-update
+
 go install github.com/nao1215/gup@latest
 
 pip3 install --upgrade --user \
