@@ -24,6 +24,7 @@ scoop/
 {{ end }}
 
 {{ if eq .chezmoi.os "darwin" }}
+.chezmoiscripts/non-darwin/*
 .config/fish/completions/{chezmoi,fnm,just,pulumi}.fish
 {{ else }}
 .chezmoiscripts/darwin/*
