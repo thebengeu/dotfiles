@@ -44,21 +44,23 @@ for gitRepo in _zshGitRepos {
 ".config/micro/colorschemes/catppuccin-mocha.micro": #File & {
 	url: "https://raw.githubusercontent.com/catppuccin/micro/main/src/catppuccin-mocha.micro"
 }
-".local/bin/batman": #ArchiveFile & {
-	executable: true
-	path:       "bin/batman"
-	url:        "https://github.com/eth-p/bat-extras/releases/download/v2023.09.19/bat-extras-202309.19.zip"
-}
-".local/bin/batgrep": #ArchiveFile & {
-	executable: true
-	path:       "bin/batgrep"
-	url:        "https://github.com/eth-p/bat-extras/releases/download/v2023.09.19/bat-extras-202309.19.zip"
-}
 ".local/bin/cht": #ExecutableFile & {
 	url: "https://cht.sh/:cht.sh"
 }
 
 {
+	_bat_extras: {
+		".local/bin/batman": #ArchiveFile & {
+			executable: true
+			path:       "bin/batman"
+			url:        "https://github.com/eth-p/bat-extras/releases/download/v2023.09.19/bat-extras-202309.19.zip"
+		}
+		".local/bin/batgrep": #ArchiveFile & {
+			executable: true
+			path:       "bin/batgrep"
+			url:        "https://github.com/eth-p/bat-extras/releases/download/v2023.09.19/bat-extras-202309.19.zip"
+		}
+	}
 	_tpm: {
 		".config/tmux/plugins/tpm": #GitRepo & {
 			_gitRepo: "tmux-plugins/tpm"
@@ -70,13 +72,13 @@ for gitRepo in _zshGitRepos {
 			url:  "https://github.com/lemonade-command/lemonade/releases/download/v1.1.1/lemonade_darwin_amd64.tar.gz"
 		}
 	}
-	linux: _tpm & {
+	linux: _bat_extras & _tpm & {
 		".local/bin/lmn": #ArchiveFile & {
 			path: "lemonade"
 			url:  "https://github.com/lemonade-command/lemonade/releases/download/v1.1.1/lemonade_linux_amd64.tar.gz"
 		}
 	}
-	windows: {
+	windows: _bat_extras & {
 		".config/fish/completions/bat.fish": #ArchiveFile & {
 			path:            "autocomplete/bat.fish"
 			stripComponents: 1
