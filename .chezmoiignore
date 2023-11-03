@@ -25,6 +25,7 @@ scoop/
 
 {{ if eq .chezmoi.os "darwin" }}
 .chezmoiscripts/non-darwin/*
+.chezmoiscripts/non-windows-arm64/run_onchange_cargo.sh
 .config/fish/completions/{chezmoi,fnm,just,pulumi}.fish
 {{ else }}
 .chezmoiscripts/darwin/*
