@@ -1,16 +1,4 @@
 #!/usr/bin/env sh
-cargo install \
-  atuin \
-  cargo-update \
-  du-dust \
-  eza \
-  hyperfine \
-  onefetch \
-  sd \
-  tere \
-  tokei \
-  topgrade
-
 go install github.com/nao1215/gup@latest
 
 pip3 install --upgrade --user \
