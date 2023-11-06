@@ -45,7 +45,6 @@ return util.map({
           enabled = true,
         },
         rainbow_delimiters = true,
-        treesitter_context = true,
       },
     },
   },
