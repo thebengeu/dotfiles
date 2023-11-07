@@ -92,6 +92,15 @@ return {
         },
         dagger = {},
         graphql = {},
+        lua_ls = {
+          settings = {
+            Lua = {
+              diagnostics = {
+                globals = { "hs", "spoon", "vim" },
+              },
+            },
+          },
+        },
         powershell_es = {
           enabled = vim.fn.executable("pwsh") == 1,
         },
