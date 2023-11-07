@@ -42,28 +42,33 @@ hs.hotkey.bind(
 hs.hotkey.bind(
   { "ctrl", "command", "shift" },
   "5",
-  launchOrFocusByBundleID("md.obsidian")
+  launchOrFocusByBundleID("notion.id")
 )
 hs.hotkey.bind(
   { "ctrl", "command", "shift" },
   "6",
-  launchOrFocusByBundleID("com.spotify.client")
+  launchOrFocusByBundleID("md.obsidian")
 )
 hs.hotkey.bind(
   { "ctrl", "command", "shift" },
   "7",
-  launchOrFocusByBundleID("ru.keepcoder.Telegram")
+  launchOrFocusByBundleID("com.tinyspeck.slackmacgap")
 )
 hs.hotkey.bind(
   { "ctrl", "command", "shift" },
   "8",
+  launchOrFocusByBundleID("ru.keepcoder.Telegram")
+)
+hs.hotkey.bind(
+  { "ctrl", "command", "shift" },
+  "9",
   launchOrFocusByBundleID(
     "com.microsoft.edgemac.app.elldfnmogicegdcphgljaoaklkpcnbnn"
   )
 )
 hs.hotkey.bind(
   { "ctrl", "command", "shift" },
-  "9",
+  "0",
   launchOrFocusByBundleID("com.github.wez.wezterm")
 )
 
