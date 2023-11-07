@@ -1,2 +1,4 @@
 [default]
 region = ap-southeast-1
+[profile supabase]
+[profile supabase-dev]
