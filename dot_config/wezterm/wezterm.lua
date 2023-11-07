@@ -48,7 +48,7 @@ config.font_rules = {
     italic = true,
   },
 }
-config.font_size = wezterm.hostname() == "Bengs-MacBook-Pro.local" and 16 or 13
+config.font_size = wezterm.hostname() == "Bengs-MBP" and 16 or 13
 config.front_end = "OpenGL"
 config.inactive_pane_hsb = {
   saturation = 0.75,
