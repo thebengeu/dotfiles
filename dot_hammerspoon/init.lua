@@ -6,7 +6,7 @@ hs.fnutils.ieach(hs.application.runningApplications(), function(app)
   print(app:bundleID())
 end)
 
-function launchOrFocusByBundleID(bundleID)
+local launchOrFocusByBundleID = function(bundleID)
   return function()
     local app = hs.application(bundleID)
     if app and app:isFrontmost() then
