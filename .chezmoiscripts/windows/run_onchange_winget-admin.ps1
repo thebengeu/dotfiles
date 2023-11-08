@@ -53,6 +53,7 @@ $wingetPackageIds = @(
   'QMK.QMKToolbox'
   'BurntSushi.ripgrep.MSVC'
   'SlackTechnologies.Slack'
+  'Readdle.Spark'
   'Ookla.Speedtest.CLI'
   'StartIsBack.StartAllBack'
   'Microsoft.VisualStudioCode'
