@@ -220,6 +220,12 @@ functions: {
 		]
 		parameters: ["log_file"]
 	}
+	sic: {
+		lines: [
+			#"aws ec2-instance-connect ssh --instance-id $(aws ec2 describe-instances --filters "Name=tag:Name,Values=*-db-$id" --output text --query 'Reservations[*].Instances[*].InstanceId') --os-user ubuntu"#,
+		]
+		parameters: ["id"]
+	}
 
 	{
 		darwin: {}
