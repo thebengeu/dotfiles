@@ -26,6 +26,7 @@ aliases: {
 	cr:  "chezmoi re-add"
 	cup: "chezmoi update --apply=false; chezmoi init; \(ca)"
 	g:   "git"
+	grm: "glow README.md"
 	hb:  "hyperfine 'bash -i -c exit'"
 	hbn: "hyperfine 'bash --noprofile --norc -i -c exit'"
 	j:   "just"
