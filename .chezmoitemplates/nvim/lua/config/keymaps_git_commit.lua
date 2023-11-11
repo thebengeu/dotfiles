@@ -1,6 +1,3 @@
-local Input = require("nui.input")
-local Layout = require("nui.layout")
-local Popup = require("nui.popup")
 local util = require("util")
 
 local popup_options = function(title)
@@ -24,6 +21,8 @@ end
 local saved_commit_summary
 
 local setup_input = function(reset_on_close, git_subcommand, default_message)
+  local Input = require("nui.input")
+
   local input = Input(popup_options("Commit Summary"), {
     default_value = default_message or saved_commit_summary,
     on_change = function(commit_summary)
@@ -64,6 +63,8 @@ local setup_input = function(reset_on_close, git_subcommand, default_message)
 end
 
 local setup_layout = function(input, term)
+  local Layout = require("nui.layout")
+
   local layout = Layout(
     {
       position = "50%",
@@ -141,6 +142,8 @@ local system_sh_code = function(cmd)
 end
 
 local git_commit = function(git_command, default_message)
+  local Popup = require("nui.popup")
+
   local has_staged = system_sh_code("git diff --cached --quiet") ~= 0
   local no_changes = not has_staged
     and system_sh_code("git add --all && git diff --cached --quiet") == 0
