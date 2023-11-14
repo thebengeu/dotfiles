@@ -180,10 +180,7 @@ function M.apply_to_config(config)
     {
       key = "w",
       mods = "SHIFT|ALT",
-      action = activate_or_spawn_pane(
-        wezterm.hostname() .. "-wsl",
-        "SSHMUX:wsl"
-      ),
+      action = activate_or_spawn_pane(wezterm.hostname() .. "-wsl", "SSH:wsl"),
     },
     {
       key = "w",
