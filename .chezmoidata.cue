@@ -178,6 +178,7 @@ aliases: {
 	}
 }
 environmentVariables: {
+	AWS_PROFILE:              "supabase-dev"
 	BAT_THEME:                "Catppuccin-mocha"
 	DIRENV_LOG_FORMAT:        ""
 	EDITOR:                   "nvim"
