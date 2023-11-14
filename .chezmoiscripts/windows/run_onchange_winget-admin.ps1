@@ -34,6 +34,7 @@ $wingetPackageIds = @(
   'GitHub.cli'
   'Helix.Helix'
   'jqlang.jq'
+  'k6.k6'
   'DEVCOM.Lua'
   'jftuga.less'
   'gokcehan.lf'
