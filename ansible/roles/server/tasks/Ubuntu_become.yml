@@ -117,12 +117,7 @@
     deb: "{{ item }}"
   loop:
     # yamllint disable rule:line-length
-    - https://github.com/rsteube/carapace-bin/releases/download/v0.27.0/carapace-bin_0.27.0_linux_{{ arch.stdout }}.deb
-    - https://github.com/sharkdp/bat/releases/download/v0.23.0/bat_0.23.0_{{ arch.stdout }}.deb
-    - https://github.com/sharkdp/fd/releases/download/v8.7.0/fd_8.7.0_{{ arch.stdout }}.deb
     - https://github.com/wez/wezterm/releases/download/nightly/wezterm-nightly.Ubuntu22.04{{ (arch.stdout == 'amd64') | ternary('', "." ~ arch.stdout) }}.deb
-    - http://ftp.debian.org/debian/pool/main/f/fzf/fzf_0.42.0-1+b3_{{ arch.stdout }}.deb
-    - https://github.com/dandavison/delta/releases/download/0.16.5/git-delta_0.16.5_{{ arch.stdout }}.deb
     # yamllint enable rule:line-length
 - ansible.builtin.group:
     name: docker
