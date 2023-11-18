@@ -57,6 +57,14 @@
     cmd: /tmp/rustup-init --no-modify-path --profile minimal -y
     creates: ~/.cargo/env
 - ansible.builtin.command:
+    cmd: nix profile install nixpkgs#{{ item }}
+    creates: ~/.nix-profile/bin/{{ item }}
+  loop:
+    - bat
+    - carapace
+    - direnv
+    - fd
+- ansible.builtin.command:
     cmd: go install cuelang.org/go/cmd/cue@latest
     creates: ~/go/bin/cue
 - ansible.builtin.command:
@@ -65,6 +73,7 @@
   environment:
     PATH: /usr/bin:/home/{{ ansible_user_id }}/.cargo/bin
   loop:
+    - atuin
     - broot
     - fnm
     - just
