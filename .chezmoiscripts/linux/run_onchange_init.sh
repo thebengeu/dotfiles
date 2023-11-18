@@ -30,6 +30,7 @@ if [ ! -f ~/.ssh/id_ed25519 ] || [ ! -f "$EJSON_KEY_PATH" ]; then
 fi
 
 if [ ! -f ~/.ssh/id_ed25519 ]; then
+  mkdir ~/.ssh
   op read 'op://Personal/Ed25519 SSH Key/id_ed25519' --out-file "$SSH_KEY_PATH"
   chmod 600 "$SSH_KEY_PATH"
   eval "$(ssh-agent -s)"
@@ -37,6 +38,7 @@ if [ ! -f ~/.ssh/id_ed25519 ]; then
 fi
 
 if [ ! -f "$EJSON_KEY_PATH" ]; then
+  mkdir -p ~/.local/bin
   curl -Ls https://github.com/Shopify/ejson/releases/download/v1.4.1/ejson_1.4.1_linux_"$ARCHITECTURE".tar.gz | tar xz --directory ~/.local/bin ejson
   mkdir -p "$HOME"/.config/ejson/keys
   op read op://Personal/ejson/"$EJSON_PUBLIC_KEY" --out-file "$EJSON_KEY_PATH"
