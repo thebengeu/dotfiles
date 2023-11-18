@@ -31,7 +31,7 @@ fi
 
 if [ ! -f ~/.ssh/id_ed25519 ]; then
   mkdir ~/.ssh
-  op read 'op://Personal/Ed25519 SSH Key/id_ed25519' --out-file "$SSH_KEY_PATH"
+  op read 'op://Personal/Ed25519 SSH Key/id_ed25519' | tr -d '\r' >"$SSH_KEY_PATH"
   chmod 600 "$SSH_KEY_PATH"
   eval "$(ssh-agent -s)"
   ssh-add ~/.ssh/id_ed25519
