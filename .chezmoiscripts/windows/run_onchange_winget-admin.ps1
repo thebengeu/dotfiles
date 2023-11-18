@@ -21,7 +21,6 @@ $wingetPackageIds = @(
   'AutoHotkey.AutoHotkey'
   'Google.Chrome'
   'dandavison.delta'
-  'Ditto.Ditto'
   'Discord.Discord'
   'Element.Element'
   'ExpressVPN.ExpressVPN'

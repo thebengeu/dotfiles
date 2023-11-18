@@ -28,6 +28,7 @@ $wingetPackageIds = @(
   'twpayne.chezmoi'
   'Kitware.CMake'
   'direnv.direnv'
+  'Ditto.Ditto'
   'Git.Git'
   'GoLang.Go'
   'gerardog.gsudo'
