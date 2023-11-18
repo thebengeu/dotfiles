@@ -91,6 +91,7 @@
       - fish
       - gettext
       - golang-go
+      - jq
       - mosquitto
       - ninja-build
       - nodejs

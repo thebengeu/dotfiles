@@ -19,11 +19,9 @@ $wingetPackageIds = @(
   'Armin2208.WindowsAutoNightMode'
   'Amazon.AWSCLI'
   'AutoHotkey.AutoHotkey'
-  'rsteube.Carapace'
   'Google.Chrome'
   'dandavison.delta'
   'Ditto.Ditto'
-  'direnv.direnv'
   'Discord.Discord'
   'Element.Element'
   'ExpressVPN.ExpressVPN'
@@ -33,7 +31,6 @@ $wingetPackageIds = @(
   'junegunn.fzf'
   'GitHub.cli'
   'Helix.Helix'
-  'jqlang.jq'
   'k6.k6'
   'DEVCOM.Lua'
   'jftuga.less'
@@ -46,11 +43,8 @@ $wingetPackageIds = @(
   'Obsidian.Obsidian'
   'Microsoft.Edge.Beta'
   'Microsoft.Edge.Dev'
-  'Microsoft.OpenSSH.Beta'
   'Microsoft.PowerToys'
   'Microsoft.Sysinternals.ProcessMonitor'
-  'Pulumi.Pulumi'
-  'Python.Python.3.11'
   'QMK.QMKToolbox'
   'BurntSushi.ripgrep.MSVC'
   'SlackTechnologies.Slack'
@@ -59,7 +53,6 @@ $wingetPackageIds = @(
   'StartIsBack.StartAllBack'
   'Microsoft.VisualStudioCode'
   'JetBrains.WebStorm'
-  'wez.wezterm'
   'JernejSimoncic.Wget'
   'Microsoft.WingetCreate'
   'Highresolution.X-MouseButtonControl'
@@ -81,9 +74,6 @@ if (!$isMobile)
 }
 
 winget install --exact --no-upgrade --silent --id $wingetPackageIds
-
-$override = '--add Microsoft.VisualStudio.Workload.NativeDesktop --includeRecommended --quiet --wait'
-winget install --exact --no-upgrade --override $override --silent --id Microsoft.VisualStudio.2022.Community
 
 winget pin add --exact --id JetBrains.WebStorm
 winget pin add --exact --id PostgreSQL.PostgreSQL

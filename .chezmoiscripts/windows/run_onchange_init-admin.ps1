@@ -1,3 +1,8 @@
+if ($nul -eq (Get-Command -ErrorAction SilentlyContinue scoop))
+{
+  Invoke-RestMethod get.scoop.sh | Invoke-Expression
+}
+
 if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator))
 {
   if (Get-Command gsudo)
@@ -19,18 +24,28 @@ winget settings --enable LocalManifestFiles
 $wingetPackageIds = @(
   'AgileBits.1Password'
   'AgileBits.1Password.CLI'
+  'rsteube.Carapace'
   'twpayne.chezmoi'
   'Kitware.CMake'
+  'direnv.direnv'
   'Git.Git'
   'GoLang.Go'
   'gerardog.gsudo'
+  'jqlang.jq'
   'MSYS2.MSYS2'
   'OpenJS.NodeJS'
+  'Microsoft.OpenSSH.Beta'
   'Microsoft.PowerShell'
+  'Pulumi.Pulumi'
+  'Python.Python.3.12'
   'Rustlang.Rustup'
+  'wez.wezterm'
 )
 
-Winget install --exact --no-upgrade --silent --id $wingetPackageIds
+winget install --exact --no-upgrade --silent --id $wingetPackageIds
+
+$override = '--add Microsoft.VisualStudio.Workload.NativeDesktop --includeRecommended --quiet --wait'
+winget install --exact --no-upgrade --override $override --silent --id Microsoft.VisualStudio.2022.Community
 
 if (!(Get-Command choco))
 {
@@ -88,47 +103,23 @@ if (!$isMobile)
   Enable-WindowsOptionalFeature -FeatureName Microsoft-Hyper-V-All -NoRestart -Online
 }
 
-$PNPM_HOME = "$env:LOCALAPPDATA\pnpm"
+$PNPM_HOME = "$Env:LOCALAPPDATA\pnpm"
 
-function SetEnvironmentVariable($variable, $value, $target)
-{
-  [Environment]::SetEnvironmentVariable($variable, $value, $target)
-  Set-Item "Env:$variable" $value
-}
+Set-Item 'Env:HOME' "$Env:USERPROFILE"
+Set-Item 'Env:PNPM_HOME' "$PNPM_HOME"
 
-SetEnvironmentVariable 'EJSON_KEYDIR' "$Env:USERPROFILE\.config\ejson\keys" 'User'
-SetEnvironmentVariable 'GH_USERNAME' "thebengeu" 'User'
-SetEnvironmentVariable 'HOME' $Env:USERPROFILE 'User'
-SetEnvironmentVariable 'MSYS2_PATH_TYPE' 'inherit' 'Machine'
-SetEnvironmentVariable 'NODE_NO_WARNINGS' 1 'Machine'
-SetEnvironmentVariable 'PNPM_HOME' $PNPM_HOME 'User'
+[Environment]::SetEnvironmentVariable('MSYS_PATH_TYPE', 'inherit', 'User')
 
-$pathsForTargets = @{
-  [EnvironmentVariableTarget]::Machine = @(
-    'C:\msys64\usr\bin'
-    "$Env:ProgramFiles\PostgreSQL\15\bin"
-    "${Env:ProgramFiles(x86)}\nvim\bin"
-  )
-  [EnvironmentVariableTarget]::User    = @(
-    "$Env:USERPROFILE\.cargo\bin"
-    "$Env:USERPROFILE\.local\bin"
-    $Env:PNPM_HOME
-  )
-}
+$paths = @(
+  [System.Environment]::GetEnvironmentVariable("Path", "Machine")
+  [System.Environment]::GetEnvironmentVariable("Path", "User")
+  "$Env:USERPROFILE\.cargo\bin"
+  'C:\msys64\usr\bin'
+  "$PNPM_HOME"
+  "$Env:APPDATA/Python/Python312/Scripts"
+)
 
-foreach ($environmentVariableTarget in $pathsForTargets.Keys)
-{
-  foreach ($pathForTarget in $pathsForTargets[$environmentVariableTarget])
-  {
-    $Path = [Environment]::GetEnvironmentVariable('Path', $environmentVariableTarget)
-    if (($Path -split [IO.Path]::PathSeparator) -notcontains $pathForTarget)
-    {
-      [Environment]::SetEnvironmentVariable('Path', $Path + [IO.Path]::PathSeparator + $pathForTarget, $environmentVariableTarget)
-    }
-  }
-}
-
-$Env:PATH = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + [IO.Path]::PathSeparator + [System.Environment]::GetEnvironmentVariable("Path", "User")
+$Env:PATH = $paths -join [IO.Path]::PathSeparator
 
 $pacmanPackages = @(
   'fish'
@@ -150,7 +141,7 @@ foreach ($pacmanPackage in $pacmanPackages)
 corepack enable
 
 $ejsonPublicKey = "5df4cad7a4c3a2937a863ecf18c56c23274cb048624bc9581ecaac56f2813107"
-$ejsonKeyPath = "$HOME/.config/ejson/keys/$ejsonPublicKey"
+$ejsonKeyPath = "$Env:USERPROFILE\.config\ejson\keys\$ejsonPublicKey"
 $sshKeyPath = "$Env:USERPROFILE\.ssh\id_ed25519"
 
 if (!(Test-Path $ejsonKeyPath) -or !(Test-Path $sshKeyPath))
@@ -162,7 +153,7 @@ if (!(Test-Path $ejsonKeyPath))
 {
   mkdir -p "$Env:USERPROFILE\.local\bin"
   sh -c "curl -Ls https://github.com/Shopify/ejson/releases/download/v1.4.1/ejson_1.4.1_windows_$($Env:PROCESSOR_ARCHITECTURE.ToLower()).tar.gz | tar xz --directory ~/.local/bin ejson.exe"
-  mkdir -p $HOME/.config/ejson/keys
+  mkdir -p "$Env:USERPROFILE\.config\ejson\keys"
   op read op://Personal/ejson/$ejsonPublicKey --out-file $ejsonKeyPath
 }
 
@@ -179,7 +170,10 @@ if (!(Test-Path $sshKeyPath))
 go install cuelang.org/go/cmd/cue@latest
 
 $cargoPackages = @(
+  'atuin'
+  'bat'
   'broot'
+  'fd-find'
   'fnm'
   'just'
   'starship'
@@ -189,10 +183,13 @@ $cargoPackages = @(
 
 cargo install $cargoPackages
 
-if (!(Test-Path "$Env:USERPROFILE\.local\share\chezmoi"))
+Set-Item 'Env:EJSON_KEYDIR' "$Env:USERPROFILE\.config\ejson\keys"
+
+if ($Env:CHEZMOI -ne '1')
 {
   chezmoi init --ssh thebengeu
-  chezmoi apply --init
+  chezmoi apply --exclude scripts
+  chezmoi apply --include scripts
 }
 
 $installSshdPath = "$Env:ProgramFiles\OpenSSH\install-sshd.ps1"

@@ -1,3 +1,7 @@
+scoop bucket add extras
+scoop bucket add nerd-fonts
+scoop bucket add versions
+
 $scoopPackages = @(
   'btop'
   'dos2unix'

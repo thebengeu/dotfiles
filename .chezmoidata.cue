@@ -198,6 +198,7 @@ environmentVariables: {
 		linux:  _common
 		windows: {
 			LG_CONFIG_FILE: "$APPDATA\\\\lazygit\\\\config.yml,$APPDATA\\\\lazygit\\\\mocha-lavender.yml"
+			NODE_NO_WARNINGS: 1
 			PNPM_HOME:      "$LOCALAPPDATA\\\\pnpm"
 		}
 	}[_os]
