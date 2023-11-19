@@ -40,7 +40,7 @@ fi
 if [ ! -f "$EJSON_KEY_PATH" ]; then
   mkdir -p ~/.local/bin
   curl -Ls https://github.com/Shopify/ejson/releases/download/v1.4.1/ejson_1.4.1_linux_"$ARCHITECTURE".tar.gz | tar xz --directory ~/.local/bin ejson
-  mkdir -p "$HOME"/.config/ejson/keys
+  mkdir -p ~/.config/ejson/keys
   op read op://Personal/ejson/"$EJSON_PUBLIC_KEY" --out-file "$EJSON_KEY_PATH"
 fi
 
@@ -55,7 +55,8 @@ if [ ! "$CHEZMOI" = 1 ]; then
 
   sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'postgres';"
 
-  export PATH=~/.cargo/bin:~/go/bin:"$PATH"
+  export PNPM_HOME=~/.local/share/pnpm
+  export PATH=~/.cargo/bin:~/.local/bin:~/.pulumi/bin:~/go/bin:"$PNPM_HOME":"$PATH"
   /snap/bin/chezmoi init
   /snap/bin/chezmoi apply --exclude scripts
   /snap/bin/chezmoi apply --include scripts
