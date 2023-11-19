@@ -50,7 +50,7 @@ if [ ! "$CHEZMOI" = 1 ]; then
   git clone git@github.com:thebengeu/dotfiles.git "$CHEZMOI_SOURCE_DIR"
 
   sudo add-apt-repository -y ppa:ansible/ansible
-  sudo apt install ansible
+  sudo apt install -y ansible
   ansible-playbook "$CHEZMOI_SOURCE_DIR"/ansible/site.yml --ask-become-pass
 
   sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'postgres';"
