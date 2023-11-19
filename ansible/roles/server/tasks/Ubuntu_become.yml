@@ -96,6 +96,8 @@
       - ninja-build
       - nodejs
       - openssh-server
+      - postgresql
+      - postgresql-client
       - python3-pip
       - python3-venv
       - unzip

@@ -21,8 +21,6 @@ sudo apt --assume-yes install \
   php-bcmath \
   php-curl \
   php-gmp \
-  postgresql \
-  postgresql-client \
   ripgrep \
   speedtest \
   sqlite3 \
