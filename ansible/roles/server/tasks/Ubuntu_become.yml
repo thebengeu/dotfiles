@@ -92,6 +92,7 @@
       - gettext
       - golang-go
       - jq
+      - libssl-dev
       - mosquitto
       - ninja-build
       - nodejs
