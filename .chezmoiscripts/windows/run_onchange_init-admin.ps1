@@ -109,15 +109,28 @@ $PNPM_HOME = "$Env:LOCALAPPDATA\pnpm"
 Set-Item 'Env:HOME' "$Env:USERPROFILE"
 Set-Item 'Env:PNPM_HOME' "$PNPM_HOME"
 
+[Environment]::SetEnvironmentVariable('HOME', "$Env:USERPROFILE", 'User')
 [Environment]::SetEnvironmentVariable('MSYS_PATH_TYPE', 'inherit', 'User')
+
+$machinePaths = @(
+  'C:\msys64\usr\bin'
+)
+
+foreach ($machinePath in $machinePaths)
+{
+  $Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine")
+  if (($Path -split [IO.Path]::PathSeparator) -notcontains $machinePath)
+  {
+    [Environment]::SetEnvironmentVariable('Path', $Path + [IO.Path]::PathSeparator + $machinePath, "Machine")
+  }
+}
 
 $paths = @(
   [System.Environment]::GetEnvironmentVariable("Path", "Machine")
   [System.Environment]::GetEnvironmentVariable("Path", "User")
   "$Env:USERPROFILE\.cargo\bin"
-  'C:\msys64\usr\bin'
   "$PNPM_HOME"
-  "$Env:APPDATA/Python/Python312/Scripts"
+  "$Env:APPDATA\Python\Python312\Scripts"
 )
 
 $Env:PATH = $paths -join [IO.Path]::PathSeparator
