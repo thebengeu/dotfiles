@@ -112,16 +112,24 @@ Set-Item 'Env:PNPM_HOME' "$PNPM_HOME"
 [Environment]::SetEnvironmentVariable('HOME', "$Env:USERPROFILE", 'User')
 [Environment]::SetEnvironmentVariable('MSYS_PATH_TYPE', 'inherit', 'User')
 
-$machinePaths = @(
-  'C:\msys64\usr\bin'
-)
+$pathsForTargets = @{
+  [EnvironmentVariableTarget]::Machine = @(
+    'C:\msys64\usr\bin'
+  )
+  [EnvironmentVariableTarget]::User    = @(
+    "$Env:USERPROFILE\.local\bin"
+  )
+}
 
-foreach ($machinePath in $machinePaths)
+foreach ($environmentVariableTarget in $pathsForTargets.Keys)
 {
-  $Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine")
-  if (($Path -split [IO.Path]::PathSeparator) -notcontains $machinePath)
+  foreach ($pathForTarget in $pathsForTargets[$environmentVariableTarget])
   {
-    [Environment]::SetEnvironmentVariable('Path', $Path + [IO.Path]::PathSeparator + $machinePath, "Machine")
+    $Path = [Environment]::GetEnvironmentVariable('Path', $environmentVariableTarget)
+    if (($Path -split [IO.Path]::PathSeparator) -notcontains $pathForTarget)
+    {
+      [Environment]::SetEnvironmentVariable('Path', $Path + [IO.Path]::PathSeparator + $pathForTarget, $environmentVariableTarget)
+    }
   }
 }
 
