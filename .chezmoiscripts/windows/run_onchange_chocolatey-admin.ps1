@@ -12,6 +12,8 @@ if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
 }
 
 $chocoPackages = @(
+  'amazon-chime'
+  'geekbench'
   'hledger'
   'Kindle'
   'ledger'
