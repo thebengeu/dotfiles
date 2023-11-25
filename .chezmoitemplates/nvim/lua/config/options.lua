@@ -10,7 +10,6 @@ vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.root_spec = { ".git", "cwd" }
 
-vim.opt.concealcursor = "cinv"
 vim.opt.fillchars = { eob = " " }
 vim.opt.gdefault = true
 vim.opt.guifont = "JetBrainsMono Nerd Font:h12"
