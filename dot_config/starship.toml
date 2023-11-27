@@ -15,6 +15,9 @@ disabled = true
 [git_branch]
 ignore_branches = ['main', 'master']
 
+[golang]
+disabled = true
+
 [hostname]
 # detect_env_vars = ["WEZTERM_UNIX_SOCKET"]
 format = "[$hostname]($style) "
