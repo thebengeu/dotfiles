@@ -22,6 +22,7 @@ $wingetPackageIds = @(
   'Google.Chrome'
   'dandavison.delta'
   'Discord.Discord'
+  'Docker.DockerDesktop'
   'Element.Element'
   'ExpressVPN.ExpressVPN'
   'flux.flux'

@@ -10,10 +10,12 @@
 - ansible.builtin.apt_key:
     keyring: /etc/apt/keyrings/docker.gpg
     url: https://download.docker.com/linux/ubuntu/gpg
+  when: ansible_virtualization_type != "wsl"
 - ansible.builtin.apt_repository:
     filename: docker
     # yamllint disable-line rule:line-length
     repo: deb [arch={{ arch.stdout }} signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+  when: ansible_virtualization_type != "wsl"
 - ansible.builtin.apt_key:
     keyring: /etc/apt/trusted.gpg.d/jgmath2000-ubuntu-et.gpg
     url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xd3614cb0b3c2d154356bd436cb4adea5b72a07a1
@@ -82,12 +84,8 @@
 - ansible.builtin.apt:
     name:
       - clangd-15
-      - containerd.io
       - cmake
       - curl
-      - docker-ce
-      - docker-ce-cli
-      - docker-compose-plugin
       - fish
       - gettext
       - golang-go
@@ -103,6 +101,14 @@
       - python3-venv
       - unzip
     update_cache: true
+- ansible.builtin.apt:
+    name:
+      - containerd.io
+      - docker-ce
+      - docker-ce-cli
+      - docker-compose-plugin
+    update_cache: true
+  when: ansible_virtualization_type != "wsl"
 - ansible.builtin.apt:
     name:
       - wslu
