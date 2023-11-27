@@ -13,7 +13,7 @@ disabled = true
 disabled = true
 
 [git_branch]
-ignore_branches = ['main', 'master']
+ignore_branches = ['develop', 'main', 'master']
 
 [golang]
 disabled = true
