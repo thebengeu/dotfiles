@@ -200,6 +200,7 @@ $cargoPackages = @(
   'fd-find'
   'fnm'
   'just'
+  'ripgrep'
   'starship'
   'vivid'
   'zoxide'

@@ -64,12 +64,7 @@ for gitRepo in _zshGitRepos {
 		".config/fish/completions/bat.fish": #ArchiveFile & {
 			path:            "autocomplete/bat.fish"
 			stripComponents: 1
-			url:             "https://github.com/sharkdp/bat/releases/download/v0.23.0/bat-v0.23.0-x86_64-unknown-linux-musl.tar.gz"
-		}
-		".config/fish/completions/rg.fish": #ArchiveFile & {
-			path:            "complete/rg.fish"
-			stripComponents: 1
-			url:             "https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep-13.0.0-x86_64-unknown-linux-musl.tar.gz"
+			url:             "https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-v0.24.0-x86_64-unknown-linux-musl.tar.gz"
 		}
 		".local/bin/config.txt": #ArchiveFile & {
 			path:            "config.txt"

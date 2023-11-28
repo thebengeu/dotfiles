@@ -46,7 +46,6 @@ $wingetPackageIds = @(
   'Microsoft.PowerToys'
   'Microsoft.Sysinternals.ProcessMonitor'
   'QMK.QMKToolbox'
-  'BurntSushi.ripgrep.MSVC'
   'SlackTechnologies.Slack'
   'Readdle.Spark'
   'Ookla.Speedtest.CLI'
