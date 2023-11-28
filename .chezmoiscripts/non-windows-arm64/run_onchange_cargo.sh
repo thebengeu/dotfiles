@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
-cargo install \
+cargo binstall \
   tealdeer \
   xh

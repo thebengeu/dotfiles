@@ -191,6 +191,8 @@ if (!(Test-Path $sshKeyPath))
 
 go install cuelang.org/go/cmd/cue@latest
 
+cargo install cargo-binstall
+
 $cargoPackages = @(
   'atuin'
   'bat'
@@ -203,7 +205,7 @@ $cargoPackages = @(
   'zoxide'
 )
 
-cargo install $cargoPackages
+cargo binstall $cargoPackages
 
 Set-Item 'Env:EJSON_KEYDIR' "$Env:USERPROFILE\.config\ejson\keys"
 

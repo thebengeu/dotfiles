@@ -1,3 +1,4 @@
+#!/usr/bin/env sh
 if ! [ -x "$(command -v brew)" ]; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
@@ -32,8 +33,9 @@ if [ ! "$CHEZMOI" = 1 ]; then
   export PNPM_HOME=~/.local/share/pnpm
   export PATH=~/.cargo/bin:~/go/bin:~/Library/Python/3.11/bin:"$PNPM_HOME":"$PATH"
   chezmoi init --ssh thebengeu
-  sudo chown -R "$USER":admin /usr/local/share/{icons,locale}
+  sudo chown -R "$USER":admin /usr/local/share/icons /usr/local/share/locale
   brew bundle install --file ~/.local/share/chezmoi/Brewfile --no-lock
+  cargo install cargo-binstall
   sudo sh -c 'echo /usr/local/bin/fish >> /etc/shells'
   chsh -s /usr/local/bin/fish
   chezmoi apply --exclude scripts
