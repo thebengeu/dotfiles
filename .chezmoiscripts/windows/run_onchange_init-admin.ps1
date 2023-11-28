@@ -206,7 +206,7 @@ $cargoPackages = @(
   'zoxide'
 )
 
-cargo binstall $cargoPackages
+cargo binstall --no-confirm $cargoPackages
 
 Set-Item 'Env:EJSON_KEYDIR' "$Env:USERPROFILE\.config\ejson\keys"
 
