@@ -1,0 +1,2 @@
+[settings]
+api_key={{ (joinPath .chezmoi.sourceDir ".secrets.ejson" | ejsonDecrypt).wakatime_api_key }}
