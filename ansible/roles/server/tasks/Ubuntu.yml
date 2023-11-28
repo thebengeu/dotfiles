@@ -84,6 +84,7 @@
     - broot
     - fnm
     - just
+    - ripgrep
     - starship
     - vivid
     - zoxide
