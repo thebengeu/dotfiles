@@ -229,6 +229,10 @@ return vim.list_extend(
       end,
     },
     {
+      "echasnovski/mini.comment",
+      cond = not vim.g.vscode,
+    },
+    {
       "hrsh7th/nvim-cmp",
       opts = function(_, opts)
         local cmp = require("cmp")
