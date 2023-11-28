@@ -21,6 +21,10 @@ end, { desc = "Line", expr = true })
 vim.keymap.set("x", "V", "j")
 
 if vim.g.vscode then
+  vim.keymap.set("n", "<c-/>", function()
+    require("vscode-neovim").action("workbench.action.terminal.toggleTerminal")
+  end)
+
   return
 end
 
