@@ -32,6 +32,7 @@ scoop/
 .config/btop/
 .config/karabiner.edn
 .hammerspoon/
+.homebrew/
 Brewfile
 Library/
 {{ end }}
