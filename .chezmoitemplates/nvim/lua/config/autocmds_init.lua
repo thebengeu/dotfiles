@@ -1,3 +1,7 @@
+if vim.g.vscode then
+  return
+end
+
 local util = require("util")
 
 vim.api.nvim_create_autocmd("BufReadPost", {

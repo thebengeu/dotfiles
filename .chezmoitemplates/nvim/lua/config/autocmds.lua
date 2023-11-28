@@ -1,3 +1,7 @@
+if vim.g.vscode then
+  return
+end
+
 local base64 = require("util.base64")
 local util = require("util")
 
