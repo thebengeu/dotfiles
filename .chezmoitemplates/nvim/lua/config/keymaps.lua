@@ -3,6 +3,9 @@ local util = require("util")
 vim.keymap.del({ "n", "x" }, "j")
 vim.keymap.del({ "n", "x" }, "k")
 
+vim.keymap.set("n", "<C-r>", "<Cmd>silent redo<CR>")
+vim.keymap.set("n", "u", "<Cmd>silent undo<CR>")
+
 vim.keymap.set("n", "[<Space>", function()
   vim.fn.append(vim.fn.line(".") - 1, "")
 end, { desc = "Add blank line above" })
@@ -44,10 +47,6 @@ vim.keymap.set("n", "<leader>um", function()
   ---@diagnostic disable-next-line: undefined-field
   vim.opt.mouse = vim.opt.mouse:get().a and "" or "a"
 end, { desc = "Toggle Mouse" })
-
-vim.keymap.set("n", "<C-r>", "<Cmd>silent redo<CR>")
-
-vim.keymap.set("n", "u", "<Cmd>silent undo<CR>")
 
 vim.keymap.set("n", "<leader>cu", function()
   util.async_run_sh(
