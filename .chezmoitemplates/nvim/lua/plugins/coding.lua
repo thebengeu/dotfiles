@@ -300,6 +300,10 @@ return vim.list_extend(
       enabled = false,
     },
     {
+      "JoosepAlviste/nvim-ts-context-commentstring",
+      cond = not vim.g.vscode,
+    },
+    {
       "chrisgrieser/nvim-various-textobjs",
       keys = util.map({
         iS = { "inner", "subword" },
