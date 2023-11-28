@@ -1,2 +1,4 @@
 #!/usr/bin/env sh
-cargo binstall gitui
+cargo binstall \
+  gitui \
+  jless
