@@ -326,6 +326,7 @@ return vim.list_extend(
       opts = {
         useDefaultKeymaps = false,
       },
+      vscode = true,
     },
     {
       "ThePrimeagen/refactoring.nvim",
@@ -360,6 +361,7 @@ return vim.list_extend(
       opts = {
         use_default_keymaps = false,
       },
+      vscode = true,
     },
     {
       "tpope/vim-dadbod",
@@ -422,6 +424,7 @@ return vim.list_extend(
         end)
       end,
       event = "LazyFile",
+      vscode = true,
     },
   }
 )

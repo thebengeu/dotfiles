@@ -221,6 +221,7 @@ return {
     end,
     enabled = true,
     lazy = true,
+    vscode = true,
   },
   {
     "akinsho/toggleterm.nvim",

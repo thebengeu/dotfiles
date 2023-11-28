@@ -36,6 +36,7 @@ return {
         remap = true,
       },
     },
+    vscode = true,
   },
   {
     "folke/flash.nvim",
@@ -75,6 +76,7 @@ return {
         },
       },
     },
+    vscode = true,
   },
   {
     "chentoast/marks.nvim",
@@ -134,6 +136,7 @@ return {
         reindent_linewise = false,
       },
     },
+    vscode = true,
   },
   {
     "echasnovski/mini.pairs",
@@ -165,6 +168,7 @@ return {
         mode = { "n", "o", "x" },
       }
     end),
+    vscode = true,
   },
   {
     "ojroques/nvim-osc52",
@@ -247,6 +251,7 @@ return {
         mode = "x",
       },
     },
+    vscode = true,
   },
   {
     "abecodes/tabout.nvim",
@@ -261,6 +266,7 @@ return {
       { "ga", desc = "+text-case" },
     },
     opts = {},
+    vscode = true,
   },
   {
     "cappyzawa/trim.nvim",
@@ -297,6 +303,7 @@ return {
   {
     "svban/YankAssassin.vim",
     event = "LazyFile",
+    vscode = true,
   },
   {
     "gbprod/yanky.nvim",
@@ -309,5 +316,6 @@ return {
         storage = "sqlite",
       },
     },
+    vscode = true,
   },
 }

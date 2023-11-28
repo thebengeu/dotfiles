@@ -28,6 +28,7 @@ return {
       })
     end,
     event = "LazyFile",
+    vscode = true,
   },
   {
     "lukas-reineke/indent-blankline.nvim",
