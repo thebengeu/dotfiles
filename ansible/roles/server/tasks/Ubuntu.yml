@@ -68,7 +68,14 @@
     cmd: go install cuelang.org/go/cmd/cue@latest
     creates: ~/go/bin/cue
 - ansible.builtin.command:
-    cmd: cargo install {{ item }}
+    cmd: cargo install cargo-binstall
+    creates: ~/.cargo/bin/cargo-binstall
+  environment:
+    PATH: /usr/bin:/home/{{ ansible_user_id }}/.cargo/bin
+  loop:
+    - atuin
+- ansible.builtin.command:
+    cmd: cargo binstall {{ item }}
     creates: ~/.cargo/bin/{{ item }}
   environment:
     PATH: /usr/bin:/home/{{ ansible_user_id }}/.cargo/bin

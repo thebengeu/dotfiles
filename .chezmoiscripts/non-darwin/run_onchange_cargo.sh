@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-cargo install \
+cargo binstall \
   du-dust \
   eza \
   hyperfine \
