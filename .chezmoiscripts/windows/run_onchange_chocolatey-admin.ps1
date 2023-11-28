@@ -24,5 +24,6 @@ $chocoPackages = @(
 )
 
 choco install $chocoPackages
+choco install --install-arguments "'--installation-dir=C:\Docker'" docker-desktop
 choco install --ignore-dependencies neovide.install
 choco install --params '/Password:postgres /Port:5433' --params-global postgresql
