@@ -75,7 +75,7 @@
   loop:
     - atuin
 - ansible.builtin.command:
-    cmd: cargo binstall {{ item }}
+    cmd: cargo binstall --no-confirm {{ item }}
     creates: ~/.cargo/bin/{{ item }}
   environment:
     PATH: /usr/bin:/home/{{ ansible_user_id }}/.cargo/bin

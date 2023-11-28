@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-cargo binstall cargo-update
+cargo binstall --no-confirm cargo-update
 
 go install github.com/nao1215/gup@latest
 
