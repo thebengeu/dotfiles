@@ -135,6 +135,7 @@ aliases: {
 		}
 		darwin: _non_windows & {
 			bbd: "brew bundle dump --file ~/.local/share/chezmoi/Brewfile --force"
+			crv: "cp ~/Library/Application\\ Support/Code/User/*.json ~/.local/share/chezmoi/.chezmoitemplates/code"
 			meb: #"open -a /Applications/Microsoft\ Edge\ Beta.app --args --proxy-server=in.he.sg:8888"#
 			med: #"open -a /Applications/Microsoft\ Edge\ Dev.app --args --proxy-server=id.he.sg:8888"#
 			wsk: "wezterm show-keys --lua"
@@ -150,6 +151,7 @@ aliases: {
 			chi: "gsudo choco install"
 			chs: "choco search"
 			chu: "gsudo choco uninstall"
+			crv: "cp ~/AppData/Roaming/Code/User/*.json ~/.local/share/chezmoi/.chezmoitemplates/code"
 			dpw: #"powershell -c "Invoke-Expression (\"pwsh \" + (New-Object -ComObject WScript.Shell).CreateShortcut(\"\$Env:ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2022\Visual Studio Tools\Developer PowerShell for VS 2022.lnk\").Arguments.Replace('\"\"\"', \"'\"))""#
 			fd:  "\(_non_windows.fd) --path-separator '//'"
 			rns: "rm $HOME/AppData/Local/nvim-data/sessions/*"
