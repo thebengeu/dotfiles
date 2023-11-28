@@ -24,7 +24,7 @@ return {
         "yamlfmt",
         "yamllint",
         "zprint",
-      }, jit.os == "Windows" and {} or { "ansible-lint" }),
+      }, jit.os == "Linux" and { "ansible-lint" } or {}),
     },
   },
   {
@@ -137,7 +137,7 @@ return {
         tsserver = {
           enabled = false,
         },
-      }, jit.os == "Windows" and {} or { ansiblels = {} }),
+      }, jit.os == "Linux" and { ansiblels = {} } or {}),
       setup = {
         clangd = function(_, opts)
           opts.capabilities.offsetEncoding = { "utf-16" }
