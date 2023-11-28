@@ -1,0 +1,60 @@
+{
+  "catppuccin.customUIColors": {
+    "all": {
+      "editorIndentGuide.activeBackground1": "red",
+      "editorIndentGuide.activeBackground2": "peach",
+      "editorIndentGuide.activeBackground3": "yellow",
+      "editorIndentGuide.activeBackground4": "green",
+      "editorIndentGuide.activeBackground5": "blue",
+      "editorIndentGuide.activeBackground6": "mauve",
+      "editorIndentGuide.background1": "red",
+      "editorIndentGuide.background2": "peach",
+      "editorIndentGuide.background3": "yellow",
+      "editorIndentGuide.background4": "green",
+      "editorIndentGuide.background5": "blue",
+      "editorIndentGuide.background6": "mauve"
+    }
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.fontFamily": "MonoLisa Variable",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 16,
+  "editor.formatOnSave": true,
+  "editor.lineNumbers": "relative",
+  "editor.minimap.autohide": true,
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+  "remote.autoForwardPorts": false,
+  "settingsSync.keybindingsPerPlatform": false,
+  "vscode-neovim.useWSL": true,
+  "vspacecode.bindingOverrides": [
+    {
+      "command": "workbench.action.quickOpen",
+      "icon": "file",
+      "keys": " ",
+      "name": "Go to File...",
+      "type": "command"
+    },
+    {
+      "command": "workbench.action.splitEditorDown",
+      "icon": "split-vertical",
+      "keys": "-",
+      "name": "Split window below",
+      "position": 20,
+      "type": "command"
+    },
+    {
+      "command": "workbench.action.splitEditor",
+      "icon": "split-horizontal",
+      "keys": "|",
+      "name": "Split window right",
+      "position": 21,
+      "type": "command"
+    }
+  ],
+  "whichkey.delay": 300,
+  "workbench.colorTheme": "Catppuccin Mocha",
+  "workbench.iconTheme": "catppuccin-mocha",
+  "workbench.startupEditor": "none"
+}
