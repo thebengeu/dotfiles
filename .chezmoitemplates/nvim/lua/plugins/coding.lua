@@ -297,9 +297,7 @@ return vim.list_extend(
     },
     {
       "nvim-treesitter/nvim-treesitter-context",
-      opts = {
-        multiline_threshold = 1,
-      },
+      enabled = false,
     },
     {
       "chrisgrieser/nvim-various-textobjs",
