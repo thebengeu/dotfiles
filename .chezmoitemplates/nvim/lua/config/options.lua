@@ -32,3 +32,15 @@ vim.opt.title = true
 vim.opt.titlestring = (vim.env.TITLE_PREFIX or "") .. "%F"
 vim.opt.winblend = 5
 vim.opt.wrap = true
+
+if vim.g.vscode then
+  vim.api.nvim_create_user_command("LazyPlugins", function()
+    local plugins = util.map(require("lazy").plugins(), function(plugin)
+      return plugin.name
+    end)
+
+    table.sort(plugins)
+
+    print(table.concat(plugins, ", "))
+  end, {})
+end
