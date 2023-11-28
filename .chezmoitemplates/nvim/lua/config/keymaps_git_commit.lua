@@ -1,7 +1,3 @@
-if vim.g.vscode then
-  return
-end
-
 local util = require("util")
 
 local popup_options = function(title)
