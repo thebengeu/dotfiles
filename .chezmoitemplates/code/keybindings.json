@@ -2,11 +2,6 @@
   {
     "key": "space",
     "command": "vspacecode.space",
-    "when": "editorTextFocus && neovim.mode != insert"
-  },
-  {
-    "key": "space",
-    "command": "vspacecode.space",
     "when": "activeEditorGroupEmpty && focusedView == '' && !whichkeyActive && !inputFocus"
   },
   {

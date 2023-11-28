@@ -24,8 +24,24 @@ end, { desc = "Line", expr = true })
 vim.keymap.set("x", "V", "j")
 
 if vim.g.vscode then
+  vim.keymap.set({ "n", "x" }, "<leader>", function()
+    require("vscode-neovim").action("vspacecode.space")
+  end)
+
   vim.keymap.set("n", "<c-/>", function()
     require("vscode-neovim").action("workbench.action.terminal.toggleTerminal")
+  end)
+
+  vim.schedule(function()
+    for _, mode in ipairs({ "n", "x" }) do
+      for _, keymap in ipairs(vim.api.nvim_get_keymap(mode)) do
+        local lhs = keymap.lhs
+
+        if lhs:match("^ .+") then
+          vim.keymap.del(mode, lhs)
+        end
+      end
+    end
   end)
 
   return
