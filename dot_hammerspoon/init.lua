@@ -30,41 +30,39 @@ hs.hotkey.bind(
 hs.hotkey.bind(
   { "ctrl", "command", "shift" },
   "3",
-  launchOrFocusByBundleID("com.microsoft.edgemac.Beta")
+  launchOrFocusByBundleID("com.readdle.SparkDesktop")
 )
 hs.hotkey.bind(
   { "ctrl", "command", "shift" },
   "4",
-  launchOrFocusByBundleID(
-    "com.microsoft.edgemac.app.nkbljeindhmekmppbpgebpjebkjbmfaj"
-  )
-)
-hs.hotkey.bind(
-  { "ctrl", "command", "shift" },
-  "5",
   launchOrFocusByBundleID("notion.id")
 )
 hs.hotkey.bind(
   { "ctrl", "command", "shift" },
-  "6",
+  "5",
   launchOrFocusByBundleID("md.obsidian")
 )
 hs.hotkey.bind(
   { "ctrl", "command", "shift" },
-  "7",
+  "6",
   launchOrFocusByBundleID("com.tinyspeck.slackmacgap")
 )
 hs.hotkey.bind(
   { "ctrl", "command", "shift" },
-  "8",
+  "7",
   launchOrFocusByBundleID("ru.keepcoder.Telegram")
 )
 hs.hotkey.bind(
   { "ctrl", "command", "shift" },
-  "9",
+  "8",
   launchOrFocusByBundleID(
     "com.microsoft.edgemac.app.elldfnmogicegdcphgljaoaklkpcnbnn"
   )
+)
+hs.hotkey.bind(
+  { "ctrl", "command", "shift" },
+  "9",
+  launchOrFocusByBundleID("com.microsoft.VSCode")
 )
 hs.hotkey.bind(
   { "ctrl", "command", "shift" },
