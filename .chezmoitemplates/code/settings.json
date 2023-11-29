@@ -65,6 +65,20 @@
   ],
   "whichkey.delay": 300,
   "workbench.colorCustomizations": {
+    "[Gruvbox Material Dark]": {
+      "editorIndentGuide.activeBackground1": "#ea6962",
+      "editorIndentGuide.activeBackground2": "#d8a657",
+      "editorIndentGuide.activeBackground3": "#a9b665",
+      "editorIndentGuide.activeBackground4": "#7daea3",
+      "editorIndentGuide.activeBackground5": "#e78a4e",
+      "editorIndentGuide.activeBackground6": "#d3869b",
+      "editorIndentGuide.background1": "#ea6962",
+      "editorIndentGuide.background2": "#d8a657",
+      "editorIndentGuide.background3": "#a9b665",
+      "editorIndentGuide.background4": "#7daea3",
+      "editorIndentGuide.background5": "#e78a4e",
+      "editorIndentGuide.background6": "#d3869b"
+    },
     "[Tokyo Night]": {
       "editorIndentGuide.activeBackground1": "#698cd6",
       "editorIndentGuide.activeBackground2": "#68b3de",
