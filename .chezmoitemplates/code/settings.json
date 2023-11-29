@@ -1,4 +1,7 @@
 {
+  "[lua]": {
+    "editor.defaultFormatter": "yinfei.luahelper"
+  },
   "catppuccin.customUIColors": {
     "all": {
       "editorIndentGuide.activeBackground1": "red",
@@ -24,6 +27,7 @@
   "editor.formatOnSave": true,
   "editor.lineNumbers": "relative",
   "editor.minimap.autohide": true,
+  "editor.wordWrap": "on",
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
   },
