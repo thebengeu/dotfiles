@@ -58,6 +58,22 @@
     }
   ],
   "whichkey.delay": 300,
+  "workbench.colorCustomizations": {
+    "[Tokyo Night]": {
+      "editorIndentGuide.background1": "#698cd6",
+      "editorIndentGuide.background2": "#68b3de",
+      "editorIndentGuide.background3": "#9a7ecc",
+      "editorIndentGuide.background4": "#25aac2",
+      "editorIndentGuide.background5": "#80a856",
+      "editorIndentGuide.background6": "#c49a5a",
+      "editorIndentGuide.activeBackground1": "#698cd6",
+      "editorIndentGuide.activeBackground2": "#68b3de",
+      "editorIndentGuide.activeBackground3": "#9a7ecc",
+      "editorIndentGuide.activeBackground4": "#25aac2",
+      "editorIndentGuide.activeBackground5": "#80a856",
+      "editorIndentGuide.activeBackground6": "#c49a5a"
+    }
+  },
   "workbench.colorTheme": "",
   "workbench.iconTheme": "",
   "workbench.startupEditor": "none"
