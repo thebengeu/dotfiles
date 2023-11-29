@@ -16,6 +16,7 @@
     }
   },
   "cSpell.includeRegExpList": ["CStyleComment"],
+  "editor.cursorSurroundingLines": 999,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.fontFamily": "MonoLisa Variable",
   "editor.fontLigatures": true,
