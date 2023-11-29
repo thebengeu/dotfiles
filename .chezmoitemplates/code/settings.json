@@ -58,7 +58,7 @@
     }
   ],
   "whichkey.delay": 300,
-  "workbench.colorTheme": "Catppuccin Mocha",
-  "workbench.iconTheme": "catppuccin-mocha",
+  "workbench.colorTheme": "",
+  "workbench.iconTheme": "",
   "workbench.startupEditor": "none"
 }

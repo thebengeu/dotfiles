@@ -1,1 +1,4 @@
-{{- template "code/settings.json" -}}
+{{- $settings := include (print .chezmoi.homeDir "/AppData/Roaming/Code/User/settings.json") | fromJson -}}
+{{- $colorTheme := index $settings "workbench.colorTheme" -}}
+{{- $iconTheme := index $settings "workbench.iconTheme" -}}
+{{- includeTemplate "code/settings.json" | replaceAllRegex "(colorTheme\": \")" (print "${1}" $colorTheme) | replaceAllRegex "(iconTheme\": \")" (print "${1}" $iconTheme) -}}
