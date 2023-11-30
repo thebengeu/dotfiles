@@ -223,6 +223,29 @@ require("lazy").setup({
     },
   },
   {
+    "echasnovski/mini.surround",
+    keys = {
+      { "gsa", mode = { "n", "v" } },
+      "gsd",
+      "gsf",
+      "gsF",
+      "gsh",
+      "gsr",
+      "gsn",
+    },
+    opts = {
+      mappings = {
+        add = "gsa",
+        delete = "gsd",
+        find = "gsf",
+        find_left = "gsF",
+        highlight = "gsh",
+        replace = "gsr",
+        update_n_lines = "gsn",
+      },
+    },
+  },
+  {
     "chrisgrieser/nvim-spider",
     keys = map({ "b", "e", "ge", "w" }, function(key)
       return {
