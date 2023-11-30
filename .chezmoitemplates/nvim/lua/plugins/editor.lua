@@ -266,7 +266,6 @@ return {
       { "ga", desc = "+text-case" },
     },
     opts = {},
-    vscode = true,
   },
   {
     "cappyzawa/trim.nvim",
@@ -299,6 +298,11 @@ return {
       "\\\\",
       "\\\\A",
     },
+  },
+  {
+    "vscode-neovim/vscode-multi-cursor.nvim",
+    event = "LazyFile",
+    vscode = true,
   },
   {
     "svban/YankAssassin.vim",
