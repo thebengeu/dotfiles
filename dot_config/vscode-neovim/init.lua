@@ -234,19 +234,13 @@ require("lazy").setup({
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    dependencies = "nvim-treesitter/nvim-treesitter-textobjects",
     build = ":TSUpdate",
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
     end,
+    dependencies = "nvim-treesitter/nvim-treesitter-textobjects",
     event = "VeryLazy",
     opts = {
-      highlight = {
-        enable = false,
-      },
-      indent = {
-        enable = true,
-      },
       ensure_installed = {
         "javascript",
         "json",
@@ -256,6 +250,12 @@ require("lazy").setup({
         "tsx",
         "typescript",
         "yaml",
+      },
+      highlight = {
+        enable = true,
+      },
+      indent = {
+        enable = true,
       },
     },
   },
@@ -399,9 +399,6 @@ vim.api.nvim_create_user_command("LazyPlugins", function()
 
   print(table.concat(plugins, ", "))
 end, {})
-
-vim.keymap.set("n", "<S-h>", "<Cmd>bprevious<CR>")
-vim.keymap.set("n", "<S-l>", "<Cmd>bnext<CR>")
 
 vim.keymap.set("n", "<C-r>", "<Cmd>silent redo<CR>")
 vim.keymap.set("n", "u", "<Cmd>silent undo<CR>")
