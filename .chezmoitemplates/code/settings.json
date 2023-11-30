@@ -19,6 +19,7 @@
     }
   },
   "cSpell.includeRegExpList": ["CStyleComment"],
+  "cSpell.userWords": ["thebengeu"],
   "editor.codeActionsOnSave": {
     "source.addMissingImports": "explicit",
     "source.organizeImports": "explicit",
@@ -36,6 +37,7 @@
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
   },
+  "git.autofetch": true,
   "remote.autoForwardPorts": false,
   "remote.SSH.remotePlatform": {
     "dev-wsl": "linux"
