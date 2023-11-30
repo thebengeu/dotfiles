@@ -35,346 +35,343 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup(
+require("lazy").setup({
   {
-    {
-      "monaqa/dial.nvim",
-      config = function()
-        local augend = require("dial.augend")
+    "monaqa/dial.nvim",
+    config = function()
+      local augend = require("dial.augend")
 
-        vim.list_extend(require("dial.config").augends.group.default, {
-          augend.constant.alias.bool,
-          augend.constant.new({ elements = { "True", "False" } }),
-          augend.constant.new({ elements = { "and", "or" } }),
+      vim.list_extend(require("dial.config").augends.group.default, {
+        augend.constant.alias.bool,
+        augend.constant.new({ elements = { "True", "False" } }),
+        augend.constant.new({ elements = { "and", "or" } }),
+      })
+    end,
+    keys = {
+      {
+        "<C-a>",
+        "<Plug>(dial-increment)",
+        mode = { "n", "x" },
+      },
+      {
+        "<C-x>",
+        "<Plug>(dial-decrement)",
+        mode = { "n", "x" },
+      },
+      {
+        "g<C-a>",
+        "g<Plug>(dial-increment)",
+        mode = { "n", "x" },
+        remap = true,
+      },
+      {
+        "g<C-x>",
+        "g<Plug>(dial-decrement)",
+        mode = { "n", "x" },
+        remap = true,
+      },
+    },
+  },
+  {
+    "thebengeu/eyeliner.nvim",
+    config = function()
+      local add_bold_and_underline = function(name)
+        vim.api.nvim_set_hl(0, name, {
+          bold = true,
+          fg = vim.api.nvim_get_hl(0, { name = name }).fg,
+          underline = true,
         })
-      end,
-      keys = {
-        {
-          "<C-a>",
-          "<Plug>(dial-increment)",
-          mode = { "n", "x" },
-        },
-        {
-          "<C-x>",
-          "<Plug>(dial-decrement)",
-          mode = { "n", "x" },
-        },
-        {
-          "g<C-a>",
-          "g<Plug>(dial-increment)",
-          mode = { "n", "x" },
-          remap = true,
-        },
-        {
-          "g<C-x>",
-          "g<Plug>(dial-decrement)",
-          mode = { "n", "x" },
-          remap = true,
-        },
-      },
-    },
-    {
-      "thebengeu/eyeliner.nvim",
-      config = function()
-        local add_bold_and_underline = function(name)
-          vim.api.nvim_set_hl(0, name, {
-            bold = true,
-            fg = vim.api.nvim_get_hl(0, { name = name }).fg,
-            underline = true,
-          })
-        end
+      end
 
-        local callback = function()
-          add_bold_and_underline("EyelinerPrimary")
-          add_bold_and_underline("EyelinerSecondary")
-        end
+      local callback = function()
+        add_bold_and_underline("EyelinerPrimary")
+        add_bold_and_underline("EyelinerSecondary")
+      end
 
-        callback()
+      callback()
 
-        vim.api.nvim_create_autocmd("ColorScheme", {
-          callback = callback,
-        })
-      end,
-      event = "VeryLazy",
-    },
-    {
-      "folke/flash.nvim",
-      event = "VeryLazy",
-      keys = {
-        {
-          "s",
-          mode = { "n", "x", "o" },
-          function()
-            require("flash").jump()
-          end,
-        },
-        {
-          "S",
-          mode = { "n", "o", "x" },
-          function()
-            require("flash").treesitter()
-          end,
-        },
-        {
-          "r",
-          mode = "o",
-          function()
-            require("flash").remote()
-          end,
-        },
-        {
-          "R",
-          mode = { "o", "x" },
-          function()
-            require("flash").treesitter_search()
-          end,
-        },
-      },
-      opts = {
-        highlight = {
-          backdrop = false,
-        },
-        label = {
-          after = false,
-          before = true,
-          rainbow = {
-            enabled = true,
-          },
-          uppercase = false,
-        },
-        modes = {
-          char = {
-            autohide = true,
-            config = function(opts)
-              opts.jump_labels = vim.v.count == 0 and vim.fn.mode(true) == "n"
-            end,
-            highlight = {
-              backdrop = false,
-            },
-            label = {
-              exclude = "acdghijklrx",
-            },
-          },
-        },
-      },
-    },
-    {
-      "echasnovski/mini.move",
-      keys = function()
-        local keys = {
-          {
-            "[e",
-            function()
-              require("mini.move").move_line("up")
-            end,
-          },
-          {
-            "]e",
-            function()
-              require("mini.move").move_line("down")
-            end,
-          },
-        }
-
-        for key, direction in pairs({
-          h = "Left",
-          j = "Down",
-          k = "Up",
-          l = "Right",
-        }) do
-          table.insert(keys, "<S-" .. direction .. ">")
-          table.insert(keys, { "<M-" .. key .. ">", mode = "v" })
-          table.insert(keys, {
-            "<M-" .. key .. ">",
-            function()
-              require("mini.move").move_line(direction:lower())
-            end,
-            mode = "i",
-          })
-        end
-
-        return keys
-      end,
-      opts = {
-        mappings = {
-          line_down = "<S-Down>",
-          line_left = "<S-Left>",
-          line_right = "<S-Right>",
-          line_up = "<S-Up>",
-        },
-        options = {
-          reindent_linewise = false,
-        },
-      },
-    },
-    {
-      "chrisgrieser/nvim-spider",
-      keys = map({ "b", "e", "ge", "w" }, function(key)
-        return {
-          key,
-          "<Cmd>lua require('spider').motion('" .. key .. "')<CR>",
-          mode = { "n", "o", "x" },
-        }
-      end),
-    },
-    {
-      "nvim-treesitter/nvim-treesitter",
-      build = ":TSUpdate",
-      config = function(_, opts)
-        require("nvim-treesitter.configs").setup(opts)
-      end,
-      event = "VeryLazy",
-      opts = {
-        highlight = {
-          enable = false,
-        },
-        indent = {
-          enable = true,
-        },
-        ensure_installed = {
-          "javascript",
-          "json",
-          "jsonc",
-          "lua",
-          "markdown",
-          "tsx",
-          "typescript",
-          "yaml",
-        },
-      },
-    },
-    {
-      "chrisgrieser/nvim-various-textobjs",
-      keys = map({
-        iS = { "inner", "subword" },
-        aS = { "outer", "subword" },
-        C = { "toNextClosingBracket" },
-        Q = { "toNextQuotationMark" },
-        gG = { "entireBuffer" },
-        i_ = { "inner", "lineCharacterwise" },
-        a_ = { "outer", "lineCharacterwise" },
-        iv = { "inner", "value" },
-        av = { "outer", "value" },
-        ik = { "inner", "key" },
-        ak = { "outer", "key" },
-      }, function(textobj, lhs)
-        return {
-          lhs,
-          "<Cmd>lua require('various-textobjs')."
-            .. textobj[#textobj]
-            .. "("
-            .. (#textobj == 2 and "'" .. textobj[1] .. "'" or "")
-            .. ")<CR>",
-          mode = { "o", "x" },
-        }
-      end),
-      opts = {
-        useDefaultKeymaps = false,
-      },
-    },
-    {
-      "gbprod/substitute.nvim",
-      opts = {
-        on_substitute = function()
-          require("yanky.integration").substitute()
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        callback = callback,
+      })
+    end,
+    event = "VeryLazy",
+  },
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    keys = {
+      {
+        "s",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").jump()
         end,
       },
-      keys = {
-        {
-          "x",
-          function()
-            require("substitute").operator()
-          end,
-        },
-        {
-          "xx",
-          function()
-            require("substitute").line()
-          end,
-        },
-        {
-          "X",
-          function()
-            require("substitute").eol()
-          end,
-        },
-        {
-          "x",
-          function()
-            require("substitute").visual()
-          end,
-          mode = "x",
-        },
+      {
+        "S",
+        mode = { "n", "o", "x" },
+        function()
+          require("flash").treesitter()
+        end,
+      },
+      {
+        "r",
+        mode = "o",
+        function()
+          require("flash").remote()
+        end,
+      },
+      {
+        "R",
+        mode = { "o", "x" },
+        function()
+          require("flash").treesitter_search()
+        end,
       },
     },
-    {
-      "kkharji/sqlite.lua",
-      lazy = true,
-    },
-    {
-      "Wansmer/treesj",
-      keys = {
-        { "J", "<Cmd>TSJToggle<CR>" },
+    opts = {
+      highlight = {
+        backdrop = false,
       },
-      opts = {
-        use_default_keymaps = false,
+      label = {
+        after = false,
+        before = true,
+        rainbow = {
+          enabled = true,
+        },
+        uppercase = false,
       },
-    },
-    {
-      "vscode-neovim/vscode-multi-cursor.nvim",
-      event = "VeryLazy",
-    },
-    {
-      "andymass/vim-matchup",
-      event = "VeryLazy",
-    },
-    {
-      "svban/YankAssassin.vim",
-      event = "VeryLazy",
-    },
-    {
-      "gbprod/yanky.nvim",
-      dependencies = "kkharji/sqlite.lua",
-      keys = {
-        { "p", "<Plug>(YankyPutAfter)", mode = { "n", "x" } },
-        { "P", "<Plug>(YankyPutBefore)", mode = { "n", "x" } },
-        { "gp", "<Plug>(YankyGPutAfter)", mode = { "n", "x" } },
-        { "gP", "<Plug>(YankyGPutBefore)", mode = { "n", "x" } },
-        { "[y", "<Plug>(YankyCycleForward)" },
-        { "]y", "<Plug>(YankyCycleBackward)" },
-        { "]p", "<Plug>(YankyPutIndentAfterLinewise)" },
-        { "[p", "<Plug>(YankyPutIndentBeforeLinewise)" },
-        { "]P", "<Plug>(YankyPutIndentAfterLinewise)" },
-        { "[P", "<Plug>(YankyPutIndentBeforeLinewise)" },
-        { ">p", "<Plug>(YankyPutIndentAfterShiftRight)" },
-        { "<p", "<Plug>(YankyPutIndentAfterShiftLeft)" },
-        { ">P", "<Plug>(YankyPutIndentBeforeShiftRight)" },
-        { "<P", "<Plug>(YankyPutIndentBeforeShiftLeft)" },
-        { "=p", "<Plug>(YankyPutAfterFilter)" },
-        { "=P", "<Plug>(YankyPutBeforeFilter)" },
-      },
-      opts = {
-        ring = {
-          storage = "sqlite",
+      modes = {
+        char = {
+          autohide = true,
+          config = function(opts)
+            opts.jump_labels = vim.v.count == 0 and vim.fn.mode(true) == "n"
+          end,
+          highlight = {
+            backdrop = false,
+          },
+          label = {
+            exclude = "acdghijklrx",
+          },
         },
       },
     },
   },
   {
-    performance = {
-      rtp = {
-        disabled_plugins = {
-          "gzip",
-          "netrwPlugin",
-          "tarPlugin",
-          "tohtml",
-          "tutor",
-          "zipPlugin",
+    "echasnovski/mini.move",
+    keys = function()
+      local keys = {
+        {
+          "[e",
+          function()
+            require("mini.move").move_line("up")
+          end,
         },
+        {
+          "]e",
+          function()
+            require("mini.move").move_line("down")
+          end,
+        },
+      }
+
+      for key, direction in pairs({
+        h = "Left",
+        j = "Down",
+        k = "Up",
+        l = "Right",
+      }) do
+        table.insert(keys, "<S-" .. direction .. ">")
+        table.insert(keys, { "<M-" .. key .. ">", mode = "v" })
+        table.insert(keys, {
+          "<M-" .. key .. ">",
+          function()
+            require("mini.move").move_line(direction:lower())
+          end,
+          mode = "i",
+        })
+      end
+
+      return keys
+    end,
+    opts = {
+      mappings = {
+        line_down = "<S-Down>",
+        line_left = "<S-Left>",
+        line_right = "<S-Right>",
+        line_up = "<S-Up>",
+      },
+      options = {
+        reindent_linewise = false,
       },
     },
-  }
-)
+  },
+  {
+    "chrisgrieser/nvim-spider",
+    keys = map({ "b", "e", "ge", "w" }, function(key)
+      return {
+        key,
+        "<Cmd>lua require('spider').motion('" .. key .. "')<CR>",
+        mode = { "n", "o", "x" },
+      }
+    end),
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function(_, opts)
+      require("nvim-treesitter.configs").setup(opts)
+    end,
+    event = "VeryLazy",
+    opts = {
+      highlight = {
+        enable = false,
+      },
+      indent = {
+        enable = true,
+      },
+      ensure_installed = {
+        "javascript",
+        "json",
+        "jsonc",
+        "lua",
+        "markdown",
+        "tsx",
+        "typescript",
+        "yaml",
+      },
+    },
+  },
+  {
+    "chrisgrieser/nvim-various-textobjs",
+    keys = map({
+      iS = { "inner", "subword" },
+      aS = { "outer", "subword" },
+      C = { "toNextClosingBracket" },
+      Q = { "toNextQuotationMark" },
+      gG = { "entireBuffer" },
+      i_ = { "inner", "lineCharacterwise" },
+      a_ = { "outer", "lineCharacterwise" },
+      iv = { "inner", "value" },
+      av = { "outer", "value" },
+      ik = { "inner", "key" },
+      ak = { "outer", "key" },
+    }, function(textobj, lhs)
+      return {
+        lhs,
+        "<Cmd>lua require('various-textobjs')."
+          .. textobj[#textobj]
+          .. "("
+          .. (#textobj == 2 and "'" .. textobj[1] .. "'" or "")
+          .. ")<CR>",
+        mode = { "o", "x" },
+      }
+    end),
+    opts = {
+      useDefaultKeymaps = false,
+    },
+  },
+  {
+    "gbprod/substitute.nvim",
+    opts = {
+      on_substitute = function()
+        require("yanky.integration").substitute()
+      end,
+    },
+    keys = {
+      {
+        "x",
+        function()
+          require("substitute").operator()
+        end,
+      },
+      {
+        "xx",
+        function()
+          require("substitute").line()
+        end,
+      },
+      {
+        "X",
+        function()
+          require("substitute").eol()
+        end,
+      },
+      {
+        "x",
+        function()
+          require("substitute").visual()
+        end,
+        mode = "x",
+      },
+    },
+  },
+  {
+    "kkharji/sqlite.lua",
+    lazy = true,
+  },
+  {
+    "Wansmer/treesj",
+    keys = {
+      { "J", "<Cmd>TSJToggle<CR>" },
+    },
+    opts = {
+      use_default_keymaps = false,
+    },
+  },
+  {
+    "vscode-neovim/vscode-multi-cursor.nvim",
+    event = "VeryLazy",
+  },
+  {
+    "andymass/vim-matchup",
+    event = "VeryLazy",
+  },
+  {
+    "svban/YankAssassin.vim",
+    event = "VeryLazy",
+  },
+  {
+    "gbprod/yanky.nvim",
+    dependencies = "kkharji/sqlite.lua",
+    keys = {
+      { "p", "<Plug>(YankyPutAfter)", mode = { "n", "x" } },
+      { "P", "<Plug>(YankyPutBefore)", mode = { "n", "x" } },
+      { "gp", "<Plug>(YankyGPutAfter)", mode = { "n", "x" } },
+      { "gP", "<Plug>(YankyGPutBefore)", mode = { "n", "x" } },
+      { "[y", "<Plug>(YankyCycleForward)" },
+      { "]y", "<Plug>(YankyCycleBackward)" },
+      { "]p", "<Plug>(YankyPutIndentAfterLinewise)" },
+      { "[p", "<Plug>(YankyPutIndentBeforeLinewise)" },
+      { "]P", "<Plug>(YankyPutIndentAfterLinewise)" },
+      { "[P", "<Plug>(YankyPutIndentBeforeLinewise)" },
+      { ">p", "<Plug>(YankyPutIndentAfterShiftRight)" },
+      { "<p", "<Plug>(YankyPutIndentAfterShiftLeft)" },
+      { ">P", "<Plug>(YankyPutIndentBeforeShiftRight)" },
+      { "<P", "<Plug>(YankyPutIndentBeforeShiftLeft)" },
+      { "=p", "<Plug>(YankyPutAfterFilter)" },
+      { "=P", "<Plug>(YankyPutBeforeFilter)" },
+    },
+    opts = {
+      ring = {
+        storage = "sqlite",
+      },
+    },
+  },
+}, {
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
+  },
+})
 
 vim.api.nvim_create_user_command("LazyPlugins", function()
   local plugins = map(require("lazy").plugins(), function(plugin)
