@@ -19,6 +19,11 @@
     }
   },
   "cSpell.includeRegExpList": ["CStyleComment"],
+  "editor.codeActionsOnSave": {
+    "source.addMissingImports": "explicit",
+    "source.organizeImports": "explicit",
+    "source.fixAll": "explicit"
+  },
   "editor.cursorSurroundingLines": 999,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.fontFamily": "MonoLisa Variable",
