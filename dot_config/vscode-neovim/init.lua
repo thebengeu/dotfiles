@@ -158,6 +158,22 @@ require("lazy").setup({
     },
   },
   {
+    "echasnovski/mini.ai",
+    event = "VeryLazy",
+    opts = function()
+      local ai = require("mini.ai")
+
+      return {
+        custom_textobjects = {
+          d = ai.gen_spec.treesitter(
+            { a = "@function.outer", i = "@function.inner" },
+            {}
+          ),
+        },
+      }
+    end,
+  },
+  {
     "echasnovski/mini.move",
     keys = function()
       local keys = {
@@ -218,6 +234,7 @@ require("lazy").setup({
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    dependencies = "nvim-treesitter/nvim-treesitter-textobjects",
     build = ":TSUpdate",
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
