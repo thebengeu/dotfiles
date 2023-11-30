@@ -2,12 +2,6 @@ local Util = require("lazyvim.util")
 
 return {
   {
-    "max397574/better-escape.nvim",
-    enabled = vim.fn.hostname():lower():match("minibook") ~= nil,
-    event = "InsertEnter",
-    opts = {},
-  },
-  {
     "rmagatti/auto-session",
     keys = {
       {
@@ -56,6 +50,12 @@ return {
         },
       }
     end,
+  },
+  {
+    "max397574/better-escape.nvim",
+    enabled = vim.fn.hostname():lower():match("minibook") ~= nil,
+    event = "InsertEnter",
+    opts = {},
   },
   {
     "direnv/direnv.vim",
