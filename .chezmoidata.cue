@@ -66,8 +66,6 @@ aliases: {
 		"t\(_shell_prefix)n": "time \(shellAndFlags) -\(noConfigFlag) -c exit"
 	}
 
-	gn: string
-
 	{
 		_non_windows: {
 			fd:  "fd --hidden"
@@ -79,7 +77,6 @@ aliases: {
 		darwin: _non_windows & {
 			bbd: "brew bundle dump --file ~/.local/share/chezmoi/Brewfile --force"
 			crv: #"cp ~/Library/Application\ Support/Code/User/keybindings.json ~/.local/share/chezmoi/.chezmoitemplates/code; sed -E 's/(Theme.*").+(",)/\1\2/g' ~/Library/Application\ Support/Code/User/settings.json > ~/.local/share/chezmoi/.chezmoitemplates/code/settings.json"#
-			gn:  "neovide"
 			meb: #"open -a /Applications/Microsoft\ Edge\ Beta.app --args --proxy-server=in.he.sg:8888"#
 			med: #"open -a /Applications/Microsoft\ Edge\ Dev.app --args --proxy-server=id.he.sg:8888"#
 			wsk: "wezterm show-keys --lua"
@@ -88,7 +85,6 @@ aliases: {
 			aar:         "sudo apt autoremove"
 			ai:          "sudo apt install"
 			ar:          "sudo apt remove"
-			gn:          "neovide.exe --wsl"
 			ns:          "nix search nixpkgs"
 			"xdg-ninja": "nix run github:b3nj5m1n/xdg-ninja"
 		}
@@ -99,12 +95,17 @@ aliases: {
 			crv: #"cp ~/AppData/Roaming/Code/User/keybindings.json ~/.local/share/chezmoi/.chezmoitemplates/code; sed -E 's/(Theme.*").+(",)/\1\2/g' ~/AppData/Roaming/Code/User/settings.json > ~/.local/share/chezmoi/.chezmoitemplates/code/settings.json"#
 			dpw: #"powershell -c "Invoke-Expression (\"pwsh \" + (New-Object -ComObject WScript.Shell).CreateShortcut(\"\$Env:ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2022\Visual Studio Tools\Developer PowerShell for VS 2022.lnk\").Arguments.Replace('\"\"\"', \"'\"))""#
 			fd:  "\(_non_windows.fd) --path-separator '//'"
-			gn:  "neovide --wsl"
 			rns: "rm $HOME/AppData/Local/nvim-data/sessions/*"
 			tg:  "winget upgrade spotify; gsudo topgrade"
 			wsk: "wezterm show-keys --lua"
 		}
 	}[_os]
+
+	gn: string | *"neovide"
+
+	if strings.HasSuffix(_hostname, "-wsl") {
+		gn: "/mnt/c/Users/beng/.cargo/bin/neovide.exe --wsl"
+	}
 
 	_aliasDirectories: {
 		c: "$HOME/.local/share/chezmoi"
@@ -113,7 +114,7 @@ aliases: {
 
 	for prefix, directory in _aliasDirectories {
 		"\(prefix)cd": "cd \(directory)"
-		"\(prefix)gn": "\(gn) -- --cmd 'cd \(strings.Replace(directory, "$HOME", "~", -1))'"
+		"\(prefix)gn": "env --chdir \(strings.Replace(directory, "$HOME", "~", -1)) \(gn)"
 		"\(prefix)lg": "lazygit --path \(directory)"
 		"\(prefix)n":  "TERM=wezterm nvim --cmd 'cd \(strings.Replace(directory, "$HOME", "~", -1))'"
 	}
