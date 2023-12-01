@@ -32,6 +32,10 @@ vim.opt.titlestring = (vim.env.TITLE_PREFIX or "") .. "%F"
 vim.opt.winblend = 5
 vim.opt.wrap = true
 
+if vim.g.neovide then
+  vim.defer_fn(vim.cmd.NeovideFocus, 250)
+end
+
 if vim.g.vscode then
   vim.api.nvim_create_user_command("LazyPlugins", function()
     local plugins = util.map(require("lazy").plugins(), function(plugin)
