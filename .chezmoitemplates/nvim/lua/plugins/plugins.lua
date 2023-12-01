@@ -95,6 +95,10 @@ return {
     enabled = false,
   },
   {
+    "tiagovla/scope.nvim",
+    opts = {},
+  },
+  {
     "mrjones2014/smart-splits.nvim",
     keys = {
       {
