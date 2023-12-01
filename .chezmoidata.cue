@@ -50,7 +50,6 @@ aliases: {
 	tb:  "time bash -i -c exit"
 	tbn: "time bash --noprofile --norc -i -c exit"
 	t:   "tsx"
-	vim: "TERM=wezterm nvim"
 
 	for shellAndFlags, noConfigFlag in {
 		"fish --interactive": "--no-config"
@@ -67,6 +66,46 @@ aliases: {
 		"t\(_shell_prefix)n": "time \(shellAndFlags) -\(noConfigFlag) -c exit"
 	}
 
+	gn: string
+
+	{
+		_non_windows: {
+			fd:  "fd --hidden"
+			rns: "rm ~/.local/share/nvim/sessions/*"
+			tg:  "topgrade"
+			tns: "tmux new-session -A -s"
+			tm:  "\(tns) 0"
+		}
+		darwin: _non_windows & {
+			bbd: "brew bundle dump --file ~/.local/share/chezmoi/Brewfile --force"
+			crv: #"cp ~/Library/Application\ Support/Code/User/keybindings.json ~/.local/share/chezmoi/.chezmoitemplates/code; sed -E 's/(Theme.*").+(",)/\1\2/g' ~/Library/Application\ Support/Code/User/settings.json > ~/.local/share/chezmoi/.chezmoitemplates/code/settings.json"#
+			gn:  "neovide"
+			meb: #"open -a /Applications/Microsoft\ Edge\ Beta.app --args --proxy-server=in.he.sg:8888"#
+			med: #"open -a /Applications/Microsoft\ Edge\ Dev.app --args --proxy-server=id.he.sg:8888"#
+			wsk: "wezterm show-keys --lua"
+		}
+		linux: _non_windows & {
+			aar:         "sudo apt autoremove"
+			ai:          "sudo apt install"
+			ar:          "sudo apt remove"
+			gn:          "neovide.exe --wsl"
+			ns:          "nix search nixpkgs"
+			"xdg-ninja": "nix run github:b3nj5m1n/xdg-ninja"
+		}
+		windows: {
+			chi: "gsudo choco install"
+			chs: "choco search"
+			chu: "gsudo choco uninstall"
+			crv: #"cp ~/AppData/Roaming/Code/User/keybindings.json ~/.local/share/chezmoi/.chezmoitemplates/code; sed -E 's/(Theme.*").+(",)/\1\2/g' ~/AppData/Roaming/Code/User/settings.json > ~/.local/share/chezmoi/.chezmoitemplates/code/settings.json"#
+			dpw: #"powershell -c "Invoke-Expression (\"pwsh \" + (New-Object -ComObject WScript.Shell).CreateShortcut(\"\$Env:ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2022\Visual Studio Tools\Developer PowerShell for VS 2022.lnk\").Arguments.Replace('\"\"\"', \"'\"))""#
+			fd:  "\(_non_windows.fd) --path-separator '//'"
+			gn:  "neovide --wsl"
+			rns: "rm $HOME/AppData/Local/nvim-data/sessions/*"
+			tg:  "winget upgrade spotify; gsudo topgrade"
+			wsk: "wezterm show-keys --lua"
+		}
+	}[_os]
+
 	_aliasDirectories: {
 		c: "$HOME/.local/share/chezmoi"
 		d: "$HOME/thebengeu/drakon"
@@ -74,6 +113,7 @@ aliases: {
 
 	for prefix, directory in _aliasDirectories {
 		"\(prefix)cd": "cd \(directory)"
+		"\(prefix)gn": "\(gn) -- --cmd 'cd \(strings.Replace(directory, "$HOME", "~", -1))'"
 		"\(prefix)lg": "lazygit --path \(directory)"
 		"\(prefix)n":  "TERM=wezterm nvim --cmd 'cd \(strings.Replace(directory, "$HOME", "~", -1))'"
 	}
@@ -126,41 +166,6 @@ aliases: {
 	for appName in _nvimConfigs {
 		"\(appName)": "NVIM_APPNAME=\(appName) TERM=wezterm nvim"
 	}
-
-	{
-		_non_windows: {
-			fd:  "fd --hidden"
-			rns: "rm ~/.local/share/nvim/sessions/*"
-			tg:  "topgrade"
-			tns: "tmux new-session -A -s"
-			tm:  "\(tns) 0"
-		}
-		darwin: _non_windows & {
-			bbd: "brew bundle dump --file ~/.local/share/chezmoi/Brewfile --force"
-			crv: #"cp ~/Library/Application\ Support/Code/User/keybindings.json ~/.local/share/chezmoi/.chezmoitemplates/code; sed -E 's/(Theme.*").+(",)/\1\2/g' ~/Library/Application\ Support/Code/User/settings.json > ~/.local/share/chezmoi/.chezmoitemplates/code/settings.json"#
-			meb: #"open -a /Applications/Microsoft\ Edge\ Beta.app --args --proxy-server=in.he.sg:8888"#
-			med: #"open -a /Applications/Microsoft\ Edge\ Dev.app --args --proxy-server=id.he.sg:8888"#
-			wsk: "wezterm show-keys --lua"
-		}
-		linux: _non_windows & {
-			aar:         "sudo apt autoremove"
-			ai:          "sudo apt install"
-			ar:          "sudo apt remove"
-			ns:          "nix search nixpkgs"
-			"xdg-ninja": "nix run github:b3nj5m1n/xdg-ninja"
-		}
-		windows: {
-			chi: "gsudo choco install"
-			chs: "choco search"
-			chu: "gsudo choco uninstall"
-			crv: #"cp ~/AppData/Roaming/Code/User/keybindings.json ~/.local/share/chezmoi/.chezmoitemplates/code; sed -E 's/(Theme.*").+(",)/\1\2/g' ~/AppData/Roaming/Code/User/settings.json > ~/.local/share/chezmoi/.chezmoitemplates/code/settings.json"#
-			dpw: #"powershell -c "Invoke-Expression (\"pwsh \" + (New-Object -ComObject WScript.Shell).CreateShortcut(\"\$Env:ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2022\Visual Studio Tools\Developer PowerShell for VS 2022.lnk\").Arguments.Replace('\"\"\"', \"'\"))""#
-			fd:  "\(_non_windows.fd) --path-separator '//'"
-			rns: "rm $HOME/AppData/Local/nvim-data/sessions/*"
-			tg:  "winget upgrade spotify; gsudo topgrade"
-			wsk: "wezterm show-keys --lua"
-		}
-	}[_os]
 
 	for packageManager in {
 		_common: [
@@ -261,6 +266,12 @@ functions: {
 		}
 	}[_os]
 }
+_wsl_paths: [...string]
+if strings.HasSuffix(_hostname, "-wsl") {
+	_wsl_paths: [
+		"/mnt/c/Program\\ Files/Neovide",
+	]
+}
 paths: [
 	"$PNPM_HOME",
 	"~/.cargo/bin",
@@ -275,7 +286,7 @@ paths: [
 		"/snap/bin",
 		"~/.pulumi/bin",
 		"~/.temporalio/bin",
-	]
+	] + _wsl_paths
 	windows: [
 		"~/AppData/Roaming/Python/Python312/Scripts",
 		"/usr/bin",
