@@ -35,6 +35,7 @@ aliases: {
 	man: "batman"
 	n:   "TERM=wezterm nvim"
 	ni:  "npm install"
+	nrm: "npm remove"
 	p:   "pnpm"
 	pi:  "pnpm install"
 	pr:  "gh pr create -f"
@@ -45,6 +46,7 @@ aliases: {
 	pxu: "pipx uninstall"
 	rm:  "trash"
 	scc: #"scc --not-match "package-lock.json|pnpm-lock.yaml""#
+	scd: "cd ~/supabase"
 	tb:  "time bash -i -c exit"
 	tbn: "time bash --noprofile --norc -i -c exit"
 	t:   "tsx"
