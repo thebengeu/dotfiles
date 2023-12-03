@@ -68,7 +68,10 @@ local launch_menu = {
 }
 
 if wezterm.target_triple:match("%%-pc%-windows%-msvc$") then
-  config.default_domain = "SSH:wsl"
+  if wezterm.hostname() ~= "surface" then
+    config.default_domain = "SSH:wsl"
+  end
+
   config.default_prog = { "fish" }
 
   launch_menu["Developer PowerShell for VS 2022"] = {
