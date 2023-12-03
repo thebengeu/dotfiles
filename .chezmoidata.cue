@@ -267,6 +267,12 @@ functions: {
 		}
 	}[_os]
 }
+_windows_arm64_paths: [...string]
+if _hostname == "surface" {
+	_windows_arm64_paths: [
+		#"/c/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/Llvm/ARM64/bin"#,
+	]
+}
 _wsl_paths: [...string]
 if strings.HasSuffix(_hostname, "-wsl") {
 	_wsl_paths: [
@@ -289,7 +295,7 @@ paths: [
 		"~/.temporalio/bin",
 	] + _wsl_paths
 	windows: [
-		"~/AppData/Roaming/Python/Python312/Scripts",
-		"/usr/bin",
-	]
+			"~/AppData/Roaming/Python/Python312/Scripts",
+			"/usr/bin",
+	] + _windows_arm64_paths
 }[_os]
