@@ -12,6 +12,9 @@ disabled = true
 [cmd_duration]
 disabled = true
 
+[docker_context]
+disabled = true
+
 [git_branch]
 ignore_branches = ['develop', 'main', 'master']
 
