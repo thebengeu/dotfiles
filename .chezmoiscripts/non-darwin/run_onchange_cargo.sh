@@ -5,6 +5,8 @@ cargo binstall --no-confirm \
   hyperfine \
   onefetch \
   sd \
+  tealdeer \
   tere \
   tokei \
-  topgrade
+  topgrade \
+  xh
