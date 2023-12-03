@@ -297,7 +297,9 @@ return vim.list_extend(
     },
     {
       "nvim-treesitter/nvim-treesitter-context",
-      enabled = false,
+      opts = {
+        multiline_threshold = 1,
+      },
     },
     {
       "JoosepAlviste/nvim-ts-context-commentstring",
