@@ -51,7 +51,7 @@ function M.apply_to_config(config)
   end
 
   wezterm.on("update-status", function(window, pane)
-    window:set_right_status(pane:get_domain_name() .. "   ")
+    window:set_right_status("   " .. pane:get_domain_name() .. "   ")
   end)
 end
 
