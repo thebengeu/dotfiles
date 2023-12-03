@@ -191,7 +191,7 @@ if (!(Test-Path $sshKeyPath))
 
 go install cuelang.org/go/cmd/cue@latest
 
-cargo install cargo-binstall
+Invoke-RestMethod 'https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.ps1' | Invoke-Expression
 
 $cargoPackages = @(
   'atuin'
