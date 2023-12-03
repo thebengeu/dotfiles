@@ -194,7 +194,6 @@ go install cuelang.org/go/cmd/cue@latest
 Invoke-RestMethod 'https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.ps1' | Invoke-Expression
 
 $cargoPackages = @(
-  'atuin'
   'bat'
   'broot'
   'fd-find'
@@ -207,6 +206,9 @@ $cargoPackages = @(
 )
 
 cargo binstall --no-confirm $cargoPackages
+
+rustup target add x86_64-pc-windows-msvc
+cargo install --target x86_64-pc-windows-msvc atuin
 
 Set-Item 'Env:EJSON_KEYDIR' "$Env:USERPROFILE\.config\ejson\keys"
 
