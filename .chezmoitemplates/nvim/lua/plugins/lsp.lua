@@ -176,11 +176,15 @@ return {
 
           if client then
             local request = function()
+              local file = vim.api.nvim_buf_get_name(bufnr)
+
               client.request(c.CustomMethods.OrganizeImports, {
-                file = vim.api.nvim_buf_get_name(bufnr),
+                file = file,
                 mode = c.OrganizeImportsMode.All,
               }, function(err, result)
-                vim.lsp.handlers[c.CustomMethods.OrganizeImports](err, result)
+                if not file:match("supabase") then
+                  vim.lsp.handlers[c.CustomMethods.OrganizeImports](err, result)
+                end
 
                 vim.api.nvim_buf_call(bufnr, function()
                   local autoformat = vim.b.autoformat
