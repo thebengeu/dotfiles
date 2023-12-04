@@ -23,7 +23,9 @@ aliases: {
 	cad: "chezmoi add"
 	cat: "bat"
 	ca:  "chezmoi apply --exclude scripts; chezmoi apply --include scripts"
+	ci:  "cargo binstall --no-confirm"
 	cr:  "chezmoi re-add"
+	cu:  "cargo uninstall"
 	cup: "chezmoi update --apply=false; chezmoi init; \(ca)"
 	g:   "git"
 	grm: "glow README.md"
@@ -169,17 +171,14 @@ aliases: {
 	}
 
 	for packageManager in {
-		_common: [
-			"cargo",
-		]
-		darwin: _common + [
+		darwin: [
 			"brew",
 			"mas",
 		]
-		linux:   _common
-		windows: _common + [
-				"scoop",
-				"winget",
+		linux: []
+		windows: [
+			"scoop",
+			"winget",
 		]
 	}[_os] {
 		for subCommand in ["install", "search", "uninstall"] {
