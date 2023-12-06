@@ -1,3 +1,4 @@
+local Util = require("lazyvim.util")
 local util = require("util")
 
 vim.keymap.del({ "n", "x" }, "j")
@@ -47,17 +48,17 @@ if vim.g.vscode then
   return
 end
 
-vim.keymap.set("n", "<leader>gP", function()
-  util.async_run({ "git", "push" })
-end, { desc = "Push" })
+local async_run_git = function(command)
+  return function()
+    util.async_run({ "git", "-C", Util.root(), command })
+  end
+end
 
-vim.keymap.set("n", "<leader>gp", function()
-  util.async_run({ "git", "pull" })
-end, { desc = "Pull" })
+vim.keymap.set("n", "<leader>gP", async_run_git("push"), { desc = "Push" })
 
-vim.keymap.set("n", "<leader>gw", function()
-  util.async_run({ "git", "wip" })
-end, { desc = "Commit WIP" })
+vim.keymap.set("n", "<leader>gp", async_run_git("pull"), { desc = "Pull" })
+
+vim.keymap.set("n", "<leader>gw", async_run_git("wip"), { desc = "Commit WIP" })
 
 vim.keymap.set("n", "<leader>um", function()
   ---@diagnostic disable-next-line: undefined-field

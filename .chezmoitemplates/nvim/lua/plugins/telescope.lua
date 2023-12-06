@@ -32,6 +32,7 @@ return {
       local delta_diffview_git_picker = function(picker)
         return function()
           local is_bcommits = picker:match("bcommits")
+          local root = Util.root()
 
           require("telescope.builtin")["git_" .. picker]({
             attach_mappings = function()
@@ -53,11 +54,12 @@ return {
             previewer = require("telescope.previewers").new_termopen_previewer({
               get_command = function(entry)
                 return vim.list_extend(
-                  { "git", "diff", entry.value .. "^!" },
+                  { "git", "-C", root, "diff", entry.value .. "^!" },
                   is_bcommits and { "--", entry.current_file } or {}
                 )
               end,
             }),
+            use_file_path = true,
           })
         end
       end
@@ -170,6 +172,7 @@ return {
                   end
                 end,
               }),
+              use_file_path = true,
             })
           end,
           desc = "Status",
