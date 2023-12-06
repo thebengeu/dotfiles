@@ -148,9 +148,14 @@ return {
           desc = "Recent (root dir)",
         },
         {
-          "<leader>gb",
+          "<leader>gB",
           delta_diffview_git_picker("bcommits"),
           desc = "Buffer commits",
+        },
+        {
+          "<leader>gb",
+          Util.telescope("git_branches"),
+          desc = "Branches",
         },
         {
           "<leader>gc",
