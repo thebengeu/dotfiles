@@ -128,7 +128,16 @@ return {
           get_plugin_folder("find_files"),
           desc = "Find Plugin's Files",
         },
-        { "<leader>fr", Util.telescope("oldfiles"), desc = "Recent" },
+        {
+          "<leader>fR",
+          Util.telescope("oldfiles", { cwd = false }),
+          desc = "Recent",
+        },
+        {
+          "<leader>fr",
+          Util.telescope("oldfiles"),
+          desc = "Recent (root dir)",
+        },
         {
           "<leader>gb",
           delta_diffview_git_picker("bcommits"),
