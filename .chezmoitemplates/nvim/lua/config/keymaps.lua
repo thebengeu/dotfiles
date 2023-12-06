@@ -70,12 +70,12 @@ vim.keymap.set(
 )
 
 vim.keymap.set("n", "<leader>gr", function()
-  util.async_run_sh(
-    "cd '"
-      .. require("lazyvim.util").root()
-      .. "' && git push && gh pr create --fill && gh pr view --web"
-  )
+  util.async_run_sh("git push && gh pr create --fill && gh pr view --web")
 end, { desc = "Create PR" })
+
+vim.keymap.set("n", "<leader>gv", function()
+  util.async_run_sh("gh pr view --web")
+end, { desc = "View PR" })
 
 vim.keymap.set(
   "n",
