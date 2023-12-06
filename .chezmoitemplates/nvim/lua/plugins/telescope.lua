@@ -34,7 +34,7 @@ return {
           local is_bcommits = picker:match("bcommits")
           local root = Util.root()
 
-          require("telescope.builtin")["git_" .. picker]({
+          Util.telescope("git_" .. picker, {
             attach_mappings = function()
               local actions = require("telescope.actions")
 
@@ -59,8 +59,7 @@ return {
                 )
               end,
             }),
-            use_file_path = true,
-          })
+          })()
         end
       end
 
@@ -159,7 +158,9 @@ return {
         {
           "<leader>gs",
           function()
-            require("telescope.builtin").git_status({
+            local root = Util.root()
+
+            Util.telescope("git_status", {
               previewer = require("telescope.previewers").new_termopen_previewer({
                 get_command = function(entry)
                   if
@@ -168,12 +169,19 @@ return {
                   then
                     return { "bat", "--plain", entry.value }
                   else
-                    return { "git", "diff", "HEAD", "--", entry.value }
+                    return {
+                      "git",
+                      "-C",
+                      root,
+                      "diff",
+                      "HEAD",
+                      "--",
+                      entry.value,
+                    }
                   end
                 end,
               }),
-              use_file_path = true,
-            })
+            })()
           end,
           desc = "Status",
         },
