@@ -39,12 +39,20 @@ local setup_input = function(
     end or nil,
     on_submit = function(commit_summary)
       if commit_summary ~= "" then
+        local origin_url = vim
+          .system({ "git", "remote", "get-url", "origin" }, { cwd = Util.root() })
+          :wait().stdout
         util.async_run_sh(
           "git "
             .. git_subcommand
             .. ' -m "'
             .. commit_summary:gsub('["`$]', "\\%1")
-            .. '" && git push --force-if-includes --force-with-lease',
+            .. '"'
+            .. (
+              (origin_url and origin_url:match("thebengeu"))
+                and " && git push --force-if-includes --force-with-lease"
+              or ""
+            ),
           { cwd = root },
           function()
             saved_commit_summary = nil
