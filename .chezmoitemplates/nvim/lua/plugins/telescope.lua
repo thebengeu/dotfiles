@@ -188,7 +188,6 @@ return {
         {
           "<leader>sg",
           Util.telescope("live_grep", {
-            additional_args = { "--follow" },
             cwd = false,
           }),
           desc = "Grep (cwd)",
@@ -204,7 +203,7 @@ return {
         {
           "<leader>sI",
           Util.telescope("live_grep", {
-            additional_args = { "--follow", "--no-ignore" },
+            additional_args = { "--no-ignore" },
             cwd = false,
           }),
           desc = "Grep (cwd ignored)",
@@ -249,7 +248,7 @@ return {
         },
         vimgrep_arguments = vim.list_extend(
           vim.fn.copy(require("telescope.config").values.vimgrep_arguments),
-          { "--hidden" }
+          { "--follow", "--hidden" }
         ),
         winblend = 5,
       })
