@@ -69,6 +69,14 @@ vim.keymap.set(
   { desc = "Pull" }
 )
 
+vim.keymap.set("n", "<leader>gr", function()
+  util.async_run_sh(
+    "cd '"
+      .. require("lazyvim.util").root()
+      .. "' && git push && gh pr create --fill && gh pr view --web"
+  )
+end, { desc = "Create PR" })
+
 vim.keymap.set(
   "n",
   "<leader>gw",
