@@ -31,6 +31,8 @@ aliases: {
 	grm: "glow README.md"
 	hb:  "hyperfine 'bash -i -c exit'"
 	hbn: "hyperfine 'bash --noprofile --norc -i -c exit'"
+	icd: "cd ~/infra"
+	in:  "TERM=wezterm nvim --cmd 'cd ~/infra'"
 	j:   "just"
 	jd:  "just dev"
 	lg:  "lazygit"
