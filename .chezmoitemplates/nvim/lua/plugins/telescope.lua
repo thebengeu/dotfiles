@@ -97,7 +97,10 @@ return {
         },
         {
           "<leader>ff",
-          Util.telescope("find_files", { cwd = false }),
+          Util.telescope("find_files", {
+            cwd = false,
+            follow = true,
+          }),
           desc = "Find Files (cwd)",
         },
         { "<leader>fF", false },
@@ -163,37 +166,26 @@ return {
         },
         {
           "<leader>sg",
-          Util.telescope("live_grep", { cwd = false }),
+          Util.telescope("live_grep", {
+            additional_args = { "--follow" },
+            cwd = false,
+          }),
           desc = "Grep (cwd)",
         },
         { "<leader>sG", false },
         {
           "<leader>si",
-          function()
-            Util.telescope("live_grep", {
-              vimgrep_arguments = vim.list_extend(
-                vim.fn.copy(
-                  require("telescope.config").values.vimgrep_arguments
-                ),
-                { "--no-ignore" }
-              ),
-            })()
-          end,
+          Util.telescope("live_grep", {
+            additional_args = { "--no-ignore" },
+          }),
           desc = "Grep (root dir ignored)",
         },
         {
           "<leader>sI",
-          function()
-            Util.telescope("live_grep", {
-              cwd = false,
-              vimgrep_arguments = vim.list_extend(
-                vim.fn.copy(
-                  require("telescope.config").values.vimgrep_arguments
-                ),
-                { "--no-ignore" }
-              ),
-            })()
-          end,
+          Util.telescope("live_grep", {
+            additional_args = { "--follow", "--no-ignore" },
+            cwd = false,
+          }),
           desc = "Grep (cwd ignored)",
         },
         {
