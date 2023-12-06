@@ -229,9 +229,15 @@ return {
   },
   {
     "akinsho/toggleterm.nvim",
-    keys = "<C-/>",
+    keys = {
+      {
+        "<C-/>",
+        function()
+          require("toggleterm").toggle(vim.v.count1, nil, Util.root())
+        end,
+      },
+    },
     opts = {
-      open_mapping = "<C-/>",
       persist_mode = false,
       shell = "fish",
     },
