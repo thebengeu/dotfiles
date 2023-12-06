@@ -1,4 +1,5 @@
 local Util = require("lazyvim.util")
+local util = require("util")
 
 return {
   {
@@ -148,17 +149,17 @@ return {
           desc = "Recent (root dir)",
         },
         {
-          "<leader>gB",
-          delta_diffview_git_picker("bcommits"),
-          desc = "Buffer commits",
-        },
-        {
           "<leader>gb",
           Util.telescope(
             "git_branches",
             { show_remote_tracking_branches = false }
           ),
           desc = "Branches",
+        },
+        {
+          "<leader>gC",
+          delta_diffview_git_picker("bcommits"),
+          desc = "Buffer commits",
         },
         {
           "<leader>gc",

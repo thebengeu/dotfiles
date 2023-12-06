@@ -86,6 +86,17 @@ M.async_run = function(command, callback)
   end)
 end
 
+M.async_run_git = function(sub_command)
+  return function()
+    M.async_run(
+      vim.list_extend(
+        { "git", "-C", require("lazyvim.util").root() },
+        sub_command
+      )
+    )
+  end
+end
+
 M.async_run_sh = function(command, callback)
   return M.async_run({ "sh", "-c", command }, callback)
 end
