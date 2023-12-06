@@ -189,7 +189,7 @@ end, { desc = "Commit" })
 vim.keymap.set("n", "<leader>gA", function()
   vim.cmd.update()
 
-  require("telescope.builtin").git_commits({
+  Util.telescope("git_commits", {
     attach_mappings = function()
       local actions = require("telescope.actions")
 
@@ -205,8 +205,7 @@ vim.keymap.set("n", "<leader>gA", function()
 
       return true
     end,
-    use_file_path = true,
-  })
+  })()
 end, { desc = "Amend Selected Commit" })
 
 vim.keymap.set("n", "<leader>ga", function()
