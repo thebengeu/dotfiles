@@ -49,6 +49,7 @@ aliases: {
 	rm:  "trash"
 	scc: #"scc --not-match "package-lock.json|pnpm-lock.yaml""#
 	scd: "cd ~/supabase"
+	st:  "speedtest"
 	tb:  "time bash -i -c exit"
 	tbn: "time bash --noprofile --norc -i -c exit"
 	t:   "tsx"
