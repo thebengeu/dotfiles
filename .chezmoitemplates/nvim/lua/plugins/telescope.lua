@@ -97,6 +97,14 @@ return {
           desc = "Find Files (root dir)",
         },
         {
+          "<leader>fc",
+          Util.telescope(
+            "find_files",
+            { cwd = "~/.local/share/chezmoi/.chezmoitemplates/nvim" }
+          ),
+          desc = "Find Config File",
+        },
+        {
           "<leader>ff",
           Util.telescope("find_files", {
             cwd = false,
