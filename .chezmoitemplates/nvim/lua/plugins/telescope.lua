@@ -154,7 +154,10 @@ return {
         },
         {
           "<leader>gb",
-          Util.telescope("git_branches"),
+          Util.telescope(
+            "git_branches",
+            { show_remote_tracking_branches = false }
+          ),
           desc = "Branches",
         },
         {
