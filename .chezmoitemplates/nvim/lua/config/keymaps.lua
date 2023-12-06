@@ -1,4 +1,3 @@
-local Util = require("lazyvim.util")
 local util = require("util")
 
 vim.keymap.del({ "n", "x" }, "j")
@@ -48,17 +47,34 @@ if vim.g.vscode then
   return
 end
 
-local async_run_git = function(command)
-  return function()
-    util.async_run({ "git", "-C", Util.root(), command })
+vim.keymap.set("n", "<leader>gB", function()
+  local new_branch_name = vim.fn.input("New branch name: ", "beng/")
+
+  if new_branch_name then
+    util.async_run_git({ "switch", "--create", new_branch_name })()
   end
-end
+end, { desc = "New branch" })
 
-vim.keymap.set("n", "<leader>gP", async_run_git("push"), { desc = "Push" })
+vim.keymap.set(
+  "n",
+  "<leader>gP",
+  util.async_run_git({ "push" }),
+  { desc = "Push" }
+)
 
-vim.keymap.set("n", "<leader>gp", async_run_git("pull"), { desc = "Pull" })
+vim.keymap.set(
+  "n",
+  "<leader>gp",
+  util.async_run_git({ "pull" }),
+  { desc = "Pull" }
+)
 
-vim.keymap.set("n", "<leader>gw", async_run_git("wip"), { desc = "Commit WIP" })
+vim.keymap.set(
+  "n",
+  "<leader>gw",
+  util.async_run_git({ "wip" }),
+  { desc = "Commit WIP" }
+)
 
 vim.keymap.set("n", "<leader>um", function()
   ---@diagnostic disable-next-line: undefined-field
