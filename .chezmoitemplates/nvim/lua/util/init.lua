@@ -43,7 +43,7 @@ local add_lines_to_qf = function(lines, qf_item)
   )
 end
 
-M.async_run = function(command, callback)
+M.async_run = function(command, opts, callback)
   local cursor = vim.api.nvim_win_get_cursor(0)
   local qf_item = {
     col = cursor[2],
@@ -56,48 +56,47 @@ M.async_run = function(command, callback)
 
   local start_time = vim.loop.hrtime()
 
-  return vim.system(
-    command,
-    { cwd = require("lazyvim.util").root() },
-    function(system_obj)
-      local end_time = vim.loop.hrtime()
+  return vim.system(command, opts, function(system_obj)
+    local end_time = vim.loop.hrtime()
 
-      vim.schedule(function()
-        if system_obj.code == 0 then
-          vim.notify(
-            system_obj.stdout
-              .. system_obj.stderr
-              .. "Executed in "
-              .. math.floor((end_time - start_time) / 1e6)
-              .. "ms"
-          )
-        else
-          qf_item.type = "E"
+    vim.schedule(function()
+      if system_obj.code == 0 then
+        vim.notify(
+          system_obj.stdout
+            .. system_obj.stderr
+            .. "Executed in "
+            .. math.floor((end_time - start_time) / 1e6)
+            .. "ms"
+        )
+      else
+        qf_item.type = "E"
 
-          add_lines_to_qf(system_obj.stdout, qf_item)
-          add_lines_to_qf(system_obj.stderr, qf_item)
+        add_lines_to_qf(system_obj.stdout, qf_item)
+        add_lines_to_qf(system_obj.stderr, qf_item)
 
-          vim.cmd.copen()
-        end
+        vim.cmd.copen()
+      end
 
-        vim.cmd.cbottom()
+      vim.cmd.cbottom()
 
-        if callback then
-          callback(system_obj)
-        end
-      end)
-    end
-  )
+      if callback then
+        callback(system_obj)
+      end
+    end)
+  end)
 end
 
 M.async_run_git = function(sub_command)
   return function()
-    M.async_run(vim.list_extend({ "git" }, sub_command))
+    M.async_run(
+      vim.list_extend({ "git" }, sub_command),
+      { cwd = require("lazyvim.util").root() }
+    )
   end
 end
 
-M.async_run_sh = function(command, callback)
-  return M.async_run({ "sh", "-c", command }, callback)
+M.async_run_sh = function(command, opts, callback)
+  return M.async_run({ "sh", "-c", command }, opts, callback)
 end
 
 M.highlights = {}

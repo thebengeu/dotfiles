@@ -28,7 +28,6 @@ local setup_input = function(
   default_message
 )
   local Input = require("nui.input")
-  local gitWithRoot = "git -C " .. root .. " "
 
   local input = Input(popup_options("Commit Summary"), {
     default_value = default_message or saved_commit_summary,
@@ -36,18 +35,17 @@ local setup_input = function(
       saved_commit_summary = commit_summary
     end,
     on_close = reset_on_close and function()
-      vim.system({ "git", "-C", root, "reset" })
+      vim.system({ "git", "reset" }, { cwd = root })
     end or nil,
     on_submit = function(commit_summary)
       if commit_summary ~= "" then
         util.async_run_sh(
-          gitWithRoot
+          "git "
             .. git_subcommand
             .. ' -m "'
             .. commit_summary:gsub('["`$]', "\\%1")
-            .. '" && '
-            .. gitWithRoot
-            .. " push --force-if-includes --force-with-lease",
+            .. '" && git push --force-if-includes --force-with-lease',
+          { cwd = root },
           function()
             saved_commit_summary = nil
             require("gitsigns").refresh()
@@ -117,15 +115,15 @@ local setup_layout = function(input, term)
   return layout
 end
 
-local termopen_git_diff = function(gitWithRoot, term, no_changes)
+local termopen_git_diff = function(root, term, no_changes)
   vim.api.nvim_buf_call(term.bufnr, function()
     vim.fn.termopen(
-      gitWithRoot
-        .. "diff "
+      "git diff "
         .. (no_changes and "@^" or "--cached")
         .. " | delta --pager never"
         .. (vim.o.columns > 160 and " --side-by-side" or ""),
       {
+        cwd = root,
         on_stdout = function()
           local first_visible_line_num = vim.fn.line("w0", term.winid)
 
@@ -148,20 +146,16 @@ local termopen_git_diff = function(gitWithRoot, term, no_changes)
 end
 
 local system_sh_code = function(cmd)
-  return vim.system({ "sh", "-c", cmd }):wait().code
+  return vim.system({ "sh", "-c", cmd }, { cwd = Util.root() }):wait().code
 end
 
 local git_commit = function(git_command, default_message)
   local Popup = require("nui.popup")
   local root = Util.root()
-  local gitWithRoot = "git -C " .. root .. " "
 
-  local has_staged = system_sh_code(gitWithRoot .. "diff --cached --quiet") ~= 0
+  local has_staged = system_sh_code("git diff --cached --quiet") ~= 0
   local no_changes = not has_staged
-    and system_sh_code(
-        gitWithRoot .. "add --all && " .. gitWithRoot .. "diff --cached --quiet"
-      )
-      == 0
+    and system_sh_code("git add --all && git diff --cached --quiet") == 0
 
   if no_changes and not default_message then
     vim.notify("No changes found", vim.log.levels.WARN)
@@ -178,7 +172,7 @@ local git_commit = function(git_command, default_message)
   local layout = setup_layout(input, term)
 
   layout:mount()
-  termopen_git_diff(gitWithRoot, term, no_changes)
+  termopen_git_diff(root, term, no_changes)
 end
 
 vim.keymap.set("n", "<leader>k", function()
@@ -213,7 +207,7 @@ vim.keymap.set("n", "<leader>ga", function()
   git_commit(
     "commit --amend",
     vim
-      .system({ "git", "-C", Util.root(), "show", "--format=%s", "--no-patch" })
+      .system({ "git", "show", "--format=%s", "--no-patch" }, { cwd = Util.root() })
       :wait().stdout
       :gsub("\n$", "")
   )
