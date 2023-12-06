@@ -50,7 +50,7 @@ end
 vim.keymap.set("n", "<leader>gB", function()
   local new_branch_name = vim.fn.input("New branch name: ", "beng/")
 
-  if new_branch_name ~= "" then
+  if new_branch_name a~= "" then
     util.async_run_git({ "switch", "--create", new_branch_name })()
   end
 end, { desc = "New branch" })
