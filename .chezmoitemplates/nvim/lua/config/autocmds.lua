@@ -88,7 +88,10 @@ vim.api.nvim_create_autocmd("TermClose", {
     end
 
     local delete_trailing_blank_lines = function()
-      while vim.api.nvim_buf_get_lines(buf, -2, -1, true)[1] == "" do
+      while
+        vim.api.nvim_buf_line_count(buf) > 1
+        and vim.api.nvim_buf_get_lines(buf, -2, -1, true)[1] == ""
+      do
         vim.api.nvim_buf_set_lines(buf, -2, -1, true, {})
       end
     end
