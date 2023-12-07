@@ -2,7 +2,7 @@
 corepack = "corepack prepare pnpm@latest --activate"
 [misc]
 assume_yes = true
-disable = ["vim"]
+disable = ["containers", "vim"]
 no_retry = true
 [npm]
 use_sudo = true
