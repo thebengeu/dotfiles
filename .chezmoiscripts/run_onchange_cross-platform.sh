@@ -10,6 +10,7 @@ pip3 install --upgrade --user \
 pipx install beancount
 pipx install fava
 pipx install git-revise
+pipx install gitlint-core
 pipx install http-prompt
 pipx install httpie
 pipx install khal
