@@ -15,6 +15,7 @@ README.md
 .local/bin/build_and_install_nvim
 .ssh/control-master.conf
 .inputrc
+infra/
 {{ else }}
 .config/fish/completions/fd.fish
 .config/fish/conf.d/windows.fish
