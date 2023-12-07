@@ -80,6 +80,26 @@ return {
     },
   },
   {
+    "linrongbin16/gitlinker.nvim",
+    keys = {
+      {
+        "<leader>gL",
+        "<Cmd>GitLink! blame<CR>",
+        desc = "Open Blame Permalink",
+        mode = { "n", "x" },
+      },
+      {
+        "<leader>gl",
+        "<Cmd>GitLink!<CR>",
+        desc = "Open Blob Permalink",
+        mode = { "n", "x" },
+      },
+    },
+    opts = {
+      message = true,
+    },
+  },
+  {
     "NeogitOrg/neogit",
     dependencies = "nvim-lua/plenary.nvim",
     keys = {
