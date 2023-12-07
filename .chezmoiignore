@@ -12,6 +12,7 @@ README.md
 .config/fish/completions/pipx.fish
 .config/fish/completions/qmk.fish
 .config/topgrade.toml
+.local/bin/build_and_install_nvim
 .ssh/control-master.conf
 .inputrc
 {{ else }}
@@ -43,7 +44,6 @@ Library/
 .ansible.cfg
 .chezmoiscripts/linux/*
 .hushlogin
-.local/bin/build_and_install_nvim
 .local/share/
 snap/
 {{ end }}

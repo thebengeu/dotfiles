@@ -1,6 +1,12 @@
 #!/usr/bin/env sh
-cd ~/thebengeu/neovim
+cd ~/thebengeu/neovim || exit
+make distclean
 make CMAKE_BUILD_TYPE=Release
-cd build
-cpack -G DEB
-sudo dpkg -i nvim-linux64.deb
+
+if [ -x "$(command -v dpkg)" ]; then
+	cd build || exit
+	cpack -G DEB
+	sudo dpkg -i nvim-linux64.deb
+else
+	sudo make install
+fi
