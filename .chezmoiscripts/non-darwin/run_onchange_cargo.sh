@@ -3,6 +3,7 @@ cargo binstall --no-confirm \
   du-dust \
   eza \
   hyperfine \
+  jwt-cli \
   onefetch \
   sd \
   tealdeer \
