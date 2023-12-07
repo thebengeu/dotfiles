@@ -53,9 +53,10 @@ return {
               return true
             end,
             previewer = require("telescope.previewers").new_termopen_previewer({
+              cwd = root,
               get_command = function(entry)
                 return vim.list_extend(
-                  { "git", "-C", root, "diff", entry.value .. "^!" },
+                  { "git", "diff", entry.value .. "^!" },
                   is_bcommits and { "--", entry.current_file } or {}
                 )
               end,
