@@ -22,6 +22,7 @@ end
 local saved_commit_summary
 
 local setup_input = function(
+  is_thebengeu_repo,
   root,
   reset_on_close,
   git_subcommand,
@@ -39,9 +40,6 @@ local setup_input = function(
     end or nil,
     on_submit = function(commit_summary)
       if commit_summary ~= "" then
-        local origin_url = vim
-          .system({ "git", "remote", "get-url", "origin" }, { cwd = root })
-          :wait().stdout
         util.async_run_sh(
           "git "
             .. git_subcommand
@@ -49,7 +47,7 @@ local setup_input = function(
             .. commit_summary:gsub('["`$]', "\\%1")
             .. '"'
             .. (
-              (origin_url and origin_url:match("thebengeu"))
+              is_thebengeu_repo
                 and " && git push --force-if-includes --force-with-lease"
               or ""
             ),
@@ -160,6 +158,37 @@ end
 local git_commit = function(git_command, default_message)
   local Popup = require("nui.popup")
   local root = Util.root()
+  local origin_url = vim
+    .system({ "git", "remote", "get-url", "origin" }, { cwd = root })
+    :wait().stdout
+  local is_thebengeu_repo = origin_url and origin_url:match("thebengeu")
+
+  if not is_thebengeu_repo then
+    local default_branch = vim
+      .system(
+        { "sh", "-c", "git rev-parse --abbrev-ref origin/HEAD | cut -c 8-" },
+        { cwd = root }
+      )
+      :wait().stdout
+    local current_branch = vim
+      .system({ "git", "branch", "--show-current" }, { cwd = root })
+      :wait().stdout
+
+    if current_branch == default_branch then
+      local new_branch_name = vim.fn.input("New branch name: ", "beng/")
+
+      if new_branch_name == "" then
+        return
+      end
+
+      if
+        util.sync_run({ "git", "switch", "--create", new_branch_name }).code
+        ~= 0
+      then
+        return
+      end
+    end
+  end
 
   local has_staged = system_sh_code("git diff --cached --quiet") ~= 0
   local no_changes = not has_staged
@@ -171,6 +200,7 @@ local git_commit = function(git_command, default_message)
   end
 
   local input = setup_input(
+    is_thebengeu_repo,
     root,
     not has_staged and not no_changes,
     git_command,

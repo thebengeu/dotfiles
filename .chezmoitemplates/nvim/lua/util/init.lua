@@ -129,6 +129,45 @@ M.rainbow_delimiters_hl = map(M.rainbow_colors, function(color)
   return "RainbowDelimiter" .. color
 end)
 
+M.sync_run = function(command, opts)
+  local cursor = vim.api.nvim_win_get_cursor(0)
+  local qf_item = {
+    col = cursor[2],
+    filename = vim.api.nvim_buf_get_name(0),
+    lnum = cursor[1],
+    type = "I",
+  }
+
+  add_lines_to_qf(table.concat(command, " "):gsub("^sh %-c ", ""), qf_item)
+
+  local start_time = vim.loop.hrtime()
+
+  local system_obj = vim.system(command, opts):wait()
+
+  local end_time = vim.loop.hrtime()
+
+  if system_obj.code == 0 then
+    vim.notify(
+      system_obj.stdout
+        .. system_obj.stderr
+        .. "Executed in "
+        .. math.floor((end_time - start_time) / 1e6)
+        .. "ms"
+    )
+  else
+    qf_item.type = "E"
+
+    add_lines_to_qf(system_obj.stdout, qf_item)
+    add_lines_to_qf(system_obj.stderr, qf_item)
+
+    vim.cmd.copen()
+  end
+
+  vim.cmd.cbottom()
+
+  return system_obj
+end
+
 M.visual_lines = function()
   local lines = { vim.fn.line("v"), vim.fn.line(".") }
 
