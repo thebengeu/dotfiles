@@ -40,7 +40,7 @@ local setup_input = function(
     on_submit = function(commit_summary)
       if commit_summary ~= "" then
         local origin_url = vim
-          .system({ "git", "remote", "get-url", "origin" }, { cwd = Util.root() })
+          .system({ "git", "remote", "get-url", "origin" }, { cwd = root })
           :wait().stdout
         util.async_run_sh(
           "git "
