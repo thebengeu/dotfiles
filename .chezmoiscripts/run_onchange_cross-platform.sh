@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 cargo binstall --no-confirm cargo-update
 
+gh extension install dlvhdr/gh-dash
+
 go install github.com/nao1215/gup@latest
 
 pip3 install --upgrade --user \

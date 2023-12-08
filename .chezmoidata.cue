@@ -28,6 +28,7 @@ aliases: {
 	cu:  "cargo uninstall"
 	cup: "chezmoi update --apply=false; chezmoi init; \(ca)"
 	g:   "git"
+	ghd: "gh dash"
 	grm: "glow README.md"
 	hb:  "hyperfine 'bash -i -c exit'"
 	hbn: "hyperfine 'bash --noprofile --norc -i -c exit'"
