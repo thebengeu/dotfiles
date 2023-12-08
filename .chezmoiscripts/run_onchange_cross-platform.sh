@@ -3,6 +3,7 @@ cargo binstall --no-confirm cargo-update
 
 gh extension install github/gh-copilot
 gh extension install dlvhdr/gh-dash
+gh extension install seachicken/gh-poi
 
 go install github.com/nao1215/gup@latest
 
