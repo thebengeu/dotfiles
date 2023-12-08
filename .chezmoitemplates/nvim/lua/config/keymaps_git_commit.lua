@@ -31,7 +31,7 @@ local setup_input = function(
   local Input = require("nui.input")
 
   local input = Input(popup_options("Commit Summary"), {
-    default_value = default_message or saved_commit_summary,
+    default_value = default_message or saved_commit_summary or "feat: ",
     on_change = function(commit_summary)
       saved_commit_summary = commit_summary
     end,
