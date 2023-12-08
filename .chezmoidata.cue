@@ -143,8 +143,6 @@ aliases: {
 		c:   "clone"
 		ca:  "commit --amend"
 		cm:  "commit -m"
-		co:  "checkout"
-		m:   "m"
 		pu:  "pu"
 		r:   "rebase"
 		rc:  "rebase --continue"
@@ -153,6 +151,7 @@ aliases: {
 		sa:  "stash apply"
 		sP:  "stash push"
 		sp:  "stash pop"
+		sw:  "sw"
 	}
 
 	for gitAlias, command in _directoryGitAliases & _gitAliases {

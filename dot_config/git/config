@@ -1,11 +1,12 @@
 [alias]
+	default-branch = !git rev-parse --abbrev-ref origin/HEAD | cut -c 8-
 	grep-all = !git rev-list --all | xargs git grep
 	lg = log --pretty='format:%Cgreen%ah%Creset %s'
-	m = !git switch $(git rev-parse --abbrev-ref origin/HEAD | cut -c 8-)
 	pf = push --force-if-includes --force-with-lease
 	pu = !git pull upstream $(git branch --show-current)
 	rau = !~/.config/git/template/hooks/add-upstream-auto-detected-url.sh
 	s = status --short --untracked-files
+	sw = "!git switch ${1:-$(git default-branch)} #"
 	wip = !git add --all && git commit -m 'WIP' && git push
 [core]
 	pager = delta
