@@ -1,6 +1,7 @@
 [alias]
 	grep-all = !git rev-list --all | xargs git grep
 	lg = log --pretty='format:%Cgreen%ah%Creset %s'
+	m = !git switch $(git rev-parse --abbrev-ref origin/HEAD | cut -c 8-)
 	pf = push --force-if-includes --force-with-lease
 	pu = !git pull upstream $(git branch --show-current)
 	rau = !~/.config/git/template/hooks/add-upstream-auto-detected-url.sh
