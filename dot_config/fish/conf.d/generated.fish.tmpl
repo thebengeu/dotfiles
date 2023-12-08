@@ -1,7 +1,6 @@
 {{range $environmentVariable, $value := .environmentVariables -}}
 set --export {{$environmentVariable}} {{$value}}
 {{end -}}
-set --export GH_TOKEN {{ (joinPath .chezmoi.sourceDir ".secrets.ejson" | ejsonDecrypt).github_token_repo }}
 
 {{- range $path := .paths}}
 fish_add_path --global {{$path}}
