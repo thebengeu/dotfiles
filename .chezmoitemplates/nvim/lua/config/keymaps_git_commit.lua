@@ -52,9 +52,11 @@ local setup_input = function(
               or ""
             ),
           { cwd = root },
-          function()
-            saved_commit_summary = nil
-            require("gitsigns").refresh()
+          function(system_obj)
+            if system_obj.code == 0 then
+              saved_commit_summary = nil
+              require("gitsigns").refresh()
+            end
           end
         )
       end
