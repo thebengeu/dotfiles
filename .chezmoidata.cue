@@ -142,6 +142,7 @@ aliases: {
 		ca:  "commit --amend"
 		cm:  "commit -m"
 		co:  "checkout"
+		m:   "m"
 		pu:  "pu"
 		r:   "rebase"
 		rc:  "rebase --continue"
@@ -298,7 +299,7 @@ paths: [
 		"~/.temporalio/bin",
 	] + _wsl_paths
 	windows: [
-			"~/AppData/Roaming/Python/Python312/Scripts",
-			"/usr/bin",
+		"~/AppData/Roaming/Python/Python312/Scripts",
+		"/usr/bin",
 	] + _windows_arm64_paths
 }[_os]
