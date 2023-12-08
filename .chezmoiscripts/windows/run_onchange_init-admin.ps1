@@ -30,6 +30,7 @@ $wingetPackageIds = @(
   'direnv.direnv'
   'Ditto.Ditto'
   'Git.Git'
+  'GitHub.cli'
   'GoLang.Go'
   'gerardog.gsudo'
   'jqlang.jq'

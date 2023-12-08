@@ -29,7 +29,6 @@ $wingetPackageIds = @(
   'Mozilla.Firefox'
   'Flow-Launcher.Flow-Launcher'
   'junegunn.fzf'
-  'GitHub.cli'
   'Helix.Helix'
   'k6.k6'
   'DEVCOM.Lua'
