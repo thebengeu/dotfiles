@@ -1,7 +1,15 @@
 return {
   {
     "stevearc/conform.nvim",
-    enabled = false,
+    opts = {
+      formatters_by_ft = {
+        edn = { "zprint" },
+        json = { "fixjson", "prettier" },
+        prisma = { "prettier" },
+        toml = { "taplo" },
+        sh = { "shellharden", "shfmt" },
+      },
+    },
   },
   {
     "mfussenegger/nvim-lint",
@@ -9,23 +17,22 @@ return {
   },
   {
     "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = vim.list_extend({
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, {
         "fixjson",
         "js-debug-adapter",
-        "prettierd",
         "shellcheck",
         "shellharden",
-        "shfmt",
         "sqlfluff",
-        "stylua",
         "taplo",
         "typescript-language-server",
-        "yamlfmt",
         "yamllint",
         "zprint",
-      }, jit.os == "Linux" and { "ansible-lint" } or {}),
-    },
+      })
+      if jit.os == "Linux" then
+        vim.list_extend(opts.ensure_installed, { "ansible-lint" })
+      end
+    end,
   },
   {
     "nvimtools/none-ls.nvim",
@@ -49,20 +56,6 @@ return {
           end,
         }),
         null_ls.builtins.formatting.cue_fmt,
-        null_ls.builtins.formatting.fish_indent,
-        null_ls.builtins.formatting.fixjson,
-        null_ls.builtins.formatting.prettierd.with({
-          extra_filetypes = { "prisma" },
-          runtime_condition = function(params)
-            return not params.lsp_params.textDocument.uri:match("/ccxt/")
-          end,
-        }),
-        null_ls.builtins.formatting.shfmt,
-        null_ls.builtins.formatting.shellharden,
-        null_ls.builtins.formatting.stylua,
-        null_ls.builtins.formatting.taplo,
-        null_ls.builtins.formatting.yamlfmt,
-        null_ls.builtins.formatting.zprint,
       }
     end,
   },
