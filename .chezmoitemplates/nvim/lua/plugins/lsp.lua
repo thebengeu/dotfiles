@@ -16,6 +16,7 @@ return {
         prisma = { "prettier" },
         toml = { "taplo" },
         sh = { "shellharden", "shfmt" },
+        ["_"] = { "trim_newlines", "trim_whitespace" },
       },
     },
   },
