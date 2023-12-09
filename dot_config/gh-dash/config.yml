@@ -57,12 +57,12 @@ keybindings:
       command: >
         cd {{.RepoPath}} &&
         gh pr checkout {{.PrNumber}} &&
-        nvim -c ":DiffviewOpen $(git default-branch)...{{.HeadRefName}}"
+        TERM=wezterm nvim -c ":DiffviewOpen $(git default-branch)...{{.HeadRefName}}"
     - key: n
       command: >
         cd {{.RepoPath}} &&
         gh pr checkout {{.PrNumber}} &&
-        nvim
+        TERM=wezterm nvim
 repoPaths:
   supabase/*: ~/supabase/*
 theme:
