@@ -268,11 +268,6 @@ return {
     opts = {},
   },
   {
-    "cappyzawa/trim.nvim",
-    event = "BufWritePre",
-    opts = {},
-  },
-  {
     "RRethy/vim-illuminate",
     init = function()
       require("lazyvim.util").on_load("which-key.nvim", function()
