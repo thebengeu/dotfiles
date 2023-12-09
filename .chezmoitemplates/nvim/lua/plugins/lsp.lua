@@ -13,7 +13,28 @@ return {
   },
   {
     "mfussenegger/nvim-lint",
-    enabled = false,
+    opts = {
+      linters = {
+        shellcheck = {
+          args = {
+            "-e",
+            "SC1017",
+            "--format",
+            "json",
+            "-",
+          },
+        },
+        yamllint = {
+          condition = function(ctx)
+            return not ctx.filename:match("/Pulumi%.")
+          end,
+        },
+      },
+      linters_by_ft = {
+        sh = { "shellcheck" },
+        yaml = { "yamllint" },
+      },
+    },
   },
   {
     "williamboman/mason.nvim",
@@ -39,22 +60,6 @@ return {
     opts = function(_, opts)
       local null_ls = require("null-ls")
       opts.sources = {
-        null_ls.builtins.diagnostics.fish,
-        null_ls.builtins.diagnostics.shellcheck.with({
-          runtime_condition = function(params)
-            return not params.lsp_params.textDocument.uri:match("%.env")
-          end,
-          extra_args = { "-e", "SC1017" },
-        }),
-        null_ls.builtins.diagnostics.sqlfluff.with({
-          extra_args = { "--dialect", "postgres" },
-          timeout = 20000,
-        }),
-        null_ls.builtins.diagnostics.yamllint.with({
-          runtime_condition = function(params)
-            return not params.lsp_params.textDocument.uri:match("/Pulumi%.")
-          end,
-        }),
         null_ls.builtins.formatting.cue_fmt,
       }
     end,
