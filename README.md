@@ -1,7 +1,9 @@
 # Darwin
 
 ```console
-curl -s 'https://github.com/thebengeu/dotfiles/raw/master/.chezmoiscripts/darwin/run_onchange_init.sh' | sh
+curl -s 'https://raw.githubusercontent.com/thebengeu/dotfiles/master/.chezmoiscripts/darwin/run_onchange_init.sh' >/tmp/run_onchange_init.sh
+sh /tmp/run_onchange_init.sh
+rm /tmp/run_onchange_init.sh
 ```
 
 # Linux
