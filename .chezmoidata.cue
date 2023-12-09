@@ -293,6 +293,7 @@ paths: [
 ] + {
 	darwin: [
 		"~/Library/Python/3.11/bin",
+		"/usr/local/bin",
 	]
 	linux: [
 		"/snap/aws-cli/current/bin",
