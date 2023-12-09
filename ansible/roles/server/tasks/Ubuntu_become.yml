@@ -13,7 +13,6 @@
   when: ansible_virtualization_type != "wsl"
 - ansible.builtin.apt_repository:
     filename: docker
-    # yamllint disable-line rule:line-length
     repo: deb [arch={{ arch.stdout }} signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
   when: ansible_virtualization_type != "wsl"
 - ansible.builtin.apt_key:
@@ -33,13 +32,11 @@
     url: https://cli.github.com/packages/githubcli-archive-keyring.gpg
 - ansible.builtin.apt_repository:
     filename: github-cli
-    # yamllint disable-line rule:line-length
     repo: deb [arch={{ arch.stdout }} signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main
 - ansible.builtin.apt_key:
     keyring: /etc/apt/trusted.gpg.d/longsleep-ubuntu-golang-backports.gpg
     url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x52b59b1571a79dbc054901c0f6bc817356a3d45e
 - ansible.builtin.apt_repository:
-    # yamllint disable-line rule:line-length
     filename: longsleep-ubuntu-golang-backports-{{ ansible_distribution_release }}
     repo: ppa:longsleep/golang-backports
 - ansible.builtin.apt_key:
@@ -59,21 +56,18 @@
     url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
 - ansible.builtin.apt_repository:
     filename: nodesource
-    # yamllint disable-line rule:line-length
     repo: deb [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/node_19.x {{ ansible_distribution_release }} main
 - ansible.builtin.apt_key:
     keyring: /etc/apt/trusted.gpg.d/apt.postgresql.org.gpg
     url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
 - ansible.builtin.apt_repository:
     filename: pgdg
-    # yamllint disable-line rule:line-length
     repo: deb http://apt-archive.postgresql.org/pub/repos/apt {{ ansible_distribution_release }}-pgdg-archive main
 - ansible.builtin.apt_key:
     keyring: /etc/apt/keyrings/ookla_speedtest-cli-archive-keyring.gpg
     url: https://packagecloud.io/ookla/speedtest-cli/gpgkey
 - ansible.builtin.apt_repository:
     filename: ookla_speedtest-cli
-    # yamllint disable-line rule:line-length
     repo: deb [signed-by=/etc/apt/keyrings/ookla_speedtest-cli-archive-keyring.gpg] https://packagecloud.io/ookla/speedtest-cli/ubuntu/ {{ ansible_distribution_release }} main
 - ansible.builtin.apt_key:
     keyring: /etc/apt/trusted.gpg.d/wslutilities-ubuntu-wslu.gpg
@@ -127,9 +121,7 @@
 - ansible.builtin.apt:
     deb: "{{ item }}"
   loop:
-    # yamllint disable rule:line-length
     - https://github.com/wez/wezterm/releases/download/nightly/wezterm-nightly.Ubuntu22.04{{ (arch.stdout == 'amd64') | ternary('', "." ~ arch.stdout) }}.deb
-    # yamllint enable rule:line-length
 - ansible.builtin.group:
     name: docker
 - ansible.builtin.command:
@@ -171,7 +163,6 @@
 - ansible.builtin.get_url:
     dest: /tmp/nix-installer
     mode: "755"
-    # yamllint disable-line rule:line-length
     url: https://install.determinate.systems/nix/nix-installer-{{ ansible_machine }}-linux
 - ansible.builtin.command:
     cmd: /tmp/nix-installer install --no-confirm

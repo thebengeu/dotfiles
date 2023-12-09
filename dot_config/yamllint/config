@@ -2,5 +2,4 @@ extends: default
 
 rules:
   document-start: disable
-  line-length:
-    allow-non-breakable-inline-mappings: true
+  line-length: disable
