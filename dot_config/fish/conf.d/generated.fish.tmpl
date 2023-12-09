@@ -8,7 +8,7 @@ fish_add_path --global {{$path}}
 
 status is-interactive || exit
 
-set --global fzf_fd_opts --hidden{{if eq .chezmoi.os "windows"}} --path-separator //{{end}}
+set --global fzf_fd_opts --follow --hidden{{if eq .chezmoi.os "windows"}} --path-separator //{{end}}
 
 {{range $alias, $command := index .nonExpandedAliases -}}
 alias {{$alias}} '{{$command}}'
