@@ -1,10 +1,12 @@
 prSections:
   - title: Open
-    filters: is:open author:@me
+    filters: is:open author:@me user:supabase
   - title: Closed
     filters: is:closed author:@me
-  - title: Needs My Review
+  - title: User Review Requested
     filters: is:open user-review-requested:@me
+  - title: Team Review Requested
+    filters: is:open review-requested:@me -user-review-requested:@me
   - title: Involved
     filters: is:open involves:@me -author:@me
 issuesSections:
