@@ -96,7 +96,7 @@ return {
       },
     },
     opts = {
-      message = true,
+      message = false,
     },
   },
   {
