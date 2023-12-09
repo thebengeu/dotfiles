@@ -2,7 +2,15 @@ return {
   {
     "stevearc/conform.nvim",
     opts = {
+      formatters = {
+        cuefmt = {
+          command = "cue",
+          args = { "fmt", "$FILENAME" },
+          stdin = false,
+        },
+      },
       formatters_by_ft = {
+        cue = { "cuefmt" },
         edn = { "zprint" },
         json = { "fixjson", "prettier" },
         prisma = { "prettier" },
@@ -53,15 +61,6 @@ return {
       if jit.os == "Linux" then
         vim.list_extend(opts.ensure_installed, { "ansible-lint" })
       end
-    end,
-  },
-  {
-    "nvimtools/none-ls.nvim",
-    opts = function(_, opts)
-      local null_ls = require("null-ls")
-      opts.sources = {
-        null_ls.builtins.formatting.cue_fmt,
-      }
     end,
   },
   {
