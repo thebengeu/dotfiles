@@ -1,7 +1,12 @@
 #!/usr/bin/env sh
 if ! [ -x "$(command -v brew)" ]; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+if [ "$(uname -m)" = 'arm64' ]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+  eval "$(/usr/local/bin/brew shellenv)"
 fi
 
 brew tap shopify/shopify
@@ -35,11 +40,23 @@ if [ ! "$CHEZMOI" = 1 ]; then
   export PNPM_HOME=~/.local/share/pnpm
   export PATH=~/.cargo/bin:~/go/bin:~/Library/Python/3.11/bin:"$PNPM_HOME":"$PATH"
   chezmoi init --ssh thebengeu
-  sudo chown -R "$USER":admin /usr/local/share/icons /usr/local/share/locale
+
+  if [ "$(uname -m)" = 'x86_64' ]; then
+    sudo chown -R "$USER":admin /usr/local/share/icons /usr/local/share/locale
+  fi
+
   brew bundle install --file ~/.local/share/chezmoi/Brewfile --no-lock
   cargo install cargo-binstall
-  sudo sh -c 'echo /usr/local/bin/fish >> /etc/shells'
-  chsh -s /usr/local/bin/fish
+
+  if [ "$(uname -m)" = 'arm64' ]; then
+    sudo sh -c 'echo /opt/homebrew/bin/fish >> /etc/shells'
+    chsh -s /opt/homebrew/bin/fish
+    softwareupdate --install-rosetta
+  else
+    sudo sh -c 'echo /usr/local/bin/fish >> /etc/shells'
+    chsh -s /usr/local/bin/fish
+  fi
+
   chezmoi apply --exclude scripts
   chezmoi apply --include scripts
 fi
