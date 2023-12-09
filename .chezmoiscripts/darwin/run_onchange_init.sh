@@ -8,6 +8,7 @@ brew tap shopify/shopify
 brew install \
   1password \
   1password-cli \
+  chezmoi \
   cue \
   ejson
 
