@@ -29,10 +29,6 @@
          :rules [[:##caps_lock :left_control nil {:alone :escape}]]}
         {:des "left_control to control and escape"
          :rules [[:##left_control :left_control nil {:alone :escape}]]}
-        {:des "left_option to delete_forward"
-         :rules [[:##left_option :left_option nil {:alone :delete_forward}]]}
-        {:des "left_command to backspace"
-         :rules [[:##left_command :left_command nil {:alone :delete_or_backspace}]]}
         {:des "right_command to layer 3"
          :rules [[:##right_command ["layer" 3] nil {:alone :return_or_enter :afterup ["layer" 0]}]]}
         {:des "right_option to control-command-shift"
