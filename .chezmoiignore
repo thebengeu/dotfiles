@@ -35,6 +35,7 @@ scoop/
 .hammerspoon/
 .homebrew/
 Brewfile
+iStat Menus Settings.ismp
 Library/
 {{ end }}
 
