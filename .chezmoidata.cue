@@ -33,6 +33,7 @@ aliases: {
 	grm: "glow README.md"
 	hb:  "hyperfine 'bash -i -c exit'"
 	hbn: "hyperfine 'bash --noprofile --norc -i -c exit'"
+	ic:  "aws ec2-instance-connect ssh --os-user ubuntu --instance-id"
 	icd: "cd ~/infra"
 	in:  "TERM=wezterm nvim --cmd 'cd ~/infra'"
 	j:   "just"
