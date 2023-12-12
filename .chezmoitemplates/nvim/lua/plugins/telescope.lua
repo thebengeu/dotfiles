@@ -72,13 +72,30 @@ return {
             .new({}, {
               attach_mappings = function(prompt_bufnr)
                 local actions = require("telescope.actions")
+                local action_state = require("telescope.actions.state")
+
                 actions.select_default:replace(function()
+                  local multi_selection = action_state
+                    .get_current_picker(prompt_bufnr)
+                    :get_multi_selection()
+                  local search_dirs = {}
+
+                  if vim.tbl_isempty(multi_selection) then
+                    table.insert(
+                      search_dirs,
+                      action_state.get_selected_entry().value
+                    )
+                  else
+                    for _, selection in ipairs(multi_selection) do
+                      table.insert(search_dirs, selection.value)
+                    end
+                  end
+
                   actions.close(prompt_bufnr)
-                  Util.telescope(telescope_builtin, {
-                    cwd = cwd
-                      .. "/"
-                      .. require("telescope.actions.state").get_selected_entry().value,
-                  })()
+                  require("telescope.builtin")[telescope_builtin]({
+                    cwd = cwd,
+                    search_dirs = search_dirs,
+                  })
                 end)
                 return true
               end,
