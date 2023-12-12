@@ -1,5 +1,4 @@
 local Util = require("lazyvim.util")
-local util = require("util")
 
 return {
   {
@@ -65,26 +64,36 @@ return {
         end
       end
 
-      local get_plugin_folder = function(telescope_builtin)
+      local get_directory = function(telescope_builtin, cwd)
         return function()
-          local root = require("lazy.core.config").options.root
+          cwd = cwd or vim.loop.cwd()
+
           require("telescope.pickers")
             .new({}, {
               attach_mappings = function(prompt_bufnr)
                 local actions = require("telescope.actions")
                 actions.select_default:replace(function()
                   actions.close(prompt_bufnr)
-                  local selection =
-                    require("telescope.actions.state").get_selected_entry()
-                  Util.telescope(
-                    telescope_builtin,
-                    { cwd = root .. "/" .. selection[1] }
-                  )()
+                  Util.telescope(telescope_builtin, {
+                    cwd = cwd
+                      .. "/"
+                      .. require("telescope.actions.state").get_selected_entry().value,
+                  })()
                 end)
                 return true
               end,
-              finder = require("telescope.finders").new_table({
-                results = vim.fn.readdir(root),
+              finder = require("telescope.finders").new_oneshot_job({
+                "fd",
+                "--follow",
+                "--max-depth",
+                "1",
+                "--type",
+                "directory",
+              }, {
+                cwd = cwd,
+                entry_maker = require("telescope.make_entry").gen_from_file({
+                  cwd = cwd,
+                }),
               }),
               sorter = require("telescope.config").values.file_sorter(),
             })
@@ -107,6 +116,11 @@ return {
           desc = "Find Config File",
         },
         {
+          "<leader>fF",
+          get_directory("find_files"),
+          desc = "Find Files (subdirs)",
+        },
+        {
           "<leader>ff",
           Util.telescope("find_files", {
             cwd = false,
@@ -114,7 +128,6 @@ return {
           }),
           desc = "Find Files (cwd)",
         },
-        { "<leader>fF", false },
         {
           "<leader>fl",
           Util.telescope("find_files", {
@@ -136,7 +149,7 @@ return {
         },
         {
           "<leader>fp",
-          get_plugin_folder("find_files"),
+          get_directory("find_files", require("lazy.core.config").options.root),
           desc = "Find Plugin's Files",
         },
         {
@@ -204,13 +217,17 @@ return {
           desc = "Status",
         },
         {
+          "<leader>sG",
+          get_directory("live_grep"),
+          desc = "Grep (subdirs)",
+        },
+        {
           "<leader>sg",
           Util.telescope("live_grep", {
             cwd = false,
           }),
           desc = "Grep (cwd)",
         },
-        { "<leader>sG", false },
         {
           "<leader>si",
           Util.telescope("live_grep", {
@@ -242,7 +259,7 @@ return {
         },
         {
           "<leader>sp",
-          get_plugin_folder("live_grep"),
+          get_directory("live_grep", require("lazy.core.config").options.root),
           desc = "Grep Plugin",
         },
       })
