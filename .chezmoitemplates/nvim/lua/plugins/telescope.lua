@@ -290,6 +290,9 @@ return {
       end
 
       opts.extensions = {
+        file_browser = {
+          follow_symlinks = true,
+        },
         fzy_native = {
           override_file_sorter = true,
           override_generic_sorter = true,
