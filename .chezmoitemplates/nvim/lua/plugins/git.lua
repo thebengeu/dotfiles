@@ -88,13 +88,25 @@ return {
     keys = {
       {
         "<leader>gL",
-        "<Cmd>GitLink! blame<CR>",
+        function()
+          local cwd = vim.loop.cwd()
+
+          vim.cmd.cd(require("lazyvim.util").root())
+          vim.cmd.GitLink({ "blame", bang = true })
+          vim.cmd.cd(cwd)
+        end,
         desc = "Open Blame Permalink",
         mode = { "n", "x" },
       },
       {
         "<leader>gl",
-        "<Cmd>GitLink!<CR>",
+        function()
+          local cwd = vim.loop.cwd()
+
+          vim.cmd.cd(require("lazyvim.util").root())
+          vim.cmd.GitLink({ bang = true })
+          vim.cmd.cd(cwd)
+        end,
         desc = "Open Blob Permalink",
         mode = { "n", "x" },
       },
