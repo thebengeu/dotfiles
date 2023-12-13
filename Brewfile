@@ -138,6 +138,7 @@ cask "zoom"
 mas "Day One", id: 1055511498
 mas "Endel", id: 1346247457
 mas "NextDNS", id: 1464122853
+mas "Xcode", id: 497799835
 vscode "asvetliakov.vscode-neovim"
 vscode "bodil.file-browser"
 vscode "Catppuccin.catppuccin-vsc"
