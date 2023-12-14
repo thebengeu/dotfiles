@@ -206,6 +206,7 @@ environmentVariables: {
 	MICRO_TRUECOLOR:          1
 	PULUMI_SKIP_UPDATE_CHECK: true
 	RIPGREP_CONFIG_PATH:      "$HOME/.config/ripgrep/config"
+	USQL_PAGER:               "pspg"
 
 	{
 		_common: {
