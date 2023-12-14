@@ -19,3 +19,6 @@ Host staging
 Host prod
   Hostname p.he.sg
   User ubuntu
+
+Host *
+  StrictHostKeyChecking no
