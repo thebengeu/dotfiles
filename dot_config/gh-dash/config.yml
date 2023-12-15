@@ -1,14 +1,12 @@
 prSections:
+  - title: Backend Review Requested
+    filters: -author:@me is:open team-review-requested:supabase/backend
   - title: Open
     filters: is:open author:@me user:supabase
-  - title: Closed
-    filters: is:closed author:@me
-  - title: User Review Requested
-    filters: is:open user-review-requested:@me
-  - title: Team Review Requested
-    filters: is:open review-requested:@me -user-review-requested:@me
   - title: Involved
     filters: is:open involves:@me -author:@me
+  - title: Closed
+    filters: is:closed author:@me
 issuesSections:
   - title: Open
     filters: is:open author:@me
@@ -55,11 +53,14 @@ defaults:
 keybindings:
   issues: []
   prs:
+    - key: p
+      command: >
+        gh pr review {{.PrNumber}} --approve --repo {{.RepoName}}
     - key: D
       command: >
         cd {{.RepoPath}} &&
-        gh pr checkout {{.PrNumber}} &&
-        TERM=wezterm nvim -c ":DiffviewOpen $(git default-branch)...{{.HeadRefName}}"
+        git fetch &&
+        TERM=wezterm nvim -c ":DiffviewOpen origin/$(gh api repos/supabase/infrastructure/pulls/16268 --jq .base.ref)...origin/{{.HeadRefName}}"
     - key: n
       command: >
         cd {{.RepoPath}} &&
