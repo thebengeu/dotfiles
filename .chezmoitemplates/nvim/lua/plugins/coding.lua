@@ -337,6 +337,22 @@ return vim.list_extend(
       vscode = true,
     },
     {
+      "vuki656/package-info.nvim",
+      ft = "json",
+      keys = {
+        {
+          "<leader>cp",
+          function()
+            require("package-info").update()
+          end,
+          desc = "Update Package",
+        },
+      },
+      opts = {
+        hide_up_to_date = true,
+      },
+    },
+    {
       "ThePrimeagen/refactoring.nvim",
       keys = {
         {
