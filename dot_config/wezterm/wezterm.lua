@@ -26,29 +26,29 @@ config.colors = {
   },
 }
 config.default_cursor_style = "SteadyBar"
--- config.font = wezterm.font("PragmataProLiga NF")
--- config.font_rules = {
--- 	{
--- 		font = wezterm.font({
--- 			family = "PragmataProLiga NF",
--- 			harfbuzz_features = { "ss09" },
--- 			style = "Italic",
--- 		}),
--- 		italic = true,
--- 	},
--- }
-config.font = wezterm.font("MonoLisa Variable")
+
+-- local FONT_NAME = "MonoLisa Variable"
+-- local HARFBUZZ_FEATURES = { "ss02" }
+-- local MBP_FONT_SIZE = 16
+
+local FONT_NAME = "PragmataPro Liga"
+local HARFBUZZ_FEATURES = { "ss09" }
+local MBP_FONT_SIZE = 20
+
+config.font = wezterm.font(FONT_NAME)
 config.font_rules = {
   {
     font = wezterm.font({
-      family = "MonoLisa Variable",
-      harfbuzz_features = { "ss02" },
+      family = FONT_NAME,
+      harfbuzz_features = HARFBUZZ_FEATURES,
       style = "Italic",
     }),
     italic = true,
   },
 }
-config.font_size = wezterm.hostname():match("^mbp%-") and 16 or 13
+config.font_size = wezterm.hostname():match("^mbp%-") and MBP_FONT_SIZE
+  or (MBP_FONT_SIZE - 3)
+
 config.front_end = "OpenGL"
 config.inactive_pane_hsb = {
   saturation = 0.75,
