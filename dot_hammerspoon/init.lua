@@ -62,11 +62,6 @@ hs.hotkey.bind(
 hs.hotkey.bind(
   { "ctrl", "command", "shift" },
   "9",
-  launchOrFocusByBundleID("com.microsoft.VSCode")
-)
-hs.hotkey.bind(
-  { "ctrl", "command", "shift" },
-  "0",
   launchOrFocusByBundleID("com.github.wez.wezterm")
 )
 
