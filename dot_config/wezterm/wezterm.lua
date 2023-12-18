@@ -31,7 +31,7 @@ config.default_cursor_style = "SteadyBar"
 -- local HARFBUZZ_FEATURES = { "ss02" }
 -- local MBP_FONT_SIZE = 16
 
-local FONT_NAME = "PragmataPro Liga"
+local FONT_NAME = "PragmataPro Mono Liga"
 local HARFBUZZ_FEATURES = { "ss09" }
 local MBP_FONT_SIZE = 20
 
