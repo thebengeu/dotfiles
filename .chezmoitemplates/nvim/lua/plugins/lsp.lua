@@ -10,8 +10,8 @@ return {
         },
       },
       formatters_by_ft = {
+        clojure = { "zprint" },
         cue = { "cuefmt" },
-        edn = { "zprint" },
         json = { "fixjson", "prettier" },
         prisma = { "prettier" },
         toml = { "taplo" },
