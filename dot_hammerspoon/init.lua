@@ -19,49 +19,49 @@ end
 
 hs.hotkey.bind(
   { "ctrl", "command", "shift" },
-  "1",
+  "c",
   launchOrFocusByBundleID("com.google.Chrome")
 )
 hs.hotkey.bind(
   { "ctrl", "command", "shift" },
-  "2",
-  launchOrFocusByBundleID("com.microsoft.edgemac")
-)
-hs.hotkey.bind(
-  { "ctrl", "command", "shift" },
-  "3",
-  launchOrFocusByBundleID("com.readdle.SparkDesktop")
-)
-hs.hotkey.bind(
-  { "ctrl", "command", "shift" },
-  "4",
-  launchOrFocusByBundleID("notion.id")
-)
-hs.hotkey.bind(
-  { "ctrl", "command", "shift" },
-  "5",
-  launchOrFocusByBundleID("md.obsidian")
-)
-hs.hotkey.bind(
-  { "ctrl", "command", "shift" },
-  "6",
-  launchOrFocusByBundleID("com.tinyspeck.slackmacgap")
-)
-hs.hotkey.bind(
-  { "ctrl", "command", "shift" },
-  "7",
-  launchOrFocusByBundleID("ru.keepcoder.Telegram")
-)
-hs.hotkey.bind(
-  { "ctrl", "command", "shift" },
-  "8",
+  "d",
   launchOrFocusByBundleID(
     "com.microsoft.edgemac.app.elldfnmogicegdcphgljaoaklkpcnbnn"
   )
 )
 hs.hotkey.bind(
   { "ctrl", "command", "shift" },
-  "9",
+  "e",
+  launchOrFocusByBundleID("com.microsoft.edgemac")
+)
+hs.hotkey.bind(
+  { "ctrl", "command", "shift" },
+  "m",
+  launchOrFocusByBundleID("com.readdle.SparkDesktop")
+)
+hs.hotkey.bind(
+  { "ctrl", "command", "shift" },
+  "n",
+  launchOrFocusByBundleID("notion.id")
+)
+hs.hotkey.bind(
+  { "ctrl", "command", "shift" },
+  "o",
+  launchOrFocusByBundleID("md.obsidian")
+)
+hs.hotkey.bind(
+  { "ctrl", "command", "shift" },
+  "s",
+  launchOrFocusByBundleID("com.tinyspeck.slackmacgap")
+)
+hs.hotkey.bind(
+  { "ctrl", "command", "shift" },
+  "t",
+  launchOrFocusByBundleID("ru.keepcoder.Telegram")
+)
+hs.hotkey.bind(
+  { "ctrl", "command", "shift" },
+  "w",
   launchOrFocusByBundleID("com.github.wez.wezterm")
 )
 
