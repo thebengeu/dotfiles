@@ -346,6 +346,7 @@ return vim.list_extend(
             require("package-info").update()
           end,
           desc = "Update Package",
+          ft = "json",
         },
       },
       opts = {
