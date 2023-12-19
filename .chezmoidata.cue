@@ -56,24 +56,24 @@ aliases: {
 	scc: #"scc --not-match "package-lock.json|pnpm-lock.yaml""#
 	scd: "cd ~/supabase"
 	st:  "speedtest"
-	tb:  "time bash -i -c exit"
-	tbn: "time bash --noprofile --norc -i -c exit"
 	t:   "tsx"
+	// tb:  "time bash -i -c exit"
+	// tbn: "time bash --noprofile --norc -i -c exit"
 
-	for shellAndFlags, noConfigFlag in {
-		"fish --interactive": "--no-config"
-		"nu --interactive":   "--no-config-file"
-		"powershell":         "-NoProfile"
-		"pwsh --interactive": "-NoProfile"
-		"zsh --interactive":  "--no-rcs"
-	} {
-		let _shell_prefix = "\(regexp.Find("^p?.", shellAndFlags))"
-
-		"h\(_shell_prefix)":  "hyperfine '\(shellAndFlags) -c exit'"
-		"h\(_shell_prefix)n": "hyperfine '\(shellAndFlags) \(noConfigFlag) -c exit'"
-		"t\(_shell_prefix)":  "time \(shellAndFlags) -c exit"
-		"t\(_shell_prefix)n": "time \(shellAndFlags) -\(noConfigFlag) -c exit"
-	}
+	// for shellAndFlags, noConfigFlag in {
+	// 	"fish --interactive": "--no-config"
+	// 	"nu --interactive":   "--no-config-file"
+	// 	"powershell":         "-NoProfile"
+	// 	"pwsh --interactive": "-NoProfile"
+	// 	"zsh --interactive":  "--no-rcs"
+	// } {
+	// 	let _shell_prefix = "\(regexp.Find("^p?.", shellAndFlags))"
+	//
+	// 	"h\(_shell_prefix)":  "hyperfine '\(shellAndFlags) -c exit'"
+	// 	"h\(_shell_prefix)n": "hyperfine '\(shellAndFlags) \(noConfigFlag) -c exit'"
+	// 	"t\(_shell_prefix)":  "time \(shellAndFlags) -c exit"
+	// 	"t\(_shell_prefix)n": "time \(shellAndFlags) -\(noConfigFlag) -c exit"
+	// }
 
 	{
 		_non_windows: {
