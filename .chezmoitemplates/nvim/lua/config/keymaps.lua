@@ -69,9 +69,15 @@ vim.keymap.set(
   { desc = "Pull" }
 )
 
-vim.keymap.set("n", "<leader>gr", function()
+vim.keymap.set("n", "<leader>gR", function()
   util.async_run_sh("git push && gh pr create --fill && gh pr view --web")
-end, { desc = "Create PR" })
+end, { desc = "Create Draft PR" })
+
+vim.keymap.set("n", "<leader>gr", function()
+  util.async_run_sh(
+    "git push && gh pr create --draft --fill && gh pr view --web"
+  )
+end, { desc = "Create Draft PR" })
 
 vim.keymap.set("n", "<leader>gv", function()
   util.async_run_sh("gh pr view --web")
