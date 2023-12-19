@@ -46,6 +46,4 @@ if vim.g.vscode then
 
     print(table.concat(plugins, ", "))
   end, {})
-else
-  vim.opt.scrolloff = 999
 end
