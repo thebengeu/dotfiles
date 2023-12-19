@@ -4,6 +4,7 @@ cargo binstall --no-confirm \
   eza \
   hyperfine \
   jwt-cli \
+  navi \
   onefetch \
   sd \
   tealdeer \
