@@ -296,6 +296,7 @@ paths: [
 ] + {
 	darwin: [
 		"~/Library/Python/3.11/bin",
+		"/opt/homebrew/opt/curl/bin",
 		"/usr/local/bin",
 	]
 	linux: [
