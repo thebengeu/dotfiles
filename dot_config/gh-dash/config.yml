@@ -60,7 +60,7 @@ keybindings:
       command: >
         cd {{.RepoPath}} &&
         git fetch &&
-        TERM=wezterm nvim -c ":DiffviewOpen origin/$(gh api repos/supabase/infrastructure/pulls/16268 --jq .base.ref)...origin/{{.HeadRefName}}"
+        TERM=wezterm nvim -c ":DiffviewOpen origin/$(gh api repos/{{.RepoName}}/pulls/{{.PrNumber}} --jq .base.ref)...origin/{{.HeadRefName}}"
     - key: n
       command: >
         cd {{.RepoPath}} &&
