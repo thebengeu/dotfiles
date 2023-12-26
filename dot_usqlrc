@@ -1,6 +1,8 @@
 \set PAGER pspg
+\set SYNTAX_HL_STYLE catppuccin-mocha
 \set QUIET 1
-\pset linestyle unicode
 \pset border 2
+\pset linestyle unicode
 \pset null ∅
+\pset time RFC3339
 \unset QUIET
