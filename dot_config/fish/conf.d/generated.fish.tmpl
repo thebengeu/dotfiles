@@ -3,12 +3,13 @@ set --export {{$environmentVariable}} {{$value}}
 {{end -}}
 
 {{- if eq .chezmoi.os "darwin" }}
-set --export HOMEBREW_GITHUB_API_TOKEN {{ (joinPath .chezmoi.sourceDir ".secrets.ejson" | ejsonDecrypt).github_token_repo }}
 {{if eq .chezmoi.arch "arm64" }}
 {{output "/opt/homebrew/bin/brew" "shellenv" "fish"}}
 {{else}}
 {{output "/usr/local/bin/brew" "shellenv" "fish"}}
 {{end}}
+set --export HOMEBREW_GITHUB_API_TOKEN {{ (joinPath .chezmoi.sourceDir ".secrets.ejson" | ejsonDecrypt).github_token_repo }}
+{{output "supa-admin-cli" "completion" "fish"}}
 {{end -}}
 
 {{- range $path := .paths}}
@@ -54,6 +55,5 @@ end
 {{output "direnv" "hook" "fish"}}
 {{output "fish" "-c" "starship init fish --print-full-init"}}
 {{output "fish" "-c" "fnm env --use-on-cd"}}
-{{output "supa-admin-cli" "completion" "fish"}}
 {{output "zoxide" "init" "--cmd" "cd" "fish"}}
 set --export LS_COLORS '{{ output "vivid" "generate" "catppuccin-mocha" | trim }}'
