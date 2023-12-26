@@ -94,6 +94,7 @@ brew "shopify/shopify/ejson"
 brew "yqrashawn/goku/goku"
 cask "1password"
 cask "1password-cli"
+cask "aerial"
 cask "alfred"
 cask "amazon-chime"
 cask "bartender"
@@ -147,8 +148,12 @@ cask "wezterm-nightly"
 cask "whatsapp"
 cask "yubico-yubikey-manager"
 cask "zoom"
+mas "24 Hour Wallpaper", id: 1226087575
 mas "Day One", id: 1055511498
+mas "Drafts", id: 1435957248
 mas "Endel", id: 1346247457
+mas "iA Writer", id: 775737590
+mas "Magic Window 4K", id: 689569987
 mas "NextDNS", id: 1464122853
 mas "Xcode", id: 497799835
 vscode "asvetliakov.vscode-neovim"
