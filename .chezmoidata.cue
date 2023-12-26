@@ -85,11 +85,12 @@ aliases: {
 			tm:  "\(tns) 0"
 		}
 		darwin: _non_windows & {
-			bbd: "sh -c 'cd ~/.local/share/chezmoi && brew bundle dump --file Brewfile --force && git diff Brewfile'"
-			crv: #"cp ~/Library/Application\ Support/Code/User/keybindings.json ~/.local/share/chezmoi/.chezmoitemplates/code; sed -E 's/(Theme.*").+(",)/\1\2/g' ~/Library/Application\ Support/Code/User/settings.json > ~/.local/share/chezmoi/.chezmoitemplates/code/settings.json"#
-			meb: #"open -a /Applications/Microsoft\ Edge\ Beta.app --args --proxy-server=in.he.sg:8888"#
-			med: #"open -a /Applications/Microsoft\ Edge\ Dev.app --args --proxy-server=id.he.sg:8888"#
-			wsk: "wezterm show-keys --lua"
+			bbd:  "sh -c 'cd ~/.local/share/chezmoi && brew bundle dump --file Brewfile --force && git diff Brewfile'"
+			crv:  #"cp ~/Library/Application\ Support/Code/User/keybindings.json ~/.local/share/chezmoi/.chezmoitemplates/code; sed -E 's/(Theme.*").+(",)/\1\2/g' ~/Library/Application\ Support/Code/User/settings.json > ~/.local/share/chezmoi/.chezmoitemplates/code/settings.json"#
+			meb:  #"open -a /Applications/Microsoft\ Edge\ Beta.app --args --proxy-server=in.he.sg:8888"#
+			med:  #"open -a /Applications/Microsoft\ Edge\ Dev.app --args --proxy-server=id.he.sg:8888"#
+			supa: "supa-admin-cli"
+			wsk:  "wezterm show-keys --lua"
 		}
 		linux: _non_windows & {
 			aar:         "sudo apt autoremove"
