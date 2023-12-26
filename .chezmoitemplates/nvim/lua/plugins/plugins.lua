@@ -65,7 +65,7 @@ return {
     end,
   },
   {
-    "ThePrimeagen/harpoon",
+    "thebengeu/harpoon",
     branch = "harpoon2",
     dependencies = "nvim-lua/plenary.nvim",
     opts = {},
