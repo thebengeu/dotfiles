@@ -2,6 +2,19 @@ local Util = require("lazyvim.util")
 
 return {
   {
+    "thebengeu/smart-open.nvim",
+    dependencies = "kkharji/sqlite.lua",
+    keys = {
+      {
+        "<leader><space>",
+        function()
+          require("telescope").extensions.smart_open.smart_open()
+        end,
+        desc = "Smart Open",
+      },
+    },
+  },
+  {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       {
@@ -119,11 +132,7 @@ return {
       end
 
       vim.list_extend(keys, {
-        {
-          "<leader><space>",
-          Util.telescope("find_files"),
-          desc = "Find Files (root dir)",
-        },
+        { "<leader><space>", false },
         {
           "<leader>fc",
           Util.telescope(
