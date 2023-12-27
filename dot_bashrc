@@ -10,4 +10,4 @@ shopt -s globstar
 shopt -s histappend
 
 source ~/.config/bash/generated.sh
-source /usr/share/bash-completion/bash_completion
+test -r /usr/share/bash-completion/bash_completion && source /usr/share/bash-completion/bash_completion
