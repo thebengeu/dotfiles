@@ -7,6 +7,8 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 config:set_strict_mode(true)
 
+local is_windows = wezterm.target_triple:match("%%-pc%-windows%-msvc$")
+
 config.adjust_window_size_when_changing_font_size = false
 config.color_scheme = "Catppuccin Mocha"
 config.colors = {
@@ -62,7 +64,7 @@ local launch_menu = {
   ["zsh"] = { "zsh" },
 }
 
-if wezterm.target_triple:match("%%-pc%-windows%-msvc$") then
+if is_windows then
   if wezterm.hostname() ~= "surface" then
     config.default_domain = "SSH:wsl"
   end
@@ -116,7 +118,7 @@ config.skip_close_confirmation_for_processes_named = {
   "wslhost.exe",
   "zsh.exe",
 }
-config.underline_position = "-0.2cell"
+config.underline_position = (is_windows and "-0.2" or "-0.1") .. "cell"
 config.underline_thickness = "0.05cell"
 config.warn_about_missing_glyphs = false
 config.webgpu_power_preference = "HighPerformance"
