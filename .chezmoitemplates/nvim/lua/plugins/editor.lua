@@ -171,53 +171,6 @@ return {
     vscode = true,
   },
   {
-    "ojroques/nvim-osc52",
-    cond = function()
-      if not vim.env.SSH_CONNECTION then
-        return false
-      end
-
-      local tmux = vim.env.TMUX
-
-      vim.system({ "lmn", "paste" }, nil, function(system_obj)
-        if system_obj.code == 0 then
-          vim.g.clipboard = {
-            cache_enabled = 1,
-            copy = {
-              ["*"] = { "lmn", "copy" },
-              ["+"] = { "lmn", "copy" },
-            },
-            name = "lemonade",
-            paste = {
-              ["*"] = { "lmn", "paste" },
-              ["+"] = { "lmn", "paste" },
-            },
-          }
-        elseif not tmux then
-          vim.schedule(function()
-            vim.opt.clipboard = ""
-
-            vim.api.nvim_create_autocmd("TextYankPost", {
-              callback = function()
-                if
-                  vim.v.event.operator == "y" and vim.v.event.regname == ""
-                then
-                  require("osc52").copy_register("")
-                end
-              end,
-            })
-          end)
-        end
-      end)
-
-      return not tmux
-    end,
-    lazy = true,
-    opts = {
-      silent = true,
-    },
-  },
-  {
     "gbprod/substitute.nvim",
     opts = {
       on_substitute = function()
