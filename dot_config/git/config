@@ -1,4 +1,5 @@
 [alias]
+	all = "!find . -maxdepth 2 -name .git -type d | parallel --jobs 10 git -C {}/.. $@ #"
 	default-branch = !git rev-parse --abbrev-ref origin/HEAD | cut -c 8-
 	grep-all = !git rev-list --all | xargs git grep
 	lg = log --pretty='format:%Cgreen%ah%Creset %s'
