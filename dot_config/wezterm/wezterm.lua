@@ -29,15 +29,15 @@ config.colors = {
 }
 config.default_cursor_style = "SteadyBar"
 
--- local FONT_NAME = "MonoLisa Variable"
--- local HARFBUZZ_FEATURES = { "ss02" }
--- local MBP_FONT_SIZE = 16
--- local NON_MBP_FONT_SIZE = 13
+local FONT_NAME = "MonoLisa Variable"
+local HARFBUZZ_FEATURES = { "ss02" }
+local MBP_FONT_SIZE = 16
+local NON_MBP_FONT_SIZE = 13
 
-local FONT_NAME = "PragmataPro Mono Liga"
-local HARFBUZZ_FEATURES = { "ss09" }
-local MBP_FONT_SIZE = 20
-local NON_MBP_FONT_SIZE = 16
+-- local FONT_NAME = "PragmataPro Mono Liga"
+-- local HARFBUZZ_FEATURES = { "ss09" }
+-- local MBP_FONT_SIZE = 20
+-- local NON_MBP_FONT_SIZE = 16
 
 config.font = wezterm.font(FONT_NAME)
 config.font_rules = {
