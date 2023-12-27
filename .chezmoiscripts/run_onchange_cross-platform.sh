@@ -1,4 +1,6 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
+tic -x <(curl https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo)
+
 cargo binstall --no-confirm cargo-update
 
 gh extension install github/gh-copilot
