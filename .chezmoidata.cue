@@ -190,7 +190,7 @@ aliases: {
 			"winget",
 		]
 	}[_os] {
-		for subCommand in ["install", "search", "uninstall"] {
+		for subCommand in ["install", "list", "search", "uninstall"] {
 			"\(regexp.Find("^.", packageManager)+regexp.Find("^.", subCommand))": "\(packageManager) \(subCommand)"
 		}
 	}
