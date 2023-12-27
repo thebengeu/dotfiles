@@ -1,23 +1,15 @@
 {
     "$help": "https://aka.ms/terminal-documentation",
-    "$schema": "https://aka.ms/terminal-profiles-schema",
+    "$schema": "https://aka.ms/terminal-profiles-schema-preview",
     "actions": 
     [
         {
             "command": 
             {
                 "action": "switchToTab",
-                "index": 0
+                "index": 7
             },
-            "keys": "ctrl+shift+1"
-        },
-        {
-            "command": 
-            {
-                "action": "switchToTab",
-                "index": 4
-            },
-            "keys": "ctrl+shift+5"
+            "keys": "ctrl+shift+8"
         },
         {
             "command": "unbound",
@@ -59,9 +51,17 @@
             "command": 
             {
                 "action": "switchToTab",
-                "index": 7
+                "index": 4
             },
-            "keys": "ctrl+shift+8"
+            "keys": "ctrl+shift+5"
+        },
+        {
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 0
+            },
+            "keys": "ctrl+shift+1"
         },
         {
             "command": 
@@ -195,13 +195,13 @@
                 "startingDirectory": "%USERPROFILE%"
             },
             {
-                "guid": "{55472544-8fa7-5a2c-9fb2-9e081fa9b68a}",
+                "guid": "{feb612c9-52d7-535d-b273-3744b663226e}",
                 "hidden": false,
                 "name": "Developer Command Prompt for VS 2022",
                 "source": "Windows.Terminal.VisualStudio"
             },
             {
-                "guid": "{8b895c13-a774-5f12-ad18-315ae3d66c5a}",
+                "guid": "{e349eb2d-141f-58c4-90dd-051cfdc2d5f0}",
                 "hidden": false,
                 "name": "Developer PowerShell for VS 2022",
                 "source": "Windows.Terminal.VisualStudio"
@@ -471,6 +471,7 @@
             "tab": 
             {
                 "background": "#1E1E2EFF",
+                "iconStyle": "default",
                 "showCloseButton": "always",
                 "unfocusedBackground": null
             },
@@ -482,6 +483,9 @@
             "window": 
             {
                 "applicationTheme": "dark",
+                "experimental.rainbowFrame": false,
+                "frame": null,
+                "unfocusedFrame": null,
                 "useMica": false
             }
         }
