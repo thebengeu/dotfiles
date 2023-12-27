@@ -1,5 +1,5 @@
 {{range $environmentVariable, $value := .environmentVariables -}}
-set --export {{$environmentVariable}} {{$value}}
+set --export {{$environmentVariable}} "{{$value}}"
 {{end -}}
 
 {{- if eq .chezmoi.os "darwin" }}

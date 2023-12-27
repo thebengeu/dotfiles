@@ -1,5 +1,5 @@
 {{range $environmentVariable, $value := .environmentVariables -}}
-export {{$environmentVariable}}={{$value}}
+export {{$environmentVariable}}="{{$value}}"
 {{end -}}
 
 {{range $path := .paths -}}
