@@ -68,7 +68,12 @@ return {
               cwd = root,
               get_command = function(entry)
                 return vim.list_extend(
-                  { "git", "diff", entry.value .. "^!" },
+                  {
+                    "git",
+                    "show",
+                    "--pretty=format:%Cgreen%ah%Creset %aN%n%n%B",
+                    entry.value,
+                  },
                   is_bcommits and { "--", entry.current_file } or {}
                 )
               end,
