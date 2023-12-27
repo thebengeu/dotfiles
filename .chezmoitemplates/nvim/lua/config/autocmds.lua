@@ -2,7 +2,6 @@ if vim.g.vscode then
   return
 end
 
-local base64 = require("util.base64")
 local util = require("util")
 
 vim.api.nvim_create_autocmd("BufEnter", {
@@ -150,7 +149,7 @@ local wezterm_set_user_var = function(name, value)
   local set_user_var = "\x1b]1337;SetUserVar="
     .. name
     .. "="
-    .. base64.encode(tostring(value))
+    .. vim.base64.encode(tostring(value))
     .. "\x07"
 
   vim.fn.chansend(
