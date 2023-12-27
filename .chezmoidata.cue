@@ -8,6 +8,7 @@ import (
 _arch:     string | *"" @tag(arch,var=arch)
 _hostname: string | *"" @tag(hostname,var=hostname)
 _os:       string | *"" @tag(os,var=os)
+_env:      [if _os == "darwin" {"genv"}, "env"][0]
 
 nonExpandedAliases: {
 	l:   "eza --group-directories-first --hyperlink --icons"
@@ -35,8 +36,6 @@ aliases: {
 	hb:  "hyperfine 'bash -i -c exit'"
 	hbn: "hyperfine 'bash --noprofile --norc -i -c exit'"
 	ic:  "aws ec2-instance-connect ssh --os-user ubuntu --instance-id"
-	icd: "cd ~/infra"
-	in:  "TERM=wezterm nvim --cmd 'cd ~/infra'"
 	j:   "just"
 	jd:  "just dev"
 	lg:  "lazygit"
@@ -55,7 +54,6 @@ aliases: {
 	pxu: "pipx uninstall"
 	rm:  "trash"
 	scc: #"scc --not-match "package-lock.json|pnpm-lock.yaml""#
-	scd: "cd ~/supabase"
 	st:  "speedtest"
 	t:   "tsx"
 	// tb:  "time bash -i -c exit"
@@ -119,15 +117,18 @@ aliases: {
 	}
 
 	_aliasDirectories: {
-		c: "$HOME/.local/share/chezmoi"
-		d: "$HOME/thebengeu/drakon"
+		c:  "$HOME/.local/share/chezmoi"
+		d:  "$HOME/thebengeu/drakon"
+		s:  "$HOME/sb"
+		sb: "$HOME/supabase"
 	}
 
 	for prefix, directory in _aliasDirectories {
 		"\(prefix)cd": "cd \(directory)"
-		"\(prefix)gn": "env --chdir \(strings.Replace(directory, "$HOME", "~", -1)) \(gn)"
+		"\(prefix)gn": "\(_env) --chdir \(strings.Replace(directory, "$HOME", "~", -1)) \(gn)"
 		"\(prefix)lg": "lazygit --path \(directory)"
 		"\(prefix)n":  "TERM=wezterm nvim --cmd 'cd \(strings.Replace(directory, "$HOME", "~", -1))'"
+		"\(prefix)rg": "\(_env) --chdir \(strings.Replace(directory, "$HOME", "~", -1)) rg"
 	}
 
 	_directoryGitAliases: {
