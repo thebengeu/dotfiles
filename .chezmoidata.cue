@@ -222,7 +222,7 @@ environmentVariables: {
 		windows: {
 			LG_CONFIG_FILE:   "$APPDATA\\\\lazygit\\\\config.yml,$APPDATA\\\\lazygit\\\\mocha-lavender.yml"
 			NODE_NO_WARNINGS: 1
-			PNPM_HOME:        "~/AppData/Local/pnpm"
+			PNPM_HOME:        "$HOME/AppData/Local/pnpm"
 		}
 	}[_os]
 }
@@ -309,7 +309,7 @@ paths: [
 		"~/.temporalio/bin",
 	] + _wsl_paths
 	windows: [
-			"~/AppData/Roaming/Python/Python312/Scripts",
-			"/usr/bin",
+		"~/AppData/Roaming/Python/Python312/Scripts",
+		"/usr/bin",
 	] + _windows_arm64_paths
 }[_os]
