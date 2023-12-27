@@ -116,6 +116,7 @@ Set-Item 'Env:PNPM_HOME' "$PNPM_HOME"
 $pathsForTargets = @{
   [EnvironmentVariableTarget]::Machine = @(
     'C:\msys64\usr\bin'
+    'C:\Program Files (x86)\nvim\bin'
   )
   [EnvironmentVariableTarget]::User    = @(
     "$Env:USERPROFILE\.local\bin"
