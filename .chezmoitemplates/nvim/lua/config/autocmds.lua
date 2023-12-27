@@ -159,6 +159,52 @@ local wezterm_set_user_var = function(name, value)
   )
 end
 
+if vim.env.SSH_CONNECTION then
+  local tmux = vim.env.TMUX
+
+  local maybe_create_osc52_autocmd = function()
+    if not tmux then
+      vim.schedule(function()
+        vim.opt.clipboard = ""
+
+        local copy = require("vim.ui.clipboard.osc52").copy("+")
+
+        vim.api.nvim_create_autocmd("TextYankPost", {
+          callback = function()
+            if vim.v.event.operator == "y" and vim.v.event.regname == "" then
+              ---@diagnostic disable-next-line: param-type-mismatch
+              copy(vim.fn.getreg(vim.v.event.regname, 0, 1))
+            end
+          end,
+        })
+      end)
+    end
+  end
+
+  if vim.fn.executable("lmn") == 1 then
+    vim.system({ "lmn", "paste" }, nil, function(system_obj)
+      if system_obj.code == 0 then
+        vim.g.clipboard = {
+          cache_enabled = 1,
+          copy = {
+            ["*"] = { "lmn", "copy" },
+            ["+"] = { "lmn", "copy" },
+          },
+          name = "lemonade",
+          paste = {
+            ["*"] = { "lmn", "paste" },
+            ["+"] = { "lmn", "paste" },
+          },
+        }
+      else
+        maybe_create_osc52_autocmd()
+      end
+    end)
+  else
+    maybe_create_osc52_autocmd()
+  end
+end
+
 local serverstart_unused_port
 serverstart_unused_port = function(port)
   vim.system(
