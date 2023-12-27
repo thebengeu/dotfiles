@@ -67,15 +67,12 @@ return {
             previewer = require("telescope.previewers").new_termopen_previewer({
               cwd = root,
               get_command = function(entry)
-                return vim.list_extend(
-                  {
-                    "git",
-                    "show",
-                    "--pretty=format:%Cgreen%ah%Creset %aN%n%n%B",
-                    entry.value,
-                  },
-                  is_bcommits and { "--", entry.current_file } or {}
-                )
+                return vim.list_extend({
+                  "git",
+                  "show",
+                  "--pretty=format:%Cgreen%ah%Creset %aN%n%n%B",
+                  entry.value,
+                }, is_bcommits and { "--", entry.current_file } or {})
               end,
             }),
           })()
@@ -153,11 +150,8 @@ return {
         },
         {
           "<leader>ff",
-          Util.telescope("find_files", {
-            cwd = false,
-            follow = true,
-          }),
-          desc = "Find Files (cwd)",
+          Util.telescope("find_files", { follow = true }),
+          desc = "Find Files (root dir)",
         },
         {
           "<leader>fl",
