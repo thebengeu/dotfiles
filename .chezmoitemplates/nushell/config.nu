@@ -30,9 +30,6 @@ let external_completer = {|spans|
 }
 
 $env.config = {
-    cd: {
-        abbreviations: true
-    }
     completions: {
         external: {
             completer: $external_completer
