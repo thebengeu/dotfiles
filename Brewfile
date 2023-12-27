@@ -157,6 +157,7 @@ mas "Endel", id: 1346247457
 mas "iA Writer", id: 775737590
 mas "Magic Window 4K", id: 689569987
 mas "NextDNS", id: 1464122853
+mas "Timery", id: 1425368544
 mas "Xcode", id: 497799835
 vscode "asvetliakov.vscode-neovim"
 vscode "bodil.file-browser"
