@@ -4,13 +4,13 @@ def {{$name}} [{{$lines_and_parameters.parameters | join ", "}}] {
   {{- range $i, $parameter := $lines_and_parameters.parameters}}
     {{- $line = $line | replaceAllRegex (print "(\\$" $parameter ")") "(${1})"}}
   {{- end}}
-    {{$line | replace "cd " "z "}}
+    {{$line | replace "cd " "z " | replace "mkdir -p" "mkdir" | replace "$(" "("}}
 {{- end}}
 }
 {{end}}
 
 {{- range $alias, $command := .nonExpandedAliases | merge .aliases -}}
-  {{- if and (contains ";" $command) (not (hasPrefix "sh -c" $command))}}
+  {{- if and (or (contains ";" $command) (contains "&&" $command)) (not (hasPrefix "sh -c" $command))}}
     {{- $command = $command | replaceAllRegex "(.*)" "sh -c '${1}'"}}
   {{- else}}
     {{- $command = $command | replaceAllRegex "\\${([^}]+)}" "$$env.${1}" | replace "\\$" "$" | replaceAllRegex "\\\\([^\"])" "\\\\${1}"}}
@@ -20,4 +20,4 @@ alias {{$alias}} = {{$command | replace "$HOME" "~"}}
 {{output "atuin" "init" "nu" "--disable-ctrl-r" "--disable-up-arrow"}}
 {{output "broot" "--print-shell-function" "nushell"}}
 {{output "starship" "init" "nu"}}
-{{output "zoxide" "init" "--no-cmd" "nushell" | replace "__zoxide_z" "z"}}
+{{output "zoxide" "init" "--no-cmd" "nushell" | replace "def-env __zoxide_z" "def --env z"}}
