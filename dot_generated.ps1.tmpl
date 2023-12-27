@@ -25,7 +25,7 @@ function {{$alias}}
   {{- else if regexMatch "powershell -c \".*\"" $command}}
   {{$command | replaceAllRegex "powershell -c \"(.*)\"" "${1}" | replace "\\\"" "\"" | replace "\\$" "$"}}
   {{- else}}
-  {{$command | replaceAllRegex "\\${([^}]+)}" "$$Env:${1}" | replace "/" "\\"}} $args
+  {{$command | replaceAllRegex "\\${([^}]+)}" "$$Env:${1}" | replace "/" "\\" | replace " &&" ";"}} $args
   {{- end}}
 }
 {{else -}}
