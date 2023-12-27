@@ -204,7 +204,7 @@ environmentVariables: {
 	EJSON_KEYDIR:               "$HOME/.config/ejson/keys"
 	FZF_DEFAULT_OPTS:           "--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8,fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc,marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 	GH_USERNAME:                "thebengeu"
-	GITLINT_CONFIG:             "~/.config/gitlint/gitlint.ini"
+	GITLINT_CONFIG:             "$HOME/.config/gitlint/gitlint.ini"
 	LESS:                       "--quit-if-one-screen --RAW-CONTROL-CHARS"
 	MICRO_TRUECOLOR:            1
 	PULUMI_SKIP_UPDATE_CHECK:   true
@@ -214,7 +214,7 @@ environmentVariables: {
 	{
 		_common: {
 			LG_CONFIG_FILE: "$HOME/.config/lazygit/config.yml,$HOME/.config/lazygit/mocha-lavender.yml"
-			PNPM_HOME:      "~/.local/share/pnpm"
+			PNPM_HOME:      "$HOME/.local/share/pnpm"
 		}
 		darwin: _common
 		linux:  _common
