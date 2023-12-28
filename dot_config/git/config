@@ -34,6 +34,8 @@
 	autoStash = true
 [safe]
 	directory = *
+[url "git@github.com:"]
+	insteadOf = https://github.com/
 [user]
 	email = beng@bengeu.com
 	name = Beng Eu
