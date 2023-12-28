@@ -144,6 +144,10 @@ return {
     "epwalsh/obsidian.nvim",
     dependencies = "nvim-lua/plenary.nvim",
     event = "BufReadPre **/Obsidian/**.md",
+    keys = {
+      { "<leader>fv", "<Cmd>ObsidianQuickSwitch<CR>", desc = "Obsidian" },
+      { "<leader>sv", "<Cmd>ObsidianSearch<CR>", desc = "Obsidian" },
+    },
     opts = {
       workspaces = {
         {
