@@ -8,7 +8,9 @@ return {
       {
         "<leader><space>",
         function()
-          require("telescope").extensions.smart_open.smart_open()
+          require("telescope").extensions.smart_open.smart_open({
+            cwd = Util.root(),
+          })
         end,
         desc = "Smart Open",
       },
@@ -150,8 +152,11 @@ return {
         },
         {
           "<leader>ff",
-          Util.telescope("find_files", { follow = true }),
-          desc = "Find Files (root dir)",
+          Util.telescope("find_files", {
+            cwd = false,
+            follow = true,
+          }),
+          desc = "Find Files (cwd)",
         },
         {
           "<leader>fl",
