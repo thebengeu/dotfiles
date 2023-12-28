@@ -1,5 +1,9 @@
 local Util = require("lazyvim.util")
 
+local obsidian_vault_path = (
+  vim.env.TITLE_PREFIX == "wsl:" and "/mnt/c/Users/beng" or vim.fn.expand("~")
+) .. "/Obsidian"
+
 return {
   {
     "rmagatti/auto-session",
@@ -131,6 +135,19 @@ return {
     event = "VeryLazy",
     opts = {
       retirementAgeMins = 10,
+    },
+  },
+  {
+    "epwalsh/obsidian.nvim",
+    dependencies = "nvim-lua/plenary.nvim",
+    event = "BufReadPre " .. obsidian_vault_path .. "/**.md",
+    opts = {
+      workspaces = {
+        {
+          name = "Obsidian",
+          path = obsidian_vault_path,
+        },
+      },
     },
   },
   {
