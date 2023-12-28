@@ -1,8 +1,11 @@
 local Util = require("lazyvim.util")
 
+local path_sep = package.config:sub(1, 1)
 local obsidian_vault_path = (
   vim.env.TITLE_PREFIX == "wsl:" and "/mnt/c/Users/beng" or vim.fn.expand("~")
-) .. "/Obsidian"
+)
+  .. path_sep
+  .. "Obsidian"
 
 return {
   {
@@ -140,7 +143,7 @@ return {
   {
     "epwalsh/obsidian.nvim",
     dependencies = "nvim-lua/plenary.nvim",
-    event = "BufReadPre " .. obsidian_vault_path .. "/**.md",
+    event = "BufReadPre **/Obsidian/**.md",
     opts = {
       workspaces = {
         {
