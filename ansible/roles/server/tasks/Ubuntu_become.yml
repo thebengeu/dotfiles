@@ -40,6 +40,12 @@
     filename: longsleep-ubuntu-golang-backports-{{ ansible_distribution_release }}
     repo: ppa:longsleep/golang-backports
 - ansible.builtin.apt_key:
+    keyring: /usr/share/keyrings/cloud.google.gpg
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+- ansible.builtin.apt_repository:
+    filename: google-cloud-sdk
+    repo: deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main
+- ansible.builtin.apt_key:
     keyring: /etc/apt/trusted.gpg.d/maveonair-ubuntu-helix-editor.gpg
     url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x27642b9fd7f1a161fc2524e3355a4fa515d7c855
 - ansible.builtin.apt_repository:
