@@ -114,7 +114,7 @@ aliases: {
 	gn: string | *"neovide"
 
 	if strings.HasSuffix(_hostname, "-wsl") {
-		gn: "/mnt/c/Users/beng/.cargo/bin/neovide.exe --wsl"
+		gn: "/mnt/c/Users/beng/scoop/shims/neovide.exe --wsl"
 	}
 
 	_aliasDirectories: {
