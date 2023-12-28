@@ -14,11 +14,6 @@ return {
     opts = {},
   },
   {
-    "vuki656/package-info.nvim",
-    ft = "json",
-    opts = {},
-  },
-  {
     "blankname/vim-fish",
     ft = "fish",
   },
