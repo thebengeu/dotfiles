@@ -12,7 +12,7 @@ vim.g.root_spec = { ".git", "cwd" }
 
 vim.opt.fillchars = { eob = " " }
 vim.opt.gdefault = true
-vim.opt.guifont = "JetBrainsMono Nerd Font:h12"
+vim.opt.guifont = "JetBrainsMono Nerd Font:h13"
 vim.opt.keywordprg = ":Search"
 vim.opt.linebreak = true
 vim.opt.report = 999
