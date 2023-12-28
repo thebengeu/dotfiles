@@ -338,7 +338,7 @@ return vim.list_extend(
     },
     {
       "vuki656/package-info.nvim",
-      ft = "json",
+      event = "BufReadPre package.json",
       keys = {
         {
           "<leader>cp",
