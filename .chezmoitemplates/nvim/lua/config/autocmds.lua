@@ -159,7 +159,7 @@ local wezterm_set_user_var = function(name, value)
   )
 end
 
-if vim.env.SSH_CONNECTION then
+if vim.env.TITLE_PREFIX ~= "wsl:" and vim.env.SSH_CONNECTION then
   local tmux = vim.env.TMUX
 
   local maybe_create_osc52_autocmd = function()

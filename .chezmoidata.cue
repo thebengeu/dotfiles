@@ -289,6 +289,7 @@ _wsl_paths: [...string]
 if strings.HasSuffix(_hostname, "-wsl") {
 	_wsl_paths: [
 		"/mnt/c/Program\\ Files/Neovide",
+		"/mnt/c/Program\\ Files\\ \\(x86\\)/nvim/bin",
 	]
 }
 paths: [
