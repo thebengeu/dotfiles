@@ -2,7 +2,6 @@ AppData/**/*.tmpl
 dot_config/**/*.tmpl
 Library/**/*.tmpl
 *.ttf
-!AppData/Roaming/nushell/*
 !dot_config/bash/*
 !dot_config/ghorg/*
 !dot_config/git/*
