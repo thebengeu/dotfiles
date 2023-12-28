@@ -2,6 +2,7 @@
 sudo apt --assume-yes install \
   composer \
   dos2unix \
+  google-cloud-cli \
   helix \
   libcurl4-openssl-dev \
   libluajit-5.1-dev \
