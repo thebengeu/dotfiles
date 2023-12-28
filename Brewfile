@@ -65,6 +65,7 @@ brew "nmap"
 brew "nnn"
 brew "nushell"
 brew "onefetch"
+brew "parallel"
 brew "postgresql@14", restart_service: true
 brew "pspg"
 brew "pulumi"
