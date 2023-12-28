@@ -33,13 +33,11 @@ return {
       local cwd = vim.loop.cwd()
       local homedir = vim.loop.os_homedir()
       local goneovim_folder = homedir .. "\\scoop\\apps\\goneovim\\current"
-      local neovide_folder = (vim.env.ProgramFiles or "") .. "\\Neovide"
       local windir = vim.env.windir
 
       return {
         auto_session_enable_last_session = cwd == goneovim_folder
           or cwd == homedir
-          or cwd == neovide_folder
           or cwd == windir,
         log_level = vim.log.levels.ERROR,
         pre_save_cmds = {
