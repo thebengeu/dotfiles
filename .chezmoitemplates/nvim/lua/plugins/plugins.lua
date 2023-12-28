@@ -1,8 +1,11 @@
 local Util = require("lazyvim.util")
 
+local WSL_WINDOWS_HOMEDIR = "/mnt/c/Users/beng"
+
 local path_sep = package.config:sub(1, 1)
 local obsidian_vault_path = (
-  vim.env.TITLE_PREFIX == "wsl:" and "/mnt/c/Users/beng" or vim.fn.expand("~")
+  vim.fn.isdirectory(WSL_WINDOWS_HOMEDIR) and WSL_WINDOWS_HOMEDIR
+  or vim.loop.os_homedir()
 )
   .. path_sep
   .. "Obsidian"
