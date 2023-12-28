@@ -1,5 +1,75 @@
 local Util = require("lazyvim.util")
 
+local lazy_root = require("lazy.core.config").options.root
+
+local smart_open = function(cwd)
+  return function()
+    require("telescope").extensions.smart_open.smart_open({
+      cwd = cwd == nil and Util.root() or cwd,
+    })
+  end
+end
+
+local get_directory = function(picker_name, cwd)
+  return function()
+    cwd = cwd or vim.loop.cwd()
+
+    require("telescope.pickers")
+      .new({}, {
+        attach_mappings = function(prompt_bufnr)
+          local actions = require("telescope.actions")
+          local action_state = require("telescope.actions.state")
+
+          actions.select_default:replace(function()
+            local selected_entry_value = action_state.get_selected_entry().value
+            local multi_selection = action_state
+              .get_current_picker(prompt_bufnr)
+              :get_multi_selection()
+            local search_dirs = {}
+
+            actions.close(prompt_bufnr)
+
+            if vim.tbl_isempty(multi_selection) then
+              if picker_name == "find_files" then
+                require("telescope").extensions.smart_open.smart_open({
+                  cwd = cwd .. "/" .. selected_entry_value,
+                })
+                return
+              end
+
+              table.insert(search_dirs, selected_entry_value)
+            else
+              for _, selection in ipairs(multi_selection) do
+                table.insert(search_dirs, selection.value)
+              end
+            end
+
+            require("telescope.builtin")[picker_name]({
+              cwd = cwd,
+              search_dirs = search_dirs,
+            })
+          end)
+          return true
+        end,
+        finder = require("telescope.finders").new_oneshot_job({
+          "fd",
+          "--follow",
+          "--max-depth",
+          "1",
+          "--type",
+          "directory",
+        }, {
+          cwd = cwd,
+          entry_maker = require("telescope.make_entry").gen_from_file({
+            cwd = cwd,
+          }),
+        }),
+        sorter = require("telescope.config").values.file_sorter(),
+      })
+      :find()
+  end
+end
+
 return {
   {
     "thebengeu/smart-open.nvim",
@@ -7,12 +77,38 @@ return {
     keys = {
       {
         "<leader><space>",
-        function()
-          require("telescope").extensions.smart_open.smart_open({
-            cwd = Util.root(),
-          })
-        end,
-        desc = "Smart Open",
+        smart_open(),
+        desc = "Find Files (root dir)",
+      },
+      {
+        "<leader>fc",
+        smart_open("~/.local/share/chezmoi/.chezmoitemplates/nvim"),
+        desc = "Find Config File",
+      },
+      {
+        "<leader>fF",
+        get_directory("find_files"),
+        desc = "Find Files (subdirs)",
+      },
+      {
+        "<leader>ff",
+        smart_open(false),
+        desc = "Find Files (cwd)",
+      },
+      {
+        "<leader>fl",
+        smart_open(lazy_root .. "/LazyVim"),
+        desc = "Find LazyVim Files",
+      },
+      {
+        "<leader>fP",
+        smart_open(lazy_root),
+        desc = "Find Plugin Files",
+      },
+      {
+        "<leader>fp",
+        get_directory("find_files", lazy_root),
+        desc = "Find Plugin's Files",
       },
     },
   },
@@ -81,106 +177,15 @@ return {
         end
       end
 
-      local get_directory = function(telescope_builtin, cwd)
-        return function()
-          cwd = cwd or vim.loop.cwd()
-
-          require("telescope.pickers")
-            .new({}, {
-              attach_mappings = function(prompt_bufnr)
-                local actions = require("telescope.actions")
-                local action_state = require("telescope.actions.state")
-
-                actions.select_default:replace(function()
-                  local multi_selection = action_state
-                    .get_current_picker(prompt_bufnr)
-                    :get_multi_selection()
-                  local search_dirs = {}
-
-                  if vim.tbl_isempty(multi_selection) then
-                    table.insert(
-                      search_dirs,
-                      action_state.get_selected_entry().value
-                    )
-                  else
-                    for _, selection in ipairs(multi_selection) do
-                      table.insert(search_dirs, selection.value)
-                    end
-                  end
-
-                  actions.close(prompt_bufnr)
-                  require("telescope.builtin")[telescope_builtin]({
-                    cwd = cwd,
-                    search_dirs = search_dirs,
-                  })
-                end)
-                return true
-              end,
-              finder = require("telescope.finders").new_oneshot_job({
-                "fd",
-                "--follow",
-                "--max-depth",
-                "1",
-                "--type",
-                "directory",
-              }, {
-                cwd = cwd,
-                entry_maker = require("telescope.make_entry").gen_from_file({
-                  cwd = cwd,
-                }),
-              }),
-              sorter = require("telescope.config").values.file_sorter(),
-            })
-            :find()
-        end
-      end
-
       vim.list_extend(keys, {
         { "<leader><space>", false },
-        {
-          "<leader>fc",
-          Util.telescope(
-            "find_files",
-            { cwd = "~/.local/share/chezmoi/.chezmoitemplates/nvim" }
-          ),
-          desc = "Find Config File",
-        },
-        {
-          "<leader>fF",
-          get_directory("find_files"),
-          desc = "Find Files (subdirs)",
-        },
-        {
-          "<leader>ff",
-          Util.telescope("find_files", {
-            cwd = false,
-            follow = true,
-          }),
-          desc = "Find Files (cwd)",
-        },
-        {
-          "<leader>fl",
-          Util.telescope("find_files", {
-            cwd = require("lazy.core.config").options.root .. "/LazyVim",
-          }),
-          desc = "Find LazyVim Files",
-        },
+        { "<leader>fc", false },
+        { "<leader>fF", false },
+        { "<leader>ff", false },
         {
           "<leader>fi",
           Util.telescope("find_files", { no_ignore = true }),
           desc = "Find Files (ignored)",
-        },
-        {
-          "<leader>fP",
-          Util.telescope("find_files", {
-            cwd = require("lazy.core.config").options.root,
-          }),
-          desc = "Find Plugin Files",
-        },
-        {
-          "<leader>fp",
-          get_directory("find_files", require("lazy.core.config").options.root),
-          desc = "Find Plugin's Files",
         },
         {
           "<leader>fR",
@@ -276,20 +281,20 @@ return {
         {
           "<leader>sl",
           Util.telescope("live_grep", {
-            cwd = require("lazy.core.config").options.root .. "/LazyVim",
+            cwd = lazy_root .. "/LazyVim",
           }),
           desc = "Grep LazyVim",
         },
         {
           "<leader>sP",
           Util.telescope("live_grep", {
-            cwd = require("lazy.core.config").options.root,
+            cwd = lazy_root,
           }),
           desc = "Grep Plugins",
         },
         {
           "<leader>sp",
-          get_directory("live_grep", require("lazy.core.config").options.root),
+          get_directory("live_grep", lazy_root),
           desc = "Grep Plugin",
         },
       })
@@ -343,6 +348,9 @@ return {
         fzy_native = {
           override_file_sorter = true,
           override_generic_sorter = true,
+        },
+        smart_open = {
+          cwd_only = true,
         },
         undo = undo_opts,
       }
