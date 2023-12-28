@@ -1,4 +1,6 @@
 --follow
+--glob
+!.git/
 --hidden
 --max-columns
 1000
