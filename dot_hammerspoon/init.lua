@@ -61,6 +61,11 @@ hs.hotkey.bind(
 )
 hs.hotkey.bind(
   { "ctrl", "command", "shift" },
+  "v",
+  launchOrFocusByBundleID("com.neovide.neovide")
+)
+hs.hotkey.bind(
+  { "ctrl", "command", "shift" },
   "w",
   launchOrFocusByBundleID("com.github.wez.wezterm")
 )
