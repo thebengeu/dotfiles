@@ -24,6 +24,9 @@ ignore_branches = ['develop', 'main', 'master']
 [golang]
 disabled = true
 
+[haskell]
+disabled = true
+
 [hostname]
 # detect_env_vars = ["WEZTERM_UNIX_SOCKET"]
 format = "[$hostname]($style) "
