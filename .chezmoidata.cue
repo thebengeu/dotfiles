@@ -111,10 +111,10 @@ aliases: {
 		}
 	}[_os]
 
-	gn: string | *"neovide"
+	v: string | *"neovide"
 
 	if strings.HasSuffix(_hostname, "-wsl") {
-		gn: "/mnt/c/Users/beng/scoop/shims/neovide.exe --wsl"
+		v: "/mnt/c/Users/beng/scoop/shims/neovide.exe --wsl"
 	}
 
 	_aliasDirectories: {
@@ -126,7 +126,7 @@ aliases: {
 
 	for prefix, directory in _aliasDirectories {
 		"\(prefix)cd": "cd \(directory)"
-		"\(prefix)gn": "\(_env) --chdir \(strings.Replace(directory, "$HOME", "~", -1)) \(gn)"
+		"\(prefix)v":  "\(_env) --chdir \(strings.Replace(directory, "$HOME", "~", -1)) \(v)"
 		"\(prefix)lg": "lazygit --path \(directory)"
 		"\(prefix)n":  "TERM=wezterm nvim --cmd 'cd \(strings.Replace(directory, "$HOME", "~", -1))'"
 		"\(prefix)rg": "\(_env) --chdir \(strings.Replace(directory, "$HOME", "~", -1)) rg"
