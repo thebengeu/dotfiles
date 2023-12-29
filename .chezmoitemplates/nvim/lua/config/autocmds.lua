@@ -9,6 +9,11 @@ vim.api.nvim_create_autocmd("BufEnter", {
   pattern = "term://*",
 })
 
+vim.api.nvim_create_autocmd("BufNewFile", {
+  command = "0r ~/.config/skeletons/skeleton.sh",
+  pattern = "*.sh",
+})
+
 local skip_chezmoi_apply
 
 vim.api.nvim_create_autocmd("BufWritePost", {
