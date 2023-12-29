@@ -38,7 +38,8 @@ return {
       return {
         auto_session_enable_last_session = cwd == goneovim_folder
           or cwd == homedir
-          or cwd == windir,
+          or cwd == windir
+          or cwd == "/",
         log_level = vim.log.levels.ERROR,
         pre_save_cmds = {
           function()
