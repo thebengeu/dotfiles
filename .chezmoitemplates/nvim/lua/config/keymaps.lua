@@ -104,8 +104,13 @@ end, { desc = "Chezmoi update" })
 vim.keymap.set({ "i", "n" }, "<C-_>", "<C-/>", { remap = true })
 
 if vim.g.goneovim or vim.g.neovide then
-  vim.keymap.set("n", "<C-v>", "a<C-r>+<Esc>")
-  vim.keymap.set({ "c", "i" }, "<C-v>", "<C-r>+")
+  if jit.os == "Windows" then
+    vim.keymap.set("n", "<C-v>", "a<C-r>+<Esc>")
+    vim.keymap.set({ "c", "i" }, "<C-v>", "<C-r>+")
+  else
+    vim.keymap.set("n", "<D-v>", "a<C-r>+<Esc>")
+    vim.keymap.set({ "c", "i" }, "<D-v>", "<C-r>+")
+  end
 end
 
 require("config.keymaps_git_commit")
