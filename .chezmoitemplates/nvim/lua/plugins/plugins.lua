@@ -169,6 +169,12 @@ return {
   },
   {
     "mrjones2014/smart-splits.nvim",
+    init = function()
+      if vim.g.neovide then
+        vim.env.TERM_PROGRAM = nil
+        vim.env.WEZTERM_PANE = nil
+      end
+    end,
     keys = {
       {
         "<A-h>",
