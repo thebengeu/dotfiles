@@ -71,11 +71,6 @@ for gitRepo in _zshGitRepos {
 			stripComponents: 1
 			url:             "https://github.com/ililim/dual-key-remap/releases/download/v0.7/dual-key-remap-v0.7.zip"
 		}
-		".local/bin/dual-key-remap.exe": #ArchiveFile & {
-			path:            "dual-key-remap.exe"
-			stripComponents: 1
-			url:             "https://github.com/ililim/dual-key-remap/releases/download/v0.7/dual-key-remap-v0.7.zip"
-		}
 		".local/bin/lmn.exe": #ArchiveFile & {
 			path: "lemonade.exe"
 			url:  "https://github.com/lemonade-command/lemonade/releases/download/v1.1.1/lemonade_windows_amd64.zip"
