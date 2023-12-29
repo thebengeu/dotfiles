@@ -12,6 +12,7 @@ $scoopPackages = @(
   'make'
   'miller'
   'nasm'
+  'neovide'
   'nerd-fonts/JetBrainsMono-NF'
   'nmap'
   'sed'
