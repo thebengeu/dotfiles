@@ -21,6 +21,11 @@ return {
     },
   },
   {
+    "smjonas/inc-rename.nvim",
+    lazy = true,
+    opts = {},
+  },
+  {
     "mfussenegger/nvim-lint",
     opts = {
       linters = {
