@@ -32,11 +32,11 @@ return {
     opts = function()
       local cwd = vim.loop.cwd()
       local homedir = vim.loop.os_homedir()
-      local goneovim_folder = homedir .. "\\scoop\\apps\\goneovim\\current"
       local windir = vim.env.windir
 
       return {
-        auto_session_enable_last_session = cwd == goneovim_folder
+        ---@diagnostic disable-next-line: need-check-nil
+        auto_session_enable_last_session = cwd:match("\\scoop\\apps\\")
           or cwd == homedir
           or cwd == windir
           or cwd == "/",
