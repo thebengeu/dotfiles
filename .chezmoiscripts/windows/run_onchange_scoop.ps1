@@ -15,7 +15,9 @@ $scoopPackages = @(
   'neovide'
   'nerd-fonts/JetBrainsMono-NF'
   'nmap'
+  'poppler'
   'sed'
+  'unar'
 )
 
 scoop install $scoopPackages
