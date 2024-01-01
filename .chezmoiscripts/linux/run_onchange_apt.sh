@@ -2,6 +2,7 @@
 sudo apt --assume-yes install \
   composer \
   dos2unix \
+  ffmpegthumbnailer \
   google-cloud-cli \
   helix \
   libcurl4-openssl-dev \
@@ -14,6 +15,7 @@ sudo apt --assume-yes install \
   mosh \
   mosquitto-clients \
   msmtp-mta \
+  poppler-utils \
   ncat \
   needrestart \
   ntpdate \
@@ -24,4 +26,5 @@ sudo apt --assume-yes install \
   speedtest \
   sqlite3 \
   trash-cli \
+  unar \
   zsh
