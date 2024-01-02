@@ -125,6 +125,16 @@ return {
     opts = {},
   },
   {
+    "pwntester/octo.nvim",
+    cmd = "Octo",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+    opts = {},
+  },
+  {
     "tpope/vim-fugitive",
     cmd = { "G", "Gclog" },
   },
