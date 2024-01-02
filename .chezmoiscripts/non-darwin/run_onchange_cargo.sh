@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-cargo binstall --no-confirm \
+cargo binstall --locked --no-confirm \
   du-dust \
   eza \
   hyperfine \
@@ -11,4 +11,5 @@ cargo binstall --no-confirm \
   tere \
   tokei \
   topgrade \
-  xh
+  xh \
+  yazi-fm
