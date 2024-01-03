@@ -61,7 +61,6 @@ brew "micro"
 brew "miller"
 brew "moreutils"
 brew "navi"
-brew "neovide"
 brew "ninja"
 brew "nmap"
 brew "nnn"
@@ -110,6 +109,7 @@ cask "betterdisplay"
 cask "choosy"
 cask "daisydisk"
 cask "dash"
+cask "devutils"
 cask "discord"
 cask "docker"
 cask "element"
@@ -135,13 +135,17 @@ cask "microsoft-edge-beta"
 cask "microsoft-edge-dev"
 cask "microsoft-office"
 cask "multitouch"
+cask "neovide"
 cask "notion"
+cask "numi"
 cask "obsidian"
+cask "parsify"
 cask "raindropio"
 cask "raycast"
 cask "readdle-spark"
 cask "rectangle-pro"
 cask "slack"
+cask "soulver"
 cask "spotify"
 cask "steam"
 cask "steermouse"
@@ -158,12 +162,14 @@ cask "whatsapp"
 cask "yubico-yubikey-manager"
 cask "zoom"
 mas "24 Hour Wallpaper", id: 1226087575
+mas "Calca", id: 635758264
 mas "Day One", id: 1055511498
 mas "Drafts", id: 1435957248
 mas "Endel", id: 1346247457
 mas "iA Writer", id: 775737590
 mas "Magic Window 4K", id: 689569987
 mas "NextDNS", id: 1464122853
+mas "PopClip", id: 445189367
 mas "Timery", id: 1425368544
 mas "Xcode", id: 497799835
 vscode "asvetliakov.vscode-neovim"
