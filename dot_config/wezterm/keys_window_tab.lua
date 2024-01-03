@@ -42,13 +42,6 @@ function M.apply_to_config(config)
         spawn_or_focus_window(1)
       end),
     },
-    {
-      key = ")",
-      mods = "SHIFT|ALT|CTRL",
-      action = wezterm.action_callback(function()
-        spawn_or_focus_window(2)
-      end),
-    },
   })
 
   for i, key in ipairs({
@@ -72,13 +65,6 @@ function M.apply_to_config(config)
       mods = "SHIFT|ALT",
       action = wezterm.action_callback(function()
         spawn_or_activate_tab(i)(spawn_or_focus_window(1))
-      end),
-    })
-    table.insert(config.keys, {
-      key = key,
-      mods = "SHIFT|ALT|CTRL",
-      action = wezterm.action_callback(function()
-        spawn_or_activate_tab(i)(spawn_or_focus_window(2))
       end),
     })
   end
