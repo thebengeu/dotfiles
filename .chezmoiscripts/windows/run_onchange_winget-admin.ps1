@@ -48,6 +48,7 @@ $wingetPackageIds = @(
   'SlackTechnologies.Slack'
   'Readdle.Spark'
   'Ookla.Speedtest.CLI'
+  'commercialhaskell.stack'
   'StartIsBack.StartAllBack'
   'Microsoft.VisualStudioCode'
   'JetBrains.WebStorm'
