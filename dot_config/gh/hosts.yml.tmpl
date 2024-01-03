@@ -1,0 +1,7 @@
+github.com:
+    git_protocol: ssh
+    users:
+        thebengeu:
+            oauth_token: {{ (joinPath .chezmoi.sourceDir ".secrets.ejson" | ejsonDecrypt).github_oauth_token }}
+    user: thebengeu
+    oauth_token: {{ (joinPath .chezmoi.sourceDir ".secrets.ejson" | ejsonDecrypt).github_oauth_token }}
