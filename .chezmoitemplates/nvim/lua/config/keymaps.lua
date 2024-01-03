@@ -99,7 +99,7 @@ vim.keymap.set("n", "<leader>um", function()
   vim.opt.mouse = vim.opt.mouse:get().a and "" or "a"
 end, { desc = "Toggle Mouse" })
 
-vim.keymap.set("n", "<leader>cu", function()
+vim.keymap.set("n", "<leader>cU", function()
   util.async_run_sh(
     "chezmoi update --apply=false; chezmoi init; chezmoi apply --exclude scripts; chezmoi apply --include scripts"
   )

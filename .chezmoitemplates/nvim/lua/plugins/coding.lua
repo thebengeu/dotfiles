@@ -341,7 +341,7 @@ return vim.list_extend(
       event = "BufReadPre package.json",
       keys = {
         {
-          "<leader>cp",
+          "<leader>cu",
           function()
             require("package-info").update()
           end,
