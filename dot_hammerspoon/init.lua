@@ -51,6 +51,11 @@ hs.hotkey.bind(
 )
 hs.hotkey.bind(
   { "ctrl", "option", "shift" },
+  "p",
+  launchOrFocusByBundleID("com.brettterpstra.marked2")
+)
+hs.hotkey.bind(
+  { "ctrl", "option", "shift" },
   "s",
   launchOrFocusByBundleID("com.tinyspeck.slackmacgap")
 )
