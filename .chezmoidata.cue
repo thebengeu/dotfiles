@@ -27,6 +27,8 @@ aliases: {
 	ci:  "cargo binstall --no-confirm"
 	cr:  "chezmoi re-add"
 	cs:  "glow ~/thebengeu/cheatsheet/README.md"
+	csn: "TERM=wezterm nvim ~/thebengeu/cheatsheet/README.md"
+	csv: "neovide ~/thebengeu/cheatsheet/README.md"
 	cu:  "cargo uninstall"
 	cup: "chezmoi update --apply=false; chezmoi init; \(ca)"
 	g:   "git"
