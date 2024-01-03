@@ -18,54 +18,54 @@ local launchOrFocusByBundleID = function(bundleID)
 end
 
 hs.hotkey.bind(
-  { "ctrl", "command", "shift" },
+  { "ctrl", "option", "shift" },
   "c",
   launchOrFocusByBundleID("com.google.Chrome")
 )
 hs.hotkey.bind(
-  { "ctrl", "command", "shift" },
+  { "ctrl", "option", "shift" },
   "d",
   launchOrFocusByBundleID(
     "com.microsoft.edgemac.app.elldfnmogicegdcphgljaoaklkpcnbnn"
   )
 )
 hs.hotkey.bind(
-  { "ctrl", "command", "shift" },
+  { "ctrl", "option", "shift" },
   "e",
   launchOrFocusByBundleID("com.microsoft.edgemac")
 )
 hs.hotkey.bind(
-  { "ctrl", "command", "shift" },
+  { "ctrl", "option", "shift" },
   "m",
   launchOrFocusByBundleID("com.readdle.SparkDesktop")
 )
 hs.hotkey.bind(
-  { "ctrl", "command", "shift" },
+  { "ctrl", "option", "shift" },
   "n",
   launchOrFocusByBundleID("notion.id")
 )
 hs.hotkey.bind(
-  { "ctrl", "command", "shift" },
+  { "ctrl", "option", "shift" },
   "o",
   launchOrFocusByBundleID("md.obsidian")
 )
 hs.hotkey.bind(
-  { "ctrl", "command", "shift" },
+  { "ctrl", "option", "shift" },
   "s",
   launchOrFocusByBundleID("com.tinyspeck.slackmacgap")
 )
 hs.hotkey.bind(
-  { "ctrl", "command", "shift" },
+  { "ctrl", "option", "shift" },
   "t",
   launchOrFocusByBundleID("ru.keepcoder.Telegram")
 )
 hs.hotkey.bind(
-  { "ctrl", "command", "shift" },
+  { "ctrl", "option", "shift" },
   "v",
   launchOrFocusByBundleID("com.neovide.neovide")
 )
 hs.hotkey.bind(
-  { "ctrl", "command", "shift" },
+  { "ctrl", "option", "shift" },
   "w",
   launchOrFocusByBundleID("com.github.wez.wezterm")
 )

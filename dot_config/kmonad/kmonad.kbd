@@ -15,7 +15,7 @@
 (defalias
   1   (layer-toggle 1)
   cma (tap-hold-next-release 200 tab C-M-lalt)
-  cms C-M-lsft
+  cas C-A-lsft
   ctl (tap-hold-next-release 200 esc lctl)
 )
 
@@ -24,7 +24,7 @@
   @cma _    _    _    _    _    _    _    _    _    _    _    _    _
   @ctl _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _
-  @ctl _    _              _              @1   @cms print
+  @ctl _    _              _              @1   @cas print
 )
 
 (deflayer 1
