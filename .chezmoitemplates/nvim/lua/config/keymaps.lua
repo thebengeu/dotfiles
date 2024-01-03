@@ -94,13 +94,26 @@ vim.keymap.set(
   { desc = "Commit WIP" }
 )
 
-vim.keymap.set("n", "<leader>qc", function()
-  vim.cmd.cd("~/.local/share/chezmoi")
-end, { desc = "cd chezmoi" })
+local cd = function(directory)
+  return function()
+    local AutoSession = require("auto-session")
 
-vim.keymap.set("n", "<leader>qs", function()
-  vim.cmd.cd("~/sb")
-end, { desc = "cd sb" })
+    AutoSession.AutoSaveSession()
+    vim.cmd("%bd!")
+    vim.cmd("clearjumps")
+    vim.cmd.cd(directory)
+    AutoSession.AutoRestoreSession()
+  end
+end
+
+vim.keymap.set(
+  "n",
+  "<leader>qc",
+  cd("~/.local/share/chezmoi"),
+  { desc = "cd chezmoi" }
+)
+
+vim.keymap.set("n", "<leader>qs", cd("~/sb"), { desc = "cd sb" })
 
 vim.keymap.set("n", "<leader>um", function()
   ---@diagnostic disable-next-line: undefined-field
