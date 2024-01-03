@@ -47,6 +47,10 @@ if vim.g.vscode then
   return
 end
 
+vim.keymap.set("n", "<leader>fC", function()
+  vim.cmd.edit("~/thebengeu/cheatsheet/README.md")
+end, { desc = "Cheatsheet" })
+
 vim.keymap.set("n", "<leader>gB", function()
   local new_branch_name = vim.fn.input("New branch name: ", "beng/")
 
