@@ -94,6 +94,14 @@ vim.keymap.set(
   { desc = "Commit WIP" }
 )
 
+vim.keymap.set("n", "<leader>qc", function()
+  vim.cmd.cd("~/.local/share/chezmoi")
+end, { desc = "cd chezmoi" })
+
+vim.keymap.set("n", "<leader>qs", function()
+  vim.cmd.cd("~/sb")
+end, { desc = "cd sb" })
+
 vim.keymap.set("n", "<leader>um", function()
   ---@diagnostic disable-next-line: undefined-field
   vim.opt.mouse = vim.opt.mouse:get().a and "" or "a"
