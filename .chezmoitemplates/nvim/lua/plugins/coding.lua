@@ -186,6 +186,25 @@ return vim.list_extend(
       },
     },
     {
+      "chrisgrieser/nvim-rulebook",
+      keys = {
+        {
+          "<leader>ci",
+          function()
+            require("rulebook").ignoreRule()
+          end,
+          desc = "Ignore Rule",
+        },
+        {
+          "<leader>ck",
+          function()
+            require("rulebook").lookupRule()
+          end,
+          desc = "Lookup Rule",
+        },
+      },
+    },
+    {
       "L3MON4D3/LuaSnip",
       dependencies = {
         {
