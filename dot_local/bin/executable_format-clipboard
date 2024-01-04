@@ -3,12 +3,14 @@ language=$(pbpaste | guesslang | ggrep -oP ': \K.*')
 
 case $language in
 Python)
-	pbpaste | ruff check --fix --select I - | ruff format - | ghead --bytes -1 | pbcopy
+	command="ruff check --fix --select I - | ruff format -"
 	;;
 SQL)
-	pbpaste | sql-formatter --language bigquery | ghead --bytes -1 | pbcopy
+	command="sql-formatter --language bigquery"
 	;;
 *)
-	pbcopy "$language"
+	command="echo $language"
 	;;
 esac
+
+pbpaste | eval "$command" | ghead --bytes -1 | pbcopy
