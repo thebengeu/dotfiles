@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-language=$(pbpaste | guesslang | ggrep -oP ': \K.*')
+language=$(pbpaste | guesslang --probabilities | grep -Eo -m 1 'Python|SQL')
 
 echo "$language"
 
@@ -9,9 +9,6 @@ Python)
 	;;
 SQL)
 	command="sql-formatter --language bigquery"
-	;;
-*)
-	command="echo $language"
 	;;
 esac
 
