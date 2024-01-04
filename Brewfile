@@ -113,6 +113,7 @@ cask "devutils"
 cask "discord"
 cask "docker"
 cask "element"
+cask "espanso"
 cask "expressvpn"
 cask "fantastical"
 cask "flux"
@@ -129,6 +130,7 @@ cask "launchpad-manager"
 cask "ledger-live"
 cask "little-snitch"
 cask "manictime"
+cask "marked"
 cask "microsoft-auto-update"
 cask "microsoft-edge"
 cask "microsoft-edge-beta"
@@ -168,6 +170,7 @@ mas "Drafts", id: 1435957248
 mas "Endel", id: 1346247457
 mas "iA Writer", id: 775737590
 mas "Magic Window 4K", id: 689569987
+mas "Microsoft Remote Desktop", id: 1295203466
 mas "NextDNS", id: 1464122853
 mas "PopClip", id: 445189367
 mas "Timery", id: 1425368544
