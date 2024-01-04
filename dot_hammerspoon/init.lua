@@ -56,6 +56,11 @@ hs.hotkey.bind(
 )
 hs.hotkey.bind(
   { "ctrl", "option", "shift" },
+  "r",
+  launchOrFocusByBundleID("io.raindrop.macapp")
+)
+hs.hotkey.bind(
+  { "ctrl", "option", "shift" },
   "s",
   launchOrFocusByBundleID("com.tinyspeck.slackmacgap")
 )
