@@ -2,6 +2,20 @@ local Util = require("lazyvim.util")
 
 local lazy_root = require("lazy.core.config").options.root
 
+local egrepify = function(cwd, vimgrep_arguments)
+  return function()
+    require("telescope").extensions.egrepify.egrepify({
+      cwd = cwd == nil and Util.root() or cwd,
+      vimgrep_arguments = vimgrep_arguments
+          and vim.list_extend(
+            vim.fn.copy(require("telescope.config").values.vimgrep_arguments),
+            vimgrep_arguments
+          )
+        or nil,
+    })
+  end
+end
+
 local smart_open = function(cwd)
   return function()
     require("telescope").extensions.smart_open.smart_open({
@@ -44,7 +58,11 @@ local get_directory = function(picker_name, cwd)
               end
             end
 
-            require("telescope.builtin")[picker_name]({
+            (
+              picker_name == "egrepify"
+                and require("telescope").extensions.egrepify.egrepify
+              or require("telescope.builtin")[picker_name]
+            )({
               cwd = cwd,
               search_dirs = search_dirs,
             })
@@ -178,6 +196,7 @@ return {
       end
 
       vim.list_extend(keys, {
+        { "<leader>/", false },
         { "<leader><space>", false },
         { "<leader>fc", false },
         { "<leader>fF", false },
@@ -251,52 +270,8 @@ return {
           end,
           desc = "Status",
         },
-        {
-          "<leader>sG",
-          get_directory("live_grep"),
-          desc = "Grep (subdirs)",
-        },
-        {
-          "<leader>sg",
-          Util.telescope("live_grep", {
-            cwd = false,
-          }),
-          desc = "Grep (cwd)",
-        },
-        {
-          "<leader>si",
-          Util.telescope("live_grep", {
-            additional_args = { "--no-ignore" },
-          }),
-          desc = "Grep (root dir ignored)",
-        },
-        {
-          "<leader>sI",
-          Util.telescope("live_grep", {
-            additional_args = { "--no-ignore" },
-            cwd = false,
-          }),
-          desc = "Grep (cwd ignored)",
-        },
-        {
-          "<leader>sl",
-          Util.telescope("live_grep", {
-            cwd = lazy_root .. "/LazyVim",
-          }),
-          desc = "Grep LazyVim",
-        },
-        {
-          "<leader>sP",
-          Util.telescope("live_grep", {
-            cwd = lazy_root,
-          }),
-          desc = "Grep Plugins",
-        },
-        {
-          "<leader>sp",
-          get_directory("live_grep", lazy_root),
-          desc = "Grep Plugin",
-        },
+        { "<leader>sG", false },
+        { "<leader>sg", false },
       })
     end,
     opts = function(_, opts)
@@ -355,6 +330,55 @@ return {
         undo = undo_opts,
       }
     end,
+  },
+  {
+    "fdschmidt93/telescope-egrepify.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+    keys = {
+      {
+        "<leader>/",
+        egrepify(),
+        desc = "Grep (root dir)",
+      },
+      {
+        "<leader>sG",
+        get_directory("egrepify"),
+        desc = "Grep (subdirs)",
+      },
+      {
+        "<leader>sg",
+        egrepify(false),
+        desc = "Grep (cwd)",
+      },
+      {
+        "<leader>si",
+        egrepify(nil, { "--no-ignore" }),
+        desc = "Grep (root dir ignored)",
+      },
+      {
+        "<leader>sI",
+        egrepify(false, { "--no-ignore" }),
+        desc = "Grep (cwd ignored)",
+      },
+      {
+        "<leader>sl",
+        egrepify(lazy_root .. "/LazyVim"),
+        desc = "Grep LazyVim",
+      },
+      {
+        "<leader>sP",
+        egrepify(lazy_root),
+        desc = "Grep Plugins",
+      },
+      {
+        "<leader>sp",
+        get_directory("egrepify", lazy_root),
+        desc = "Grep Plugin",
+      },
+    },
   },
   {
     "nvim-telescope/telescope-file-browser.nvim",
