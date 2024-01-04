@@ -34,6 +34,11 @@ hs.hotkey.bind(
   "e",
   launchOrFocusByBundleID("com.microsoft.edgemac")
 )
+hs.hotkey.bind({ "ctrl", "option", "shift" }, "f", function()
+  hs.eventtap.keyStroke({ "cmd" }, "c")
+  hs.execute("format-clipboard", true)
+  hs.eventtap.keyStroke({ "cmd" }, "v")
+end)
 hs.hotkey.bind(
   { "ctrl", "option", "shift" },
   "m",
