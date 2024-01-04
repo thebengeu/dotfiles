@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 language=$(pbpaste | guesslang | ggrep -oP ': \K.*')
 
+echo "$language"
+
 case $language in
 Python)
 	command="ruff check --fix --select I - | ruff format -"

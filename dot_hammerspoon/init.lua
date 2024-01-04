@@ -36,8 +36,10 @@ hs.hotkey.bind(
 )
 hs.hotkey.bind({ "ctrl", "option", "shift" }, "f", function()
   hs.eventtap.keyStroke({ "cmd" }, "c")
-  hs.execute("format-clipboard", true)
+  local language = hs.execute("format-clipboard", true)
   hs.eventtap.keyStroke({ "cmd" }, "v")
+
+  print(language)
 end)
 hs.hotkey.bind(
   { "ctrl", "option", "shift" },
