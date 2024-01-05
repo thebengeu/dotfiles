@@ -186,6 +186,7 @@ return {
                 mode = c.OrganizeImportsMode.All,
               }, function(err, result)
                 if not file:match("supabase") then
+                  ---@diagnostic disable-next-line: missing-parameter
                   vim.lsp.handlers[c.CustomMethods.OrganizeImports](err, result)
                 end
 
