@@ -189,14 +189,14 @@ return vim.list_extend(
       "chrisgrieser/nvim-rulebook",
       keys = {
         {
-          "<leader>ci",
+          "<leader>xi",
           function()
             require("rulebook").ignoreRule()
           end,
           desc = "Ignore Rule",
         },
         {
-          "<leader>ck",
+          "<leader>xk",
           function()
             require("rulebook").lookupRule()
           end,
