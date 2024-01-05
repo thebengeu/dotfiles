@@ -9,7 +9,7 @@ Python)
 	command="ruff check --fix --select I - | ruff format -"
 	;;
 SQL)
-	command="sql-formatter --language bigquery"
+	command="sql-formatter --config ~/.config/sql-formatter/sql-formatter.json"
 	;;
 esac
 
