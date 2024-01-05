@@ -2,3 +2,101 @@ set editing-mode vi
 set show-mode-in-prompt on
 set vi-cmd-mode-string "\1\e[2 q\2"
 set vi-ins-mode-string "\1\e[6 q\2"
+set keymap vi-insert
+"\C-@": set-mark
+"\C-]": character-search
+"\C-_": undo
+	"\C-_": vi-undo
+"\C-a": beginning-of-line
+"\C-b": backward-char
+"\C-d": delete-char
+	"\C-d": vi-eof-maybe
+"\C-e": end-of-line
+"\C-f": forward-char
+"\C-g": abort
+"\C-k": kill-line
+"\C-l": clear-screen
+	"\C-n": menu-complete
+"\C-n": next-history
+"\C-o": operate-and-get-next
+	"\C-p": menu-complete-backward
+"\C-p": previous-history
+"\C-q": quoted-insert
+"\C-w": unix-word-rubout
+	"\C-w": vi-unix-word-rubout
+"\C-x!": possible-command-completions
+"\C-x$": possible-variable-completions
+"\C-x(": start-kbd-macro
+"\C-x)": end-kbd-macro
+"\C-x*": glob-expand-word
+"\C-x/": possible-filename-completions
+"\C-x@": possible-hostname-completions
+"\C-x\C-?": backward-kill-line
+"\C-x\C-e": edit-and-execute-command
+"\C-x\C-g": abort
+"\C-x\C-r": re-read-init-file
+"\C-x\C-u": undo
+"\C-x\C-v": display-shell-version
+"\C-x\C-x": exchange-point-and-mark
+"\C-xe": call-last-kbd-macro
+"\C-xg": glob-list-expansions
+"\C-xs": spell-correct-word
+"\C-x~": possible-username-completions
+"\e ": set-mark
+"\e!": complete-command
+"\e#": insert-comment
+"\e$": complete-variable
+"\e&": tilde-expand
+"\e*": insert-completions
+"\e-": digit-argument
+"\e.": insert-last-argument
+"\e.": yank-last-arg
+"\e/": complete-filename
+"\e0": digit-argument
+"\e1": digit-argument
+"\e2": digit-argument
+"\e3": digit-argument
+"\e4": digit-argument
+"\e5": digit-argument
+"\e6": digit-argument
+"\e7": digit-argument
+"\e8": digit-argument
+"\e9": digit-argument
+"\e<": beginning-of-history
+"\e=": possible-completions
+"\e>": end-of-history
+"\e?": possible-completions
+"\e@": complete-hostname
+	"\e\000": vi-movement-mode
+"\e\C-?": backward-kill-word
+"\e\C-]": character-search-backward
+"\e\C-b": shell-backward-word
+"\e\C-d": shell-kill-word
+"\e\C-e": shell-expand-line
+"\e\C-f": shell-forward-word
+"\e\C-g": abort
+"\e\C-h": backward-kill-word
+"\e\C-i": dynamic-complete-history
+"\e\C-l": clear-display
+"\e\C-r": revert-line
+"\e\C-t": shell-transpose-words
+"\e\C-y": yank-nth-arg
+"\e\\": delete-horizontal-space
+"\e\e": complete
+"\e^": history-expand-line
+"\e_": insert-last-argument
+"\e_": yank-last-arg
+"\eb": backward-word
+"\ec": capitalize-word
+"\ed": kill-word
+"\ef": forward-word
+"\eg": glob-complete-word
+"\el": downcase-word
+"\en": non-incremental-forward-search-history
+"\ep": non-incremental-reverse-search-history
+"\er": revert-line
+"\et": transpose-words
+"\eu": upcase-word
+"\ey": yank-pop
+"\e{": complete-into-braces
+"\e~": complete-username
