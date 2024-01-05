@@ -13,4 +13,7 @@ SQL)
 	;;
 esac
 
-pbpaste | eval "$command" | ghead --bytes -1 | pbcopy
+{
+	pbpaste | grep '^%'
+	pbpaste | grep --invert-match '^%' | eval "$command" | ghead --bytes -1
+} | tee /dev/tty | pbcopy
