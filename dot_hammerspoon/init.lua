@@ -61,6 +61,11 @@ hs.hotkey.bind(
   "p",
   launchOrFocusByBundleID("com.brettterpstra.marked2")
 )
+hs.hotkey.bind({ "ctrl", "option", "shift" }, "q", function()
+  hs.eventtap.keyStroke({ "cmd" }, "c")
+  local language = hs.execute("format-clipboard SQL", true)
+  hs.eventtap.keyStroke({ "cmd" }, "v")
+end)
 hs.hotkey.bind(
   { "ctrl", "option", "shift" },
   "r",
@@ -86,5 +91,10 @@ hs.hotkey.bind(
   "w",
   launchOrFocusByBundleID("com.github.wez.wezterm")
 )
+hs.hotkey.bind({ "ctrl", "option", "shift" }, "y", function()
+  hs.eventtap.keyStroke({ "cmd" }, "c")
+  local language = hs.execute("format-clipboard Python", true)
+  hs.eventtap.keyStroke({ "cmd" }, "v")
+end)
 
 hs.keycodes.inputSourceChanged(hs.reload)
