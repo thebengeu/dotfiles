@@ -256,6 +256,10 @@ return vim.list_extend(
       opts = function(_, opts)
         local cmp = require("cmp")
         local luasnip = require("luasnip")
+
+        opts.experimental = {
+          ghost_text = false,
+        }
         opts.mapping = vim.tbl_extend("error", opts.mapping, {
           ["<Tab>"] = cmp.mapping(function(fallback)
             if luasnip.expand_or_jumpable() then
