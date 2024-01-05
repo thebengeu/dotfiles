@@ -1,9 +1,10 @@
-#!/usr/bin/env sh
-language=$(pbpaste | guesslang --probabilities | grep -Eo -m 1 'Python|SQL')
+#!/usr/bin/env bash
+language=$(pbpaste | guesslang --probabilities | grep -Eo -m 1 'Python|Ruby|SQL')
 
 echo "$language"
 
 case $language in
+Ruby) ;&
 Python)
 	command="ruff check --fix --select I - | ruff format -"
 	;;
