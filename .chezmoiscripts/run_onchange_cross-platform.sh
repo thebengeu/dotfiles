@@ -11,6 +11,7 @@ go install github.com/nao1215/gup@latest
 
 pip3 install --upgrade --user \
   pipx \
+  pynvim \
   setuptools
 
 pipx install beancount
