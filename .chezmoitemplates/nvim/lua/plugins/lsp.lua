@@ -7,6 +7,7 @@ return {
         cue = { "cue_fmt" },
         json = { "fixjson", "prettier" },
         prisma = { "prettier" },
+        python = { "ruff_fix", "ruff_format" },
         toml = { "taplo" },
         sh = { "shellharden", "shfmt" },
         ["_"] = { "trim_newlines", "trim_whitespace" },
