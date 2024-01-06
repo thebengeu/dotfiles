@@ -22,6 +22,7 @@ pipx install http-prompt
 pipx install httpie
 pipx install khal
 pipx install neovim-remote
+pipx install poetry
 pipx install sqlfluff
 pipx install thefuck
 pipx install tox
