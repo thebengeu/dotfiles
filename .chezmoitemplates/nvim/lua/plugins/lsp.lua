@@ -2,16 +2,9 @@ return {
   {
     "stevearc/conform.nvim",
     opts = {
-      formatters = {
-        cuefmt = {
-          command = "cue",
-          args = { "fmt", "$FILENAME" },
-          stdin = false,
-        },
-      },
       formatters_by_ft = {
         clojure = { "zprint" },
-        cue = { "cuefmt" },
+        cue = { "cue_fmt" },
         json = { "fixjson", "prettier" },
         prisma = { "prettier" },
         toml = { "taplo" },
