@@ -107,6 +107,7 @@ return vim.list_extend(
           config = {
             repl_definition = {
               ["lua.chezmoitmpl"] = require("iron.fts.lua").lua,
+              python = require("iron.fts.python").ipython,
               sql = {
                 command = function()
                   return {
