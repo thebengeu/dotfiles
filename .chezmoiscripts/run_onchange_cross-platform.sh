@@ -20,6 +20,7 @@ pipx install git-revise
 pipx install gitlint-core
 pipx install http-prompt
 pipx install httpie
+pipx install --preinstall rich ipython
 pipx install khal
 pipx install neovim-remote
 pipx install poetry
