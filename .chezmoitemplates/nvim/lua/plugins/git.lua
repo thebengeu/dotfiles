@@ -34,6 +34,16 @@ return {
     },
     opts = {
       enhanced_diff_hl = true,
+      file_history_panel = {
+        log_options = {
+          git = {
+            multi_file = {
+              max_count = 1000,
+            },
+          },
+        },
+      },
+      show_help_hints = false,
     },
   },
   {
