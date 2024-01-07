@@ -25,6 +25,15 @@ return {
     "mfussenegger/nvim-lint",
     opts = {
       linters = {
+        markdownlint = {
+          condition = function(ctx)
+            local filename = ctx.filename
+
+            return filename:match("/.local/share/chezmoi/")
+              or filename:match("/supabase/")
+              or filename:match("/thebengeu/")
+          end,
+        },
         shellcheck = {
           args = {
             "-e",
