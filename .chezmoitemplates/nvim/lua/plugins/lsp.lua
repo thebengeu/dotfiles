@@ -6,6 +6,7 @@ return {
         clojure = { "zprint" },
         cue = { "cue_fmt" },
         json = { "fixjson", "prettier" },
+        just = { "just" },
         prisma = { "prettier" },
         python = { "ruff_fix", "ruff_format" },
         toml = { "taplo" },
