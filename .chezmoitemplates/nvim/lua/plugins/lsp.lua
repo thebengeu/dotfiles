@@ -7,6 +7,7 @@ return {
         cue = { "cue_fmt" },
         json = { "fixjson", "prettier" },
         just = { "just" },
+        markdown = { "markdownlint", "prettier" },
         prisma = { "prettier" },
         python = { "ruff_fix", "ruff_format" },
         toml = { "taplo" },
