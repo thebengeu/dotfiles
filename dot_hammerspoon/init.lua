@@ -19,7 +19,7 @@ end
 
 for key, bundle_id in pairs({
   c = "com.google.Chrome",
-  d = "com.microsoft.edgemac.app.elldfnmogicegdcphgljaoaklkpcnbnn",
+  d = "com.microsoft.edgemac.app.knaiokfnmjjldlfhlioejgcompgenfhb",
   e = "com.microsoft.edgemac",
   m = "com.readdle.SparkDesktop",
   n = "notion.id",
