@@ -2,6 +2,42 @@ local Util = require("lazyvim.util")
 
 local lazy_root = require("lazy.core.config").options.root
 
+local delta_diffview_git_picker = function(picker)
+  return function()
+    local is_bcommits = picker:match("bcommits")
+    local root = Util.root()
+
+    Util.telescope("git_" .. picker, {
+      attach_mappings = function()
+        local actions = require("telescope.actions")
+
+        actions.select_default:replace(function(prompt_bufnr)
+          actions.close(prompt_bufnr)
+          local entry = require("telescope.actions.state").get_selected_entry()
+          vim.cmd.DiffviewOpen(
+            entry.value
+              .. "^!"
+              .. (is_bcommits and (" -- " .. entry.current_file) or "")
+          )
+        end)
+
+        return true
+      end,
+      previewer = require("telescope.previewers").new_termopen_previewer({
+        cwd = root,
+        get_command = function(entry)
+          return vim.list_extend({
+            "git",
+            "show",
+            "--pretty=format:%Cgreen%ah%Creset %aN%n%n%B",
+            entry.value,
+          }, is_bcommits and { "--", entry.current_file } or {})
+        end,
+      }),
+    })()
+  end
+end
+
 local egrepify = function(cwd, vimgrep_arguments)
   return function()
     require("telescope").extensions.egrepify.egrepify({
@@ -158,43 +194,6 @@ return {
       },
     },
     keys = function(_, keys)
-      local delta_diffview_git_picker = function(picker)
-        return function()
-          local is_bcommits = picker:match("bcommits")
-          local root = Util.root()
-
-          Util.telescope("git_" .. picker, {
-            attach_mappings = function()
-              local actions = require("telescope.actions")
-
-              actions.select_default:replace(function(prompt_bufnr)
-                actions.close(prompt_bufnr)
-                local entry =
-                  require("telescope.actions.state").get_selected_entry()
-                vim.cmd.DiffviewOpen(
-                  entry.value
-                    .. "^!"
-                    .. (is_bcommits and (" -- " .. entry.current_file) or "")
-                )
-              end)
-
-              return true
-            end,
-            previewer = require("telescope.previewers").new_termopen_previewer({
-              cwd = root,
-              get_command = function(entry)
-                return vim.list_extend({
-                  "git",
-                  "show",
-                  "--pretty=format:%Cgreen%ah%Creset %aN%n%n%B",
-                  entry.value,
-                }, is_bcommits and { "--", entry.current_file } or {})
-              end,
-            }),
-          })()
-        end
-      end
-
       vim.list_extend(keys, {
         { "<leader>/", false },
         { "<leader><space>", false },
