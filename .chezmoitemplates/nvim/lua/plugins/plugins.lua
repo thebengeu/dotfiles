@@ -15,7 +15,7 @@ return {
     "rmagatti/auto-session",
     keys = {
       {
-        "<leader>qd",
+        "<leader>qD",
         "<Cmd>Autosession delete<CR>",
         desc = "Delete Session",
       },

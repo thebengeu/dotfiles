@@ -113,6 +113,13 @@ vim.keymap.set(
   { desc = "cd chezmoi" }
 )
 
+vim.keymap.set(
+  "n",
+  "<leader>qd",
+  cd("~/thebengeu/drakon"),
+  { desc = "cd drakon" }
+)
+
 vim.keymap.set("n", "<leader>qs", cd("~/sb"), { desc = "cd sb" })
 
 vim.keymap.set("n", "<leader>um", function()
