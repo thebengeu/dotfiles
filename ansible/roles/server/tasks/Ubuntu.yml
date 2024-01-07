@@ -83,3 +83,6 @@
     - starship
     - vivid
     - zoxide
+- ansible.builtin.command:
+    cmd: curl https://pyenv.run | bash
+    creates: ~/.pyenv
