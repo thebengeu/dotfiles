@@ -17,84 +17,39 @@ local launchOrFocusByBundleID = function(bundleID)
   end
 end
 
-hs.hotkey.bind(
-  { "ctrl", "option", "shift" },
-  "c",
-  launchOrFocusByBundleID("com.google.Chrome")
-)
-hs.hotkey.bind(
-  { "ctrl", "option", "shift" },
-  "d",
-  launchOrFocusByBundleID(
-    "com.microsoft.edgemac.app.elldfnmogicegdcphgljaoaklkpcnbnn"
+for key, bundle_id in pairs({
+  c = "com.google.Chrome",
+  d = "com.microsoft.edgemac.app.elldfnmogicegdcphgljaoaklkpcnbnn",
+  e = "com.microsoft.edgemac",
+  m = "com.readdle.SparkDesktop",
+  n = "notion.id",
+  o = "md.obsidian",
+  p = "com.brettterpstra.marked2",
+  r = "io.raindrop.macapp",
+  s = "com.tinyspeck.slackmacgap",
+  t = "ru.keepcoder.Telegram",
+  v = "com.neovide.neovide",
+  w = "com.github.wez.wezterm",
+}) do
+  hs.hotkey.bind(
+    { "ctrl", "option", "shift" },
+    key,
+    launchOrFocusByBundleID(bundle_id)
   )
-)
-hs.hotkey.bind(
-  { "ctrl", "option", "shift" },
-  "e",
-  launchOrFocusByBundleID("com.microsoft.edgemac")
-)
-hs.hotkey.bind({ "ctrl", "option", "shift" }, "f", function()
-  hs.eventtap.keyStroke({ "cmd" }, "c")
-  local language = hs.execute("format-clipboard", true)
-  hs.eventtap.keyStroke({ "cmd" }, "v")
+end
 
-  print(language)
-end)
-hs.hotkey.bind(
-  { "ctrl", "option", "shift" },
-  "m",
-  launchOrFocusByBundleID("com.readdle.SparkDesktop")
-)
-hs.hotkey.bind(
-  { "ctrl", "option", "shift" },
-  "n",
-  launchOrFocusByBundleID("notion.id")
-)
-hs.hotkey.bind(
-  { "ctrl", "option", "shift" },
-  "o",
-  launchOrFocusByBundleID("md.obsidian")
-)
-hs.hotkey.bind(
-  { "ctrl", "option", "shift" },
-  "p",
-  launchOrFocusByBundleID("com.brettterpstra.marked2")
-)
-hs.hotkey.bind({ "ctrl", "option", "shift" }, "q", function()
-  hs.eventtap.keyStroke({ "cmd" }, "c")
-  local language = hs.execute("format-clipboard SQL", true)
-  hs.eventtap.keyStroke({ "cmd" }, "v")
-end)
-hs.hotkey.bind(
-  { "ctrl", "option", "shift" },
-  "r",
-  launchOrFocusByBundleID("io.raindrop.macapp")
-)
-hs.hotkey.bind(
-  { "ctrl", "option", "shift" },
-  "s",
-  launchOrFocusByBundleID("com.tinyspeck.slackmacgap")
-)
-hs.hotkey.bind(
-  { "ctrl", "option", "shift" },
-  "t",
-  launchOrFocusByBundleID("ru.keepcoder.Telegram")
-)
-hs.hotkey.bind(
-  { "ctrl", "option", "shift" },
-  "v",
-  launchOrFocusByBundleID("com.neovide.neovide")
-)
-hs.hotkey.bind(
-  { "ctrl", "option", "shift" },
-  "w",
-  launchOrFocusByBundleID("com.github.wez.wezterm")
-)
-hs.hotkey.bind({ "ctrl", "option", "shift" }, "y", function()
-  hs.eventtap.keyStroke({ "cmd" }, "c")
-  local language = hs.execute("format-clipboard Python", true)
-  hs.eventtap.keyStroke({ "cmd" }, "v")
-end)
+for key, command in ipairs({
+  f = "format-clipboard",
+  q = "format-clipboard SQL",
+  y = "format-clipboard Python",
+}) do
+  hs.hotkey.bind({ "ctrl", "option", "shift" }, key, function()
+    hs.eventtap.keyStroke({ "cmd" }, "c")
+    local output = hs.execute(command, true)
+    hs.eventtap.keyStroke({ "cmd" }, "v")
+
+    print(output)
+  end)
+end
 
 hs.keycodes.inputSourceChanged(hs.reload)
