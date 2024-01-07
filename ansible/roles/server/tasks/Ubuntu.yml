@@ -69,8 +69,6 @@
     creates: ~/.cargo/bin/cargo-binstall
   environment:
     PATH: /usr/bin:/home/{{ ansible_user_id }}/.cargo/bin
-  loop:
-    - atuin
 - ansible.builtin.command:
     cmd: cargo binstall --no-confirm {{ item }}
     creates: ~/.cargo/bin/{{ item }}
