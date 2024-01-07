@@ -25,7 +25,7 @@ for key, bundle_id in pairs({
   n = "notion.id",
   o = "md.obsidian",
   p = "com.brettterpstra.marked2",
-  r = "io.raindrop.macapp",
+  r = "com.microsoft.edgemac.app.bndmnggfngpgmmijcogkkgglhalbpomk",
   s = "com.tinyspeck.slackmacgap",
   t = "ru.keepcoder.Telegram",
   v = "com.neovide.neovide",
