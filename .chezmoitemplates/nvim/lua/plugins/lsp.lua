@@ -10,6 +10,7 @@ return {
         python = { "ruff_fix", "ruff_format" },
         toml = { "taplo" },
         sh = { "shellharden", "shfmt" },
+        ["*"] = { "typos" },
         ["_"] = { "trim_newlines", "trim_whitespace" },
       },
     },
@@ -55,6 +56,7 @@ return {
         "sqlfluff",
         "taplo",
         "typescript-language-server",
+        "typos",
         "yamllint",
         "zprint",
       })
