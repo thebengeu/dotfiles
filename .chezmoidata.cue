@@ -152,6 +152,7 @@ aliases: {
 		c:   "clone"
 		ca:  "commit --amend"
 		cm:  "commit -m"
+		pf:  "pf"
 		pu:  "pu"
 		r:   "rebase"
 		rc:  "rebase --continue"
