@@ -238,10 +238,6 @@ return {
           "<leader>gm",
           function()
             local root = Util.root()
-            local default_branch = util.stdout_without_newline({
-              "git",
-              "default-branch",
-            })
 
             require("telescope.pickers")
               .new({}, {
@@ -250,7 +246,7 @@ return {
                   "diff",
                   "--diff-filter=d",
                   "--name-only",
-                  default_branch,
+                  "origin/HEAD",
                 }, {
                   cwd = root,
                   entry_maker = require("telescope.make_entry").gen_from_file({
@@ -263,20 +259,18 @@ return {
                     return {
                       "sh",
                       "-c",
-                      "git diff "
-                        .. default_branch
-                        .. " -- "
+                      "git diff origin/HEAD -- "
                         .. entry.value
                         .. " | delta | tail -n +5",
                     }
                   end,
                 }),
-                prompt_title = "Modified in Branch",
+                prompt_title = "origin/HEAD Diff",
                 sorter = require("telescope.config").values.file_sorter(),
               })
               :find()
           end,
-          desc = "Modified in Branch",
+          desc = "origin/HEAD Diff",
         },
         {
           "<leader>gr",
