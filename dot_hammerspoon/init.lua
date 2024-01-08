@@ -38,7 +38,7 @@ for key, bundle_id in pairs({
   )
 end
 
-for key, command in ipairs({
+for key, command in pairs({
   f = "format-clipboard",
   q = "format-clipboard SQL",
   y = "format-clipboard Python",
