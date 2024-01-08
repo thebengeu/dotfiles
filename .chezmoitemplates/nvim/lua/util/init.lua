@@ -1,3 +1,5 @@
+local util = require("lazyvim.util")
+
 local M = {}
 
 M.extra_specs = {}
@@ -88,10 +90,7 @@ end
 
 M.async_run_git = function(sub_command)
   return function()
-    M.async_run(
-      vim.list_extend({ "git" }, sub_command),
-      { cwd = require("lazyvim.util").root() }
-    )
+    M.async_run(vim.list_extend({ "git" }, sub_command), { cwd = util.root() })
   end
 end
 
@@ -141,6 +140,13 @@ M.rainbow_colors = {
 M.rainbow_delimiters_hl = map(M.rainbow_colors, function(color)
   return "RainbowDelimiter" .. color
 end)
+
+M.stdout_without_newline = function(command)
+  return vim
+    .system(command, { cwd = util.root() })
+    :wait().stdout
+    :gsub("\n$", "")
+end
 
 M.sync_run = function(command, opts)
   local cursor = vim.api.nvim_win_get_cursor(0)

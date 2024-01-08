@@ -1,4 +1,5 @@
 local Util = require("lazyvim.util")
+local util = require("util")
 
 local lazy_root = require("lazy.core.config").options.root
 
@@ -232,6 +233,50 @@ return {
           "<leader>gc",
           delta_diffview_git_picker("commits"),
           desc = "Commits",
+        },
+        {
+          "<leader>gm",
+          function()
+            local root = Util.root()
+            local default_branch = util.stdout_without_newline({
+              "git",
+              "default-branch",
+            })
+
+            require("telescope.pickers")
+              .new({}, {
+                finder = require("telescope.finders").new_oneshot_job({
+                  "git",
+                  "diff",
+                  "--diff-filter=d",
+                  "--name-only",
+                  default_branch,
+                }, {
+                  cwd = root,
+                  entry_maker = require("telescope.make_entry").gen_from_file({
+                    cwd = root,
+                  }),
+                }),
+                previewer = require("telescope.previewers").new_termopen_previewer({
+                  cwd = root,
+                  get_command = function(entry)
+                    return {
+                      "sh",
+                      "-c",
+                      "git diff "
+                        .. default_branch
+                        .. " -- "
+                        .. entry.value
+                        .. " | delta | tail -n +5",
+                    }
+                  end,
+                }),
+                prompt_title = "Modified in Branch",
+                sorter = require("telescope.config").values.file_sorter(),
+              })
+              :find()
+          end,
+          desc = "Modified in Branch",
         },
         {
           "<leader>gr",
