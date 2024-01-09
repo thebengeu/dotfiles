@@ -1,5 +1,4 @@
 local Util = require("lazyvim.util")
-local util = require("util")
 
 local lazy_root = require("lazy.core.config").options.root
 
@@ -170,17 +169,6 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
-      {
-        "prochri/telescope-all-recent.nvim",
-        dependencies = "kkharji/sqlite.lua",
-        opts = {
-          pickers = {
-            git_commits = {
-              disable = true,
-            },
-          },
-        },
-      },
       {
         "nvim-telescope/telescope-fzf-native.nvim",
         enabled = false,
