@@ -2,9 +2,6 @@ hs.loadSpoon("ReloadConfiguration")
 spoon.ReloadConfiguration:start()
 
 hs.application.enableSpotlightForNameSearches(true)
-hs.fnutils.ieach(hs.application.runningApplications(), function(app)
-  print(app:bundleID())
-end)
 
 for key, bundle_id_and_args in pairs({
   c = "com.google.Chrome",
