@@ -1,0 +1,4 @@
+export AWS_PROFILE=default
+export POETRY_ACTIVE=1
+export VIRTUAL_ENV=~/thebengeu/drakon/arb/.venv
+PATH_add $VIRTUAL_ENV/bin
