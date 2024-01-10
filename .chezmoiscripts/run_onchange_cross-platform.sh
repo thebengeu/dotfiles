@@ -9,7 +9,7 @@ gh extension install seachicken/gh-poi
 
 go install github.com/nao1215/gup@latest
 
-pip3 install --upgrade --user \
+PIP_REQUIRE_VIRTUALENV=false pip3 install --upgrade --user \
   pipx \
   pynvim \
   setuptools
