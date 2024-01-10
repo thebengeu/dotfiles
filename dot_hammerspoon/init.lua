@@ -24,7 +24,6 @@ for key, bundle_id in pairs({
   m = "com.readdle.SparkDesktop",
   n = "notion.id",
   o = "md.obsidian",
-  p = "com.brettterpstra.marked2",
   r = "com.microsoft.edgemac.app.bndmnggfngpgmmijcogkkgglhalbpomk",
   s = "com.tinyspeck.slackmacgap",
   t = "ru.keepcoder.Telegram",
@@ -37,6 +36,21 @@ for key, bundle_id in pairs({
     launchOrFocusByBundleID(bundle_id)
   )
 end
+
+hs.hotkey.bind({ "ctrl", "option", "shift" }, "p", function()
+  local bundleID = "com.brettterpstra.marked2"
+  local app = hs.application(bundleID)
+
+  if app then
+    if app:isFrontmost() then
+      app:hide()
+    else
+      app:setFrontmost()
+    end
+  else
+    os.execute("open -b " .. bundleID .. " ~/thebengeu/cheatsheet/README.md")
+  end
+end)
 
 for key, command in pairs({
   f = "format-clipboard",
