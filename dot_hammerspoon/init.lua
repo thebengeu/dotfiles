@@ -6,51 +6,42 @@ hs.fnutils.ieach(hs.application.runningApplications(), function(app)
   print(app:bundleID())
 end)
 
-local launchOrFocusByBundleID = function(bundleID)
-  return function()
-    local app = hs.application(bundleID)
-    if app and app:isFrontmost() then
-      app:hide()
-    else
-      hs.application.launchOrFocusByBundleID(bundleID)
-    end
-  end
-end
-
-for key, bundle_id in pairs({
+for key, bundle_id_and_args in pairs({
   c = "com.google.Chrome",
   d = "com.microsoft.edgemac.app.knaiokfnmjjldlfhlioejgcompgenfhb",
   e = "com.microsoft.edgemac",
   m = "com.readdle.SparkDesktop",
   n = "notion.id",
   o = "md.obsidian",
+  p = { "com.brettterpstra.marked2", "~/thebengeu/cheatsheet/README.md" },
   r = "com.microsoft.edgemac.app.bndmnggfngpgmmijcogkkgglhalbpomk",
   s = "com.tinyspeck.slackmacgap",
   t = "ru.keepcoder.Telegram",
   v = "com.neovide.neovide",
   w = "com.github.wez.wezterm",
 }) do
-  hs.hotkey.bind(
-    { "ctrl", "option", "shift" },
-    key,
-    launchOrFocusByBundleID(bundle_id)
-  )
-end
+  local bundleID = bundle_id_and_args[1] or bundle_id_and_args
 
-hs.hotkey.bind({ "ctrl", "option", "shift" }, "p", function()
-  local bundleID = "com.brettterpstra.marked2"
-  local app = hs.application(bundleID)
+  hs.hotkey.bind({ "ctrl", "option", "shift" }, key, function()
+    local app = hs.application(bundleID)
 
-  if app then
-    if app:isFrontmost() then
-      app:hide()
+    if app then
+      if app:isFrontmost() then
+        app:hide()
+      else
+        app:setFrontmost()
+      end
     else
-      app:setFrontmost()
+      local args = bundle_id_and_args[2]
+
+      if args then
+        os.execute("open -b " .. bundleID .. " " .. args)
+      else
+        hs.application.open(bundleID)
+      end
     end
-  else
-    os.execute("open -b " .. bundleID .. " ~/thebengeu/cheatsheet/README.md")
-  end
-end)
+  end)
+end
 
 for key, command in pairs({
   f = "format-clipboard",
