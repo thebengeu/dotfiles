@@ -51,6 +51,7 @@ return {
         },
       },
       linters_by_ft = {
+        python = { "mypy" },
         sh = { "shellcheck" },
         yaml = { "yamllint" },
       },
@@ -62,6 +63,7 @@ return {
       vim.list_extend(opts.ensure_installed, {
         "fixjson",
         "js-debug-adapter",
+        "mypy",
         "shellcheck",
         "shellharden",
         "sqlfluff",
