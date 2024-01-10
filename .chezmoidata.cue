@@ -213,6 +213,7 @@ environmentVariables: {
 	GITLINT_CONFIG:             "$HOME/.config/gitlint/gitlint.ini"
 	LESS:                       "--quit-if-one-screen --RAW-CONTROL-CHARS"
 	MICRO_TRUECOLOR:            1
+	PIP_REQUIRE_VIRTUALENV:     true
 	PULUMI_SKIP_UPDATE_CHECK:   true
 	PYENV_ROOT:                 "$HOME/.pyenv"
 	RIPGREP_CONFIG_PATH:        "$HOME/.config/ripgrep/config"
