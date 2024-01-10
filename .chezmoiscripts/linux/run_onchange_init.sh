@@ -56,7 +56,8 @@ if [ ! "$CHEZMOI" = 1 ]; then
   sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'postgres';"
 
   export PNPM_HOME=~/.local/share/pnpm
-  export PATH=~/.cargo/bin:~/.local/bin:~/.pulumi/bin:~/go/bin:"$PNPM_HOME":"$PATH"
+  export PYENV_ROOT=~/.pyenv
+  export PATH="$PYENV_ROOT/bin:~/.cargo/bin:~/.local/bin:~/.pulumi/bin:~/go/bin:$PNPM_HOME:$PATH"
   /snap/bin/chezmoi init
   /snap/bin/chezmoi apply --exclude scripts
   /snap/bin/chezmoi apply --include scripts

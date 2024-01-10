@@ -214,6 +214,7 @@ environmentVariables: {
 	LESS:                       "--quit-if-one-screen --RAW-CONTROL-CHARS"
 	MICRO_TRUECOLOR:            1
 	PULUMI_SKIP_UPDATE_CHECK:   true
+	PYENV_ROOT:                 "$HOME/.pyenv"
 	RIPGREP_CONFIG_PATH:        "$HOME/.config/ripgrep/config"
 	USQL_SHOW_HOST_INFORMATION: false
 
@@ -313,6 +314,7 @@ paths: [
 		"/snap/bin",
 		"~/.pulumi/bin",
 		"~/.temporalio/bin",
+		"$PYENV_ROOT/bin",
 	] + _wsl_paths
 	windows: [
 		"~/AppData/Roaming/Python/Python312/Scripts",
