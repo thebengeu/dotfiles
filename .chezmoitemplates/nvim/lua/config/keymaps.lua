@@ -142,6 +142,8 @@ if vim.g.goneovim or vim.g.neovide then
   else
     vim.keymap.set("n", "<D-v>", "a<C-r>+<Esc>")
     vim.keymap.set({ "c", "i" }, "<D-v>", "<C-r>+")
+    vim.keymap.set("n", "<D-z>", "u", { remap = true })
+    vim.keymap.set("i", "<D-z>", "<C-o>u", { remap = true })
   end
 end
 
