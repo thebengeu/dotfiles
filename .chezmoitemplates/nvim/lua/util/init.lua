@@ -62,7 +62,14 @@ M.async_run = function(command, opts, callback)
     local end_time = vim.loop.hrtime()
 
     vim.schedule(function()
-      if system_obj.code == 0 then
+      if system_obj.code ~= 0 then
+        qf_item.type = "E"
+
+        add_lines_to_qf(system_obj.stdout, qf_item)
+        add_lines_to_qf(system_obj.stderr, qf_item)
+
+        vim.cmd.copen()
+      elseif #system_obj.stdout > 0 or #system_obj.stderr > 0 then
         vim.notify(
           system_obj.stdout
             .. system_obj.stderr
@@ -70,13 +77,6 @@ M.async_run = function(command, opts, callback)
             .. math.floor((end_time - start_time) / 1e6)
             .. "ms"
         )
-      else
-        qf_item.type = "E"
-
-        add_lines_to_qf(system_obj.stdout, qf_item)
-        add_lines_to_qf(system_obj.stderr, qf_item)
-
-        vim.cmd.copen()
       end
 
       vim.cmd.cbottom()
