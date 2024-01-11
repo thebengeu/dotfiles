@@ -130,7 +130,6 @@ cask "hammerspoon"
 cask "istat-menus"
 cask "jupyterlab"
 cask "karabiner-elements"
-cask "keepingyouawake"
 cask "launchpad-manager"
 cask "ledger-live"
 cask "little-snitch"
@@ -169,6 +168,7 @@ cask "whatsapp"
 cask "yubico-yubikey-manager"
 cask "zoom"
 mas "24 Hour Wallpaper", id: 1226087575
+mas "Amphetamine", id: 937984704
 mas "Calca", id: 635758264
 mas "Day One", id: 1055511498
 mas "Drafts", id: 1435957248
