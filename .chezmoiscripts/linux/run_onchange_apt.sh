@@ -17,7 +17,6 @@ sudo apt --assume-yes install \
   msmtp-mta \
   poppler-utils \
   ncat \
-  needrestart \
   ntpdate \
   parallel \
   php-bcmath \
