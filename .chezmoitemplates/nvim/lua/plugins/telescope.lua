@@ -361,23 +361,7 @@ return {
         winblend = 5,
       })
 
-      local undo_opts = {
-        diff_context_lines = 5,
-        use_custom_command = {
-          "sh",
-          "-c",
-          "echo '$DIFF' | delta",
-        },
-      }
-
-      if vim.o.columns > 160 then
-        undo_opts.layout_config = {
-          preview_height = 0.7,
-        }
-        undo_opts.layout_strategy = "vertical"
-        undo_opts.use_custom_command[3] = undo_opts.use_custom_command[3]
-          .. " --side-by-side"
-      end
+      local vertical_undo = vim.o.columns > 160
 
       opts.extensions = {
         file_browser = {
@@ -390,7 +374,20 @@ return {
         smart_open = {
           cwd_only = true,
         },
-        undo = undo_opts,
+        undo = vim.tbl_extend("force", {
+          diff_context_lines = 5,
+          use_custom_command = {
+            "sh",
+            "-c",
+            "echo '$DIFF' | delta"
+              .. (vertical_undo and " --side-by-side" or ""),
+          },
+        }, vertical_undo and {
+          layout_config = {
+            preview_height = 0.7,
+          },
+          layout_strategy = "vertical",
+        } or {}),
       }
     end,
   },
