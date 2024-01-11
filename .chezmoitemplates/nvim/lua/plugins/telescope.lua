@@ -7,6 +7,23 @@ local delta_diffview_git_picker = function(picker)
     local is_bcommits = picker:match("bcommits")
     local root = Util.root()
 
+    local displayer = require("telescope.pickers.entry_display").create({
+      separator = " ",
+      items = {
+        { width = 15 },
+        { remaining = true },
+      },
+    })
+
+    local make_display = function(entry)
+      local date, msg = entry.msg:match("([^|]+)|(.+)")
+
+      return displayer({
+        { date, "TelescopeResultsIdentifier" },
+        msg,
+      })
+    end
+
     Util.telescope("git_" .. picker, {
       attach_mappings = function()
         local actions = require("telescope.actions")
@@ -23,6 +40,26 @@ local delta_diffview_git_picker = function(picker)
 
         return true
       end,
+      entry_index = {
+        display = function()
+          return make_display, true
+        end,
+      },
+      git_command = vim.list_extend(
+        {
+          "git",
+          "log",
+          "--pretty=%h %ah|%s",
+        },
+        picker == "bcommits" and { "--follow" }
+          or (
+            picker == "bcommits_range" and { "--no-patch", "-L" }
+            or {
+              "--",
+              ".",
+            }
+          )
+      ),
       previewer = require("telescope.previewers").new_termopen_previewer({
         cwd = root,
         get_command = function(entry)
