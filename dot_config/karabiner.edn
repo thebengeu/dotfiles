@@ -31,5 +31,7 @@
          :rules [[:##left_control :left_control nil {:alone :escape}]]}
         {:des "right_command to control-option-shift"
          :rules [[:##right_command :!TOright_shift nil]]}
+        {:des "right_control to fn"
+         :rules [[:##right_control :fn nil]]}
         {:des "right_option to layer 3"
          :rules [[:##right_option ["layer" 3] nil {:afterup ["layer" 0]}]]}]}
