@@ -3,15 +3,13 @@ ahk_binary_path='Program Files/AutoHotkey/v2/AutoHotkey64.exe'
 ahk_script_path="C:/Users/$USER/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/activate-wezterm-tab.ahk"
 
 if test "$TITLE_PREFIX" = 'wsl:'; then
-	first_arg=1
 	full_ahk_binary_path="/mnt/c/$ahk_binary_path"
 elif test -f "C:/$ahk_binary_path"; then
-	first_arg=2
 	full_ahk_binary_path="C:/$ahk_binary_path"
 fi
 
 if test "$full_ahk_binary_path" != ""; then
-	"$full_ahk_binary_path" "$ahk_script_path" "$first_arg" n &
+	"$full_ahk_binary_path" "$ahk_script_path" n &
 	sh ~/.local/bin/nvr-latest-focused-nvim.sh "$@"
 else
 	nvr -s --nostart --servername "$(nvr --serverlist | sed '$a127.0.0.1:6789' | rg 127.0.0.1: | head -n1)" "$@" || nvim "$@"
