@@ -46,9 +46,11 @@ for key, command in pairs({
   y = "format-clipboard Python",
 }) do
   hs.hotkey.bind({ "ctrl", "option", "shift" }, key, function()
+    local clipboardContents = hs.pasteboard.getContents()
     hs.eventtap.keyStroke({ "cmd" }, "c")
     local output = hs.execute(command, true)
     hs.eventtap.keyStroke({ "cmd" }, "v")
+    hs.pasteboard.setContents(clipboardContents)
 
     print(output)
   end)
