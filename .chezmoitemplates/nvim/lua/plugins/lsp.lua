@@ -35,15 +35,6 @@ return {
               or filename:match("/thebengeu/")
           end,
         },
-        shellcheck = {
-          args = {
-            "-e",
-            "SC1017",
-            "--format",
-            "json",
-            "-",
-          },
-        },
         yamllint = {
           condition = function(ctx)
             return not ctx.filename:match("/Pulumi%.")
@@ -52,7 +43,6 @@ return {
       },
       linters_by_ft = {
         python = { "mypy" },
-        sh = { "shellcheck" },
         yaml = { "yamllint" },
       },
     },
