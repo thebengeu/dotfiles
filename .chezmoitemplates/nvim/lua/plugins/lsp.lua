@@ -11,7 +11,7 @@ return {
         prisma = { "prettier" },
         python = { "ruff_fix", "ruff_format" },
         toml = { "taplo" },
-        sh = { "shellharden", "shfmt" },
+        sh = { "shellharden", "shellcheck", "shfmt" },
         ["*"] = { "typos" },
         ["_"] = { "trim_newlines", "trim_whitespace" },
       },
