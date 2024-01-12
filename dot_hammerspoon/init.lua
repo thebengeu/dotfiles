@@ -56,4 +56,15 @@ for key, command in pairs({
   end)
 end
 
+local timer
+timer = hs.timer.doEvery(1, function()
+  local todoistApp = hs.application("com.todoist.mac.Todoist")
+  local todoistWindow = todoistApp and todoistApp:mainWindow()
+
+  if todoistWindow then
+    timer:stop()
+    todoistWindow:close()
+  end
+end)
+
 hs.keycodes.inputSourceChanged(hs.reload)
