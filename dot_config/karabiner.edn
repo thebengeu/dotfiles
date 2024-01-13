@@ -1,9 +1,6 @@
 {:profiles {:Default {:default true
-                      ;; :alone   1000
-                      ;; :delay   500
-                      ;; $ defaults read -g InitialKeyRepeat
-                      ;; :held    500
-                      ;; :sim     50
+                      :alone 100
+                      :held 100
                      }}
  :main [{:des "Layer 3"
          :rules [[:##q :page_up ["layer" 3]]
@@ -24,11 +21,11 @@
                  [:##comma :8 ["layer" 3]]
                  [:##period :9 ["layer" 3]]]}
         {:des "tab to control-command-option"
-         :rules [[:##tab :!TCleft_option nil {:alone :tab}]]}
+         :rules [[:##tab {:key :!TCleft_option :lazy true} nil {:alone :tab :held :!TCleft_option}]]}
         {:des "caps_lock to control and escape"
-         :rules [[:##caps_lock :left_control nil {:alone :escape}]]}
+         :rules [[:##caps_lock {:key :left_control :lazy true} nil {:alone :escape :held :left_control}]]}
         {:des "left_control to control and escape"
-         :rules [[:##left_control :left_control nil {:alone :escape}]]}
+         :rules [[:##left_control {:key :left_control :lazy true} nil {:alone :escape :held :left_control}]]}
         {:des "right_command to control-option-shift"
          :rules [[:##right_command :!TOright_shift nil]]}
         {:des "right_control to fn"
