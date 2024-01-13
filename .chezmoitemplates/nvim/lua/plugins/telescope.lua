@@ -272,7 +272,15 @@ return {
             local current_branch =
               util.stdout_without_newline({ "git", "branch", "--show-current" })
             local git_diff_commit = current_branch == default_branch
-                and "origin/HEAD"
+                and (util.stdout_without_newline({
+                  "git",
+                  "rev-parse",
+                  "HEAD",
+                }) == util.stdout_without_newline({
+                  "git",
+                  "rev-parse",
+                  "@{u}",
+                }) and "HEAD^" or "origin/HEAD")
               or (default_branch .. "...")
 
             require("telescope.pickers")
@@ -303,12 +311,12 @@ return {
                     }
                   end,
                 }),
-                prompt_title = "origin/HEAD Diff",
+                prompt_title = "Changed Files",
                 sorter = require("telescope.config").values.file_sorter(),
               })
               :find()
           end,
-          desc = "Modified Files",
+          desc = "Changed Files",
         },
         {
           "<leader>gr",
