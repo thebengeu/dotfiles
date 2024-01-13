@@ -35,7 +35,7 @@ vim.opt.wrap = true
 if vim.g.neovide then
   vim.g.neovide_cursor_vfx_mode = "pixiedust"
   vim.g.neovide_cursor_vfx_particle_density = 50
-  vim.g.neovide_cursor_vfx_particle_lifetime = 5
+  vim.g.neovide_cursor_vfx_particle_lifetime = 2
   vim.g.neovide_input_macos_alt_is_meta = true
   vim.g.neovide_transparency = 0.95
 
