@@ -80,7 +80,7 @@ aliases: {
 		_non_windows: {
 			fd:  "fd --hidden"
 			rns: "rm ~/.local/share/nvim/sessions/*"
-			tg:  "topgrade"
+			tg:  "PIP_REQUIRE_VIRTUALENV=false topgrade"
 			tns: "tmux new-session -A -s"
 			tm:  "\(tns) 0"
 		}
