@@ -1,4 +1,5 @@
 local Util = require("lazyvim.util")
+local util = require("util")
 
 local lazy_root = require("lazy.core.config").options.root
 
@@ -264,6 +265,16 @@ return {
           function()
             local root = Util.root()
 
+            local default_branch = util.stdout_without_newline({
+              "git",
+              "default-branch",
+            })
+            local current_branch =
+              util.stdout_without_newline({ "git", "branch", "--show-current" })
+            local git_diff_commit = current_branch == default_branch
+                and "origin/HEAD"
+              or (default_branch .. "...")
+
             require("telescope.pickers")
               .new({}, {
                 finder = require("telescope.finders").new_oneshot_job({
@@ -271,7 +282,7 @@ return {
                   "diff",
                   "--diff-filter=d",
                   "--name-only",
-                  "origin/HEAD",
+                  git_diff_commit,
                 }, {
                   cwd = root,
                   entry_maker = require("telescope.make_entry").gen_from_file({
@@ -284,7 +295,9 @@ return {
                     return {
                       "sh",
                       "-c",
-                      "git diff origin/HEAD -- "
+                      "git diff "
+                        .. git_diff_commit
+                        .. " -- "
                         .. entry.value
                         .. " | delta | tail -n +5",
                     }
@@ -295,7 +308,7 @@ return {
               })
               :find()
           end,
-          desc = "origin/HEAD Diff",
+          desc = "Modified Files",
         },
         {
           "<leader>gr",
