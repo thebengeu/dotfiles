@@ -265,6 +265,10 @@ return {
           function()
             local root = Util.root()
 
+            vim
+              .system({ "git", "add", "--intent-to-add", "." }, { cwd = root })
+              :wait()
+
             local default_branch = util.git_stdout({ "default-branch" })
             local current_branch =
               util.git_stdout({ "branch", "--show-current" })
