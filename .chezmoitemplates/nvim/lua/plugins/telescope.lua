@@ -279,7 +279,10 @@ return {
                 }) == util.git_stdout({
                   "rev-parse",
                   "@{u}",
-                }) and "HEAD^" or "origin/HEAD")
+                }) and (#util.git_stdout({
+                  "status",
+                  "--short",
+                }) > 0 and "HEAD" or "HEAD^") or "origin/HEAD")
               or (default_branch .. "...")
 
             require("telescope.pickers")
