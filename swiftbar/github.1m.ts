@@ -10,7 +10,7 @@ dotenv.config({ path: __dirname + '/.env' })
 const main = async () => {
   const {
     search: { edges: pullRequests },
-  } = await graphql(
+  } = (await graphql(
     `
       {
         search(
@@ -55,7 +55,36 @@ const main = async () => {
         authorization: `token ${process.env.GITHUB_PERSONAL_ACCESS_TOKEN}`,
       },
     }
-  )
+  )) as {
+    search: {
+      edges: {
+        node: {
+          author: {
+            login: string
+          }
+          body: string
+          createdAt: string
+          files: {
+            edges: {
+              node: {
+                additions: number
+                changeType: 'ADDED' | 'CHANGED' | 'COPIED' | 'DELETED' | 'MODIFIED' | 'RENAMED'
+                deletions: number
+                path: string
+              }
+            }[]
+          }
+          number: number
+          repository: {
+            nameWithOwner: string
+          }
+          title: string
+          updatedAt: string
+          url: string
+        }
+      }[]
+    }
+  }
 
   const oneWeekAgo = new Date()
   oneWeekAgo.setDate(oneWeekAgo.getDate() - 7)
