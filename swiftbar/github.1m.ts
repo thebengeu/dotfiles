@@ -60,20 +60,24 @@ const main = async () => {
   const oneWeekAgo = new Date()
   oneWeekAgo.setDate(oneWeekAgo.getDate() - 7)
 
-  const relevantPRs = pullRequests.filter(
-    ({
-      node: {
-        author: { login },
-        files: { edges: files },
-        title,
-        updatedAt,
-      },
-    }) =>
-      new Date(updatedAt) > oneWeekAgo &&
-      login !== 'dependabot' &&
-      (title.includes('hotfix') ||
-        _.sumBy(files, 'node.additions') < 10 ||
-        !files.every(({ node: { path } }) => path.startsWith('api/')))
+  const relevantPRs = _.orderBy(
+    pullRequests.filter(
+      ({
+        node: {
+          author: { login },
+          files: { edges: files },
+          title,
+          updatedAt,
+        },
+      }) =>
+        new Date(updatedAt) > oneWeekAgo &&
+        login !== 'dependabot' &&
+        (title.includes('hotfix') ||
+          _.sumBy(files, 'node.additions') < 10 ||
+          !files.every(({ node: { path } }) => path.startsWith('api/')))
+    ),
+    'node.updatedAt',
+    'desc'
   )
 
   if (!process.env.SWIFTBAR) {
