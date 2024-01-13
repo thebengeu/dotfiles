@@ -1,6 +1,6 @@
 {:profiles {:Default {:default true
-                      :alone 100
-                      :held 100
+                      :alone 150
+                      :held 150
                      }}
  :main [{:des "Layer 3"
          :rules [[:##q :page_up ["layer" 3]]
