@@ -3,7 +3,12 @@ return {
     "pearofducks/ansible-vim",
     ft = "yaml.ansible",
   },
-  "alker0/chezmoi.vim",
+  {
+    "alker0/chezmoi.vim",
+    init = function()
+      vim.g["chezmoi#use_tmp_buffer"] = true
+    end,
+  },
   {
     "kmonad/kmonad-vim",
     ft = "kbd",
