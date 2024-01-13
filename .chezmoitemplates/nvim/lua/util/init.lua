@@ -98,6 +98,10 @@ M.async_run_sh = function(command, opts, callback)
   return M.async_run({ "sh", "-c", command }, opts, callback)
 end
 
+M.git_stdout = function(sub_command)
+  return M.stdout_without_newline(vim.list_extend({ "git" }, sub_command))
+end
+
 M.highlights = {}
 
 M.normname = function(name)

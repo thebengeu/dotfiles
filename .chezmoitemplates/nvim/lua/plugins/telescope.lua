@@ -265,19 +265,14 @@ return {
           function()
             local root = Util.root()
 
-            local default_branch = util.stdout_without_newline({
-              "git",
-              "default-branch",
-            })
+            local default_branch = util.git_stdout({ "default-branch" })
             local current_branch =
-              util.stdout_without_newline({ "git", "branch", "--show-current" })
+              util.git_stdout({ "branch", "--show-current" })
             local git_diff_commit = current_branch == default_branch
-                and (util.stdout_without_newline({
-                  "git",
+                and (util.git_stdout({
                   "rev-parse",
                   "HEAD",
-                }) == util.stdout_without_newline({
-                  "git",
+                }) == util.git_stdout({
                   "rev-parse",
                   "@{u}",
                 }) and "HEAD^" or "origin/HEAD")

@@ -160,17 +160,12 @@ end
 local git_commit = function(git_command, default_message)
   local Popup = require("nui.popup")
   local root = Util.root()
-  local origin_url =
-    util.stdout_without_newline({ "git", "remote", "get-url", "origin" })
+  local origin_url = util.git_stdout({ "remote", "get-url", "origin" })
   local is_thebengeu_repo = origin_url and origin_url:match("thebengeu")
 
   if not is_thebengeu_repo then
-    local default_branch = util.stdout_without_newline({
-      "git",
-      "default-branch",
-    })
-    local current_branch =
-      util.stdout_without_newline({ "git", "branch", "--show-current" })
+    local default_branch = util.git_stdout({ "default-branch" })
+    local current_branch = util.git_stdout({ "branch", "--show-current" })
 
     if current_branch == default_branch then
       local new_branch_name = vim.fn.input("New branch name: ", "beng/")
@@ -242,6 +237,6 @@ vim.keymap.set("n", "<leader>ga", function()
   vim.cmd.update()
   git_commit(
     "commit --amend",
-    util.stdout_without_newline({ "git", "show", "--format=%s", "--no-patch" })
+    util.git_stdout({ "show", "--format=%s", "--no-patch" })
   )
 end, { desc = "Amend" })
