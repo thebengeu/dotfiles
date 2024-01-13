@@ -306,7 +306,7 @@ return {
                     }
                   end,
                 }),
-                prompt_title = "Changed Files",
+                prompt_title = "Changed Files Against " .. git_diff_commit,
                 sorter = require("telescope.config").values.file_sorter(),
               })
               :find()
