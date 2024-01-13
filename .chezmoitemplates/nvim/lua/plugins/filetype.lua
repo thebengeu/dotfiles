@@ -3,10 +3,7 @@ return {
     "pearofducks/ansible-vim",
     ft = "yaml.ansible",
   },
-  {
-    "alker0/chezmoi.vim",
-    cond = vim.loop.cwd():match("chezmoi") ~= nil,
-  },
+  "alker0/chezmoi.vim",
   {
     "kmonad/kmonad-vim",
     ft = "kbd",
