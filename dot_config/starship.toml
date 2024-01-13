@@ -6,6 +6,9 @@ palette = "catppuccin_mocha"
 [aws]
 disabled = true
 
+[bun]
+disabled = true
+
 [cmake]
 disabled = true
 
