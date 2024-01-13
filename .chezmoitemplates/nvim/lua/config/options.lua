@@ -17,7 +17,15 @@ vim.opt.keywordprg = ":Search"
 vim.opt.linebreak = true
 vim.opt.report = 999
 vim.opt.sessionoptions = {
+  "blank",
+  "buffers",
   "curdir",
+  "folds",
+  "help",
+  "localoptions",
+  "tabpages",
+  "terminal",
+  "winpos",
   "winsize",
 }
 
