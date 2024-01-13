@@ -1,5 +1,6 @@
 ansible/
 manifests/
+swiftbar/
 README.md
 
 {{ if eq .chezmoi.os "windows" }}

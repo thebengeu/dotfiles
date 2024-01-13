@@ -1,2 +1,4 @@
 .chezmoidata.yaml
 .chezmoiexternals/*.yaml
+.env
+node_modules/
