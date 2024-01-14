@@ -1,0 +1,22 @@
+#!/usr/bin/env osascript
+tell application "Xcode"
+	open "/Users/beng/thebengeu/Volume-Control/Volume Control.xcodeproj"
+
+	set activeWorkspaceDocument to active workspace document
+	repeat
+		if loaded of activeWorkspaceDocument is true then
+			exit repeat
+		end if
+		delay 1
+	end repeat
+
+	set actionResult to build activeWorkspaceDocument
+	repeat
+		if completed of actionResult is true then
+			exit repeat
+		end if
+		delay 1
+	end repeat
+
+	quit
+end tell
