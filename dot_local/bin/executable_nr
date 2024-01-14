@@ -1,16 +1,19 @@
 #!/usr/bin/env sh
 ahk_binary_path='Program Files/AutoHotkey/v2/AutoHotkey64.exe'
-ahk_script_path="C:/Users/$USER/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/activate-wezterm-tab.ahk"
+ahk_script_path="C:/Users/${USER}/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/activate-wezterm-tab.ahk"
 
-if test "$TITLE_PREFIX" = 'wsl:'; then
-	full_ahk_binary_path="/mnt/c/$ahk_binary_path"
-elif test -f "C:/$ahk_binary_path"; then
-	full_ahk_binary_path="C:/$ahk_binary_path"
+if test "${TITLE_PREFIX}" = 'wsl:'; then
+	full_ahk_binary_path="/mnt/c/${ahk_binary_path}"
+elif test -f "C:/${ahk_binary_path}"; then
+	full_ahk_binary_path="C:/${ahk_binary_path}"
 fi
 
-if test "$full_ahk_binary_path" != ""; then
-	"$full_ahk_binary_path" "$ahk_script_path" n &
+if test "${full_ahk_binary_path}" != ""; then
+	"${full_ahk_binary_path}" "${ahk_script_path}" n &
 	sh ~/.local/bin/nvr-latest-focused-nvim.sh "$@"
 else
-	nvr -s --nostart --servername "$(nvr --serverlist | sed '$a127.0.0.1:6789' | rg 127.0.0.1: | head -n1)" "$@" || nvim "$@"
+	nvr -s --nostart --servername "$({
+		nvr --serverlist
+		echo 127.0.0.1:6789
+	} | rg 127.0.0.1: | head -n1)" "$@" || nvim "$@"
 fi
