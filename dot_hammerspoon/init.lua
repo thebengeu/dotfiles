@@ -111,7 +111,6 @@ for _, mods_and_key in ipairs({
 end
 
 for key, command in pairs({
-  f = "format-clipboard",
   q = "format-clipboard SQL",
   y = "format-clipboard Python",
 }) do
