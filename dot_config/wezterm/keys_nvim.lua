@@ -54,7 +54,7 @@ function M.apply_to_config(config)
       wezterm.hostname() .. "-wsl",
       [[\\wsl.localhost\Ubuntu\home\]] .. os.getenv("USERNAME")
     ) or activate_nvim("SHIFT|ALT", wezterm.hostname(), wezterm.home_dir),
-    activate_nvim("SHIFT|ALT|CTRL", wezterm.hostname(), wezterm.home_dir),
+    activate_nvim("ALT|CTRL|SUPER", wezterm.hostname(), wezterm.home_dir),
   })
 end
 
