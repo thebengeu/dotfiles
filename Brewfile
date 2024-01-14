@@ -1,5 +1,4 @@
 tap "candid82/brew"
-tap "devhubapp/devhub"
 tap "eth-p/software"
 tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
