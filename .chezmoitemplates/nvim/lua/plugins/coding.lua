@@ -285,6 +285,7 @@ return vim.list_extend(
         vim.treesitter.language.register("lua", "lua.chezmoitmpl")
 
         vim.list_extend(opts.ensure_installed, {
+          "clojure",
           "cue",
           "fennel",
           "fish",
