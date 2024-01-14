@@ -284,6 +284,7 @@ return vim.list_extend(
       opts = function(_, opts)
         vim.treesitter.language.register("lua", "lua.chezmoitmpl")
 
+        opts.auto_install = true
         vim.list_extend(opts.ensure_installed, {
           "clojure",
           "cue",
