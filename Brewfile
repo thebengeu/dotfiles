@@ -180,7 +180,6 @@ mas "iA Writer", id: 775737590
 mas "Magic Window 4K", id: 689569987
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "PopClip", id: 445189367
-mas "Pure Paste", id: 1611378436
 mas "Timery", id: 1425368544
 mas "ToothFairy", id: 1191449274
 mas "Velja", id: 1607635845
