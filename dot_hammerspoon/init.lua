@@ -116,6 +116,7 @@ for key, command in pairs({
 }) do
   hs.hotkey.bind({ "ctrl", "option", "shift" }, key, function()
     local clipboardContents = hs.pasteboard.getContents()
+    hs.eventtap.keyStroke({ "cmd" }, "a")
     hs.eventtap.keyStroke({ "cmd" }, "c")
     local output = hs.execute(command, true)
     hs.eventtap.keyStroke({ "cmd" }, "v")
