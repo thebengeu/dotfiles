@@ -1,3 +1,4 @@
+Alfred.alfredpreferences/
 AppData/**/*.tmpl
 dot_config/**/*.tmpl
 Library/**/*.tmpl
