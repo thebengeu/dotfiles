@@ -7,6 +7,7 @@ for key, bundle_id_and_args in pairs({
   c = "com.google.Chrome",
   d = "com.microsoft.edgemac.app.knaiokfnmjjldlfhlioejgcompgenfhb",
   e = "com.microsoft.edgemac",
+  h = "com.spotify.client",
   k = "com.kapeli.dashdoc",
   m = "com.readdle.SparkDesktop",
   n = "notion.id",
