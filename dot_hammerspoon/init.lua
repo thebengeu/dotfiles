@@ -44,6 +44,7 @@ for _, mods_and_key in ipairs({
     "com.todoist.mac.Todoist",
     { "cmd", "ctrl" },
     "a",
+    true,
     function(mods, key, hotkey)
       local timer = hs.timer.doEvery(1, function()
         hs.eventtap.keyStroke(mods, key)
@@ -62,6 +63,15 @@ for _, mods_and_key in ipairs({
         end)
     end,
   },
+  {
+    "com.kapeli.dashdoc",
+    { "ctrl", "option", "shift" },
+    "l",
+    true,
+    function(_, _, hotkey)
+      hotkey:enable()
+    end,
+  },
   { WEZTERM_BUNDLE_ID, { "ctrl", "option", "shift" }, "1" },
   { WEZTERM_BUNDLE_ID, { "ctrl", "option", "shift" }, "2" },
   { WEZTERM_BUNDLE_ID, { "ctrl", "option", "shift" }, "3" },
@@ -75,7 +85,8 @@ for _, mods_and_key in ipairs({
   local bundle_id = mods_and_key[1]
   local mods = mods_and_key[2]
   local key = mods_and_key[3]
-  local after_launch = mods_and_key[4]
+  local set_frontmost = not mods_and_key[4]
+  local after_launch = mods_and_key[5]
 
   local hotkey
   hotkey = hs.hotkey.bind(mods, key, function()
@@ -83,15 +94,15 @@ for _, mods_and_key in ipairs({
 
     local app = hs.application(bundle_id)
 
-    if app then
-      app:setFrontmost()
-    else
+    if not app then
       hs.application.open(bundle_id, 10, true)
 
       if after_launch then
         after_launch(mods, key, hotkey)
         return
       end
+    elseif set_frontmost then
+      app:setFrontmost()
     end
 
     hs.eventtap.keyStroke(mods, key)
