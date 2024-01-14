@@ -1,34 +1,37 @@
-{:profiles {:Default {:default true
-                      :alone 150
-                      :held 150
-                     }}
- :main [{:des "Layer 3"
-         :rules [[:##q :page_up ["layer" 3]]
-                 [:##w :home ["layer" 3]]
-                 [:##e :up_arrow ["layer" 3]]
-                 [:##r :end ["layer" 3]]
-                 [:##u :1 ["layer" 3]]
-                 [:##i :2 ["layer" 3]]
-                 [:##o :3 ["layer" 3]]
-                 [:##a :page_down ["layer" 3]]
-                 [:##s :left_arrow ["layer" 3]]
-                 [:##d :down_arrow ["layer" 3]]
-                 [:##f :right_arrow ["layer" 3]]
-                 [:##j :4 ["layer" 3]]
-                 [:##k :5 ["layer" 3]]
-                 [:##l :6 ["layer" 3]]
-                 [:##m :7 ["layer" 3]]
-                 [:##comma :8 ["layer" 3]]
-                 [:##period :9 ["layer" 3]]]}
-        {:des "tab to control-command-option"
-         :rules [[:##tab {:key :!TCleft_option :lazy true} nil {:alone :tab :held :!TCleft_option}]]}
-        {:des "caps_lock to control and escape"
-         :rules [[:##caps_lock {:key :left_control :lazy true} nil {:alone :escape :held :left_control}]]}
-        {:des "left_control to control and escape"
-         :rules [[:##left_control {:key :left_control :lazy true} nil {:alone :escape :held :left_control}]]}
-        {:des "right_command to control-option-shift"
-         :rules [[:##right_command :!TOright_shift nil]]}
-        {:des "right_control to fn"
-         :rules [[:##right_control :fn nil]]}
-        {:des "right_option to layer 3"
-         :rules [[:##right_option ["layer" 3] nil {:afterup ["layer" 0]}]]}]}
+{:main
+   [{:des "Layer 3",
+     :rules [[:##q :page_up ["layer" 3]]
+             [:##w :home ["layer" 3]]
+             [:##e :up_arrow ["layer" 3]]
+             [:##r :end ["layer" 3]]
+             [:##u :1 ["layer" 3]]
+             [:##i :2 ["layer" 3]]
+             [:##o :3 ["layer" 3]]
+             [:##a :page_down ["layer" 3]]
+             [:##s :left_arrow ["layer" 3]]
+             [:##d :down_arrow ["layer" 3]]
+             [:##f :right_arrow ["layer" 3]]
+             [:##j :4 ["layer" 3]]
+             [:##k :5 ["layer" 3]]
+             [:##l :6 ["layer" 3]]
+             [:##m :7 ["layer" 3]]
+             [:##comma :8 ["layer" 3]]
+             [:##period :9 ["layer" 3]]]}
+    {:des "tab to control-command-option",
+     :rules [[:##tab {:key :!TCleft_option, :lazy true}
+              nil
+              {:alone :tab, :held :!TCleft_option}]]}
+    {:des "caps_lock to control and escape",
+     :rules [[:##caps_lock {:key :left_control, :lazy true}
+              nil
+              {:alone :escape, :held :left_control}]]}
+    {:des "left_control to control and escape",
+     :rules [[:##left_control {:key :left_control, :lazy true}
+              nil
+              {:alone :escape, :held :left_control}]]}
+    {:des "right_command to control-option-shift",
+     :rules [[:##right_command :!TOright_shift nil]]}
+    {:des "right_control to fn", :rules [[:##right_control :fn nil]]}
+    {:des "right_option to layer 3",
+     :rules [[:##right_option ["layer" 3] nil {:afterup ["layer" 0]}]]}],
+ :profiles {:Default {:alone 150, :default true, :held 150}}}
