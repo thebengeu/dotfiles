@@ -42,7 +42,7 @@ end
 for _, mods_and_key in ipairs({
   {
     "com.todoist.mac.Todoist",
-    { "ctrl", "cmd" },
+    { "cmd", "ctrl" },
     "a",
     function(mods, key, hotkey)
       local timer = hs.timer.doEvery(1, function()
@@ -62,15 +62,15 @@ for _, mods_and_key in ipairs({
         end)
     end,
   },
-  { WEZTERM_BUNDLE_ID, { "ctrl", "shift" }, "1" },
-  { WEZTERM_BUNDLE_ID, { "ctrl", "shift" }, "2" },
-  { WEZTERM_BUNDLE_ID, { "ctrl", "shift" }, "3" },
-  { WEZTERM_BUNDLE_ID, { "ctrl", "shift" }, "4" },
-  { WEZTERM_BUNDLE_ID, { "ctrl", "shift" }, "5" },
-  { WEZTERM_BUNDLE_ID, { "ctrl", "shift" }, "6" },
-  { WEZTERM_BUNDLE_ID, { "ctrl", "shift" }, "7" },
-  { WEZTERM_BUNDLE_ID, { "ctrl", "shift" }, "8" },
-  { WEZTERM_BUNDLE_ID, { "ctrl", "shift" }, "9" },
+  { WEZTERM_BUNDLE_ID, { "ctrl", "option", "shift" }, "1" },
+  { WEZTERM_BUNDLE_ID, { "ctrl", "option", "shift" }, "2" },
+  { WEZTERM_BUNDLE_ID, { "ctrl", "option", "shift" }, "3" },
+  { WEZTERM_BUNDLE_ID, { "ctrl", "option", "shift" }, "4" },
+  { WEZTERM_BUNDLE_ID, { "ctrl", "option", "shift" }, "5" },
+  { WEZTERM_BUNDLE_ID, { "ctrl", "option", "shift" }, "6" },
+  { WEZTERM_BUNDLE_ID, { "ctrl", "option", "shift" }, "7" },
+  { WEZTERM_BUNDLE_ID, { "ctrl", "option", "shift" }, "8" },
+  { WEZTERM_BUNDLE_ID, { "ctrl", "option", "shift" }, "9" },
 }) do
   local bundle_id = mods_and_key[1]
   local mods = mods_and_key[2]
