@@ -4,6 +4,7 @@ tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/services"
+tap "jakehilborn/jakehilborn"
 tap "mike-engel/jwt-cli"
 tap "osx-cross/arm"
 tap "osx-cross/avr"
@@ -97,6 +98,7 @@ brew "zoxide"
 brew "zsh"
 brew "eth-p/software/bat-extras-batgrep"
 brew "eth-p/software/bat-extras-batman"
+brew "jakehilborn/jakehilborn/displayplacer"
 brew "mike-engel/jwt-cli/jwt-cli"
 brew "oven-sh/bun/bun"
 brew "qmk/qmk/qmk"
@@ -183,6 +185,7 @@ mas "Timery", id: 1425368544
 mas "ToothFairy", id: 1191449274
 mas "Velja", id: 1607635845
 mas "Xcode", id: 497799835
+mas "YamaCast", id: 1415107621
 vscode "asvetliakov.vscode-neovim"
 vscode "bodil.file-browser"
 vscode "Catppuccin.catppuccin-vsc"
