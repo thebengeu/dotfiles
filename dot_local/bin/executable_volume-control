@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+build-volume-control
+cp -R '/Users/beng/Library/Developer/Xcode/DerivedData/Volume_Control-ecywlolntuswpubuohzikdhbwngw/Build/Products/Debug/Volume Control.app' ~/Applications
+open -a 'Volume Control'
