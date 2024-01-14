@@ -1,5 +1,7 @@
 local wf = hs.window.filter
 
+local WEZTERM_BUNDLE_ID = "com.github.wez.wezterm"
+
 hs.loadSpoon("ReloadConfiguration")
 spoon.ReloadConfiguration:start()
 
@@ -19,7 +21,7 @@ for key, bundle_id_and_args in pairs({
   s = "com.tinyspeck.slackmacgap",
   t = "ru.keepcoder.Telegram",
   v = "com.neovide.neovide",
-  w = "com.github.wez.wezterm",
+  w = WEZTERM_BUNDLE_ID,
 }) do
   local bundle_id = bundle_id_and_args[1] or bundle_id_and_args
 
@@ -60,15 +62,15 @@ for _, mods_and_key in ipairs({
         end)
     end,
   },
-  { "com.github.wez.wezterm", { "ctrl", "shift" }, "1" },
-  { "com.github.wez.wezterm", { "ctrl", "shift" }, "2" },
-  { "com.github.wez.wezterm", { "ctrl", "shift" }, "3" },
-  { "com.github.wez.wezterm", { "ctrl", "shift" }, "4" },
-  { "com.github.wez.wezterm", { "ctrl", "shift" }, "5" },
-  { "com.github.wez.wezterm", { "ctrl", "shift" }, "6" },
-  { "com.github.wez.wezterm", { "ctrl", "shift" }, "7" },
-  { "com.github.wez.wezterm", { "ctrl", "shift" }, "8" },
-  { "com.github.wez.wezterm", { "ctrl", "shift" }, "9" },
+  { WEZTERM_BUNDLE_ID, { "ctrl", "shift" }, "1" },
+  { WEZTERM_BUNDLE_ID, { "ctrl", "shift" }, "2" },
+  { WEZTERM_BUNDLE_ID, { "ctrl", "shift" }, "3" },
+  { WEZTERM_BUNDLE_ID, { "ctrl", "shift" }, "4" },
+  { WEZTERM_BUNDLE_ID, { "ctrl", "shift" }, "5" },
+  { WEZTERM_BUNDLE_ID, { "ctrl", "shift" }, "6" },
+  { WEZTERM_BUNDLE_ID, { "ctrl", "shift" }, "7" },
+  { WEZTERM_BUNDLE_ID, { "ctrl", "shift" }, "8" },
+  { WEZTERM_BUNDLE_ID, { "ctrl", "shift" }, "9" },
 }) do
   local bundle_id = mods_and_key[1]
   local mods = mods_and_key[2]
