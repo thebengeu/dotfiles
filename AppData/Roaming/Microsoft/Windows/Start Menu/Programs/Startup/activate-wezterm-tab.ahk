@@ -15,7 +15,7 @@ ActivateMinimizeOrRun(WinTitle, Target, MinimizeIfActive := true) {
 ActivateWezTermTab(TabNumber) {
   ActivateMinimizeOrRun("ahk_exe wezterm-gui.exe", "wezterm-gui.exe", false)
   WinWaitActive ;
-  Send "+!" . TabNumber
+  Send "^+!" . TabNumber
 }
 
 If A_Args.has(1) {
@@ -34,15 +34,15 @@ If A_Args.has(1) {
   ^+!v::ActivateMinimizeOrRun("ahk_exe neovide.exe", A_Programs . "\Scoop Apps\Neovide")
   ^+!w::ActivateMinimizeOrRun("ahk_exe wezterm-gui.exe", "wezterm-gui.exe")
   #HotIf !WinActive("ahk_exe wezterm-gui.exe")
-  +!1::ActivateWezTermTab(1)
-  +!2::ActivateWezTermTab(2)
-  +!3::ActivateWezTermTab(3)
-  +!4::ActivateWezTermTab(4)
-  +!5::ActivateWezTermTab(5)
-  +!6::ActivateWezTermTab(6)
-  +!7::ActivateWezTermTab(7)
-  +!8::ActivateWezTermTab(8)
-  +!9::ActivateWezTermTab(9)
+  ^+!1::ActivateWezTermTab(1)
+  ^+!2::ActivateWezTermTab(2)
+  ^+!3::ActivateWezTermTab(3)
+  ^+!4::ActivateWezTermTab(4)
+  ^+!5::ActivateWezTermTab(5)
+  ^+!6::ActivateWezTermTab(6)
+  ^+!7::ActivateWezTermTab(7)
+  ^+!8::ActivateWezTermTab(8)
+  ^+!9::ActivateWezTermTab(9)
   +!d::ActivateWezTermTab("d")
   +!l::ActivateWezTermTab("l")
   +!n::ActivateWezTermTab("n")
