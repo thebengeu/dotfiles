@@ -34,7 +34,6 @@ If A_Args.has(1) {
   ^+!v::ActivateMinimizeOrRun("ahk_exe neovide.exe", A_Programs . "\Scoop Apps\Neovide")
   ^+!w::ActivateMinimizeOrRun("ahk_exe wezterm-gui.exe", "wezterm-gui.exe")
   #HotIf !WinActive("ahk_exe wezterm-gui.exe")
-  +!0::ActivateWezTermTab(0)
   +!1::ActivateWezTermTab(1)
   +!2::ActivateWezTermTab(2)
   +!3::ActivateWezTermTab(3)
