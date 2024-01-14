@@ -134,7 +134,7 @@ function M.apply_to_config(config)
     },
     {
       key = "d",
-      mods = "SHIFT|ALT|CTRL",
+      mods = "ALT|CTRL|SUPER",
       action = split_pane("SSH:dev"),
     },
     {
@@ -144,7 +144,7 @@ function M.apply_to_config(config)
     },
     {
       key = "a",
-      mods = "SHIFT|ALT|CTRL",
+      mods = "ALT|CTRL|SUPER",
       action = split_pane("local"),
     },
     {
@@ -154,7 +154,7 @@ function M.apply_to_config(config)
     },
     {
       key = "p",
-      mods = "SHIFT|ALT|CTRL",
+      mods = "ALT|CTRL|SUPER",
       action = split_pane("SSH:prod"),
     },
     {
@@ -164,7 +164,7 @@ function M.apply_to_config(config)
     },
     {
       key = "s",
-      mods = "SHIFT|ALT|CTRL",
+      mods = "ALT|CTRL|SUPER",
       action = split_pane("SSH:staging"),
     },
     {
@@ -174,7 +174,7 @@ function M.apply_to_config(config)
     },
     {
       key = "v",
-      mods = "SHIFT|ALT|CTRL",
+      mods = "ALT|CTRL|SUPER",
       action = split_pane("SSH:dev-wsl"),
     },
     {
@@ -184,7 +184,7 @@ function M.apply_to_config(config)
     },
     {
       key = "w",
-      mods = "SHIFT|ALT|CTRL",
+      mods = "ALT|CTRL|SUPER",
       action = split_pane("SSH:wsl"),
     },
   })
