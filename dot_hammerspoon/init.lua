@@ -23,21 +23,14 @@ for key, bundle_id_and_args in pairs({
 
   hs.hotkey.bind({ "ctrl", "option", "shift" }, key, function()
     local app = hs.application(bundleID)
+    local args = bundle_id_and_args[2]
 
-    if app then
-      if app:isFrontmost() then
-        app:hide()
-      else
-        app:setFrontmost()
-      end
+    if app and app:isFrontmost() then
+      app:hide()
+    elseif args then
+      os.execute("open -b " .. bundleID .. " " .. args)
     else
-      local args = bundle_id_and_args[2]
-
-      if args then
-        os.execute("open -b " .. bundleID .. " " .. args)
-      else
-        hs.application.open(bundleID)
-      end
+      hs.application.open(bundleID)
     end
   end)
 end
