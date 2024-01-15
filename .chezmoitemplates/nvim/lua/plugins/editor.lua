@@ -215,10 +215,20 @@ return {
   },
   {
     "johmsalas/text-case.nvim",
+    config = function()
+      require("textcase").setup({})
+      require("telescope").load_extension("textcase")
+    end,
+    dependencies = "nvim-telescope/telescope.nvim",
     keys = {
       { "ga", desc = "+text-case" },
+      {
+        "ga.",
+        "<cmd>TextCaseOpenTelescope<CR>",
+        mode = { "n", "v" },
+        desc = "Telescope",
+      },
     },
-    opts = {},
   },
   {
     "RRethy/vim-illuminate",
