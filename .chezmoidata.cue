@@ -79,7 +79,7 @@ aliases: {
 	{
 		_non_windows: {
 			fd:  "fd --hidden"
-			rns: "rm ~/.local/share/nvim/sessions/*"
+			rns: #"rm -r "$(nvim_stdpath data)/sessions""#
 			tg:  "PIP_REQUIRE_VIRTUALENV=false topgrade"
 			tns: "tmux new-session -A -s"
 			tm:  "\(tns) 0"
@@ -108,7 +108,7 @@ aliases: {
 			crv: #"cp ~/AppData/Roaming/Code/User/keybindings.json ~/.local/share/chezmoi/.chezmoitemplates/code; sed -E 's/(Theme.*").+(",)/\1\2/g' ~/AppData/Roaming/Code/User/settings.json > ~/.local/share/chezmoi/.chezmoitemplates/code/settings.json"#
 			dpw: #"powershell -c "Invoke-Expression (\"pwsh \" + (New-Object -ComObject WScript.Shell).CreateShortcut(\"\$Env:ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2022\Visual Studio Tools\Developer PowerShell for VS 2022.lnk\").Arguments.Replace('\"\"\"', \"'\"))""#
 			fd:  "\(_non_windows.fd) --path-separator '//'"
-			rns: "rm $HOME/AppData/Local/nvim-data/sessions/*"
+			rns: #"rm -r "$(nvim_stdpath data)\sessions""#
 			tg:  "winget upgrade spotify; gsudo topgrade"
 			wsk: "wezterm show-keys --lua"
 		}
