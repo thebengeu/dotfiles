@@ -148,6 +148,16 @@ function M.apply_to_config(config)
       action = split_pane("local"),
     },
     {
+      key = "m",
+      mods = "SHIFT|ALT",
+      action = activate_or_spawn_pane("mbp-2023"),
+    },
+    {
+      key = "m",
+      mods = "ALT|CTRL|SUPER",
+      action = split_pane("SSH:mbp-2023"),
+    },
+    {
       key = "p",
       mods = "SHIFT|ALT",
       action = activate_or_spawn_pane("prod"),
