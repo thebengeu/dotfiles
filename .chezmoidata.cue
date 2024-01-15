@@ -305,6 +305,7 @@ paths: [
 	"~/.local/bin",
 	"~/git-fuzzy/bin",
 	"~/go/bin",
+	"~/thebengeu/scripts",
 ] + {
 	darwin: [
 		"~/Library/Python/3.11/bin",
