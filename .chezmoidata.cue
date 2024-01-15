@@ -303,6 +303,7 @@ paths: [
 	"$PNPM_HOME",
 	"~/.cargo/bin",
 	"~/.local/bin",
+	"~/git-fuzzy/bin",
 	"~/go/bin",
 ] + {
 	darwin: [

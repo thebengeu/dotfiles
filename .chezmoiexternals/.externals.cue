@@ -27,12 +27,6 @@ for gitRepo in _zshGitRepos {
 	}
 }
 
-".local": #Archive & {
-	include: ["git-fuzzy-main/bin", "git-fuzzy-main/lib"]
-	stripComponents: 1
-	url:             "https://github.com/bigH/git-fuzzy/archive/refs/heads/main.zip"
-}
-
 ".config/fish/completions/nvr.fish": #File & {
 	url: "https://raw.githubusercontent.com/mhinz/neovim-remote/master/contrib/completion.fish"
 }
@@ -47,6 +41,9 @@ for gitRepo in _zshGitRepos {
 }
 ".local/bin/cht": #ExecutableFile & {
 	url: "https://cht.sh/:cht.sh"
+}
+"git-fuzzy": #GitRepo & {
+	_gitRepo: "bigH/git-fuzzy"
 }
 
 {
