@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+nvim --headless -c "echo stdpath('${1}') | q" 2>&1
