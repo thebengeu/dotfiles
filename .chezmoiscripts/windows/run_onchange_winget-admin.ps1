@@ -30,6 +30,7 @@ $wingetPackageIds = @(
   'Flow-Launcher.Flow-Launcher'
   'junegunn.fzf'
   'Helix.Helix'
+  'ProjectJupyter.JupyterLab'
   'k6.k6'
   'DEVCOM.Lua'
   'jftuga.less'
