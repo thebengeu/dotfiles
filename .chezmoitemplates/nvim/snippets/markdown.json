@@ -1,0 +1,30 @@
+{
+  "kcmd": {
+    "prefix": "kcmd",
+    "body": ["<kbd>⌘</kbd>"],
+    "luasnip": {
+      "autotrigger": true
+    }
+  },
+  "kctl": {
+    "prefix": "kctl",
+    "body": ["<kbd>⌃</kbd>"],
+    "luasnip": {
+      "autotrigger": true
+    }
+  },
+  "kopt": {
+    "prefix": "kopt",
+    "body": ["<kbd>⌥</kbd>"],
+    "luasnip": {
+      "autotrigger": true
+    }
+  },
+  "ksft": {
+    "prefix": "ksft",
+    "body": ["<kbd>⇧</kbd>"],
+    "luasnip": {
+      "autotrigger": true
+    }
+  }
+}

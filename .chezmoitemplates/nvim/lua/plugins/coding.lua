@@ -207,6 +207,12 @@ return vim.list_extend(
     },
     {
       "L3MON4D3/LuaSnip",
+      config = function(_, opts)
+        require("luasnip").setup(opts)
+        require("luasnip.loaders.from_vscode").lazy_load({
+          paths = "./snippets",
+        })
+      end,
       dependencies = {
         {
           "rafamadriz/friendly-snippets",
@@ -223,6 +229,9 @@ return vim.list_extend(
       keys = function()
         return {}
       end,
+      opts = {
+        enable_autosnippets = true,
+      },
     },
     {
       "echasnovski/mini.ai",
