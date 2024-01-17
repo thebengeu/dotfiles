@@ -95,38 +95,6 @@ return {
     },
   },
   {
-    "linrongbin16/gitlinker.nvim",
-    keys = {
-      {
-        "<leader>gL",
-        function()
-          local cwd = vim.loop.cwd()
-
-          vim.cmd.cd(require("lazyvim.util").root())
-          vim.cmd.GitLink({ "blame", bang = true })
-          vim.cmd.cd(cwd)
-        end,
-        desc = "Open Blame Permalink",
-        mode = { "n", "x" },
-      },
-      {
-        "<leader>gl",
-        function()
-          local cwd = vim.loop.cwd()
-
-          vim.cmd.cd(require("lazyvim.util").root())
-          vim.cmd.GitLink({ bang = true })
-          vim.cmd.cd(cwd)
-        end,
-        desc = "Open Blob Permalink",
-        mode = { "n", "x" },
-      },
-    },
-    opts = {
-      message = false,
-    },
-  },
-  {
     "NeogitOrg/neogit",
     dependencies = "nvim-lua/plenary.nvim",
     keys = {
@@ -145,7 +113,24 @@ return {
     opts = {},
   },
   {
-    "tpope/vim-fugitive",
-    cmd = { "G", "Gclog" },
+    "tpope/vim-rhubarb",
+    dependencies = {
+      "tpope/vim-fugitive",
+      cmd = { "G", "Gclog" },
+    },
+    keys = {
+      {
+        "<leader>gl",
+        "<Cmd>0GBrowse<CR>",
+        desc = "Open Blob Permalink",
+        mode = "n",
+      },
+      {
+        "<leader>gl",
+        ":GBrowse<CR>",
+        desc = "Open Blob Permalink",
+        mode = "x",
+      },
+    },
   },
 }
