@@ -1,27 +1,27 @@
 {
   "kcmd": {
-    "prefix": "kcmd",
+    "prefix": "kg",
     "body": ["<kbd>⌘</kbd>"],
     "luasnip": {
       "autotrigger": true
     }
   },
   "kctl": {
-    "prefix": "kctl",
+    "prefix": "kc",
     "body": ["<kbd>⌃</kbd>"],
     "luasnip": {
       "autotrigger": true
     }
   },
   "kopt": {
-    "prefix": "kopt",
+    "prefix": "ko",
     "body": ["<kbd>⌥</kbd>"],
     "luasnip": {
       "autotrigger": true
     }
   },
   "ksft": {
-    "prefix": "ksft",
+    "prefix": "ks",
     "body": ["<kbd>⇧</kbd>"],
     "luasnip": {
       "autotrigger": true
