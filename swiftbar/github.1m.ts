@@ -94,7 +94,7 @@ const main = async () => {
       ({
         node: {
           author: { login },
-          files: { edges: files },
+          files: { edges: fileEdges },
           title,
           updatedAt,
         },
@@ -102,8 +102,8 @@ const main = async () => {
         new Date(updatedAt) > oneWeekAgo &&
         login !== 'dependabot' &&
         (title.includes('hotfix') ||
-          _.sumBy(files, 'node.additions') < 10 ||
-          !files.every(({ node: { path } }) => path.startsWith('api/')))
+          _.sumBy(fileEdges, 'node.additions') < 10 ||
+          !fileEdges.every(({ node: { path } }) => path.startsWith('api/')))
     ),
     'node.updatedAt',
     'desc'
@@ -120,7 +120,7 @@ const main = async () => {
       author: { login },
       body,
       createdAt,
-      files: { edges: files },
+      files: { edges: fileEdges },
       number,
       repository: { nameWithOwner },
       title,
@@ -128,25 +128,35 @@ const main = async () => {
       url,
     },
   } of relevantPRs) {
+    const files = _.map(fileEdges, 'node')
+
     menuItems.push({
       href: url,
       md: true,
-      submenu: files.map(({ node: { additions, changeType, deletions, path } }) => ({
+      text: `**${title}** \n\n${body
+        .replace(/(\r\n)+/g, '\n')
+        .replace(/\s+$/g, '')
+        .split('\n')
+        .slice(0, 10)
+        .join('\n')}\n`,
+    })
+    menuItems.push({
+      href: `${url}/files`,
+      md: true,
+      submenu: files.map(({ additions, changeType, deletions, path }) => ({
         href: `${url}/files`,
         text: `${
           changeType === 'CHANGED' ? 'T' : changeType[0]
         } ${path} (+${additions} -${deletions})`,
       })),
-      text: `**${title}**\n\n${body
-        .replace(/(\r\n)+/g, '\n')
-        .replace(/\s+$/g, '')
-        .split('\n')
-        .slice(0, 10)
-        .join('\n')}\n\n*${nameWithOwner}#${number} opened ${formatDistanceToNow(createdAt, {
+      text: `*${nameWithOwner}#${number} opened ${formatDistanceToNow(createdAt, {
         addSuffix: true,
       })} by ${login} • updated ${formatDistanceToNow(updatedAt, {
         addSuffix: true,
-      })}*`,
+      })} • ${files.length} file${files.length > 1 ? 's' : ''} changed (+${+_.sumBy(
+        files,
+        'additions'
+      )} -${_.sumBy(files, 'deletions')})*`,
     })
     menuItems.push(separator)
   }
