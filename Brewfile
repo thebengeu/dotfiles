@@ -149,6 +149,7 @@ cask "notion"
 cask "numi"
 cask "obsidian"
 cask "parsify"
+cask "qmk-toolbox"
 cask "raycast"
 cask "readdle-spark"
 cask "rectangle-pro"
@@ -160,6 +161,7 @@ cask "swiftbar"
 cask "tableplus"
 cask "telegram"
 cask "timeular"
+cask "timing"
 cask "todoist"
 cask "transmission"
 cask "visual-studio-code"
@@ -178,7 +180,6 @@ mas "Endel", id: 1346247457
 mas "iA Writer", id: 775737590
 mas "Magic Window 4K", id: 689569987
 mas "Microsoft Remote Desktop", id: 1295203466
-mas "PopClip", id: 445189367
 mas "Timery", id: 1425368544
 mas "ToothFairy", id: 1191449274
 mas "Velja", id: 1607635845
