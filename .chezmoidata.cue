@@ -243,7 +243,7 @@ functions: {
 	}
 	nz: {
 		lines: [
-			"TERM=wezterm cd $directory; nvim",
+			"cd $directory; TERM=wezterm nvim",
 		]
 		parameters: ["directory"]
 	}
