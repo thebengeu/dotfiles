@@ -45,22 +45,35 @@ for _, mods_and_key in ipairs({
     { "cmd", "ctrl" },
     "a",
     true,
-    function(mods, key, hotkey)
-      local timer = hs.timer.doEvery(1, function()
-        hs.eventtap.keyStroke(mods, key)
-      end)
+    function(hotkey, mods, key, bundle_id)
+      local found_add_task_window_or_timeout
+      local timeout_timer
 
-      local wf_todoist
-      wf_todoist = wf.new({ "Todoist" })
-        :subscribe(wf.windowVisible, function(win)
+      local keystroke_timer = hs.timer.doEvery(1, function()
+        hs.eventtap.keyStroke(mods, key)
+
+        local app = hs.application(bundle_id)
+
+        if not app then
+          return
+        end
+
+        for _, win in ipairs(app:allWindows()) do
           if win:size().w == 640 then
-            timer:stop()
-            wf_todoist:unsubscribeAll()
-            hotkey:enable()
+            found_add_task_window_or_timeout()
           else
             win:close()
           end
-        end)
+        end
+      end)
+
+      found_add_task_window_or_timeout = function()
+        keystroke_timer:stop()
+        timeout_timer:stop()
+        hotkey:enable()
+      end
+
+      timeout_timer = hs.timer.doAfter(5, found_add_task_window_or_timeout)
     end,
   },
   {
@@ -68,7 +81,7 @@ for _, mods_and_key in ipairs({
     { "ctrl", "option", "shift" },
     "l",
     true,
-    function(_, _, hotkey)
+    function(hotkey)
       hotkey:enable()
     end,
   },
@@ -98,7 +111,7 @@ for _, mods_and_key in ipairs({
       hs.application.open(bundle_id, 10, true)
 
       if after_launch then
-        after_launch(mods, key, hotkey)
+        after_launch(hotkey, mods, key, bundle_id)
         return
       end
     elseif set_frontmost then
