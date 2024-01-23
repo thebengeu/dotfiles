@@ -1,5 +1,5 @@
 - ansible.builtin.file:
-    mode: '755'
+    mode: "755"
     path: ~/.pulumi/bin
     state: directory
 - ansible.builtin.unarchive:
@@ -10,7 +10,7 @@
     remote_src: true
     src: https://get.pulumi.com/releases/sdk/pulumi-v3.86.0-linux-{{ (arch.stdout == 'amd64') | ternary('x64', arch.stdout) }}.tar.gz
 - ansible.builtin.file:
-    mode: '755'
+    mode: "755"
     path: ~/.temporalio/bin
     state: directory
 - ansible.builtin.unarchive:
@@ -43,12 +43,12 @@
 - ansible.builtin.user:
     append: true
     groups: docker
-    name: '{{ ansible_user_id }}'
+    name: "{{ ansible_user_id }}"
     shell: /usr/bin/fish
   become: true
 - ansible.builtin.get_url:
     dest: /tmp/rustup-init
-    mode: '755'
+    mode: "755"
     url: https://static.rust-lang.org/rustup/dist/{{ ansible_machine }}-unknown-linux-gnu/rustup-init
 - ansible.builtin.command:
     cmd: /tmp/rustup-init --no-modify-path --profile minimal -y
@@ -83,6 +83,10 @@
     - starship
     - vivid
     - zoxide
+- ansible.builtin.get_url:
+    dest: /tmp/pyenv-installer
+    mode: "755"
+    url: https://pyenv.run
 - ansible.builtin.command:
-    cmd: curl https://pyenv.run | bash
+    cmd: /tmp/pyenv-installer
     creates: ~/.pyenv
