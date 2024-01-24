@@ -171,6 +171,7 @@ cask "wezterm-nightly"
 cask "whatsapp"
 cask "yubico-yubikey-manager"
 cask "zoom"
+mas "1Password for Safari", id: 1569813296
 mas "24 Hour Wallpaper", id: 1226087575
 mas "Amphetamine", id: 937984704
 mas "Calca", id: 635758264
@@ -180,6 +181,9 @@ mas "Endel", id: 1346247457
 mas "iA Writer", id: 775737590
 mas "Magic Window 4K", id: 689569987
 mas "Microsoft Remote Desktop", id: 1295203466
+mas "Refined GitHub", id: 1519867270
+mas "Save to Raindrop.io", id: 1549370672
+mas "Surfingkeys", id: 1609752330
 mas "Timery", id: 1425368544
 mas "ToothFairy", id: 1191449274
 mas "Velja", id: 1607635845
