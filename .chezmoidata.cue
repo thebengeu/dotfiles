@@ -123,6 +123,7 @@ aliases: {
 	_aliasDirectories: {
 		c:  "$HOME/.local/share/chezmoi"
 		d:  "$HOME/thebengeu/drakon"
+		q:  "$HOME/thebengeu/qmk_userspace"
 		s:  "$HOME/sb"
 		sb: "$HOME/supabase"
 	}
