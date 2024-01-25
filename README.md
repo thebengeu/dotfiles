@@ -4,6 +4,7 @@
 curl -s 'https://raw.githubusercontent.com/thebengeu/dotfiles/master/.chezmoiscripts/darwin/run_onchange_init.sh' >/tmp/run_onchange_init.sh
 sh /tmp/run_onchange_init.sh
 rm /tmp/run_onchange_init.sh
+defaults import com.sindresorhus.Velja com.sindresorhus.Velja.plist
 ```
 
 # Linux

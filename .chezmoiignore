@@ -1,3 +1,4 @@
+*.plist
 Alfred.alfredpreferences/
 ansible/
 manifests/
