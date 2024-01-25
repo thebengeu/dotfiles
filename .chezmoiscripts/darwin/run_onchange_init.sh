@@ -48,6 +48,10 @@ if [ ! "${CHEZMOI}" = 1 ]; then
   brew bundle install --file ~/.local/share/chezmoi/ignored/Brewfile --no-lock
   cargo install cargo-binstall
 
+  PIP_REQUIRE_VIRTUALENV=false pip3 install --upgrade --user \
+    pipx
+  pipx install poetry
+
   if [ "$(uname -m)" = 'arm64' ]; then
     sudo sh -c 'echo /opt/homebrew/bin/fish >> /etc/shells'
     chsh -s /opt/homebrew/bin/fish

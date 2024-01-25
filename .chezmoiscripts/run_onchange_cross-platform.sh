@@ -10,7 +10,6 @@ gh extension install seachicken/gh-poi
 go install github.com/nao1215/gup@latest
 
 PIP_REQUIRE_VIRTUALENV=false pip3 install --upgrade --user \
-  pipx \
   pynvim \
   setuptools
 
@@ -23,7 +22,6 @@ pipx install httpie
 pipx install --preinstall rich ipython
 pipx install khal
 pipx install neovim-remote
-pipx install poetry
 pipx install sqlfluff
 pipx install thefuck
 pipx install tox
