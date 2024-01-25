@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
-if [ ! -x "$(command -v dpkg)" ]; then
+if [[ ! -x "$(command -v dpkg)" ]]; then
   exit
 fi
 
 ARCHITECTURE=$(dpkg --print-architecture)
 
-if [ ! -f /usr/bin/op ]; then
+if [[ ! -f /usr/bin/op ]]; then
   curl -sS https://downloads.1password.com/linux/keys/1password.asc |
     sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
-  echo "deb [arch=$ARCHITECTURE signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) stable main" |
+  echo "deb [arch=${ARCHITECTURE} signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) stable main" |
     sudo tee /etc/apt/sources.list.d/1password.list
   sudo mkdir -p /etc/debsig/policies/AC2D62742012EA22/
   curl -sS https://downloads.1password.com/linux/debian/debsig/1password.pol |
@@ -19,45 +19,45 @@ if [ ! -f /usr/bin/op ]; then
   sudo apt update && sudo apt install 1password-cli
 fi
 
-export EJSON_KEYDIR="$HOME/.config/ejson/keys"
+export EJSON_KEYDIR="${HOME}/.config/ejson/keys"
 
 EJSON_PUBLIC_KEY="5df4cad7a4c3a2937a863ecf18c56c23274cb048624bc9581ecaac56f2813107"
-EJSON_KEY_PATH="$EJSON_KEYDIR/$EJSON_PUBLIC_KEY"
-SSH_KEY_PATH="$HOME/.ssh/id_ed25519"
+EJSON_KEY_PATH="${EJSON_KEYDIR}/${EJSON_PUBLIC_KEY}"
+SSH_KEY_PATH="${HOME}/.ssh/id_ed25519"
 
-if [ ! -f ~/.ssh/id_ed25519 ] || [ ! -f "$EJSON_KEY_PATH" ]; then
+if [[ ! -f ~/.ssh/id_ed25519 ]] || [[ ! -f "${EJSON_KEY_PATH}" ]]; then
   eval "$(op signin)"
 fi
 
-if [ ! -f ~/.ssh/id_ed25519 ]; then
+if [[ ! -f ~/.ssh/id_ed25519 ]]; then
   mkdir ~/.ssh
-  op read 'op://Personal/Ed25519 SSH Key/id_ed25519' | tr -d '\r' >"$SSH_KEY_PATH"
-  chmod 600 "$SSH_KEY_PATH"
+  op read 'op://Personal/Ed25519 SSH Key/id_ed25519' | tr -d '\r' >"${SSH_KEY_PATH}"
+  chmod 600 "${SSH_KEY_PATH}"
   eval "$(ssh-agent -s)"
   ssh-add ~/.ssh/id_ed25519
 fi
 
-if [ ! -f "$EJSON_KEY_PATH" ]; then
+if [[ ! -f "${EJSON_KEY_PATH}" ]]; then
   mkdir -p ~/.local/bin
-  curl -Ls https://github.com/Shopify/ejson/releases/download/v1.4.1/ejson_1.4.1_linux_"$ARCHITECTURE".tar.gz | tar xz --directory ~/.local/bin ejson
+  curl -Ls https://github.com/Shopify/ejson/releases/download/v1.4.1/ejson_1.4.1_linux_"${ARCHITECTURE}".tar.gz | tar xz --directory ~/.local/bin ejson
   mkdir -p ~/.config/ejson/keys
-  op read op://Personal/ejson/"$EJSON_PUBLIC_KEY" --out-file "$EJSON_KEY_PATH"
+  op read op://Personal/ejson/"${EJSON_PUBLIC_KEY}" --out-file "${EJSON_KEY_PATH}"
 fi
 
-if [ ! "$CHEZMOI" = 1 ]; then
-  CHEZMOI_SOURCE_DIR="$HOME/.local/share/chezmoi"
+if [[ ! "${CHEZMOI}" = 1 ]]; then
+  CHEZMOI_SOURCE_DIR="${HOME}/.local/share/chezmoi"
 
-  git clone git@github.com:thebengeu/dotfiles.git "$CHEZMOI_SOURCE_DIR"
+  git clone git@github.com:thebengeu/dotfiles.git "${CHEZMOI_SOURCE_DIR}"
 
   sudo add-apt-repository -y ppa:ansible/ansible
   sudo apt install -y ansible
-  ansible-playbook "$CHEZMOI_SOURCE_DIR"/ansible/site.yml --ask-become-pass
+  ansible-playbook "${CHEZMOI_SOURCE_DIR}"/ignored/ansible/site.yml --ask-become-pass
 
   sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'postgres';"
 
   export PNPM_HOME=~/.local/share/pnpm
   export PYENV_ROOT=~/.pyenv
-  export PATH="$PYENV_ROOT/bin:~/.cargo/bin:~/.local/bin:~/.pulumi/bin:~/go/bin:$PNPM_HOME:$PATH"
+  export PATH="${PYENV_ROOT}/bin:~/.cargo/bin:~/.local/bin:~/.pulumi/bin:~/go/bin:${PNPM_HOME}:${PATH}"
   /snap/bin/chezmoi init
   /snap/bin/chezmoi apply --exclude scripts
   /snap/bin/chezmoi apply --include scripts

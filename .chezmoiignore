@@ -1,8 +1,4 @@
-*.plist
-Alfred.alfredpreferences/
-ansible/
-manifests/
-swiftbar/
+ignored/
 README.md
 
 {{ if eq .chezmoi.os "windows" }}

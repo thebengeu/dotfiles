@@ -85,7 +85,7 @@ aliases: {
 			tm:  "\(tns) 0"
 		}
 		darwin: _non_windows & {
-			bbd:  "sh -c 'cd ~/.local/share/chezmoi && brew bundle dump --file Brewfile --force && git diff Brewfile'"
+			bbd:  "sh -c 'cd ~/.local/share/chezmoi/ignored && brew bundle dump --file Brewfile --force && git diff Brewfile'"
 			bic:  "brew install --cask"
 			bif:  "brew info"
 			crv:  #"cp ~/Library/Application\ Support/Code/User/keybindings.json ~/.local/share/chezmoi/.chezmoitemplates/code; sed -E 's/(Theme.*").+(",)/\1\2/g' ~/Library/Application\ Support/Code/User/settings.json > ~/.local/share/chezmoi/.chezmoitemplates/code/settings.json"#
