@@ -17,35 +17,35 @@ brew install \
   cue \
   ejson
 
-export EJSON_KEYDIR="$HOME/.config/ejson/keys"
+export EJSON_KEYDIR="${HOME}/.config/ejson/keys"
 
 EJSON_PUBLIC_KEY="5df4cad7a4c3a2937a863ecf18c56c23274cb048624bc9581ecaac56f2813107"
-EJSON_KEY_PATH="$EJSON_KEYDIR/$EJSON_PUBLIC_KEY"
-SSH_KEY_PATH="$HOME/.ssh/id_ed25519"
+EJSON_KEY_PATH="${EJSON_KEYDIR}/${EJSON_PUBLIC_KEY}"
+SSH_KEY_PATH="${HOME}/.ssh/id_ed25519"
 
-if [ ! -f "$SSH_KEY_PATH" ]; then
+if [ ! -f "${SSH_KEY_PATH}" ]; then
   mkdir ~/.ssh
-  op read 'op://Personal/Ed25519 SSH Key/id_ed25519' | tr -d '\r' >"$SSH_KEY_PATH"
-  chmod 600 "$SSH_KEY_PATH"
+  op read 'op://Personal/Ed25519 SSH Key/id_ed25519' | tr -d '\r' >"${SSH_KEY_PATH}"
+  chmod 600 "${SSH_KEY_PATH}"
   eval "$(ssh-agent -s)"
-  ssh-add "$SSH_KEY_PATH"
+  ssh-add "${SSH_KEY_PATH}"
 fi
 
-if [ ! -f "$EJSON_KEY_PATH" ]; then
-  mkdir -p "$HOME"/.config/ejson/keys
-  op read op://Personal/ejson/"$EJSON_PUBLIC_KEY" --out-file "$EJSON_KEY_PATH"
+if [ ! -f "${EJSON_KEY_PATH}" ]; then
+  mkdir -p "${HOME}"/.config/ejson/keys
+  op read op://Personal/ejson/"${EJSON_PUBLIC_KEY}" --out-file "${EJSON_KEY_PATH}"
 fi
 
-if [ ! "$CHEZMOI" = 1 ]; then
+if [ ! "${CHEZMOI}" = 1 ]; then
   export PNPM_HOME=~/.local/share/pnpm
-  export PATH=~/.cargo/bin:~/go/bin:~/Library/Python/3.11/bin:"$PNPM_HOME":"$PATH"
+  export PATH=~/.cargo/bin:~/go/bin:~/Library/Python/3.11/bin:"${PNPM_HOME}":"${PATH}"
   chezmoi init --ssh thebengeu
 
   if [ "$(uname -m)" = 'x86_64' ]; then
-    sudo chown -R "$USER":admin /usr/local/share/icons /usr/local/share/locale
+    sudo chown -R "${USER}":admin /usr/local/share/icons /usr/local/share/locale
   fi
 
-  brew bundle install --file ~/.local/share/chezmoi/Brewfile --no-lock
+  brew bundle install --file ~/.local/share/chezmoi/ignored/Brewfile --no-lock
   cargo install cargo-binstall
 
   if [ "$(uname -m)" = 'arm64' ]; then
