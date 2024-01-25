@@ -11,6 +11,7 @@ defaults import com.sindresorhus.Velja com.sindresorhus.Velja.plist
 
 - Install [KensingtonWorks](https://www.kensington.com/software/kensingtonworks/)
 - Install [Homerow](https://install.appcenter.ms/users/dexterleng/apps/homerow-redux/distribution_groups/production)
+- Install [Open In native client](https://github.com/andy-portmen/native-client/releases)
 - Install [Vanta Agent](https://app.vanta.com/employee/onboarding)
 
 ## Linux
