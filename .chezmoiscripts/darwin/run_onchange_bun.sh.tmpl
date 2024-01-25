@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# {{ include "ignored/swiftbar/package.json" | sha1sum }}
-cd "${CHEZMOI_SOURCE_DIR}/ignored/swiftbar" || exit
+# {{ include "Library/Application Support/swiftbar-plugins/package.json" | sha1sum }}
+cd ~/Library/Application\ Support/swiftbar-plugins || exit
 bun install
 chflags hidden node_modules
