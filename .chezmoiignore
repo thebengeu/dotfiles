@@ -33,8 +33,6 @@ scoop/
 .hammerspoon/
 .homebrew/
 .local/bin/format-clipboard
-Brewfile
-iStat Menus Settings.ismp
 Library/
 {{ end }}
 
