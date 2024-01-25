@@ -9,6 +9,7 @@ rm /tmp/run_onchange_init.sh
 defaults import com.sindresorhus.Velja com.sindresorhus.Velja.plist
 ```
 
+- Install [KensingtonWorks](https://www.kensington.com/software/kensingtonworks/)
 - Install [Homerow](https://install.appcenter.ms/users/dexterleng/apps/homerow-redux/distribution_groups/production)
 - Install [Vanta Agent](https://app.vanta.com/employee/onboarding)
 
