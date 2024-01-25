@@ -7,6 +7,8 @@ rm /tmp/run_onchange_init.sh
 defaults import com.sindresorhus.Velja com.sindresorhus.Velja.plist
 ```
 
+- Install [Homerow](https://install.appcenter.ms/users/dexterleng/apps/homerow-redux/distribution_groups/production)
+
 # Linux
 
 ```console
