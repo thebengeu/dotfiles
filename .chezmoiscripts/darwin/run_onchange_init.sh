@@ -15,7 +15,8 @@ brew install \
   1password-cli \
   chezmoi \
   cue \
-  ejson
+  ejson \
+  jq
 
 export EJSON_KEYDIR="${HOME}/.config/ejson/keys"
 
@@ -45,7 +46,7 @@ if [ ! "${CHEZMOI}" = 1 ]; then
     sudo chown -R "${USER}":admin /usr/local/share/icons /usr/local/share/locale
   fi
 
-  brew bundle install --file ~/.local/share/chezmoi/ignored/Brewfile --no-lock
+  HOMEBREW_GITHUB_API_TOKEN="$(ejson decrypt ~/.local/share/chezmoi/.secrets.ejson | jq -r .github_token_repo)" brew bundle install --file ~/.local/share/chezmoi/ignored/Brewfile --no-lock
   cargo install cargo-binstall
 
   PIP_REQUIRE_VIRTUALENV=false pip3 install --upgrade --user \
