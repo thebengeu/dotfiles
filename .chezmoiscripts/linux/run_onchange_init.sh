@@ -53,6 +53,10 @@ if [[ ! "${CHEZMOI}" = 1 ]]; then
   sudo apt install -y ansible
   ansible-playbook "${CHEZMOI_SOURCE_DIR}"/ignored/ansible/site.yml --ask-become-pass
 
+  PIP_REQUIRE_VIRTUALENV=false pip3 install --upgrade --user \
+    pipx
+  pipx install poetry
+
   sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'postgres';"
 
   export PNPM_HOME=~/.local/share/pnpm
