@@ -121,7 +121,7 @@
 			<key>BigQuery_Standard_SQL</key>
 			<dict>
 				<key>date</key>
-				<date>2024-01-15T14:48:00Z</date>
+				<date>2024-01-25T02:43:17Z</date>
 				<key>entry</key>
 				<dict>
 					<key>authorLinkHref</key>
@@ -139,7 +139,7 @@
 			<key>Hammerspoon</key>
 			<dict>
 				<key>date</key>
-				<date>2024-01-10T11:58:40Z</date>
+				<date>2024-01-25T02:43:16Z</date>
 				<key>entry</key>
 				<dict>
 					<key>aliases</key>
@@ -174,42 +174,42 @@
 			<key>http://kapeli.com/feeds/Bash.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2024-01-10T11:58:14Z</date>
+				<date>2024-01-25T02:43:18Z</date>
 			</dict>
 			<key>http://kapeli.com/feeds/JavaScript.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2024-01-13T08:55:25Z</date>
+				<date>2024-01-25T02:44:05Z</date>
 			</dict>
 			<key>http://kapeli.com/feeds/Lo-Dash.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2023-12-10T05:55:28Z</date>
+				<date>2024-01-25T02:43:13Z</date>
 			</dict>
 			<key>http://kapeli.com/feeds/Lua_5.4.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2024-01-10T12:07:16Z</date>
+				<date>2024-01-25T02:43:13Z</date>
 			</dict>
 			<key>http://kapeli.com/feeds/NodeJS.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2023-12-10T05:55:12Z</date>
+				<date>2024-01-25T02:43:17Z</date>
 			</dict>
 			<key>http://kapeli.com/feeds/Pandas.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2024-01-05T16:06:54Z</date>
+				<date>2024-01-25T02:43:24Z</date>
 			</dict>
 			<key>http://kapeli.com/feeds/Python_3.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2024-01-05T16:07:01Z</date>
+				<date>2024-01-25T02:43:19Z</date>
 			</dict>
 			<key>http://kapeli.com/feeds/TypeScript.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2023-12-09T13:44:21Z</date>
+				<date>2024-01-25T02:43:21Z</date>
 			</dict>
 		</dict>
 		<key>uninstalled</key>
