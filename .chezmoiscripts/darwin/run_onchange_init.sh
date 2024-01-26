@@ -47,6 +47,10 @@ if [ ! "${CHEZMOI}" = 1 ]; then
   fi
 
   HOMEBREW_GITHUB_API_TOKEN="$(ejson decrypt ~/.local/share/chezmoi/.secrets.ejson | jq -r .github_token_repo)" brew bundle install --file ~/.local/share/chezmoi/ignored/Brewfile --no-lock
+  brew link --overwrite moreutils
+  brew unlink parallel
+  brew link --overwrite parallel
+
   cargo install cargo-binstall
 
   PIP_REQUIRE_VIRTUALENV=false pip3 install --upgrade --user \
