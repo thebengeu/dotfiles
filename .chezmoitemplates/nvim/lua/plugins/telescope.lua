@@ -358,6 +358,8 @@ return {
         },
         { "<leader>sG", false },
         { "<leader>sg", false },
+        { "<leader>sR", false },
+        { "<leader>sr", "<cmd>Telescope resume<cr>", desc = "Resume" },
       })
     end,
     opts = function(_, opts)
