@@ -154,6 +154,13 @@ return {
         desc = "Replace in files (Spectre)",
       },
     },
+    opts = {
+      default = {
+        replace = {
+          cmd = "oxi",
+        },
+      },
+    },
   },
   {
     "epwalsh/obsidian.nvim",
