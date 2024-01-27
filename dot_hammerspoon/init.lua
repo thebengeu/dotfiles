@@ -8,10 +8,12 @@ spoon.ReloadConfiguration:start()
 hs.application.enableSpotlightForNameSearches(true)
 
 for key, bundle_id_and_args in pairs({
+  b = "Safari",
   c = "com.google.Chrome",
-  d = "com.microsoft.edgemac.app.knaiokfnmjjldlfhlioejgcompgenfhb",
+  d = "com.hnc.Discord",
   e = "com.microsoft.edgemac",
-  f = "Safari",
+  f = "com.microsoft.edgemac.app.nkbljeindhmekmppbpgebpjebkjbmfaj",
+  g = "ru.keepcoder.Telegram",
   h = "com.spotify.client",
   k = "com.kapeli.dashdoc",
   m = "com.readdle.SparkDesktop",
@@ -20,7 +22,7 @@ for key, bundle_id_and_args in pairs({
   p = { "com.brettterpstra.marked2", "~/thebengeu/cheatsheet/README.md" },
   r = "com.microsoft.edgemac.app.bndmnggfngpgmmijcogkkgglhalbpomk",
   s = "com.tinyspeck.slackmacgap",
-  t = "ru.keepcoder.Telegram",
+  t = "com.microsoft.edgemac.app.knaiokfnmjjldlfhlioejgcompgenfhb",
   v = "com.neovide.neovide",
   w = WEZTERM_BUNDLE_ID,
 }) do
