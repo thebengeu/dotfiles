@@ -299,10 +299,13 @@ return vim.list_extend(
           "cue",
           "fennel",
           "fish",
+          "hcl",
           "hjson",
           "gitignore",
+          "make",
           "prisma",
           "sql",
+          "ssh_config",
           "toml",
         })
         opts.indent = {
