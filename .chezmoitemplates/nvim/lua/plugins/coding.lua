@@ -301,6 +301,7 @@ return vim.list_extend(
           "fish",
           "hcl",
           "hjson",
+          "git_config",
           "gitignore",
           "make",
           "prisma",
