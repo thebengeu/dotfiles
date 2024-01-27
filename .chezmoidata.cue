@@ -44,6 +44,7 @@ aliases: {
 	man: "batman"
 	n:   "TERM=wezterm nvim"
 	ni:  "npm install"
+	nrd: "npm run dev"
 	nrm: "npm remove"
 	p:   "pnpm"
 	pi:  "pnpm install"
