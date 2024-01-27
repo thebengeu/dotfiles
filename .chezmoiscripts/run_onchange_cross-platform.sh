@@ -32,6 +32,7 @@ pnpm add --global \
   npm-check-updates \
   pino-pretty \
   pm2 \
+  prettier \
   sql-formatter \
   trash-cli \
   tsx
