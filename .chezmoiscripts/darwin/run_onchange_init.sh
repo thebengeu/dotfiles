@@ -37,6 +37,8 @@ if [ ! -f "${EJSON_KEY_PATH}" ]; then
   op read op://Personal/ejson/"${EJSON_PUBLIC_KEY}" --out-file "${EJSON_KEY_PATH}"
 fi
 
+defaults write -g ApplePressAndHoldEnabled -bool false
+
 if [ ! "${CHEZMOI}" = 1 ]; then
   export PNPM_HOME=~/.local/share/pnpm
   export PATH=~/.cargo/bin:~/go/bin:~/Library/Python/3.11/bin:"${PNPM_HOME}":"${PATH}"
