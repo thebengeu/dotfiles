@@ -417,7 +417,7 @@ return {
     end,
   },
   {
-    "fdschmidt93/telescope-egrepify.nvim",
+    "thebengeu/telescope-egrepify.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope.nvim",
