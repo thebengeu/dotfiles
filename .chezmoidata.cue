@@ -28,7 +28,6 @@ aliases: {
 	cr:  "chezmoi re-add"
 	cs:  "glow ~/thebengeu/cheatsheet/README.md"
 	csn: "TERM=wezterm nvim ~/thebengeu/cheatsheet/README.md"
-	csv: "neovide ~/thebengeu/cheatsheet/README.md"
 	cu:  "cargo uninstall"
 	cup: "chezmoi update --apply=false; chezmoi init; \(ca)"
 	g:   "git"
@@ -115,11 +114,19 @@ aliases: {
 		}
 	}[_os]
 
-	v: string | *"neovide"
+	v:        string | *"neovide"
+	_neovide: string | *"\(v) -- --cmd"
+
+	if _os == "darwin" {
+		_neovide: "open -b com.neovide.neovide --args -- --cmd"
+		v:        "\(_neovide) \"cd $PWD\""
+	}
 
 	if strings.HasSuffix(_hostname, "-wsl") {
 		v: "/mnt/c/Users/beng/scoop/shims/neovide.exe --wsl"
 	}
+
+	csv: "\(_neovide) 'cd ~/thebengeu/cheatsheet' ~/thebengeu/cheatsheet/README.md"
 
 	_aliasDirectories: {
 		c:  "$HOME/.local/share/chezmoi"
@@ -131,7 +138,7 @@ aliases: {
 
 	for prefix, directory in _aliasDirectories {
 		"\(prefix)cd": "cd \(directory)"
-		"\(prefix)v":  "\(_env) --chdir \(strings.Replace(directory, "$HOME", "~", -1)) \(v)"
+		"\(prefix)v":  "\(_neovide) 'cd \(strings.Replace(directory, "$HOME", "~", -1))'"
 		"\(prefix)lg": "lazygit --path \(directory)"
 		"\(prefix)n":  "TERM=wezterm nvim --cmd 'cd \(strings.Replace(directory, "$HOME", "~", -1))'"
 		"\(prefix)rg": "\(_env) --chdir \(strings.Replace(directory, "$HOME", "~", -1)) rg"
