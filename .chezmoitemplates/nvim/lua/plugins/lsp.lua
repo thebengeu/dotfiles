@@ -1,6 +1,24 @@
+local Util = require("lazyvim.util")
+
 return {
   {
     "stevearc/conform.nvim",
+    keys = {
+      {
+        "<leader>uF",
+        function()
+          Util.format.toggle()
+        end,
+        desc = "Toggle auto format (global)",
+      },
+      {
+        "<leader>uf",
+        function()
+          Util.format.toggle(true)
+        end,
+        desc = "Toggle auto format (buffer)",
+      },
+    },
     opts = {
       formatters_by_ft = {
         c = { "clang_format" },
