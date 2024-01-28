@@ -45,6 +45,9 @@ for gitRepo in _zshGitRepos {
 "git-fuzzy": #GitRepo & {
 	_gitRepo: "bigH/git-fuzzy"
 }
+"neovide": #GitRepo & {
+	_gitRepo: "neovide/neovide"
+}
 
 {
 	darwin: {
@@ -112,5 +115,5 @@ _btop_config_home: {
 }
 
 "\(_xdgConfigHomeRoaming)/lazygit/mocha-lavender.yml": #File & {
-        url: "https://raw.githubusercontent.com/catppuccin/lazygit/main/themes-mergable/mocha/lavender.yml"
+	url: "https://raw.githubusercontent.com/catppuccin/lazygit/main/themes-mergable/mocha/lavender.yml"
 }
