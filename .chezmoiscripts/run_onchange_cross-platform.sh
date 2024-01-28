@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 tic -x <(curl https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo)
 
-cargo binstall --no-confirm cargo-update
+cargo binstall --no-confirm \
+  cargo-bundle \
+  cargo-update
 
 gh extension install github/gh-copilot
 gh extension install dlvhdr/gh-dash
