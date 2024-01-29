@@ -131,9 +131,9 @@ aliases: {
 	_aliasDirectories: {
 		c:  "$HOME/.local/share/chezmoi"
 		d:  "$HOME/thebengeu/drakon"
-		q:  "$HOME/thebengeu/qmk_userspace"
 		s:  "$HOME/sb"
 		sb: "$HOME/supabase"
+		u:  "$HOME/thebengeu/qmk_userspace"
 	}
 
 	for prefix, directory in _aliasDirectories {

@@ -122,6 +122,13 @@ vim.keymap.set(
 
 vim.keymap.set("n", "<leader>qs", cd("~/sb"), { desc = "cd sb" })
 
+vim.keymap.set(
+  "n",
+  "<leader>qu",
+  cd("~/thebengeu/qmk_userspace"),
+  { desc = "cd qmk_userspace" }
+)
+
 vim.keymap.set("n", "<leader>um", function()
   ---@diagnostic disable-next-line: undefined-field
   vim.opt.mouse = vim.opt.mouse:get().a and "" or "a"
