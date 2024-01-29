@@ -21,7 +21,6 @@ vim.opt.sessionoptions = {
   "blank",
   "buffers",
   "curdir",
-  "help",
   "localoptions",
   "tabpages",
   "winpos",
