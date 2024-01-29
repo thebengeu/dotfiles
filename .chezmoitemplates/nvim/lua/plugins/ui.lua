@@ -14,6 +14,12 @@ return {
     enabled = false,
   },
   {
+    "folke/edgy.nvim",
+    opts = {
+      animate = { enabled = false },
+    },
+  },
+  {
     "thebengeu/eyeliner.nvim",
     config = function()
       local add_bold_and_underline = function(name)
