@@ -1,5 +1,3 @@
-local wf = hs.window.filter
-
 local WEZTERM_BUNDLE_ID = "com.github.wez.wezterm"
 
 hs.loadSpoon("ReloadConfiguration")
