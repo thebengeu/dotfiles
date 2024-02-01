@@ -39,6 +39,7 @@ fi
 
 defaults write -g ApplePressAndHoldEnabled -bool false
 
+# shellcheck disable=SC2154
 if [ ! "${CHEZMOI}" = 1 ]; then
   export PNPM_HOME=~/.local/share/pnpm
   export PATH=~/.cargo/bin:~/go/bin:~/Library/Python/3.11/bin:"${PNPM_HOME}":"${PATH}"
@@ -59,7 +60,7 @@ if [ ! "${CHEZMOI}" = 1 ]; then
     pipx
   pipx install poetry
 
-  sed -i '' 's/#port = 5432/port = 5433/' /opt/homebrew/var/postgresql@14/postgresql.conf
+  sed -i '' 's/#port = 5432/port = 5434/' /opt/homebrew/var/postgresql@14/postgresql.conf
 
   if [ "$(uname -m)" = 'arm64' ]; then
     sudo sh -c 'echo /opt/homebrew/bin/fish >> /etc/shells'
