@@ -15,6 +15,7 @@ for key, bundle_id_and_args in pairs({
   f = "com.microsoft.edgemac.app.nkbljeindhmekmppbpgebpjebkjbmfaj",
   g = "ru.keepcoder.Telegram",
   h = "com.spotify.client",
+  j = "com.jetbrains.pycharm",
   k = "com.kapeli.dashdoc",
   m = "com.readdle.SparkDesktop",
   n = "notion.id",
