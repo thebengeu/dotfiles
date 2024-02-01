@@ -1,3 +1,6 @@
 {{- template "generated-posix-shell-rc.sh.tmpl" . -}}
+{{- if eq .chezmoi.os "darwin" }}
+{{output "supa-admin-cli" "completion" "bash"}}
+{{end -}}
 {{output "starship" "init" "bash" "--print-full-init"}}
 {{output "zoxide" "init" "--cmd" "cd" "bash"}}

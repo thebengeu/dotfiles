@@ -1,3 +1,6 @@
 {{- template "generated-posix-shell-rc.sh.tmpl" . -}}
+{{- if eq .chezmoi.os "darwin" }}
+{{output "supa-admin-cli" "completion" "zsh"}}
+{{end -}}
 {{output "atuin" "init" "zsh" "--disable-ctrl-r" "--disable-up-arrow"}}
 {{output "zoxide" "init" "--cmd" "cd" "zsh"}}
