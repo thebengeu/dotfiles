@@ -304,6 +304,7 @@ return vim.list_extend(
           "git_config",
           "gitignore",
           "make",
+          "pem",
           "prisma",
           "sql",
           "ssh_config",
