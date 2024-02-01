@@ -158,6 +158,7 @@ return {
         tsserver = {
           enabled = false,
         },
+        typos_lsp = {},
       }, jit.os == "Linux" and { ansiblels = {} } or {}),
       setup = {
         clangd = function(_, opts)
