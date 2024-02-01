@@ -2,6 +2,15 @@
 export {{$environmentVariable}}="{{$value}}"
 {{end -}}
 
+{{- if eq .chezmoi.os "darwin" }}
+{{if eq .chezmoi.arch "arm64" }}
+{{output "/opt/homebrew/bin/brew" "shellenv" "sh"}}
+{{else}}
+{{output "/usr/local/bin/brew" "shellenv" "sh"}}
+{{end}}
+export HOMEBREW_GITHUB_API_TOKEN={{ (joinPath .chezmoi.sourceDir ".secrets.ejson" | ejsonDecrypt).github_token_repo }}
+{{end -}}
+
 {{range $path := .paths -}}
 export PATH={{$path}}:$PATH
 {{end -}}
