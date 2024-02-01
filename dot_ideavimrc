@@ -1,0 +1,14 @@
+let mapleader=","
+set number
+set relativenumber
+set NERDTree
+set commentary
+set easymotion
+set exchange
+set highlightedyank
+set ideajoin
+set matchit
+set sneak
+set quickscope
+set textobj-indent
+set vim-paragraph-motion
