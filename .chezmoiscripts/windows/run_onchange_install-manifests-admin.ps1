@@ -22,17 +22,13 @@ $manifestPaths = @{
     id = '2cd4acdc-36c3-5e85-b6bd-84403600b4d8'
     version = '0.35.3'
   }
-  't\Todoist\Todoist' = @{
-    id = 'Doist.Todoist'
-    version = '8.9.3'
-  }
 }
 
 if (!$isMobile)
 {
   $manifestPaths['f\Finkitd\o\o\ManicTimeServer']= @{
     id = '110013C5-52EF-40E2-9A0E-279B85062D15'
-    version = '23.3.1.1'
+    version = '23.3.4.0'
   }
 }
 
