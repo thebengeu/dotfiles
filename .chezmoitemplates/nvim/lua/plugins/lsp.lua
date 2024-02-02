@@ -80,10 +80,12 @@ return {
         "typescript-language-server",
         "typos",
         "yamllint",
-        "zprint",
       })
       if jit.os == "Linux" then
         vim.list_extend(opts.ensure_installed, { "ansible-lint" })
+      end
+      if jit.os ~= "Windows" then
+        vim.list_extend(opts.ensure_installed, { "zprint" })
       end
     end,
   },
