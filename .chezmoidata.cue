@@ -21,6 +21,7 @@ aliases: {
 	"-": "cd -"
 	b:   "bat"
 	brg: "batgrep"
+	buz: "brew uninstall --zap"
 	cad: "chezmoi add"
 	cat: "bat"
 	ca:  "chezmoi apply --exclude scripts; chezmoi apply --include scripts"
