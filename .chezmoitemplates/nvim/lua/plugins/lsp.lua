@@ -226,15 +226,10 @@ return {
                 { "import" },
               },
               {
-                { 6196, 6133 },
-                { "unusedIdentifier" },
-              },
-              {
-                { 2420, 1308, 7027 },
+                { 2420, 1308 },
                 {
                   "fixClassIncorrectlyImplementsInterface",
                   "fixAwaitInSyncFunction",
-                  "fixUnreachableCode",
                 },
               },
             }) do
