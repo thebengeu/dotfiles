@@ -23,6 +23,10 @@ return vim.list_extend(
       ft = { "c", "cpp" },
     },
     {
+      "rafamadriz/friendly-snippets",
+      enabled = false,
+    },
+    {
       "DNLHC/glance.nvim",
       keys = {
         { "gd", "<Cmd>Glance definitions<CR>", desc = "Goto Definition" },
@@ -213,19 +217,6 @@ return vim.list_extend(
           paths = "./snippets",
         })
       end,
-      dependencies = {
-        {
-          "rafamadriz/friendly-snippets",
-          enabled = false,
-        },
-        {
-          "thebengeu/friendly-snippets",
-          config = function()
-            require("luasnip.loaders.from_vscode").lazy_load()
-          end,
-          name = "my-friendly-snippets",
-        },
-      },
       keys = function()
         return {}
       end,
@@ -287,6 +278,26 @@ return vim.list_extend(
           end, { "i", "s" }),
         })
       end,
+    },
+    {
+      "chrisgrieser/nvim-scissors",
+      keys = {
+        {
+          "<leader>ce",
+          function()
+            require("scissors").editSnippet()
+          end,
+          desc = "Edit Snippet",
+        },
+        {
+          "<leader>cn",
+          function()
+            require("scissors").addNewSnippet()
+          end,
+          desc = "New Snippet",
+          mode = { "n", "x" },
+        },
+      },
     },
     {
       "nvim-treesitter/nvim-treesitter",
