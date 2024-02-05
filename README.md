@@ -11,6 +11,8 @@ defaults import com.sindresorhus.Velja com.sindresorhus.Velja.plist
 
 - Install [KensingtonWorks](https://www.kensington.com/software/kensingtonworks/)
 - Install [Homerow](https://install.appcenter.ms/users/dexterleng/apps/homerow-redux/distribution_groups/production)
+- Install [Immersed Desktop Agent](https://immersed.com/)
+- Install [Meta Quest Remote Desktop](https://www.meta.com/help/quest/articles/horizon/getting-started-in-horizon-workrooms/use-computer-in-VR-workrooms/)
 - Install [Open In native client](https://github.com/andy-portmen/native-client/releases)
 - Install [Vanta Agent](https://app.vanta.com/employee/onboarding)
 
