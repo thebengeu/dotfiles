@@ -1,0 +1,10 @@
+{
+  "function": {
+    "prefix": "fu",
+    "body": ["function($1)", "\t$0", "end"]
+  },
+  "print-vim-inspect": {
+    "prefix": "pvi",
+    "body": ["print(vim.inspect($0))"]
+  }
+}
