@@ -10,6 +10,7 @@ for key, bundle_id_and_args in pairs({
     bundle_id = "com.apple.systempreferences",
     open = "/System/Library/PreferencePanes/Displays.prefPane",
   },
+  a = "com.readdle.SparkDesktop",
   b = "Safari",
   c = "com.google.Chrome",
   d = "com.hnc.Discord",
@@ -19,7 +20,7 @@ for key, bundle_id_and_args in pairs({
   h = "com.spotify.client",
   j = "com.jetbrains.pycharm",
   k = "com.kapeli.dashdoc",
-  m = "com.readdle.SparkDesktop",
+  m = "com.mimestream.Mimestream",
   n = "notion.id",
   o = "md.obsidian",
   p = {
