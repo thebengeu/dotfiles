@@ -62,6 +62,9 @@
     - direnv
     - fd
 - ansible.builtin.command:
+    cmd: go install filippo.io/age/cmd/...@latest
+    creates: ~/go/bin/age
+- ansible.builtin.command:
     cmd: go install cuelang.org/go/cmd/cue@latest
     creates: ~/go/bin/cue
 - ansible.builtin.command:
