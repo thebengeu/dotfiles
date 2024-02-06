@@ -6,6 +6,10 @@ spoon.ReloadConfiguration:start()
 hs.application.enableSpotlightForNameSearches(true)
 
 for key, bundle_id_and_args in pairs({
+  [","] = {
+    bundle_id = "com.apple.systempreferences",
+    open = "/System/Library/PreferencePanes/Displays.prefPane",
+  },
   b = "Safari",
   c = "com.google.Chrome",
   d = "com.hnc.Discord",
@@ -18,23 +22,33 @@ for key, bundle_id_and_args in pairs({
   m = "com.readdle.SparkDesktop",
   n = "notion.id",
   o = "md.obsidian",
-  p = { "com.brettterpstra.marked2", "~/thebengeu/cheatsheet/README.md" },
+  p = {
+    args = "~/thebengeu/cheatsheet/README.md",
+    bundle_id = "com.brettterpstra.marked2",
+  },
   r = "com.microsoft.edgemac.app.bndmnggfngpgmmijcogkkgglhalbpomk",
   s = "com.tinyspeck.slackmacgap",
   t = "com.microsoft.edgemac.app.knaiokfnmjjldlfhlioejgcompgenfhb",
   v = "com.neovide.neovide",
   w = WEZTERM_BUNDLE_ID,
 }) do
-  local bundle_id = bundle_id_and_args[1] or bundle_id_and_args
+  local bundle_id = bundle_id_and_args.bundle_id or bundle_id_and_args
 
   hs.hotkey.bind({ "ctrl", "option", "shift" }, key, function()
     local app = hs.application(bundle_id)
-    local args = bundle_id_and_args[2]
+    local args = bundle_id_and_args.args
+    local open = bundle_id_and_args.open
 
-    if app and app:isFrontmost() then
-      app:hide()
+    if app then
+      if app:isFrontmost() then
+        app:hide()
+      else
+        app:setFrontmost(true)
+      end
     elseif args then
       os.execute("open -b " .. bundle_id .. " " .. args)
+    elseif open then
+      os.execute("open " .. open)
     else
       hs.application.open(bundle_id)
     end
