@@ -81,6 +81,12 @@
 - ansible.builtin.apt_repository:
     filename: wslutilities-ubuntu-wslu-{{ ansible_distribution_release }}
     repo: ppa:wslutilities/wslu
+- ansible.builtin.apt_key:
+    keyring: /usr/share/keyrings/wezterm-fury.gpg
+    url: https://apt.fury.io/wez/gpg.key
+- ansible.builtin.apt_repository:
+    filename: wezterm
+    repo: deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *
 - ansible.builtin.apt:
     name:
       - clangd-15
@@ -101,6 +107,7 @@
       - python3-pip
       - python3-venv
       - unzip
+      - wezterm
     update_cache: true
 - ansible.builtin.apt:
     name:
@@ -124,10 +131,6 @@
     force: false
     mode: "644"
     src: default.conf
-- ansible.builtin.apt:
-    deb: "{{ item }}"
-  loop:
-    - https://github.com/wez/wezterm/releases/download/nightly/wezterm-nightly.Ubuntu22.04{{ (arch.stdout == 'amd64') | ternary('', "." ~ arch.stdout) }}.deb
 - ansible.builtin.group:
     name: docker
 - ansible.builtin.command:
