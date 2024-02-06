@@ -49,8 +49,10 @@ winget install --exact --no-upgrade --silent --id $wingetPackageIds
 $override = '--add Microsoft.VisualStudio.Workload.NativeDesktop --includeRecommended --quiet --wait'
 winget install --exact --no-upgrade --override $override --silent --id Microsoft.VisualStudio.2022.Community
 
-PIP_REQUIRE_VIRTUALENV=false pip3 install --upgrade --user \
+$Env:PIP_REQUIRE_VIRTUALENV = false
+pip3 install --upgrade --user \
   pipx
+
 pipx install poetry
 
 if (!(Get-Command choco))
