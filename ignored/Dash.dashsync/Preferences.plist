@@ -201,6 +201,11 @@
 				<key>date</key>
 				<date>2024-01-25T02:43:24Z</date>
 			</dict>
+			<key>http://kapeli.com/feeds/PostgreSQL.xml</key>
+			<dict>
+				<key>date</key>
+				<date>2024-02-07T16:04:40Z</date>
+			</dict>
 			<key>http://kapeli.com/feeds/Python_3.xml</key>
 			<dict>
 				<key>date</key>
@@ -267,6 +272,8 @@
 	<key>shouldSyncView</key>
 	<true/>
 	<key>showInDock</key>
+	<true/>
+	<key>sortDocsetsAlphabetically</key>
 	<true/>
 	<key>versionedDHCheatRepo</key>
 	<dict>
