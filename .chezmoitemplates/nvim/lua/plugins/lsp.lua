@@ -20,6 +20,19 @@ return {
       },
     },
     opts = {
+      formatters = {
+        sql_formatter = {
+          prepend_args = {
+            "--config",
+            vim.fn.json_encode({
+              dataTypeCase = "upper",
+              functionCase = "upper",
+              keywordCase = "upper",
+              language = "bigquery",
+            }),
+          },
+        },
+      },
       formatters_by_ft = {
         c = { "clang_format" },
         clojure = { "zprint" },
@@ -31,6 +44,7 @@ return {
         python = { "ruff_fix", "ruff_format" },
         toml = { "taplo" },
         sh = { "shellharden", "shellcheck", "shfmt" },
+        sql = { "sql_formatter" },
         ["*"] = { "typos" },
         ["_"] = { "trim_newlines", "trim_whitespace" },
       },
@@ -75,6 +89,7 @@ return {
         "mypy",
         "shellcheck",
         "shellharden",
+        "sql-formatter",
         "sqlfluff",
         "taplo",
         "typescript-language-server",
