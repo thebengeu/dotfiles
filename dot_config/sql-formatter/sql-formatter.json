@@ -1,6 +1,6 @@
 {
-  "language": "bigquery",
-  "keywordCase": "upper",
   "dataTypeCase": "upper",
-  "functionCase": "upper"
+  "functionCase": "upper",
+  "keywordCase": "upper",
+  "language": "bigquery"
 }
