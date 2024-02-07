@@ -5,6 +5,9 @@ spoon.ReloadConfiguration:start()
 
 hs.application.enableSpotlightForNameSearches(true)
 
+local switcher_window_filter = hs.window.filter.new()
+switcher_window_filter:rejectApp("1Password")
+
 for key, bundle_id_and_args in pairs({
   [","] = {
     bundle_id = "com.apple.systempreferences",
@@ -12,7 +15,7 @@ for key, bundle_id_and_args in pairs({
   },
   a = "com.readdle.SparkDesktop",
   b = "Safari",
-  c = "com.google.Chrome",
+  c = "Google Chrome",
   d = "com.hnc.Discord",
   e = "com.microsoft.edgemac",
   f = "com.microsoft.edgemac.app.nkbljeindhmekmppbpgebpjebkjbmfaj",
@@ -34,6 +37,9 @@ for key, bundle_id_and_args in pairs({
   w = WEZTERM_BUNDLE_ID,
 }) do
   local bundle_id = bundle_id_and_args.bundle_id or bundle_id_and_args
+
+  local app_name = hs.application.nameForBundleID(bundle_id) or bundle_id
+  switcher_window_filter:rejectApp(app_name)
 
   hs.hotkey.bind({ "ctrl", "option", "shift" }, key, function()
     local app = hs.application(bundle_id)
@@ -155,5 +161,18 @@ for key, command in pairs({
     print(output)
   end)
 end
+
+hs.window.animationDuration = 0
+hs.window.switcher.ui.showSelectedTitle = false
+hs.window.switcher.ui.showTitles = false
+
+local switcher = hs.window.switcher.new(switcher_window_filter)
+
+hs.hotkey.bind("alt", "tab", function()
+  switcher:next()
+end)
+hs.hotkey.bind("alt-shift", "tab", function()
+  switcher:previous()
+end)
 
 hs.keycodes.inputSourceChanged(hs.reload)
