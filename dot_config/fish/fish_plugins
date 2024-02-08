@@ -1,5 +1,4 @@
 catppuccin/fish
-jorgebucaran/autopair.fish
 jorgebucaran/fisher
 lilyball/nix-env.fish
 meaningful-ooo/sponge
@@ -7,3 +6,5 @@ nickeb96/puffer-fish
 patrickf1/fzf.fish
 wfxr/forgit
 ik11235/wakatime.fish
+gazorby/fifc
+jorgebucaran/autopair.fish
