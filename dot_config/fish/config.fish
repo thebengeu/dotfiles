@@ -100,3 +100,12 @@ function ya
     end
     rm -f -- "$tmp"
 end
+
+# Override autopair.fish binding.
+function _fifc_fish_key_bindings --on-variable fish_key_bindings
+    for mode in default insert
+        bind --mode $mode \t _fifc
+    end
+end
+
+_fifc_fish_key_bindings
