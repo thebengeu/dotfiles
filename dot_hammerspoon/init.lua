@@ -1,3 +1,5 @@
+local wf = hs.window.filter
+
 local WEZTERM_BUNDLE_ID = "com.github.wez.wezterm"
 
 hs.loadSpoon("ReloadConfiguration")
@@ -9,10 +11,6 @@ local switcher_window_filter = hs.window.filter.new()
 switcher_window_filter:rejectApp("1Password")
 
 for key, bundle_id_and_args in pairs({
-  [","] = {
-    bundle_id = "com.apple.systempreferences",
-    open = "/System/Library/PreferencePanes/Displays.prefPane",
-  },
   a = "com.readdle.SparkDesktop",
   b = "Safari",
   c = "Google Chrome",
@@ -21,14 +19,18 @@ for key, bundle_id_and_args in pairs({
   f = "com.microsoft.edgemac.app.nkbljeindhmekmppbpgebpjebkjbmfaj",
   g = "ru.keepcoder.Telegram",
   h = "com.spotify.client",
+  i = "md.obsidian",
   j = "com.jetbrains.pycharm",
-  k = "com.kapeli.dashdoc",
-  m = "com.mimestream.Mimestream",
-  n = "notion.id",
-  o = "md.obsidian",
-  p = {
+  k = {
     args = "~/thebengeu/cheatsheet/README.md",
     bundle_id = "com.brettterpstra.marked2",
+  },
+  l = "com.kapeli.dashdoc",
+  m = "com.mimestream.Mimestream",
+  n = "notion.id",
+  p = {
+    bundle_id = "com.apple.systempreferences",
+    open = "/System/Library/PreferencePanes/Displays.prefPane",
   },
   r = "com.microsoft.edgemac.app.bndmnggfngpgmmijcogkkgglhalbpomk",
   s = "com.tinyspeck.slackmacgap",
@@ -49,6 +51,80 @@ for key, bundle_id_and_args in pairs({
     if app then
       if app:isFrontmost() then
         app:hide()
+      else
+        app:setFrontmost(true)
+      end
+    elseif args then
+      os.execute("open -b " .. bundle_id .. " " .. args)
+    elseif open then
+      os.execute("open " .. open)
+    else
+      hs.application.open(bundle_id)
+    end
+  end)
+end
+
+for key, bundle_id_and_args in pairs({
+  a = { "com.readdle.SparkDesktop", "f" },
+  b = { "Safari", "l" },
+  c = { "Google Chrome", "l" },
+  d = { "com.hnc.Discord", "k" },
+  e = { "com.microsoft.edgemac", "l" },
+  f = { "com.microsoft.edgemac.app.nkbljeindhmekmppbpgebpjebkjbmfaj", "/", {} },
+  g = { "ru.keepcoder.Telegram", "k" },
+  h = { "com.spotify.client", "k" },
+  i = { "md.obsidian", "o" },
+  j = { "com.jetbrains.pycharm", "o", { "cmd", "shift" } },
+  k = {
+    args = "~/thebengeu/cheatsheet/README.md",
+    key_on_focus = "f",
+    bundle_id = "com.brettterpstra.marked2",
+  },
+  m = { "com.mimestream.Mimestream", "f", { "cmd", "option" } },
+  n = { "notion.id", "k" },
+  p = {
+    bundle_id = "com.apple.systempreferences",
+    key_on_focus = "f",
+    open = "/System/Library/PreferencePanes/Displays.prefPane",
+  },
+  s = { "com.tinyspeck.slackmacgap", "k" },
+  t = { "com.microsoft.edgemac.app.knaiokfnmjjldlfhlioejgcompgenfhb", "k" },
+  v = { "com.neovide.neovide" },
+  w = { WEZTERM_BUNDLE_ID, "f" },
+}) do
+  local bundle_id = bundle_id_and_args.bundle_id or bundle_id_and_args[1]
+  local key_on_focus = bundle_id_and_args.key_on_focus or bundle_id_and_args[2]
+  local mods_on_focus = bundle_id_and_args.mods
+    or bundle_id_and_args[3]
+    or { "cmd" }
+
+  local app_name = hs.application.nameForBundleID(bundle_id) or bundle_id
+  local on_window_focused_enabled = false
+
+  local on_window_focused = function()
+    if on_window_focused_enabled then
+      on_window_focused_enabled = false
+
+      if bundle_id == "com.neovide.neovide" then
+        hs.eventtap.keyStrokes("  ")
+      else
+        hs.eventtap.keyStroke(mods_on_focus, key_on_focus)
+      end
+    end
+  end
+
+  wf.new({ app_name }):subscribe(wf.windowFocused, on_window_focused)
+
+  hs.hotkey.bind({ "ctrl", "option", "shift", "cmd" }, key, function()
+    local app = hs.application(bundle_id)
+    local args = bundle_id_and_args.args
+    local open = bundle_id_and_args.open
+
+    on_window_focused_enabled = true
+
+    if app then
+      if app:isFrontmost() then
+        on_window_focused()
       else
         app:setFrontmost(true)
       end
@@ -101,7 +177,7 @@ for _, mods_and_key in ipairs({
   },
   {
     "com.kapeli.dashdoc",
-    { "ctrl", "option", "shift" },
+    { "ctrl", "option", "shift", "cmd" },
     "l",
     true,
     function(hotkey)

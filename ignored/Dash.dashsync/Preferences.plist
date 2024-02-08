@@ -250,12 +250,12 @@
 		<key>keyCode</key>
 		<integer>37</integer>
 		<key>modifiers</key>
-		<integer>6656</integer>
+		<integer>6912</integer>
 	</dict>
 	<key>searchKey</key>
 	<dict>
 		<key>keyCode</key>
-		<integer>40</integer>
+		<integer>37</integer>
 		<key>modifiers</key>
 		<integer>6656</integer>
 	</dict>
