@@ -23,6 +23,7 @@ brew "bat"
 brew "broot"
 brew "btop"
 brew "gettext"
+brew "chafa"
 brew "chezmoi"
 brew "cmake"
 brew "node"
@@ -182,6 +183,7 @@ mas "Day One", id: 1055511498
 mas "Drafts", id: 1435957248
 mas "Endel", id: 1346247457
 mas "iA Writer", id: 775737590
+mas "Kindle", id: 302584613
 mas "Magic Window 4K", id: 689569987
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "Refined GitHub", id: 1519867270
