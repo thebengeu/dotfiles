@@ -134,6 +134,8 @@ aliases: {
 	_aliasDirectories: {
 		c:  "$HOME/.local/share/chezmoi"
 		d:  "$HOME/thebengeu/drakon"
+		h:  "$HOME/supabase/helper-scripts"
+		i:  "$HOME/supabase/infrastructure"
 		s:  "$HOME/sb"
 		sb: "$HOME/supabase"
 		u:  "$HOME/thebengeu/qmk_userspace"
