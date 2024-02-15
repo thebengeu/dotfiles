@@ -29,4 +29,5 @@ Host prod
   User ubuntu
 
 Host *
+  ServerAliveInterval 60
   StrictHostKeyChecking no
