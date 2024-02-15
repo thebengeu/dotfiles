@@ -1,4 +1,4 @@
-local util = require("lazyvim.util")
+local Util = require("lazyvim.util")
 
 local M = {}
 
@@ -90,7 +90,7 @@ end
 
 M.async_run_git = function(sub_command)
   return function()
-    M.async_run(vim.list_extend({ "git" }, sub_command), { cwd = util.root() })
+    M.async_run(vim.list_extend({ "git" }, sub_command), { cwd = Util.root() })
   end
 end
 
@@ -147,7 +147,7 @@ end)
 
 M.stdout_without_newline = function(command)
   return vim
-    .system(command, { cwd = util.root() })
+    .system(command, { cwd = Util.root() })
     :wait().stdout
     :gsub("\n$", "")
 end
