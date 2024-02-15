@@ -175,7 +175,7 @@ return {
         tsserver = {
           enabled = false,
         },
-        typos_lsp = {},
+        -- typos_lsp = {},
       }, jit.os == "Linux" and { ansiblels = {} } or {}),
       setup = {
         clangd = function(_, opts)
@@ -187,8 +187,6 @@ return {
   {
     "pmizio/typescript-tools.nvim",
     config = function(_, opts)
-      local Util = require("lazyvim.util")
-
       require("typescript-tools").setup(opts)
 
       local function get_client(bufnr)
