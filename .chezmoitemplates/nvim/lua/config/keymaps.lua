@@ -76,14 +76,14 @@ vim.keymap.set(
 
 vim.keymap.set("n", "<leader>gR", function()
   util.async_run_sh(
-    "git push && gh pr create --fill && gh pr view --web",
+    "git push && gh pr create --fill-first && gh pr view --web",
     { cwd = Util.root() }
   )
 end, { desc = "Create PR" })
 
 vim.keymap.set("n", "<leader>gr", function()
   util.async_run_sh(
-    "git push && gh pr create --draft --fill && gh pr view --web",
+    "git push && gh pr create --draft --fill-first && gh pr view --web",
     { cwd = Util.root() }
   )
 end, { desc = "Create Draft PR" })
