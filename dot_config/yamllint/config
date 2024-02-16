@@ -1,5 +1,10 @@
 extends: default
 
 rules:
+  braces:
+    max-spaces-inside: 1
   document-start: disable
+  indentation:
+    indent-sequences: true
+    spaces: 4
   line-length: disable
