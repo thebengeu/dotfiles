@@ -140,42 +140,6 @@ end
 
 for _, mods_and_key in ipairs({
   {
-    "com.todoist.mac.Todoist",
-    { "cmd", "ctrl" },
-    "a",
-    true,
-    function(hotkey, mods, key, bundle_id)
-      local found_add_task_window_or_timeout
-      local timeout_timer
-
-      local keystroke_timer = hs.timer.doEvery(1, function()
-        hs.eventtap.keyStroke(mods, key)
-
-        local app = hs.application(bundle_id)
-
-        if not app then
-          return
-        end
-
-        for _, win in ipairs(app:allWindows()) do
-          if win:size().w == 640 then
-            found_add_task_window_or_timeout()
-          else
-            win:close()
-          end
-        end
-      end)
-
-      found_add_task_window_or_timeout = function()
-        keystroke_timer:stop()
-        timeout_timer:stop()
-        hotkey:enable()
-      end
-
-      timeout_timer = hs.timer.doAfter(5, found_add_task_window_or_timeout)
-    end,
-  },
-  {
     "com.kapeli.dashdoc",
     { "ctrl", "option", "shift", "cmd" },
     "l",
@@ -210,7 +174,7 @@ for _, mods_and_key in ipairs({
       hs.application.open(bundle_id, 10, true)
 
       if after_launch then
-        after_launch(hotkey, mods, key, bundle_id)
+        after_launch(hotkey)
         return
       end
     elseif set_frontmost then
@@ -221,6 +185,15 @@ for _, mods_and_key in ipairs({
     hotkey:enable()
   end)
 end
+
+hs.hotkey.bind({ "cmd", "ctrl" }, "a", function()
+  hs.application.open(
+    "com.microsoft.edgemac.app.knaiokfnmjjldlfhlioejgcompgenfhb",
+    10,
+    true
+  )
+  hs.eventtap.keyStroke({}, "q")
+end)
 
 for key, command in pairs({
   q = "format-clipboard SQL",
