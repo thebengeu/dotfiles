@@ -40,6 +40,9 @@ return {
           or cwd == homedir
           or cwd == windir
           or cwd == "/",
+        cwd_change_handling = {
+          restore_upcoming_session = true,
+        },
         log_level = vim.log.levels.ERROR,
         pre_save_cmds = {
           function()
