@@ -108,13 +108,7 @@ for key, path in pairs({
   u = "~/thebengeu/qmk_userspace",
 }) do
   vim.keymap.set("n", "<leader>q" .. key, function()
-    local AutoSession = require("auto-session")
-
-    AutoSession.AutoSaveSession()
-    vim.cmd("%bd!")
-    vim.cmd("clearjumps")
     vim.cmd.cd(path)
-    AutoSession.AutoRestoreSession()
   end, { desc = "cd " .. path:match("[^/]+$") })
 end
 
