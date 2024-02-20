@@ -12,6 +12,7 @@ tap "qmk/qmk"
 tap "rsteube/tap"
 tap "shopify/shopify"
 tap "supabase/packages", "git@github.com:supabase/homebrew-packages.git"
+tap "whatpulse/whatpulse"
 tap "yqrashawn/goku"
 brew "age"
 brew "atuin"
@@ -176,6 +177,8 @@ cask "virtual-desktop-streamer"
 cask "visual-studio-code"
 cask "vlc"
 cask "wezterm"
+cask "whatpulse"
+cask "whatpulse_chmodbpf"
 cask "whatsapp"
 cask "yubico-yubikey-manager"
 cask "zoom"
@@ -186,6 +189,7 @@ mas "Calca", id: 635758264
 mas "Day One", id: 1055511498
 mas "Drafts", id: 1435957248
 mas "Endel", id: 1346247457
+mas "Gapplin", id: 768053424
 mas "iA Writer", id: 775737590
 mas "Kindle", id: 302584613
 mas "Magic Window 4K", id: 689569987
