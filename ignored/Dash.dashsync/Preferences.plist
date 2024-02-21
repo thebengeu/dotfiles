@@ -156,6 +156,30 @@
 					<string>Hammerspoon</string>
 				</dict>
 			</dict>
+			<key>Tailwind_CSS</key>
+			<dict>
+				<key>date</key>
+				<date>2024-02-20T22:52:55Z</date>
+				<key>entry</key>
+				<dict>
+					<key>aliases</key>
+					<array>
+						<string>tailwind</string>
+						<string>TailwindCSS</string>
+						<string>tailwind CSS</string>
+					</array>
+					<key>authorLinkHref</key>
+					<string>https://github.com/Kapeli/Dash-User-Contributions/tree/master/docsets/Tailwind_CSS#readme</string>
+					<key>authorLinkText</key>
+					<string>Ben Booth, Guill Lo, Akinori Musha</string>
+					<key>name</key>
+					<string>Tailwind CSS</string>
+					<key>platform</key>
+					<string>usercontribTailwind_CSS</string>
+					<key>uniqueIdentifier</key>
+					<string>Tailwind_CSS</string>
+				</dict>
+			</dict>
 		</dict>
 		<key>uninstalled</key>
 		<dict/>
