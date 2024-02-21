@@ -61,6 +61,7 @@
     - carapace
     - direnv
     - fd
+    - tmux
 - ansible.builtin.command:
     cmd: go install filippo.io/age/cmd/...@latest
     creates: ~/go/bin/age
