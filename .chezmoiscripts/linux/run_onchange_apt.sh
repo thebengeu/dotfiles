@@ -10,6 +10,9 @@ sudo apt --assume-yes install \
   libluajit-5.1-dev \
   libpq-dev \
   libsqlite3-dev \
+  libxcb-render0-dev \
+  libxcb-shape0-dev \
+  libxcb-xfixes0-dev \
   lua5.4 \
   make \
   moreutils \
