@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-cargo binstall --no-confirm \
+cargo binstall --locked --no-confirm \
   gitui \
   jless \
   yazi-fm

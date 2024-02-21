@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 tic -x <(curl https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo)
 
-cargo binstall --no-confirm \
+cargo binstall --locked --no-confirm \
   cargo-bundle \
   cargo-update
 
