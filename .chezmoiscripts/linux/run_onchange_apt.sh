@@ -5,6 +5,7 @@ sudo apt --assume-yes install \
   ffmpegthumbnailer \
   google-cloud-cli \
   helix \
+  kitty-terminfo \
   libcurl4-openssl-dev \
   libluajit-5.1-dev \
   libpq-dev \
