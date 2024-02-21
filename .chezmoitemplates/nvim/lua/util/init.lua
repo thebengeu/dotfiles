@@ -16,6 +16,14 @@ M.filter = function(input, callback)
   return output
 end
 
+M.find = function(input, callback)
+  for _, value in ipairs(input) do
+    if callback(value) then
+      return value
+    end
+  end
+end
+
 local map = function(input, callback)
   local output = {}
 
