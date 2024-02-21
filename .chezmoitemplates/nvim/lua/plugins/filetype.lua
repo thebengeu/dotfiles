@@ -28,4 +28,8 @@ return {
     "NoahTheDuke/vim-just",
     ft = "just",
   },
+  {
+    "fladson/vim-kitty",
+    ft = "kitty",
+  },
 }

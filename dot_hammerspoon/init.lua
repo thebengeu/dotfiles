@@ -37,6 +37,7 @@ for key, bundle_id_and_args in pairs({
   t = "com.microsoft.edgemac.app.knaiokfnmjjldlfhlioejgcompgenfhb",
   v = "com.neovide.neovide",
   w = WEZTERM_BUNDLE_ID,
+  x = "net.kovidgoyal.kitty",
 }) do
   local bundle_id = bundle_id_and_args.bundle_id or bundle_id_and_args
 
@@ -91,6 +92,7 @@ for key, bundle_id_and_args in pairs({
   t = { "com.microsoft.edgemac.app.knaiokfnmjjldlfhlioejgcompgenfhb", "k" },
   v = { "com.neovide.neovide" },
   w = { WEZTERM_BUNDLE_ID, "f" },
+  x = { "net.kovidgoyal.kitty", "h", { "ctrl", "shift" } },
 }) do
   local bundle_id = bundle_id_and_args.bundle_id or bundle_id_and_args[1]
   local key_on_focus = bundle_id_and_args.key_on_focus or bundle_id_and_args[2]

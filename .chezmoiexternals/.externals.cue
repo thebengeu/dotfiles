@@ -54,6 +54,15 @@ for gitRepo in _zshGitRepos {
 		".config/tmux/plugins/tpm": #GitRepo & {
 			_gitRepo: "tmux-plugins/tpm"
 		}
+		".config/kitty/neighboring_window.py": #File & {
+			url: "https://raw.githubusercontent.com/mrjones2014/smart-splits.nvim/master/kitty/neighboring_window.py"
+		}
+		".config/kitty/pass_keys.py": #File & {
+			url: "https://raw.githubusercontent.com/mrjones2014/smart-splits.nvim/master/kitty/pass_keys.py"
+		}
+		".config/kitty/relative_resize.py": #File & {
+			url: "https://raw.githubusercontent.com/mrjones2014/smart-splits.nvim/master/kitty/relative_resize.py"
+		}
 	}
 	linux: darwin & {
 		".local/bin/lmn": #ArchiveFile & {
