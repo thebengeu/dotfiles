@@ -207,19 +207,71 @@ return {
         end,
         format = function(bufnr)
           local api = require("typescript-tools.api")
+          local c = require("typescript-tools.protocol.constants")
 
           local client = get_client(bufnr)
 
-          if not client then
-            return
-          end
+          if client then
+            local request = function()
+              local file = vim.api.nvim_buf_get_name(bufnr)
 
-          local file = vim.api.nvim_buf_get_name(bufnr)
+              client.request(c.CustomMethods.OrganizeImports, {
+                file = file,
+                mode = c.OrganizeImportsMode.All,
+              }, function(err, result)
+                if not file:match("supabase") then
+                  ---@diagnostic disable-next-line: missing-parameter
+                  vim.lsp.handlers[c.CustomMethods.OrganizeImports](err, result)
+                end
 
-          api.add_missing_imports(true)
+                vim.api.nvim_buf_call(bufnr, function()
+                  local autoformat = vim.b.autoformat
+                  vim.b.autoformat = false
+                  vim.cmd.update()
+                  vim.b.autoformat = autoformat
+                end)
+              end, bufnr)
+            end
 
-          if not file:match("supabase") then
-            api.organize_imports(true)
+            for _, error_codes_and_fix_names in ipairs({
+              {
+                { 2552, 2304 },
+                { "import" },
+              },
+              {
+                { 2420, 1308 },
+                {
+                  "fixClassIncorrectlyImplementsInterface",
+                  "fixAwaitInSyncFunction",
+                },
+              },
+            }) do
+              local error_codes, fix_names =
+                error_codes_and_fix_names[1], error_codes_and_fix_names[2]
+
+              local callback = request
+              request = function()
+                client.request(c.CustomMethods.BatchCodeActions, {
+                  bufnr = bufnr,
+                  diagnostics = vim.diagnostic.get(bufnr),
+                  error_codes = error_codes,
+                  fix_names = fix_names,
+                }, function(_, result)
+                  if result.edit.changes then
+                    vim.lsp.util.apply_workspace_edit(result.edit, "utf-8")
+
+                    if fix_names[1] ~= "import" then
+                      api.request_diagnostics(callback)
+                      return
+                    end
+                  end
+
+                  callback()
+                end, bufnr)
+              end
+            end
+
+            request()
           end
         end,
       }))
