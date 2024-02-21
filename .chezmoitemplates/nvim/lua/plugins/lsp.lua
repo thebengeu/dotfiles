@@ -1,4 +1,5 @@
 local Util = require("lazyvim.util")
+local util = require("util")
 
 return {
   {
@@ -19,8 +20,8 @@ return {
         desc = "Toggle auto format (buffer)",
       },
     },
-    opts = {
-      formatters = {
+    opts = function(_, opts)
+      opts.formatters = vim.tbl_extend("force", opts.formatters, {
         sql_formatter = {
           prepend_args = {
             "--config",
@@ -32,8 +33,9 @@ return {
             }),
           },
         },
-      },
-      formatters_by_ft = {
+      })
+
+      local formatters_by_ft = vim.tbl_extend("force", opts.formatters_by_ft, {
         c = { "clang_format" },
         clojure = { "zprint" },
         cue = { "cue_fmt" },
@@ -47,8 +49,14 @@ return {
         sql = { "sql_formatter" },
         ["*"] = { "typos" },
         ["_"] = { "trim_newlines", "trim_whitespace" },
-      },
-    },
+      })
+
+      for ft, formatters in pairs(formatters_by_ft) do
+        opts.formatters_by_ft[ft] = util.map(formatters, function(formatter)
+          return formatter == "prettier" and "prettierd" or formatter
+        end)
+      end
+    end,
   },
   {
     "smjonas/inc-rename.nvim",
@@ -87,6 +95,7 @@ return {
         "fixjson",
         "js-debug-adapter",
         "mypy",
+        "prettierd",
         "shellcheck",
         "shellharden",
         "sql-formatter",
