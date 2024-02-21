@@ -214,10 +214,10 @@ $cargoPackages = @(
   'zoxide'
 )
 
-cargo binstall --no-confirm $cargoPackages
+cargo binstall --locked --no-confirm $cargoPackages
 
 rustup target add x86_64-pc-windows-msvc
-cargo install --target x86_64-pc-windows-msvc atuin
+cargo install --locked --target x86_64-pc-windows-msvc atuin
 
 Set-Item 'Env:EJSON_KEYDIR' "$Env:USERPROFILE\.config\ejson\keys"
 

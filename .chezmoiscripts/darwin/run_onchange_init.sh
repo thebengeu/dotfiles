@@ -54,7 +54,7 @@ if [ ! "${CHEZMOI}" = 1 ]; then
   brew unlink parallel
   brew link --overwrite parallel
 
-  cargo install cargo-binstall
+  cargo install --locked cargo-binstall
 
   PIP_REQUIRE_VIRTUALENV=false pip3 install --upgrade --user \
     pipx
