@@ -1,3 +1,4 @@
+local Util = require("lazyvim.util")
 local util = require("util")
 
 vim.api.nvim_create_user_command("Search", function(opts)
@@ -8,7 +9,15 @@ vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
-vim.g.root_spec = { ".git", "cwd" }
+vim.g.root_spec = {
+  function(buf)
+    local bufpath = Util.root.bufpath(buf)
+
+    return bufpath and bufpath:match(".*/supabase/apps/studio")
+  end,
+  ".git",
+  "cwd",
+}
 
 vim.opt.fillchars = { eob = " " }
 vim.opt.gdefault = true
