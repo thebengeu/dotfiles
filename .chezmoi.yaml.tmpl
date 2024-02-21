@@ -13,7 +13,7 @@ hooks:
           cd .chezmoiexternals;
           cue export --force --inject-vars --outfile bat.yaml .common.cue .bat.cue;
           cue export --force --inject-vars --outfile externals.yaml ../.nvim-configs.cue .common.cue .externals.cue
-      command: sh
+      command: bash
 interpreters:
   ps1:
     args:
