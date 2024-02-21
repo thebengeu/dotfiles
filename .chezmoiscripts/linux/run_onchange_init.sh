@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+set -eox pipefail
+
 if [[ ! -x "$(command -v dpkg)" ]]; then
   exit
 fi
@@ -47,21 +49,31 @@ fi
 if [[ ! "${CHEZMOI}" = 1 ]]; then
   CHEZMOI_SOURCE_DIR="${HOME}/.local/share/chezmoi"
 
-  git clone git@github.com:thebengeu/dotfiles.git "${CHEZMOI_SOURCE_DIR}"
+  if [[ ! -d "${CHEZMOI_SOURCE_DIR}" ]]; then
+    git clone git@github.com:thebengeu/dotfiles.git "${CHEZMOI_SOURCE_DIR}"
+  fi
 
   sudo add-apt-repository -y ppa:ansible/ansible
-  sudo apt install -y ansible
+  sudo apt install -y \
+    ansible \
+    file \
+    git \
+    gpg \
+    snapd \
+    software-properties-common
   ansible-playbook "${CHEZMOI_SOURCE_DIR}"/ignored/ansible/site.yml --ask-become-pass
 
   PIP_REQUIRE_VIRTUALENV=false pip3 install --upgrade --user \
     pipx
-  pipx install poetry
 
   sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'postgres';"
 
   export PNPM_HOME=~/.local/share/pnpm
   export PYENV_ROOT=~/.pyenv
   export PATH="${PYENV_ROOT}/bin:~/.cargo/bin:~/.local/bin:~/.pulumi/bin:~/go/bin:${PNPM_HOME}:${PATH}"
+
+  pipx install poetry
+
   /snap/bin/chezmoi init
   /snap/bin/chezmoi apply --exclude scripts
   /snap/bin/chezmoi apply --include scripts
