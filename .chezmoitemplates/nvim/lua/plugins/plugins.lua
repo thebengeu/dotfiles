@@ -143,7 +143,7 @@ return {
     event = "VeryLazy",
     opts = {
       minimumBufferNum = 5,
-      retirementAgeMins = 10,
+      retirementAgeMins = 60,
     },
   },
   {
