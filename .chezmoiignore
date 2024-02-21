@@ -30,6 +30,7 @@ scoop/
 .chezmoiscripts/darwin/*
 .config/btop/
 .config/karabiner.edn
+.config/kitty/
 .hammerspoon/
 .homebrew/
 .local/bin/format-clipboard
