@@ -277,14 +277,14 @@
 	<key>searchAndFocusKey</key>
 	<dict>
 		<key>keyCode</key>
-		<integer>37</integer>
+		<integer>2</integer>
 		<key>modifiers</key>
 		<integer>6912</integer>
 	</dict>
 	<key>searchKey</key>
 	<dict>
 		<key>keyCode</key>
-		<integer>37</integer>
+		<integer>2</integer>
 		<key>modifiers</key>
 		<integer>6656</integer>
 	</dict>
