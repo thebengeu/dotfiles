@@ -151,7 +151,7 @@
     line: Port 24
     path: /etc/ssh/sshd_config
     regexp: ^#?Port \d+$
-  when: ansible_virtualization_type == "wsl"
+  when: ansible_virtualization_type == "wsl" or ansible_virtualization_type == "lxc"
 - ansible.builtin.service:
     name: ssh
     state: reloaded
