@@ -9,13 +9,21 @@ local M = {}
 
 function M.apply_to_config(config)
   config.keys = {
-    { key = "phys:Space", mods = "SHIFT|ALT", action = act.QuickSelect },
+    {
+      key = "phys:Space",
+      mods = "SHIFT|ALT",
+      action = act.QuickSelect,
+    },
     {
       key = "d",
       mods = "SHIFT|CTRL",
       action = act.DetachDomain("CurrentPaneDomain"),
     },
-    { key = "t", mods = "SHIFT|ALT", action = act.SpawnTab("DefaultDomain") },
+    {
+      key = "t",
+      mods = "SHIFT|ALT",
+      action = act.SpawnTab("DefaultDomain"),
+    },
     {
       key = "x",
       mods = "SHIFT|ALT",
@@ -36,7 +44,11 @@ function M.apply_to_config(config)
       mods = "CTRL",
       action = act.DisableDefaultAssignment,
     },
-    { key = "UpArrow", mods = "SHIFT|ALT", action = act.ScrollToPrompt(-1) },
+    {
+      key = "UpArrow",
+      mods = "SHIFT|ALT",
+      action = act.ScrollToPrompt(-1),
+    },
     {
       key = "DownArrow",
       mods = "SHIFT|ALT",
@@ -71,6 +83,16 @@ function M.apply_to_config(config)
       key = "j",
       mods = "SHIFT|ALT",
       action = act.ActivatePaneDirection("Down"),
+    },
+    {
+      key = "<",
+      mods = "SHIFT|CTRL",
+      action = act.MoveTabRelative(-1),
+    },
+    {
+      key = ">",
+      mods = "SHIFT|CTRL",
+      action = act.MoveTabRelative(1),
     },
   }
 
