@@ -14,20 +14,21 @@ for key, bundle_id_and_args in pairs({
   a = "com.readdle.SparkDesktop",
   b = "Safari",
   c = "Google Chrome",
-  d = "com.hnc.Discord",
+  d = "com.kapeli.dashdoc",
   e = "com.microsoft.edgemac",
   f = "com.microsoft.edgemac.app.nkbljeindhmekmppbpgebpjebkjbmfaj",
-  g = "ru.keepcoder.Telegram",
+  g = "com.mimestream.Mimestream",
   h = "com.spotify.client",
-  i = "md.obsidian",
+  i = "com.hnc.Discord",
   j = "com.jetbrains.pycharm",
-  k = {
+  k = "net.kovidgoyal.kitty",
+  l = "ru.keepcoder.Telegram",
+  m = {
     args = "~/thebengeu/cheatsheet/README.md",
     bundle_id = "com.brettterpstra.marked2",
   },
-  l = "com.kapeli.dashdoc",
-  m = "com.mimestream.Mimestream",
   n = "notion.id",
+  o = "md.obsidian",
   p = {
     bundle_id = "com.apple.systempreferences",
     open = "/System/Library/PreferencePanes/Displays.prefPane",
@@ -37,7 +38,6 @@ for key, bundle_id_and_args in pairs({
   t = "com.microsoft.edgemac.app.knaiokfnmjjldlfhlioejgcompgenfhb",
   v = "com.neovide.neovide",
   w = WEZTERM_BUNDLE_ID,
-  x = "net.kovidgoyal.kitty",
 }) do
   local bundle_id = bundle_id_and_args.bundle_id or bundle_id_and_args
 
@@ -69,19 +69,20 @@ for key, bundle_id_and_args in pairs({
   a = { "com.readdle.SparkDesktop", "f" },
   b = { "Safari", "l" },
   c = { "Google Chrome", "l" },
-  d = { "com.hnc.Discord", "k" },
   e = { "com.microsoft.edgemac", "l" },
   f = { "com.microsoft.edgemac.app.nkbljeindhmekmppbpgebpjebkjbmfaj", "/", {} },
-  g = { "ru.keepcoder.Telegram", "k" },
+  g = { "com.mimestream.Mimestream", "f", { "cmd", "option" } },
   h = { "com.spotify.client", "k" },
-  i = { "md.obsidian", "o" },
+  i = { "com.hnc.Discord", "k" },
+  o = { "md.obsidian", "p", { "cmd", "shift" } },
   j = { "com.jetbrains.pycharm", "o", { "cmd", "shift" } },
-  k = {
+  k = { "net.kovidgoyal.kitty", "h", { "ctrl", "shift" } },
+  l = { "ru.keepcoder.Telegram", "k" },
+  m = {
     args = "~/thebengeu/cheatsheet/README.md",
     key_on_focus = "f",
     bundle_id = "com.brettterpstra.marked2",
   },
-  m = { "com.mimestream.Mimestream", "f", { "cmd", "option" } },
   n = { "notion.id", "k" },
   p = {
     bundle_id = "com.apple.systempreferences",
@@ -92,7 +93,6 @@ for key, bundle_id_and_args in pairs({
   t = { "com.microsoft.edgemac.app.knaiokfnmjjldlfhlioejgcompgenfhb", "k" },
   v = { "com.neovide.neovide" },
   w = { WEZTERM_BUNDLE_ID, "f" },
-  x = { "net.kovidgoyal.kitty", "h", { "ctrl", "shift" } },
 }) do
   local bundle_id = bundle_id_and_args.bundle_id or bundle_id_and_args[1]
   local key_on_focus = bundle_id_and_args.key_on_focus or bundle_id_and_args[2]
@@ -144,7 +144,7 @@ for _, mods_and_key in ipairs({
   {
     "com.kapeli.dashdoc",
     { "ctrl", "option", "shift", "cmd" },
-    "l",
+    "d",
     true,
     function(hotkey)
       hotkey:enable()
