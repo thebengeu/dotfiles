@@ -50,8 +50,7 @@ $override = '--add Microsoft.VisualStudio.Workload.NativeDesktop --includeRecomm
 winget install --exact --no-upgrade --override $override --silent --id Microsoft.VisualStudio.2022.Community
 
 $Env:PIP_REQUIRE_VIRTUALENV = false
-pip3 install --upgrade --user \
-  pipx
+pip3 install --upgrade --user pipx
 
 pipx install poetry
 
