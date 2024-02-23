@@ -57,6 +57,8 @@ aliases: {
 	pxu: "pipx uninstall"
 	rm:  "trash"
 	scc: #"scc --not-match "package-lock.json|pnpm-lock.yaml""#
+	ss:  "supa-ssh"
+	ssd: "SUPA_ENV=/Users/beng/.supa-admin-cli.dev supa-ssh"
 	st:  "speedtest"
 	t:   "tsx"
 	// tb:  "time bash -i -c exit"
