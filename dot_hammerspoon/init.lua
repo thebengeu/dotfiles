@@ -1,5 +1,6 @@
 local wf = hs.window.filter
 
+local KITTY_BUNDLE_ID = "net.kovidgoyal.kitty"
 local WEZTERM_BUNDLE_ID = "com.github.wez.wezterm"
 
 hs.loadSpoon("ReloadConfiguration")
@@ -22,7 +23,7 @@ for key, bundle_id_and_args in pairs({
   h = "com.spotify.client",
   i = "com.hnc.Discord",
   j = "com.jetbrains.pycharm",
-  k = "net.kovidgoyal.kitty",
+  k = KITTY_BUNDLE_ID,
   l = "ru.keepcoder.Telegram",
   m = {
     args = "~/thebengeu/cheatsheet/README.md",
@@ -76,7 +77,7 @@ for key, bundle_id_and_args in pairs({
   h = { "com.spotify.client", "k" },
   i = { "com.hnc.Discord", "k" },
   j = { "com.jetbrains.pycharm", "o", { "cmd", "shift" } },
-  k = { "net.kovidgoyal.kitty", "h", { "ctrl", "shift" } },
+  k = { KITTY_BUNDLE_ID, "h", { "ctrl", "shift" } },
   l = { "ru.keepcoder.Telegram", "k" },
   m = {
     args = "~/thebengeu/cheatsheet/README.md",
@@ -156,6 +157,15 @@ for _, mods_and_key in ipairs({
       hotkey:enable()
     end,
   },
+  { KITTY_BUNDLE_ID, { "ctrl", "option", "shift", "cmd" }, "1" },
+  { KITTY_BUNDLE_ID, { "ctrl", "option", "shift", "cmd" }, "2" },
+  { KITTY_BUNDLE_ID, { "ctrl", "option", "shift", "cmd" }, "3" },
+  { KITTY_BUNDLE_ID, { "ctrl", "option", "shift", "cmd" }, "4" },
+  { KITTY_BUNDLE_ID, { "ctrl", "option", "shift", "cmd" }, "5" },
+  { KITTY_BUNDLE_ID, { "ctrl", "option", "shift", "cmd" }, "6" },
+  { KITTY_BUNDLE_ID, { "ctrl", "option", "shift", "cmd" }, "7" },
+  { KITTY_BUNDLE_ID, { "ctrl", "option", "shift", "cmd" }, "8" },
+  { KITTY_BUNDLE_ID, { "ctrl", "option", "shift", "cmd" }, "9" },
   { WEZTERM_BUNDLE_ID, { "ctrl", "option", "shift" }, "1" },
   { WEZTERM_BUNDLE_ID, { "ctrl", "option", "shift" }, "2" },
   { WEZTERM_BUNDLE_ID, { "ctrl", "option", "shift" }, "3" },
