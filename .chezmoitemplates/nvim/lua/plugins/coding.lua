@@ -143,7 +143,7 @@ return vim.list_extend(
         })
       end,
       keys = {
-        { "<C-z>", mode = "v" },
+        { "<C-z>", mode = "x" },
         {
           "<C-z>",
           function()
@@ -413,7 +413,7 @@ return vim.list_extend(
             require("telescope").extensions.refactoring.refactors()
           end,
           desc = "Refactor",
-          mode = { "n", "v" },
+          mode = { "n", "x" },
         },
       },
     },

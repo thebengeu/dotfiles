@@ -199,7 +199,7 @@ require("lazy").setup({
         l = "Right",
       }) do
         table.insert(keys, "<S-" .. direction .. ">")
-        table.insert(keys, { "<M-" .. key .. ">", mode = "v" })
+        table.insert(keys, { "<M-" .. key .. ">", mode = "x" })
         table.insert(keys, {
           "<M-" .. key .. ">",
           function()
@@ -226,7 +226,7 @@ require("lazy").setup({
   {
     "echasnovski/mini.surround",
     keys = {
-      { "gsa", mode = { "n", "v" } },
+      { "gsa", mode = { "n", "x" } },
       "gsd",
       "gsf",
       "gsF",
