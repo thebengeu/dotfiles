@@ -324,22 +324,16 @@ return util.map({
         error()
       end
 
-      return vim.tbl_extend(
-        "error",
-        rainbow_delimiter_highlights({
-          colors.red._500,
-          colors.sand._500,
-          colors.sky._500,
-          colors.orange._500,
-          colors.green._500,
-          colors.indigo._500,
-          colors.opal._500,
-          colors.cyan,
-        }),
-        {
-          LspInlayHint = { link = "Comment" },
-        }
-      )
+      return rainbow_delimiter_highlights({
+        colors.red._500,
+        colors.sand._500,
+        colors.sky._500,
+        colors.orange._500,
+        colors.green._500,
+        colors.indigo._500,
+        colors.opal._500,
+        colors.cyan,
+      })
     end,
   },
   {
