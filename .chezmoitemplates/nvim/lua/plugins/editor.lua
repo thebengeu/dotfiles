@@ -112,7 +112,7 @@ return {
         l = "Right",
       }) do
         table.insert(keys, "<S-" .. direction .. ">")
-        table.insert(keys, { "<M-" .. key .. ">", mode = "v" })
+        table.insert(keys, { "<M-" .. key .. ">", mode = "x" })
         table.insert(keys, {
           "<M-" .. key .. ">",
           function()
@@ -225,7 +225,7 @@ return {
       {
         "ga.",
         "<cmd>TextCaseOpenTelescope<CR>",
-        mode = { "n", "v" },
+        mode = { "n", "x" },
         desc = "Telescope",
       },
     },
