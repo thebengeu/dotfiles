@@ -40,6 +40,10 @@ for key, bundle_id_and_args in pairs({
   t = "com.microsoft.edgemac.app.knaiokfnmjjldlfhlioejgcompgenfhb",
   v = "com.neovide.neovide",
   w = WEZTERM_BUNDLE_ID,
+  z = {
+    args = "~/thebengeu/qmk_userspace/keymap.svg",
+    bundle_id = "com.wolfrosch.Gapplin",
+  },
 }) do
   local bundle_id = bundle_id_and_args.bundle_id or bundle_id_and_args
 
