@@ -1,8 +1,10 @@
 tap "candid82/brew"
 tap "eth-p/software"
 tap "homebrew/bundle"
+tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
+tap "homebrew/core"
 tap "homebrew/services"
 tap "mike-engel/jwt-cli"
 tap "osx-cross/arm"
@@ -131,6 +133,7 @@ cask "discord"
 cask "element"
 cask "expressvpn"
 cask "fantastical"
+cask "firefox"
 cask "flux"
 cask "font-jetbrains-mono-nerd-font"
 cask "geekbench"
@@ -191,6 +194,7 @@ mas "1Password for Safari", id: 1569813296
 mas "24 Hour Wallpaper", id: 1226087575
 mas "Amphetamine", id: 937984704
 mas "Calca", id: 635758264
+mas "Core Tunnel", id: 1354318707
 mas "Day One", id: 1055511498
 mas "Drafts", id: 1435957248
 mas "Endel", id: 1346247457
