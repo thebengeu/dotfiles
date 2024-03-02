@@ -263,9 +263,16 @@ return {
     event = "LazyFile",
   },
   {
+    "svban/YankAssassin.vim",
+    event = "LazyFile",
+    vscode = true,
+  },
+  {
     "gbprod/yanky.nvim",
     dependencies = "kkharji/sqlite.lua",
-    keys = vim.g.vscode and { { "<leader>p", false } } or {},
+    keys = vim.list_extend({
+      { "y", false, mode = { "n", "x" } },
+    }, vim.g.vscode and { { "<leader>p", false } } or {}),
     opts = {
       ring = {
         storage = "sqlite",
