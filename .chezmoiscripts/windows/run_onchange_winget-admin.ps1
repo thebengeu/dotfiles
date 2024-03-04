@@ -45,6 +45,7 @@ $wingetPackageIds = @(
   'Microsoft.Edge.Dev'
   'Microsoft.PowerToys'
   'Microsoft.Sysinternals.ProcessMonitor'
+  'JetBrains.PyCharm.Professional'
   'QMK.QMKToolbox'
   'SideQuestVR.SideQuest'
   'SlackTechnologies.Slack'
@@ -53,7 +54,6 @@ $wingetPackageIds = @(
   'commercialhaskell.stack'
   'StartIsBack.StartAllBack'
   'Microsoft.VisualStudioCode'
-  'JetBrains.WebStorm'
   'JernejSimoncic.Wget'
   'Microsoft.WingetCreate'
   'Highresolution.X-MouseButtonControl'
@@ -75,8 +75,6 @@ if (!$isMobile)
 }
 
 winget install --exact --no-upgrade --silent --id $wingetPackageIds
-
-winget pin add --exact --id JetBrains.WebStorm
 
 $idProxyServerArgument = '--proxy-server=id.he.sg:8888'
 $inProxyServerArgument = '--proxy-server=in.he.sg:8888'
