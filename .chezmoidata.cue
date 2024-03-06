@@ -43,8 +43,8 @@ aliases: {
 	lg:   "lazygit"
 	man:  "batman"
 	n:    "TERM=wezterm nvim"
+	nd:   "npm run dev"
 	ni:   "npm install"
-	nrd:  "npm run dev"
 	nrm:  "npm remove"
 	p:    "pnpm"
 	pi:   "pnpm install"
@@ -57,6 +57,7 @@ aliases: {
 	pxu:  "pipx uninstall"
 	rm:   "trash"
 	scc:  #"scc --not-match "package-lock.json|pnpm-lock.yaml""#
+	nd:   "npm run dev"
 	sps:  "supa-ssh"
 	spsd: "SUPA_ENV=/Users/beng/.supa-admin-cli.dev supa-ssh"
 	spsl: "SUPA_ENV=/Users/beng/.supa-admin-cli.local supa-ssh"
