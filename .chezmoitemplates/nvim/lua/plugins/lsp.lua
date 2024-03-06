@@ -47,7 +47,6 @@ return {
         toml = { "taplo" },
         sh = { "shellharden", "shellcheck", "shfmt" },
         sql = { "sql_formatter" },
-        ["*"] = { "typos" },
         ["_"] = { "trim_newlines", "trim_whitespace" },
       })
 
