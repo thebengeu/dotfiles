@@ -76,6 +76,12 @@
     filename: ookla_speedtest-cli
     repo: deb [signed-by=/etc/apt/keyrings/ookla_speedtest-cli-archive-keyring.gpg] https://packagecloud.io/ookla/speedtest-cli/ubuntu/ {{ ansible_distribution_release }} main
 - ansible.builtin.apt_key:
+    keyring: /usr/share/keyrings/stripe.gpg
+    url: https://packages.stripe.dev/api/security/keypair/stripe-cli-gpg/public
+- ansible.builtin.apt_repository:
+    filename: stripe
+    repo: deb [signed-by=/usr/share/keyrings/stripe.gpg] https://packages.stripe.dev/stripe-cli-debian-local stable main
+- ansible.builtin.apt_key:
     keyring: /etc/apt/trusted.gpg.d/wslutilities-ubuntu-wslu.gpg
     url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x254f460f2970e18123046570c1d0e7e6ab4095d6
 - ansible.builtin.apt_repository:

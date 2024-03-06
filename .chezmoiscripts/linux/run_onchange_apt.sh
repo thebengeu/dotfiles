@@ -27,6 +27,7 @@ sudo apt --assume-yes install \
   php-gmp \
   speedtest \
   sqlite3 \
+  stripe \
   trash-cli \
   unar \
   zsh
