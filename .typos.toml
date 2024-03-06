@@ -5,6 +5,7 @@ extend-ignore-identifiers-re = ["[0-9a-f]{17}"]
 beng = "beng"
 edn = "edn"
 mosquitto = "mosquitto"
+nd = "nd"
 noice = "noice"
 shortcat = "shortcat"
 tere = "tere"
