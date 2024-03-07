@@ -18,7 +18,7 @@ defaults import com.sindresorhus.Velja com.sindresorhus.Velja.plist
 ## Linux
 
 ```console
-curl -s 'https://github.com/thebengeu/dotfiles/raw/master/.chezmoiscripts/linux/run_onchange_init.sh' | sh
+curl -s 'https://github.com/thebengeu/dotfiles/raw/master/.chezmoiscripts/linux/run_onchange_init.sh' | bash
 ```
 
 ## Windows
