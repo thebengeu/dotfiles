@@ -28,36 +28,25 @@ abbr --add {{$alias}} '{{$command | replaceAllRegex "\\${([^}]+)}" "$$${1}" | re
 {{end}}
 {{range $name, $lines_and_parameters := .functions -}}
 function {{$name}} --argument-names {{$lines_and_parameters.parameters | join " "}}
-{{- range $lines_and_parameters.lines}}
+    {{- range $lines_and_parameters.lines}}
     {{.}}
-{{- end}}
+    {{- end}}
 end
 {{end}}
 
 function br --wraps=broot
     set -l cmd_file (mktemp)
     if broot --outcmd $cmd_file $argv
-        read --local --null cmd < $cmd_file
+        read --local --null cmd <$cmd_file
         rm -f $cmd_file
-{{- if eq .chezmoi.os "windows" }}
+        {{- if eq .chezmoi.os "windows" }}
         eval (echo $cmd | sd 'cd (.+)' 'cd (cygpath "$1")')
-{{- else }}
+        {{- else }}
         eval $cmd
-{{- end }}
+        {{- end }}
     else
         set -l code $status
         rm -f $cmd_file
         return $code
     end
 end
-
-{{output "atuin" "init" "fish" "--disable-ctrl-r" "--disable-up-arrow"}}
-{{output "direnv" "hook" "fish"}}
-{{output "fish" "-c" "starship init fish --print-full-init"}}
-{{output "fish" "-c" "fnm env --use-on-cd"}}
-{{output "zoxide" "init" "--cmd" "cd" "fish"}}
-set --export LS_COLORS '{{ output "vivid" "generate" "catppuccin-mocha" | trim }}'
-
-{{- if ne .chezmoi.os "windows" }}
-{{output "fish" "-c" "pyenv init -"}}
-{{- end }}
