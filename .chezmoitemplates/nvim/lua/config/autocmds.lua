@@ -63,18 +63,20 @@ vim.api.nvim_create_autocmd("BufWritePost", {
         .. app_data_if_windows
         .. chezmoi_source_dir
         .. "dot_config | sort | head -n1)"
-      util.async_run_sh("chezmoi apply --source-path " .. source_path)
+      util.async_run_sh(
+        "chezmoi apply --keep-going --source-path " .. source_path
+      )
     elseif source_path:match("%.chezmoi%.yaml%.tmpl") then
       util.async_run({ "chezmoi", "init" })
     elseif source_path:match("chezmoi[/\\]%.") then
       util.async_run_sh(
-        "chezmoi apply --exclude scripts; chezmoi apply --include scripts"
+        "chezmoi apply --keep-going --exclude scripts; chezmoi apply --keep-going --include scripts"
       )
     else
       util.async_run_sh(
         "! chezmoi managed -p source-absolute --include files | rg --quiet '"
           .. source_path:gsub("\\", "/")
-          .. "' || chezmoi apply --source-path '"
+          .. "' || chezmoi apply --keep-going --source-path '"
           .. source_path
           .. "'"
       )

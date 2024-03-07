@@ -223,8 +223,8 @@ Set-Item 'Env:EJSON_KEYDIR' "$Env:USERPROFILE\.config\ejson\keys"
 if ($Env:CHEZMOI -ne '1')
 {
   chezmoi init --ssh thebengeu
-  chezmoi apply --exclude scripts
-  chezmoi apply --include scripts
+  chezmoi apply --keep-going --exclude scripts
+  chezmoi apply --keep-going --include scripts
 }
 
 $installSshdPath = "$Env:ProgramFiles\OpenSSH\install-sshd.ps1"

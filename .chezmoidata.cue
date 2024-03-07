@@ -24,7 +24,7 @@ aliases: {
 	buz: "brew uninstall --zap"
 	cad: "chezmoi add"
 	cat: "bat"
-	ca:  "chezmoi apply --exclude scripts; chezmoi apply --include scripts"
+	ca:  "chezmoi apply --keep-going --exclude scripts; chezmoi apply --keep-going --include scripts"
 	ci:  "cargo binstall --locked --no-confirm"
 	cr:  "chezmoi re-add"
 	cs:  "glow ~/thebengeu/cheatsheet/README.md"

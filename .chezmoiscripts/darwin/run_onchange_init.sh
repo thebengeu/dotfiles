@@ -71,6 +71,6 @@ if [ ! "${CHEZMOI}" = 1 ]; then
     chsh -s /usr/local/bin/fish
   fi
 
-  chezmoi apply --exclude scripts
-  chezmoi apply --include scripts
+  chezmoi apply --keep-going --exclude scripts
+  chezmoi apply --keep-going --include scripts
 fi

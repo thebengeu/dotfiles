@@ -119,7 +119,7 @@ end, { desc = "Toggle Mouse" })
 
 vim.keymap.set("n", "<leader>cU", function()
   util.async_run_sh(
-    "chezmoi update --apply=false; chezmoi init; chezmoi apply --exclude scripts; chezmoi apply --include scripts"
+    "chezmoi update --apply=false; chezmoi init; chezmoi apply --keep-going --exclude scripts; chezmoi apply --keep-going --include scripts"
   )
 end, { desc = "Chezmoi update" })
 

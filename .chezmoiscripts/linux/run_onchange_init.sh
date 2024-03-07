@@ -75,6 +75,6 @@ if [[ ! "${CHEZMOI}" = 1 ]]; then
   pipx install poetry
 
   /snap/bin/chezmoi init
-  /snap/bin/chezmoi apply --exclude scripts
-  /snap/bin/chezmoi apply --include scripts
+  /snap/bin/chezmoi apply --keep-going --exclude scripts
+  /snap/bin/chezmoi apply --keep-going --include scripts
 fi
