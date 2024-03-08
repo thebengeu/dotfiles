@@ -161,7 +161,7 @@ return {
     opts = {
       default = {
         replace = {
-          cmd = "oxi",
+          cmd = jit.os == "Windows" and "sed" or "oxi",
         },
       },
     },
