@@ -45,6 +45,7 @@ aliases: {
 	n:    "TERM=wezterm nvim"
 	nd:   "npm run dev"
 	ni:   "npm install"
+	nr:   "npm run"
 	nrm:  "npm remove"
 	p:    "pnpm"
 	pi:   "pnpm install"
