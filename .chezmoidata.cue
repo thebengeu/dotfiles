@@ -60,8 +60,8 @@ aliases: {
 	scc:  #"scc --not-match "package-lock.json|pnpm-lock.yaml""#
 	nd:   "npm run dev"
 	sps:  "supa-ssh"
-	spsd: "SUPA_ENV=/Users/beng/.supa-admin-cli.dev supa-ssh"
-	spsl: "SUPA_ENV=/Users/beng/.supa-admin-cli.local supa-ssh"
+	spsd: "SUPA_ENV=~/.supa-admin-cli.dev supa-ssh"
+	spsl: "SUPA_ENV=~/.supa-admin-cli.local supa-ssh"
 	st:   "speedtest"
 	t:    "tsx"
 	// tb:  "time bash -i -c exit"
