@@ -244,7 +244,9 @@ environmentVariables: {
 			PNPM_HOME:      "$HOME/.local/share/pnpm"
 		}
 		darwin: _common
-		linux:  _common
+		linux: _common & {
+			FLYCTL_INSTALL: "$HOME/.fly"
+		}
 		windows: {
 			LG_CONFIG_FILE:   "$APPDATA\\\\lazygit\\\\config.yml,$APPDATA\\\\lazygit\\\\mocha-lavender.yml"
 			NODE_NO_WARNINGS: 1
@@ -336,6 +338,7 @@ paths: [
 		"/snap/bin",
 		"~/.pulumi/bin",
 		"~/.temporalio/bin",
+		"$FLYCTL_INSTALL/bin",
 		"$PYENV_ROOT/bin",
 	] + _wsl_paths
 	windows: [
