@@ -10,10 +10,6 @@ return {
     end,
   },
   {
-    "kmonad/kmonad-vim",
-    ft = "kbd",
-  },
-  {
     "LhKipp/nvim-nu",
     build = ":TSInstall nu",
     dependencies = "nvim-treesitter/nvim-treesitter",
