@@ -26,11 +26,6 @@ Host staging
 
 Host prod
   Hostname p.he.sg
-
-Host hk
-  Hostname hk.he.sg
-
-Host hk prod
   User ubuntu
 
 Host *
