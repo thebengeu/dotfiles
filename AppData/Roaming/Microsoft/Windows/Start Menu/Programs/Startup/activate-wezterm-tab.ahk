@@ -1,5 +1,30 @@
 #SingleInstance Off
 
+#InputLevel 1
+CapsLock::
+{
+  Send("{Ctrl Down}")
+  KeyWait("CapsLock")
+  Send("{Ctrl Up}")
+  if (A_PriorKey == "CapsLock") {
+      Send("{Esc}")
+  }
+}
+
+RAlt::
+{
+  Send("{Ctrl Down}{Shift Down}{Alt Down}")
+  KeyWait("RAlt")
+  Send("{Ctrl Up}{Shift Up}{Alt Up}")
+}
+
+PrintScreen & e::Up
+PrintScreen & s::Left
+PrintScreen & d::Down
+PrintScreen & f::Right
+RCtrl::PrintScreen
+#InputLevel 0
+
 ActivateMinimizeOrRun(WinTitle, Target, MinimizeIfActive := true) {
   If WinExist(WinTitle) {
     If MinimizeIfActive && WinActive() {
