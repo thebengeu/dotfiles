@@ -58,6 +58,7 @@ $wingetPackageIds = @(
   'Microsoft.WingetCreate'
   'Highresolution.X-MouseButtonControl'
   'th-ch.YouTubeMusic'
+  'OlegShparber.Zeal'
   'Zoom.Zoom'
 )
 
