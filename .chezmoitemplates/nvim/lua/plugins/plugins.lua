@@ -77,47 +77,19 @@ return {
     end,
   },
   {
-    "thebengeu/harpoon",
+    "ThePrimeagen/harpoon",
     branch = "harpoon2",
-    dependencies = "nvim-lua/plenary.nvim",
-    opts = {},
     keys = {
+      { "<leader>h", false },
       {
-        "<leader>fh",
-        function()
-          require("harpoon"):list():append()
-        end,
-        desc = "Mark File",
-      },
-      {
-        "<leader>1",
-        function()
-          require("harpoon"):list():select(1)
-        end,
-        desc = "Marked File 1",
-      },
-      {
-        "<leader>2",
-        function()
-          require("harpoon"):list():select(2)
-        end,
-        desc = "Marked File 2",
-      },
-      {
-        "<leader>3",
-        function()
-          require("harpoon"):list():select(3)
-        end,
-        desc = "Marked File 3",
-      },
-      {
-        "<leader>sf",
+        "<leader>m",
         function()
           require("telescope").extensions.harpoon.marks()
         end,
-        desc = "File Marks",
+        desc = "Harpoon Marks",
       },
     },
+    url = "https://github.com/thebengeu/harpoon.git",
   },
   {
     "echasnovski/mini.bracketed",
