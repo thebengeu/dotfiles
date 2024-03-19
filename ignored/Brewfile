@@ -78,7 +78,7 @@ brew "nushell"
 brew "onefetch"
 brew "parallel"
 brew "poppler"
-brew "postgresql@14", restart_service: true
+brew "postgresql@15", link: true
 brew "pspg"
 brew "pulumi"
 brew "pyenv"
