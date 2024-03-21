@@ -18,10 +18,10 @@
              [:##m :7 ["layer" 1]]
              [:##comma :8 ["layer" 1]]
              [:##period :9 ["layer" 1]]]}
-    {:des "tab to control-command-option",
-     :rules [[:##tab {:key :!TCleft_option, :lazy true}
-              :built-in
-              {:alone :tab, :held :!TCleft_option}]]}
+    {:des "Layer 2",
+     :rules [[:##w :!Cw ["layer" 2]]
+             [:##e :!CSopen_bracket ["layer" 2]]
+             [:##r :!CSclose_bracket ["layer" 2]]]}
     {:des "caps_lock to control and escape",
      :rules [[:##caps_lock {:key :left_control, :lazy true}
               :built-in
@@ -34,5 +34,8 @@
      :rules [[:##right_command :!TOright_shift :built-in]]}
     {:des "right_control to fn", :rules [[:##right_control :fn]]}
     {:des "right_option to layer 1",
-     :rules [[:##right_option ["layer" 1] :built-in {:afterup ["layer" 0]}]]}],
+     :rules [[:##right_option ["layer" 1] :built-in {:afterup ["layer" 0]}]]}
+    {:des "tab to layer 2",
+     :rules
+       [[:##tab ["layer" 2] :built-in {:afterup ["layer" 0], :alone :tab}]]}],
  :profiles {:Default {:alone 150, :default true, :held 150}}}
