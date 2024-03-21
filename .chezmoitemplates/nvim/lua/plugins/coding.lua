@@ -314,6 +314,7 @@ return vim.list_extend(
           "hjson",
           "git_config",
           "gitignore",
+          "just",
           "make",
           "pem",
           "prisma",
