@@ -21,10 +21,6 @@ return {
     ft = "fish",
   },
   {
-    "NoahTheDuke/vim-just",
-    ft = "just",
-  },
-  {
     "fladson/vim-kitty",
     ft = "kitty",
   },
