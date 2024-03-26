@@ -136,20 +136,22 @@ aliases: {
 
 	csv: "\(_neovide) 'cd ~/thebengeu/cheatsheet' ~/thebengeu/cheatsheet/README.md"
 
-	_aliasDirectories: {
-		c:  "$HOME/.local/share/chezmoi"
-		d:  "$HOME/thebengeu/drakon"
-		h:  "$HOME/supabase/helper-scripts"
-		i:  "$HOME/supabase/infrastructure"
+	_gitAliasDirectories: {
+		c: "$HOME/.local/share/chezmoi"
+		d: "$HOME/thebengeu/drakon"
+		h: "$HOME/supabase/helper-scripts"
+		i: "$HOME/supabase/infrastructure"
+		u: "$HOME/thebengeu/qmk_userspace"
+	}
+	_aliasDirectories: _gitAliasDirectories & {
 		s:  "$HOME/sb"
 		sb: "$HOME/supabase"
-		u:  "$HOME/thebengeu/qmk_userspace"
+		t:  "$HOME/thebengeu"
 	}
 
 	for prefix, directory in _aliasDirectories {
 		"\(prefix)cd": "cd \(directory)"
 		"\(prefix)v":  "\(_neovide) 'cd \(strings.Replace(directory, "$HOME", "~", -1))'"
-		"\(prefix)lg": "lazygit --path \(directory)"
 		"\(prefix)n":  "TERM=wezterm nvim --cmd 'cd \(strings.Replace(directory, "$HOME", "~", -1))'"
 		"\(prefix)rg": "\(_env) --chdir \(strings.Replace(directory, "$HOME", "~", -1)) rg"
 	}
@@ -186,8 +188,9 @@ aliases: {
 	for gitAlias, command in _directoryGitAliases & _gitAliases {
 		"g\(gitAlias)": "git \(command)"
 	}
-	for prefix, directory in _aliasDirectories {
-		"\(prefix)g": "git -C \(directory)"
+	for prefix, directory in _gitAliasDirectories {
+		"\(prefix)g":  "git -C \(directory)"
+		"\(prefix)lg": "lazygit --path \(directory)"
 		for directoryGitAlias, command in _directoryGitAliases {
 			"\(prefix)g\(directoryGitAlias)": "git -C \(directory) \(command)"
 		}
