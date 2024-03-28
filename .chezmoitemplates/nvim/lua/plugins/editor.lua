@@ -2,43 +2,6 @@ local map = require("util").map
 
 return {
   {
-    "monaqa/dial.nvim",
-    config = function()
-      local augend = require("dial.augend")
-
-      vim.list_extend(require("dial.config").augends.group.default, {
-        augend.constant.alias.bool,
-        augend.constant.new({ elements = { "True", "False" } }),
-        augend.constant.new({ elements = { "and", "or" } }),
-      })
-    end,
-    keys = {
-      {
-        "<C-a>",
-        "<Plug>(dial-increment)",
-        mode = { "n", "x" },
-      },
-      {
-        "<C-x>",
-        "<Plug>(dial-decrement)",
-        mode = { "n", "x" },
-      },
-      {
-        "g<C-a>",
-        "g<Plug>(dial-increment)",
-        mode = { "n", "x" },
-        remap = true,
-      },
-      {
-        "g<C-x>",
-        "g<Plug>(dial-decrement)",
-        mode = { "n", "x" },
-        remap = true,
-      },
-    },
-    vscode = true,
-  },
-  {
     "folke/flash.nvim",
     init = function()
       require("lazyvim.util").on_load("which-key.nvim", function()
