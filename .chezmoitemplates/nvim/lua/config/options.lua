@@ -47,6 +47,12 @@ vim.opt.titlestring = (vim.env.TITLE_PREFIX or "") .. "%F"
 vim.opt.winblend = 5
 vim.opt.wrap = true
 
+vim.filetype.add({
+  extension = {
+    mdx = "markdown",
+  },
+})
+
 if vim.g.neovide then
   vim.g.neovide_cursor_vfx_mode = "pixiedust"
   vim.g.neovide_cursor_vfx_particle_density = 50
