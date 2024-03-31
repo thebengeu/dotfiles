@@ -292,6 +292,14 @@ return {
       "typescript",
       "typescriptreact",
     },
+    keys = {
+      {
+        "<leader>co",
+        "<Cmd>TSToolsOrganizeImports<CR>",
+        desc = "Organize Imports",
+        ft = "typescript",
+      },
+    },
     opts = {
       settings = {
         code_lens = "all",
