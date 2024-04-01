@@ -52,6 +52,7 @@ return vim.list_extend(
             end
           end,
         },
+        use_trouble_qf = true,
       },
     },
     {
