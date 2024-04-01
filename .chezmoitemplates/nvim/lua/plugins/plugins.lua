@@ -15,11 +15,6 @@ return {
     "rmagatti/auto-session",
     keys = {
       {
-        "<leader>qD",
-        "<Cmd>Autosession delete<CR>",
-        desc = "Delete Session",
-      },
-      {
         "<leader>ql",
         function()
           require("auto-session").setup_session_lens()
