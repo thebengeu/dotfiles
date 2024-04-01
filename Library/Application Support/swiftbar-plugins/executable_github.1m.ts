@@ -15,7 +15,7 @@ const main = async () => {
       {
         search(
           first: 100
-          query: "-author:@me is:open team-review-requested:supabase/backend type:pr"
+          query: "-author:@me -author:app/dependabot -author:app/renovate is:open team-review-requested:supabase/backend type:pr"
           type: ISSUE
         ) {
           edges {
@@ -93,14 +93,12 @@ const main = async () => {
     pullRequests.filter(
       ({
         node: {
-          author: { login },
           files: { edges: fileEdges },
           title,
           updatedAt,
         },
       }) =>
         new Date(updatedAt) > oneWeekAgo &&
-        login !== 'dependabot' &&
         (title.includes('hotfix') ||
           _.sumBy(fileEdges, 'node.additions') < 10 ||
           !fileEdges.every(({ node: { path } }) => path.startsWith('api/')))
@@ -145,9 +143,8 @@ const main = async () => {
       md: true,
       submenu: files.map(({ additions, changeType, deletions, path }) => ({
         href: `${url}/files`,
-        text: `${
-          changeType === 'CHANGED' ? 'T' : changeType[0]
-        } ${path} (+${additions} -${deletions})`,
+        text: `${changeType === 'CHANGED' ? 'T' : changeType[0]
+          } ${path} (+${additions} -${deletions})`,
       })),
       text: `*${nameWithOwner}#${number} opened ${formatDistanceToNow(createdAt, {
         addSuffix: true,
