@@ -303,8 +303,6 @@ return vim.list_extend(
     {
       "nvim-treesitter/nvim-treesitter",
       opts = function(_, opts)
-        vim.treesitter.language.register("lua", "lua.chezmoitmpl")
-
         opts.auto_install = true
         vim.list_extend(opts.ensure_installed, {
           "clojure",
@@ -323,6 +321,13 @@ return vim.list_extend(
           "ssh_config",
           "toml",
         })
+        opts.highlight = {
+          disable = function()
+            if string.find(vim.bo.filetype, "chezmoitmpl") then
+              return true
+            end
+          end,
+        }
         opts.indent = {
           disable = { "yaml" },
         }
