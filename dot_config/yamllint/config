@@ -4,7 +4,5 @@ rules:
   braces:
     max-spaces-inside: 1
   document-start: disable
-  indentation:
-    indent-sequences: true
-    spaces: 4
+  indentation: disable
   line-length: disable
