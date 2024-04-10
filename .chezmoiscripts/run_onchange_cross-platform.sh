@@ -24,6 +24,7 @@ pipx install httpie
 pipx install --preinstall rich ipython
 pipx install keymap-drawer
 pipx install khal
+pipx install kube-shell
 pipx install neovim-remote
 pipx install sqlfluff
 pipx install thefuck
