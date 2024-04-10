@@ -31,39 +31,44 @@ aliases: {
 	csn: "TERM=wezterm nvim ~/thebengeu/cheatsheet/README.md"
 	cu:  "cargo uninstall"
 	cup: "chezmoi update --apply=false; chezmoi init; \(ca)"
+	d9:  "k9s --context supabase-dev"
+	dh:  "SUPA_ENV=~/.supa-admin-cli.dev supa-ssh"
+	dpu: "AWS_PROFILE=supabase-dev pulumi up --stack supabase/dev"
 	g:   "git"
 	ghd: "gh dash"
 	ghp: "gh poi"
 	grm: "glow README.md"
 	// hb:  "hyperfine 'bash -i -c exit'"
 	// hbn: "hyperfine 'bash --noprofile --norc -i -c exit'"
-	ic:   "aws ec2-instance-connect ssh --os-user ubuntu --instance-id"
-	j:    "just"
-	jd:   "just dev"
-	lg:   "lazygit"
-	man:  "batman"
-	n:    "TERM=wezterm nvim"
-	nd:   "npm run dev"
-	ni:   "npm install"
-	nr:   "npm run"
-	nrm:  "npm remove"
-	p:    "pnpm"
-	pi:   "pnpm install"
-	pR:   "git push && gh pr create --fill-first && gh pr view --web"
-	pr:   "git push && gh pr create --draft --fill-first && gh pr view --web"
-	prm:  "pnpm remove"
-	prv:  "gh pr view --web"
-	pu:   "pnpm uninstall"
-	pxi:  "pipx install"
-	pxu:  "pipx uninstall"
-	rm:   "trash"
-	scc:  #"scc --not-match "package-lock.json|pnpm-lock.yaml""#
-	nd:   "npm run dev"
-	sps:  "supa-ssh"
-	spsd: "SUPA_ENV=~/.supa-admin-cli.dev supa-ssh"
-	spsl: "SUPA_ENV=~/.supa-admin-cli.local supa-ssh"
-	st:   "speedtest"
-	t:    "tsx"
+	ic:  "aws ec2-instance-connect ssh --os-user ubuntu --instance-id"
+	j:   "just"
+	jd:  "just dev"
+	k:   "kubectl"
+	lg:  "lazygit"
+	lh:  "SUPA_ENV=~/.supa-admin-cli.local supa-ssh"
+	man: "batman"
+	n:   "TERM=wezterm nvim"
+	nd:  "npm run dev"
+	nd:  "npm run dev"
+	ni:  "npm install"
+	nr:  "npm run"
+	nrm: "npm remove"
+	p:   "pnpm"
+	p9:  "k9s --context supabase"
+	pR:  "git push && gh pr create --fill-first && gh pr view --web"
+	ph:  "supa-ssh"
+	pi:  "pnpm install"
+	ppu: "AWS_PROFILE=supabase pulumi up --stack supabase/prod"
+	pr:  "git push && gh pr create --draft --fill-first && gh pr view --web"
+	prm: "pnpm remove"
+	prv: "gh pr view --web"
+	pu:  "pulumi up"
+	pxi: "pipx install"
+	pxu: "pipx uninstall"
+	rm:  "trash"
+	scc: #"scc --not-match "package-lock.json|pnpm-lock.yaml""#
+	st:  "speedtest"
+	t:   "tsx"
 	// tb:  "time bash -i -c exit"
 	// tbn: "time bash --noprofile --norc -i -c exit"
 
@@ -91,16 +96,16 @@ aliases: {
 			tm:  "\(tns) 0"
 		}
 		darwin: _non_windows & {
-			bbd:          "sh -c 'cd ~/.local/share/chezmoi/ignored && brew bundle dump --file Brewfile --force && git diff Brewfile'"
-			bic:          "brew install --cask"
-			bif:          "brew info"
-			crv:          #"cp ~/Library/Application\ Support/Code/User/keybindings.json ~/.local/share/chezmoi/.chezmoitemplates/code; sed -E 's/(Theme.*").+(",)/\1\2/g' ~/Library/Application\ Support/Code/User/settings.json > ~/.local/share/chezmoi/.chezmoitemplates/code/settings.json"#
-			meb:          #"/usr/bin/open -a /Applications/Microsoft\ Edge\ Beta.app --args --proxy-server=in.he.sg:8888"#
-			med:          #"/usr/bin/open -a /Applications/Microsoft\ Edge\ Dev.app --args --proxy-server=id.he.sg:8888"#
-			supa:         "supa-admin-cli"
-			"supa-dev":   "supa-admin-cli --config ~/.supa-admin-cli.dev"
-			"supa-local": "supa-admin-cli --config ~/.supa-admin-cli.local"
-			wsk:          "wezterm show-keys --lua"
+			bbd: "sh -c 'cd ~/.local/share/chezmoi/ignored && brew bundle dump --file Brewfile --force && git diff Brewfile'"
+			bic: "brew install --cask"
+			bif: "brew info"
+			crv: #"cp ~/Library/Application\ Support/Code/User/keybindings.json ~/.local/share/chezmoi/.chezmoitemplates/code; sed -E 's/(Theme.*").+(",)/\1\2/g' ~/Library/Application\ Support/Code/User/settings.json > ~/.local/share/chezmoi/.chezmoitemplates/code/settings.json"#
+			dc:  "supa-admin-cli --config ~/.supa-admin-cli.dev"
+			lc:  "supa-admin-cli --config ~/.supa-admin-cli.local"
+			meb: #"/usr/bin/open -a /Applications/Microsoft\ Edge\ Beta.app --args --proxy-server=in.he.sg:8888"#
+			med: #"/usr/bin/open -a /Applications/Microsoft\ Edge\ Dev.app --args --proxy-server=id.he.sg:8888"#
+			pc:  "supa-admin-cli"
+			wsk: "wezterm show-keys --lua"
 		}
 		linux: _non_windows & {
 			aar:         "sudo apt autoremove"
@@ -332,6 +337,7 @@ paths: [
 	"~/thebengeu/scripts",
 ] + {
 	darwin: [
+		"~/.krew/bin",
 		"~/Library/Python/3.11/bin",
 		"/opt/homebrew/opt/curl/bin",
 		"/usr/local/bin",
