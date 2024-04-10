@@ -302,12 +302,11 @@ return {
     },
     opts = {
       settings = {
-        code_lens = "all",
         complete_function_calls = true,
         expose_as_code_action = "all",
         tsserver_file_preferences = {
           includeInlayEnumMemberValueHints = true,
-          includeInlayFunctionLikeReturnTypeHints = true,
+          includeInlayFunctionLikeReturnTypeHints = false,
           includeInlayFunctionParameterTypeHints = true,
           includeInlayParameterNameHints = "literals",
           includeInlayParameterNameHintsWhenArgumentMatchesName = false,
