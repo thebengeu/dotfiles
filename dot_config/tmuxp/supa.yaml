@@ -1,0 +1,19 @@
+session_name: supa
+start_directory: ~/supabase
+windows:
+  - window_name: supa
+    layout: tiled
+    panes:
+      - shell_command:
+          - cd infrastructure
+          - make rebuild.except.api.and.worker.local
+        focus: true
+      - shell_command:
+          - cd infrastructure/api
+          - npm run dev
+      - shell_command:
+          - cd infrastructure/worker
+          - npm run start-after-pg
+      - shell_command:
+          - cd supabase/apps/studio
+          - npm run dev
