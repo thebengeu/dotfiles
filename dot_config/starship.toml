@@ -44,7 +44,7 @@ format = "[$hostname]($style) "
 disabled = true
 
 [kubernetes]
-detect_files = ['cluster.ts', 'kustomize.yml']
+detect_files = ['cluster.ts', 'kustomization.yml']
 disabled = false
 
 [[kubernetes.contexts]]
