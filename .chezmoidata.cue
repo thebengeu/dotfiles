@@ -332,7 +332,7 @@ paths: [
 	"$PNPM_HOME",
 	"~/.cargo/bin",
 	"~/.local/bin",
-	"~/git-fuzzy/bin",
+	"~/repos/git-fuzzy/bin",
 	"~/go/bin",
 	"~/thebengeu/scripts",
 ] + {
