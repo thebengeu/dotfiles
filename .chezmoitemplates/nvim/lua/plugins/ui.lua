@@ -102,19 +102,6 @@ return {
     },
   },
   {
-    "nvim-lualine/lualine.nvim",
-    opts = function(_, opts)
-      opts.sections.lualine_c = util.filter(
-        opts.sections.lualine_c,
-        function(components)
-          return components[1] ~= "aerial"
-        end
-      )
-
-      return opts
-    end,
-  },
-  {
     "echasnovski/mini.indentscope",
     config = function()
       vim.g.miniindentscope_disable = true
