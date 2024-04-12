@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
-cd ~/neovide || exit
+cd ~/repos/neovide || exit
 cargo bundle --release
 cp -R target/release/bundle/osx/Neovide.app /Applications/Neovide.app

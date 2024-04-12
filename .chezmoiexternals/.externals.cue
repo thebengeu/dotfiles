@@ -45,10 +45,10 @@ for gitRepo in _zshGitRepos {
 ".local/bin/cht": #ExecutableFile & {
 	url: "https://cht.sh/:cht.sh"
 }
-"git-fuzzy": #GitRepo & {
+"repos/git-fuzzy": #GitRepo & {
 	_gitRepo: "bigH/git-fuzzy"
 }
-"neovide": #GitRepo & {
+"repos/neovide": #GitRepo & {
 	_gitRepo: "neovide/neovide"
 }
 
