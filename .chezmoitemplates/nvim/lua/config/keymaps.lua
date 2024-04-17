@@ -52,7 +52,7 @@ vim.keymap.set("n", "<leader>fC", function()
   vim.cmd.edit("~/thebengeu/cheatsheet/README.md")
 end, { desc = "Cheatsheet" })
 
-vim.keymap.set("n", "<leader>gB", function()
+vim.keymap.set("n", "<leader>gn", function()
   local new_branch_name = vim.fn.input("New branch name: ", "beng/")
 
   if new_branch_name ~= "" then
