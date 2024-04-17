@@ -6,14 +6,18 @@ windows:
     panes:
       - shell_command:
           - cd infrastructure
+          - make update:config
           - make rebuild.except.api.and.worker.local
         focus: true
       - shell_command:
           - cd infrastructure/api
+          - npm install
           - npm run dev
       - shell_command:
           - cd infrastructure/worker
+          - npm install
           - npm run start-after-pg
       - shell_command:
           - cd supabase/apps/studio
+          - npm install
           - npm run dev
