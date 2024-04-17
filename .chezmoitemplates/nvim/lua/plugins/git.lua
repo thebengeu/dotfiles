@@ -2,6 +2,21 @@ local util = require("util")
 
 return {
   {
+    "FabijanZulj/blame.nvim",
+    keys = {
+      { "<leader>gB", "<Cmd>BlameToggle<CR>", desc = "Blame" },
+    },
+    opts = function()
+      return {
+        colors = util.map(util.rainbow_delimiters_hl, function(hl_name)
+          return vim.api.nvim_get_hl(0, { link = false, name = hl_name }).fg
+        end),
+        date_format = "%Y-%m-%d",
+        format_fn = require("blame.formats.default_formats").date_message,
+      }
+    end,
+  },
+  {
     "sindrets/diffview.nvim",
     cmd = { "DiffviewOpen" },
     keys = {
@@ -98,7 +113,7 @@ return {
     "NeogitOrg/neogit",
     dependencies = "nvim-lua/plenary.nvim",
     keys = {
-      { "<leader>gn", "<Cmd>Neogit cwd=%:p:h<CR>", desc = "Neogit" },
+      { "<leader>gN", "<Cmd>Neogit cwd=%:p:h<CR>", desc = "Neogit" },
     },
     opts = {},
   },
