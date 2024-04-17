@@ -35,6 +35,7 @@ return {
           or cwd == homedir
           or cwd == windir
           or cwd == "/",
+        auto_session_use_git_branch = true,
         cwd_change_handling = {
           restore_upcoming_session = true,
         },
