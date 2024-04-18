@@ -92,6 +92,10 @@ return {
     url = "https://github.com/thebengeu/harpoon.git",
   },
   {
+    "lukas-reineke/headlines.nvim",
+    enabled = false,
+  },
+  {
     "echasnovski/mini.bracketed",
     event = "LazyFile",
     opts = {},
