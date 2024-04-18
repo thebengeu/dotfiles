@@ -1,7 +1,6 @@
 {{output "atuin" "init" "fish" "--disable-ctrl-r" "--disable-up-arrow"}}
 {{output "direnv" "hook" "fish"}}
 {{output "fish" "-c" "starship init fish --print-full-init"}}
-{{output "fish" "-c" "fnm env --use-on-cd"}}
 {{output "zoxide" "init" "--cmd" "cd" "fish"}}
 set --export LS_COLORS '{{ output "vivid" "generate" "catppuccin-mocha" | trim }}'
 
