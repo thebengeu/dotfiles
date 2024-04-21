@@ -336,24 +336,7 @@ return util.map({
       })
     end,
   },
-  {
-    "Mofiqul/vscode.nvim",
-    opts = function()
-      local colors = require("vscode.colors").get_colors()
-
-      return {
-        group_overrides = rainbow_delimiter_highlights({
-          colors.vscRed,
-          colors.vscYellow,
-          colors.vscBlue,
-          colors.vscOrange,
-          colors.vscGreen,
-          colors.vscViolet,
-          colors.vscBlueGreen,
-        }),
-      }
-    end,
-  },
+  { "Mofiqul/vscode.nvim" },
 }, function(colorscheme_spec)
   local extra_spec = {}
 
