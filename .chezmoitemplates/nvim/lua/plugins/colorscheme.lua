@@ -154,6 +154,41 @@ return util.map({
     },
   },
   {
+    "marko-cerovac/material.nvim",
+    colorscheme_styles = {
+      "darker",
+      "deep ocean",
+      "oceanic",
+      "palenight",
+    },
+    opts = {
+      async_loading = false,
+      plugins = {
+        "dap",
+        "eyeliner",
+        "flash",
+        "gitsigns",
+        "harpoon",
+        "illuminate",
+        "indent-blankline",
+        "mini",
+        "neo-tree",
+        "neogit",
+        "noice",
+        "nvim-cmp",
+        "nvim-notify",
+        "nvim-web-devicons",
+        "rainbow-delimiters",
+        "telescope",
+        "trouble",
+        "which-key",
+      },
+      styles = {
+        comments = { italic = true },
+      },
+    },
+  },
+  {
     "savq/melange-nvim",
     highlights = function()
       local palette = require("melange.palettes.dark")
@@ -168,29 +203,6 @@ return util.map({
         palette.b.cyan,
       })
     end,
-  },
-  {
-    "ramojus/mellifluous.nvim",
-    highlights = function()
-      local colors = require("mellifluous.colors").get_colors()
-
-      if not colors then
-        error()
-      end
-
-      return rainbow_delimiter_highlights({
-        colors.red.hex,
-        colors.yellow.hex,
-        colors.blue.hex,
-        colors.orange.hex,
-        colors.green.hex,
-        colors.purple.hex,
-        colors.cyan.hex,
-      })
-    end,
-    opts = {
-      color_set = "mountain",
-    },
   },
   {
     "loctvl842/monokai-pro.nvim",
@@ -234,7 +246,6 @@ return util.map({
       },
     },
   },
-  { "shaunsingh/nord.nvim" },
   {
     "AlexvZyl/nordic.nvim",
     opts = function()
