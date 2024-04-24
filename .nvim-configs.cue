@@ -6,14 +6,14 @@ import (
 )
 
 _nvimConfigs: {
-	"ecosse3/nvim":    "ecovim"
-	"LazyVim/starter": "lazyvim"
+	"AstroNvim/template": "astronvim"
+	"ecosse3/nvim":       "ecovim"
+	"LazyVim/starter":    "lazyvim"
+	"NvChad/starter":     "nvchad"
 
 	for gitRepo in [
-		"AstroNvim/AstroNvim",
 		"nvim-lua/kickstart.nvim",
 		"thebengeu/minimal-lazy.nvim",
-		"NvChad/NvChad",
 	] {
 		"\(gitRepo)": "\(strings.ToLower(regexp.Find("[^/]+$", strings.Replace(gitRepo, ".nvim", "", -1))))"
 	}
