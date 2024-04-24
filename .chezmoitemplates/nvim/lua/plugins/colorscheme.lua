@@ -234,6 +234,7 @@ return util.map({
       },
     },
   },
+  { "shaunsingh/nord.nvim" },
   {
     "AlexvZyl/nordic.nvim",
     opts = function()
@@ -305,6 +306,12 @@ return util.map({
       return highlights
     end,
     url = "https://gitlab.com/HiPhish/resolarized.nvim.git",
+  },
+  {
+    "craftzdog/solarized-osaka.nvim",
+    opts = {
+      transparent = false,
+    },
   },
   {
     "sainnhe/sonokai",
