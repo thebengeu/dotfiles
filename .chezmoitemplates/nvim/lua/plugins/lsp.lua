@@ -95,7 +95,6 @@ return {
         "js-debug-adapter",
         "mypy",
         "prettierd",
-        "shellcheck",
         "shellharden",
         "sql-formatter",
         "sqlfluff",
@@ -132,7 +131,6 @@ return {
         enabled = true,
       },
       servers = vim.tbl_extend("error", {
-        bashls = {},
         clangd = {
           mason = false,
         },
