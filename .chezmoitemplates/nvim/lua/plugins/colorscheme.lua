@@ -54,6 +54,9 @@ return util.map({
       "dracula",
       "dracula-soft",
     },
+    opts = {
+      italic_comment = true,
+    },
   },
   {
     "sainnhe/edge",
@@ -223,6 +226,13 @@ return util.map({
       "nordfox",
       "terafox",
     },
+    opts = {
+      options = {
+        styles = {
+          comments = "italic",
+        },
+      },
+    },
   },
   {
     "AlexvZyl/nordic.nvim",
@@ -250,8 +260,20 @@ return util.map({
       "onedark_dark",
       "onedark_vivid",
     },
+    opts = {
+      styles = {
+        comments = "italic",
+      },
+    },
   },
-  { "rmehri01/onenord.nvim" },
+  {
+    "rmehri01/onenord.nvim",
+    opts = {
+      styles = {
+        comments = "italic",
+      },
+    },
+  },
   {
     "rose-pine/neovim",
     name = "rose-pine",
@@ -312,9 +334,13 @@ return util.map({
     opts = {
       plugins = {
         cmp = true,
+        context = true,
         gitsigns = true,
         neogit = true,
         telescope = true,
+      },
+      syntax = {
+        comments = { italic = true },
       },
     },
     highlights = function()
@@ -336,7 +362,12 @@ return util.map({
       })
     end,
   },
-  { "Mofiqul/vscode.nvim" },
+  {
+    "Mofiqul/vscode.nvim",
+    opts = {
+      italic_comments = true,
+    },
+  },
 }, function(colorscheme_spec)
   local extra_spec = {}
 
