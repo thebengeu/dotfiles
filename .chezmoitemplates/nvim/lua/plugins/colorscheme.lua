@@ -205,6 +205,22 @@ return util.map({
     end,
   },
   {
+    "dasupradyumna/midnight.nvim",
+    opts = function()
+      local components = require("midnight.colors").components
+
+      return rainbow_delimiter_highlights({
+        components.operator,
+        components.method,
+        components.constant,
+        components.string,
+        components.field,
+        components.keyword,
+        components.parameter,
+      })
+    end,
+  },
+  {
     "loctvl842/monokai-pro.nvim",
     colors_names = {
       "monokai-pro",
