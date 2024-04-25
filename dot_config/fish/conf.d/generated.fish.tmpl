@@ -16,9 +16,9 @@ set --export HOMEBREW_GITHUB_API_TOKEN {{ (joinPath .chezmoi.sourceDir ".secrets
 fish_add_path --global {{$path}}
 {{- end}}
 
-fnm env --use-on-cd | source
-
 status is-interactive || exit
+
+fnm env --use-on-cd | source
 
 set --global fzf_fd_opts --follow --hidden{{if eq .chezmoi.os "windows"}} --path-separator //{{end}}
 
