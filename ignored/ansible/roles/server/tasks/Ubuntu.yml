@@ -24,7 +24,7 @@
     dest: ~/thebengeu/neovim
     force: true
     repo: https://github.com/thebengeu/neovim
-    version: 35bfd032d881490e0d293543035094156ef7909f
+    version: 60cd8d19cf0a354fba66334611644a68c9f67878
 - ansible.builtin.command:
     chdir: ~/thebengeu/neovim
     cmd: make CMAKE_BUILD_TYPE=Release
