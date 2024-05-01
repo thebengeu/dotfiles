@@ -35,6 +35,7 @@ aliases: {
 	dh:  "SUPA_ENV=~/.supa-admin-cli.dev supa-ssh"
 	dpu: "AWS_PROFILE=supabase-dev pulumi up --stack supabase/dev"
 	g:   "git"
+	gap: "git all pull"
 	ghd: "gh dash"
 	ghp: "gh poi"
 	grm: "glow README.md"
