@@ -1,3 +1,4 @@
+local Util = require("lazyvim.util")
 local colorscheme_specs = require("plugins.colorscheme")
 local util = require("util")
 
@@ -96,15 +97,14 @@ return {
   },
   {
     "nvim-lualine/lualine.nvim",
-    opts = {
-      sections = {
-        lualine_z = {
-          function()
-            return get_colorscheme_name(colorschemes[colorscheme_index])
-          end,
-        },
-      },
-    },
+    opts = function(_, opts)
+      opts.sections.lualine_c[4] = { Util.lualine.pretty_path({ length = 4 }) }
+      opts.sections.lualine_z = {
+        function()
+          return get_colorscheme_name(colorschemes[colorscheme_index])
+        end,
+      }
+    end,
   },
   {
     "nvim-telescope/telescope.nvim",
