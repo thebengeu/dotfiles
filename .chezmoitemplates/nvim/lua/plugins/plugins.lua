@@ -50,6 +50,7 @@ return {
                 filetype == "blame"
                 or filetype == "noice"
                 or filetype == "qf"
+                or filetype == "spectre_panel"
               then
                 vim.api.nvim_win_close(win, true)
               end
