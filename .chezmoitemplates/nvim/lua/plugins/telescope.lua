@@ -1,4 +1,4 @@
-local Util = require("lazyvim.util")
+local LazyVim = require("lazyvim.util")
 local util = require("util")
 
 local lazy_root = require("lazy.core.config").options.root
@@ -6,7 +6,7 @@ local lazy_root = require("lazy.core.config").options.root
 local delta_diffview_git_picker = function(picker)
   return function()
     local is_bcommits = picker:match("bcommits")
-    local root = Util.root()
+    local root = LazyVim.root()
 
     local displayer = require("telescope.pickers.entry_display").create({
       separator = " ",
@@ -25,7 +25,7 @@ local delta_diffview_git_picker = function(picker)
       })
     end
 
-    Util.telescope("git_" .. picker, {
+    LazyVim.telescope("git_" .. picker, {
       attach_mappings = function()
         local actions = require("telescope.actions")
 
@@ -79,7 +79,7 @@ end
 local egrepify = function(cwd, vimgrep_arguments)
   return function()
     require("telescope").extensions.egrepify.egrepify({
-      cwd = cwd == nil and Util.root() or cwd,
+      cwd = cwd == nil and LazyVim.root() or cwd,
       vimgrep_arguments = vimgrep_arguments
           and vim.list_extend(
             vim.fn.copy(require("telescope.config").values.vimgrep_arguments),
@@ -93,7 +93,7 @@ end
 local smart_open = function(cwd)
   return function()
     require("telescope").extensions.smart_open.smart_open({
-      cwd = cwd == nil and Util.root() or cwd,
+      cwd = cwd == nil and LazyVim.root() or cwd,
     })
   end
 end
@@ -214,7 +214,7 @@ return {
       {
         "nvim-telescope/telescope-fzy-native.nvim",
         config = function()
-          Util.on_load("telescope.nvim", function()
+          LazyVim.on_load("telescope.nvim", function()
             require("telescope").load_extension("fzy_native")
           end)
         end,
@@ -229,22 +229,22 @@ return {
         { "<leader>ff", false },
         {
           "<leader>fi",
-          Util.telescope("find_files", { no_ignore = true }),
+          LazyVim.telescope("find_files", { no_ignore = true }),
           desc = "Find Files (ignored)",
         },
         {
           "<leader>fR",
-          Util.telescope("oldfiles", { cwd = false }),
+          LazyVim.telescope("oldfiles", { cwd = false }),
           desc = "Recent",
         },
         {
           "<leader>fr",
-          Util.telescope("oldfiles"),
+          LazyVim.telescope("oldfiles"),
           desc = "Recent (root dir)",
         },
         {
           "<leader>gb",
-          Util.telescope(
+          LazyVim.telescope(
             "git_branches",
             { show_remote_tracking_branches = false }
           ),
@@ -263,7 +263,7 @@ return {
         {
           "<leader>gm",
           function()
-            local root = Util.root()
+            local root = LazyVim.root()
 
             vim
               .system({ "git", "add", "--intent-to-add", "." }, { cwd = root })
@@ -329,9 +329,9 @@ return {
         {
           "<leader>gs",
           function()
-            local root = Util.root()
+            local root = LazyVim.root()
 
-            Util.telescope("git_status", {
+            LazyVim.telescope("git_status", {
               previewer = require("telescope.previewers").new_termopen_previewer({
                 get_command = function(entry)
                   if

@@ -1,4 +1,4 @@
-local Util = require("lazyvim.util")
+local LazyVim = require("lazyvim.util")
 local util = require("util")
 
 local popup_options = function(title)
@@ -154,12 +154,12 @@ local termopen_git_diff = function(root, term, no_changes)
 end
 
 local system_sh_code = function(cmd)
-  return vim.system({ "sh", "-c", cmd }, { cwd = Util.root() }):wait().code
+  return vim.system({ "sh", "-c", cmd }, { cwd = LazyVim.root() }):wait().code
 end
 
 local git_commit = function(git_command, default_message)
   local Popup = require("nui.popup")
-  local root = Util.root()
+  local root = LazyVim.root()
   local origin_url = util.git_stdout({ "remote", "get-url", "origin" })
   local is_thebengeu_repo = origin_url and origin_url:match("thebengeu")
 
@@ -214,7 +214,7 @@ end, { desc = "Commit" })
 vim.keymap.set("n", "<leader>gA", function()
   vim.cmd.update()
 
-  Util.telescope("git_commits", {
+  LazyVim.telescope("git_commits", {
     attach_mappings = function()
       local actions = require("telescope.actions")
 
