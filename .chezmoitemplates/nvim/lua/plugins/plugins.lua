@@ -134,13 +134,6 @@ return {
         desc = "Replace in files (Spectre)",
       },
     },
-    opts = {
-      default = {
-        replace = {
-          cmd = jit.os == "Windows" and "sed" or "oxi",
-        },
-      },
-    },
   },
   {
     "epwalsh/obsidian.nvim",
