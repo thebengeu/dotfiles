@@ -1,4 +1,4 @@
-local Util = require("lazyvim.util")
+local LazyVim = require("lazyvim.util")
 local util = require("util")
 
 return {
@@ -8,14 +8,14 @@ return {
       {
         "<leader>uF",
         function()
-          Util.format.toggle()
+          LazyVim.format.toggle()
         end,
         desc = "Toggle auto format (global)",
       },
       {
         "<leader>uf",
         function()
-          Util.format.toggle(true)
+          LazyVim.format.toggle(true)
         end,
         desc = "Toggle auto format (buffer)",
       },
@@ -196,13 +196,13 @@ return {
       require("typescript-tools").setup(opts)
 
       local function get_client(bufnr)
-        return Util.lsp.get_clients({
+        return LazyVim.lsp.get_clients({
           name = "typescript-tools",
           bufnr = bufnr,
         })[1]
       end
 
-      Util.format.register(Util.lsp.formatter({
+      LazyVim.format.register(LazyVim.lsp.formatter({
         name = "typescript-tools",
         primary = false,
         priority = 50,

@@ -1,4 +1,4 @@
-local Util = require("lazyvim.util")
+local LazyVim = require("lazyvim.util")
 
 local WSL_WINDOWS_HOMEDIR = "/mnt/c/Users/beng"
 
@@ -297,7 +297,7 @@ return {
       {
         "<C-/>",
         function()
-          require("toggleterm").toggle(vim.v.count1, nil, Util.root())
+          require("toggleterm").toggle(vim.v.count1, nil, LazyVim.root())
         end,
       },
     },
