@@ -60,15 +60,14 @@ if [ ! "${CHEZMOI}" = 1 ]; then
     pipx
   pipx install poetry
 
-  sed -i '' 's/#port = 5432/port = 5434/' /opt/homebrew/var/postgresql@15/postgresql.conf
+  brew_prefix=$(brew --prefix)
+
+  sed -i '' 's/#port = 5432/port = 5434/' "${brew_prefix}/var/postgresql@15/postgresql.conf"
+  sudo sh -c "echo ${brew_prefix}/bin/fish >> /etc/shells"
+  chsh -s "${brew_prefix}/bin/fish"
 
   if [ "$(uname -m)" = 'arm64' ]; then
-    sudo sh -c 'echo /opt/homebrew/bin/fish >> /etc/shells'
-    chsh -s /opt/homebrew/bin/fish
     softwareupdate --install-rosetta
-  else
-    sudo sh -c 'echo /usr/local/bin/fish >> /etc/shells'
-    chsh -s /usr/local/bin/fish
   fi
 
   chezmoi apply --keep-going --exclude scripts
