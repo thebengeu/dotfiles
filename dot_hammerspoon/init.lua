@@ -13,10 +13,10 @@ switcher_window_filter:rejectApp("1Password")
 
 for key, bundle_id_and_args in pairs({
   ["/"] = "com.apple.finder",
-  a = "com.readdle.SparkDesktop",
+  a = "com.readdle.SparkDesktop-setapp",
   b = "Safari",
   c = "Google Chrome",
-  d = "com.kapeli.dashdoc",
+  d = "com.kapeli.dash-setapp",
   e = "com.microsoft.edgemac",
   f = "com.microsoft.edgemac.app.nkbljeindhmekmppbpgebpjebkjbmfaj",
   g = "com.mimestream.Mimestream",
@@ -72,7 +72,7 @@ for key, bundle_id_and_args in pairs({
 end
 
 for key, bundle_id_and_args in pairs({
-  a = { "com.readdle.SparkDesktop", "f" },
+  a = { "com.readdle.SparkDesktop-setapp", "f" },
   b = { "Safari", "l" },
   c = { "Google Chrome", "l" },
   e = { "com.microsoft.edgemac", "l" },
@@ -153,7 +153,7 @@ end
 
 for _, mods_and_key in ipairs({
   {
-    "com.kapeli.dashdoc",
+    "com.kapeli.dash-setapp",
     { "ctrl", "option", "shift", "cmd" },
     "d",
     true,
