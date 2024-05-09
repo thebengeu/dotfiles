@@ -95,6 +95,7 @@ brew "onefetch"
 brew "parallel"
 brew "poppler"
 brew "postgresql@15", restart_service: true, link: true
+brew "proxychains-ng"
 brew "pspg"
 brew "pulumi"
 brew "pyenv"
@@ -151,6 +152,7 @@ cask "beekeeper-studio"
 cask "betterdisplay"
 cask "bettertouchtool"
 cask "choosy"
+cask "cleanclip"
 cask "cloudflare-warp"
 cask "daisydisk"
 cask "discord"
@@ -232,6 +234,7 @@ mas "iA Writer", id: 775737590
 mas "Kindle", id: 302584613
 mas "Magic Window 4K", id: 689569987
 mas "Microsoft Remote Desktop", id: 1295203466
+mas "PastePal", id: 1503446680
 mas "Refined GitHub", id: 1519867270
 mas "Save to Raindrop.io", id: 1549370672
 mas "Spotica Menu", id: 570549457
