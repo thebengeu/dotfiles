@@ -230,7 +230,6 @@ aliases: {
 	}
 }
 environmentVariables: {
-	AWS_PROFILE:                "supabase-dev"
 	BAT_THEME:                  "Catppuccin-mocha"
 	DIRENV_LOG_FORMAT:          ""
 	DOCKER_CLI_HINTS:           false
