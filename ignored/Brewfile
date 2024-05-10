@@ -28,9 +28,10 @@ brew "python@3.11"
 brew "awscli"
 brew "bash"
 brew "bat"
+brew "gettext"
+brew "bind"
 brew "broot"
 brew "btop"
-brew "gettext"
 brew "chafa"
 brew "chezmoi"
 brew "cloudflared"
@@ -167,6 +168,7 @@ cask "geekbench"
 cask "goneovim"
 cask "google-chrome"
 cask "google-cloud-sdk"
+cask "google-drive"
 cask "hammerspoon"
 cask "insta360-studio"
 cask "istat-menus"
@@ -184,6 +186,7 @@ cask "microsoft-edge"
 cask "microsoft-edge-beta"
 cask "microsoft-edge-dev"
 cask "microsoft-excel"
+cask "microsoft-word"
 cask "mimestream"
 cask "moonlight"
 cask "multitouch"
@@ -234,7 +237,7 @@ mas "iA Writer", id: 775737590
 mas "Kindle", id: 302584613
 mas "Magic Window 4K", id: 689569987
 mas "Microsoft Remote Desktop", id: 1295203466
-mas "PastePal", id: 1503446680
+mas "Pure Paste", id: 1611378436
 mas "Refined GitHub", id: 1519867270
 mas "Save to Raindrop.io", id: 1549370672
 mas "Spotica Menu", id: 570549457
