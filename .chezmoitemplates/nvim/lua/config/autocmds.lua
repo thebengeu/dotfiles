@@ -14,6 +14,13 @@ vim.api.nvim_create_autocmd("BufNewFile", {
   pattern = "*.sh",
 })
 
+vim.api.nvim_create_autocmd("BufRead", {
+  pattern = { "*/docker-compose.local.template.yml" },
+  callback = function()
+    vim.b.autoformat = false
+  end,
+})
+
 vim.api.nvim_create_autocmd("BufWritePost", {
   callback = function()
     util.async_run_sh("keymap draw keymap-drawer.yaml >keymap.svg")
