@@ -49,6 +49,12 @@ return util.map({
     },
   },
   {
+    "scottmckendry/cyberdream.nvim",
+    opts = {
+      italic_comments = true,
+    },
+  },
+  {
     "Mofiqul/dracula.nvim",
     colors_names = {
       "dracula",
