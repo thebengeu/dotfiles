@@ -175,7 +175,6 @@ return util.map({
         "flash",
         "gitsigns",
         "harpoon",
-        "illuminate",
         "indent-blankline",
         "mini",
         "neo-tree",

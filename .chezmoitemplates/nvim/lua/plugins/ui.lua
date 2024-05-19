@@ -102,17 +102,6 @@ return {
     },
   },
   {
-    "echasnovski/mini.indentscope",
-    config = function()
-      vim.g.miniindentscope_disable = true
-    end,
-    opts = {
-      options = {
-        border = "top",
-      },
-    },
-  },
-  {
     "folke/noice.nvim",
     opts = {
       routes = {
@@ -132,13 +121,6 @@ return {
         command_palette = false,
       },
     },
-  },
-  {
-    "norcalli/nvim-colorizer.lua",
-    config = function()
-      require("colorizer").setup()
-    end,
-    ft = "lua",
   },
   {
     "kevinhwang91/nvim-hlslens",

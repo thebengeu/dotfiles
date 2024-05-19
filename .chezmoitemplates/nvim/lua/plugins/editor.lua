@@ -194,17 +194,6 @@ return {
     },
   },
   {
-    "RRethy/vim-illuminate",
-    init = function()
-      require("lazyvim.util").on_load("which-key.nvim", function()
-        require("which-key").register({
-          ["<M-i>"] = "Reference",
-          mode = { "o", "x" },
-        })
-      end)
-    end,
-  },
-  {
     "mg979/vim-visual-multi",
     init = function()
       vim.g.VM_maps = {
@@ -232,15 +221,9 @@ return {
   },
   {
     "gbprod/yanky.nvim",
-    dependencies = "kkharji/sqlite.lua",
     keys = vim.list_extend({
       { "y", false, mode = { "n", "x" } },
     }, vim.g.vscode and { { "<leader>p", false } } or {}),
-    opts = {
-      ring = {
-        storage = "sqlite",
-      },
-    },
     vscode = true,
   },
 }
