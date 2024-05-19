@@ -168,6 +168,7 @@ cask "firefox"
 cask "flux"
 cask "font-jetbrains-mono-nerd-font"
 cask "font-symbols-only-nerd-font"
+cask "fork"
 cask "geekbench"
 cask "goneovim"
 cask "google-chrome"
@@ -213,9 +214,11 @@ cask "slack"
 cask "spotify"
 cask "steam"
 cask "steermouse"
+cask "sublime-merge"
 cask "swiftbar"
 cask "telegram"
 cask "timeular"
+cask "tower"
 cask "transmission"
 cask "typinator"
 cask "vial"
@@ -232,7 +235,6 @@ mas "1Password for Safari", id: 1569813296
 mas "24 Hour Wallpaper", id: 1226087575
 mas "Amphetamine", id: 937984704
 mas "Calca", id: 635758264
-mas "Core Tunnel", id: 1354318707
 mas "Day One", id: 1055511498
 mas "Drafts", id: 1435957248
 mas "Endel", id: 1346247457
