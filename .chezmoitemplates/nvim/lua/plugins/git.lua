@@ -26,17 +26,17 @@ return {
         desc = "Diffview",
       },
       {
-        "<leader>gF",
+        "<leader>gH",
         "<Cmd>DiffviewFileHistory<CR>",
         desc = "Diffview History",
       },
       {
-        "<leader>gf",
+        "<leader>gh",
         "<Cmd>DiffviewFileHistory %<CR>",
         desc = "Diffview File History",
       },
       {
-        "<leader>gf",
+        "<leader>gh",
         ":DiffviewFileHistory<CR>",
         desc = "Diffview Range History",
         mode = "x",
