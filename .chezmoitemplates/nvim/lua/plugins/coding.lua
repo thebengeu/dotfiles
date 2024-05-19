@@ -410,19 +410,6 @@ return vim.list_extend(
       },
     },
     {
-      "ThePrimeagen/refactoring.nvim",
-      keys = {
-        {
-          "<leader>cF",
-          function()
-            require("telescope").extensions.refactoring.refactors()
-          end,
-          desc = "Refactor",
-          mode = { "n", "x" },
-        },
-      },
-    },
-    {
       "axelvc/template-string.nvim",
       ft = {
         "typescript",
