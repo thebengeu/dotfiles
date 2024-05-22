@@ -42,7 +42,7 @@ return {
         mode = "x",
       },
       {
-        "<leader>gS",
+        "<leader>gD",
         "<Cmd>DiffviewFileHistory --walk-reflogs --range=stash<CR>",
         desc = "Diffview Stash",
       },
@@ -108,6 +108,20 @@ return {
         map("x", "<leader>hu", gs_visual("undo_stage_hunk"), "Undo Stage Hunk")
       end,
     },
+  },
+  {
+    "echasnovski/mini-git",
+    event = "LazyFile",
+    keys = {
+      {
+        "<leader>gS",
+        "<Cmd>lua MiniGit.show_at_cursor()<CR>",
+        desc = "Show at cursor",
+        mode = { "n", "x" },
+      },
+    },
+    main = "mini.git",
+    opts = {},
   },
   {
     "NeogitOrg/neogit",
