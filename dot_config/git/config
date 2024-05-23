@@ -10,6 +10,8 @@
 	s = status --short
 	sw = "!git switch ${1:-$(git default-branch)} #"
 	wip = !git add --all && git commit -m 'WIP' -m 'gitlint-ignore: all' && git push
+[commit]
+	verbose = true
 [core]
 	pager = delta
 [delta]
@@ -19,6 +21,7 @@
 	plus-emph-style = syntax "#3E4B6B"
 	plus-style = syntax "#364143"
 [diff]
+	algorithm = histogram
 	colorMoved = default
 [init]
 	defaultBranch = master
@@ -26,13 +29,16 @@
 [interactive]
 	diffFilter = delta --color-only
 [merge]
-	conflictstyle = diff3
+	conflictstyle = zdiff3
 [pull]
 	rebase = true
 [push]
 	autoSetupRemote = true
 [rebase]
 	autoStash = true
+	updateRefs = true
+[rerere]
+	enabled = true
 [safe]
 	directory = *
 [url "git@github.com:"]
