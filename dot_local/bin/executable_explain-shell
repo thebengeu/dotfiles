@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 w3m -dump "http://explainshell.com/explain?cmd=$*" |
 	grep -v -e explainshell -e • -e □ -e 'source manpages' |
-	tac |
+	tail -r |
 	sed -e '/./,$!d' |
-	tac |
+	tail -r |
 	sed -e '/./,$!d' |
 	cat -s
