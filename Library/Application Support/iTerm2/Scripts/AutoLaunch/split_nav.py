@@ -1,0 +1,51 @@
+#!/usr/bin/env python3
+import iterm2
+
+Keycode = iterm2.Keycode
+NavigationDirection = iterm2.NavigationDirection
+
+
+async def main(connection):
+    app = await iterm2.async_get_app(connection)
+
+    async with iterm2.KeystrokeMonitor(connection) as mon:
+        while True:
+            keystroke = await mon.async_get()
+
+            if keystroke.modifiers == [iterm2.Modifier.CONTROL]:
+                keycode = keystroke.keycode
+
+                if keycode in [
+                    Keycode.ANSI_H,
+                    Keycode.ANSI_J,
+                    Keycode.ANSI_K,
+                    Keycode.ANSI_L,
+                ]:
+                    current_tab = app.current_window.current_tab
+                    focused_nvim_time = (
+                        await current_tab.current_session.async_get_variable(
+                            "user.FOCUSED_NVIM_TIME"
+                        )
+                    )
+
+                    if focused_nvim_time is None:
+                        match keycode:
+                            case Keycode.ANSI_H:
+                                await current_tab.async_select_pane_in_direction(
+                                    NavigationDirection.LEFT
+                                )
+                            case Keycode.ANSI_J:
+                                await current_tab.async_select_pane_in_direction(
+                                    NavigationDirection.BELOW
+                                )
+                            case Keycode.ANSI_K:
+                                await current_tab.async_select_pane_in_direction(
+                                    NavigationDirection.ABOVE
+                                )
+                            case Keycode.ANSI_L:
+                                await current_tab.async_select_pane_in_direction(
+                                    NavigationDirection.RIGHT
+                                )
+
+
+iterm2.run_forever(main)
