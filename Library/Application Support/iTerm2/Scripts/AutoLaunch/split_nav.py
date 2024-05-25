@@ -2,6 +2,7 @@
 import iterm2
 
 Keycode = iterm2.Keycode
+Modifier = iterm2.Modifier
 NavigationDirection = iterm2.NavigationDirection
 
 
@@ -11,21 +12,21 @@ async def main(connection):
     async with iterm2.KeystrokeMonitor(connection) as mon:
         while True:
             keystroke = await mon.async_get()
+            keycode = keystroke.keycode
+            modifiers = keystroke.modifiers
 
-            if keystroke.modifiers == [iterm2.Modifier.CONTROL]:
-                keycode = keystroke.keycode
+            current_tab = app.current_window.current_tab
+            current_session = current_tab.current_session
 
+            if modifiers == [Modifier.CONTROL]:
                 if keycode in [
                     Keycode.ANSI_H,
                     Keycode.ANSI_J,
                     Keycode.ANSI_K,
                     Keycode.ANSI_L,
                 ]:
-                    current_tab = app.current_window.current_tab
-                    focused_nvim_time = (
-                        await current_tab.current_session.async_get_variable(
-                            "user.FOCUSED_NVIM_TIME"
-                        )
+                    focused_nvim_time = await current_session.async_get_variable(
+                        "user.FOCUSED_NVIM_TIME"
                     )
 
                     if focused_nvim_time is None:
@@ -46,6 +47,12 @@ async def main(connection):
                                 await current_tab.async_select_pane_in_direction(
                                     NavigationDirection.RIGHT
                                 )
+
+            elif (
+                modifiers == [Modifier.OPTION, Modifier.SHIFT]
+                and keycode == Keycode.ANSI_X
+            ):
+                await current_session.async_close()
 
 
 iterm2.run_forever(main)
