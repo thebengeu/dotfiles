@@ -118,18 +118,7 @@ return util.map({
       end,
     },
   },
-  {
-    "ellisonleao/gruvbox.nvim",
-    opts = function()
-      local gruvbox = require("gruvbox")
-
-      return {
-        overrides = {
-          TSRainbowCyan = { fg = gruvbox.palette.neutral_blue },
-        },
-      }
-    end,
-  },
+  { "ellisonleao/gruvbox.nvim" },
   { "luisiacc/gruvbox-baby" },
   {
     "sainnhe/gruvbox-material",
