@@ -20,6 +20,7 @@
   },
   "cSpell.includeRegExpList": ["CStyleComment"],
   "cSpell.userWords": ["thebengeu"],
+  "editor.accessibilitySupport": "off",
   "editor.codeActionsOnSave": {
     "source.addMissingImports": "explicit",
     "source.organizeImports": "explicit",
