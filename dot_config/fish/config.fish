@@ -54,9 +54,9 @@ end
 function fish_hybrid_key_bindings
     fish_default_key_bindings -M insert
     fish_vi_key_bindings --no-erase insert
-    bind --erase --mode insert --preset \cj
-    bind --erase --mode insert --preset \ck
-    bind --erase --mode insert --preset \cl
+    bind \cj true
+    bind \ck true
+    bind \cl true
 end
 
 set --global fish_key_bindings fish_hybrid_key_bindings
