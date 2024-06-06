@@ -92,7 +92,6 @@ aliases: {
 		_non_windows: {
 			fd:  "fd --hidden"
 			rns: #"rm -r "$(nvim-stdpath data)/sessions""#
-			tg:  "PIP_REQUIRE_VIRTUALENV=false topgrade"
 			tns: "tmux new-session -A -s"
 			tm:  "\(tns) 0"
 		}
@@ -106,6 +105,7 @@ aliases: {
 			meb: #"/usr/bin/open -a /Applications/Microsoft\ Edge\ Beta.app --args --proxy-server=in.he.sg:8888"#
 			med: #"/usr/bin/open -a /Applications/Microsoft\ Edge\ Dev.app --args --proxy-server=id.he.sg:8888"#
 			pc:  "supa-admin-cli"
+			tg:  "brew unlink moreutils parallel && brew upgrade moreutils parallel && brew link --overwrite moreutils parallel && PIP_REQUIRE_VIRTUALENV=false topgrade"
 			wsk: "wezterm show-keys --lua"
 		}
 		linux: _non_windows & {
@@ -113,6 +113,7 @@ aliases: {
 			ai:          "sudo apt install"
 			ar:          "sudo apt remove"
 			ns:          "nix search nixpkgs"
+			tg:          "PIP_REQUIRE_VIRTUALENV=false topgrade"
 			"xdg-ninja": "nix run github:b3nj5m1n/xdg-ninja"
 		}
 		windows: {
