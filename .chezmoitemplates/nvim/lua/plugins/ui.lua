@@ -158,11 +158,4 @@ return {
     end,
     opts = {},
   },
-  {
-    "luukvbaal/statuscol.nvim",
-    event = "LazyFile",
-    opts = {
-      setopt = true,
-    },
-  },
 }
