@@ -310,7 +310,6 @@ return vim.list_extend(
           "fennel",
           "hcl",
           "hjson",
-          "gitignore",
           "just",
           "make",
           "pem",
