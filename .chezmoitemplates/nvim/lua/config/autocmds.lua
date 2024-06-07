@@ -14,8 +14,8 @@ vim.api.nvim_create_autocmd("BufNewFile", {
   pattern = "*.sh",
 })
 
-vim.api.nvim_create_autocmd("BufRead", {
-  pattern = { "*/docker-compose.local.template.yml" },
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = { "*/compose.yml" },
   callback = function()
     vim.b.autoformat = false
   end,
