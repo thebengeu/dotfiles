@@ -29,17 +29,17 @@ return vim.list_extend(
     {
       "DNLHC/glance.nvim",
       keys = {
-        { "gd", "<Cmd>Glance definitions<CR>", desc = "Goto Definition" },
+        { "gd", "<Cmd>Glance definitions<CR>", desc = "Glance Definitions" },
         {
           "gI",
           "<Cmd>Glance implementations<CR>",
-          desc = "Goto Implementation",
+          desc = "Glance Implementations",
         },
-        { "gr", "<Cmd>Glance references<CR>", desc = "References" },
+        { "gr", "<Cmd>Glance References<CR>", desc = "Glance references" },
         {
-          "gt",
+          "gY",
           "<Cmd>Glance type_definitions<CR>",
-          desc = "Goto Type Definition",
+          desc = "Glance T[y]pe Definitions",
         },
       },
       opts = {
