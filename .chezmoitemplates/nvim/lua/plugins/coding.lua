@@ -302,9 +302,9 @@ return vim.list_extend(
     },
     {
       "nvim-treesitter/nvim-treesitter",
-      opts = function(_, opts)
-        opts.auto_install = true
-        vim.list_extend(opts.ensure_installed, {
+      opts = {
+        auto_install = true,
+        ensure_installed = {
           "clojure",
           "cue",
           "fennel",
@@ -317,22 +317,22 @@ return vim.list_extend(
           "sql",
           "ssh_config",
           "toml",
-        })
-        opts.highlight = {
+        },
+        highlight = {
           disable = function()
             if string.find(vim.bo.filetype, "chezmoitmpl") then
               return true
             end
           end,
-        }
-        opts.indent = {
+        },
+        indent = {
           disable = { "yaml" },
-        }
-        opts.matchup = {
+        },
+        matchup = {
           disable_virtual_text = true,
           enable = true,
-        }
-        opts.textobjects = {
+        },
+        textobjects = {
           select = {
             enable = true,
             keymaps = {
@@ -347,8 +347,8 @@ return vim.list_extend(
             },
             lookahead = true,
           },
-        }
-      end,
+        },
+      },
     },
     {
       "nvim-treesitter/nvim-treesitter-context",
