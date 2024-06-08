@@ -4,7 +4,7 @@ return {
   {
     "FabijanZulj/blame.nvim",
     keys = {
-      { "<leader>gB", "<Cmd>BlameToggle<CR>", desc = "Blame" },
+      { "<leader>gM", "<Cmd>BlameToggle<CR>", desc = "Blame" },
     },
     opts = function()
       return {
@@ -139,13 +139,13 @@ return {
     },
     keys = {
       {
-        "<leader>gl",
+        "<leader>go",
         "<Cmd>0GBrowse<CR>",
         desc = "Open Blob Permalink",
         mode = "n",
       },
       {
-        "<leader>gl",
+        "<leader>go",
         ":GBrowse<CR>",
         desc = "Open Blob Permalink",
         mode = "x",
