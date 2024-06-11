@@ -105,7 +105,7 @@ aliases: {
 			meb: #"/usr/bin/open -a /Applications/Microsoft\ Edge\ Beta.app --args --proxy-server=in.he.sg:8888"#
 			med: #"/usr/bin/open -a /Applications/Microsoft\ Edge\ Dev.app --args --proxy-server=id.he.sg:8888"#
 			pc:  "supa-admin-cli"
-			tg:  "brew unlink moreutils parallel && brew upgrade moreutils parallel && brew link --overwrite moreutils parallel && PIP_REQUIRE_VIRTUALENV=false topgrade"
+			tg:  "brew unlink moreutils parallel && brew upgrade moreutils parallel && brew link --overwrite moreutils parallel && genv --chdir ~ PIP_REQUIRE_VIRTUALENV=false topgrade"
 			wsk: "wezterm show-keys --lua"
 		}
 		linux: _non_windows & {
