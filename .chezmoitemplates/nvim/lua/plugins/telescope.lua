@@ -25,7 +25,7 @@ local delta_diffview_git_picker = function(picker)
       })
     end
 
-    LazyVim.telescope("git_" .. picker, {
+    LazyVim.pick("git_" .. picker, {
       attach_mappings = function()
         local actions = require("telescope.actions")
 
@@ -229,22 +229,22 @@ return {
         { "<leader>ff", false },
         {
           "<leader>fi",
-          LazyVim.telescope("find_files", { no_ignore = true }),
+          LazyVim.pick("find_files", { no_ignore = true }),
           desc = "Find Files (ignored)",
         },
         {
           "<leader>fR",
-          LazyVim.telescope("oldfiles", { cwd = false }),
+          LazyVim.pick("oldfiles", { cwd = false }),
           desc = "Recent",
         },
         {
           "<leader>fr",
-          LazyVim.telescope("oldfiles"),
+          LazyVim.pick("oldfiles"),
           desc = "Recent (root dir)",
         },
         {
           "<leader>gb",
-          LazyVim.telescope(
+          LazyVim.pick(
             "git_branches",
             { show_remote_tracking_branches = false }
           ),
@@ -331,7 +331,7 @@ return {
           function()
             local root = LazyVim.root()
 
-            LazyVim.telescope("git_status", {
+            LazyVim.pick("git_status", {
               previewer = require("telescope.previewers").new_termopen_previewer({
                 get_command = function(entry)
                   if
