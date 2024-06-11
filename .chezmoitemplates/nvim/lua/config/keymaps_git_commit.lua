@@ -214,7 +214,7 @@ end, { desc = "Commit" })
 vim.keymap.set("n", "<leader>gA", function()
   vim.cmd.update()
 
-  LazyVim.telescope("git_commits", {
+  LazyVim.pick("git_commits", {
     attach_mappings = function()
       local actions = require("telescope.actions")
 
