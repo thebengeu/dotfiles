@@ -38,7 +38,7 @@ for key, bundle_id_and_args in pairs({
   r = "com.microsoft.edgemac.app.bndmnggfngpgmmijcogkkgglhalbpomk",
   s = "com.tinyspeck.slackmacgap",
   t = "com.microsoft.edgemac.app.knaiokfnmjjldlfhlioejgcompgenfhb",
-  v = "com.neovide.neovide",
+  v = "com.microsoft.VSCode",
   w = WEZTERM_BUNDLE_ID,
   z = {
     args = "~/thebengeu/qmk_userspace/keymap.svg",
@@ -102,7 +102,7 @@ for key, bundle_id_and_args in pairs({
   },
   s = { "com.tinyspeck.slackmacgap", "k" },
   t = { "com.microsoft.edgemac.app.knaiokfnmjjldlfhlioejgcompgenfhb", "k" },
-  v = { "com.neovide.neovide" },
+  v = { "com.microsoft.VSCode", "f", { "cmd", "shift" } },
   w = { WEZTERM_BUNDLE_ID, "f" },
 }) do
   local bundle_id = bundle_id_and_args.bundle_id or bundle_id_and_args[1]
