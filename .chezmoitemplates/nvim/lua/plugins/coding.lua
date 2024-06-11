@@ -260,7 +260,7 @@ return vim.list_extend(
         local luasnip = require("luasnip")
 
         opts.experimental = {
-          ghost_text = false,
+          ghost_text = true,
         }
         opts.mapping = vim.tbl_extend("error", opts.mapping, {
           ["<Tab>"] = cmp.mapping(function(fallback)
