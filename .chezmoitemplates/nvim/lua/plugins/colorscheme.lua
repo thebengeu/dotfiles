@@ -312,23 +312,6 @@ return util.map({
     },
   },
   {
-    colors_names = {
-      "selenized-black",
-      "selenized-dark",
-      "solarized-dark",
-    },
-    highlights = function()
-      local highlights = {}
-
-      for _, color in ipairs(util.rainbow_colors) do
-        highlights["RainbowDelimiter" .. color] = { link = "Rainbow" .. color }
-      end
-
-      return highlights
-    end,
-    url = "https://gitlab.com/HiPhish/resolarized.nvim.git",
-  },
-  {
     "craftzdog/solarized-osaka.nvim",
     opts = {
       transparent = false,
