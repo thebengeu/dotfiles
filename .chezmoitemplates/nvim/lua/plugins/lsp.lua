@@ -91,7 +91,6 @@ return {
         "prettierd",
         "shellharden",
         "sql-formatter",
-        "sqlfluff",
         "taplo",
         "typos",
         "yamllint",

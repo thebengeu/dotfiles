@@ -314,7 +314,6 @@ return vim.list_extend(
           "make",
           "pem",
           "prisma",
-          "sql",
           "ssh_config",
           "toml",
         },
@@ -458,27 +457,6 @@ return vim.list_extend(
           ft = "sql",
           mode = "x",
         },
-      },
-    },
-    {
-      "kristijanhusak/vim-dadbod-completion",
-      dependencies = {
-        "tpope/vim-dadbod",
-        "hrsh7th/nvim-cmp",
-      },
-      ft = "sql",
-    },
-    {
-      "kristijanhusak/vim-dadbod-ui",
-      config = function()
-        vim.g.db_ui_use_nerd_fonts = 1
-      end,
-      dependencies = {
-        "tpope/vim-dadbod",
-        "kristijanhusak/vim-dadbod-completion",
-      },
-      keys = {
-        { "<leader>cD", "<Cmd>DBUIToggle<CR>", desc = "Dadbod UI" },
       },
     },
     {
