@@ -14,7 +14,6 @@ switcher_window_filter:rejectApp("1Password")
 for key, bundle_id_and_args in pairs({
   ["/"] = "com.apple.finder",
   a = "com.readdle.SparkDesktop-setapp",
-  b = "Safari",
   c = "Google Chrome",
   d = "com.kapeli.dash-setapp",
   e = "com.microsoft.edgemac",
@@ -73,7 +72,6 @@ end
 
 for key, bundle_id_and_args in pairs({
   a = { "com.readdle.SparkDesktop-setapp", "f" },
-  b = { "Safari", "l" },
   c = { "Google Chrome", "l" },
   e = { "com.microsoft.edgemac", "l" },
   f = { "com.microsoft.edgemac.app.nkbljeindhmekmppbpgebpjebkjbmfaj", "/", {} },
@@ -232,6 +230,13 @@ for key, command in pairs({
     print(output)
   end)
 end
+
+hs.hotkey.bind({ "ctrl", "option", "shift" }, "b", function()
+  hs.eventtap.keyStroke({ "cmd" }, "m")
+  hs.eventtap.keyStrokes("b%%bigquery")
+  hs.timer.usleep(10000)
+  hs.eventtap.keyStroke({}, "return")
+end)
 
 hs.window.animationDuration = 0
 hs.window.switcher.ui.showSelectedTitle = false
