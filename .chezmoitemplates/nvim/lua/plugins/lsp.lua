@@ -168,6 +168,16 @@ return {
           end,
         },
         -- typos_lsp = {},
+        vtsls = {
+          settings = {
+            typescript = {
+              inlayHints = {
+                functionLikeReturnTypes = { enabled = false },
+                parameterTypes = { enabled = false },
+              },
+            },
+          },
+        },
       }, jit.os == "Linux" and { ansiblels = {} } or {}),
       setup = {
         clangd = function(_, opts)
