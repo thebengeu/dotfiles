@@ -313,7 +313,6 @@ return vim.list_extend(
           "just",
           "make",
           "pem",
-          "prisma",
           "ssh_config",
           "toml",
         },

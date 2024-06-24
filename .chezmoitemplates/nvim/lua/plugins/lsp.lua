@@ -137,7 +137,6 @@ return {
         powershell_es = {
           enabled = vim.fn.executable("pwsh") == 1,
         },
-        prismals = {},
         pyright = {
           on_attach = function(client)
             client.handlers["textDocument/publishDiagnostics"] = function(
