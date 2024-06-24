@@ -113,7 +113,7 @@ end
 M.highlights = {}
 
 M.normname = function(name)
-  return (name:gsub("[%.%-]?nvim%-?", ""))
+  return (name:gsub("^.*/", ""):gsub("[%.%-]?nvim%-?", ""))
 end
 
 M.open_url = function(url)
