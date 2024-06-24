@@ -5,7 +5,7 @@ local util = require("util")
 local colorschemes = {}
 
 for _, spec in ipairs(colorscheme_specs) do
-  local name = util.normname(spec.name)
+  local name = util.normname(spec.name or spec[1])
   local extra_spec = util.extra_specs[spec[1] or spec.url] or {}
 
   if extra_spec.colors_names then
