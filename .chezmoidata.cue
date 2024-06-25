@@ -347,8 +347,6 @@ paths: [
 		"/usr/local/bin",
 	]
 	linux: [
-		"/snap/aws-cli/current/bin",
-		"/snap/bin",
 		"~/.pulumi/bin",
 		"~/.temporalio/bin",
 		"$FLYCTL_INSTALL/bin",

@@ -2,15 +2,18 @@
 set --export {{$environmentVariable}} "{{$value}}"
 {{end -}}
 
+set --export HOMEBREW_GITHUB_API_TOKEN {{ (joinPath .chezmoi.sourceDir ".secrets.ejson" | ejsonDecrypt).github_token_repo }}
 {{- if eq .chezmoi.os "darwin" }}
 {{if eq .chezmoi.arch "arm64" }}
 {{output "/opt/homebrew/bin/brew" "shellenv" "fish"}}
 {{else}}
 {{output "/usr/local/bin/brew" "shellenv" "fish"}}
 {{end}}
-set --export HOMEBREW_GITHUB_API_TOKEN {{ (joinPath .chezmoi.sourceDir ".secrets.ejson" | ejsonDecrypt).github_token_repo }}
 {{output "supa-admin-cli" "completion" "fish"}}
 {{end -}}
+{{- if eq .chezmoi.os "linux" }}
+{{output "/home/linuxbrew/.linuxbrew/bin/brew" "shellenv" "fish"}}
+{{end}}
 
 {{- range $path := .paths}}
 fish_add_path --global {{$path}}

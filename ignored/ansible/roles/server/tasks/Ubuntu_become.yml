@@ -110,6 +110,8 @@
       - openssh-server
       - postgresql
       - postgresql-client
+      - protobuf-compiler
+      - python-is-python3
       - python3-pip
       - python3-venv
       - unzip
@@ -164,17 +166,6 @@
 - ansible.builtin.command:
     cmd: corepack enable
     creates: /usr/bin/pnpm
-- community.general.snap:
-    name: aws-cli
-    classic: true
-- community.general.snap:
-    name: btop
-- community.general.snap:
-    name: chezmoi
-    classic: true
-- community.general.snap:
-    name: micro
-    classic: true
 - ansible.builtin.get_url:
     dest: /tmp/nix-installer
     mode: "755"
