@@ -8,6 +8,9 @@ export {{$environmentVariable}}="{{$value}}"
 {{else}}
 {{output "/usr/local/bin/brew" "shellenv" "sh"}}
 {{end}}
+{{- if eq .chezmoi.os "linux" }}
+{{output "/home/linuxbrew/.linuxbrew/bin/brew" "shellenv" "sh"}}
+{{end}}
 export HOMEBREW_GITHUB_API_TOKEN={{ (joinPath .chezmoi.sourceDir ".secrets.ejson" | ejsonDecrypt).github_token_repo }}
 {{end -}}
 

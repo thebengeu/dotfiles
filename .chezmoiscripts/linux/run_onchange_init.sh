@@ -53,14 +53,12 @@ if [[ ! "${CHEZMOI}" = 1 ]]; then
     git clone git@github.com:thebengeu/dotfiles.git "${CHEZMOI_SOURCE_DIR}"
   fi
 
+  sudo apt install -y software-properties-common
   sudo add-apt-repository -y ppa:ansible/ansible
   sudo apt install -y \
     ansible \
     file \
-    git \
-    gpg \
-    snapd \
-    software-properties-common
+    gpg
   ansible-playbook "${CHEZMOI_SOURCE_DIR}"/ignored/ansible/site.yml --ask-become-pass
 
   PIP_REQUIRE_VIRTUALENV=false pip3 install --upgrade --user \
@@ -74,7 +72,7 @@ if [[ ! "${CHEZMOI}" = 1 ]]; then
 
   pipx install poetry
 
-  /snap/bin/chezmoi init
-  /snap/bin/chezmoi apply --keep-going --exclude scripts
-  /snap/bin/chezmoi apply --keep-going --include scripts
+  ~/.nix-profile/bin/chezmoi init
+  ~/.nix-profile/bin/chezmoi apply --keep-going --exclude scripts
+  ~/.nix-profile/bin/chezmoi apply --keep-going --include scripts
 fi

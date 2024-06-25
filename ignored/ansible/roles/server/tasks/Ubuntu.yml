@@ -20,11 +20,36 @@
       - temporal
     remote_src: true
     src: https://temporal.download/cli/archive/latest?platform=linux&arch={{ arch.stdout }}
+- ansible.builtin.user:
+    append: true
+    groups: docker
+    name: "{{ ansible_user_id }}"
+    shell: /usr/bin/fish
+  become: true
+- ansible.builtin.get_url:
+    dest: /tmp/rustup-init
+    mode: "755"
+    url: https://static.rust-lang.org/rustup/dist/{{ ansible_machine }}-unknown-linux-gnu/rustup-init
+- ansible.builtin.command:
+    cmd: /tmp/rustup-init --no-modify-path --profile minimal -y
+    creates: ~/.cargo/env
+- ansible.builtin.command:
+    cmd: /nix/var/nix/profiles/default/bin/nix profile install nixpkgs#{{ item }}
+    creates: ~/.nix-profile/bin/{{ item }}
+  loop:
+    - bat
+    - carapace
+    - chezmoi
+    - direnv
+    - fd
+    - git
+    - tmux
 - ansible.builtin.git:
     dest: ~/thebengeu/neovim
+    executable: ~/.nix-profile/bin/git
     force: true
     repo: https://github.com/thebengeu/neovim
-    version: 60cd8d19cf0a354fba66334611644a68c9f67878
+    version: 15ab60b620152d7c5a8ec48d00e42ce6adfb7b00
 - ansible.builtin.command:
     chdir: ~/thebengeu/neovim
     cmd: make CMAKE_BUILD_TYPE=Release
@@ -40,28 +65,6 @@
     name: editor
     path: /usr/bin/nvim
   become: true
-- ansible.builtin.user:
-    append: true
-    groups: docker
-    name: "{{ ansible_user_id }}"
-    shell: /usr/bin/fish
-  become: true
-- ansible.builtin.get_url:
-    dest: /tmp/rustup-init
-    mode: "755"
-    url: https://static.rust-lang.org/rustup/dist/{{ ansible_machine }}-unknown-linux-gnu/rustup-init
-- ansible.builtin.command:
-    cmd: /tmp/rustup-init --no-modify-path --profile minimal -y
-    creates: ~/.cargo/env
-- ansible.builtin.command:
-    cmd: nix profile install nixpkgs#{{ item }}
-    creates: ~/.nix-profile/bin/{{ item }}
-  loop:
-    - bat
-    - carapace
-    - direnv
-    - fd
-    - tmux
 - ansible.builtin.command:
     cmd: go install filippo.io/age/cmd/...@latest
     creates: ~/go/bin/age
