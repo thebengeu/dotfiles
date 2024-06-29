@@ -37,7 +37,7 @@ for gitRepo in _zshGitRepos {
 	url: "https://raw.githubusercontent.com/thebengeu/auto-git-remote-add-upstream/master/post-checkout"
 }
 ".config/gitui/theme.ron": #File & {
-	url: "https://raw.githubusercontent.com/catppuccin/gitui/main/theme/mocha.ron"
+	url: "https://raw.githubusercontent.com/catppuccin/gitui/main/themes/catppuccin-mocha.ron"
 }
 ".config/micro/colorschemes/catppuccin-mocha.micro": #File & {
 	url: "https://raw.githubusercontent.com/catppuccin/micro/main/src/catppuccin-mocha.micro"
