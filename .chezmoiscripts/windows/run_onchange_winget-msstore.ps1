@@ -1,7 +1,7 @@
 $isMobile = (Get-CimInstance -Class Win32_ComputerSystem -Property PCSystemType).PCSystemType -eq 2
 
 $storeApps = @(
-  'Apple Music Preview'
+  'Apple Music'
   '9PL8WPH0QK9M' # Cider (Preview)
   'iCloud'
   'Netflix'
