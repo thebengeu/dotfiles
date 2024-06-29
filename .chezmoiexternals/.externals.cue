@@ -60,9 +60,6 @@ for gitRepo in _zshGitRepos {
 		".config/kitty/neighboring_window.py": #File & {
 			url: "https://raw.githubusercontent.com/mrjones2014/smart-splits.nvim/master/kitty/neighboring_window.py"
 		}
-		".config/kitty/pass_keys.py": #File & {
-			url: "https://raw.githubusercontent.com/mrjones2014/smart-splits.nvim/master/kitty/pass_keys.py"
-		}
 		".config/kitty/relative_resize.py": #File & {
 			url: "https://raw.githubusercontent.com/mrjones2014/smart-splits.nvim/master/kitty/relative_resize.py"
 		}
