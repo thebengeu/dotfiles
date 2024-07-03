@@ -97,6 +97,19 @@ return {
     enabled = false,
   },
   {
+    "ramilito/kubectl.nvim",
+    keys = {
+      {
+        "<leader>ck",
+        function()
+          require("kubectl").open()
+        end,
+        desc = "Kubectl",
+      },
+    },
+    opts = {},
+  },
+  {
     "echasnovski/mini.bracketed",
     event = "LazyFile",
     opts = {},
