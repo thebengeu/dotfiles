@@ -6,5 +6,3 @@ disable = ["containers", "vim"]
 no_retry = true
 [npm]
 use_sudo = true
-[windows]
-enable_winget = true
