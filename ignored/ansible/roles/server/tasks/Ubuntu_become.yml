@@ -60,6 +60,12 @@
 - ansible.builtin.apt_key:
     keyring: /usr/share/keyrings/nodesource.gpg
     url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+- ansible.builtin.apt_key:
+    keyring: /etc/apt/trusted.gpg.d/neovim-ppa-ubuntu-unstable.gpg
+    url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x9dbb0be9366964f134855e2255f96fcf8231b6dd
+- ansible.builtin.apt_repository:
+    filename: neovim-ppa-ubuntu-unstable-{{ ansible_distribution_release }}
+    repo: ppa:neovim-ppa/unstable
 - ansible.builtin.apt_repository:
     filename: nodesource
     repo: deb [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/node_19.x {{ ansible_distribution_release }} main
@@ -134,6 +140,9 @@
     link: /usr/bin/clangd
     name: clangd
     path: /usr/bin/clangd-15
+- community.general.alternatives:
+    name: editor
+    path: /usr/bin/nvim
 - ansible.builtin.copy:
     dest: /etc/mosquitto/conf.d/default.conf
     force: false

@@ -44,27 +44,6 @@
     - fd
     - git
     - tmux
-- ansible.builtin.git:
-    dest: ~/thebengeu/neovim
-    executable: ~/.nix-profile/bin/git
-    force: true
-    repo: https://github.com/thebengeu/neovim
-    version: 15ab60b620152d7c5a8ec48d00e42ce6adfb7b00
-- ansible.builtin.command:
-    chdir: ~/thebengeu/neovim
-    cmd: make CMAKE_BUILD_TYPE=Release
-    creates: ~/thebengeu/neovim/build/
-- ansible.builtin.command:
-    chdir: ~/thebengeu/neovim/build
-    cmd: cpack -G DEB
-    creates: ~/thebengeu/neovim/build/nvim-linux64.deb
-- ansible.builtin.apt:
-    deb: /home/{{ ansible_user_id }}/thebengeu/neovim/build/nvim-linux64.deb
-  become: true
-- community.general.alternatives:
-    name: editor
-    path: /usr/bin/nvim
-  become: true
 - ansible.builtin.command:
     cmd: go install filippo.io/age/cmd/...@latest
     creates: ~/go/bin/age
