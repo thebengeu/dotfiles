@@ -304,7 +304,7 @@ functions: {
 			}
 			npr: {
 				lines: [
-					"nix profile remove legacyPackages.\({amd64: "x86_64", arm64: "aarch64"}[_arch])-linux.$package",
+					"nix profile remove $package",
 				]
 				parameters: ["package"]
 			}
