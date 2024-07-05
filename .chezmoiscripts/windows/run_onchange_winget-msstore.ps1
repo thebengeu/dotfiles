@@ -17,7 +17,9 @@ if ($isMobile)
   $storeApps += @(
     'Pure Battery Analytics'
   )
-} else
+}
+
+if (!$isMobile -Or $Env:USERDOMAIN -eq 'GPD')
 {
   $storeApps += @(
     'Dolby Access'
