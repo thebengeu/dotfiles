@@ -62,20 +62,26 @@ $wingetPackageIds = @(
   'Zoom.Zoom'
 )
 
+if (!$isMobile -Or $Env:USERDOMAIN -eq 'GPD')
+{
+  $wingetPackageIds += @(
+    'PlayStation.DualSenseFWUpdater'
+    'Valve.Steam'
+  )
+}
+
 if (!$isMobile)
 {
   $wingetPackageIds += @(
     'BinaryFortress.DisplayFusion'
     'Kensington.KensingtonWorks'
-    'PlayStation.DualSenseFWUpdater'
     'Nvidia.GeForceExperience'
     'EclipseFoundation.Mosquitto'
-    'Valve.Steam'
     'xanderfrangos.twinkletray'
   )
 }
 
-winget install --exact --no-upgrade --silent --id $wingetPackageIds
+winget install --exact --silent --id $wingetPackageIds
 
 $idProxyServerArgument = '--proxy-server=id.he.sg:8888'
 $inProxyServerArgument = '--proxy-server=in.he.sg:8888'
