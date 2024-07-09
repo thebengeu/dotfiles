@@ -14,3 +14,6 @@ mfa_serial = arn:aws:iam::436098097459:mfa/MFA
 # mfa_process = ykman oath accounts code --single arn:aws:iam::436098097459:mfa/17998004
 # mfa_serial = arn:aws:iam::436098097459:mfa/17998004
 # region = ap-southeast-1
+[profile supabase-dev-role]
+role_arn=arn:aws:iam::436098097459:role/developer-role-f9262f7
+source_profile=supabase-dev
