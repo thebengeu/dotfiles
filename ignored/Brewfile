@@ -41,12 +41,14 @@ brew "coreutils"
 brew "cue"
 brew "curl"
 brew "dbmate"
+brew "difftastic"
 brew "direnv"
 brew "docker-slim"
 brew "dog"
 brew "dos2unix"
 brew "dust"
 brew "eksctl"
+brew "elixir"
 brew "entr"
 brew "eza"
 brew "fastmod"
@@ -163,6 +165,7 @@ cask "choosy"
 cask "cleanclip"
 cask "cloudflare-warp"
 cask "daisydisk"
+cask "deltawalker"
 cask "discord"
 cask "element"
 cask "expressvpn"
@@ -248,7 +251,6 @@ mas "iA Writer", id: 775737590
 mas "Kindle", id: 302584613
 mas "Magic Window 4K", id: 689569987
 mas "Microsoft Remote Desktop", id: 1295203466
-mas "Pure Paste", id: 1611378436
 mas "Refined GitHub", id: 1519867270
 mas "Save to Raindrop.io", id: 1549370672
 mas "Spotica Menu", id: 570549457
