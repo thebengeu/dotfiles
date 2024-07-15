@@ -329,12 +329,11 @@ return {
   },
   {
     "folke/which-key.nvim",
-    opts = function(_, opts)
-      opts.defaults["<leader>gh"] = nil
-      opts.defaults["<leader>h"] = "+hunks"
-      opts.operators = {
-        ["<leader>cz"] = "Send to REPL",
-      }
-    end,
+    opts = {
+      spec = {
+        { "<leader>cz", desc = "Send to REPL" },
+        { "<leader>h", group = "hunks" },
+      },
+    },
   },
 }

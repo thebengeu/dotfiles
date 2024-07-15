@@ -226,30 +226,6 @@ return vim.list_extend(
       },
     },
     {
-      "echasnovski/mini.ai",
-      init = function()
-        local LazyVim = require("lazyvim.util")
-
-        LazyVim.on_load("mini.ai", function()
-          LazyVim.on_load("which-key.nvim", function()
-            require("which-key").register({
-              af = "Function call",
-              ["if"] = "Function call",
-              mode = { "o", "x" },
-            })
-          end)
-        end)
-      end,
-      keys = {
-        { "ad", desc = "Function definition", mode = { "o", "x" } },
-        { "id", desc = "Function definition", mode = { "o", "x" } },
-      },
-      opts = function(_, opts)
-        opts.custom_textobjects.d = opts.custom_textobjects.f
-        opts.custom_textobjects.f = nil
-      end,
-    },
-    {
       "echasnovski/mini.comment",
       cond = not vim.g.vscode,
     },
@@ -460,14 +436,6 @@ return vim.list_extend(
     },
     {
       "andymass/vim-matchup",
-      config = function()
-        require("lazyvim.util").on_load("which-key.nvim", function()
-          require("which-key").register({
-            ["a%"] = "any block",
-            ["i%"] = "inner any block",
-          }, { mode = "o" })
-        end)
-      end,
       event = "LazyFile",
       vscode = true,
     },

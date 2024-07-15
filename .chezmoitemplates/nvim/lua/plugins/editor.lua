@@ -5,10 +5,10 @@ return {
     "folke/flash.nvim",
     init = function()
       require("lazyvim.util").on_load("which-key.nvim", function()
-        require("which-key").register({
-          [","] = "Previous match",
-          [";"] = "Next match",
+        require("which-key").add({
           mode = { "n", "o", "x" },
+          { ",", desc = "Previous match" },
+          { ";", desc = "Next match" },
         })
       end)
     end,
