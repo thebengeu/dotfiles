@@ -150,9 +150,8 @@ return {
     event = "LazyFile",
     init = function()
       require("lazyvim.util").on_load("which-key.nvim", function()
-        require("which-key").register({
-          ["<LeftMouse>"] = "which_key_ignore",
-          mode = { "i", "n", "o", "x" },
+        require("which-key").add({
+          { "<LeftMouse>", hidden = true, mode = { "i", "n", "o", "x" } },
         })
       end)
     end,
