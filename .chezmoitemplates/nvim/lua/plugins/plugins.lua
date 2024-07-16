@@ -330,6 +330,9 @@ return {
   {
     "folke/which-key.nvim",
     opts = {
+      icons = {
+        mappings = false,
+      },
       spec = {
         { "<leader>cz", desc = "Send to REPL" },
         { "<leader>h", group = "hunks" },
