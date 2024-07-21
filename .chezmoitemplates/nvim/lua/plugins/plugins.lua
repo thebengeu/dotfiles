@@ -126,6 +126,7 @@ return {
           hide_gitignored = false,
         },
       },
+      sources = { "filesystem" },
     },
   },
   {
