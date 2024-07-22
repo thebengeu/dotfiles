@@ -199,20 +199,18 @@ return {
   },
   {
     "johmsalas/text-case.nvim",
-    config = function()
-      require("textcase").setup({})
-      require("telescope").load_extension("textcase")
-    end,
     dependencies = "nvim-telescope/telescope.nvim",
+    event = "LazyFile",
     keys = {
-      { "ga", desc = "+text-case" },
+      { "ga", group = "text-case" },
       {
         "ga.",
         "<cmd>TextCaseOpenTelescope<CR>",
-        mode = { "n", "x" },
         desc = "Telescope",
+        mode = { "n", "x" },
       },
     },
+    opts = {},
   },
   {
     "mg979/vim-visual-multi",
