@@ -155,6 +155,19 @@ return {
     vscode = true,
   },
   {
+    "chrisgrieser/nvim-rip-substitute",
+    keys = {
+      {
+        "<leader>fs",
+        function()
+          require("rip-substitute").sub()
+        end,
+        desc = "Rip Substitute",
+        mode = { "n", "x" },
+      },
+    },
+  },
+  {
     "gbprod/substitute.nvim",
     opts = {
       on_substitute = function()
