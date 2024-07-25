@@ -93,10 +93,6 @@ return {
     url = "https://github.com/thebengeu/harpoon.git",
   },
   {
-    "lukas-reineke/headlines.nvim",
-    enabled = false,
-  },
-  {
     "ramilito/kubectl.nvim",
     keys = {
       {
