@@ -128,7 +128,7 @@ config.window_frame = {
   active_titlebar_bg = "#1e1e2e",
 }
 config.window_padding = {
-  left = 0,
+  left = 10,
   right = 0,
   top = 0,
   bottom = 0,
