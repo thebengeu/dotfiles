@@ -9,7 +9,6 @@ set --export HOMEBREW_GITHUB_API_TOKEN {{ (joinPath .chezmoi.sourceDir ".secrets
 {{else}}
 {{output "/usr/local/bin/brew" "shellenv" "fish"}}
 {{end}}
-{{output "supa-admin-cli" "completion" "fish"}}
 {{end -}}
 {{- if eq .chezmoi.os "linux" }}
 {{output "/home/linuxbrew/.linuxbrew/bin/brew" "shellenv" "fish"}}
@@ -55,3 +54,7 @@ function br --wraps=broot
         return $code
     end
 end
+
+{{ if lookPath "supa-admin-cli" }}
+{{output "supa-admin-cli" "completion" "fish"}}
+{{end}}
