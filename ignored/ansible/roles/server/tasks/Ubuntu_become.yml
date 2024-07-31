@@ -111,6 +111,7 @@
       - jq
       - libssl-dev
       - mosquitto
+      - neovim
       - ninja-build
       - nodejs
       - openssh-server
