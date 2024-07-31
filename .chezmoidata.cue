@@ -342,6 +342,7 @@ paths: [
 	"~/.local/bin",
 	"~/repos/git-fuzzy/bin",
 	"~/go/bin",
+	"~/supabase/supa-admin-cli/bin",
 	"~/thebengeu/scripts",
 ] + {
 	darwin: [
