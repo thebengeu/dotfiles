@@ -144,17 +144,21 @@ aliases: {
 	csv: "\(_neovide) 'cd ~/thebengeu/cheatsheet' ~/thebengeu/cheatsheet/README.md"
 
 	_gitAliasDirectories: {
+		a: "$HOME/supabase/supabase-admin-api"
 		c: "$HOME/.local/share/chezmoi"
 		d: "$HOME/thebengeu/drakon"
+		e: "$HOME/supabase/data-engineering"
 		h: "$HOME/supabase/helper-scripts"
 		i: "$HOME/supabase/infrastructure"
-		u: "$HOME/thebengeu/qmk_userspace"
+		p: "$HOME/supabase/postgres"
+		q: "$HOME/thebengeu/qmk_userspace"
+		w: "$HOME/supabase/supabase"
 	}
 	_aliasDirectories: _gitAliasDirectories & {
 		m: "$HOME/supabase/helper-scripts/modern-scripts"
-		s: "$HOME/sb"
-		p: "$HOME/supabase"
-		t: "$HOME/thebengeu"
+		b: "$HOME/sb"
+		s: "$HOME/supabase"
+		u: "$HOME/thebengeu"
 	}
 
 	for prefix, directory in _aliasDirectories {
