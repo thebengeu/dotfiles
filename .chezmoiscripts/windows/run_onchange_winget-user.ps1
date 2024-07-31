@@ -7,7 +7,7 @@ $wingetPackageIds = @(
 foreach ($wingetPackageId in $wingetPackageIds)
 {
   $wingetPackageId
-  winget install --exact --no-upgrade --silent --id $wingetPackageId
+  winget install --exact --no-upgrade --silent $wingetPackageId
 }
 
 $ignoreSecurityHashWingetPackageIds = @(
@@ -21,4 +21,4 @@ if (!$isMobile)
   )
 }
 
-winget install --exact --ignore-security-hash --silent --id $ignoreSecurityHashWingetPackageIds
+winget install --exact --ignore-security-hash --no-upgrade --silent $ignoreSecurityHashWingetPackageIds
