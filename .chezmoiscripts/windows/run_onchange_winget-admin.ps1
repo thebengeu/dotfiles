@@ -81,7 +81,7 @@ if (!$isMobile)
   )
 }
 
-winget install --exact --silent --id $wingetPackageIds
+winget install --exact --no-upgrade --silent $wingetPackageIds
 
 $idProxyServerArgument = '--proxy-server=id.he.sg:8888'
 $inProxyServerArgument = '--proxy-server=in.he.sg:8888'
