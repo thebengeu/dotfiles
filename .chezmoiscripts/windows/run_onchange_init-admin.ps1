@@ -32,6 +32,7 @@ $wingetPackageIds = @(
   'Git.Git'
   'GitHub.cli'
   'GoLang.Go'
+  'Google.Protobuf',
   'gerardog.gsudo'
   'jqlang.jq'
   'MSYS2.MSYS2'
