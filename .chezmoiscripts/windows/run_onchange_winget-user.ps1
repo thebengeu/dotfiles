@@ -18,6 +18,7 @@ if (!$isMobile)
 {
   $ignoreSecurityHashWingetPackageIds += @(
     'Logitech.LogiTune'
+    'VirtualDesktop.Streamer'
   )
 }
 
