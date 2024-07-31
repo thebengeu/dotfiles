@@ -23,7 +23,10 @@ curl -s 'https://github.com/thebengeu/dotfiles/raw/master/.chezmoiscripts/linux/
 
 ## Windows
 
+- Update Microsoft Store apps
+
 ```powershell
+Set-ExecutionPolicy Unrestricted
 irm https://github.com/thebengeu/dotfiles/raw/master/.chezmoiscripts/windows/run_onchange_init-admin.ps1 | iex
 ```
 
