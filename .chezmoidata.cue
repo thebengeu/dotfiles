@@ -20,7 +20,6 @@ nonExpandedAliases: {
 aliases: {
 	"-": "cd -"
 	b:   "bat"
-	brg: "batgrep"
 	buz: "brew uninstall --zap"
 	cad: "chezmoi add"
 	cat: "bat"
@@ -66,6 +65,7 @@ aliases: {
 	pu:  "pulumi up"
 	pxi: "pipx install"
 	pxu: "pipx uninstall"
+	rgb: "batgrep"
 	rm:  "trash"
 	scc: #"scc --not-match "package-lock.json|pnpm-lock.yaml""#
 	st:  "speedtest"
