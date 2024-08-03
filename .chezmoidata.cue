@@ -158,7 +158,9 @@ aliases: {
 	_aliasDirectories: _gitAliasDirectories & {
 		m: "$HOME/supabase/helper-scripts/modern-scripts"
 		b: "$HOME/sb"
+		r: "$HOME/repos"
 		s: "$HOME/supabase"
+		t: "$HOME/temp"
 		u: "$HOME/thebengeu"
 	}
 
