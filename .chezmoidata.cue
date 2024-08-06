@@ -175,6 +175,7 @@ aliases: {
 		cam: "commit -a -m"
 		d:   "diff"
 		l:   "lg"
+		lm:  "lm"
 		lp:  "lg --patch"
 		P:   "push"
 		p:   "pull"
