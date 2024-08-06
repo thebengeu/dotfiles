@@ -23,6 +23,17 @@ return vim.list_extend(
       ft = { "c", "cpp" },
     },
     {
+      "andrewferrier/debugprint.nvim",
+      cmd = {
+        "ToggleCommentDebugPrints",
+        "DeleteDebugPrints",
+      },
+      keys = {
+        { "g?", mode = { "n", "x" } },
+      },
+      opts = {},
+    },
+    {
       "rafamadriz/friendly-snippets",
       enabled = false,
     },
@@ -184,6 +195,11 @@ return vim.list_extend(
         { "<leader>cR", "<Cmd>IronRepl<CR>", desc = "REPL" },
         { "<leader>cz", desc = "Send to REPL" },
       },
+    },
+    {
+      "chrisgrieser/nvim-chainsaw",
+      cmd = "ChainSaw",
+      opts = {},
     },
     {
       "rafcamlet/nvim-luapad",
