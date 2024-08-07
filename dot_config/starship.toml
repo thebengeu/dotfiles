@@ -21,6 +21,9 @@ disabled = true
 [docker_context]
 disabled = true
 
+[elixir]
+disabled = true
+
 [gcloud]
 disabled = true
 
