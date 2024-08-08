@@ -163,6 +163,7 @@ aliases: {
 		p: "$HOME/supabase/postgres"
 		q: "$HOME/thebengeu/qmk_userspace"
 		w: "$HOME/supabase/supabase"
+		z: "$HOME/thebengeu/zmk-config"
 	}
 	_aliasDirectories: _gitAliasDirectories & {
 		m: "$HOME/supabase/helper-scripts/modern-scripts"
