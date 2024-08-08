@@ -54,8 +54,10 @@ aliases: {
 	lg:  "lazygit"
 	lh:  "supa-admin-cli --config ~/.supa-admin-cli.local ssh -p"
 	lp:  "supa-admin-cli --config ~/.supa-admin-cli.local psql --disable-statement-tracking -p"
-	m:   "make"
+	m:   "make -C ~/supabase/infrastructure"
 	man: "batman"
+	mf:  "make -C ~/supabase/infrastructure fs"
+	ms:  "make -C ~/supabase/infrastructure s"
 	n:   "TERM=wezterm nvim"
 	nd:  "npm run dev"
 	ni:  "npm install"
@@ -232,7 +234,6 @@ aliases: {
 	for packageManager in {
 		darwin: [
 			"brew",
-			"mas",
 		]
 		linux: []
 		windows: [
