@@ -224,6 +224,7 @@ return {
       },
     },
     opts = {},
+    vscode = true,
   },
   {
     "mg979/vim-visual-multi",
