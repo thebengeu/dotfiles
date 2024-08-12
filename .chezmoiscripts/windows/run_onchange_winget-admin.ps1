@@ -53,7 +53,9 @@ $wingetPackageIds = @(
   'Ookla.Speedtest.CLI'
   'commercialhaskell.stack'
   'StartIsBack.StartAllBack'
+  'Transmission.Transmission'
   'Microsoft.VisualStudioCode'
+  'VideoLAN.VLC'
   'JernejSimoncic.Wget'
   'Microsoft.WingetCreate'
   'Highresolution.X-MouseButtonControl'
@@ -66,6 +68,7 @@ if (!$isMobile -Or $Env:USERDOMAIN -eq 'GPD')
 {
   $wingetPackageIds += @(
     'PlayStation.DualSenseFWUpdater'
+    'Playnite.Playnite'
     'Valve.Steam'
   )
 }
