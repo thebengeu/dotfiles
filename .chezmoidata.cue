@@ -57,7 +57,7 @@ aliases: {
 	m:   "make -C ~/supabase/infrastructure"
 	man: "batman"
 	mf:  "make -C ~/supabase/infrastructure fs"
-	ms:  "make -C ~/supabase/infrastructure s"
+	ms:  "make -C ~/supabase/infrastructure start"
 	n:   "TERM=wezterm nvim"
 	nd:  "npm run dev"
 	ni:  "npm install"
