@@ -38,6 +38,7 @@ aliases: {
 	dh:  "supa-admin-cli --config ~/.supa-admin-cli.dev ssh -p"
 	dp:  "supa-admin-cli --config ~/.supa-admin-cli.dev psql --disable-statement-tracking -p"
 	dpu: "AWS_PROFILE=supabase-dev pulumi up --stack supabase/dev"
+	dsp: "docker system prune --all --force --volumes"
 	e:   "docker compose exec"
 	g:   "git"
 	gap: "git all pull"
