@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 language="${1:-$(pbpaste | guesslang --probabilities | grep -Eo -m 1 'Python|Ruby|SQL')}"
 
-echo "$language"
+echo "${language}"
 
-case $language in
+case ${language} in
 Ruby) ;&
 Python)
 	command="ruff check --fix-only --select I - | ruff format -"
@@ -15,5 +15,5 @@ esac
 
 {
 	pbpaste | grep '^%'
-	pbpaste | grep --invert-match '^%' | eval "$command" | ghead --bytes -1
+	pbpaste | grep --invert-match '^%' | sed s/\$__timeFilter/SESSION_USER/g | eval "${command}" | sed s/SESSION_USER/\$__timeFilter/g | ghead --bytes -1
 } | tee /dev/tty | pbcopy
