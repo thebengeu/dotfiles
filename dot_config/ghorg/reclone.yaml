@@ -1,5 +1,5 @@
 supabase:
-  cmd: ghorg clone --no-clean --prune --skip-archived --skip-forks supabase
+  cmd: ghorg clone --no-clean --prune --skip-archived supabase
 thebengeu:
   cmd: >-
     ghorg clone --clone-type user --no-clean --prune --skip-archived thebengeu
