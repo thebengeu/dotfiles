@@ -272,8 +272,9 @@ environmentVariables: {
 
 	{
 		_common: {
-			LG_CONFIG_FILE: "$HOME/.config/lazygit/config.yml,$HOME/.config/lazygit/mocha-lavender.yml"
-			PNPM_HOME:      "$HOME/.local/share/pnpm"
+			HOMEBREW_NO_AUTO_UPDATE: 1
+			LG_CONFIG_FILE:          "$HOME/.config/lazygit/config.yml,$HOME/.config/lazygit/mocha-lavender.yml"
+			PNPM_HOME:               "$HOME/.local/share/pnpm"
 		}
 		darwin: _common
 		linux: _common & {
