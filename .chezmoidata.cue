@@ -8,7 +8,7 @@ import (
 _arch:     string | *"" @tag(arch,var=arch)
 _hostname: string | *"" @tag(hostname,var=hostname)
 _os:       string | *"" @tag(os,var=os)
-_env:      [if _os == "darwin" {"genv"}, "env"][0]
+_env: [if _os == "darwin" {"genv"}, "env"][0]
 
 nonExpandedAliases: {
 	l:   "eza --group-directories-first --hyperlink --icons"
@@ -38,6 +38,8 @@ aliases: {
 	dh:  "supa-admin-cli --config ~/.supa-admin-cli.dev ssh -p"
 	dp:  "supa-admin-cli --config ~/.supa-admin-cli.dev psql --disable-statement-tracking -p"
 	dpu: "AWS_PROFILE=supabase-dev pulumi up --stack supabase/dev"
+	drc: "docker run --detach --name colab --publish 127.0.0.1:9000:8080 asia-docker.pkg.dev/colab-images/public/runtime"
+	dsc: "docker start colab && sleep 3 && docker logs colab | grep --only-matching 'http://127.0.0.1:9000/?token=\\S*' | tail -n 1 | pbcopy"
 	dsp: "docker system prune --all --force --volumes"
 	e:   "docker compose exec"
 	g:   "git"
