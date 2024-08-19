@@ -366,6 +366,13 @@ return {
     opts = function(_, opts)
       local actions = require("telescope.actions")
 
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "TelescopePreviewerLoaded",
+        callback = function()
+          vim.wo.wrap = true
+        end,
+      })
+
       opts.defaults = vim.tbl_deep_extend("force", opts.defaults, {
         layout_config = {
           flex = {
