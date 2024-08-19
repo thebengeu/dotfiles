@@ -378,6 +378,15 @@ return {
           flex = {
             flip_columns = 160,
           },
+          horizontal = {
+            height = 0.95,
+            width = 0.95,
+            preview_width = 0.5,
+          },
+          vertical = {
+            height = 0.95,
+            width = 0.95,
+          },
         },
         layout_strategy = "flex",
         mappings = {
