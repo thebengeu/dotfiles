@@ -29,6 +29,7 @@ disabled = true
 
 [git_branch]
 ignore_branches = ['develop', 'main', 'master']
+format = '[$symbol$branch(:$remote_branch)]($style) '
 
 [git_metrics]
 disabled = false
@@ -69,7 +70,7 @@ disabled = true
 disabled = true
 
 [pulumi]
-disabled = true
+format = '[$symbol$stack]($style) '
 
 [python]
 disabled = true
