@@ -20,8 +20,10 @@ return {
     },
   },
   {
-    "thebengeu/eyeliner.nvim",
-    config = function()
+    "jinh0/eyeliner.nvim",
+    config = function(_, opts)
+      require("eyeliner").setup(opts)
+
       local add_bold_and_underline = function(name)
         vim.api.nvim_set_hl(0, name, {
           bold = true,
@@ -42,6 +44,13 @@ return {
       })
     end,
     event = "LazyFile",
+    opts = {
+      disabled_filetypes = {
+        "help",
+        "neo-tree",
+        "trouble",
+      },
+    },
     vscode = true,
   },
   {
