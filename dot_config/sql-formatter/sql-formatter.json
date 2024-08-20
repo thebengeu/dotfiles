@@ -2,5 +2,8 @@
   "dataTypeCase": "upper",
   "functionCase": "upper",
   "keywordCase": "upper",
-  "language": "bigquery"
+  "language": "bigquery",
+  "paramTypes": {
+    "named": ["$", "@"]
+  }
 }
