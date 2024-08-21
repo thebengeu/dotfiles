@@ -48,6 +48,7 @@ return {
       disabled_filetypes = {
         "help",
         "neo-tree",
+        "toggleterm",
         "trouble",
       },
     },
