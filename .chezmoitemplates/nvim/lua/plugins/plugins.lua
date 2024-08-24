@@ -60,6 +60,7 @@ return {
           load_on_setup = false,
           previewer = true,
         },
+        silent_restore = false,
       }
     end,
   },
