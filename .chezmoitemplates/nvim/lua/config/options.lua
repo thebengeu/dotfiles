@@ -10,11 +10,6 @@ vim.g.loaded_perl_provider = 0
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.root_spec = {
-  function(buf)
-    local bufpath = LazyVim.root.bufpath(buf)
-
-    return bufpath and bufpath:match(".*/supabase/apps/studio")
-  end,
   ".git",
   "cwd",
 }
