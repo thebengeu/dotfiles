@@ -4,14 +4,14 @@ region = ap-southeast-1
 credential_process = aws-vault export --duration 36h --format json supabase
 mfa_process = op item get 'AWS supabase' --otp
 mfa_serial = arn:aws:iam::646182064048:mfa/MFA
-# mfa_process = ykman oath accounts code --single arn:aws:iam::646182064048:mfa/17998004
+# mfa_process = sh -c "osascript -e 'display notification \"Touch your YubiKey\" with title \"AWS CLI\"' && ykman oath accounts code --single arn:aws:iam::646182064048:mfa/17998004"
 # mfa_serial = arn:aws:iam::646182064048:mfa/17998004
 # region = ap-southeast-1
 [profile supabase-dev]
 credential_process = aws-vault export --duration 36h --format json supabase-dev
 mfa_process = op item get 'AWS supabase-dev' --otp
 mfa_serial = arn:aws:iam::436098097459:mfa/MFA
-# mfa_process = ykman oath accounts code --single arn:aws:iam::436098097459:mfa/17998004
+# mfa_process = sh -c "osascript -e 'display notification \"Touch your YubiKey\" with title \"AWS CLI\"' && ykman oath accounts code --single arn:aws:iam::436098097459:mfa/17998004"
 # mfa_serial = arn:aws:iam::436098097459:mfa/17998004
 # region = ap-southeast-1
 [profile supabase-dev-role]
