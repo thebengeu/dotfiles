@@ -8,6 +8,7 @@ fi
 ARCHITECTURE=$(dpkg --print-architecture)
 
 if [[ ! -f /usr/bin/op ]]; then
+  sudo apt install -y gpg
   curl -sS https://downloads.1password.com/linux/keys/1password.asc |
     sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
   echo "deb [arch=${ARCHITECTURE} signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) stable main" |
@@ -50,6 +51,7 @@ if [[ ! "${CHEZMOI}" = 1 ]]; then
   CHEZMOI_SOURCE_DIR="${HOME}/.local/share/chezmoi"
 
   if [[ ! -d "${CHEZMOI_SOURCE_DIR}" ]]; then
+    sudo apt install -y git
     git clone git@github.com:thebengeu/dotfiles.git "${CHEZMOI_SOURCE_DIR}"
   fi
 
@@ -57,8 +59,7 @@ if [[ ! "${CHEZMOI}" = 1 ]]; then
   sudo add-apt-repository -y ppa:ansible/ansible
   sudo apt install -y \
     ansible \
-    file \
-    gpg
+    file
   ansible-playbook "${CHEZMOI_SOURCE_DIR}"/ignored/ansible/site.yml --ask-become-pass
 
   PIP_REQUIRE_VIRTUALENV=false pip3 install --upgrade --user \
