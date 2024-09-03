@@ -9,6 +9,9 @@ disabled = true
 [bun]
 disabled = true
 
+[c]
+disabled = true
+
 [cmake]
 disabled = true
 
