@@ -2,17 +2,17 @@
 export {{$environmentVariable}}="{{$value}}"
 {{end -}}
 
+export HOMEBREW_GITHUB_API_TOKEN={{ (joinPath .chezmoi.sourceDir ".secrets.ejson" | ejsonDecrypt).github_token_repo }}
 {{- if eq .chezmoi.os "darwin" }}
 {{if eq .chezmoi.arch "arm64" }}
 {{output "/opt/homebrew/bin/brew" "shellenv" "sh"}}
 {{else}}
 {{output "/usr/local/bin/brew" "shellenv" "sh"}}
 {{end}}
-{{- if eq .chezmoi.os "linux" }}
+{{end -}}
+{{- if and (eq .chezmoi.os "linux") (ne .chezmoi.arch "arm64") }}
 {{output "/home/linuxbrew/.linuxbrew/bin/brew" "shellenv" "sh"}}
 {{end}}
-export HOMEBREW_GITHUB_API_TOKEN={{ (joinPath .chezmoi.sourceDir ".secrets.ejson" | ejsonDecrypt).github_token_repo }}
-{{end -}}
 
 {{range $path := .paths -}}
 export PATH={{$path}}:$PATH
@@ -51,4 +51,6 @@ function br {
     fi
 }
 
+{{- if lookPath "vivid" }}
 export LS_COLORS='{{ output "vivid" "generate" "catppuccin-mocha" | trim }}'
+{{end -}}
