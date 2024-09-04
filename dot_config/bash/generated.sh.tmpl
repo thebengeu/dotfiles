@@ -2,5 +2,9 @@
 {{- if lookPath "supa-admin-cli" }}
 {{output "supa-admin-cli" "completion" "bash"}}
 {{end -}}
+{{- if lookPath "starship" }}
 {{output "starship" "init" "bash" "--print-full-init"}}
+{{end -}}
+{{- if lookPath "zoxide" }}
 {{output "zoxide" "init" "--cmd" "cd" "bash"}}
+{{end -}}
