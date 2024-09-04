@@ -28,6 +28,7 @@ git@github.com:supabase/postgresql.git
 git@github.com:supabase/prometheus-ecs-discovery.git
 git@github.com:supabase/s3fs-fuse.git
 git@github.com:supabase/sql-formatter.git
+git@github.com:supabase/test-reports.git
 git@github.com:supabase/tus-node-server.git
 git@github.com:supabase/wal2json.git
 git@github.com:thebengeu/dotfiles.git
