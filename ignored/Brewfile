@@ -107,6 +107,7 @@ brew "nushell"
 brew "onefetch"
 brew "parallel"
 brew "perl"
+brew "ponysay"
 brew "poppler"
 brew "postgresql@15", restart_service: true, link: true
 brew "proxychains-ng"
