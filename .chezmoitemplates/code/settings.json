@@ -19,7 +19,18 @@
     }
   },
   "cSpell.includeRegExpList": ["CStyleComment"],
-  "cSpell.userWords": ["thebengeu"],
+  "cSpell.userWords": [
+    "autoapi",
+    "awalias",
+    "codegen",
+    "darora",
+    "kamil",
+    "kevcodez",
+    "pgboss",
+    "pino",
+    "supabase",
+    "thebengeu"
+  ],
   "editor.accessibilitySupport": "off",
   "editor.codeActionsOnSave": {
     "source.addMissingImports": "explicit",
