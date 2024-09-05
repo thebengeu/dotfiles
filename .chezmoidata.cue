@@ -62,6 +62,7 @@ aliases: {
 	man:  "batman"
 	mf:   "\(_env) --chdir ~/supabase/infrastructure make fs"
 	ms:   "\(_env) --chdir ~/supabase/infrastructure make start"
+	mS:   "\(_env) --chdir ~/supabase/infrastructure make stop"
 	n:    "TERM=wezterm nvim"
 	nd:   "npm run dev"
 	ni:   "npm install"
