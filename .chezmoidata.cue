@@ -285,7 +285,8 @@ environmentVariables: {
 		}
 		darwin: _common
 		linux: _common & {
-			FLYCTL_INSTALL: "$HOME/.fly"
+			AWS_VAULT_BACKEND: "pass"
+			FLYCTL_INSTALL:    "$HOME/.fly"
 		}
 		windows: {
 			LG_CONFIG_FILE:   "$APPDATA\\\\lazygit\\\\config.yml,$APPDATA\\\\lazygit\\\\mocha-lavender.yml"
