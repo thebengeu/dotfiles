@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+pbpaste | sd '([^\n])\n' '$1 ' | sd ' $' '\n' | pbcopy
