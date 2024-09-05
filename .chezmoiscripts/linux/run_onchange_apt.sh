@@ -18,6 +18,7 @@ sudo apt --assume-yes install \
   mosh \
   mosquitto-clients \
   msmtp-mta \
+  pass \
   poppler-utils \
   ncat \
   ntpdate \
