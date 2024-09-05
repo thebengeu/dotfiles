@@ -12,6 +12,10 @@ local switcher_window_filter = hs.window.filter.new()
 switcher_window_filter:rejectApp("1Password")
 
 for key, bundle_id_and_args in pairs({
+  [","] = {
+    bundle_id = "com.apple.systempreferences",
+    open = "/System/Library/PreferencePanes/Displays.prefPane",
+  },
   ["/"] = "com.apple.finder",
   a = "com.readdle.SparkDesktop-setapp",
   c = "Google Chrome",
@@ -30,10 +34,6 @@ for key, bundle_id_and_args in pairs({
   },
   n = "notion.id",
   o = "md.obsidian",
-  p = {
-    bundle_id = "com.apple.systempreferences",
-    open = "/System/Library/PreferencePanes/Displays.prefPane",
-  },
   r = "com.microsoft.edgemac.app.bndmnggfngpgmmijcogkkgglhalbpomk",
   s = "com.tinyspeck.slackmacgap",
   t = "com.microsoft.edgemac.app.knaiokfnmjjldlfhlioejgcompgenfhb",
@@ -71,6 +71,11 @@ for key, bundle_id_and_args in pairs({
 end
 
 for key, bundle_id_and_args in pairs({
+  [","] = {
+    bundle_id = "com.apple.systempreferences",
+    key_on_focus = "f",
+    open = "/System/Library/PreferencePanes/Displays.prefPane",
+  },
   a = { "com.readdle.SparkDesktop-setapp", "f" },
   c = { "Google Chrome", "l" },
   e = { "com.microsoft.edgemac", "l" },
@@ -88,11 +93,6 @@ for key, bundle_id_and_args in pairs({
   },
   n = { "notion.id", "k" },
   o = { "md.obsidian", "p", { "cmd", "shift" } },
-  p = {
-    bundle_id = "com.apple.systempreferences",
-    key_on_focus = "f",
-    open = "/System/Library/PreferencePanes/Displays.prefPane",
-  },
   r = {
     "com.microsoft.edgemac.app.bndmnggfngpgmmijcogkkgglhalbpomk",
     "f",
@@ -236,6 +236,11 @@ hs.hotkey.bind({ "ctrl", "option", "shift" }, "b", function()
   hs.eventtap.keyStrokes("b%%bigquery")
   hs.timer.usleep(10000)
   hs.eventtap.keyStroke({}, "return")
+end)
+
+hs.hotkey.bind({ "ctrl", "option", "shift" }, "p", function()
+  hs.execute("unwrap-clipboard", true)
+  hs.eventtap.keyStroke({ "cmd" }, "v")
 end)
 
 hs.window.animationDuration = 0
