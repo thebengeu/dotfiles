@@ -1,0 +1,111 @@
+{
+  "triggerSettings" : {
+    "WiFi1" : {
+      "uniqueID" : "WiFi1",
+      "icon" : {
+        "isTemplate" : true,
+        "sfSymbolName" : "SFSymbol:\/\/bolt.fill"
+      },
+      "hasTriggered" : false,
+      "isActive" : true,
+      "type" : [
+        "WiFi"
+      ],
+      "isSpecial" : false,
+      "description" : "",
+      "triggerSpecificDict" : "{\"ShowOn\":\"AllDisconnected\",\"WiFiSSID\":\"\"}",
+      "isBuiltIn" : false,
+      "name" : "Show Wi-Fi when Wi-Fi condition met",
+      "triggeredConditions" : [
+
+      ]
+    },
+    "1E66CD8A-5073-4CFC-8247-C709BCA9ECA4" : {
+      "isBuiltIn" : false,
+      "description" : "New trigger",
+      "hasTriggered" : false,
+      "uniqueID" : "1E66CD8A-5073-4CFC-8247-C709BCA9ECA4",
+      "triggerSpecificDict" : "{\"Location-latitude\":1.3020498989178344,\"Days\":[2,3,4,5,6,7,1],\"Location-radius\":1000,\"Location-longitude\":103.90513031726017,\"ToUTC\":1380,\"FromUTC\":1170}",
+      "name" : "f.lux",
+      "triggeredConditions" : [
+
+      ],
+      "type" : [
+        "TimeDate"
+      ],
+      "isSpecial" : false,
+      "isActive" : true,
+      "icon" : {
+        "isTemplate" : false
+      }
+    },
+    "8A520F8D-4950-41B2-9A4E-595AC35F87FE" : {
+      "type" : [
+        "Location"
+      ],
+      "uniqueID" : "8A520F8D-4950-41B2-9A4E-595AC35F87FE",
+      "isBuiltIn" : false,
+      "description" : "New trigger",
+      "triggeredConditions" : [
+
+      ],
+      "isActive" : true,
+      "isSpecial" : false,
+      "name" : "BetterDisplay",
+      "triggerSpecificDict" : "{\"Location-radius\":1000,\"Location-longitude\":103.94863509962639,\"Location-latitude\":1.3238144937167511}",
+      "hasTriggered" : false,
+      "icon" : {
+        "isTemplate" : false
+      }
+    }
+  },
+  "hideAllForInactiveBars" : false,
+  "onlyShowOnNotch" : false,
+  "clickOnEmptyBarSpace" : true,
+  "menuBarColoringSpaceSettings" : {
+    "menuBarStyling" : {
+      "BorderColor" : [
+        0,
+        0,
+        0,
+        1
+      ],
+      "BorderThickness" : 0,
+      "RoundedCorners" : 0,
+      "SeperatePills" : false,
+      "RoundedMenuBar" : false,
+      "RoundBottomOfScreen" : false,
+      "BackgroundColors" : [
+        {
+          "location" : 0,
+          "color" : {
+            "blue" : 0,
+            "green" : 0,
+            "alpha" : 0,
+            "red" : 0
+          }
+        }
+      ],
+      "Shadow" : false,
+      "RoundTopOfMenuBar" : false,
+      "RoundBelowMenuBar" : false,
+      "HideNotch" : false,
+      "HiddenInactiveMenuBar" : false
+    },
+    "spaceNumber" : 0,
+    "displayNumber" : "",
+    "spaceID" : "",
+    "screenName" : "",
+    "isNotched" : false,
+    "displayID" : ""
+  },
+  "startAtLogin" : true,
+  "thresholdForScreenIsLarge" : 3000,
+  "useSystemLanguage" : true,
+  "delayBeforeShowingOnHover" : 0.2,
+  "showMenuBarIcon" : false,
+  "showAllWhenScreenIsLarge" : false,
+  "swipeOrScrollMenuBar" : true,
+  "hoverOverEmptyMenuBarSpace" : false,
+  "showBartenderBar" : false
+}
