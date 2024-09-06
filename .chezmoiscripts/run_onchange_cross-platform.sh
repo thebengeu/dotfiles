@@ -34,6 +34,7 @@ pipx install virtualenv
 pipx install visidata
 
 pnpm add --global \
+  nodemon \
   npm-check-updates \
   pino-pretty \
   pm2 \
