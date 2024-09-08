@@ -62,7 +62,7 @@ aliases: {
 	lp:   "supa-admin-cli --config ~/.supa-admin-cli.local psql --disable-statement-tracking -p"
 	m:    "\(_env) --chdir ~/supabase/infrastructure make"
 	man:  "batman"
-	mf:   "\(_env) --chdir ~/supabase/infrastructure make fs"
+	mf:   "\(_env) --chdir ~/supabase/infrastructure make start.fullstack"
 	ms:   "\(_env) --chdir ~/supabase/infrastructure make start"
 	mS:   "\(_env) --chdir ~/supabase/infrastructure make stop"
 	n:    "TERM=wezterm nvim"
