@@ -151,6 +151,13 @@ return {
     },
   },
   {
+    "stevearc/oil.nvim",
+    dependencies = "echasnovski/mini.icons",
+    ---@module 'oil'
+    ---@type oil.SetupOpts
+    opts = {},
+  },
+  {
     "folke/persistence.nvim",
     enabled = false,
   },
