@@ -318,10 +318,7 @@ return {
     "dstein64/vim-startuptime",
     enabled = false,
   },
-  {
-    "wakatime/vim-wakatime",
-    event = "LazyFile",
-  },
+  { "wakatime/vim-wakatime" },
   {
     "folke/which-key.nvim",
     opts = {
