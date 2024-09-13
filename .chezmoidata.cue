@@ -84,6 +84,7 @@ aliases: {
 	prw:  "gh pr view --web"
 	pss:  "pulumi stack select"
 	pu:   "pulumi up"
+	pus:  "pulumi up --skip-preview --yes"
 	pxi:  "pipx install"
 	pxu:  "pipx uninstall"
 	rgb:  "batgrep"
