@@ -31,14 +31,11 @@ return {
 
       return {
         ---@diagnostic disable-next-line: need-check-nil
-        auto_session_enable_last_session = cwd:match("\\scoop\\apps\\")
+        auto_restore_last_session = cwd:match("\\scoop\\apps\\")
           or cwd == homedir
           or cwd == windir
           or cwd == "/",
-        auto_session_use_git_branch = true,
-        cwd_change_handling = {
-          restore_upcoming_session = true,
-        },
+        cwd_change_handling = true,
         log_level = vim.log.levels.ERROR,
         pre_save_cmds = {
           function()
@@ -61,6 +58,7 @@ return {
           previewer = true,
         },
         silent_restore = false,
+        use_git_branch = true,
       }
     end,
   },
