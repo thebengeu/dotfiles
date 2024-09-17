@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>build</key>
-	<string>2190</string>
+	<string>2199</string>
 	<key>preferences</key>
 	<dict>
 		<key>Battery.Menu.State</key>
@@ -324,9 +324,9 @@
 		<key>Profiles.Settings.default.Time.Menubar.Enabled</key>
 		<integer>1</integer>
 		<key>Status.Build.Last</key>
-		<real>2190</real>
+		<real>2199</real>
 		<key>Status.Version.Last</key>
-		<real>7</real>
+		<real>7.0100002288818359</real>
 		<key>Time.Global.Events</key>
 		<integer>2</integer>
 		<key>Time.Menu.Calendar.ShowWeeks</key>
@@ -351,6 +351,12 @@
 				<string>Moon</string>
 				<key>identifier</key>
 				<integer>-6</integer>
+			</dict>
+			<dict>
+				<key>city</key>
+				<string>Current Location</string>
+				<key>identifier</key>
+				<integer>-7</integer>
 			</dict>
 			<dict>
 				<key>city</key>
@@ -418,9 +424,23 @@
 			</dict>
 			<dict>
 				<key>city</key>
-				<string>Current Location</string>
+				<string>Madrid</string>
+				<key>country</key>
+				<string>Spain</string>
+				<key>countrycode</key>
+				<string>ES</string>
 				<key>identifier</key>
-				<integer>-7</integer>
+				<integer>3117735</integer>
+				<key>latitude</key>
+				<real>40.416499999999999</real>
+				<key>longitude</key>
+				<real>-3.7025600000000001</real>
+				<key>region</key>
+				<string>Provincia de Madrid</string>
+				<key>state</key>
+				<string>Madrid</string>
+				<key>timezone</key>
+				<string>Europe/Madrid</string>
 			</dict>
 			<dict>
 				<key>city</key>
@@ -440,7 +460,7 @@
 			</dict>
 		</array>
 		<key>Time.Menu.Cities.Sorting</key>
-		<integer>2</integer>
+		<integer>0</integer>
 		<key>Time.Menu.State</key>
 		<array>
 			<dict>
