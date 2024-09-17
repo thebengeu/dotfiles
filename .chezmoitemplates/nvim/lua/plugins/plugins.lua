@@ -24,43 +24,32 @@ return {
       },
     },
     lazy = false,
-    opts = function()
-      local cwd = vim.loop.cwd()
-      local homedir = vim.loop.os_homedir()
-      local windir = vim.env.windir
-
-      return {
-        ---@diagnostic disable-next-line: need-check-nil
-        auto_restore_last_session = cwd:match("\\scoop\\apps\\")
-          or cwd == homedir
-          or cwd == windir
-          or cwd == "/",
-        cwd_change_handling = true,
-        log_level = vim.log.levels.ERROR,
-        pre_save_cmds = {
-          function()
-            require("neo-tree.sources.manager").close_all()
-            for _, win in ipairs(vim.api.nvim_list_wins()) do
-              local buf = vim.api.nvim_win_get_buf(win)
-              local filetype = vim.bo[buf].filetype
-              if
-                filetype == "blame"
-                or filetype == "noice"
-                or filetype == "qf"
-              then
-                vim.api.nvim_win_close(win, true)
-              end
+    opts = {
+      cwd_change_handling = true,
+      log_level = vim.log.levels.ERROR,
+      pre_save_cmds = {
+        function()
+          require("neo-tree.sources.manager").close_all()
+          for _, win in ipairs(vim.api.nvim_list_wins()) do
+            local buf = vim.api.nvim_win_get_buf(win)
+            local filetype = vim.bo[buf].filetype
+            if
+              filetype == "blame"
+              or filetype == "noice"
+              or filetype == "qf"
+            then
+              vim.api.nvim_win_close(win, true)
             end
-          end,
-        },
-        session_lens = {
-          load_on_setup = false,
-          previewer = true,
-        },
-        silent_restore = false,
-        use_git_branch = true,
-      }
-    end,
+          end
+        end,
+      },
+      session_lens = {
+        load_on_setup = false,
+        previewer = true,
+      },
+      silent_restore = false,
+      use_git_branch = true,
+    },
   },
   {
     "max397574/better-escape.nvim",
