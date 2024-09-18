@@ -180,7 +180,22 @@ local wezterm_set_user_var = function(name, value)
   )
 end
 
-if vim.env.TITLE_PREFIX ~= "wsl:" and vim.env.SSH_CONNECTION then
+if vim.env.TITLE_PREFIX == "wsl:" then
+  vim.schedule(function()
+    vim.opt.clipboard = "unnamedplus"
+    vim.g.clipboard = {
+      copy = {
+        ["*"] = { "win32yank.exe", "-i", "--crlf" },
+        ["+"] = { "win32yank.exe", "-i", "--crlf" },
+      },
+      name = "win32yank",
+      paste = {
+        ["*"] = { "win32yank.exe", "-o", "--lf" },
+        ["+"] = { "win32yank.exe", "-o", "--lf" },
+      },
+    }
+  end)
+elseif vim.env.SSH_CONNECTION then
   local tmux = vim.env.TMUX
 
   local maybe_create_osc52_autocmd = function()
