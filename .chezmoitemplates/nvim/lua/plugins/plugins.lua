@@ -25,8 +25,9 @@ return {
     },
     lazy = false,
     opts = {
+      continue_restore_on_error = true,
       cwd_change_handling = true,
-      log_level = vim.log.levels.ERROR,
+      log_level = "error",
       pre_save_cmds = {
         function()
           require("neo-tree.sources.manager").close_all()
@@ -47,7 +48,6 @@ return {
         load_on_setup = false,
         previewer = true,
       },
-      silent_restore = false,
       use_git_branch = true,
     },
   },
