@@ -21,4 +21,4 @@ $scoopPackages = @(
 )
 
 scoop install $scoopPackages
-scoop install --skip neovim-nightly
+scoop install neovim-nightly
