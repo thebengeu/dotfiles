@@ -396,10 +396,6 @@ return {
             ["<Esc>"] = actions.close,
           },
         },
-        vimgrep_arguments = vim.list_extend(
-          vim.fn.copy(require("telescope.config").values.vimgrep_arguments),
-          { "--follow", "--hidden" }
-        ),
         winblend = 5,
       })
 
