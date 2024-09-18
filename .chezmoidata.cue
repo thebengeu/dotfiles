@@ -33,6 +33,7 @@ aliases: {
 	csn:  "TERM=wezterm nvim ~/thebengeu/cheatsheet/README.md"
 	cu:   "cargo uninstall"
 	cup:  "chezmoi update --apply=false; chezmoi init; \(ca)"
+	cx:   "chmod +x"
 	d9:   "k9s --context supabase-dev"
 	dc:   "supa-admin-cli --config ~/.supa-admin-cli.dev"
 	dh:   "\(dc) ssh -p"
