@@ -78,6 +78,7 @@ aliases: {
 	pds:  "pulumi destroy --skip-preview"
 	ph:   "supa-admin-cli ssh -p"
 	pi:   "pnpm install"
+	pid:  "pnpm install --save-dev"
 	pp:   "supa-admin-cli psql --disable-statement-tracking -p"
 	ppss: "pulumi stack select supabase/prod"
 	ppu:  "AWS_PROFILE=supabase pulumi up --stack supabase/prod"
