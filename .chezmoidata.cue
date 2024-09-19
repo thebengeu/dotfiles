@@ -87,6 +87,7 @@ aliases: {
 	prv:  "git push && gh pr create --draft --fill-verbose --title"
 	prw:  "gh pr view --web"
 	pss:  "pulumi stack select"
+	psss: "pulumi stack select supabase/"
 	pu:   "pulumi up"
 	pus:  "pulumi up --skip-preview"
 	pxi:  "pipx install"
