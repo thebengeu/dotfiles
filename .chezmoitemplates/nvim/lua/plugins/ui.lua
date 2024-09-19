@@ -17,6 +17,20 @@ return {
     "folke/edgy.nvim",
     opts = {
       animate = { enabled = false },
+      keys = {
+        ["<A-h>"] = function(win)
+          win:resize("width", -2)
+        end,
+        ["<A-j>"] = function(win)
+          win:resize("height", -2)
+        end,
+        ["<A-k>"] = function(win)
+          win:resize("height", 2)
+        end,
+        ["<A-l>"] = function(win)
+          win:resize("width", 2)
+        end,
+      },
     },
   },
   {
