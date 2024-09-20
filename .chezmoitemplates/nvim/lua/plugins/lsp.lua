@@ -119,7 +119,6 @@ return {
       table.insert(keys, { "gt", false })
     end,
     opts = {
-      inlay_hints = { enabled = false },
       servers = vim.tbl_extend("error", {
         clangd = {
           mason = false,
