@@ -136,6 +136,7 @@ aliases: {
 		}
 		linux: _non_windows & {
 			aar:         "sudo apt autoremove"
+			ae:          "eval $(aws configure export-credentials --format env --profile supabase-dev)"
 			ai:          "sudo apt install"
 			ar:          "sudo apt remove"
 			ns:          "nix search nixpkgs"
