@@ -3,7 +3,7 @@ corepack = "corepack prepare pnpm@latest --activate"
 gup = "gup update --exclude ghorg,ghorg.exe"
 [misc]
 assume_yes = true
-disable = ["containers", "go", "vim"]
+disable = ["containers", "gcloud", "go", "vim"]
 no_retry = true
 [npm]
 use_sudo = true
