@@ -75,6 +75,24 @@ return {
     },
   },
   {
+    "SuperBo/fugit2.nvim",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      {
+        "chrisgrieser/nvim-tinygit",
+        dependencies = { "stevearc/dressing.nvim" },
+      },
+      "nvim-lua/plenary.nvim",
+    },
+    keys = {
+      { "<leader>gF", "<Cmd>Fugit2<CR>", desc = "Fugit2" },
+    },
+    opts = {
+      libgit2_path = jit.os == "OSX" and "/opt/homebrew/lib/libgit2.dylib"
+        or nil,
+    },
+  },
+  {
     "akinsho/git-conflict.nvim",
     event = "LazyFile",
     opts = {},

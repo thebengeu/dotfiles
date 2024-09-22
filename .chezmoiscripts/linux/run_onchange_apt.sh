@@ -6,6 +6,7 @@ sudo apt --assume-yes install \
   google-cloud-cli \
   helix \
   libcurl4-openssl-dev \
+  libgit2-1.1 \
   libluajit-5.1-dev \
   libpq-dev \
   libsqlite3-dev \
@@ -13,6 +14,7 @@ sudo apt --assume-yes install \
   libxcb-shape0-dev \
   libxcb-xfixes0-dev \
   lua5.4 \
+  luarocks \
   make \
   moreutils \
   mosh \
@@ -32,3 +34,6 @@ sudo apt --assume-yes install \
   trash-cli \
   unar \
   zsh
+
+sudo ln -fs /usr/lib/*/libgit2.so.1.1 /usr/local/lib/libgit2.so
+sudo ldconfig
