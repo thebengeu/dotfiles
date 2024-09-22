@@ -214,6 +214,7 @@ hs.hotkey.bind({ "cmd", "ctrl" }, "a", function()
 end)
 
 for key, command in pairs({
+  p = "unwrap-clipboard",
   q = "format-clipboard SQL",
   y = "format-clipboard Python",
 }) do
@@ -234,11 +235,6 @@ hs.hotkey.bind({ "ctrl", "option", "shift" }, "b", function()
   hs.eventtap.keyStrokes("b%%bigquery")
   hs.timer.usleep(10000)
   hs.eventtap.keyStroke({}, "return")
-end)
-
-hs.hotkey.bind({ "ctrl", "option", "shift" }, "p", function()
-  hs.execute("unwrap-clipboard", true)
-  hs.eventtap.keyStroke({ "cmd" }, "v")
 end)
 
 hs.window.animationDuration = 0
