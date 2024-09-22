@@ -111,7 +111,6 @@
       - jq
       - libssl-dev
       - mosquitto
-      - neovim
       - ninja-build
       - nodejs
       - openssh-server
@@ -141,9 +140,6 @@
     link: /usr/bin/clangd
     name: clangd
     path: /usr/bin/clangd-15
-- community.general.alternatives:
-    name: editor
-    path: /usr/bin/nvim
 - ansible.builtin.copy:
     dest: /etc/mosquitto/conf.d/default.conf
     force: false
