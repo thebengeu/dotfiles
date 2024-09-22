@@ -80,6 +80,25 @@ return {
     opts = {},
   },
   {
+    "moyiz/git-dev.nvim",
+    cmd = {
+      "GitDevCleanAll",
+      "GitDevOpen",
+      "GitDevRecents",
+      "GitDevToggleUI",
+    },
+    opts = {
+      cd_type = "tab",
+      opener = function(dir, _, selected_path)
+        vim.cmd("tabnew")
+        vim.cmd("Neotree " .. dir)
+        if selected_path then
+          vim.cmd("edit " .. selected_path)
+        end
+      end,
+    },
+  },
+  {
     "lewis6991/gitsigns.nvim",
     opts = {
       on_attach = function(bufnr)
