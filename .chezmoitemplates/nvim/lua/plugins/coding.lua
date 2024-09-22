@@ -23,6 +23,14 @@ return vim.list_extend(
       ft = { "c", "cpp" },
     },
     {
+      "zbirenbaum/copilot-cmp",
+      cond = false,
+    },
+    {
+      "zbirenbaum/copilot.lua",
+      cond = false,
+    },
+    {
       "andrewferrier/debugprint.nvim",
       cmd = {
         "ToggleCommentDebugPrints",
