@@ -81,11 +81,12 @@ return {
   },
   {
     "ramilito/kubectl.nvim",
+    cmd = "Kubectx",
     keys = {
       {
         "<leader>ck",
         function()
-          require("kubectl").open()
+          require("kubectl").toggle()
         end,
         desc = "Kubectl",
       },
