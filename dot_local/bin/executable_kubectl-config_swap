@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+touch ~/.kube/config.swap
+mv ~/.kube/config ~/.kube/config.swap.tmp
+mv ~/.kube/config.swap ~/.kube/config
+mv ~/.kube/config.swap.tmp ~/.kube/config.swap
