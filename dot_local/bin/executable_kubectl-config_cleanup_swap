@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-kubectl config-cleanup --raw > ~/.kube/config.swap
-kubectl config-swap

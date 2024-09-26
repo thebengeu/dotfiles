@@ -8,7 +8,6 @@ fi
 kubectl krew index add kvaps https://github.com/kvaps/krew-index
 kubectl krew install \
   browse-pvc \
-  config-cleanup \
   explore \
   fuzzy \
   ice \
