@@ -3,6 +3,12 @@
 {{end -}}
 {{output "direnv" "hook" "fish"}}
 {{output "fish" "-c" "starship init fish --print-full-init"}}
+{{- if lookPath "switcher" }}
+{{output "switcher" "init" "fish"}}
+function s --wraps switcher
+    kubeswitch $argv;
+end
+{{end -}}
 {{- if lookPath "zoxide" }}
 {{output "zoxide" "init" "--cmd" "cd" "fish"}}
 {{end -}}
