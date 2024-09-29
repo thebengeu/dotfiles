@@ -1,8 +1,9 @@
 k9s:
   liveViewAutoRefresh: true
+  logger:
+    textWrap: true
   refreshRate: 1
   ui:
     logoless: true
     reactive: true
-  logger:
-    textWrap: true
+    skin: catppuccin-mocha-transparent
