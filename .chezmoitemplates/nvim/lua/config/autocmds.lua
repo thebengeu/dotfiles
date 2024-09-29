@@ -196,25 +196,21 @@ if vim.env.TITLE_PREFIX == "wsl:" then
     }
   end)
 elseif vim.env.SSH_CONNECTION then
-  local tmux = vim.env.TMUX
-
   local maybe_create_osc52_autocmd = function()
-    if not tmux then
-      vim.schedule(function()
-        vim.opt.clipboard = ""
+    vim.schedule(function()
+      vim.opt.clipboard = ""
 
-        local copy = require("vim.ui.clipboard.osc52").copy("+")
+      local copy = require("vim.ui.clipboard.osc52").copy("+")
 
-        vim.api.nvim_create_autocmd("TextYankPost", {
-          callback = function()
-            if vim.v.event.operator == "y" and vim.v.event.regname == "" then
-              ---@diagnostic disable-next-line: param-type-mismatch
-              copy(vim.fn.getreg(vim.v.event.regname, 0, 1))
-            end
-          end,
-        })
-      end)
-    end
+      vim.api.nvim_create_autocmd("TextYankPost", {
+        callback = function()
+          if vim.v.event.operator == "y" and vim.v.event.regname == "" then
+            ---@diagnostic disable-next-line: param-type-mismatch
+            copy(vim.fn.getreg(vim.v.event.regname, 0, 1))
+          end
+        end,
+      })
+    end)
   end
 
   if vim.fn.executable("lmn") == 1 then
