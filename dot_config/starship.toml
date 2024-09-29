@@ -54,14 +54,7 @@ format = "[$hostname]($style) "
 disabled = true
 
 [kubernetes]
-detect_env_vars = ['KUBECONFIG']
-detect_files = ['cluster.ts', 'kustomization.yml']
 disabled = false
-
-[[kubernetes.contexts]]
-context_alias = "prod"
-context_pattern = "supabase"
-style = "bold red"
 
 [lua]
 disabled = true
