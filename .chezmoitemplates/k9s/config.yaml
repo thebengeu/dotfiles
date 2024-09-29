@@ -1,0 +1,8 @@
+k9s:
+  liveViewAutoRefresh: true
+  refreshRate: 1
+  ui:
+    logoless: true
+    reactive: true
+  logger:
+    textWrap: true
