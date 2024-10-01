@@ -42,7 +42,6 @@ pnpm add --global \
   trash-cli \
   tsx
 
-krew install krew
 kubectl krew index add kvaps https://github.com/kvaps/krew-index
 kubectl krew install \
   browse-pvc \
