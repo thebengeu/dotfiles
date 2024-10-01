@@ -372,6 +372,7 @@ if strings.HasSuffix(_hostname, "-wsl") {
 paths: [
 	"$PNPM_HOME",
 	"~/.cargo/bin",
+	"~/.krew/bin",
 	"~/.local/bin",
 	"~/repos/git-fuzzy/bin",
 	"~/go/bin",
@@ -379,7 +380,6 @@ paths: [
 	"~/thebengeu/scripts",
 ] + {
 	darwin: [
-		"~/.krew/bin",
 		"~/Library/Python/3.11/bin",
 		"/opt/homebrew/opt/curl/bin",
 		"/usr/local/bin",
