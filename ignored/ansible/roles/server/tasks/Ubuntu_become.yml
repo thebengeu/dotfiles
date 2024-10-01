@@ -68,7 +68,7 @@
     repo: ppa:neovim-ppa/unstable
 - ansible.builtin.apt_repository:
     filename: nodesource
-    repo: deb [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/node_19.x {{ ansible_distribution_release }} main
+    repo: deb [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/node_22.x nodistro main
 - ansible.builtin.apt_key:
     keyring: /etc/apt/trusted.gpg.d/apt.postgresql.org.gpg
     url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
