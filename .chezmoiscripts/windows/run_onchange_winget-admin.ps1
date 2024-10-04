@@ -42,6 +42,7 @@ $wingetPackageIds = @(
   'Notion.Notion'
   'Nushell.Nushell'
   'Obsidian.Obsidian'
+  'Playnite.Playnite'
   'Microsoft.Edge.Beta'
   'Microsoft.Edge.Dev'
   'Microsoft.PowerToys'
@@ -54,6 +55,7 @@ $wingetPackageIds = @(
   'Ookla.Speedtest.CLI'
   'commercialhaskell.stack'
   'StartIsBack.StartAllBack'
+  'Valve.Steam'
   'Transmission.Transmission'
   'Microsoft.VisualStudioCode'
   'VideoLAN.VLC'
@@ -64,15 +66,6 @@ $wingetPackageIds = @(
   'OlegShparber.Zeal'
   'Zoom.Zoom'
 )
-
-if (!$isMobile -Or $Env:USERDOMAIN -eq 'GPD')
-{
-  $wingetPackageIds += @(
-    'PlayStation.DualSenseFWUpdater'
-    'Playnite.Playnite'
-    'Valve.Steam'
-  )
-}
 
 if (!$isMobile)
 {
