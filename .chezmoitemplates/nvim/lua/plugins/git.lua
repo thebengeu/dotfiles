@@ -84,6 +84,7 @@ return {
       },
       "nvim-lua/plenary.nvim",
     },
+    enabled = jit.os ~= "Windows",
     keys = {
       { "<leader>gF", "<Cmd>Fugit2<CR>", desc = "Fugit2" },
     },
