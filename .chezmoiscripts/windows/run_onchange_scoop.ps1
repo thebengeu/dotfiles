@@ -9,6 +9,7 @@ $scoopPackages = @(
   'gcloud'
   'git-filter-repo'
   'goneovim'
+  'krew'
   'make'
   'miller'
   'nasm'
