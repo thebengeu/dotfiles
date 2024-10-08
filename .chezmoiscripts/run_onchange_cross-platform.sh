@@ -27,6 +27,7 @@ pipx install keymap-drawer
 pipx install khal
 pipx install kube-shell
 pipx install neovim-remote
+pipx install pip-upgrader
 pipx install sqlfluff
 pipx install thefuck
 pipx install tox
