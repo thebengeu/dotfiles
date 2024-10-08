@@ -59,7 +59,7 @@
     repo: ppa:keithw/mosh-dev
 - ansible.builtin.apt_key:
     keyring: /usr/share/keyrings/nodesource.gpg
-    url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+    url: https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key
 - ansible.builtin.apt_key:
     keyring: /etc/apt/trusted.gpg.d/neovim-ppa-ubuntu-unstable.gpg
     url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x9dbb0be9366964f134855e2255f96fcf8231b6dd
