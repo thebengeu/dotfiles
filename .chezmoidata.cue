@@ -42,7 +42,7 @@ aliases: {
 	dpu:  "AWS_PROFILE=supabase-dev pulumi up --stack supabase/dev"
 	drc:  "docker run --detach --name colab --publish 127.0.0.1:9000:8080 asia-docker.pkg.dev/colab-images/public/runtime"
 	ds:   "docker stats"
-	dsc:  "docker start colab && sleep 3 && docker logs colab | grep --only-matching 'http://127.0.0.1:9000/?token=\\S*' | tail -n 1 | pbcopy"
+	dsc:  "docker start colab && sleep 3 && docker logs colab | grep --only-matching 'http://127.0.0.1:9000/?token=\\S*' | tail -n 1 | osc copy"
 	dsp:  "docker system prune --force --volumes"
 	dspa: "\(dsp) --all"
 	e:    "docker compose exec"
