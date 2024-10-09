@@ -30,6 +30,7 @@ Host prod
 
 Host hh
   Hostname hh.he.sg
+  LocalForward 9002 127.0.0.1:9000
 
 Host *
   ServerAliveInterval 60
