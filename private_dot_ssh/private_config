@@ -28,6 +28,9 @@ Host prod
   Hostname p.he.sg
   User ubuntu
 
+Host hh
+  Hostname hh.he.sg
+
 Host *
   ServerAliveInterval 60
   StrictHostKeyChecking no
