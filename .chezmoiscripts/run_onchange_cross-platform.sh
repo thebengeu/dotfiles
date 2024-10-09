@@ -30,6 +30,7 @@ pipx install neovim-remote
 pipx install pip-upgrader
 pipx install sqlfluff
 pipx install thefuck
+pipx install tmuxp
 pipx install tox
 pipx install virtualenv
 pipx install visidata
