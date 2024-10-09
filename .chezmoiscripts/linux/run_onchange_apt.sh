@@ -28,7 +28,6 @@ sudo apt --assume-yes install \
   php-bcmath \
   php-curl \
   php-gmp \
-  speedtest \
   sqlite3 \
   stripe \
   trash-cli \
