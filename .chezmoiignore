@@ -44,13 +44,11 @@ Library/
 {{ else }}
 .ansible.cfg
 .chezmoiscripts/linux/*
+.gnupg/
 .hushlogin
 .local/share/
+.password-store/
 snap/
-{{ end }}
-
-{{ if or (eq .chezmoi.hostname "prod") (eq .chezmoi.hostname "staging") }}
-.ssh/id_ed25519.pub
 {{ end }}
 
 {{ if eq .chezmoi.hostname "prod" }}
