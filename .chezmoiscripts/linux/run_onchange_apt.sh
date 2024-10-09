@@ -6,7 +6,6 @@ sudo apt --assume-yes install \
   google-cloud-cli \
   helix \
   libcurl4-openssl-dev \
-  libgit2-1.1 \
   libluajit-5.1-dev \
   libpq-dev \
   libsqlite3-dev \
@@ -34,5 +33,14 @@ sudo apt --assume-yes install \
   unar \
   zsh
 
-sudo ln -fs /usr/lib/*/libgit2.so.1.1 /usr/local/lib/libgit2.so
-sudo ldconfig
+. /etc/lsb-release
+
+if [ "${DISTRIB_RELEASE}" = '22.04' ]; then
+  sudo apt --assume-yes install libgit2-1.1
+  sudo ln -fs /usr/lib/*/libgit2.so.1.1 /usr/local/lib/libgit2.so
+  sudo ldconfig
+fi
+
+if [ "${DISTRIB_RELEASE}" = '24.04' ]; then
+  sudo apt --assume-yes install libgit2-1.7
+fi
