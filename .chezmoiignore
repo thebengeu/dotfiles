@@ -7,7 +7,7 @@ README.md
 {{ end }}
 
 .chezmoiscripts/non-windows/*
-.config/{bat,broot,fd,gitui,glow,gup,helix,lazygit,msmtp,nushell,nvim,sqlfluff,tealdeer,tmux}/
+.config/{bat,broot,btop,fd,gitui,glow,gup,helix,lazygit,msmtp,nushell,nvim,sqlfluff,tealdeer,tmux}/
 .config/fish/completions/pipx.fish
 .config/fish/completions/qmk.fish
 .config/topgrade.toml
@@ -30,7 +30,6 @@ scoop/
 .config/fish/completions/{chezmoi,fnm,just,pulumi,rg}.fish
 {{ else }}
 .chezmoiscripts/darwin/*
-.config/btop/
 .config/karabiner.edn
 .config/kitty/
 .hammerspoon/
@@ -48,7 +47,6 @@ Library/
 .hushlogin
 .local/share/
 .password-store/
-snap/
 {{ end }}
 
 {{ if eq .chezmoi.hostname "prod" }}

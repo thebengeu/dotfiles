@@ -119,7 +119,7 @@ _broot_config_home: {
 
 _btop_config_home: {
 	darwin:  ".config"
-	linux:   "snap/btop/655/.config"
+	linux:   ".config"
 	windows: "scoop/persist"
 }[_os]
 
