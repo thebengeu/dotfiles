@@ -9,6 +9,7 @@ _arch:     string | *"" @tag(arch,var=arch)
 _hostname: string | *"" @tag(hostname,var=hostname)
 _os:       string | *"" @tag(os,var=os)
 _env: [if _os == "darwin" {"genv"}, "env"][0]
+_colabPort: [if _hostname == "hh" {"9002"}, "9000"][0]
 
 nonExpandedAliases: {
 	l:   "eza --group-directories-first --hyperlink --icons"
@@ -42,7 +43,7 @@ aliases: {
 	dpu:  "AWS_PROFILE=supabase-dev pulumi up --stack supabase/dev"
 	drc:  "docker run --detach --name colab --publish 127.0.0.1:9000:8080 asia-docker.pkg.dev/colab-images/public/runtime"
 	ds:   "docker stats"
-	dsc:  "docker start colab && sleep 3 && docker logs colab | grep --only-matching 'http://127.0.0.1:9000/?token=\\S*' | tail -n 1 | osc copy"
+	dsc:  "docker start colab && sleep 3 && docker logs colab | grep --only-matching 'http://127.0.0.1:9000/?token=\\S*' | tail -n 1 | sed s/9000/\(_colabPort)/ | osc copy"
 	dsp:  "docker system prune --force --volumes"
 	dspa: "\(dsp) --all"
 	e:    "docker compose exec"
