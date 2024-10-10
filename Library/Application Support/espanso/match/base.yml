@@ -1,24 +1,26 @@
 matches:
   - trigger: :bq
-    replace: '%%bigquery'
+    replace: "%%bigquery"
+  - trigger: "#@"
+    replace: "#@title"
   - trigger: :date
-    replace: '{{mydate}}'
+    replace: "{{mydate}}"
     vars:
       - name: mydate
         type: date
         params:
-          format: '%F'
+          format: "%F"
   - trigger: :dt
-    replace: '{{datetime}}'
+    replace: "{{datetime}}"
     vars:
       - name: datetime
         type: date
         params:
-          format: '%F %R'
+          format: "%F %R"
   - trigger: :time
-    replace: '{{mytime}}'
+    replace: "{{mytime}}"
     vars:
       - name: mytime
         type: date
         params:
-          format: '%R'
+          format: "%R"
