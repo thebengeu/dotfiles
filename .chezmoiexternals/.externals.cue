@@ -30,12 +30,6 @@ for gitRepo in _zshGitRepos {
 ".config/fish/completions/nvr.fish": #File & {
 	url: "https://raw.githubusercontent.com/mhinz/neovim-remote/master/contrib/completion.fish"
 }
-".config/git/template/hooks/add-upstream-auto-detected-url.sh": #ExecutableFile & {
-	url: "https://raw.githubusercontent.com/thebengeu/auto-git-remote-add-upstream/master/add-upstream-auto-detected-url.sh"
-}
-".config/git/template/hooks/post-checkout": #ExecutableFile & {
-	url: "https://raw.githubusercontent.com/thebengeu/auto-git-remote-add-upstream/master/post-checkout"
-}
 ".config/gitui/theme.ron": #File & {
 	url: "https://raw.githubusercontent.com/catppuccin/gitui/main/themes/catppuccin-mocha.ron"
 }
