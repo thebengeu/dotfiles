@@ -4,6 +4,7 @@ cargo binstall --locked --no-confirm \
   eza \
   hyperfine \
   jwt-cli \
+  mdcat \
   miniserve \
   navi \
   onefetch \
