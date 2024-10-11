@@ -95,10 +95,10 @@ function __wezterm_user_vars_preexec --on-event fish_preexec
     __wezterm_set_user_var WEZTERM_PROG "$argv[1]"
 end
 
-function ya
-    set tmp (mktemp -t "yazi-cwd.XXXXX")
+function y
+    set tmp (mktemp -t "yazi-cwd.XXXXXX")
     yazi $argv --cwd-file="$tmp"
-    if set cwd (cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+    if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
         builtin cd -- "$cwd"
     end
     rm -f -- "$tmp"

@@ -12,4 +12,6 @@ cargo binstall --locked --no-confirm \
   tere \
   tokei \
   topgrade \
-  xh
+  xh \
+  yazi-cli \
+  yazi-fm
