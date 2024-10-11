@@ -1,6 +1,7 @@
 [commands]
 corepack = "corepack prepare pnpm@latest --activate"
 gup = "gup update --exclude ghorg,ghorg.exe"
+yazi = "ya pack -u"
 [misc]
 assume_yes = true
 disable = ["containers", "gcloud", "go", "vim", "wsl"]
