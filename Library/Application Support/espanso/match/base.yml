@@ -1,9 +1,11 @@
 matches:
   - trigger: :bq
-    replace: "%%bigquery"
-  - trigger: "#@"
-    replace: "#@title"
-  - trigger: :date
+    replace: "%%bigquery\n"
+  - trigger: :bt
+    replace: "%%bigquery\n#@title "
+  - trigger: ":tt"
+    replace: "#@title "
+  - trigger: :da
     replace: "{{mydate}}"
     vars:
       - name: mydate
@@ -17,7 +19,7 @@ matches:
         type: date
         params:
           format: "%F %R"
-  - trigger: :time
+  - trigger: :tm
     replace: "{{mytime}}"
     vars:
       - name: mytime
