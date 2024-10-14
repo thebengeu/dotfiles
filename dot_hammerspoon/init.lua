@@ -235,6 +235,7 @@ hs.hotkey.bind({ "ctrl", "option", "shift" }, "b", function()
   hs.eventtap.keyStrokes("b%%bigquery")
   hs.timer.usleep(10000)
   hs.eventtap.keyStroke({}, "return")
+  hs.eventtap.keyStrokes("#@title ")
 end)
 
 hs.window.animationDuration = 0
