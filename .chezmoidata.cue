@@ -174,7 +174,7 @@ aliases: {
 	_gitAliasDirectories: {
 		a: "$HOME/supabase/supabase-admin-api"
 		c: "$HOME/.local/share/chezmoi"
-		d: "$HOME/thebengeu/drakon"
+		k: "$HOME/thebengeu/drakon"
 		e: "$HOME/supabase/data-engineering"
 		h: "$HOME/supabase/helper-scripts"
 		i: "$HOME/supabase/infrastructure"
@@ -183,11 +183,14 @@ aliases: {
 		w: "$HOME/supabase/supabase"
 		z: "$HOME/thebengeu/zmk-config"
 	}
-	_aliasDirectories: _gitAliasDirectories & {
-		m: "$HOME/supabase/helper-scripts/modern-scripts"
+	_rgAliasDirectories: _gitAliasDirectories & {
 		b: "$HOME/sb"
-		r: "$HOME/repos"
 		s: "$HOME/supabase"
+	}
+	_aliasDirectories: _rgAliasDirectories & {
+		d: "$HOME/Downloads"
+		m: "$HOME/supabase/helper-scripts/modern-scripts"
+		r: "$HOME/repos"
 		t: "$HOME/temp"
 		u: "$HOME/thebengeu"
 	}
