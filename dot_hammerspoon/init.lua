@@ -12,18 +12,21 @@ local switcher_window_filter = hs.window.filter.new()
 switcher_window_filter:rejectApp("1Password")
 
 for key, bundle_id_and_args in pairs({
+  -- ["'"] = "",
   [","] = {
     bundle_id = "com.apple.systempreferences",
     open = "/System/Library/PreferencePanes/Displays.prefPane",
   },
+  -- ["."] = "unwrap-clipboard",
   ["/"] = "com.apple.finder",
-  a = "com.readdle.SparkDesktop-setapp",
+  a = "net.whatsapp.WhatsApp",
   c = "Google Chrome",
   d = "com.kapeli.dash-setapp",
   e = "com.microsoft.edgemac",
   f = "com.microsoft.edgemac.app.nkbljeindhmekmppbpgebpjebkjbmfaj",
   g = "com.mimestream.Mimestream",
   h = "com.spotify.client",
+  -- i = "",
   j = "com.jetbrains.pycharm",
   k = KITTY_BUNDLE_ID,
   l = "ru.keepcoder.Telegram",
@@ -33,11 +36,15 @@ for key, bundle_id_and_args in pairs({
   },
   n = "notion.id",
   o = "md.obsidian",
+  p = "com.readdle.SparkDesktop-setapp",
+  -- q = "format-clipboard SQL",
   r = "com.microsoft.edgemac.app.bndmnggfngpgmmijcogkkgglhalbpomk",
   s = "com.tinyspeck.slackmacgap",
   t = "com.microsoft.edgemac.app.knaiokfnmjjldlfhlioejgcompgenfhb",
   v = "com.microsoft.VSCode",
   w = WEZTERM_BUNDLE_ID,
+  -- x = "",
+  -- y = "format-clipboard Python",
   z = {
     args = "~/thebengeu/qmk_userspace/keymap.svg",
     bundle_id = "com.wolfrosch.Gapplin",
@@ -75,7 +82,7 @@ for key, bundle_id_and_args in pairs({
     key_on_focus = "f",
     open = "/System/Library/PreferencePanes/Displays.prefPane",
   },
-  a = { "com.readdle.SparkDesktop-setapp", "f" },
+  a = { "net.whatsapp.WhatsApp", "f" },
   c = { "Google Chrome", "l" },
   e = { "com.microsoft.edgemac", "l" },
   f = { "com.microsoft.edgemac.app.nkbljeindhmekmppbpgebpjebkjbmfaj", "/", {} },
@@ -91,6 +98,7 @@ for key, bundle_id_and_args in pairs({
   },
   n = { "notion.id", "k" },
   o = { "md.obsidian", "p", { "cmd", "shift" } },
+  p = { "com.readdle.SparkDesktop-setapp", "f" },
   r = {
     "com.microsoft.edgemac.app.bndmnggfngpgmmijcogkkgglhalbpomk",
     "f",
@@ -214,7 +222,7 @@ hs.hotkey.bind({ "cmd", "ctrl" }, "a", function()
 end)
 
 for key, command in pairs({
-  p = "unwrap-clipboard",
+  ["."] = "unwrap-clipboard",
   q = "format-clipboard SQL",
   y = "format-clipboard Python",
 }) do
