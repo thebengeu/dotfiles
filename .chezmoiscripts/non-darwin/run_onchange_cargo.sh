@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
 cargo binstall --locked --no-confirm \
+  bottom \
   du-dust \
   eza \
   hyperfine \
