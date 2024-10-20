@@ -94,6 +94,50 @@ return {
     },
   },
   {
+    "linrongbin16/gitlinker.nvim",
+    opts = {
+      router = {
+        browse = {
+          ["^github%.com"] = "https://github.com/"
+            .. "{_A.ORG}/"
+            .. "{_A.REPO}/blob/"
+            .. "{_A.REV}/"
+            .. "{_A.FILE}"
+            .. "#L{_A.LSTART}"
+            .. "{(_A.LEND > _A.LSTART and ('-L' .. _A.LEND) or '')}",
+        },
+      },
+    },
+    keys = function()
+      local link_using_default_branch = function(link_opts)
+        return function()
+          local current_branch = util.git_stdout({ "branch", "--show-current" })
+
+          util.git_stdout({ "sw" })
+          require("gitlinker").link(link_opts)
+          util.git_stdout({ "sw", current_branch })
+        end
+      end
+
+      return {
+        {
+          "<leader>gy",
+          link_using_default_branch(nil),
+          mode = { "n", "x" },
+          desc = "Yank permalink",
+        },
+        {
+          "<leader>gY",
+          link_using_default_branch({
+            action = require("gitlinker.actions").system,
+          }),
+          mode = { "n", "x" },
+          desc = "Open permalink",
+        },
+      }
+    end,
+  },
+  {
     "akinsho/git-conflict.nvim",
     event = "LazyFile",
     opts = {},
@@ -186,24 +230,7 @@ return {
     opts = {},
   },
   {
-    "tpope/vim-rhubarb",
-    dependencies = {
-      "tpope/vim-fugitive",
-      cmd = { "G", "Gclog" },
-    },
-    keys = {
-      {
-        "<leader>go",
-        "<Cmd>0GBrowse<CR>",
-        desc = "Open Blob Permalink",
-        mode = "n",
-      },
-      {
-        "<leader>go",
-        ":GBrowse<CR>",
-        desc = "Open Blob Permalink",
-        mode = "x",
-      },
-    },
+    "tpope/vim-fugitive",
+    cmd = { "G", "Gclog" },
   },
 }
