@@ -62,26 +62,26 @@ end, { desc = "New branch" })
 
 vim.keymap.set(
   "n",
-  "<leader>gP",
+  "<leader>gU",
   util.async_run_git({ "push" }),
   { desc = "Push" }
 )
 
 vim.keymap.set(
   "n",
-  "<leader>gp",
+  "<leader>gu",
   util.async_run_git({ "pull" }),
   { desc = "Pull" }
 )
 
-vim.keymap.set("n", "<leader>gR", function()
+vim.keymap.set("n", "<leader>gT", function()
   util.async_run_sh(
     "git push && gh pr create --fill-first && gh pr view --web",
     { cwd = LazyVim.root() }
   )
 end, { desc = "Create PR" })
 
-vim.keymap.set("n", "<leader>gr", function()
+vim.keymap.set("n", "<leader>gt", function()
   util.async_run_sh(
     "git push && gh pr create --draft --fill-first && gh pr view --web",
     { cwd = LazyVim.root() }
@@ -94,7 +94,7 @@ end, { desc = "View PR" })
 
 vim.keymap.set(
   "n",
-  "<leader>gw",
+  "<leader>gW",
   util.async_run_git({ "wip" }),
   { desc = "Commit WIP" }
 )

@@ -168,7 +168,7 @@ return {
     event = "LazyFile",
     keys = {
       {
-        "<leader>gS",
+        "<leader>gw",
         "<Cmd>lua MiniGit.show_at_cursor()<CR>",
         desc = "Show at cursor",
         mode = { "n", "x" },
