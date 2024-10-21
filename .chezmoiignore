@@ -50,7 +50,6 @@ Library/
 {{ end }}
 
 {{ if eq .chezmoi.hostname "prod" }}
-.aws/credentials
 .ssh/supabase.conf
 .supa-admin-cli*
 {{ end }}
