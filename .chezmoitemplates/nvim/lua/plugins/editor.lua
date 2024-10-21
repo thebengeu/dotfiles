@@ -72,22 +72,7 @@ return {
   {
     "echasnovski/mini.move",
     keys = function()
-      local keys = {
-        {
-          "[e",
-          function()
-            require("mini.move").move_line("up")
-          end,
-          desc = "Move line up",
-        },
-        {
-          "]e",
-          function()
-            require("mini.move").move_line("down")
-          end,
-          desc = "Move line down",
-        },
-      }
+      local keys = {}
 
       for key, direction in pairs({
         h = "Left",

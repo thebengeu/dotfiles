@@ -19,7 +19,7 @@ return {
         "<leader>ql",
         function()
           require("auto-session").setup_session_lens()
-          require("auto-session.session-lens").search_session()
+          require("auto-session.session-lens").search_session({})
         end,
         desc = "List Sessions",
       },
@@ -97,7 +97,18 @@ return {
   {
     "echasnovski/mini.bracketed",
     event = "LazyFile",
-    opts = {},
+    keys = {
+      { "[d" },
+      { "]d" },
+    },
+    opts = {
+      buffer = { suffix = "" },
+      comment = { suffix = "" },
+      conflict = { suffix = "" },
+      file = { suffix = "g" },
+      window = { suffix = "" },
+      yank = { suffix = "" },
+    },
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
