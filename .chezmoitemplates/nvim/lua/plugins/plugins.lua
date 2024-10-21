@@ -1,4 +1,5 @@
 local LazyVim = require("lazyvim.util")
+local util = require("util")
 
 local WSL_WINDOWS_HOMEDIR = "/mnt/c/Users/beng"
 
@@ -309,13 +310,19 @@ return {
   { "wakatime/vim-wakatime" },
   {
     "folke/which-key.nvim",
+    config = function(_, opts)
+      opts.spec[1] = util.filter(opts.spec[1], function(spec)
+        return spec[1] ~= "<leader>gh"
+      end)
+      require("which-key").setup(opts)
+    end,
     opts = {
       icons = {
         mappings = false,
       },
       spec = {
         { "<leader>cz", desc = "Send to REPL" },
-        { "<leader>h", group = "hunks" },
+        { "<leader>h", group = "hunks", mode = { "n", "x" } },
       },
     },
   },
