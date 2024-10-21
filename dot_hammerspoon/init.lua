@@ -10,6 +10,7 @@ hs.application.enableSpotlightForNameSearches(true)
 
 local switcher_window_filter = hs.window.filter.new()
 switcher_window_filter:rejectApp("1Password")
+switcher_window_filter:rejectApp("Microsoft Edge")
 
 for key, bundle_id_and_args in pairs({
   -- ["'"] = "",
