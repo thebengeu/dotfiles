@@ -13,7 +13,7 @@ switcher_window_filter:rejectApp("1Password")
 switcher_window_filter:rejectApp("Microsoft Edge")
 
 for key, bundle_id_and_args in pairs({
-  -- ["'"] = "",
+  -- ["'"] = "Rectangle Pro Layout 0",
   [","] = {
     bundle_id = "com.apple.systempreferences",
     open = "/System/Library/PreferencePanes/Displays.prefPane",
@@ -43,8 +43,9 @@ for key, bundle_id_and_args in pairs({
   s = "com.tinyspeck.slackmacgap",
   t = "com.microsoft.edgemac.app.knaiokfnmjjldlfhlioejgcompgenfhb",
   v = "com.microsoft.VSCode",
+  u = "com.aptakube.Aptakube",
   w = WEZTERM_BUNDLE_ID,
-  -- x = "",
+  -- x = "BetterTouchTool Close All Notification Alerts / Notification Center",
   -- y = "format-clipboard Python",
   z = {
     args = "~/thebengeu/qmk_userspace/keymap.svg",
