@@ -19,21 +19,6 @@ return {
   {
     "sindrets/diffview.nvim",
     cmd = { "DiffviewOpen" },
-    init = function()
-      require("lazyvim.util").on_load("which-key.nvim", function()
-        require("which-key").add({
-          {
-            "<leader>gh",
-            desc = "Diffview File History",
-          },
-          {
-            "<leader>gh",
-            desc = "Diffview Range History",
-            mode = "x",
-          },
-        })
-      end)
-    end,
     keys = {
       {
         "<leader>gd",
@@ -48,10 +33,12 @@ return {
       {
         "<leader>gh",
         "<Cmd>DiffviewFileHistory %<CR>",
+        desc = "Diffview File History",
       },
       {
         "<leader>gh",
         ":DiffviewFileHistory<CR>",
+        desc = "Diffview Range History",
         mode = "x",
       },
       {
