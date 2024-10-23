@@ -34,7 +34,7 @@ pipx install tox
 pipx install virtualenv
 pipx install visidata
 
-pnpm add --global \
+COREPACK_ENABLE_DOWNLOAD_PROMPT=0 pnpm add --global \
   npm-check-updates \
   pino-pretty \
   pm2 \
