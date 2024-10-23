@@ -18,6 +18,8 @@ defaults import com.sindresorhus.Velja com.sindresorhus.Velja.plist
 ## Linux
 
 ```console
+useradd --create-home --groups sudo --shell /bin/bash beng
+passwd beng
 curl -s 'https://github.com/thebengeu/dotfiles/raw/master/.chezmoiscripts/linux/run_onchange_init.sh' > /tmp/run_onchange_init.sh
 bash /tmp/run_onchange_init.sh
 rm /tmp/run_onchange_init.sh
