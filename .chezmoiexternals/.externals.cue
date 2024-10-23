@@ -121,6 +121,15 @@ _btop_config_home: {
 	url: "https://raw.githubusercontent.com/catppuccin/btop/main/themes/catppuccin_mocha.theme"
 }
 
+_k9s_config_home: (#XdgConfigHome & {
+	darwin:  "Library/Application Support"
+	windows: "AppData/Local"
+})[_os]
+
+"\(_k9s_config_home)/k9s/skins/catppuccin-mocha.yaml": #File & {
+	url: "https://raw.githubusercontent.com/catppuccin/k9s/refs/heads/main/dist/catppuccin-mocha.yaml"
+}
+
 "\(_xdgConfigHomeRoaming)/lazygit/mocha-lavender.yml": #File & {
 	url: "https://raw.githubusercontent.com/catppuccin/lazygit/main/themes-mergable/mocha/lavender.yml"
 }
