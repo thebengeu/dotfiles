@@ -51,6 +51,7 @@ aliases: {
 	gap:  "git all pull"
 	ghd:  "gh dash"
 	ghp:  "gh poi"
+	ghco: "gh pr checkout"
 	grm:  "glow README.md"
 	// hb:  "hyperfine 'bash -i -c exit'"
 	// hbn: "hyperfine 'bash --noprofile --norc -i -c exit'"
