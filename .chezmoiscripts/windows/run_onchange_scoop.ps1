@@ -7,6 +7,7 @@ $scoopPackages = @(
   'dos2unix'
   'gcc'
   'gcloud'
+  'ghorg'
   'git-filter-repo'
   'goneovim'
   'krew'
