@@ -12,9 +12,8 @@ gh extension install seachicken/gh-poi
 go install github.com/gabrie30/ghorg@v1.9.12
 go install github.com/nao1215/gup@latest
 
-PIP_REQUIRE_VIRTUALENV=false pip3 install --upgrade --user \
-  pynvim \
-  setuptools
+PIP_REQUIRE_VIRTUALENV=false pip3 install --break-system-packages --upgrade --user \
+  pynvim
 
 pipx install beancount
 pipx install fava

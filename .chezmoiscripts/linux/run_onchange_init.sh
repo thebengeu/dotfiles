@@ -33,7 +33,7 @@ if [[ ! -f ~/.ssh/id_ed25519 ]] || [[ ! -f "${EJSON_KEY_PATH}" ]]; then
 fi
 
 if [[ ! -f ~/.ssh/id_ed25519 ]]; then
-  mkdir ~/.ssh
+  mkdir -p ~/.ssh
   op read 'op://Personal/Ed25519 SSH Key/id_ed25519' | tr -d '\r' >"${SSH_KEY_PATH}"
   chmod 600 "${SSH_KEY_PATH}"
   eval "$(ssh-agent -s)"
@@ -59,11 +59,9 @@ if [[ ! "${CHEZMOI}" = 1 ]]; then
   sudo add-apt-repository -y ppa:ansible/ansible
   sudo apt install -y \
     ansible \
-    file
-  ansible-playbook "${CHEZMOI_SOURCE_DIR}"/ignored/ansible/site.yml --ask-become-pass
-
-  PIP_REQUIRE_VIRTUALENV=false pip3 install --upgrade --user \
+    file \
     pipx
+  ansible-playbook "${CHEZMOI_SOURCE_DIR}"/ignored/ansible/site.yml --ask-become-pass
 
   sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'postgres';"
 
