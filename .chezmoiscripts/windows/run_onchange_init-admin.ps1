@@ -198,6 +198,7 @@ if (!(Test-Path $sshKeyPath))
 
 go install cuelang.org/go/cmd/cue@latest
 go install filippo.io/age/cmd/...@latest
+go install github.com/nao1215/gup@latest
 
 Invoke-RestMethod 'https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.ps1' | Invoke-Expression
 

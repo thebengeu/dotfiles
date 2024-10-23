@@ -76,6 +76,9 @@
     path: /usr/bin/nvim
   become: true
 - ansible.builtin.command:
+    cmd: go install github.com/nao1215/gup@latest
+    creates: ~/go/bin/gup
+- ansible.builtin.command:
     cmd: cargo install --locked cargo-binstall
     creates: ~/.cargo/bin/cargo-binstall
   environment:
