@@ -20,8 +20,6 @@ fish_add_path --global {{$path}}
 
 status is-interactive || exit
 
-fnm env --use-on-cd | source
-
 set --global fzf_fd_opts --follow --hidden{{if eq .chezmoi.os "windows"}} --path-separator //{{end}}
 
 {{range $alias, $command := index .nonExpandedAliases -}}
