@@ -37,11 +37,13 @@
     cmd: /nix/var/nix/profiles/default/bin/nix profile install nixpkgs#{{ item }}
     creates: ~/.nix-profile/bin/{{ item }}
   loop:
+    - age
     - atuin
     - bat
     - broot
     - carapace
     - chezmoi
+    - cue
     - direnv
     - fd
     - fnm
@@ -73,12 +75,6 @@
     name: editor
     path: /usr/bin/nvim
   become: true
-- ansible.builtin.command:
-    cmd: go install filippo.io/age/cmd/...@latest
-    creates: ~/go/bin/age
-- ansible.builtin.command:
-    cmd: go install cuelang.org/go/cmd/cue@latest
-    creates: ~/go/bin/cue
 - ansible.builtin.command:
     cmd: cargo install --locked cargo-binstall
     creates: ~/.cargo/bin/cargo-binstall
