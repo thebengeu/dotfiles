@@ -41,14 +41,11 @@ package dotfiles
 _os: string | *"" @tag(os,var=os)
 
 #XdgConfigHome: {
-	_localOrRoaming: "Local" | "Roaming"
-	darwin:          ".config"
-	linux:           ".config"
-	windows:         "AppData/\(_localOrRoaming)"
+	darwin:  *".config" | "Library/Application Support"
+	linux:   ".config"
+	windows: "AppData/Local" | *"AppData/Roaming"
 }
 _xdgConfigHomeLocal: (#XdgConfigHome & {
-	_localOrRoaming: "Local"
+	windows: "AppData/Local"
 })[_os]
-_xdgConfigHomeRoaming: (#XdgConfigHome & {
-	_localOrRoaming: "Roaming"
-})[_os]
+_xdgConfigHomeRoaming: #XdgConfigHome[_os]
