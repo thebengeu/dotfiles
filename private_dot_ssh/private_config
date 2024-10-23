@@ -28,9 +28,15 @@ Host prod
   Hostname p.he.sg
   User ubuntu
 
+Host hc
+  Hostname hc.he.sg
+
 Host hh
   Hostname hh.he.sg
   LocalForward 9002 127.0.0.1:9000
+
+Host hs
+  Hostname hs.he.sg
 
 Host *
   ServerAliveInterval 60
