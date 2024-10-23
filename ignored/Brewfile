@@ -277,7 +277,6 @@ mas "Timery", id: 1425368544
 mas "Velja", id: 1607635845
 mas "Windows App", id: 1295203466
 mas "Xcode", id: 497799835
-mas "YamaCast", id: 1415107621
 vscode "asvetliakov.vscode-neovim"
 vscode "bodil.file-browser"
 vscode "catppuccin.catppuccin-vsc"
