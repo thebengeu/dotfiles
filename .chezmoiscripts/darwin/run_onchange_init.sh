@@ -25,7 +25,7 @@ EJSON_KEY_PATH="${EJSON_KEYDIR}/${EJSON_PUBLIC_KEY}"
 SSH_KEY_PATH="${HOME}/.ssh/id_ed25519"
 
 if [ ! -f "${SSH_KEY_PATH}" ]; then
-  mkdir ~/.ssh
+  mkdir -p ~/.ssh
   op read 'op://Personal/Ed25519 SSH Key/id_ed25519' | tr -d '\r' >"${SSH_KEY_PATH}"
   chmod 600 "${SSH_KEY_PATH}"
   eval "$(ssh-agent -s)"
