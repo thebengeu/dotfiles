@@ -1,0 +1,10 @@
+plugins:
+  node_shell:
+    shortCut: s
+    description: Shell
+    scopes:
+      - node
+    command: kubectl
+    args:
+      - node_shell
+      - $NAME
