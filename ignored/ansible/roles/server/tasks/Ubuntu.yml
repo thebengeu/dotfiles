@@ -37,13 +37,21 @@
     cmd: /nix/var/nix/profiles/default/bin/nix profile install nixpkgs#{{ item }}
     creates: ~/.nix-profile/bin/{{ item }}
   loop:
+    - atuin
     - bat
+    - broot
     - carapace
     - chezmoi
     - direnv
     - fd
+    - fnm
     - git
+    - just
+    - ripgrep
+    - starship
     - tmux
+    - vivid
+    - zoxide
 - ansible.builtin.git:
     dest: ~/thebengeu/neovim
     executable: ~/.nix-profile/bin/git
@@ -76,20 +84,6 @@
     creates: ~/.cargo/bin/cargo-binstall
   environment:
     PATH: /usr/bin:/home/{{ ansible_user_id }}/.cargo/bin
-- ansible.builtin.command:
-    cmd: cargo binstall --locked --no-confirm {{ item }}
-    creates: ~/.cargo/bin/{{ item }}
-  environment:
-    PATH: /usr/bin:/home/{{ ansible_user_id }}/.cargo/bin
-  loop:
-    - atuin
-    - broot
-    - fnm
-    - just
-    - ripgrep
-    - starship
-    - vivid
-    - zoxide
 - ansible.builtin.get_url:
     dest: /tmp/pyenv-installer
     mode: "755"
