@@ -8,5 +8,3 @@ kubectl krew install \
   kvaps/node-shell \
   lineage \
   tail
-
-go install github.com/theimpostor/osc@latest
