@@ -17,6 +17,7 @@ README.md
 sb/
 supabase/
 {{ else }}
+.chezmoiscripts/windows/*
 .config/fish/completions/fd.fish
 .config/fish/conf.d/windows.fish
 .ssh/windows.conf
