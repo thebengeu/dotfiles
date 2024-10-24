@@ -3,7 +3,7 @@ corepack = "corepack prepare pnpm@latest --activate"
 yazi = "ya pack -u"
 [misc]
 assume_yes = true
-disable = ["containers", "gcloud", "vim", "wsl"]
+disable = ["chezmoi", "containers", "gcloud", "vim", "wsl"]
 no_retry = true
 [npm]
 use_sudo = true
