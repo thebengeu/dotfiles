@@ -10,7 +10,7 @@ export HOMEBREW_GITHUB_API_TOKEN={{ (joinPath .chezmoi.sourceDir ".secrets.ejson
 {{output "/usr/local/bin/brew" "shellenv" "sh"}}
 {{end}}
 {{end -}}
-{{- if and (eq .chezmoi.os "linux") (ne .chezmoi.arch "arm64") }}
+{{- if isExecutable "/home/linuxbrew/.linuxbrew/bin/brew" }}
 {{output "/home/linuxbrew/.linuxbrew/bin/brew" "shellenv" "sh"}}
 {{end}}
 
