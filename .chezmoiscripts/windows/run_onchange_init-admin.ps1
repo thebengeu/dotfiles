@@ -3,6 +3,12 @@ if (!(Test-Path "$Env:USERPROFILE\scoop"))
   Invoke-RestMethod get.scoop.sh | Invoke-Expression
 }
 
+$scoopPackages = @(
+  'cue'
+)
+
+scoop install $scoopPackages
+
 if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator))
 {
   if (Get-Command gsudo)
@@ -24,24 +30,34 @@ winget settings --enable LocalManifestFiles
 $wingetPackageIds = @(
   'AgileBits.1Password'
   'AgileBits.1Password.CLI'
+  'FiloSottile.age'
+  'sharkdp.bat'
+  'Dystroy.broot'
   'rsteube.Carapace'
   'twpayne.chezmoi'
   'Kitware.CMake'
   'direnv.direnv'
   'Ditto.Ditto'
+  'sharkdp.fd'
+  'Schniz.fnm'
   'Git.Git'
   'GitHub.cli'
   'GoLang.Go'
   'gerardog.gsudo'
+  'nao1215.gup'
   'jqlang.jq'
+  'Casey.Just'
   'MSYS2.MSYS2'
   'OpenJS.NodeJS'
   'Microsoft.OpenSSH.Beta'
   'Microsoft.PowerShell'
   'Pulumi.Pulumi'
   'Python.Python.3.12'
+  'BurntSushi.ripgrep.MSVC'
   'Rustlang.Rustup'
+  'Starship.Starship'
   'wez.wezterm'
+  'ajeetdsouza.zoxide'
 )
 
 winget install --exact --no-upgrade --silent $wingetPackageIds
@@ -196,22 +212,10 @@ if (!(Test-Path $sshKeyPath))
   ssh-add $sshKeyPath
 }
 
-go install cuelang.org/go/cmd/cue@latest
-go install filippo.io/age/cmd/...@latest
-go install github.com/nao1215/gup@latest
-
 Invoke-RestMethod 'https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.ps1' | Invoke-Expression
 
 $cargoPackages = @(
-  'bat'
-  'broot'
-  'fd-find'
-  'fnm'
-  'just'
-  'ripgrep'
-  'starship'
   'vivid'
-  'zoxide'
 )
 
 cargo binstall --locked --no-confirm $cargoPackages
