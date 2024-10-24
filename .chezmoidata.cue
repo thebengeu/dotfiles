@@ -145,6 +145,7 @@ aliases: {
 			ai:          "sudo apt install"
 			ar:          "sudo apt remove"
 			ns:          "nix search nixpkgs"
+			te:          "trash-empty -f"
 			"xdg-ninja": "nix run github:b3nj5m1n/xdg-ninja"
 		}
 		windows: _non_darwin & {
