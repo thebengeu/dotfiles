@@ -1,7 +1,7 @@
 [default]
 region = ap-southeast-1
 [profile beng]
-credential_process = aws-vault export --duration 12h --format json beng
+credential_process = aws-vault export --format json --no-session beng
 [profile supabase]
 credential_process = aws-vault export --duration 12h --format json supabase
 mfa_process = op item get 'AWS supabase' --otp
