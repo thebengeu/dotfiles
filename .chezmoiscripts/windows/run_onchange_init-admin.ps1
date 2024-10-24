@@ -5,6 +5,7 @@ if (!(Test-Path "$Env:USERPROFILE\scoop"))
 
 $scoopPackages = @(
   'cue'
+  'git'
 )
 
 scoop install $scoopPackages
@@ -40,7 +41,6 @@ $wingetPackageIds = @(
   'Ditto.Ditto'
   'sharkdp.fd'
   'Schniz.fnm'
-  'Git.Git'
   'GitHub.cli'
   'GoLang.Go'
   'gerardog.gsudo'
