@@ -34,6 +34,9 @@
     cmd: /tmp/rustup-init --no-modify-path --profile minimal -y
     creates: ~/.cargo/env
 - ansible.builtin.command:
+    cmd: /nix/var/nix/profiles/default/bin/nix profile install nixpkgs#ripgrep
+    creates: ~/.nix-profile/bin/rg
+- ansible.builtin.command:
     cmd: /nix/var/nix/profiles/default/bin/nix profile install nixpkgs#{{ item }}
     creates: ~/.nix-profile/bin/{{ item }}
   loop:
@@ -49,7 +52,7 @@
     - fnm
     - git
     - just
-    - ripgrep
+    - kubectl
     - starship
     - tmux
     - vivid
