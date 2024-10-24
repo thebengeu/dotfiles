@@ -1,4 +1,5 @@
 .chezmoitemplates/code/keybindings.json text eol=lf
 .chezmoitemplates/code/settings.json text eol=lf
+.chezmoitemplates/yazi/package.toml text eol=lf
 dot_config/fish/fish_plugins text eol=lf
 dot_config/micro/settings.json text eol=lf
