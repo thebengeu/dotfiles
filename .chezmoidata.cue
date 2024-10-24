@@ -120,6 +120,9 @@ aliases: {
 	// }
 
 	{
+		_non_darwin: {
+			tg: "PIP_REQUIRE_VIRTUALENV=false topgrade"
+		}
 		_non_windows: {
 			fd:  "fd --hidden"
 			rns: #"rm -r "$(nvim-stdpath data)/sessions""#
@@ -136,16 +139,15 @@ aliases: {
 			tg:  "brew update && brew unlink moreutils parallel && brew upgrade moreutils parallel && brew link --overwrite moreutils parallel && genv --chdir ~ PIP_REQUIRE_VIRTUALENV=false topgrade"
 			wsk: "wezterm show-keys --lua"
 		}
-		linux: _non_windows & {
+		linux: _non_darwin & _non_windows & {
 			aar:         "sudo apt autoremove"
 			ae:          "eval $(aws configure export-credentials --format env --profile supabase-dev)"
 			ai:          "sudo apt install"
 			ar:          "sudo apt remove"
 			ns:          "nix search nixpkgs"
-			tg:          "PIP_REQUIRE_VIRTUALENV=false topgrade"
 			"xdg-ninja": "nix run github:b3nj5m1n/xdg-ninja"
 		}
-		windows: {
+		windows: _non_darwin & {
 			chi: "gsudo choco install"
 			chs: "choco search"
 			chu: "gsudo choco uninstall"
@@ -153,7 +155,6 @@ aliases: {
 			dpw: #"powershell -c "Invoke-Expression (\"pwsh \" + (New-Object -ComObject WScript.Shell).CreateShortcut(\"\$Env:ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2022\Visual Studio Tools\Developer PowerShell for VS 2022.lnk\").Arguments.Replace('\"\"\"', \"'\"))""#
 			fd:  "\(_non_windows.fd) --path-separator '//'"
 			rns: #"rm -r "$(nvim-stdpath data)\sessions""#
-			tg:  "winget upgrade gsudo spotify; gsudo PIP_REQUIRE_VIRTUALENV=false topgrade"
 			wsk: "wezterm show-keys --lua"
 		}
 	}[_os]
