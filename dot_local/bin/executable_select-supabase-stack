@@ -1,0 +1,1 @@
+ls Pulumi.*.yaml | sed 's/Pulumi\.\(.*\)\.yaml/supabase\/\1/' | fzf
