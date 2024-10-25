@@ -4,7 +4,11 @@ command_timeout = 1000
 palette = "catppuccin_mocha"
 
 [aws]
-disabled = true
+format = '[$symbol($profile )(\($region\) )]($style)'
+symbol = '☁️ '
+[aws.profile_aliases]
+supabase = 'prod'
+supabase-dev = 'dev'
 
 [bun]
 disabled = true
