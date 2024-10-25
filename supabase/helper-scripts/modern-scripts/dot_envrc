@@ -1,0 +1,2 @@
+export VIRTUAL_ENV=~/supabase/helper-scripts/modern-scripts/.venv
+PATH_add "${VIRTUAL_ENV}/bin"
