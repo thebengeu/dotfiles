@@ -9,7 +9,7 @@ _arch:     string | *"" @tag(arch,var=arch)
 _hostname: string | *"" @tag(hostname,var=hostname)
 _os:       string | *"" @tag(os,var=os)
 _env: [if _os == "darwin" {"genv"}, "env"][0]
-_colabPort: [if _hostname == "hh" {"9002"}, "9000"][0]
+_colabPort: [if _hostname == "hc" {"9002"}, "9000"][0]
 
 nonExpandedAliases: {
 	l:   "eza --group-directories-first --hyperlink --icons"
