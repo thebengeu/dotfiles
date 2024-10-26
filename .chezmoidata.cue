@@ -212,7 +212,7 @@ aliases: {
 	}
 	_gitAliases: {
 		aa:  "add -A"
-		c:   "clone"
+		c:   "clone --recursive"
 		ca:  "commit --amend"
 		cm:  "commit -m"
 		pf:  "pf"
