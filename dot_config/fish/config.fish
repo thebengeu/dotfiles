@@ -10,11 +10,6 @@ set --global fzf_directory_opts --preview '_fzf_preview_file_custom {}'
 set --global fzf_git_log_format '%C(bold blue)%h%Creset %s'
 set --global sponge_purge_only_on_exit true
 
-abbr --add apd 'set --export AWS_PROFILE default'
-abbr --add aps 'set --export AWS_PROFILE supabase'
-abbr --add apsd 'set --export AWS_PROFILE supabase-dev'
-abbr --add os 'set COMMAND $(op signin) && test -n "$COMMAND" && eval $COMMAND && set --export OP_TIME $(date +%s)'
-
 if test -z "$WEZTERM_CONFIG_DIR" -a -n "$WEZTERM_UNIX_SOCKET"
     set --export SSH_CONNECTION '127.0.0.1 22 127.0.0.1 22'
 end
