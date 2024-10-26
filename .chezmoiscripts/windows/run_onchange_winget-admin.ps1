@@ -25,6 +25,7 @@ $wingetPackageIds = @(
   'dandavison.delta'
   'Discord.Discord'
   'Docker.DockerDesktop'
+  'muesli.duf'
   'Element.Element'
   'ExpressVPN.ExpressVPN'
   'flux.flux'
