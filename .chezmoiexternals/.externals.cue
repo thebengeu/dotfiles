@@ -12,7 +12,6 @@ for gitRepo, appName in _nvimConfigs {
 
 _zshGitRepos: [
 	"Aloxaf/fzf-tab",
-	"agkozak/agkozak-zsh-prompt",
 	"jeffreytse/zsh-vi-mode",
 	"zdharma-continuum/fast-syntax-highlighting",
 	"zdharma-continuum/history-search-multi-word",

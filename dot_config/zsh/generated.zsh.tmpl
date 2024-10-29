@@ -1,6 +1,13 @@
 {{- template "generated-posix-shell-rc.sh.tmpl" . -}}
+{{- if lookPath "starship" }}
+{{output "starship" "init" "zsh" "--print-full-init"}}
+{{end -}}
 {{- if lookPath "supa-admin-cli" }}
 {{output "supa-admin-cli" "completion" "zsh"}}
 {{end -}}
+{{- if lookPath "atuin" }}
 {{output "atuin" "init" "zsh" "--disable-ctrl-r" "--disable-up-arrow"}}
+{{end -}}
+{{- if lookPath "zoxide" }}
 {{output "zoxide" "init" "--cmd" "cd" "zsh"}}
+{{end -}}

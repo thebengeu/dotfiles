@@ -1,7 +1,5 @@
 # zmodload zsh/zprof
 
-source ~/.config/zsh/generated.zsh
-
 HISTFILE=~/.zsh_history
 HISTSIZE=9223372036854775807
 SAVEHIST=9223372036854775807
@@ -14,16 +12,6 @@ setopt SHARE_HISTORY
 fpath+=~/.config/zsh/zsh-completions/src
 
 source ~/.config/zsh/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-
-AGKOZAK_BLANK_LINES=1
-AGKOZAK_CUSTOM_SYMBOLS=( '⇣⇡' '⇣' '⇡' '+' 'x' '!' '>' '?' 'S')
-AGKOZAK_LEFT_PROMPT_ONLY=1
-AGKOZAK_PROMPT_DIRTRIM=0
-AGKOZAK_PROMPT_CHAR=( ❯ ❯ ❮ )
-AGKOZAK_SHOW_VIRTUALENV=0
-AGKOZAK_USER_HOST_DISPLAY=0
-source ~/.config/zsh/agkozak-zsh-prompt/agkozak-zsh-prompt.plugin.zsh
-
 source ~/.config/zsh/history-search-multi-word/history-search-multi-word.plugin.zsh
 source ~/.config/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
@@ -42,5 +30,7 @@ source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 source ~/.config/zsh/fzf-tab/fzf-tab.plugin.zsh
+
+source ~/.config/zsh/generated.zsh
 
 # zprof
