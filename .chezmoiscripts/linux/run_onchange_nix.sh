@@ -65,7 +65,7 @@ packages=(
   yj
 )
 
-nix profile upgrade '.*'
+nix profile upgrade --all
 
 for package in "${packages[@]}"; do
   nix profile install "nixpkgs#${package}"
