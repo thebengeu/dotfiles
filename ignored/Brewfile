@@ -125,7 +125,7 @@ brew "pass"
 brew "perl"
 brew "ponysay"
 brew "poppler"
-brew "postgresql@15", restart_service: true, link: true
+brew "postgresql@17", restart_service: true, link: true
 brew "proxychains-ng"
 brew "pspg"
 brew "pulumi"
