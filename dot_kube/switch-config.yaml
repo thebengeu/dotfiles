@@ -6,3 +6,4 @@ kubeconfigStores:
     paths:
       - ~/.kube/eksctl/clusters
       - ~/.kube/kind
+    required: false
