@@ -73,6 +73,9 @@ for gitRepo in _zshGitRepos {
 			include: ["bin/protoc.exe", "include/**"]
 			url: "https://github.com/protocolbuffers/protobuf/releases/download/v28.1/protoc-28.1-win64.zip"
 		}
+		".local/bin/switcher.exe": #File & {
+			url: "https://github.com/danielfoehrKn/kubeswitch/releases/download/0.9.2/switcher_windows_amd64.exe"
+		}
 		".local/bin/lmn.exe": #ArchiveFile & {
 			path: "lemonade.exe"
 			url:  "https://github.com/lemonade-command/lemonade/releases/download/v1.1.1/lemonade_windows_amd64.zip"
