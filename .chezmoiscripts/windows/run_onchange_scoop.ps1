@@ -16,6 +16,7 @@ $scoopPackages = @(
   'lazydocker'
   'lazygit'
   'krew'
+  'kubecolor'
   'make'
   'mdcat'
   'miller'

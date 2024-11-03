@@ -32,6 +32,7 @@ function {{$alias}} () {
   {{$command | replace "$HOME" "~"}} $@
 }
 {{end -}}
+alias kubectl=kubecolor
 
 function br {
     local cmd cmd_file code
