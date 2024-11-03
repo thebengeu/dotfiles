@@ -31,6 +31,7 @@ packages=(
   k9s
   kind
   krew
+  kubecolor
   kubeswitch
   lazydocker
   lazygit

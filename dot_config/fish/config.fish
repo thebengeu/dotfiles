@@ -109,3 +109,7 @@ function _fifc_fish_key_bindings --on-variable fish_key_bindings
 end
 
 _fifc_fish_key_bindings
+
+function kubectl --wraps kubectl
+    command kubecolor $argv
+end
