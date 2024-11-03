@@ -61,6 +61,7 @@ packages=(
   usql
   vifm
   walk
+  xdg-ninja
   xh
   yazi
   yj

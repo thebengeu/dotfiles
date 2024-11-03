@@ -140,13 +140,12 @@ aliases: {
 			wsk: "wezterm show-keys --lua"
 		}
 		linux: _non_darwin & _non_windows & {
-			aar:         "sudo apt autoremove"
-			ai:          "sudo apt install"
-			ar:          "sudo apt remove"
-			ns:          "nix search nixpkgs"
-			oa:          "\(os) && eval $(aws configure export-credentials --format env --profile supabase-dev)"
-			te:          "trash-empty -f"
-			"xdg-ninja": "nix run github:b3nj5m1n/xdg-ninja"
+			aar: "sudo apt autoremove"
+			ai:  "sudo apt install"
+			ar:  "sudo apt remove"
+			ns:  "nix search nixpkgs"
+			oa:  "\(os) && eval $(aws configure export-credentials --format env --profile supabase-dev)"
+			te:  "trash-empty -f"
 		}
 		windows: _non_darwin & {
 			chi: "gsudo choco install"
