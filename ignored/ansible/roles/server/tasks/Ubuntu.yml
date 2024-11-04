@@ -62,7 +62,7 @@
     executable: ~/.nix-profile/bin/git
     force: true
     repo: https://github.com/thebengeu/neovim
-    version: 6d09d42cd29b6517788243f883f3e42c62d2f94e
+    version: 1c58f7dddc44c446dc697b80b2f417dea3b71fd5
 - ansible.builtin.command:
     chdir: ~/thebengeu/neovim
     cmd: make CMAKE_BUILD_TYPE=Release
