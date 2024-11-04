@@ -57,27 +57,6 @@
     - tmux
     - vivid
     - zoxide
-- ansible.builtin.git:
-    dest: ~/thebengeu/neovim
-    executable: ~/.nix-profile/bin/git
-    force: true
-    repo: https://github.com/thebengeu/neovim
-    version: 1c58f7dddc44c446dc697b80b2f417dea3b71fd5
-- ansible.builtin.command:
-    chdir: ~/thebengeu/neovim
-    cmd: make CMAKE_BUILD_TYPE=Release
-    creates: ~/thebengeu/neovim/build/
-- ansible.builtin.command:
-    chdir: ~/thebengeu/neovim/build
-    cmd: cpack -G DEB
-    creates: ~/thebengeu/neovim/build/nvim-linux64.deb
-- ansible.builtin.apt:
-    deb: /home/{{ ansible_user_id }}/thebengeu/neovim/build/nvim-linux64.deb
-  become: true
-- community.general.alternatives:
-    name: editor
-    path: /usr/bin/nvim
-  become: true
 - ansible.builtin.command:
     cmd: go install github.com/nao1215/gup@latest
     creates: ~/go/bin/gup
