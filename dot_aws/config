@@ -1,18 +1,25 @@
 [default]
-region = ap-southeast-1
+region=ap-southeast-1
+
 [profile beng]
-credential_process = aws-vault export --format json --no-session beng
+credential_process=aws-vault export --format json --no-session beng
+
+[profile sb-beng]
+credential_process=aws-vault export --format json --no-session sb-beng
+
 [profile supabase]
-credential_process = aws-vault export --duration 12h --format json supabase
-mfa_process = op item get 'AWS supabase' --otp
-mfa_serial = arn:aws:iam::646182064048:mfa/MFA
+credential_process=aws-vault export --duration 12h --format json supabase
+mfa_process=op item get 'AWS supabase' --otp
+mfa_serial=arn:aws:iam::646182064048:mfa/MFA
 # mfa_process = get-otp.sh arn:aws:iam::646182064048:mfa/17998004
 # mfa_serial = arn:aws:iam::646182064048:mfa/17998004
-# region = ap-southeast-1
+
 [profile supabase-dev]
-credential_process = aws-vault export --duration 12h --format json supabase-dev
-mfa_process = op item get 'AWS supabase-dev' --otp
-mfa_serial = arn:aws:iam::436098097459:mfa/MFA
+credential_process=aws-vault export --duration 12h --format json supabase-dev
+mfa_process=op item get 'AWS supabase-dev' --otp
+mfa_serial=arn:aws:iam::436098097459:mfa/MFA
 # mfa_process = get-otp.sh arn:aws:iam::436098097459:mfa/17998004
 # mfa_serial = arn:aws:iam::436098097459:mfa/17998004
-# region = ap-southeast-1
+
+[profile v3]
+credential_process=aws-vault export --format json --no-session v3
