@@ -101,6 +101,7 @@
       - mosquitto
       - ninja-build
       - nodejs
+      - neovim
       - openssh-server
       - postgresql
       - postgresql-client
@@ -128,6 +129,9 @@
     link: /usr/bin/clangd
     name: clangd
     path: /usr/bin/clangd-15
+- community.general.alternatives:
+    name: editor
+    path: /usr/bin/nvim
 - ansible.builtin.copy:
     dest: /etc/mosquitto/conf.d/default.conf
     force: false
@@ -167,7 +171,3 @@
 - ansible.builtin.command:
     cmd: /tmp/nix-installer install --no-confirm
     creates: /nix/
-- community.general.snap:
-    channel: edge
-    classic: true
-    name: neovim
