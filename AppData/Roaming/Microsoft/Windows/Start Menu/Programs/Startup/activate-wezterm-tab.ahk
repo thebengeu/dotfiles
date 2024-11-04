@@ -12,10 +12,6 @@ SetCapsLockState "AlwaysOff"
   }
 }
 
-LCtrl & w::^w
-LCtrl & e::^+Tab
-LCtrl & r::^Tab
-
 RAlt::
 {
   Send("{Ctrl Down}{Shift Down}{Alt Down}")
