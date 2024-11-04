@@ -20,13 +20,15 @@ nonExpandedAliases: {
 
 aliases: {
 	"-":   "cd -"
-	apb:   "export AWS_PROFILE=beng"
+	apb:   "export AWS_PROFILE=supabase-beng"
 	apd:   "export AWS_PROFILE=supabase-dev"
 	ape1:  "export AWS_REGION=ap-east-1;"
 	apne1: "export AWS_REGION=ap-northeast-1;"
 	apne2: "export AWS_REGION=ap-northeast-2;"
 	apne3: "export AWS_REGION=ap-northeast-3;"
+	apo:   "export AWS_PROFILE=own"
 	app:   "export AWS_PROFILE=supabase"
+	apv:   "export AWS_PROFILE=v3"
 	b:     "bat"
 	buz:   "brew uninstall --zap"
 	c:     "docker compose"
