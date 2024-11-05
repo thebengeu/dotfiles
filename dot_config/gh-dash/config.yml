@@ -60,12 +60,12 @@ keybindings:
       command: >
         cd {{.RepoPath}} &&
         git fetch &&
-        TERM=wezterm nvim -c ":DiffviewOpen origin/$(gh api repos/{{.RepoName}}/pulls/{{.PrNumber}} --jq .base.ref)...origin/{{.HeadRefName}}"
+        nvim -c ":DiffviewOpen origin/$(gh api repos/{{.RepoName}}/pulls/{{.PrNumber}} --jq .base.ref)...origin/{{.HeadRefName}}"
     - key: n
       command: >
         cd {{.RepoPath}} &&
         gh pr checkout {{.PrNumber}} &&
-        TERM=wezterm nvim
+        nvim
 repoPaths:
   supabase/*: ~/supabase/*
 theme:

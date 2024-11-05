@@ -42,7 +42,7 @@ aliases: {
 	cr:    "docker compose restart --no-deps"
 	cra:   "chezmoi re-add"
 	cs:    "glow ~/thebengeu/cheatsheet/README.md"
-	csn:   "TERM=wezterm nvim ~/thebengeu/cheatsheet/README.md"
+	csn:   "nvim ~/thebengeu/cheatsheet/README.md"
 	cu:    "cargo uninstall"
 	cup:   "chezmoi update --apply=false; chezmoi init; \(ca)"
 	cx:    "chmod +x"
@@ -74,7 +74,7 @@ aliases: {
 	man: "batman"
 	mf:  "\(m) fullstack"
 	ms:  "\(m) start"
-	n:   "TERM=wezterm nvim"
+	n:   "nvim"
 	nd:  "npm run dev"
 	ni:  "npm install"
 	nr:  "npm run"
@@ -241,7 +241,7 @@ aliases: {
 	for prefix, directory in _gitAliasDirectories {
 		"\(prefix)g":  "git -C \(directory)"
 		"\(prefix)lg": "lazygit --path \(directory)"
-		"\(prefix)n":  "TERM=wezterm nvim --cmd 'cd \(strings.Replace(directory, "$HOME", "~", -1))'"
+		"\(prefix)n":  "nvim --cmd 'cd \(strings.Replace(directory, "$HOME", "~", -1))'"
 		for directoryGitAlias, command in _directoryGitAliases {
 			"\(prefix)g\(directoryGitAlias)": "git -C \(directory) \(command)"
 		}
@@ -255,7 +255,7 @@ aliases: {
 	}
 
 	for appName in _nvimConfigs {
-		"\(appName)": "NVIM_APPNAME=\(appName) TERM=wezterm nvim"
+		"\(appName)": "NVIM_APPNAME=\(appName) nvim"
 	}
 
 	for packageManager in {
@@ -321,7 +321,7 @@ functions: {
 	}
 	nz: {
 		lines: [
-			"cd $directory; TERM=wezterm nvim",
+			"cd $directory; nvim",
 		]
 		parameters: ["directory"]
 	}
