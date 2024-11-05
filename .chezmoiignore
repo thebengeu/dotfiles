@@ -21,6 +21,7 @@ supabase/
 .config/fish/completions/fd.fish
 .config/fish/conf.d/windows.fish
 .ssh/windows.conf
+.wslconfig
 AppData/
 scoop/
 **/*.ps1
