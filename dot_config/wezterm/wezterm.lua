@@ -117,7 +117,7 @@ config.skip_close_confirmation_for_processes_named = {
   "wslhost.exe",
   "zsh.exe",
 }
-config.underline_position = (is_windows and "-0.2" or "-0.1") .. "cell"
+config.underline_position = (is_windows and "-0.2" or "-0.175") .. "cell"
 config.underline_thickness = "0.05cell"
 config.warn_about_missing_glyphs = false
 config.webgpu_power_preference = "HighPerformance"

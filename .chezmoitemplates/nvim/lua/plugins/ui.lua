@@ -129,6 +129,7 @@ return {
         char = "┃",
         enabled = true,
         highlight = util.rainbow_delimiters_hl,
+        show_start = true,
       },
     },
   },
