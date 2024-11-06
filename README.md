@@ -28,6 +28,7 @@ rm /tmp/run_onchange_init.sh
 ## Windows
 
 - Update Microsoft Store apps
+- Install [Aptakube](https://aptakube.com/)
 
 ```powershell
 Set-ExecutionPolicy Unrestricted
