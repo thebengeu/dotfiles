@@ -128,6 +128,9 @@ return {
       scope = {
         char = "┃",
         enabled = true,
+        exclude = {
+          language = { "yaml" },
+        },
         highlight = util.rainbow_delimiters_hl,
         show_start = true,
       },
