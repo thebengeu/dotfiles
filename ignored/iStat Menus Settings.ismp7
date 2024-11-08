@@ -281,7 +281,7 @@
 				<key>source</key>
 				<integer>1</integer>
 				<key>subtype</key>
-				<integer>6</integer>
+				<integer>8</integer>
 				<key>type</key>
 				<integer>7</integer>
 			</dict>
@@ -308,6 +308,8 @@
 				<integer>7</integer>
 			</dict>
 		</array>
+		<key>Profiles.Settings.default.Network.Menubar.Enabled</key>
+		<integer>0</integer>
 		<key>Profiles.Settings.default.Network.Menubar.Items</key>
 		<array>
 			<dict>
