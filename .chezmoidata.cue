@@ -65,6 +65,7 @@ aliases: {
 	j:               "just"
 	jd:              "just dev"
 	k:               "kubectl"
+	ka:              "kubectl apply -f"
 	kc:              "kubectl create -f"
 	lc:              "supa-admin-cli --config ~/.supa-admin-cli.local"
 	lg:              "lazygit"
