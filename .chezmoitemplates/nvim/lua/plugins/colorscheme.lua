@@ -15,17 +15,6 @@ return util.map({
   {
     "uloco/bluloco.nvim",
     dependencies = "rktjmp/lush.nvim",
-    highlights = function()
-      return rainbow_delimiter_highlights({
-        vim.g.terminal_color_1,
-        vim.g.terminal_color_11,
-        vim.g.terminal_color_4,
-        vim.g.terminal_color_3,
-        vim.g.terminal_color_2,
-        vim.g.terminal_color_5,
-        vim.g.terminal_color_6,
-      })
-    end,
     opts = {
       italics = true,
       terminal = true,
@@ -299,17 +288,6 @@ return util.map({
   {
     "rose-pine/neovim",
     name = "rose-pine",
-    opts = {
-      highlight_groups = rainbow_delimiter_highlights({
-        "love",
-        "gold",
-        "pine",
-        "rose",
-        "foam",
-        "iris",
-        "highlight_high",
-      }),
-    },
   },
   {
     "craftzdog/solarized-osaka.nvim",
