@@ -254,41 +254,6 @@ return vim.list_extend(
       cond = not vim.g.vscode,
     },
     {
-      "hrsh7th/nvim-cmp",
-      opts = function(_, opts)
-        local cmp = require("cmp")
-
-        opts.experimental = {
-          ghost_text = true,
-        }
-        opts.mapping = vim.tbl_extend("error", opts.mapping, {
-          ["<Tab>"] = cmp.mapping(function(fallback)
-            local luasnip = require("luasnip")
-
-            if luasnip.locally_jumpable(1) then
-              luasnip.jump(1)
-            else
-              fallback()
-            end
-          end, { "i", "s" }),
-          ["<S-Tab>"] = cmp.mapping(function(fallback)
-            local luasnip = require("luasnip")
-
-            if luasnip.locally_jumpable(-1) then
-              luasnip.jump(-1)
-            else
-              fallback()
-            end
-          end, { "i", "s" }),
-        })
-        table.insert(opts.sources, 1, {
-          name = "supermaven",
-          group_index = 1,
-          priority = 100,
-        })
-      end,
-    },
-    {
       "chrisgrieser/nvim-scissors",
       keys = {
         {
@@ -412,14 +377,6 @@ return vim.list_extend(
       },
       opts = {
         hide_up_to_date = true,
-      },
-    },
-    {
-      "supermaven-inc/supermaven-nvim",
-      event = "InsertEnter",
-      opts = {
-        disable_inline_completion = true,
-        disable_keymaps = true,
       },
     },
     {
