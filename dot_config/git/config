@@ -24,6 +24,7 @@
 [diff]
 	algorithm = histogram
 	colorMoved = default
+	external = difft --color=always
 [init]
 	defaultBranch = master
 	templateDir = ~/.config/git/template
