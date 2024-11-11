@@ -6,32 +6,15 @@ return {
     opts = {
       options = {
         always_show_bufferline = true,
+        offsets = {},
+        show_buffer_close_icons = false,
+        show_close_icon = false,
       },
     },
   },
   {
     "nvimdev/dashboard-nvim",
     enabled = false,
-  },
-  {
-    "folke/edgy.nvim",
-    opts = {
-      animate = { enabled = false },
-      keys = {
-        ["<A-h>"] = function(win)
-          win:resize("width", -2)
-        end,
-        ["<A-j>"] = function(win)
-          win:resize("height", -2)
-        end,
-        ["<A-k>"] = function(win)
-          win:resize("height", 2)
-        end,
-        ["<A-l>"] = function(win)
-          win:resize("width", 2)
-        end,
-      },
-    },
   },
   {
     "jinh0/eyeliner.nvim",
@@ -63,7 +46,6 @@ return {
         "help",
         "neo-tree",
         "qf",
-        "toggleterm",
         "trouble",
       },
     },

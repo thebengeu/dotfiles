@@ -296,21 +296,6 @@ return {
     vscode = true,
   },
   {
-    "akinsho/toggleterm.nvim",
-    keys = {
-      {
-        "<C-/>",
-        function()
-          require("toggleterm").toggle(vim.v.count1, nil, LazyVim.root())
-        end,
-      },
-    },
-    opts = {
-      persist_mode = false,
-      shell = "fish",
-    },
-  },
-  {
     "mbbill/undotree",
     cmd = "UndotreeToggle",
   },
