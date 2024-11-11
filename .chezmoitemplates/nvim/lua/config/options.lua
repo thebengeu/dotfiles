@@ -1,4 +1,3 @@
-local LazyVim = require("lazyvim.util")
 local util = require("util")
 
 vim.api.nvim_create_user_command("Search", function(opts)
