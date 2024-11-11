@@ -218,7 +218,7 @@ aliases: {
 		ghp: "gh poi"
 		l:   "lg"
 		lm:  "lm"
-		lp:  "lg --patch"
+		lp:  "log --ext-diff --patch"
 		P:   "push"
 		p:   "pull"
 		pf:  "pf"

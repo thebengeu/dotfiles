@@ -1,6 +1,6 @@
 git:
   paging:
-    pager: delta --paging never
+    externalDiffCommand: difft
 gui:
   showBottomLine: false
   # showIcons: true

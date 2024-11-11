@@ -126,10 +126,10 @@ end
 local termopen_git_diff = function(root, term, no_changes)
   vim.api.nvim_buf_call(term.bufnr, function()
     vim.fn.termopen(
-      "git diff "
-        .. (no_changes and "@^" or "--cached")
-        .. " | delta --pager never"
-        .. (vim.o.columns > 160 and " --side-by-side" or ""),
+      "git "
+        .. (vim.o.columns > 160 and "" or "-c diff.external='difft --display inline' ")
+        .. "diff "
+        .. (no_changes and "@^" or "--cached"),
       {
         cwd = root,
         on_stdout = function()
