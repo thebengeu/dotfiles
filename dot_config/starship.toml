@@ -9,6 +9,8 @@ symbol = '☁️ '
 [aws.profile_aliases]
 supabase = 'prod'
 supabase-dev = 'dev'
+supabase-dev-beng = 'beng'
+supabase-prototype = 'prototype'
 
 [bun]
 disabled = true
