@@ -143,6 +143,7 @@ return {
         {
           filter = {
             any = {
+              { find = "%d+ change" },
               { find = "%d+L, %d+B" },
               { kind = "search_count" },
             },
