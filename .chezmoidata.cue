@@ -19,7 +19,6 @@ nonExpandedAliases: {
 }
 
 aliases: {
-	_cheatsheetPath: "~/thebengeu/cheatsheet/README.md"
 	"-":             "cd -"
 	apb:             "AWS_PROFILE=supabase-dev-beng"
 	apd:             "AWS_PROFILE=supabase-dev"
@@ -43,11 +42,13 @@ aliases: {
 	clr:             "docker run --detach --name colab --publish 127.0.0.1:9000:8080 asia-docker.pkg.dev/colab-images/public/runtime"
 	cr:              "docker compose restart --no-deps"
 	cra:             "chezmoi re-add"
+	_cheatsheetPath: "~/thebengeu/cheatsheet/README.md"
 	cs:              "glow \(_cheatsheetPath)"
 	csn:             "nvim \(_cheatsheetPath)"
 	cu:              "cargo uninstall"
 	cup:             "chezmoi update --apply=false; chezmoi init; \(ca)"
 	cx:              "chmod +x"
+	da:              "direnv allow"
 	dc:              "supa-admin-cli --config ~/.supa-admin-cli.dev"
 	dh:              "\(dc) ssh -p"
 	dp:              "\(dc) psql --disable-statement-tracking -p"
@@ -104,6 +105,7 @@ aliases: {
 	rgb:             "batgrep"
 	rm:              "trash"
 	scc:             #"scc --not-match "package-lock.json|pnpm-lock.yaml""#
+	ss:              "aws ssm start-session --target"
 	st:              "speedtest"
 	t:               "tsx"
 	tb:              "time bash -i -c exit"
