@@ -153,9 +153,6 @@ return {
           },
         },
       },
-      presets = {
-        command_palette = false,
-      },
     },
   },
   {
