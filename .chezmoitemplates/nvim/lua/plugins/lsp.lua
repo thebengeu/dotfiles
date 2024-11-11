@@ -61,11 +61,12 @@ return {
     "mfussenegger/nvim-lint",
     opts = {
       linters = {
-        markdownlint = {
+        ["markdownlint-cli2"] = {
           condition = function(ctx)
             local filename = ctx.filename
 
-            return filename:match("/.local/share/chezmoi/")
+            return not filename:match("/Obsidian/")
+              or filename:match("/.local/share/chezmoi/")
               or filename:match("/supabase/")
               or filename:match("/thebengeu/")
           end,
