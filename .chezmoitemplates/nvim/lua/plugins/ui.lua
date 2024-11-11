@@ -179,7 +179,6 @@ return {
   },
   {
     "lewis6991/satellite.nvim",
-    enabled = vim.version().minor >= 10,
     event = "LazyFile",
     init = function()
       require("lazyvim.util").on_load("which-key.nvim", function()
