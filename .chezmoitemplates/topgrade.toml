@@ -1,6 +1,6 @@
 [commands]
 corepack = "corepack prepare pnpm@latest --activate"
-yazi = "ya pack -u"
+yazi = "ya pack --upgrade"
 [misc]
 assume_yes = true
 disable = ["chezmoi", "containers", "gcloud", "vim", "wsl"]
