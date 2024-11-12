@@ -96,12 +96,14 @@ return {
       },
     },
     keys = function()
-      local link_using_default_branch = function(link_opts)
+      local link_using_default_branch = function(action)
         return function()
           local current_branch = util.git_stdout({ "branch", "--show-current" })
 
           util.git_stdout({ "sw" })
-          require("gitlinker").link(link_opts)
+          require("gitlinker").link({
+            action = require("gitlinker.actions")[action],
+          })
           util.git_stdout({ "sw", current_branch })
         end
       end
@@ -109,15 +111,13 @@ return {
       return {
         {
           "<leader>gy",
-          link_using_default_branch(nil),
+          link_using_default_branch("clipboard"),
           mode = { "n", "x" },
           desc = "Yank permalink",
         },
         {
           "<leader>gY",
-          link_using_default_branch({
-            action = require("gitlinker.actions").system,
-          }),
+          link_using_default_branch("system"),
           mode = { "n", "x" },
           desc = "Open permalink",
         },
