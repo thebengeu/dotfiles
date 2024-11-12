@@ -83,6 +83,7 @@ aliases: {
 	ni:              "npm install"
 	nr:              "npm run"
 	nrm:             "npm remove"
+	o:               "operator-sdk"
 	os:              #"export COMMAND="$(op signin)"; test -n "$COMMAND" && eval $COMMAND && export OP_TIME=$(date +%s)"#
 	p:               "pnpm"
 	pR:              "git push && gh pr create --fill-first && gh pr view --web"
