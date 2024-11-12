@@ -250,10 +250,6 @@ return vim.list_extend(
       },
     },
     {
-      "echasnovski/mini.comment",
-      cond = not vim.g.vscode,
-    },
-    {
       "chrisgrieser/nvim-scissors",
       keys = {
         {
@@ -326,10 +322,6 @@ return vim.list_extend(
       opts = {
         multiline_threshold = 1,
       },
-    },
-    {
-      "JoosepAlviste/nvim-ts-context-commentstring",
-      cond = not vim.g.vscode,
     },
     {
       "chrisgrieser/nvim-various-textobjs",
