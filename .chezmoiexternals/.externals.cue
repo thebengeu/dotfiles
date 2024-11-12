@@ -38,6 +38,9 @@ for gitRepo in _zshGitRepos {
 ".local/bin/cht": #ExecutableFile & {
 	url: "https://cht.sh/:cht.sh"
 }
+".local/bin/k8s-cilium-exec.sh": #ExecutableFile & {
+	url: "https://raw.githubusercontent.com/cilium/cilium/main/contrib/k8s/k8s-cilium-exec.sh"
+}
 "repos/git-fuzzy": #GitRepo & {
 	_gitRepo: "bigH/git-fuzzy"
 }
@@ -56,9 +59,8 @@ for gitRepo in _zshGitRepos {
 		".config/kitty/relative_resize.py": #File & {
 			url: "https://raw.githubusercontent.com/mrjones2014/smart-splits.nvim/master/kitty/relative_resize.py"
 		}
-		".local/bin/virtctl": #File & {
-			executable: true
-			url:        "https://github.com/kubevirt/kubevirt/releases/download/v1.4.0-rc.0/virtctl-v1.4.0-rc.0-darwin-arm64"
+		".local/bin/virtctl": #ExecutableFile & {
+			url: "https://github.com/kubevirt/kubevirt/releases/download/v1.4.0-rc.0/virtctl-v1.4.0-rc.0-darwin-arm64"
 		}
 	}
 	linux: darwin & {
