@@ -150,10 +150,12 @@ aliases: {
 		}
 		darwin: _non_windows & {
 			bbd: "sh -c 'cd ~/.local/share/chezmoi/ignored && brew bundle dump --file Brewfile --force && git diff Brewfile'"
+			bi:  "brew install"
 			bic: "brew install --cask"
 			bif: "brew info"
+			bs:  "brew search"
+			bu:  "brew uninstall --zap"
 			but: "brew untap"
-			buz: "brew uninstall --zap"
 			crv: #"cp ~/Library/Application\ Support/Code/User/keybindings.json ~/.local/share/chezmoi/.chezmoitemplates/code; sed -E 's/(Theme.*").+(",)/\1\2/g' ~/Library/Application\ Support/Code/User/settings.json > ~/.local/share/chezmoi/.chezmoitemplates/code/settings.json"#
 			meb: #"/usr/bin/open -a /Applications/Microsoft\ Edge\ Beta.app --args --proxy-server=in.he.sg:8888"#
 			med: #"/usr/bin/open -a /Applications/Microsoft\ Edge\ Dev.app --args --proxy-server=id.he.sg:8888"#
@@ -170,13 +172,14 @@ aliases: {
 		}
 		windows: _non_darwin & {
 			chi: "gsudo choco install"
-			chs: "choco search"
 			chu: "gsudo choco uninstall"
 			crv: #"cp ~/AppData/Roaming/Code/User/keybindings.json ~/.local/share/chezmoi/.chezmoitemplates/code; sed -E 's/(Theme.*").+(",)/\1\2/g' ~/AppData/Roaming/Code/User/settings.json > ~/.local/share/chezmoi/.chezmoitemplates/code/settings.json"#
 			dpw: #"powershell -c "Invoke-Expression (\"pwsh \" + (New-Object -ComObject WScript.Shell).CreateShortcut(\"\$Env:ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2022\Visual Studio Tools\Developer PowerShell for VS 2022.lnk\").Arguments.Replace('\"\"\"', \"'\"))""#
 			fd:  "\(_non_windows.fd) --path-separator '//'"
 			rns: #"rm -r "$(nvim-stdpath data)\sessions""#
+			wi:  "winget install"
 			wsk: "wezterm show-keys --lua"
+			wu:  "winget uninstall"
 		}
 	}[_os]
 
@@ -276,21 +279,6 @@ aliases: {
 	for appName in _nvimConfigs {
 		"\(appName)": "NVIM_APPNAME=\(appName) nvim"
 	}
-
-	for packageManager in {
-		darwin: [
-			"brew",
-		]
-		linux: []
-		windows: [
-			"scoop",
-			"winget",
-		]
-	}[_os] {
-		for subCommand in ["install", "list", "search", "uninstall"] {
-			"\(regexp.Find("^.", packageManager)+regexp.Find("^.", subCommand))": "\(packageManager) \(subCommand)"
-		}
-	}
 }
 environmentVariables: {
 	BAT_THEME:                  "Catppuccin-mocha"
@@ -350,12 +338,6 @@ functions: {
 		]
 		parameters: ["log_file"]
 	}
-	sic: {
-		lines: [
-			#"aws ec2-instance-connect ssh --instance-id $(aws ec2 describe-instances --filters "Name=tag:Name,Values=*-db-$id" --output text --query 'Reservations[*].Instances[*].InstanceId') --os-user ubuntu"#,
-		]
-		parameters: ["id"]
-	}
 
 	{
 		darwin: {}
@@ -374,7 +356,7 @@ functions: {
 			}
 		}
 		windows: {
-			wcss: {
+			pks: {
 				lines: [
 					"parallel {} search $package ::: choco scoop winget",
 				]
