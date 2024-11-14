@@ -80,6 +80,9 @@ format = '[$symbol$stack]($style) '
 [python]
 disabled = true
 
+[rust]
+disabled = true
+
 [username]
 disabled = true
 
