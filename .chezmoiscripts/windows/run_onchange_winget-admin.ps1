@@ -23,6 +23,7 @@ $wingetPackageIds = @(
   'Google.Chrome'
   'schollz.croc'
   'dandavison.delta'
+  'Wilfred.difftastic'
   'Discord.Discord'
   'Docker.DockerDesktop'
   'muesli.duf'
