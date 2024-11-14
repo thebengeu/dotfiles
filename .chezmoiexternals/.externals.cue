@@ -59,9 +59,6 @@ for gitRepo in _zshGitRepos {
 		".config/kitty/relative_resize.py": #File & {
 			url: "https://raw.githubusercontent.com/mrjones2014/smart-splits.nvim/master/kitty/relative_resize.py"
 		}
-		".local/bin/virtctl": #ExecutableFile & {
-			url: "https://github.com/kubevirt/kubevirt/releases/download/v1.4.0-rc.0/virtctl-v1.4.0-rc.0-darwin-arm64"
-		}
 	}
 	linux: darwin & {
 		".local/bin/lmn": #ArchiveFile & {
