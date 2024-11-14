@@ -9,6 +9,7 @@ packages=(
   croc
   dbmate
   delta
+  difftastic
   dsq
   dua
   duf
