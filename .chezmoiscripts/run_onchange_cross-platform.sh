@@ -45,3 +45,5 @@ COREPACK_ENABLE_DOWNLOAD_PROMPT=0 pnpm add --global \
 if hash ya 2>/dev/null; then
   ya pack --add yazi-rs/flavors:catppuccin-mocha 2>/dev/null || true
 fi
+
+rustup component add rust-analyzer
