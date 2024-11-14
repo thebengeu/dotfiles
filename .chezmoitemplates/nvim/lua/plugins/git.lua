@@ -110,16 +110,28 @@ return {
 
       return {
         {
+          "<leader>go",
+          link_using_default_branch("system"),
+          mode = { "n", "x" },
+          desc = "Open permalink (default branch)",
+        },
+        {
+          "<leader>gO",
+          "<cmd>GitLink!<cr>",
+          mode = { "n", "x" },
+          desc = "Open permalink (current branch)",
+        },
+        {
           "<leader>gy",
           link_using_default_branch("clipboard"),
           mode = { "n", "x" },
-          desc = "Yank permalink",
+          desc = "Yank permalink (default branch)",
         },
         {
           "<leader>gY",
-          link_using_default_branch("system"),
+          "<cmd>GitLink<cr>",
           mode = { "n", "x" },
-          desc = "Open permalink",
+          desc = "Yank permalink (current branch)",
         },
       }
     end,
