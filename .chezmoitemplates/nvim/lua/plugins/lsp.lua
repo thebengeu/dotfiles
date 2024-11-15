@@ -119,71 +119,62 @@ return {
       table.insert(keys, { "gr", false })
       table.insert(keys, { "gt", false })
     end,
-    opts = {
-      servers = vim.tbl_extend("error", {
-        clangd = {
-          mason = false,
-        },
-        dagger = {},
-        graphql = {},
-        lua_ls = {
-          settings = {
-            Lua = {
-              diagnostics = {
-                globals = { "hs", "spoon", "vim" },
-              },
-            },
+    opts = function(_, opts)
+      opts.servers.clangd.mason = false
+      opts.servers.lua_ls.settings.Lua =
+        vim.tbl_extend("error", opts.servers.lua_ls.settings.Lua, {
+          diagnostics = {
+            globals = { "hs", "spoon", "vim" },
           },
-        },
-        powershell_es = {
-          enabled = vim.fn.executable("pwsh") == 1,
-        },
-        pyright = {
-          on_attach = function(client)
-            client.handlers["textDocument/publishDiagnostics"] = function(
+        })
+      opts.servers.pyright = vim.tbl_extend("error", opts.servers.pyright, {
+        on_attach = function(client)
+          client.handlers["textDocument/publishDiagnostics"] = function(
+            _,
+            result,
+            context,
+            config
+          )
+            local diagnostics = {}
+
+            for _, diagnostic in ipairs(result.diagnostics) do
+              if
+                not string.match(diagnostic.message, '"_.+" is not accessed')
+              then
+                table.insert(diagnostics, diagnostic)
+              end
+            end
+
+            result.diagnostics = diagnostics
+
+            vim.lsp.diagnostic.on_publish_diagnostics(
               _,
               result,
               context,
               config
             )
-              local diagnostics = {}
+          end
+        end,
+      })
+      opts.servers.vtsls.settings.typescript.inlayHints.functionLikeReturnTypes.enabled =
+        false
+      opts.servers.vtsls.settings.typescript.inlayHints.parameterTypes.enabled =
+        false
+      opts.servers.yamlls =
+        require("schema-companion").setup_client(opts.servers.yamlls)
 
-              for _, diagnostic in ipairs(result.diagnostics) do
-                if
-                  not string.match(diagnostic.message, '"_.+" is not accessed')
-                then
-                  table.insert(diagnostics, diagnostic)
-                end
-              end
-
-              result.diagnostics = diagnostics
-
-              vim.lsp.diagnostic.on_publish_diagnostics(
-                _,
-                result,
-                context,
-                config
-              )
-            end
-          end,
+      opts.servers = vim.tbl_extend("error", opts.servers, {
+        dagger = {},
+        graphql = {},
+        powershell_es = {
+          enabled = vim.fn.executable("pwsh") == 1,
         },
         -- typos_lsp = {},
-        vtsls = {
-          settings = {
-            typescript = {
-              inlayHints = {
-                functionLikeReturnTypes = { enabled = false },
-                parameterTypes = { enabled = false },
-              },
-            },
-          },
-        },
-      }, jit.os == "Linux" and { ansiblels = {} } or {}),
-      setup = {
-        clangd = function(_, opts)
-          opts.capabilities.offsetEncoding = { "utf-16" }
-        end,
-      },
-    },
+      }, jit.os == "Linux" and { ansiblels = {} } or {})
+
+      opts.setup.clangd = function(_, clangd_opts)
+        clangd_opts.capabilities.offsetEncoding = { "utf-16" }
+      end
+    end,
   },
 }

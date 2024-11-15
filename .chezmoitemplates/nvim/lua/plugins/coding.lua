@@ -23,14 +23,6 @@ return vim.list_extend(
       ft = { "c", "cpp" },
     },
     {
-      "zbirenbaum/copilot-cmp",
-      cond = false,
-    },
-    {
-      "zbirenbaum/copilot.lua",
-      cond = false,
-    },
-    {
       "andrewferrier/debugprint.nvim",
       cmd = {
         "ToggleCommentDebugPrints",
@@ -370,6 +362,23 @@ return vim.list_extend(
       opts = {
         hide_up_to_date = true,
       },
+    },
+    {
+      "cenk1cenk2/schema-companion.nvim",
+      dependencies = {
+        "nvim-lua/plenary.nvim",
+        "nvim-telescope/telescope.nvim",
+      },
+      opts = function()
+        return {
+          enable_telescope = true,
+          matchers = {
+            require("schema-companion.matchers.kubernetes").setup({
+              version = "master",
+            }),
+          },
+        }
+      end,
     },
     {
       "axelvc/template-string.nvim",
