@@ -128,6 +128,16 @@ function M.apply_to_config(config)
       ),
     },
     {
+      key = "a",
+      mods = "SHIFT|ALT",
+      action = activate_or_spawn_pane(wezterm.hostname(), "local"),
+    },
+    {
+      key = "a",
+      mods = "ALT|CTRL|SUPER",
+      action = split_pane("local"),
+    },
+    {
       key = "d",
       mods = "SHIFT|ALT",
       action = activate_or_spawn_pane("dev"),
@@ -138,14 +148,24 @@ function M.apply_to_config(config)
       action = split_pane("SSH:dev"),
     },
     {
-      key = "a",
+      key = "e",
       mods = "SHIFT|ALT",
-      action = activate_or_spawn_pane(wezterm.hostname(), "local"),
+      action = activate_or_spawn_pane("dev-wsl"),
     },
     {
-      key = "a",
+      key = "e",
       mods = "ALT|CTRL|SUPER",
-      action = split_pane("local"),
+      action = split_pane("SSH:dev-wsl"),
+    },
+    {
+      key = "h",
+      mods = "SHIFT|ALT",
+      action = activate_or_spawn_pane("hc"),
+    },
+    {
+      key = "h",
+      mods = "ALT|CTRL|SUPER",
+      action = split_pane("SSH:hc"),
     },
     {
       key = "m",
@@ -176,16 +196,6 @@ function M.apply_to_config(config)
       key = "s",
       mods = "ALT|CTRL|SUPER",
       action = split_pane("SSH:staging"),
-    },
-    {
-      key = "v",
-      mods = "SHIFT|ALT",
-      action = activate_or_spawn_pane("dev-wsl"),
-    },
-    {
-      key = "v",
-      mods = "ALT|CTRL|SUPER",
-      action = split_pane("SSH:dev-wsl"),
     },
     {
       key = "w",
