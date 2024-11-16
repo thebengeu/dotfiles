@@ -104,6 +104,7 @@ aliases: {
 	prv:             "git push && gh pr create --draft --fill-verbose --title"
 	prw:             "gh pr view --web"
 	psi:             'pulumi stack init --copy-config-from'
+	psr:             "pulumi stack rm --force"
 	pss:             "pulumi stack select $(select-supabase-stack)"
 	pu:              "pulumi up"
 	pus:             "pulumi up --skip-preview"
