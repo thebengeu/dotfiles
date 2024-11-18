@@ -1,3 +1,0 @@
-export AWS_PROFILE=supabase-dev-beng
-export AWS_REGION=ap-southeast-1
-export KUBECONFIG=~/.kube/eksctl/clusters/eksctl-apse1-beng
