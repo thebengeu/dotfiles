@@ -126,29 +126,11 @@ end
 local termopen_git_diff = function(root, term, no_changes)
   vim.api.nvim_buf_call(term.bufnr, function()
     vim.fn.termopen(
-      "git "
+      "git --no-pager "
         .. (vim.o.columns > 160 and "" or "-c diff.external='difft --display inline' ")
         .. "diff "
         .. (no_changes and "@^" or "--cached"),
-      {
-        cwd = root,
-        on_stdout = function()
-          local first_visible_line_num = vim.fn.line("w0", term.winid)
-
-          if
-            first_visible_line_num
-            and vim.api.nvim_buf_get_lines(
-                term.bufnr,
-                first_visible_line_num - 1,
-                first_visible_line_num,
-                true
-              )[1]
-              == ""
-          then
-            win_exec_normal(term.winid, "<C-e>")
-          end
-        end,
-      }
+      { cwd = root }
     )
   end)
 end
