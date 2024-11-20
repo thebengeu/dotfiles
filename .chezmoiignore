@@ -7,7 +7,7 @@ README.md
 {{ end }}
 
 .chezmoiscripts/non-windows/*
-.config/{bat,broot,btop,fd,gitui,glow,gup,helix,lazygit,msmtp,nushell,nvim,sqlfluff,tealdeer,tmux}/
+.config/{bat,broot,btop,fd,gitui,glow,gup,helix,lazygit,msmtp,nushell,nvim,sqlfluff,tealdeer,tmux,yamlfmt,yazi}/
 .config/fish/completions/pipx.fish
 .config/fish/completions/qmk.fish
 .config/topgrade.toml
