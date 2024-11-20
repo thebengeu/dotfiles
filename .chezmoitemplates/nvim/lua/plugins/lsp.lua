@@ -47,7 +47,6 @@ return {
         toml = { "taplo" },
         sh = { "shellharden", "shellcheck", "shfmt" },
         sql = { "sql_formatter" },
-        yaml = { "yamlfmt" },
         ["_"] = { "trim_newlines", "trim_whitespace" },
       })
 
@@ -95,7 +94,6 @@ return {
         "sql-formatter",
         "taplo",
         "typos",
-        "yamlfmt",
         "yamllint",
       })
       if jit.os == "Linux" then
