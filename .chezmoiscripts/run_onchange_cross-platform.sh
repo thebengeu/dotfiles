@@ -26,6 +26,7 @@ pipx install khal
 pipx install kube-shell
 pipx install neovim-remote
 pipx install pip-upgrader
+pipx install shell-gpt
 pipx install sqlfluff
 pipx install thefuck
 pipx install tmuxp
