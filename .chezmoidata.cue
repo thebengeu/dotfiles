@@ -1,6 +1,7 @@
 package dotfiles
 
 import (
+	"list"
 	"regexp"
 	"strings"
 )
@@ -380,7 +381,7 @@ if strings.HasSuffix(_hostname, "-wsl") {
 		"/mnt/c/Program\\ Files\\ \\(x86\\)/nvim/bin",
 	]
 }
-paths: [
+paths: list.Concat([[
 	"$PNPM_HOME",
 	"~/.cargo/bin",
 	"~/.krew/bin",
@@ -389,20 +390,20 @@ paths: [
 	"~/go/bin",
 	"~/supabase/supa-admin-cli/bin",
 	"~/thebengeu/scripts",
-] + {
+], {
 	darwin: [
 		"~/Library/Python/3.11/bin",
 		"/opt/homebrew/opt/curl/bin",
 		"/usr/local/bin",
 	]
-	linux: [
+	linux: list.Concat([[
 		"~/.pulumi/bin",
 		"~/.temporalio/bin",
 		"$FLYCTL_INSTALL/bin",
 		"$PYENV_ROOT/bin",
-	] + _wsl_paths
-	windows: [
+	], _wsl_paths])
+	windows: list.Concat([[
 		"~/AppData/Roaming/Python/Python312/Scripts",
 		"/usr/bin",
-	] + _windows_arm64_paths
-}[_os]
+	], _windows_arm64_paths])
+}[_os]])
