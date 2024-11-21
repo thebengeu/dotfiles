@@ -218,14 +218,8 @@ return {
   },
   {
     "mg979/vim-visual-multi",
-    init = function()
-      vim.g.VM_maps = {
-        ["Find Under"] = "<C-g>",
-        ["Find Subword Under"] = "<C-g>",
-      }
-    end,
     keys = {
-      "<C-g>",
+      "<C-n>",
       "<C-Down>",
       "<C-Up>",
       "\\\\",
