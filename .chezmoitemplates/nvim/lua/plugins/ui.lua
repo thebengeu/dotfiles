@@ -17,6 +17,32 @@ return {
     enabled = false,
   },
   {
+    "folke/edgy.nvim",
+    opts = {
+      animate = { enabled = false },
+      keys = {
+        ["<A-h>"] = function(win)
+          win:resize(
+            "width",
+            require("edgy").get_win().view.edgebar.pos == "right" and 2 or -2
+          )
+        end,
+        ["<A-j>"] = function(win)
+          win:resize("height", -2)
+        end,
+        ["<A-k>"] = function(win)
+          win:resize("height", 2)
+        end,
+        ["<A-l>"] = function(win)
+          win:resize(
+            "width",
+            require("edgy").get_win().view.edgebar.pos == "right" and -2 or 2
+          )
+        end,
+      },
+    },
+  },
+  {
     "jinh0/eyeliner.nvim",
     config = function(_, opts)
       require("eyeliner").setup(opts)
