@@ -345,10 +345,6 @@ return {
     "mbbill/undotree",
     cmd = "UndotreeToggle",
   },
-  {
-    "dstein64/vim-startuptime",
-    enabled = false,
-  },
   { "wakatime/vim-wakatime" },
   {
     "folke/which-key.nvim",
