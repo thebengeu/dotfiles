@@ -13,10 +13,6 @@ return {
     },
   },
   {
-    "nvimdev/dashboard-nvim",
-    enabled = false,
-  },
-  {
     "folke/edgy.nvim",
     opts = {
       animate = { enabled = false },
