@@ -33,7 +33,7 @@ scoop/
 {{ else }}
 .chezmoiscripts/darwin/*
 .config/karabiner.edn
-.config/kitty/
+.config/{borders,kitty}/
 .hammerspoon/
 .homebrew/
 .local/bin/format-clipboard
