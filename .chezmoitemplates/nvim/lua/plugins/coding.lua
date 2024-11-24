@@ -198,7 +198,7 @@ return vim.list_extend(
     },
     {
       "chrisgrieser/nvim-chainsaw",
-      cmd = "ChainSaw",
+      cmd = "Chainsaw",
       opts = {},
     },
     {
