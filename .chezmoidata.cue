@@ -258,6 +258,8 @@ aliases: {
 		sP:  "stash push"
 		sp:  "stash pop"
 		sw:  "sw"
+		wa:  "worktree add"
+		wr:  "worktree remove"
 	}
 
 	for gitAlias, command in _directoryGitAliases & _gitAliases {
