@@ -86,7 +86,6 @@ if (!$isMobile)
   $wingetPackageIds += @(
     'BinaryFortress.DisplayFusion'
     'Kensington.KensingtonWorks'
-    'Nvidia.GeForceExperience'
     'EclipseFoundation.Mosquitto'
     'xanderfrangos.twinkletray'
   )
