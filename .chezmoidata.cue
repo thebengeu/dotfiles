@@ -210,6 +210,7 @@ aliases: {
 		p: "$HOME/supabase/postgres"
 		q: "$HOME/thebengeu/qmk_userspace"
 		w: "$HOME/supabase/supabase"
+		x: "$HOME/supabase/infrastructure-external"
 		z: "$HOME/thebengeu/zmk-config"
 	}
 	_rgAliasDirectories: _gitAliasDirectories & {
