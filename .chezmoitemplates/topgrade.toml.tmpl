@@ -1,9 +1,12 @@
 [commands]
 corepack = "corepack prepare pnpm@latest --activate"
+{{- if eq .chezmoi.os "windows" }}
+winget = "gsudo winget upgrade --all"
+{{- end }}
 yazi = "ya pack --upgrade"
 [misc]
 assume_yes = true
-disable = ["chezmoi", "containers", "gcloud", "vim", "wsl"]
+disable = ["chezmoi", "containers", "gcloud", "vim", "winget", "wsl"]
 no_retry = true
 [npm]
 use_sudo = true
