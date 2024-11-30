@@ -1,6 +1,6 @@
 git:
   paging:
-    externalDiffCommand: difft
+    externalDiffCommand: difft --color always
 gui:
   showBottomLine: false
   # showIcons: true
