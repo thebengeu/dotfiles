@@ -47,7 +47,6 @@ $wingetPackageIds = @(
   'Ookla.Speedtest.CLI'
   'Spotify.Spotify'
   'commercialhaskell.stack'
-  'StartIsBack.StartAllBack'
   'Valve.Steam'
   'LizardByte.Sunshine'
   'XAMPPRocky.Tokei'
