@@ -330,7 +330,7 @@
 		<key>Status.Version.Last</key>
 		<real>7.0100002288818359</real>
 		<key>Time.Global.Events</key>
-		<integer>2</integer>
+		<integer>0</integer>
 		<key>Time.Menu.Calendar.ShowWeeks</key>
 		<integer>0</integer>
 		<key>Time.Menu.Calendar.Type</key>
