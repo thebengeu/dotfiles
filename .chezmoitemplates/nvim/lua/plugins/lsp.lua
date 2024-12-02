@@ -78,6 +78,7 @@ return {
         },
       },
       linters_by_ft = {
+        go = { "golangcilint" },
         python = { "mypy" },
         yaml = { "yamllint" },
       },
@@ -88,6 +89,7 @@ return {
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
         "fixjson",
+        "golangci-lint",
         "mypy",
         "prettierd",
         "shellharden",
