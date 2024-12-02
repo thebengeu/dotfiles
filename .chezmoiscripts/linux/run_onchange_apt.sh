@@ -13,7 +13,6 @@ sudo apt --assume-yes install \
   libxcb-shape0-dev \
   libxcb-xfixes0-dev \
   lua5.4 \
-  luarocks \
   make \
   moreutils \
   mosh \
