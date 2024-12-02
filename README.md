@@ -29,6 +29,8 @@ rm /tmp/run_onchange_init.sh
 
 - Update Microsoft Store apps
 - Install [Aptakube](https://aptakube.com/)
+- Install [ManicTime Server](https://www.manictime.com/download/server)
+- Install [Rabby Desktop](https://rabby.io/?platform=desktop)
 
 ```powershell
 Set-ExecutionPolicy Unrestricted
