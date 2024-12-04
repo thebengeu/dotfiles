@@ -1,4 +1,5 @@
 [commands]
+chezmoi = "chezmoi update --apply=false; chezmoi init; chezmoi apply --keep-going --exclude scripts; chezmoi apply --keep-going --include scripts"
 corepack = "corepack prepare pnpm@latest --activate"
 {{- if eq .chezmoi.os "windows" }}
 winget = "gsudo winget upgrade --all"
