@@ -100,7 +100,7 @@ end
 
 local get_directory = function(picker_name, cwd)
   return function()
-    cwd = cwd or vim.loop.cwd()
+    cwd = cwd or vim.uv.cwd()
 
     require("telescope.pickers")
       .new({}, {

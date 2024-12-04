@@ -64,10 +64,10 @@ M.async_run = function(command, opts, callback)
 
   add_lines_to_qf(table.concat(command, " "):gsub("^sh %-c ", ""), qf_item)
 
-  local start_time = vim.loop.hrtime()
+  local start_time = vim.uv.hrtime()
 
   return vim.system(command, opts, function(system_obj)
-    local end_time = vim.loop.hrtime()
+    local end_time = vim.uv.hrtime()
 
     vim.schedule(function()
       if system_obj.code ~= 0 then
@@ -171,11 +171,11 @@ M.sync_run = function(command, opts)
 
   add_lines_to_qf(table.concat(command, " "):gsub("^sh %-c ", ""), qf_item)
 
-  local start_time = vim.loop.hrtime()
+  local start_time = vim.uv.hrtime()
 
   local system_obj = vim.system(command, opts):wait()
 
-  local end_time = vim.loop.hrtime()
+  local end_time = vim.uv.hrtime()
 
   if system_obj.code == 0 then
     vim.notify(

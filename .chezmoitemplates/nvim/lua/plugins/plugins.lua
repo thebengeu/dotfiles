@@ -6,7 +6,7 @@ local WSL_WINDOWS_HOMEDIR = "/mnt/c/Users/beng"
 local path_sep = package.config:sub(1, 1)
 local obsidian_vault_path = (
   vim.fn.isdirectory(WSL_WINDOWS_HOMEDIR) == 1 and WSL_WINDOWS_HOMEDIR
-  or vim.loop.os_homedir()
+  or vim.uv.os_homedir()
 )
   .. path_sep
   .. "Obsidian"
@@ -60,7 +60,7 @@ return {
   },
   {
     "direnv/direnv.vim",
-    cond = vim.loop.cwd():match("thebengeu") ~= nil,
+    cond = vim.uv.cwd():match("thebengeu") ~= nil,
     config = function()
       vim.g.direnv_silent_load = 1
     end,
