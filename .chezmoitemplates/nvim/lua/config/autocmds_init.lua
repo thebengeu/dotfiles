@@ -98,7 +98,7 @@ if vim.env.TMUX then
         "rename-window",
         (
           (vim.fn.expand("%:p") --[[@as string]]):gsub(
-            vim.loop.os_homedir() or "",
+            vim.uv.os_homedir() or "",
             "~"
           )
         ),
