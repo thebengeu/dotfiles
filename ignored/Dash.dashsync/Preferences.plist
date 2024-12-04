@@ -210,6 +210,11 @@
 				<key>date</key>
 				<date>2024-02-14T03:54:34Z</date>
 			</dict>
+			<key>http://kapeli.com/feeds/Go.xml</key>
+			<dict>
+				<key>date</key>
+				<date>2024-12-04T17:46:11Z</date>
+			</dict>
 			<key>http://kapeli.com/feeds/JavaScript.xml</key>
 			<dict>
 				<key>date</key>
