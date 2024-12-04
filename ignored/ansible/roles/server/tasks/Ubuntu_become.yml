@@ -171,3 +171,8 @@
 - ansible.builtin.command:
     cmd: /tmp/nix-installer install --no-confirm
     creates: /nix/
+- community.general.pam_limits:
+    domain: "*"
+    limit_item: nofile
+    limit_type: soft
+    value: 1048576
