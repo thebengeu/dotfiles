@@ -108,6 +108,21 @@ return {
     vscode = true,
   },
   {
+    "echasnovski/mini.operators",
+    event = "LazyFile",
+    opts = {
+      exchange = {
+        prefix = "gX",
+      },
+      replace = {
+        prefix = "gR",
+      },
+      sort = {
+        prefix = "gS",
+      },
+    },
+  },
+  {
     "echasnovski/mini.pairs",
     enabled = false,
   },
