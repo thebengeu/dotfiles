@@ -127,6 +127,17 @@ return {
     opts = {},
   },
   {
+    "chrishrb/gx.nvim",
+    keys = {
+      {
+        "gx",
+        "<Cmd>Browse<CR>",
+        mode = { "n", "x" },
+      },
+    },
+    opts = {},
+  },
+  {
     "ramilito/kubectl.nvim",
     cmd = "Kubectx",
     keys = {
