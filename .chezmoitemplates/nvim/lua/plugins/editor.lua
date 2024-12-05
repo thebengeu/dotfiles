@@ -174,11 +174,6 @@ return {
   },
   {
     "gbprod/substitute.nvim",
-    opts = {
-      on_substitute = function()
-        require("yanky.integration").substitute()
-      end,
-    },
     keys = {
       {
         "x",
@@ -206,6 +201,11 @@ return {
         mode = "x",
       },
     },
+    opts = function()
+      return {
+        on_substitute = require("yanky.integration").substitute(),
+      }
+    end,
     vscode = true,
   },
   {
