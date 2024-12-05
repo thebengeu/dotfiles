@@ -4,6 +4,11 @@ region=ap-southeast-1
 [profile own]
 credential_process=aws-vault export --format json --no-session own
 
+[profile shared-supabase-snap]
+credential_process=aws-vault export --duration 12h --format json shared-supabase-snap
+mfa_process=op item get 'AWS shared-supabase-snap' --otp
+mfa_serial=arn:aws:iam::302263057004:mfa/MFA
+
 [profile supabase]
 credential_process=aws-vault export --duration 12h --format json supabase
 mfa_process=op item get 'AWS supabase' --otp
