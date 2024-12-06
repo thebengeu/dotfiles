@@ -233,11 +233,6 @@ return {
           desc = "Find Files (ignored)",
         },
         {
-          "<leader>fR",
-          LazyVim.pick("oldfiles", { cwd = false }),
-          desc = "Recent",
-        },
-        {
           "<leader>fr",
           LazyVim.pick("oldfiles"),
           desc = "Recent (root dir)",
