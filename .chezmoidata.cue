@@ -91,8 +91,7 @@ aliases: {
 	ni:              "npm install"
 	nr:              "npm run"
 	nrm:             "npm remove"
-	o:               "operator-sdk"
-	os:              #"export COMMAND="$(op signin)"; test -n "$COMMAND" && eval $COMMAND && export OP_TIME=$(date +%s)"#
+	ops:             #"export COMMAND="$(op signin)"; test -n "$COMMAND" && eval $COMMAND && export OP_TIME=$(date +%s)"#
 	p:               "pnpm"
 	pR:              "git push && gh pr create --fill-first && gh pr view --web"
 	pc:              "supa-admin-cli"
@@ -126,6 +125,19 @@ aliases: {
 	uw1:             "export AWS_REGION=us-west-1;"
 	uw2:             "export AWS_REGION=us-west-2;"
 	x:               "docker compose exec"
+
+	for suffix, awsProfile in {
+		b: "supabase-dev-beng"
+		d: "supabase-dev"
+		o: "own"
+		p: "supabase-prototype"
+		s: "supabase"
+	} {
+		let _exportAWSProfile = "export AWS_PROFILE=\(awsProfile);"
+
+		"ap\(suffix)": _exportAWSProfile
+		"o\(suffix)":  "\(_exportAWSProfile) \(ops) && eval $(aws configure export-credentials --format env)"
+	}
 
 	for shellAndFlags, noConfigFlag in {
 		"fish --interactive": "--no-config"
@@ -171,7 +183,6 @@ aliases: {
 			ai:  "sudo apt install"
 			ar:  "sudo apt remove"
 			ns:  "nix search nixpkgs"
-			oa:  "\(os) && eval $(aws configure export-credentials --format env --profile supabase-dev)"
 			te:  "trash-empty -f"
 		}
 		windows: _non_darwin & {
