@@ -29,4 +29,6 @@ mfa_serial=arn:aws:iam::436098097459:mfa/MFA
 credential_process=aws-vault export --format json --no-session supabase-dev-beng
 
 [profile supabase-prototype]
-credential_process=aws-vault export --format json --no-session supabase-prototype
+credential_process=aws-vault export --duration 12h --format json supabase-prototype
+mfa_process=op item get 'AWS supabase-prototype' --otp
+mfa_serial=arn:aws:iam::571600857751:mfa/MFA
