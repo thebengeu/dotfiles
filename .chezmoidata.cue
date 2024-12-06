@@ -63,6 +63,8 @@ aliases: {
 	ds:              "docker stats"
 	dsp:             "docker system prune --force --volumes"
 	dspa:            "\(dsp) --all"
+	egn:             "eksctl get nodegroup --cluster"
+	esn:             "eksctl scale nodegroup --cluster"
 	e:               "export"
 	g:               "git"
 	gap:             "git all pull"
