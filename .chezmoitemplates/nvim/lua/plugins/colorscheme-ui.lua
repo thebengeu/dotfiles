@@ -93,11 +93,6 @@ return {
 
         refresh_colorscheme(index)
       end,
-      icons = {
-        kinds = {
-          Supermaven = " ",
-        },
-      },
     },
   },
   {
