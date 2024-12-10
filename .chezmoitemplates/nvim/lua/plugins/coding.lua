@@ -342,6 +342,7 @@ return {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope.nvim",
     },
+    ft = "yaml",
     opts = function()
       return {
         enable_telescope = true,
