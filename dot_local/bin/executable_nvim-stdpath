@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-nvim --headless -c "echo stdpath('${1:-data}') | q" 2>&1
+nvim --clean --headless -c "echo stdpath('${1:-data}') | q" 2>&1
