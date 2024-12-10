@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-pipx install howdoi
+uv tool install howdoi
