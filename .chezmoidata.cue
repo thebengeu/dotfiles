@@ -65,7 +65,6 @@ aliases: {
 	dspa:            "\(dsp) --all"
 	egn:             "eksctl get nodegroup --cluster"
 	esn:             "eksctl scale nodegroup --cluster"
-	e:               "export"
 	g:               "git"
 	gap:             "git all pull"
 	ghd:             "gh dash"
@@ -176,7 +175,7 @@ aliases: {
 			bs:  "brew search"
 			bu:  "brew uninstall --zap"
 			but: "brew untap"
-			crv: #"cp ~/Library/Application\ Support/Code/User/keybindings.json ~/.local/share/chezmoi/.chezmoitemplates/code; sed -E 's/(Theme.*").+(",)/\1\2/g' ~/Library/Application\ Support/Code/User/settings.json > ~/.local/share/chezmoi/.chezmoitemplates/code/settings.json"#
+			crv: #"cp ~/Library/Application\ Support/Code/User/keybindings.json ~/.local/share/chezmoi/.chezmoitemplates/code; sed -E "s/(Theme.*\").+(\",)/\1\2/g" ~/Library/Application\ Support/Code/User/settings.json > ~/.local/share/chezmoi/.chezmoitemplates/code/settings.json"#
 			meb: #"/usr/bin/open -a /Applications/Microsoft\ Edge\ Beta.app --args --proxy-server=in.he.sg:8888"#
 			med: #"/usr/bin/open -a /Applications/Microsoft\ Edge\ Dev.app --args --proxy-server=id.he.sg:8888"#
 			tg:  "brew update && brew unlink moreutils parallel && brew upgrade moreutils parallel && brew link --overwrite moreutils parallel && genv --chdir ~ PIP_REQUIRE_VIRTUALENV=false topgrade"
