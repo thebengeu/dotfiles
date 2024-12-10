@@ -58,7 +58,8 @@ if [ ! "${CHEZMOI}" = 1 ]; then
 
   PIP_REQUIRE_VIRTUALENV=false pip3 install --upgrade --user \
     pipx
-  pipx install poetry
+  pipx install uv
+  uv tool install poetry
 
   brew_prefix=$(brew --prefix)
 

@@ -68,7 +68,8 @@ winget install --exact --no-upgrade --override $override --silent Microsoft.Visu
 $Env:PIP_REQUIRE_VIRTUALENV = false
 pip3 install --upgrade --user pipx
 
-pipx install poetry
+pipx install uv
+uv tool install poetry
 
 if (!(Get-Command choco))
 {
