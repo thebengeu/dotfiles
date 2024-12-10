@@ -69,7 +69,8 @@ if [[ ! "${CHEZMOI}" = 1 ]]; then
   export PYENV_ROOT=~/.pyenv
   export PATH="${PYENV_ROOT}/bin:~/.cargo/bin:~/.local/bin:~/.pulumi/bin:~/go/bin:${PNPM_HOME}:${PATH}"
 
-  pipx install poetry
+  pipx install uv
+  uv tool install poetry
 
   ~/.nix-profile/bin/chezmoi init
   ~/.nix-profile/bin/chezmoi apply --keep-going --exclude scripts

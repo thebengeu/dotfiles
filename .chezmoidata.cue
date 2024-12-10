@@ -124,6 +124,8 @@ aliases: {
 	tbn:             "time bash --noprofile --norc -i -c exit"
 	ue1:             "export AWS_REGION=us-east-1;"
 	ue2:             "export AWS_REGION=us-east-2;"
+	ui:              "uv tool install"
+	uu:              "uv tool uninstall"
 	uw1:             "export AWS_REGION=us-west-1;"
 	uw2:             "export AWS_REGION=us-west-2;"
 	x:               "docker compose exec"
