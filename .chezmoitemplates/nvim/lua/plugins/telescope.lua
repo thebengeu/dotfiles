@@ -206,20 +206,6 @@ return {
   },
   {
     "nvim-telescope/telescope.nvim",
-    dependencies = {
-      {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        enabled = false,
-      },
-      {
-        "nvim-telescope/telescope-fzy-native.nvim",
-        config = function()
-          LazyVim.on_load("telescope.nvim", function()
-            require("telescope").load_extension("fzy_native")
-          end)
-        end,
-      },
-    },
     keys = function(_, keys)
       vim.list_extend(keys, {
         { "<leader>/", false },
@@ -398,12 +384,10 @@ return {
         file_browser = {
           follow_symlinks = true,
         },
-        fzy_native = {
-          override_file_sorter = true,
-          override_generic_sorter = true,
-        },
         smart_open = {
           cwd_only = true,
+          match_algorithm = "fzf",
+          result_limit = 50,
         },
         undo = vim.tbl_extend("force", {
           diff_context_lines = 5,
