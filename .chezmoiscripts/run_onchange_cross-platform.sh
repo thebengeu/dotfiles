@@ -14,25 +14,25 @@ gup import
 PIP_REQUIRE_VIRTUALENV=false pip3 install --break-system-packages --upgrade --user \
   pynvim
 
-pipx install beancount
-pipx install fava
-pipx install git-revise
-pipx install gitlint-core
-pipx install http-prompt
-pipx install httpie
-pipx install --preinstall rich ipython
-pipx install keymap-drawer
-pipx install khal
-pipx install kube-shell
-pipx install neovim-remote
-pipx install pip-upgrader
-pipx install shell-gpt
-pipx install sqlfluff
-pipx install thefuck
-pipx install tmuxp
-pipx install tox
-pipx install virtualenv
-pipx install visidata
+uv tool install beancount
+uv tool install fava
+uv tool install git-revise
+uv tool install gitlint-core
+uv tool install http-prompt
+uv tool install httpie
+uv tool install --with rich ipython
+uv tool install keymap-drawer
+uv tool install khal
+uv tool install kube-shell
+uv tool install neovim-remote
+uv tool install pip-upgrader
+uv tool install shell-gpt
+uv tool install sqlfluff
+uv tool install thefuck
+uv tool install tmuxp
+uv tool install tox
+uv tool install virtualenv
+uv tool install visidata
 
 COREPACK_ENABLE_DOWNLOAD_PROMPT=0 pnpm add --global \
   npm-check-updates \
