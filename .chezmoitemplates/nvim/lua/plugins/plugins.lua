@@ -1,4 +1,3 @@
-local LazyVim = require("lazyvim.util")
 local util = require("util")
 
 local WSL_WINDOWS_HOMEDIR = "/mnt/c/Users/beng"
@@ -282,6 +281,14 @@ return {
       },
     },
     lazy = false,
+  },
+  {
+    "folke/snacks.nvim",
+    opts = {
+      dashboard = {
+        enabled = false,
+      },
+    },
   },
   {
     "kkharji/sqlite.lua",
