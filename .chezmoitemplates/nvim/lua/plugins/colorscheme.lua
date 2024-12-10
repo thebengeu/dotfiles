@@ -247,21 +247,12 @@ return util.map({
   },
   {
     "AlexvZyl/nordic.nvim",
-    opts = function()
-      local colors = require("nordic.colors")
-
-      return {
-        override = rainbow_delimiter_highlights({
-          colors.red.base,
-          colors.yellow.base,
-          colors.blue0,
-          colors.orange.base,
-          colors.green.base,
-          colors.magenta.base,
-          colors.cyan.base,
-        }),
-      }
-    end,
+    opts = {
+      on_highlight = function(highlights, palette)
+        highlights.RainbowDelimiterViolet = { fg = palette.magenta.bright }
+        highlights.RainbowDelimiterCyan = { fg = palette.cyan.bright }
+      end,
+    },
   },
   { "cpea2506/one_monokai.nvim" },
   {
