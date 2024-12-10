@@ -13,7 +13,7 @@ def {{$name}} [{{$lines_and_parameters.parameters | join ", "}}] {
   {{- if and (or (contains ";" $command) (contains "&&" $command)) (not (hasPrefix "sh -c" $command))}}
     {{- $command = $command | replaceAllRegex "(.*)" "sh -c '${1}'"}}
   {{- else}}
-    {{- $command = $command | replaceAllRegex "\\${([^}]+)}" "$$env.${1}" | replace "\\$" "$" | replaceAllRegex "\\\\([^\"])" "\\\\${1}"}}
+    {{- $command = $command | replaceAllRegex "\\${([^}]+)}" "$$env.${1}" | replace "\\$" "$" | replaceAllRegex "\\\\([^\"])" "\\\\${1}" | replace "$(" "("}}
   {{- end}}
 alias {{$alias}} = {{$command | replace "$HOME" "~"}}
 {{- end -}}

@@ -48,4 +48,7 @@ $env.config = {
     }
 }
 
+alias nu-open = open
+alias open = ^open
+
 source generated.nu
