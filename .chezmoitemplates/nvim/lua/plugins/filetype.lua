@@ -4,7 +4,8 @@ return {
     ft = "yaml.ansible",
   },
   {
-    "alker0/chezmoi.vim",
+    "xvzc/chezmoi.nvim",
+    enabled = false,
   },
   {
     "OXY2DEV/helpview.nvim",
