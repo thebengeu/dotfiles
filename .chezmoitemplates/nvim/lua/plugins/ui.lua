@@ -13,6 +13,11 @@ return {
     },
   },
   {
+    "Bekaboo/dropbar.nvim",
+    dependencies = "nvim-telescope/telescope-fzf-native.nvim",
+    event = "LazyFile",
+  },
+  {
     "folke/edgy.nvim",
     opts = {
       animate = { enabled = false },
@@ -65,6 +70,7 @@ return {
     event = "LazyFile",
     opts = {
       disabled_filetypes = {
+        "dropbar_menu",
         "help",
         "neo-tree",
         "qf",
