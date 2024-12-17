@@ -13,6 +13,7 @@ vim.g.root_spec = {
   ".git",
   "cwd",
 }
+vim.g.snacks_animate = false
 
 vim.opt.fillchars = { eob = " " }
 vim.opt.gdefault = true
