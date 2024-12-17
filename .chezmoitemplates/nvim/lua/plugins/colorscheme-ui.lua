@@ -50,7 +50,9 @@ local refresh_colorscheme = function(index)
     vim.g[colorscheme[1] .. "_style"] = colorscheme[2]
   end
   vim.cmd.colorscheme(colorscheme[1])
-  require("lualine").refresh()
+  vim.schedule(function()
+    require("lualine").refresh()
+  end)
 end
 
 local colorscheme_index_path = vim.fn.stdpath("data") .. "/colorscheme_index"
