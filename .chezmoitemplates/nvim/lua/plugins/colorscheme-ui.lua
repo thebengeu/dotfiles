@@ -46,8 +46,11 @@ local refresh_colorscheme = function(index)
       and index
     or math.random(#colorschemes)
   local colorscheme = colorschemes[colorscheme_index]
-  if colorscheme[2] then
-    vim.g[colorscheme[1] .. "_style"] = colorscheme[2]
+  local style = colorscheme[2]
+  if style == "dark" or style == "light" then
+    vim.opt.background = style
+  elseif style then
+    vim.g[colorscheme[1] .. "_style"] = style
   end
   vim.cmd.colorscheme(colorscheme[1])
   vim.schedule(function()
