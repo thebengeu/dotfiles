@@ -204,5 +204,6 @@ return {
     opts = {
       legacy_computing_symbols_support = true,
     },
+    version = "^0.3.2",
   },
 }
