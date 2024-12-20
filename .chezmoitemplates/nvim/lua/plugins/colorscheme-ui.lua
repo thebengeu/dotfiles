@@ -2,6 +2,8 @@ local LazyVim = require("lazyvim.util")
 local colorscheme_specs = require("plugins.colorscheme")
 local util = require("util")
 
+-- vim.opt.background = "light"
+
 local colorschemes = {}
 
 for _, spec in ipairs(colorscheme_specs) do
@@ -9,18 +11,31 @@ for _, spec in ipairs(colorscheme_specs) do
   local extra_spec = util.extra_specs[spec[1] or spec.url] or {}
 
   if extra_spec.colors_names then
-    for _, colors_name in ipairs(extra_spec.colors_names) do
-      table.insert(colorschemes, { colors_name })
-      util.highlights[colors_name] = extra_spec.highlights
+    if vim.o.background ~= "light" then
+      for _, colors_name in ipairs(extra_spec.colors_names) do
+        table.insert(colorschemes, { colors_name })
+        util.highlights[colors_name] = extra_spec.highlights
+      end
+    elseif extra_spec.colors_names_light then
+      for _, colors_name in ipairs(extra_spec.colors_names_light) do
+        table.insert(colorschemes, { colors_name })
+        util.highlights[colors_name] = extra_spec.highlights
+      end
     end
   else
     util.highlights[name] = extra_spec.highlights
 
     if extra_spec.colorscheme_styles then
       for _, colorscheme_style in ipairs(extra_spec.colorscheme_styles) do
-        table.insert(colorschemes, { name, colorscheme_style })
+        if vim.o.background == "light" then
+          if colorscheme_style:match("light") then
+            table.insert(colorschemes, { name, colorscheme_style })
+          end
+        elseif not colorscheme_style:match("light") then
+          table.insert(colorschemes, { name, colorscheme_style })
+        end
       end
-    else
+    elseif vim.o.background ~= "light" then
       table.insert(colorschemes, { name })
     end
   end
