@@ -123,6 +123,11 @@ return util.map({
           colors.cyan,
         })
       end,
+      styles = {
+        comments = {
+          italic = true,
+        },
+      },
     },
   },
   {
