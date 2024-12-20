@@ -14,17 +14,21 @@ return util.map({
   {
     "ribru17/bamboo.nvim",
     colors_names = {
-      "bamboo-light",
       "bamboo-multiplex",
       "bamboo-vulgaris",
+    },
+    colors_names_light = {
+      "bamboo-light",
     },
     opts = {},
   },
   {
     "uloco/bluloco.nvim",
     colors_names = {
-      "bluloco-light",
       "bluloco-dark",
+    },
+    colors_names_light = {
+      "bluloco-light",
     },
     dependencies = "rktjmp/lush.nvim",
     opts = {
@@ -36,9 +40,11 @@ return util.map({
     "catppuccin",
     colors_names = {
       "catppuccin-frappe",
-      "catppuccin-latte",
       "catppuccin-macchiato",
       "catppuccin-mocha",
+    },
+    colors_names_light = {
+      "catppuccin-latte",
     },
     opts = {
       integrations = {
@@ -139,8 +145,10 @@ return util.map({
     "rebelot/kanagawa.nvim",
     colors_names = {
       "kanagawa-dragon",
-      "kanagawa-lotus",
       "kanagawa-wave",
+    },
+    colors_names_light = {
+      "kanagawa-lotus",
     },
     opts = {
       overrides = function(colors)
@@ -201,7 +209,7 @@ return util.map({
       "light",
     },
     highlights = function()
-      local palette = require("melange.palettes." .. vim.opt.background:get())
+      local palette = require("melange.palettes." .. vim.o.background)
 
       return rainbow_delimiter_highlights({
         palette.b.red,
@@ -251,11 +259,13 @@ return util.map({
     colors_names = {
       "monokai-pro",
       "monokai-pro-classic",
-      "monokai-pro-light",
       "monokai-pro-machine",
       "monokai-pro-octagon",
       "monokai-pro-ristretto",
       "monokai-pro-spectrum",
+    },
+    colors_names_light = {
+      "monokai-pro-light",
     },
   },
   {
@@ -280,12 +290,14 @@ return util.map({
     "EdenEast/nightfox.nvim",
     colors_names = {
       "carbonfox",
-      "dawnfox",
-      "dayfox",
       "duskfox",
       "nightfox",
       "nordfox",
       "terafox",
+    },
+    colors_names_light = {
+      "dawnfox",
+      "dayfox",
     },
     opts = {
       options = {
@@ -311,6 +323,8 @@ return util.map({
       "onedark",
       "onedark_dark",
       "onedark_vivid",
+    },
+    colors_names_light = {
       "onelight",
     },
     opts = {
@@ -334,19 +348,23 @@ return util.map({
   {
     "rose-pine/neovim",
     colors_names = {
-      "rose-pine-dawn",
       "rose-pine-main",
       "rose-pine-moon",
+    },
+    colors_names_light = {
+      "rose-pine-dawn",
     },
     name = "rose-pine",
   },
   {
     "craftzdog/solarized-osaka.nvim",
     colors_names = {
-      "solarized-osaka-day",
       "solarized-osaka-moon",
       "solarized-osaka-night",
       "solarized-osaka-storm",
+    },
+    colors_names_light = {
+      "solarized-osaka-day",
     },
     opts = {
       transparent = false,
@@ -386,10 +404,12 @@ return util.map({
   {
     "folke/tokyonight.nvim",
     colors_names = {
-      "tokyonight-day",
       "tokyonight-moon",
       "tokyonight-night",
       "tokyonight-storm",
+    },
+    colors_names_light = {
+      "tokyonight-day",
     },
   },
   {
@@ -438,7 +458,12 @@ return util.map({
 }, function(colorscheme_spec)
   local extra_spec = {}
 
-  for _, key in ipairs({ "colors_names", "colorscheme_styles", "highlights" }) do
+  for _, key in ipairs({
+    "colors_names",
+    "colors_names_light",
+    "colorscheme_styles",
+    "highlights",
+  }) do
     extra_spec[key] = colorscheme_spec[key]
     colorscheme_spec[key] = nil
   end
