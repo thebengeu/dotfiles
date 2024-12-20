@@ -157,6 +157,9 @@ return util.map({
     },
   },
   {
+    "sho-87/kanagawa-paper.nvim",
+  },
+  {
     "marko-cerovac/material.nvim",
     colorscheme_styles = {
       "darker",
@@ -208,6 +211,22 @@ return util.map({
         palette.b.green,
         palette.b.magenta,
         palette.b.cyan,
+      })
+    end,
+  },
+  {
+    "mellow-theme/mellow.nvim",
+    config = function()
+      local colors = require("mellow.colors").dark
+
+      vim.g.mellow_highlight_overrides = rainbow_delimiter_highlights({
+        colors.red,
+        colors.yellow,
+        colors.blue,
+        colors.bright_yellow,
+        colors.green,
+        colors.magenta,
+        colors.cyan,
       })
     end,
   },
