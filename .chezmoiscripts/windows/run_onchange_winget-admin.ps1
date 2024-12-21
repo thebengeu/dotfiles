@@ -16,6 +16,7 @@ $isMobile = (Get-CimInstance -Class Win32_ComputerSystem -Property PCSystemType)
 $wingetPackageIds = @(
   'Microsoft.Edge.Beta'
   'Microsoft.Edge.Dev'
+  'EpicGames.EpicGamesLauncher'
   'ExpressVPN.ExpressVPN'
   'LLVM.LLVM'
 )
