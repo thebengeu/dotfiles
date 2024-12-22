@@ -363,10 +363,6 @@ return {
     opts = {},
   },
   {
-    "folke/todo-comments.nvim",
-    enabled = false,
-  },
-  {
     "Wansmer/treesj",
     keys = {
       { "J", "<Cmd>TSJToggle<CR>" },
