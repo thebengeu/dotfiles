@@ -65,10 +65,7 @@ return {
     "SuperBo/fugit2.nvim",
     dependencies = {
       "MunifTanjim/nui.nvim",
-      {
-        "chrisgrieser/nvim-tinygit",
-        dependencies = { "stevearc/dressing.nvim" },
-      },
+      "chrisgrieser/nvim-tinygit",
       "nvim-lua/plenary.nvim",
     },
     enabled = jit.os ~= "Windows",
@@ -245,6 +242,11 @@ return {
       { "<leader>gN", "<Cmd>Neogit cwd=%:p:h<CR>", desc = "Neogit" },
     },
     opts = {},
+  },
+  {
+    "chrisgrieser/nvim-tinygit",
+    cmd = "Tinygit",
+    dependencies = "stevearc/dressing.nvim",
   },
   {
     "tpope/vim-fugitive",
