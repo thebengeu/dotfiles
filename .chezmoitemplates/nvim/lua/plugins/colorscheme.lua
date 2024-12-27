@@ -453,6 +453,14 @@ return util.map({
     },
   },
   {
+    "maxmx03/solarized.nvim",
+    colorscheme_styles = {
+      "dark",
+      "light",
+    },
+    opts = {},
+  },
+  {
     "sainnhe/sonokai",
     colorscheme_styles = {
       "andromeda",
