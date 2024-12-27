@@ -534,6 +534,10 @@ return util.map({
   },
   {
     "sam4llis/nvim-tundra",
+    colorscheme_styles = {
+      "arctic",
+      "jungle",
+    },
     opts = {
       plugins = {
         cmp = true,
@@ -546,8 +550,8 @@ return util.map({
         comments = { italic = true },
       },
     },
-    highlights = function()
-      local colors = require("nvim-tundra.palette.arctic")
+    highlights = function(style)
+      local colors = require("nvim-tundra.palette." .. style)
 
       if not colors then
         error()

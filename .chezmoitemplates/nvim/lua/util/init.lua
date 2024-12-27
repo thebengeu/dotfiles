@@ -98,7 +98,10 @@ end
 
 M.async_run_git = function(sub_command)
   return function()
-    M.async_run(vim.list_extend({ "git" }, sub_command), { cwd = LazyVim.root() })
+    M.async_run(
+      vim.list_extend({ "git" }, sub_command),
+      { cwd = LazyVim.root() }
+    )
   end
 end
 
@@ -110,7 +113,19 @@ M.git_stdout = function(sub_command)
   return M.stdout_without_newline(vim.list_extend({ "git" }, sub_command))
 end
 
+M.colorscheme_style = nil
+
 M.highlights = {}
+
+M.set_highlights = function()
+  local get_highlights = M.highlights[vim.g.colors_name]
+
+  if get_highlights then
+    for name, highlight in pairs(get_highlights(M.colorscheme_style)) do
+      vim.api.nvim_set_hl(0, name, highlight)
+    end
+  end
+end
 
 M.normname = function(name)
   return (name:gsub("^.*/", ""):gsub("[%.%-]?nvim%-?", ""))
