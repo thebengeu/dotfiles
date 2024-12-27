@@ -346,6 +346,18 @@ return util.map({
     },
   },
   {
+    "yorik1984/newpaper.nvim",
+    cmd = {
+      "NewpaperDark",
+      "NewpaperLight",
+    },
+    colorscheme_styles = {
+      "dark",
+      "light",
+    },
+    opts = {},
+  },
+  {
     "bluz71/vim-nightfly-colors",
     name = "nightfly",
   },
