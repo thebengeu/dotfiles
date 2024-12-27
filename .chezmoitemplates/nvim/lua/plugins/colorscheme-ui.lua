@@ -33,11 +33,11 @@ local refresh_colorschemes = function()
 
       if extra_spec.colorscheme_styles then
         for _, colorscheme_style in ipairs(extra_spec.colorscheme_styles) do
-          if vim.o.background == "light" then
-            if colorscheme_style:match("light") then
+          if colorscheme_style:match("light") then
+            if vim.o.background == "light" then
               table.insert(colorschemes, { name, colorscheme_style })
             end
-          elseif not colorscheme_style:match("light") then
+          elseif name == "gruvbox-material" or vim.o.background ~= "light" then
             table.insert(colorschemes, { name, colorscheme_style })
           end
         end
@@ -71,7 +71,7 @@ local refresh_colorscheme = function(index)
   if style == "dark" or style == "light" then
     vim.opt.background = style
   elseif style then
-    vim.g[colorscheme[1] .. "_" .. (colorscheme[1] == "tundra" and "biome" or "style")] =
+    vim.g[colorscheme[1] == "gruvbox-material" and "gruvbox_material_foreground" or (colorscheme[1] .. "_" .. (colorscheme[1] == "tundra" and "biome" or "style"))] =
       style
   end
 
