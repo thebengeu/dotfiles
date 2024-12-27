@@ -6,7 +6,7 @@ local colorschemes
 local max_colorscheme_name_length
 
 local get_colorscheme_name = function(colorscheme)
-  return table.concat(colorscheme, "-"):gsub(" ", "_")
+  return table.concat(colorscheme, "-"):gsub(" ", "_"):gsub("[-_]light.*", "")
 end
 
 local refresh_colorschemes = function()
@@ -15,18 +15,12 @@ local refresh_colorschemes = function()
   for _, spec in ipairs(colorscheme_specs) do
     local name = util.normname(spec.name or spec[1])
     local extra_spec = util.extra_specs[spec[1] or spec.url] or {}
+    local colors_names = extra_spec["colors_names_" .. vim.o.background]
 
-    if extra_spec.colors_names then
-      if vim.o.background ~= "light" then
-        for _, colors_name in ipairs(extra_spec.colors_names) do
-          table.insert(colorschemes, { colors_name })
-          util.highlights[colors_name] = extra_spec.highlights
-        end
-      elseif extra_spec.colors_names_light then
-        for _, colors_name in ipairs(extra_spec.colors_names_light) do
-          table.insert(colorschemes, { colors_name })
-          util.highlights[colors_name] = extra_spec.highlights
-        end
+    if colors_names then
+      for _, colors_name in ipairs(colors_names) do
+        table.insert(colorschemes, { colors_name })
+        util.highlights[colors_name] = extra_spec.highlights
       end
     else
       util.highlights[name] = extra_spec.highlights
@@ -37,7 +31,10 @@ local refresh_colorschemes = function()
             if vim.o.background == "light" then
               table.insert(colorschemes, { name, colorscheme_style })
             end
-          elseif name == "gruvbox-material" or vim.o.background ~= "light" then
+          elseif
+            extra_spec.supports_light_background
+            or vim.o.background ~= "light"
+          then
             table.insert(colorschemes, { name, colorscheme_style })
           end
         end
@@ -68,9 +65,7 @@ local refresh_colorscheme = function(index)
 
   util.colorscheme_style = style
 
-  if style == "dark" or style == "light" then
-    vim.opt.background = style
-  elseif style then
+  if style then
     vim.g[colorscheme[1] == "gruvbox-material" and "gruvbox_material_foreground" or (colorscheme[1] .. "_" .. (colorscheme[1] == "tundra" and "biome" or "style"))] =
       style
   end

@@ -13,7 +13,7 @@ end
 return util.map({
   {
     "ribru17/bamboo.nvim",
-    colors_names = {
+    colors_names_dark = {
       "bamboo-multiplex",
       "bamboo-vulgaris",
     },
@@ -24,7 +24,7 @@ return util.map({
   },
   {
     "uloco/bluloco.nvim",
-    colors_names = {
+    colors_names_dark = {
       "bluloco-dark",
     },
     colors_names_light = {
@@ -38,7 +38,7 @@ return util.map({
   },
   {
     "catppuccin",
-    colors_names = {
+    colors_names_dark = {
       "catppuccin-frappe",
       "catppuccin-macchiato",
       "catppuccin-mocha",
@@ -58,20 +58,17 @@ return util.map({
   },
   {
     "scottmckendry/cyberdream.nvim",
-    colorscheme_styles = {
-      "dark",
-      "light",
-    },
     opts = {
       italic_comments = true,
       theme = {
         variant = "auto",
       },
     },
+    supports_light_background = true,
   },
   {
     "Mofiqul/dracula.nvim",
-    colors_names = {
+    colors_names_dark = {
       "dracula",
       "dracula-soft",
     },
@@ -111,15 +108,12 @@ return util.map({
   },
   {
     "sainnhe/everforest",
-    colorscheme_styles = {
-      "dark",
-      "light",
-    },
     config = function()
       vim.g.everforest_better_performance = 1
       vim.g.everforest_background = "hard"
       vim.g.everforest_enable_italic = 1
     end,
+    supports_light_background = true,
   },
   {
     "0xstepit/flow.nvim",
@@ -166,7 +160,7 @@ return util.map({
   },
   {
     "projekt0n/github-nvim-theme",
-    colors_names = {
+    colors_names_dark = {
       "github_dark",
       "github_dark_default",
       "github_dark_dimmed",
@@ -198,10 +192,7 @@ return util.map({
   },
   {
     "ellisonleao/gruvbox.nvim",
-    colorscheme_styles = {
-      "dark",
-      "light",
-    },
+    supports_light_background = true,
   },
   { "luisiacc/gruvbox-baby" },
   {
@@ -216,10 +207,11 @@ return util.map({
       vim.g.gruvbox_material_better_performance = 1
       vim.g.gruvbox_material_enable_italic = 1
     end,
+    supports_light_background = true,
   },
   {
     "rebelot/kanagawa.nvim",
-    colors_names = {
+    colors_names_dark = {
       "kanagawa-dragon",
       "kanagawa-wave",
     },
@@ -280,10 +272,6 @@ return util.map({
   },
   {
     "savq/melange-nvim",
-    colorscheme_styles = {
-      "dark",
-      "light",
-    },
     highlights = function()
       local palette = require("melange.palettes." .. vim.o.background)
 
@@ -297,6 +285,7 @@ return util.map({
         palette.b.cyan,
       })
     end,
+    supports_light_background = true,
   },
   {
     "mellow-theme/mellow.nvim",
@@ -332,14 +321,11 @@ return util.map({
   },
   {
     "polirritmico/monokai-nightasty.nvim",
-    colorscheme_styles = {
-      "dark",
-      "light",
-    },
+    supports_light_background = true,
   },
   {
     "loctvl842/monokai-pro.nvim",
-    colors_names = {
+    colors_names_dark = {
       "monokai-pro",
       "monokai-pro-classic",
       "monokai-pro-machine",
@@ -357,13 +343,10 @@ return util.map({
   },
   {
     "Tsuzat/NeoSolarized.nvim",
-    colorscheme_styles = {
-      "dark",
-      "light",
-    },
     opts = {
       transparent = false,
     },
+    supports_light_background = true,
   },
   {
     "yorik1984/newpaper.nvim",
@@ -371,11 +354,8 @@ return util.map({
       "NewpaperDark",
       "NewpaperLight",
     },
-    colorscheme_styles = {
-      "dark",
-      "light",
-    },
     opts = {},
+    supports_light_background = true,
   },
   {
     "bluz71/vim-nightfly-colors",
@@ -383,7 +363,7 @@ return util.map({
   },
   {
     "EdenEast/nightfox.nvim",
-    colors_names = {
+    colors_names_dark = {
       "carbonfox",
       "duskfox",
       "nightfox",
@@ -431,7 +411,7 @@ return util.map({
   { "cpea2506/one_monokai.nvim" },
   {
     "olimorris/onedarkpro.nvim",
-    colors_names = {
+    colors_names_dark = {
       "onedark",
       "onedark_dark",
       "onedark_vivid",
@@ -447,19 +427,16 @@ return util.map({
   },
   {
     "rmehri01/onenord.nvim",
-    colorscheme_styles = {
-      "dark",
-      "light",
-    },
     opts = {
       styles = {
         comments = "italic",
       },
     },
+    supports_light_background = true,
   },
   {
     "rose-pine/neovim",
-    colors_names = {
+    colors_names_dark = {
       "rose-pine-main",
       "rose-pine-moon",
     },
@@ -470,7 +447,7 @@ return util.map({
   },
   {
     "craftzdog/solarized-osaka.nvim",
-    colors_names = {
+    colors_names_dark = {
       "solarized-osaka-moon",
       "solarized-osaka-night",
       "solarized-osaka-storm",
@@ -484,10 +461,6 @@ return util.map({
   },
   {
     "maxmx03/solarized.nvim",
-    colorscheme_styles = {
-      "dark",
-      "light",
-    },
     opts = {
       on_highlights = function(colors)
         return {
@@ -495,6 +468,7 @@ return util.map({
         }
       end,
     },
+    supports_light_background = true,
   },
   {
     "sainnhe/sonokai",
@@ -529,7 +503,7 @@ return util.map({
   },
   {
     "folke/tokyonight.nvim",
-    colors_names = {
+    colors_names_dark = {
       "tokyonight-moon",
       "tokyonight-night",
       "tokyonight-storm",
@@ -577,10 +551,6 @@ return util.map({
   },
   {
     "Mofiqul/vscode.nvim",
-    colorscheme_styles = {
-      "dark",
-      "light",
-    },
     highlights = function()
       local colors = require("vscode.colors").get_colors()
 
@@ -591,15 +561,17 @@ return util.map({
     opts = {
       italic_comments = true,
     },
+    supports_light_background = true,
   },
 }, function(colorscheme_spec)
   local extra_spec = {}
 
   for _, key in ipairs({
-    "colors_names",
+    "colors_names_dark",
     "colors_names_light",
     "colorscheme_styles",
     "highlights",
+    "supports_light_background",
   }) do
     extra_spec[key] = colorscheme_spec[key]
     colorscheme_spec[key] = nil
