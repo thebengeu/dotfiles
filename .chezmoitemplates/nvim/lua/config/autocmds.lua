@@ -96,6 +96,15 @@ vim.keymap.set("n", "<leader>ua", function()
   skip_chezmoi_apply = not skip_chezmoi_apply
 end, { desc = "Toggle Chezmoi Apply" })
 
+vim.api.nvim_create_autocmd("ColorScheme", {
+  callback = function()
+    local comment_hl = vim.api.nvim_get_hl(0, { name = "Comment" })
+    local italic_hl = vim.tbl_extend("force", comment_hl, { italic = true })
+
+    vim.api.nvim_set_hl(0, "Comment", italic_hl)
+  end,
+})
+
 vim.api.nvim_create_autocmd("TermClose", {
   callback = function(args)
     local buf = args.buf
