@@ -65,12 +65,19 @@ local refresh_colorscheme = function(index)
     or math.random(#colorschemes)
   local colorscheme = colorschemes[colorscheme_index]
   local style = colorscheme[2]
+
   if style == "dark" or style == "light" then
     vim.opt.background = style
   elseif style then
     vim.g[colorscheme[1] .. "_style"] = style
   end
+
+  if colorscheme[1] == "newpaper" then
+    vim.cmd["Newpaper" .. (style == "light" and "Light" or "Dark")]()
+  end
+
   vim.cmd.colorscheme(colorscheme[1])
+
   vim.schedule(function()
     require("lualine").refresh()
   end)
