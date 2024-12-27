@@ -482,7 +482,13 @@ return util.map({
       "dark",
       "light",
     },
-    opts = {},
+    opts = {
+      on_highlights = function(colors)
+        return {
+          RainbowDelimiterYellow = { fg = colors.yellow },
+        }
+      end,
+    },
   },
   {
     "sainnhe/sonokai",
@@ -565,6 +571,13 @@ return util.map({
       "dark",
       "light",
     },
+    highlights = function()
+      local colors = require("vscode.colors").get_colors()
+
+      return {
+        RainbowDelimiterBlue = { fg = colors.vscMediumBlue or colors.vscBlue },
+      }
+    end,
     opts = {
       italic_comments = true,
     },
