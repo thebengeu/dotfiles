@@ -110,13 +110,7 @@ return {
       end
 
       hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-        local get_highlights = util.highlights[vim.g.colors_name]
-
-        if get_highlights then
-          for name, highlight in pairs(get_highlights()) do
-            vim.api.nvim_set_hl(0, name, highlight)
-          end
-        end
+        util.set_highlights()
 
         local rainbow_hl = rainbow_hl_if_exists(util.rainbow_delimiters_hl)
           or rainbow_hl_if_exists(ts_rainbow_2_hl)

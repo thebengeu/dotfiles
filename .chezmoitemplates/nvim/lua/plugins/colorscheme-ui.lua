@@ -66,10 +66,13 @@ local refresh_colorscheme = function(index)
   local colorscheme = colorschemes[colorscheme_index]
   local style = colorscheme[2]
 
+  util.colorscheme_style = style
+
   if style == "dark" or style == "light" then
     vim.opt.background = style
   elseif style then
-    vim.g[colorscheme[1] .. "_style"] = style
+    vim.g[colorscheme[1] .. "_" .. (colorscheme[1] == "tundra" and "biome" or "style")] =
+      style
   end
 
   if colorscheme[1] == "newpaper" then
