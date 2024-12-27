@@ -77,6 +77,7 @@ return util.map({
     colorscheme_styles = {
       "aura",
       "default",
+      "light",
       "neon",
     },
     config = function()
@@ -103,6 +104,10 @@ return util.map({
   },
   {
     "sainnhe/everforest",
+    colorscheme_styles = {
+      "dark",
+      "light",
+    },
     config = function()
       vim.g.everforest_better_performance = 1
       vim.g.everforest_background = "hard"
@@ -140,6 +145,10 @@ return util.map({
   { "luisiacc/gruvbox-baby" },
   {
     "sainnhe/gruvbox-material",
+    colorscheme_styles = {
+      "dark",
+      "light",
+    },
     config = function()
       vim.g.gruvbox_material_background = "hard"
       vim.g.gruvbox_material_better_performance = 1
