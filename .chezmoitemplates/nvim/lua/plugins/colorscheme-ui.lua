@@ -106,24 +106,27 @@ vim.api.nvim_create_autocmd("User", {
         randomize_colorscheme()
       end,
     }):map("<leader>ub")
+
+    Snacks.toggle({
+      name = "Randomize Colorscheme",
+      get = function()
+        return vim.fn.filereadable(colorscheme_index_path) == 0
+      end,
+      set = function(state)
+        if state then
+          randomize_colorscheme()
+        else
+          local file = io.open(colorscheme_index_path, "w")
+
+          if file then
+            file:write(colorscheme_index, "\n")
+            file:close()
+          end
+        end
+      end,
+    }):map("<leader>uR")
   end,
 })
-
-vim.keymap.set(
-  "n",
-  "<leader>uR",
-  randomize_colorscheme,
-  { desc = "Randomize Colorscheme" }
-)
-
-vim.keymap.set("n", "<leader>uS", function()
-  local file = io.open(colorscheme_index_path, "w")
-
-  if file then
-    file:write(colorscheme_index, "\n")
-    file:close()
-  end
-end, { desc = "Save Colorscheme" })
 
 vim.keymap.set("n", "[S", function()
   refresh_colorscheme(
