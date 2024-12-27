@@ -207,8 +207,9 @@ return util.map({
   {
     "sainnhe/gruvbox-material",
     colorscheme_styles = {
-      "dark",
-      "light",
+      "material",
+      "mix",
+      "original",
     },
     config = function()
       vim.g.gruvbox_material_background = "hard"
