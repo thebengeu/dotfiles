@@ -397,6 +397,23 @@ return util.map({
     },
   },
   {
+    "oxfist/night-owl.nvim",
+    highlights = function()
+      local palette = require("night-owl.palette")
+
+      return rainbow_delimiter_highlights({
+        palette.red,
+        palette.yellow,
+        palette.blue15,
+        palette.orange,
+        palette.green,
+        palette.purple3,
+        palette.cyan,
+      })
+    end,
+    opts = {},
+  },
+  {
     "AlexvZyl/nordic.nvim",
     opts = {
       on_highlight = function(highlights, palette)
