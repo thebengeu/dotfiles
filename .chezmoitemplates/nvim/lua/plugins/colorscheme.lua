@@ -115,6 +115,23 @@ return util.map({
     end,
   },
   {
+    "0xstepit/flow.nvim",
+    highlights = function()
+      local colors = require("flow.colors").colors
+
+      return rainbow_delimiter_highlights({
+        colors.red,
+        colors.yellow,
+        colors.blue,
+        colors.yellow,
+        colors.green,
+        colors.purple,
+        colors.cyan,
+      })
+    end,
+    opts = {},
+  },
+  {
     "maxmx03/fluoromachine.nvim",
     opts = {
       overrides = function(colors)
