@@ -325,6 +325,13 @@ return util.map({
     end,
   },
   {
+    "polirritmico/monokai-nightasty.nvim",
+    colorscheme_styles = {
+      "dark",
+      "light",
+    },
+  },
+  {
     "loctvl842/monokai-pro.nvim",
     colors_names = {
       "monokai-pro",
