@@ -2,54 +2,57 @@ local LazyVim = require("lazyvim.util")
 local colorscheme_specs = require("plugins.colorscheme")
 local util = require("util")
 
--- vim.opt.background = "light"
-
-local colorschemes = {}
-
-for _, spec in ipairs(colorscheme_specs) do
-  local name = util.normname(spec.name or spec[1])
-  local extra_spec = util.extra_specs[spec[1] or spec.url] or {}
-
-  if extra_spec.colors_names then
-    if vim.o.background ~= "light" then
-      for _, colors_name in ipairs(extra_spec.colors_names) do
-        table.insert(colorschemes, { colors_name })
-        util.highlights[colors_name] = extra_spec.highlights
-      end
-    elseif extra_spec.colors_names_light then
-      for _, colors_name in ipairs(extra_spec.colors_names_light) do
-        table.insert(colorschemes, { colors_name })
-        util.highlights[colors_name] = extra_spec.highlights
-      end
-    end
-  else
-    util.highlights[name] = extra_spec.highlights
-
-    if extra_spec.colorscheme_styles then
-      for _, colorscheme_style in ipairs(extra_spec.colorscheme_styles) do
-        if vim.o.background == "light" then
-          if colorscheme_style:match("light") then
-            table.insert(colorschemes, { name, colorscheme_style })
-          end
-        elseif not colorscheme_style:match("light") then
-          table.insert(colorschemes, { name, colorscheme_style })
-        end
-      end
-    elseif vim.o.background ~= "light" then
-      table.insert(colorschemes, { name })
-    end
-  end
-end
+local colorschemes
+local max_colorscheme_name_length
 
 local get_colorscheme_name = function(colorscheme)
   return table.concat(colorscheme, "-"):gsub(" ", "_")
 end
 
-local max_colorscheme_name_length = 0
+local refresh_colorschemes = function()
+  colorschemes = {}
 
-for _, colorscheme in ipairs(colorschemes) do
-  max_colorscheme_name_length =
-    math.max(#get_colorscheme_name(colorscheme), max_colorscheme_name_length)
+  for _, spec in ipairs(colorscheme_specs) do
+    local name = util.normname(spec.name or spec[1])
+    local extra_spec = util.extra_specs[spec[1] or spec.url] or {}
+
+    if extra_spec.colors_names then
+      if vim.o.background ~= "light" then
+        for _, colors_name in ipairs(extra_spec.colors_names) do
+          table.insert(colorschemes, { colors_name })
+          util.highlights[colors_name] = extra_spec.highlights
+        end
+      elseif extra_spec.colors_names_light then
+        for _, colors_name in ipairs(extra_spec.colors_names_light) do
+          table.insert(colorschemes, { colors_name })
+          util.highlights[colors_name] = extra_spec.highlights
+        end
+      end
+    else
+      util.highlights[name] = extra_spec.highlights
+
+      if extra_spec.colorscheme_styles then
+        for _, colorscheme_style in ipairs(extra_spec.colorscheme_styles) do
+          if vim.o.background == "light" then
+            if colorscheme_style:match("light") then
+              table.insert(colorschemes, { name, colorscheme_style })
+            end
+          elseif not colorscheme_style:match("light") then
+            table.insert(colorschemes, { name, colorscheme_style })
+          end
+        end
+      elseif vim.o.background ~= "light" then
+        table.insert(colorschemes, { name })
+      end
+    end
+  end
+
+  max_colorscheme_name_length = 0
+
+  for _, colorscheme in ipairs(colorschemes) do
+    max_colorscheme_name_length =
+      math.max(#get_colorscheme_name(colorscheme), max_colorscheme_name_length)
+  end
 end
 
 local colorscheme_index
@@ -73,12 +76,46 @@ local refresh_colorscheme = function(index)
   end)
 end
 
+local background_path = vim.fn.stdpath("data") .. "/background"
 local colorscheme_index_path = vim.fn.stdpath("data") .. "/colorscheme_index"
 
-vim.keymap.set("n", "<leader>uR", function()
+local randomize_colorscheme = function()
   os.remove(colorscheme_index_path)
   refresh_colorscheme()
-end, { desc = "Randomise Colorscheme" })
+end
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "LazyVimKeymapsDefaults",
+  callback = function()
+    Snacks.toggle({
+      name = "Dark Background",
+      get = function()
+        return vim.o.background == "dark"
+      end,
+      set = function(state)
+        vim.opt.background = state and "dark" or "light"
+
+        local file = io.open(background_path, "w")
+
+        if file then
+          file:write(vim.o.background, "\n")
+          file:close()
+        end
+
+        refresh_colorschemes()
+        randomize_colorscheme()
+      end,
+    }):map("<leader>ub")
+  end,
+})
+
+vim.keymap.set(
+  "n",
+  "<leader>uR",
+  randomize_colorscheme,
+  { desc = "Randomize Colorscheme" }
+)
+
 vim.keymap.set("n", "<leader>uS", function()
   local file = io.open(colorscheme_index_path, "w")
 
@@ -87,11 +124,13 @@ vim.keymap.set("n", "<leader>uS", function()
     file:close()
   end
 end, { desc = "Save Colorscheme" })
+
 vim.keymap.set("n", "[S", function()
   refresh_colorscheme(
     colorscheme_index == 1 and #colorschemes or colorscheme_index - 1
   )
 end, { desc = "Colorscheme backward" })
+
 vim.keymap.set("n", "]S", function()
   refresh_colorscheme(
     colorscheme_index == #colorschemes and 1 or colorscheme_index + 1
@@ -103,14 +142,22 @@ return {
     "LazyVim/LazyVim",
     opts = {
       colorscheme = function()
-        local index
-        local file = io.open(colorscheme_index_path)
+        local background_file = io.open(background_path)
 
-        if file then
-          index = file:read("n")
-          file:close()
+        if background_file then
+          vim.opt.background = background_file:read("l")
+          background_file:close()
         end
 
+        local index
+        local colorscheme_index_file = io.open(colorscheme_index_path)
+
+        if colorscheme_index_file then
+          index = colorscheme_index_file:read("n")
+          colorscheme_index_file:close()
+        end
+
+        refresh_colorschemes()
         refresh_colorscheme(index)
       end,
     },
