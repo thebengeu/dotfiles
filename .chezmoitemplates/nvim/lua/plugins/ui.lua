@@ -98,9 +98,15 @@ return {
       end
 
       local rainbow_hl_if_exists = function(rainbow_hl)
-        local hl = vim.api.nvim_get_hl(0, { name = rainbow_hl[1] })
+        for i = 1, 7 do
+          local hl = vim.api.nvim_get_hl(0, { name = rainbow_hl[i] })
 
-        return next(hl) ~= nil and not hl.default and rainbow_hl
+          if next(hl) == nil or hl.default then
+            return false
+          end
+        end
+
+        return rainbow_hl
       end
 
       hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
