@@ -136,6 +136,38 @@ return util.map({
     },
   },
   {
+    "projekt0n/github-nvim-theme",
+    colors_names = {
+      "github_dark",
+      "github_dark_default",
+      "github_dark_dimmed",
+    },
+    colors_names_light = {
+      "github_light",
+    },
+    name = "github-theme",
+    opts = function()
+      return {
+        groups = {
+          all = rainbow_delimiter_highlights({
+            "palette.red",
+            "palette.yellow",
+            "palette.blue",
+            "palette.orange",
+            "palette.green",
+            "palette.magenta",
+            "palette.cyan",
+          }),
+        },
+        options = {
+          styles = {
+            comments = "italic",
+          },
+        },
+      }
+    end,
+  },
+  {
     "ellisonleao/gruvbox.nvim",
     colorscheme_styles = {
       "dark",
