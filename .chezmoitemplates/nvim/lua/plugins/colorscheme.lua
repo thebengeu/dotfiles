@@ -140,24 +140,29 @@ return util.map({
   },
   {
     "maxmx03/fluoromachine.nvim",
-    opts = {
-      overrides = function(colors)
-        return rainbow_delimiter_highlights({
-          colors.red,
-          colors.yellow,
-          colors.pink,
-          colors.orange,
-          colors.green,
-          colors.purple,
-          colors.cyan,
-        })
-      end,
-      styles = {
-        comments = {
-          italic = true,
+    opts = function()
+      local themes = { "delta", "fluoromachine", "retrowave" }
+
+      return {
+        overrides = function(colors)
+          return rainbow_delimiter_highlights({
+            colors.red,
+            colors.yellow,
+            colors.pink,
+            colors.orange,
+            colors.green,
+            colors.purple,
+            colors.cyan,
+          })
+        end,
+        styles = {
+          comments = {
+            italic = true,
+          },
         },
-      },
-    },
+        theme = themes[math.random(#themes)],
+      }
+    end,
   },
   {
     "projekt0n/github-nvim-theme",
