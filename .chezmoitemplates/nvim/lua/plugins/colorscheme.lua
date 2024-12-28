@@ -13,7 +13,7 @@ end
 return util.map({
   {
     "ribru17/bamboo.nvim",
-    colors_names_dark = {
+    colors_names = {
       "bamboo-multiplex",
       "bamboo-vulgaris",
     },
@@ -24,7 +24,7 @@ return util.map({
   },
   {
     "uloco/bluloco.nvim",
-    colors_names_dark = {
+    colors_names = {
       "bluloco-dark",
     },
     colors_names_light = {
@@ -38,7 +38,7 @@ return util.map({
   },
   {
     "catppuccin",
-    colors_names_dark = {
+    colors_names = {
       "catppuccin-frappe",
       "catppuccin-macchiato",
       "catppuccin-mocha",
@@ -68,7 +68,7 @@ return util.map({
   },
   {
     "Mofiqul/dracula.nvim",
-    colors_names_dark = {
+    colors_names = {
       "dracula",
       "dracula-soft",
     },
@@ -161,7 +161,7 @@ return util.map({
   },
   {
     "projekt0n/github-nvim-theme",
-    colors_names_dark = {
+    colors_names = {
       "github_dark",
       "github_dark_default",
       "github_dark_dimmed",
@@ -215,7 +215,7 @@ return util.map({
   },
   {
     "rebelot/kanagawa.nvim",
-    colors_names_dark = {
+    colors_names = {
       "kanagawa-dragon",
       "kanagawa-wave",
     },
@@ -357,14 +357,11 @@ return util.map({
   },
   {
     "echasnovski/mini.base16",
-    colors_names_dark = {
+    colors_names = {
       "minicyan",
       "minischeme",
     },
-    colors_names_light = {
-      "minicyan",
-      "minischeme",
-    },
+    supports_light_background = true,
   },
   {
     "polirritmico/monokai-nightasty.nvim",
@@ -372,7 +369,7 @@ return util.map({
   },
   {
     "loctvl842/monokai-pro.nvim",
-    colors_names_dark = {
+    colors_names = {
       "monokai-pro",
       "monokai-pro-classic",
       "monokai-pro-machine",
@@ -410,7 +407,7 @@ return util.map({
   },
   {
     "EdenEast/nightfox.nvim",
-    colors_names_dark = {
+    colors_names = {
       "carbonfox",
       "duskfox",
       "nightfox",
@@ -460,7 +457,7 @@ return util.map({
   { "cpea2506/one_monokai.nvim" },
   {
     "olimorris/onedarkpro.nvim",
-    colors_names_dark = {
+    colors_names = {
       "onedark",
       "onedark_dark",
       "onedark_vivid",
@@ -484,8 +481,24 @@ return util.map({
     supports_light_background = true,
   },
   {
+    "nyoom-engineering/oxocarbon.nvim",
+    highlights = function()
+      local oxocarbon = require("oxocarbon").oxocarbon
+
+      return rainbow_delimiter_highlights({
+        oxocarbon.base09,
+        oxocarbon.base10,
+        oxocarbon.base11,
+        oxocarbon.base12,
+        oxocarbon.base13,
+        oxocarbon.base14,
+        oxocarbon.base15,
+      })
+    end,
+  },
+  {
     "rose-pine/neovim",
-    colors_names_dark = {
+    colors_names = {
       "rose-pine-main",
       "rose-pine-moon",
     },
@@ -496,14 +509,6 @@ return util.map({
   },
   {
     "craftzdog/solarized-osaka.nvim",
-    colors_names_dark = {
-      "solarized-osaka-moon",
-      "solarized-osaka-night",
-      "solarized-osaka-storm",
-    },
-    colors_names_light = {
-      "solarized-osaka-day",
-    },
     opts = {
       transparent = false,
     },
@@ -552,7 +557,7 @@ return util.map({
   },
   {
     "folke/tokyonight.nvim",
-    colors_names_dark = {
+    colors_names = {
       "tokyonight-moon",
       "tokyonight-night",
       "tokyonight-storm",
@@ -616,7 +621,7 @@ return util.map({
   local extra_spec = {}
 
   for _, key in ipairs({
-    "colors_names_dark",
+    "colors_names",
     "colors_names_light",
     "colorscheme_styles",
     "highlights",

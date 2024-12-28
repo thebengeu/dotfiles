@@ -15,7 +15,10 @@ local refresh_colorschemes = function()
   for _, spec in ipairs(colorscheme_specs) do
     local name = util.normname(spec.name or spec[1])
     local extra_spec = util.extra_specs[spec[1] or spec.url] or {}
-    local colors_names = extra_spec["colors_names_" .. vim.o.background]
+    local insert_non_light = extra_spec.supports_light_background
+      or vim.o.background ~= "light"
+    local colors_names =
+      extra_spec["colors_names" .. (insert_non_light and "" or "_light")]
 
     if colors_names then
       for _, colors_name in ipairs(colors_names) do
@@ -31,15 +34,11 @@ local refresh_colorschemes = function()
             if vim.o.background == "light" then
               table.insert(colorschemes, { name, colorscheme_style })
             end
-          elseif
-            extra_spec.supports_light_background
-            or vim.o.background ~= "light"
-            or colorscheme_style == "mellifluous"
-          then
+          elseif insert_non_light or colorscheme_style == "mellifluous" then
             table.insert(colorschemes, { name, colorscheme_style })
           end
         end
-      elseif vim.o.background ~= "light" then
+      elseif insert_non_light then
         table.insert(colorschemes, { name })
       end
     end
