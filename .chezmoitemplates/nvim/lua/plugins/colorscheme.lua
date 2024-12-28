@@ -617,6 +617,25 @@ return util.map({
     },
     supports_light_background = true,
   },
+  {
+    "mcchrish/zenbones.nvim",
+    colors_names = {
+      "zenburned",
+    },
+    highlights = function()
+      local palette = require(vim.g.colors_name .. ".palette")
+
+      return rainbow_delimiter_highlights({
+        palette.dark.rose.hex,
+        palette.dark.wood.hex,
+        palette.dark.water.hex,
+        palette.dark.fg.hex,
+        palette.dark.leaf.hex,
+        palette.dark.blossom.hex,
+        palette.dark.sky.hex,
+      })
+    end,
+  },
 }, function(colorscheme_spec)
   local extra_spec = {}
 
