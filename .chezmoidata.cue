@@ -223,7 +223,7 @@ aliases: {
 		h: "$HOME/supabase/helper-scripts"
 		i: "$HOME/supabase/infrastructure"
 		p: "$HOME/supabase/postgres"
-		q: "$HOME/thebengeu/qmk_userspace"
+		u: "$HOME/thebengeu/qmk_userspace"
 		w: "$HOME/supabase/supabase"
 		x: "$HOME/supabase/infrastructure-external"
 		z: "$HOME/thebengeu/zmk-config"
@@ -234,14 +234,17 @@ aliases: {
 	}
 	_aliasDirectories: _rgAliasDirectories & {
 		d: "$HOME/Downloads"
+		g: "$HOME/thebengeu"
 		m: "$HOME/supabase/helper-scripts/modern-scripts"
 		r: "$HOME/repos"
 		t: "$HOME/temp"
-		u: "$HOME/thebengeu"
 	}
 
 	for prefix, directory in _aliasDirectories {
 		"\(prefix)cd": "cd \(directory)"
+	}
+
+	for prefix, directory in _rgAliasDirectories {
 		"\(prefix)rg": "\(_env) --chdir \(strings.Replace(directory, "$HOME", "~", -1)) rg"
 	}
 
