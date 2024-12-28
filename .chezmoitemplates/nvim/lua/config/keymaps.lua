@@ -108,8 +108,6 @@ for key, path in pairs({
   u = "~/thebengeu/qmk_userspace",
 }) do
   vim.keymap.set("n", "<leader>q" .. key, function()
-    local smear_cursor = require("smear_cursor")
-    smear_cursor.enabled = false
     vim.cmd.cd(path)
   end, { desc = "cd " .. path:match("[^/]+$") })
 end
