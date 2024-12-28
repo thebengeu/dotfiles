@@ -6,7 +6,7 @@ local colorschemes
 local max_colorscheme_name_length
 
 local get_colorscheme_name = function(colorscheme)
-  return table.concat(colorscheme, "-"):gsub(" ", "_"):gsub("[-_]light.*", "")
+  return table.concat(colorscheme, "-"):gsub(" ", "_"):gsub("-lighte?r?", "")
 end
 
 local refresh_colorschemes = function()
