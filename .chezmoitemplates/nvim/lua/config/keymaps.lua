@@ -106,6 +106,8 @@ for key, path in pairs({
   i = "~/supabase/infrastructure",
   s = "~/sb",
   u = "~/thebengeu/qmk_userspace",
+  x = "~/supabase/infrastructure-external",
+  z = "~/thebengeu/zmk-config",
 }) do
   vim.keymap.set("n", "<leader>q" .. key, function()
     vim.cmd.cd(path)
