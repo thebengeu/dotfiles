@@ -24,17 +24,12 @@ return util.map({
   },
   {
     "uloco/bluloco.nvim",
-    colors_names = {
-      "bluloco-dark",
-    },
-    colors_names_light = {
-      "bluloco-light",
-    },
     dependencies = "rktjmp/lush.nvim",
     opts = {
       italics = true,
       terminal = true,
     },
+    supports_light_background = true,
   },
   {
     "catppuccin",
@@ -236,9 +231,7 @@ return util.map({
       end,
     },
   },
-  {
-    "sho-87/kanagawa-paper.nvim",
-  },
+  { "sho-87/kanagawa-paper.nvim" },
   {
     "marko-cerovac/material.nvim",
     colorscheme_styles = {
@@ -394,12 +387,11 @@ return util.map({
   },
   {
     "yorik1984/newpaper.nvim",
-    cmd = {
-      "NewpaperDark",
-      "NewpaperLight",
+    colorscheme_styles = {
+      "dark",
+      "light",
     },
     opts = {},
-    supports_light_background = true,
   },
   {
     "bluz71/vim-nightfly-colors",
