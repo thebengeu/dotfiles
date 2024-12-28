@@ -34,6 +34,7 @@ local refresh_colorschemes = function()
           elseif
             extra_spec.supports_light_background
             or vim.o.background ~= "light"
+            or colorscheme_style == "mellifluous"
           then
             table.insert(colorschemes, { name, colorscheme_style })
           end
@@ -70,11 +71,13 @@ local refresh_colorscheme = function(index)
       style
   end
 
-  if colorscheme[1] == "newpaper" then
+  vim.cmd.colorscheme(colorscheme[1])
+
+  if colorscheme[1] == "mellifluous" then
+    vim.cmd.Mellifluous(style)
+  elseif colorscheme[1] == "newpaper" then
     vim.cmd["Newpaper" .. (style == "light" and "Light" or "Dark")]()
   end
-
-  vim.cmd.colorscheme(colorscheme[1])
 
   vim.schedule(function()
     require("lualine").refresh()
