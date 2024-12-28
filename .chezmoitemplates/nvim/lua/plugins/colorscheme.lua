@@ -115,6 +115,7 @@ return util.map({
     end,
     supports_light_background = true,
   },
+  { "comfysage/evergarden" },
   {
     "0xstepit/flow.nvim",
     highlights = function()
@@ -164,9 +165,12 @@ return util.map({
       "github_dark",
       "github_dark_default",
       "github_dark_dimmed",
+      "github_dark_high_contrast",
     },
     colors_names_light = {
       "github_light",
+      "github_light_default",
+      "github_light_high_contrast",
     },
     name = "github-theme",
     opts = function()
@@ -288,6 +292,38 @@ return util.map({
     supports_light_background = true,
   },
   {
+    "ramojus/mellifluous.nvim",
+    colorscheme_styles = {
+      "alduin",
+      "kanagawa_dragon",
+      "mellifluous",
+      "mountain",
+      "tender",
+    },
+    opts = function()
+      local highlight_overrides = function(highlighter, colors)
+        highlighter.set("RainbowDelimiterRed", { fg = colors.red })
+        highlighter.set("RainbowDelimiterYellow", { fg = colors.yellow })
+        highlighter.set("RainbowDelimiterBlue", { fg = colors.blue })
+        highlighter.set("RainbowDelimiterOrange", { fg = colors.orange })
+        highlighter.set("RainbowDelimiterGreen", { fg = colors.green })
+        highlighter.set("RainbowDelimiterViolet", { fg = colors.purple })
+        highlighter.set(
+          "RainbowDelimiterCyan",
+          { fg = colors.cyan or colors.blue }
+        )
+      end
+
+      return {
+        color_set = util.colorscheme_style,
+        highlight_overrides = {
+          dark = highlight_overrides,
+          light = highlight_overrides,
+        },
+      }
+    end,
+  },
+  {
     "mellow-theme/mellow.nvim",
     config = function()
       local colors = require("mellow.colors").dark
@@ -318,6 +354,17 @@ return util.map({
         components.parameter,
       })
     end,
+  },
+  {
+    "echasnovski/mini.base16",
+    colors_names_dark = {
+      "minicyan",
+      "minischeme",
+    },
+    colors_names_light = {
+      "minicyan",
+      "minischeme",
+    },
   },
   {
     "polirritmico/monokai-nightasty.nvim",
@@ -399,6 +446,8 @@ return util.map({
     end,
     opts = {},
   },
+  { "gbprod/nord.nvim" },
+  { "fcancelinha/nordern.nvim" },
   {
     "AlexvZyl/nordic.nvim",
     opts = {
