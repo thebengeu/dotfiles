@@ -4,7 +4,7 @@ vim.api.nvim_create_user_command("Search", function(opts)
   util.open_url("https://www.google.com/search?q=" .. opts.fargs[1])
 end, { nargs = 1 })
 
-vim.g.lazyvim_cmp = "nvim-cmp"
+-- vim.g.lazyvim_cmp = "nvim-cmp"
 vim.g.lazyvim_picker = "telescope"
 vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
