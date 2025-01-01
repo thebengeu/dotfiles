@@ -19,6 +19,7 @@ $wingetPackageIds = @(
   'EpicGames.EpicGamesLauncher'
   'ExpressVPN.ExpressVPN'
   'LLVM.LLVM'
+  'equalsraf.win32yank'
 )
 
 winget install --exact --no-upgrade --silent $wingetPackageIds
