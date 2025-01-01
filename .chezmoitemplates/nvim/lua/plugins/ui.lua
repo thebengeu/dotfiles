@@ -91,6 +91,12 @@ return {
         end
       )
 
+      local ts_rainbow_hl = {}
+
+      for i = 1, 7 do
+        table.insert(ts_rainbow_hl, "rainbowcol" .. i)
+      end
+
       local rainbow_hl_if_exists = function(rainbow_hl)
         for i = 1, 7 do
           local hl = vim.api.nvim_get_hl(0, { name = rainbow_hl[i] })
@@ -108,6 +114,7 @@ return {
 
         local rainbow_hl = rainbow_hl_if_exists(util.rainbow_delimiters_hl)
           or rainbow_hl_if_exists(ts_rainbow_2_hl)
+          or rainbow_hl_if_exists(ts_rainbow_hl)
 
         if not rainbow_hl then
           error("No rainbow highlight groups found")
