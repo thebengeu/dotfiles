@@ -394,31 +394,32 @@ if strings.HasSuffix(_hostname, "-wsl") {
 	_wsl_paths: [
 		"/mnt/c/Program\\ Files/Neovide",
 		"/mnt/c/Program\\ Files\\ \\(x86\\)/nvim/bin",
+		"/mnt/c/Users/beng/AppData/Local/Microsoft/WinGet/Links",
 	]
 }
-paths: list.Concat([[
-	"$PNPM_HOME",
-	"~/.cargo/bin",
-	"~/.krew/bin",
-	"~/.local/bin",
-	"~/repos/git-fuzzy/bin",
-	"~/go/bin",
-	"~/supabase/supa-admin-cli/bin",
-	"~/thebengeu/scripts",
-], {
+paths: list.Concat([{
 	darwin: [
 		"~/Library/Python/3.11/bin",
 		"/opt/homebrew/opt/curl/bin",
 		"/usr/local/bin",
 	]
-	linux: list.Concat([[
+	linux: list.Concat([_wsl_paths, [
 		"~/.pulumi/bin",
 		"~/.temporalio/bin",
 		"$FLYCTL_INSTALL/bin",
 		"$PYENV_ROOT/bin",
-	], _wsl_paths])
+	]])
 	windows: [
 		"~/AppData/Roaming/Python/Python312/Scripts",
 		"/usr/bin",
 	]
-}[_os]])
+}[_os], [
+	"$PNPM_HOME",
+	"~/.cargo/bin",
+	"~/.krew/bin",
+	"~/.local/bin",
+	"~/go/bin",
+	"~/repos/git-fuzzy/bin",
+	"~/supabase/supa-admin-cli/bin",
+	"~/thebengeu/scripts",
+]])
