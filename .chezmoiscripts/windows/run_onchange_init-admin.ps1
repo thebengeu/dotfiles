@@ -12,9 +12,9 @@ scoop install $scoopPackages
 
 if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator))
 {
-  if (Get-Command gsudo)
+  if (Get-Command sudo)
   {
-    gsudo "& '$($MyInvocation.MyCommand.Path)'"
+    sudo pwsh "$($MyInvocation.MyCommand.Path)"
   } else
   {
     $CommandLine = "-NoExit -NoProfile -File `"" + $MyInvocation.MyCommand.Path + "`""
