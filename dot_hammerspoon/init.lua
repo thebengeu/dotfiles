@@ -19,25 +19,25 @@ for key, bundle_id_and_args in pairs({
     open = "/System/Library/PreferencePanes/Displays.prefPane",
   },
   -- ["."] = "unwrap-clipboard",
-  ["/"] = "com.apple.finder",
+  ["/"] = "com.flexibits.fantastical2.mac",
   a = "net.whatsapp.WhatsApp",
   -- b = "BigQuery cell",
   c = "Google Chrome",
   d = "com.kapeli.dash-setapp",
   e = "com.microsoft.edgemac",
   f = "com.microsoft.edgemac.app.nkbljeindhmekmppbpgebpjebkjbmfaj",
-  g = "com.mitchellh.ghostty",
+  g = "ru.keepcoder.Telegram",
   h = "com.spotify.client",
   i = "org.mozilla.firefox",
   j = "com.jetbrains.pycharm",
   k = KITTY_BUNDLE_ID,
-  l = "ru.keepcoder.Telegram",
+  l = "com.linear",
   m = "com.mimestream.Mimestream",
   n = "notion.id",
   o = "md.obsidian",
   p = "com.readdle.SparkDesktop-setapp",
   -- q = "format-clipboard SQL",
-  r = "com.microsoft.edgemac.app.bndmnggfngpgmmijcogkkgglhalbpomk",
+  r = "com.apple.reminders",
   s = "com.tinyspeck.slackmacgap",
   t = "com.microsoft.edgemac.app.knaiokfnmjjldlfhlioejgcompgenfhb",
   u = "com.aptakube.Aptakube",
@@ -82,40 +82,38 @@ end
 for key, bundle_id_and_args in pairs({
   [","] = {
     bundle_id = "com.apple.systempreferences",
-    key_on_focus = "f",
     open = "/System/Library/PreferencePanes/Displays.prefPane",
   },
-  a = { "net.whatsapp.WhatsApp", "f" },
+  ["/"] = { "com.flexibits.fantastical2.mac" },
+  a = { "net.whatsapp.WhatsApp" },
   c = { "Google Chrome", "l" },
   e = { "com.microsoft.edgemac", "l" },
   f = { "com.microsoft.edgemac.app.nkbljeindhmekmppbpgebpjebkjbmfaj", "/", {} },
+  g = { "ru.keepcoder.Telegram", "k" },
   h = { "com.spotify.client", "k" },
   i = { "org.mozilla.firefox", "l" },
   j = { "com.jetbrains.pycharm", "o", { "cmd", "shift" } },
   k = { KITTY_BUNDLE_ID, "h", { "ctrl", "shift" } },
-  l = { "ru.keepcoder.Telegram", "k" },
+  l = { "com.linear", "/", {} },
   m = { "com.mimestream.Mimestream", "f", { "cmd", "option" } },
   n = { "notion.id", "k" },
   o = { "md.obsidian", "p", { "cmd", "shift" } },
-  p = { "com.readdle.SparkDesktop-setapp", "f" },
-  r = {
-    "com.microsoft.edgemac.app.bndmnggfngpgmmijcogkkgglhalbpomk",
-    "f",
-    { "ctrl" },
-  },
+  p = { "com.readdle.SparkDesktop-setapp" },
+  r = { "com.apple.reminders" },
   s = { "com.tinyspeck.slackmacgap", "k" },
   t = { "com.microsoft.edgemac.app.knaiokfnmjjldlfhlioejgcompgenfhb", "k" },
-  u = { "com.aptakube.Aptakube", "f" },
+  u = { "com.aptakube.Aptakube" },
   v = { "com.microsoft.VSCode", "f", { "cmd", "shift" } },
-  w = { WEZTERM_BUNDLE_ID, "f" },
+  w = { WEZTERM_BUNDLE_ID },
   x = {
     args = "~/thebengeu/cheatsheet/README.md",
-    key_on_focus = "f",
     bundle_id = "com.brettterpstra.marked2",
   },
 }) do
   local bundle_id = bundle_id_and_args.bundle_id or bundle_id_and_args[1]
-  local key_on_focus = bundle_id_and_args.key_on_focus or bundle_id_and_args[2]
+  local key_on_focus = bundle_id_and_args.key_on_focus
+    or bundle_id_and_args[2]
+    or "f"
   local mods_on_focus = bundle_id_and_args.mods
     or bundle_id_and_args[3]
     or { "cmd" }
@@ -127,11 +125,7 @@ for key, bundle_id_and_args in pairs({
     if on_window_focused_enabled then
       on_window_focused_enabled = false
 
-      if bundle_id == "com.neovide.neovide" then
-        hs.eventtap.keyStrokes("  ")
-      else
-        hs.eventtap.keyStroke(mods_on_focus, key_on_focus)
-      end
+      hs.eventtap.keyStroke(mods_on_focus, key_on_focus)
     end
   end
 
