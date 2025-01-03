@@ -4,6 +4,7 @@ $storeApps = @(
   'Apple Music'
   'Apple TV'
   '9PL8WPH0QK9M' # Cider (Preview)
+  'Fantastical'
   'iCloud'
   'Netflix'
   '9NRX63209R7B' # Outlook for Windows
