@@ -14,14 +14,7 @@ return {
   {
     "rmagatti/auto-session",
     keys = {
-      {
-        "<leader>ql",
-        function()
-          require("auto-session").setup_session_lens()
-          require("auto-session.session-lens").search_session({})
-        end,
-        desc = "List Sessions",
-      },
+      { "<leader>ql", "<Cmd>SessionSearch<CR>", desc = "List Sessions" },
     },
     lazy = false,
     opts = {
@@ -48,7 +41,6 @@ return {
         load_on_setup = false,
         previewer = true,
       },
-      use_git_branch = true,
     },
   },
   {

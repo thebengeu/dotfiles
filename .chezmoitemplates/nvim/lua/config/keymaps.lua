@@ -110,7 +110,21 @@ for key, path in pairs({
   z = "~/thebengeu/zmk-config",
 }) do
   vim.keymap.set("n", "<leader>q" .. key, function()
-    vim.cmd.cd(path)
+    local auto_session = require("auto-session")
+    local lib = require("auto-session.lib")
+
+    local expanded_path = vim.fn.expand(path)
+    local sessions = lib.get_session_list(auto_session.get_root_dir())
+
+    for _, session in ipairs(sessions) do
+      if session.session_name == expanded_path then
+        vim.cmd.SessionRestore(expanded_path)
+        return
+      end
+    end
+
+    os.execute("nvim --cmd 'cd " .. expanded_path .. "'")
+    vim.cmd.quit()
   end, { desc = "cd " .. path:match("[^/]+$") })
 end
 
