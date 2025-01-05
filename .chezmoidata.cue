@@ -220,6 +220,7 @@ aliases: {
 		c: "$HOME/.local/share/chezmoi"
 		k: "$HOME/thebengeu/drakon"
 		e: "$HOME/supabase/data-engineering"
+		f: "$HOME/thebengeu/qmk_firmware"
 		h: "$HOME/supabase/helper-scripts"
 		i: "$HOME/supabase/infrastructure"
 		p: "$HOME/supabase/postgres"
