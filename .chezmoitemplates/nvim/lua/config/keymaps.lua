@@ -100,12 +100,17 @@ vim.keymap.set(
 )
 
 for key, path in pairs({
+  a = "~/supabase/supabase-admin-api",
+  b = "~/sb",
   c = "~/.local/share/chezmoi",
-  d = "~/thebengeu/drakon",
+  e = "~/supabase/data-engineering",
+  f = "~/thebengeu/qmk_firmware",
   h = "~/supabase/helper-scripts",
   i = "~/supabase/infrastructure",
-  s = "~/sb",
+  k = "~/thebengeu/drakon",
+  p = "~/supabase/postgres",
   u = "~/thebengeu/qmk_userspace",
+  w = "~/supabase/supabase",
   x = "~/supabase/infrastructure-external",
   z = "~/thebengeu/zmk-config",
 }) do
@@ -125,7 +130,7 @@ for key, path in pairs({
 
     os.execute("nvim --cmd 'cd " .. expanded_path .. "'")
     vim.cmd.quit()
-  end, { desc = "cd " .. path:match("[^/]+$") })
+  end, { desc = path:match("[^/]+$") })
 end
 
 vim.keymap.set("n", "<leader>um", function()

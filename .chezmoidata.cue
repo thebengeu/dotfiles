@@ -218,19 +218,21 @@ aliases: {
 	_gitAliasDirectories: {
 		a: "$HOME/supabase/supabase-admin-api"
 		c: "$HOME/.local/share/chezmoi"
-		k: "$HOME/thebengeu/drakon"
 		e: "$HOME/supabase/data-engineering"
 		f: "$HOME/thebengeu/qmk_firmware"
 		h: "$HOME/supabase/helper-scripts"
 		i: "$HOME/supabase/infrastructure"
+		k: "$HOME/thebengeu/drakon"
 		p: "$HOME/supabase/postgres"
 		u: "$HOME/thebengeu/qmk_userspace"
 		w: "$HOME/supabase/supabase"
 		x: "$HOME/supabase/infrastructure-external"
 		z: "$HOME/thebengeu/zmk-config"
 	}
-	_rgAliasDirectories: _gitAliasDirectories & {
+	_nvimAliasDirectories: _gitAliasDirectories & {
 		b: "$HOME/sb"
+	}
+	_rgAliasDirectories: _nvimAliasDirectories & {
 		s: "$HOME/supabase"
 	}
 	_aliasDirectories: _rgAliasDirectories & {
@@ -288,10 +290,12 @@ aliases: {
 	for prefix, directory in _gitAliasDirectories {
 		"\(prefix)g":  "git -C \(directory)"
 		"\(prefix)lg": "lazygit --path \(directory)"
-		"\(prefix)n":  "nvim --cmd 'cd \(strings.Replace(directory, "$HOME", "~", -1))'"
 		for directoryGitAlias, command in _directoryGitAliases {
 			"\(prefix)g\(directoryGitAlias)": "git -C \(directory) \(command)"
 		}
+	}
+	for prefix, directory in _nvimAliasDirectories {
+		"\(prefix)n": "nvim --cmd 'cd \(strings.Replace(directory, "$HOME", "~", -1))'"
 	}
 
 	for shAlias, command in {
