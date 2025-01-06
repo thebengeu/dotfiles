@@ -36,7 +36,12 @@ function {{$name}} --argument-names {{$lines_and_parameters.parameters | join " 
 end
 {{end}}
 
+function __select_supabase_stack
+    echo --stack $(select-supabase-stack)
+end
+
 abbr --add gcm --set-cursor "git commit -m '%'"
+abbr --add sss --function __select_supabase_stack --position anywhere
 
 function br --wraps=broot
     set -l cmd_file (mktemp)
