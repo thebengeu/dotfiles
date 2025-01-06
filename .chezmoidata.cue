@@ -404,7 +404,7 @@ if strings.HasSuffix(_hostname, "-wsl") {
 }
 paths: list.Concat([{
 	darwin: [
-		"~/Library/Python/3.11/bin",
+		"~/Library/Python/3.12/bin",
 		"/opt/homebrew/opt/curl/bin",
 		"/usr/local/bin",
 	]

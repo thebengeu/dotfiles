@@ -42,7 +42,7 @@ defaults write -g ApplePressAndHoldEnabled -bool false
 # shellcheck disable=SC2154
 if [ ! "${CHEZMOI}" = 1 ]; then
   export PNPM_HOME=~/.local/share/pnpm
-  export PATH=~/.cargo/bin:~/go/bin:~/Library/Python/3.11/bin:"${PNPM_HOME}":"${PATH}"
+  export PATH=~/.cargo/bin:~/go/bin:~/Library/Python/3.12/bin:"${PNPM_HOME}":"${PATH}"
   chezmoi init --ssh thebengeu
 
   if [ "$(uname -m)" = 'x86_64' ]; then
