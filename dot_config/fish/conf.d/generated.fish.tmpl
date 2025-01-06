@@ -36,6 +36,8 @@ function {{$name}} --argument-names {{$lines_and_parameters.parameters | join " 
 end
 {{end}}
 
+abbr --add gcm --set-cursor "git commit -m '%'"
+
 function br --wraps=broot
     set -l cmd_file (mktemp)
     if broot --outcmd $cmd_file $argv
