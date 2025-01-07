@@ -90,14 +90,6 @@ local egrepify = function(cwd, vimgrep_arguments)
   end
 end
 
-local smart_open = function(cwd)
-  return function()
-    require("telescope").extensions.smart_open.smart_open({
-      cwd = cwd == nil and LazyVim.root() or cwd,
-    })
-  end
-end
-
 local get_directory = function(picker_name, cwd)
   return function()
     cwd = cwd or vim.uv.cwd()
@@ -169,12 +161,12 @@ return {
     keys = {
       {
         "<leader><space>",
-        smart_open(),
+        util.smart_open(),
         desc = "Find Files (root dir)",
       },
       {
         "<leader>fc",
-        smart_open("~/.local/share/chezmoi/.chezmoitemplates/nvim"),
+        util.smart_open("~/.local/share/chezmoi/.chezmoitemplates/nvim"),
         desc = "Find Config File",
       },
       {
@@ -184,17 +176,17 @@ return {
       },
       {
         "<leader>ff",
-        smart_open(false),
+        util.smart_open(false),
         desc = "Find Files (cwd)",
       },
       {
         "<leader>fl",
-        smart_open(lazy_root .. "/LazyVim"),
+        util.smart_open(lazy_root .. "/LazyVim"),
         desc = "Find LazyVim Files",
       },
       {
         "<leader>fP",
-        smart_open(lazy_root),
+        util.smart_open(lazy_root),
         desc = "Find Plugin Files",
       },
       {
