@@ -436,7 +436,6 @@ return util.map({
     opts = {},
   },
   { "gbprod/nord.nvim" },
-  { "fcancelinha/nordern.nvim" },
   {
     "AlexvZyl/nordic.nvim",
     opts = {
