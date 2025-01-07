@@ -68,7 +68,7 @@ for key, bundle_id_and_args in pairs({
   s = "com.tinyspeck.slackmacgap",
   t = "com.microsoft.edgemac.app.knaiokfnmjjldlfhlioejgcompgenfhb",
   u = "com.aptakube.Aptakube",
-  v = "com.microsoft.VSCode",
+  v = "com.neovide.neovide",
   w = WEZTERM_BUNDLE_ID,
   x = {
     args = "~/thebengeu/cheatsheet/README.md",
@@ -114,7 +114,7 @@ for key, bundle_id_and_args in pairs({
   s = { "com.tinyspeck.slackmacgap", "k" },
   t = { "com.microsoft.edgemac.app.knaiokfnmjjldlfhlioejgcompgenfhb", "k" },
   u = { "com.aptakube.Aptakube" },
-  v = { "com.microsoft.VSCode", "f", { "cmd", "shift" } },
+  v = { "com.neovide.neovide", "p" },
   w = { WEZTERM_BUNDLE_ID },
   x = {
     args = "~/thebengeu/cheatsheet/README.md",
