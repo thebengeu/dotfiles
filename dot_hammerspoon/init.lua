@@ -12,6 +12,33 @@ local switcher_window_filter = hs.window.filter.new()
 switcher_window_filter:rejectApp("1Password")
 switcher_window_filter:rejectApp("Microsoft Edge")
 
+local function setup_app_hotkey(bundle_id_and_args, key, modifiers)
+  local bundle_id = bundle_id_and_args.bundle_id or bundle_id_and_args
+
+  local app_name = hs.application.nameForBundleID(bundle_id) or bundle_id
+  switcher_window_filter:rejectApp(app_name)
+
+  hs.hotkey.bind(modifiers, key, function()
+    local app = hs.application(bundle_id)
+    local args = bundle_id_and_args.args
+    local open = bundle_id_and_args.open
+
+    if app then
+      if app:isFrontmost() then
+        app:hide()
+      else
+        app:setFrontmost(true)
+      end
+    elseif args then
+      os.execute("open -b " .. bundle_id .. " " .. args)
+    elseif open then
+      os.execute("open " .. open)
+    else
+      hs.application.open(bundle_id)
+    end
+  end)
+end
+
 for key, bundle_id_and_args in pairs({
   -- ["'"] = "Rectangle Pro Layout 0",
   [","] = {
@@ -53,30 +80,14 @@ for key, bundle_id_and_args in pairs({
     bundle_id = "com.wolfrosch.Gapplin",
   },
 }) do
-  local bundle_id = bundle_id_and_args.bundle_id or bundle_id_and_args
+  setup_app_hotkey(bundle_id_and_args, key, { "ctrl", "option", "shift" })
+end
 
-  local app_name = hs.application.nameForBundleID(bundle_id) or bundle_id
-  switcher_window_filter:rejectApp(app_name)
-
-  hs.hotkey.bind({ "ctrl", "option", "shift" }, key, function()
-    local app = hs.application(bundle_id)
-    local args = bundle_id_and_args.args
-    local open = bundle_id_and_args.open
-
-    if app then
-      if app:isFrontmost() then
-        app:hide()
-      else
-        app:setFrontmost(true)
-      end
-    elseif args then
-      os.execute("open -b " .. bundle_id .. " " .. args)
-    elseif open then
-      os.execute("open " .. open)
-    else
-      hs.application.open(bundle_id)
-    end
-  end)
+for key, bundle_id_and_args in pairs({
+  d = "com.bloombuilt.dayone-mac",
+  k = "org.pqrs.Karabiner-EventViewer",
+}) do
+  setup_app_hotkey(bundle_id_and_args, key, { "ctrl", "shift", "cmd" })
 end
 
 for key, bundle_id_and_args in pairs({
