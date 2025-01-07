@@ -10,6 +10,8 @@
 --iglob
 !out/
 --iglob
+!*.age
+--iglob
 !package-lock.json
 --iglob
 !pnpm-lock.yaml
