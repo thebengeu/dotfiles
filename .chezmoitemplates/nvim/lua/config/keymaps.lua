@@ -128,8 +128,10 @@ for key, path in pairs({
       end
     end
 
-    os.execute("nvim --cmd 'cd " .. expanded_path .. "'")
-    vim.cmd.quit()
+    if not vim.g.goneovim and not vim.g.neovide then
+      os.execute("nvim --cmd 'cd " .. expanded_path .. "'")
+      vim.cmd.quit()
+    end
   end, { desc = path:match("[^/]+$") })
 end
 
