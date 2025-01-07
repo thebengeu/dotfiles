@@ -91,7 +91,7 @@ return {
     event = "LazyFile",
     opts = {
       exchange = {
-        prefix = "gX",
+        prefix = "gx",
       },
       replace = {
         prefix = "gR",

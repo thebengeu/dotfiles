@@ -120,11 +120,7 @@ return {
   {
     "chrishrb/gx.nvim",
     keys = {
-      {
-        "gx",
-        "<Cmd>Browse<CR>",
-        mode = { "n", "x" },
-      },
+      { "gX", "<Cmd>Browse<CR>", mode = { "n", "x" } },
     },
     opts = {},
   },
