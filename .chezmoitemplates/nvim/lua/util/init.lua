@@ -168,6 +168,14 @@ M.rainbow_delimiters_hl = map(M.rainbow_colors, function(color)
   return "RainbowDelimiter" .. color
 end)
 
+M.smart_open = function(cwd)
+  return function()
+    require("telescope").extensions.smart_open.smart_open({
+      cwd = cwd == nil and LazyVim.root() or cwd,
+    })
+  end
+end
+
 M.stdout_without_newline = function(command)
   return vim
     .system(command, { cwd = LazyVim.root() })
