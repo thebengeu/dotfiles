@@ -199,21 +199,21 @@ return {
       },
     },
   },
-  {
-    "L3MON4D3/LuaSnip",
-    config = function(_, opts)
-      require("luasnip").setup(opts)
-      require("luasnip.loaders.from_vscode").lazy_load({
-        paths = "./snippets",
-      })
-    end,
-    keys = function()
-      return {}
-    end,
-    opts = {
-      enable_autosnippets = true,
-    },
-  },
+  -- {
+  --   "L3MON4D3/LuaSnip",
+  --   config = function(_, opts)
+  --     require("luasnip").setup(opts)
+  --     require("luasnip.loaders.from_vscode").lazy_load({
+  --       paths = "./snippets",
+  --     })
+  --   end,
+  --   keys = function()
+  --     return {}
+  --   end,
+  --   opts = {
+  --     enable_autosnippets = true,
+  --   },
+  -- },
   {
     "chrisgrieser/nvim-scissors",
     keys = {
