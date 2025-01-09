@@ -157,7 +157,10 @@ end
 return {
   {
     "thebengeu/smart-open.nvim",
-    dependencies = "kkharji/sqlite.lua",
+    dependencies = {
+      "kkharji/sqlite.lua",
+      "nvim-telescope/telescope-fzy-native.nvim",
+    },
     keys = {
       {
         "<leader><space>",
@@ -378,7 +381,7 @@ return {
         },
         smart_open = {
           cwd_only = true,
-          match_algorithm = "fzf",
+          match_algorithm = "fzy",
           result_limit = 50,
         },
         undo = vim.tbl_extend("force", {
