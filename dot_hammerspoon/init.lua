@@ -89,6 +89,7 @@ for key, bundle_id_and_args in pairs({
   e = "com.endel.endel",
   f = "com.apple.finder",
   k = "org.pqrs.Karabiner-EventViewer",
+  o = "dev.kdrag0n.MacVirt",
   p = "com.apple.Preview",
   r = "com.microsoft.edgemac.app.bndmnggfngpgmmijcogkkgglhalbpomk",
 }) do
