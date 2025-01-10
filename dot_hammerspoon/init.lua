@@ -84,8 +84,13 @@ for key, bundle_id_and_args in pairs({
 end
 
 for key, bundle_id_and_args in pairs({
+  c = "com.openai.chat",
   d = "com.bloombuilt.dayone-mac",
+  e = "com.endel.endel",
+  f = "com.apple.finder",
   k = "org.pqrs.Karabiner-EventViewer",
+  p = "com.apple.Preview",
+  r = "com.microsoft.edgemac.app.bndmnggfngpgmmijcogkkgglhalbpomk",
 }) do
   setup_app_hotkey(bundle_id_and_args, key, { "ctrl", "shift", "cmd" })
 end
