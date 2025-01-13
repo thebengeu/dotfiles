@@ -13,10 +13,6 @@ return {
     opts = {},
   },
   {
-    "rafamadriz/friendly-snippets",
-    enabled = false,
-  },
-  {
     "DNLHC/glance.nvim",
     keys = {
       { "gd", "<Cmd>Glance definitions<CR>", desc = "Glance Definitions" },
@@ -207,6 +203,19 @@ return {
         paths = "./snippets",
       })
     end,
+    dependencies = {
+      {
+        "rafamadriz/friendly-snippets",
+        enabled = false,
+      },
+      {
+        "thebengeu/friendly-snippets",
+        config = function()
+          require("luasnip.loaders.from_vscode").lazy_load()
+        end,
+        name = "my-friendly-snippets",
+      },
+    },
     keys = function()
       return {}
     end,
