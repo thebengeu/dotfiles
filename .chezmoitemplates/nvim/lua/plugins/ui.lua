@@ -70,6 +70,7 @@ return {
     event = "LazyFile",
     opts = {
       disabled_filetypes = {
+        "copilot-chat",
         "dropbar_menu",
         "help",
         "neo-tree",
