@@ -54,7 +54,7 @@ for key, bundle_id_and_args in pairs({
   e = "com.microsoft.edgemac",
   f = "com.microsoft.edgemac.app.nkbljeindhmekmppbpgebpjebkjbmfaj",
   g = "ru.keepcoder.Telegram",
-  h = "com.spotify.client",
+  -- h = "format-clipboard Python",
   i = "org.mozilla.firefox",
   j = "com.jetbrains.pycharm",
   k = KITTY_BUNDLE_ID,
@@ -74,7 +74,7 @@ for key, bundle_id_and_args in pairs({
     args = "~/thebengeu/cheatsheet/README.md",
     bundle_id = "com.brettterpstra.marked2",
   },
-  -- y = "format-clipboard Python",
+  y = "com.spotify.client",
   z = {
     args = "~/thebengeu/qmk_userspace/keymap.svg",
     bundle_id = "com.wolfrosch.Gapplin",
@@ -85,13 +85,14 @@ end
 
 for key, bundle_id_and_args in pairs({
   c = "com.openai.chat",
-  d = "com.bloombuilt.dayone-mac",
+  d = "com.hnc.Discord",
   e = "com.endel.endel",
   f = "com.apple.finder",
   k = "org.pqrs.Karabiner-EventViewer",
-  o = "dev.kdrag0n.MacVirt",
+  o = "com.bloombuilt.dayone-mac",
   p = "com.apple.Preview",
   r = "com.microsoft.edgemac.app.bndmnggfngpgmmijcogkkgglhalbpomk",
+  s = "dev.kdrag0n.MacVirt",
 }) do
   setup_app_hotkey(bundle_id_and_args, key, { "ctrl", "shift", "cmd" })
 end
@@ -107,7 +108,6 @@ for key, bundle_id_and_args in pairs({
   e = { "com.microsoft.edgemac", "l" },
   f = { "com.microsoft.edgemac.app.nkbljeindhmekmppbpgebpjebkjbmfaj", "/", {} },
   g = { "ru.keepcoder.Telegram", "k" },
-  h = { "com.spotify.client", "k" },
   i = { "org.mozilla.firefox", "l" },
   j = { "com.jetbrains.pycharm", "o", { "cmd", "shift" } },
   k = { KITTY_BUNDLE_ID, "h", { "ctrl", "shift" } },
@@ -126,6 +126,7 @@ for key, bundle_id_and_args in pairs({
     args = "~/thebengeu/cheatsheet/README.md",
     bundle_id = "com.brettterpstra.marked2",
   },
+  y = { "com.spotify.client", "k" },
 }) do
   local bundle_id = bundle_id_and_args.bundle_id or bundle_id_and_args[1]
   local key_on_focus = bundle_id_and_args.key_on_focus
@@ -239,8 +240,8 @@ end)
 
 for key, command in pairs({
   ["."] = "unwrap-clipboard",
+  h = "format-clipboard Python",
   q = "format-clipboard SQL",
-  y = "format-clipboard Python",
 }) do
   hs.hotkey.bind({ "ctrl", "option", "shift" }, key, function()
     local clipboardContents = hs.pasteboard.getContents()
