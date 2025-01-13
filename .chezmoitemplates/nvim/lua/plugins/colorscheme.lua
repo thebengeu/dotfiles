@@ -248,7 +248,6 @@ return util.map({
         "eyeliner",
         "flash",
         "gitsigns",
-        "harpoon",
         "indent-blankline",
         "mini",
         "neo-tree",
