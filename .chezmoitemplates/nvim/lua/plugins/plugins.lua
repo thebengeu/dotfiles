@@ -14,6 +14,14 @@ local obsidian_vault_path = (
 
 return {
   {
+    "otavioschwanck/arrow.nvim",
+    dependencies = "echasnovski/mini.icons",
+    opts = {
+      leader_key = ",",
+      show_icons = true,
+    },
+  },
+  {
     "rmagatti/auto-session",
     keys = {
       { "<leader>ql", "<Cmd>SessionSearch<CR>", desc = "List Sessions" },
@@ -62,21 +70,6 @@ return {
     config = function()
       vim.g.direnv_silent_load = 1
     end,
-  },
-  {
-    "ThePrimeagen/harpoon",
-    branch = "harpoon2",
-    keys = {
-      { "<leader>h", false },
-      {
-        "<leader>m",
-        function()
-          require("telescope").extensions.harpoon.marks()
-        end,
-        desc = "Harpoon Marks",
-      },
-    },
-    url = "https://github.com/thebengeu/harpoon.git",
   },
   {
     "robitx/gp.nvim",
