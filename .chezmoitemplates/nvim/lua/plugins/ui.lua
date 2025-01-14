@@ -73,6 +73,7 @@ return {
         "copilot-chat",
         "dropbar_menu",
         "help",
+        "lazy",
         "neo-tree",
         "qf",
         "trouble",
