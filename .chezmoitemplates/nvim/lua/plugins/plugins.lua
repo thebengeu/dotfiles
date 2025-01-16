@@ -35,7 +35,6 @@ return {
     opts = {
       ---@diagnostic disable-next-line: need-check-nil
       auto_restore_last_session = cwd:match("\\scoop\\apps\\")
-        or cwd == homedir
         or cwd == vim.env.windir
         or cwd == "/",
       continue_restore_on_error = true,
