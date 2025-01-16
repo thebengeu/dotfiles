@@ -17,7 +17,12 @@ return {
     "otavioschwanck/arrow.nvim",
     dependencies = "echasnovski/mini.icons",
     opts = {
+      index_keys = "asdfjkl'",
       leader_key = ",",
+      mappings = {
+        delete_mode = "D",
+        toggle = "S",
+      },
       show_icons = true,
     },
   },
