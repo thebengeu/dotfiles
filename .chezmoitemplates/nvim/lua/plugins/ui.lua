@@ -76,6 +76,7 @@ return {
         "lazy",
         "neo-tree",
         "qf",
+        "snacks_terminal",
         "trouble",
       },
     },
