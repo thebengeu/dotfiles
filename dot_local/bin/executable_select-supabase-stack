@@ -1,1 +1,1 @@
-ls Pulumi.*.yaml | sed 's/Pulumi\.\(.*\)\.yaml/supabase\/\1/' | fzf
+ls Pulumi.*.yaml 2>/dev/null | sed 's/Pulumi\.\(.*\)\.yaml/supabase\/\1/' | fzf --exit-0
