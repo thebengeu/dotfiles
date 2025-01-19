@@ -172,6 +172,7 @@ aliases: {
 			bi:  "brew install"
 			bic: "brew install --cask"
 			bif: "brew info"
+			bl:  "brew list"
 			bs:  "brew search"
 			bu:  "brew uninstall --zap"
 			but: "brew untap"
