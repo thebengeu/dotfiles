@@ -263,6 +263,7 @@ aliases: {
 		pf:  "pf"
 		rh:  "reset --hard HEAD"
 		s:   "s"
+		sw:  "sw"
 		w:   "wip"
 	}
 	_gitAliases: {
@@ -279,7 +280,6 @@ aliases: {
 		sa:  "stash apply"
 		sP:  "stash push"
 		sp:  "stash pop"
-		sw:  "sw"
 		wa:  "worktree add"
 		wr:  "worktree remove"
 	}
