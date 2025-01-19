@@ -1,6 +1,10 @@
 local common = require("common")
 local wezterm = require("wezterm")
+local resurrect =
+  wezterm.plugin.require("https://github.com/MLFlexer/resurrect.wezterm")
 local nerdfonts = wezterm.nerdfonts
+
+resurrect.periodic_save({ interval_seconds = 60 })
 
 local process_name_icons = {
   [""] = nerdfonts.cod_debug_console,
@@ -41,18 +45,21 @@ function M.apply_to_config(config)
     return tab.active_pane.title:gsub("%.exe$", "")
   end)
 
-  if wezterm.target_triple:match("%%-pc%-windows%-msvc$") then
-    wezterm.on("gui-startup", function()
-      wezterm.run_child_process({
-        "wsl",
-        "--exec",
-        "sh",
-        "-c",
-        common.tmux_detached_session,
-      })
-      wezterm.mux.get_domain(config.default_domain):attach()
-    end)
-  end
+  wezterm.on(
+    "gui-startup",
+    wezterm.target_triple:match("%%-pc%-windows%-msvc$")
+        and function()
+          wezterm.run_child_process({
+            "wsl",
+            "--exec",
+            "sh",
+            "-c",
+            common.tmux_detached_session,
+          })
+          wezterm.mux.get_domain(config.default_domain):attach()
+        end
+      or resurrect.resurrect_on_gui_startup
+  )
 end
 
 return M
