@@ -7,6 +7,22 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 config:set_strict_mode(true)
 
+local tabline =
+  wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
+tabline.setup({
+  options = {
+    tabs_enabled = false,
+  },
+  sections = {
+    tabline_a = {},
+    tabline_b = {},
+    tabline_c = {},
+    tabline_x = {},
+    tabline_y = {},
+    tabline_z = { "domain" },
+  },
+})
+
 local is_windows = wezterm.target_triple:match("%%-pc%-windows%-msvc$")
 
 config.adjust_window_size_when_changing_font_size = false
@@ -120,12 +136,12 @@ config.warn_about_missing_glyphs = false
 config.webgpu_power_preference = "HighPerformance"
 config.window_background_opacity = 0.95
 config.window_close_confirmation = "NeverPrompt"
-config.window_decorations = "INTEGRATED_BUTTONS | RESIZE"
+config.window_decorations = "RESIZE"
 config.window_frame = {
   active_titlebar_bg = "#1e1e2e",
 }
 config.window_padding = {
-  left = 10,
+  left = 0,
   right = 0,
   top = 0,
   bottom = 0,

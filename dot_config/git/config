@@ -25,6 +25,8 @@
 	algorithm = histogram
 	colorMoved = default
 	external = difft --color=always
+[includeIf "gitdir:~/Library/Application Support/wezterm/plugins/"]
+	path = ~/.config/wezterm/.gitconfig
 [init]
 	defaultBranch = master
 	templateDir = ~/.config/git/template

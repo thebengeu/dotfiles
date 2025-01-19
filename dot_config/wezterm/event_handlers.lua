@@ -53,10 +53,6 @@ function M.apply_to_config(config)
       wezterm.mux.get_domain(config.default_domain):attach()
     end)
   end
-
-  wezterm.on("update-status", function(window, pane)
-    window:set_right_status("   " .. pane:get_domain_name() .. "   ")
-  end)
 end
 
 return M
