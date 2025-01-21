@@ -342,6 +342,12 @@ return {
               ["<Esc>"] = { "close", mode = { "n", "i" } },
             },
           },
+          preview = {
+            wo = {
+              number = false,
+              signcolumn = "no",
+            },
+          },
         },
       },
     },
