@@ -212,20 +212,20 @@ return {
         desc = "Find Plugin's Files",
       },
       {
-        "<leader>gC",
+        "<leader>gf",
         delta_diffview_git_picker("bcommits"),
-        desc = "Buffer commits",
+        desc = "Git Current File History",
+      },
+      {
+        "<leader>gf",
+        delta_diffview_git_picker("bcommits_range"),
+        desc = "Git Current File History",
+        mode = "x",
       },
       {
         "<leader>gc",
         delta_diffview_git_picker("commits"),
-        desc = "Commits",
-      },
-      {
-        "<leader>gc",
-        delta_diffview_git_picker("bcommits_range"),
-        desc = "Range commits",
-        mode = "x",
+        desc = "Git Log",
       },
       {
         "<leader>gm",
@@ -287,7 +287,7 @@ return {
         desc = "Changed Files",
       },
       {
-        "<leader>gR",
+        "<leader>gr",
         function()
           require("telescope.builtin").git_branches({
             show_remote_tracking_branches = false,

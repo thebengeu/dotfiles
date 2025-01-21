@@ -107,13 +107,13 @@ return {
 
       return {
         {
-          "<leader>go",
+          "<leader>gb",
           link_using_default_branch("system"),
           mode = { "n", "x" },
           desc = "Open permalink (default branch)",
         },
         {
-          "<leader>gO",
+          "<leader>gB",
           "<cmd>GitLink!<cr>",
           mode = { "n", "x" },
           desc = "Open permalink (current branch)",
@@ -247,6 +247,16 @@ return {
     "chrisgrieser/nvim-tinygit",
     cmd = "Tinygit",
     dependencies = "stevearc/dressing.nvim",
+  },
+  {
+    "pwntester/octo.nvim",
+    keys = {
+      { "<leader>gi", false },
+      { "<leader>gI", false },
+      { "<leader>gP", false },
+      { "<leader>gr", false },
+      { "<leader>gS", false },
+    },
   },
   {
     "tpope/vim-fugitive",

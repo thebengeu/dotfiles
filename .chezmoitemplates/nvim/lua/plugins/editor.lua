@@ -119,6 +119,12 @@ return {
     opts = {},
   },
   {
+    "nvim-neo-tree/neo-tree.nvim",
+    keys = {
+      { "<leader>ge", false },
+    },
+  },
+  {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
     opts = {
