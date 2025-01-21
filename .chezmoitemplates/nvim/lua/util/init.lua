@@ -168,11 +168,12 @@ M.rainbow_delimiters_hl = map(M.rainbow_colors, function(color)
   return "RainbowDelimiter" .. color
 end)
 
-M.smart_open = function(cwd)
+M.smart_files = function(opts)
   return function()
-    require("telescope").extensions.smart_open.smart_open({
-      cwd = cwd == nil and LazyVim.root() or cwd,
-    })
+    Snacks.picker.smart(vim.tbl_extend("force", {
+      finders = { "files" },
+      hidden = true,
+    }, opts or {}))
   end
 end
 
