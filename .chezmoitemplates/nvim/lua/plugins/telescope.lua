@@ -331,6 +331,11 @@ return {
     },
     opts = {
       picker = {
+        formatters = {
+          file = {
+            filename_first = true,
+          },
+        },
         win = {
           input = {
             keys = {
