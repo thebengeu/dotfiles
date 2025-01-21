@@ -16,6 +16,7 @@ return {
   {
     "otavioschwanck/arrow.nvim",
     dependencies = "echasnovski/mini.icons",
+    keys = { "," },
     opts = {
       index_keys = "asdfjkl'",
       leader_key = ",",
