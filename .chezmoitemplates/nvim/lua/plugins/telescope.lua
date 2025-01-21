@@ -25,7 +25,7 @@ local delta_diffview_git_picker = function(picker)
       })
     end
 
-    LazyVim.pick("git_" .. picker, {
+    require("telescope.builtin")["git_" .. picker]({
       attach_mappings = function()
         local actions = require("telescope.actions")
 
@@ -72,7 +72,7 @@ local delta_diffview_git_picker = function(picker)
           }, is_bcommits and { "--", entry.current_file } or {})
         end,
       }),
-    })()
+    })
   end
 end
 
@@ -110,10 +110,10 @@ local get_directory = function(picker_name, cwd)
             actions.close(prompt_bufnr)
 
             if vim.tbl_isempty(multi_selection) then
-              if picker_name == "find_files" then
-                require("telescope").extensions.smart_open.smart_open({
+              if picker_name == "smart_files" then
+                util.smart_files({
                   cwd = cwd .. "/" .. selected_entry_value,
-                })
+                })()
                 return
               end
 
@@ -156,187 +156,189 @@ end
 
 return {
   {
-    "thebengeu/smart-open.nvim",
-    dependencies = {
-      "kkharji/sqlite.lua",
-      "nvim-telescope/telescope-fzy-native.nvim",
-    },
+    "folke/snacks.nvim",
     keys = {
+      { "<leader>/", false },
       {
         "<leader><space>",
-        util.smart_open(),
-        desc = "Find Files (root dir)",
+        function()
+          util.smart_files({
+            cwd = LazyVim.root(),
+          })()
+        end,
+        desc = "Find Files (Root Dir)",
       },
       {
         "<leader>fc",
-        util.smart_open("~/.local/share/chezmoi/.chezmoitemplates/nvim"),
+        util.smart_files({
+          cwd = "~/.local/share/chezmoi/.chezmoitemplates/nvim",
+        }),
         desc = "Find Config File",
       },
       {
         "<leader>fF",
-        get_directory("find_files"),
+        get_directory("smart_files"),
         desc = "Find Files (subdirs)",
       },
       {
         "<leader>ff",
-        util.smart_open(false),
+        util.smart_files(),
         desc = "Find Files (cwd)",
       },
       {
+        "<leader>fi",
+        util.smart_files({
+          ignored = true,
+        }),
+        desc = "Find Files (ignored)",
+      },
+      {
         "<leader>fl",
-        util.smart_open(lazy_root .. "/LazyVim"),
+        util.smart_files({
+          cwd = lazy_root .. "/LazyVim",
+        }),
         desc = "Find LazyVim Files",
       },
       {
         "<leader>fP",
-        util.smart_open(lazy_root),
+        util.smart_files({
+          cwd = lazy_root,
+        }),
         desc = "Find Plugin Files",
       },
       {
         "<leader>fp",
-        get_directory("find_files", lazy_root),
+        get_directory("smart_files", lazy_root),
         desc = "Find Plugin's Files",
+      },
+      {
+        "<leader>gC",
+        delta_diffview_git_picker("bcommits"),
+        desc = "Buffer commits",
+      },
+      {
+        "<leader>gc",
+        delta_diffview_git_picker("commits"),
+        desc = "Commits",
+      },
+      {
+        "<leader>gc",
+        delta_diffview_git_picker("bcommits_range"),
+        desc = "Range commits",
+        mode = "x",
+      },
+      {
+        "<leader>gm",
+        function()
+          local root = LazyVim.root()
+
+          vim
+            .system({ "git", "add", "--intent-to-add", "." }, { cwd = root })
+            :wait()
+
+          local default_branch = util.git_stdout({ "default-branch" })
+          local current_branch = util.git_stdout({ "branch", "--show-current" })
+          local git_diff_commit = current_branch == default_branch
+              and (util.git_stdout({
+                "rev-parse",
+                "HEAD",
+              }) == util.git_stdout({
+                "rev-parse",
+                "@{u}",
+              }) and (#util.git_stdout({
+                "status",
+                "--short",
+              }) > 0 and "HEAD" or "HEAD^") or "origin/HEAD")
+            or (default_branch .. "...")
+
+          require("telescope.pickers")
+            .new({}, {
+              finder = require("telescope.finders").new_oneshot_job({
+                "git",
+                "diff",
+                "--diff-filter=d",
+                "--name-only",
+                git_diff_commit,
+              }, {
+                cwd = root,
+                entry_maker = require("telescope.make_entry").gen_from_file({
+                  cwd = root,
+                }),
+              }),
+              previewer = require("telescope.previewers").new_termopen_previewer({
+                cwd = root,
+                get_command = function(entry)
+                  return {
+                    "sh",
+                    "-c",
+                    "git diff "
+                      .. git_diff_commit
+                      .. " -- "
+                      .. entry.value
+                      .. " | delta | tail -n +5",
+                  }
+                end,
+              }),
+              prompt_title = "Changed Files Against " .. git_diff_commit,
+              sorter = require("telescope.config").values.file_sorter(),
+            })
+            :find()
+        end,
+        desc = "Changed Files",
+      },
+      {
+        "<leader>gR",
+        LazyVim.pick("git_branches", { show_remote_tracking_branches = false }),
+        desc = "Branches",
+      },
+      {
+        "<leader>gs",
+        function()
+          local root = LazyVim.root()
+
+          require("telescope.builtin")["git_status"]({
+            previewer = require("telescope.previewers").new_termopen_previewer({
+              get_command = function(entry)
+                if
+                  entry.status
+                  and (entry.status == "??" or entry.status == "A ")
+                then
+                  return { "bat", "--plain", entry.value }
+                else
+                  return {
+                    "git",
+                    "-C",
+                    root,
+                    "diff",
+                    "HEAD",
+                    "--",
+                    entry.value,
+                  }
+                end
+              end,
+            }),
+          })
+        end,
+        desc = "Status",
+      },
+      { "<leader>sG", false },
+      { "<leader>sg", false },
+      { "<leader>sl", false },
+    },
+    opts = {
+      picker = {
+        win = {
+          input = {
+            keys = {
+              ["<Esc>"] = { "close", mode = { "n", "i" } },
+            },
+          },
+        },
       },
     },
   },
   {
     "nvim-telescope/telescope.nvim",
-    keys = function(_, keys)
-      vim.list_extend(keys, {
-        { "<leader>/", false },
-        { "<leader><space>", false },
-        { "<leader>fc", false },
-        { "<leader>fF", false },
-        { "<leader>ff", false },
-        {
-          "<leader>fi",
-          LazyVim.pick("find_files", { no_ignore = true }),
-          desc = "Find Files (ignored)",
-        },
-        {
-          "<leader>fr",
-          LazyVim.pick("oldfiles"),
-          desc = "Recent (root dir)",
-        },
-        {
-          "<leader>gb",
-          LazyVim.pick(
-            "git_branches",
-            { show_remote_tracking_branches = false }
-          ),
-          desc = "Branches",
-        },
-        {
-          "<leader>gC",
-          delta_diffview_git_picker("bcommits"),
-          desc = "Buffer commits",
-        },
-        {
-          "<leader>gc",
-          delta_diffview_git_picker("commits"),
-          desc = "Commits",
-        },
-        {
-          "<leader>gm",
-          function()
-            local root = LazyVim.root()
-
-            vim
-              .system({ "git", "add", "--intent-to-add", "." }, { cwd = root })
-              :wait()
-
-            local default_branch = util.git_stdout({ "default-branch" })
-            local current_branch =
-              util.git_stdout({ "branch", "--show-current" })
-            local git_diff_commit = current_branch == default_branch
-                and (util.git_stdout({
-                  "rev-parse",
-                  "HEAD",
-                }) == util.git_stdout({
-                  "rev-parse",
-                  "@{u}",
-                }) and (#util.git_stdout({
-                  "status",
-                  "--short",
-                }) > 0 and "HEAD" or "HEAD^") or "origin/HEAD")
-              or (default_branch .. "...")
-
-            require("telescope.pickers")
-              .new({}, {
-                finder = require("telescope.finders").new_oneshot_job({
-                  "git",
-                  "diff",
-                  "--diff-filter=d",
-                  "--name-only",
-                  git_diff_commit,
-                }, {
-                  cwd = root,
-                  entry_maker = require("telescope.make_entry").gen_from_file({
-                    cwd = root,
-                  }),
-                }),
-                previewer = require("telescope.previewers").new_termopen_previewer({
-                  cwd = root,
-                  get_command = function(entry)
-                    return {
-                      "sh",
-                      "-c",
-                      "git diff "
-                        .. git_diff_commit
-                        .. " -- "
-                        .. entry.value
-                        .. " | delta | tail -n +5",
-                    }
-                  end,
-                }),
-                prompt_title = "Changed Files Against " .. git_diff_commit,
-                sorter = require("telescope.config").values.file_sorter(),
-              })
-              :find()
-          end,
-          desc = "Changed Files",
-        },
-        {
-          "<leader>gr",
-          delta_diffview_git_picker("bcommits_range"),
-          desc = "Range commits",
-          mode = "x",
-        },
-        {
-          "<leader>gs",
-          function()
-            local root = LazyVim.root()
-
-            LazyVim.pick("git_status", {
-              previewer = require("telescope.previewers").new_termopen_previewer({
-                get_command = function(entry)
-                  if
-                    entry.status
-                    and (entry.status == "??" or entry.status == "A ")
-                  then
-                    return { "bat", "--plain", entry.value }
-                  else
-                    return {
-                      "git",
-                      "-C",
-                      root,
-                      "diff",
-                      "HEAD",
-                      "--",
-                      entry.value,
-                    }
-                  end
-                end,
-              }),
-            })()
-          end,
-          desc = "Status",
-        },
-        { "<leader>sG", false },
-        { "<leader>sg", false },
-        { "<leader>sl", false },
-      })
-    end,
     opts = function(_, opts)
       local actions = require("telescope.actions")
 
@@ -378,11 +380,6 @@ return {
       opts.extensions = {
         file_browser = {
           follow_symlinks = true,
-        },
-        smart_open = {
-          cwd_only = true,
-          match_algorithm = "fzy",
-          result_limit = 50,
         },
         undo = vim.tbl_extend("force", {
           diff_context_lines = 5,
@@ -458,7 +455,7 @@ return {
     },
     keys = {
       {
-        "<leader>fb",
+        "<leader>fB",
         function()
           require("telescope").extensions.file_browser.file_browser()
         end,
