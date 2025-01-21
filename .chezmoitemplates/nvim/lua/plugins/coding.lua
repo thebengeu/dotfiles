@@ -80,6 +80,7 @@ return {
               return (
                 line
                   :gsub("const ", "var ")
+                  :gsub("import 'dotenv/config'", "require('dotenv').config()")
                   :gsub("^import ", "var ")
                   :gsub("( from '%S+)%.js'$", "%1'")
                   :gsub("(, {.+} from '(%S+)')$", " = require('%2')%1")
