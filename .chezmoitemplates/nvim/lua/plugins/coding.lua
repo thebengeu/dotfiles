@@ -13,35 +13,6 @@ return {
     opts = {},
   },
   {
-    "DNLHC/glance.nvim",
-    keys = {
-      { "gd", "<Cmd>Glance definitions<CR>", desc = "Glance Definitions" },
-      {
-        "gI",
-        "<Cmd>Glance implementations<CR>",
-        desc = "Glance Implementations",
-      },
-      { "gr", "<Cmd>Glance References<CR>", desc = "Glance references" },
-      {
-        "gY",
-        "<Cmd>Glance type_definitions<CR>",
-        desc = "Glance T[y]pe Definitions",
-      },
-    },
-    opts = {
-      hooks = {
-        before_open = function(results, open, jump)
-          if #results == 1 then
-            jump()
-          else
-            open()
-          end
-        end,
-      },
-      use_trouble_qf = true,
-    },
-  },
-  {
     "Vigemus/iron.nvim",
     config = function()
       local lowlevel = require("iron.lowlevel")
