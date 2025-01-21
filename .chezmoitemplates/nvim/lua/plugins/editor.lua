@@ -106,6 +106,19 @@ return {
     enabled = false,
   },
   {
+    "smoka7/multicursors.nvim",
+    dependencies = "cathyprime/hydra.nvim",
+    keys = {
+      {
+        "gM",
+        "<Cmd>MCstart<CR>",
+        desc = "Multicursor",
+        mode = { "n", "x" },
+      },
+    },
+    opts = {},
+  },
+  {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
     opts = {
