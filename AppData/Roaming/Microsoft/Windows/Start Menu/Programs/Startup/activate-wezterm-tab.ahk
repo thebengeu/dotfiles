@@ -50,7 +50,7 @@ If A_Args.has(1) {
 } Else {
   ^+!c::ActivateMinimizeOrRun("ahk_exe chrome.exe", A_ProgramsCommon . "\Google Chrome")
   ^+!e::ActivateMinimizeOrRun("Edge ahk_exe msedge.exe", A_ProgramsCommon . "\Microsoft Edge")
-  ^+!l::ActivateMinimizeOrRun("Unigram ahk_exe ApplicationFrameHost.exe", "explorer.exe shell:AppsFolder\38833FF26BA1D.UnigramPreview_g9c9v27vpyspw!App")
+  ^+!g::ActivateMinimizeOrRun("Unigram ahk_exe ApplicationFrameHost.exe", "explorer.exe shell:AppsFolder\38833FF26BA1D.UnigramPreview_g9c9v27vpyspw!App")
   ^+!n::ActivateMinimizeOrRun("ahk_exe Notion.exe", A_Programs . "\Notion")
   ^+!o::ActivateMinimizeOrRun("ahk_exe Obsidian.exe", A_Programs . "\Obsidian")
   ^+!p::ActivateMinimizeOrRun("ahk_exe Spark Desktop.exe", A_Programs . "\Spark Desktop")
