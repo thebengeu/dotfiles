@@ -288,7 +288,11 @@ return {
       },
       {
         "<leader>gR",
-        LazyVim.pick("git_branches", { show_remote_tracking_branches = false }),
+        function()
+          require("telescope.builtin").git_branches({
+            show_remote_tracking_branches = false,
+          })
+        end,
         desc = "Branches",
       },
       {
@@ -296,7 +300,7 @@ return {
         function()
           local root = LazyVim.root()
 
-          require("telescope.builtin")["git_status"]({
+          require("telescope.builtin").git_status({
             previewer = require("telescope.previewers").new_termopen_previewer({
               get_command = function(entry)
                 if
