@@ -319,14 +319,10 @@ return {
   },
   {
     "cenk1cenk2/schema-companion.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
+    dependencies = "nvim-lua/plenary.nvim",
     ft = "yaml",
     opts = function()
       return {
-        enable_telescope = true,
         matchers = {
           require("schema-companion.matchers.kubernetes").setup({
             version = "master",
