@@ -215,13 +215,14 @@ return {
   },
   {
     "johmsalas/text-case.nvim",
-    dependencies = "nvim-telescope/telescope.nvim",
-    event = "LazyFile",
     keys = {
       { "ga", group = "text-case" },
       {
         "ga.",
-        "<cmd>TextCaseOpenTelescope<CR>",
+        function()
+          require("telescope").load_extension("textcase")
+          require("textcase").open_telescope()
+        end,
         desc = "Telescope",
         mode = { "n", "x" },
       },
