@@ -162,9 +162,7 @@ return {
       {
         "<leader><space>",
         function()
-          util.smart_files({
-            cwd = LazyVim.root(),
-          })()
+          util.smart_files({ cwd = LazyVim.root() })()
         end,
         desc = "Find Files (Root Dir)",
       },
@@ -187,23 +185,17 @@ return {
       },
       {
         "<leader>fi",
-        util.smart_files({
-          ignored = true,
-        }),
+        util.smart_files({ ignored = true }),
         desc = "Find Files (ignored)",
       },
       {
         "<leader>fl",
-        util.smart_files({
-          cwd = lazy_root .. "/LazyVim",
-        }),
+        util.smart_files({ cwd = lazy_root .. "/LazyVim" }),
         desc = "Find LazyVim Files",
       },
       {
         "<leader>fP",
-        util.smart_files({
-          cwd = lazy_root,
-        }),
+        util.smart_files({ cwd = lazy_root }),
         desc = "Find Plugin Files",
       },
       {
@@ -211,6 +203,38 @@ return {
         get_directory("smart_files", lazy_root),
         desc = "Find Plugin's Files",
       },
+      { "<leader>gc", false },
+      { "<leader>gs", false },
+      { "<leader>sG", false },
+      { "<leader>sg", false },
+      { "<leader>sl", false },
+    },
+    opts = {
+      picker = {
+        formatters = {
+          file = {
+            filename_first = true,
+          },
+        },
+        win = {
+          input = {
+            keys = {
+              ["<Esc>"] = { "close", mode = { "n", "i" } },
+            },
+          },
+          preview = {
+            wo = {
+              number = false,
+              signcolumn = "no",
+            },
+          },
+        },
+      },
+    },
+  },
+  {
+    "nvim-telescope/telescope.nvim",
+    keys = {
       {
         "<leader>gf",
         delta_diffview_git_picker("bcommits"),
@@ -325,35 +349,7 @@ return {
         end,
         desc = "Status",
       },
-      { "<leader>sG", false },
-      { "<leader>sg", false },
-      { "<leader>sl", false },
     },
-    opts = {
-      picker = {
-        formatters = {
-          file = {
-            filename_first = true,
-          },
-        },
-        win = {
-          input = {
-            keys = {
-              ["<Esc>"] = { "close", mode = { "n", "i" } },
-            },
-          },
-          preview = {
-            wo = {
-              number = false,
-              signcolumn = "no",
-            },
-          },
-        },
-      },
-    },
-  },
-  {
-    "nvim-telescope/telescope.nvim",
     opts = function(_, opts)
       local actions = require("telescope.actions")
 
