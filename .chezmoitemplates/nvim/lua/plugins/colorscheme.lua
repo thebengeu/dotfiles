@@ -502,6 +502,7 @@ return util.map({
     opts = {
       transparent = false,
     },
+    supports_light_background = true,
   },
   {
     "maxmx03/solarized.nvim",
