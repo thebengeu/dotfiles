@@ -3,14 +3,30 @@ local util = require("util")
 return {
   {
     "akinsho/bufferline.nvim",
-    opts = {
-      options = {
-        always_show_bufferline = true,
-        offsets = {},
-        show_buffer_close_icons = false,
-        show_close_icon = false,
-      },
-    },
+    opts = function(_, opts)
+      local Offset = require("bufferline.offset")
+      local get = Offset.get
+
+      ---@diagnostic disable-next-line: duplicate-set-field
+      Offset.get = function()
+        ---@diagnostic disable-next-line: undefined-field
+        local edgy = package.loaded.edgy
+        ---@diagnostic disable-next-line: undefined-field
+        package.loaded.edgy = nil
+
+        local ret = get()
+
+        ---@diagnostic disable-next-line: undefined-field
+        package.loaded.edgy = edgy
+
+        return ret
+      end
+
+      opts.options.always_show_bufferline = true
+      opts.options.offsets = {}
+      opts.options.show_buffer_close_icons = false
+      opts.options.show_close_icon = false
+    end,
   },
   {
     "folke/edgy.nvim",
