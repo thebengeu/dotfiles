@@ -2,17 +2,6 @@ local util = require("util")
 
 return {
   {
-    "andrewferrier/debugprint.nvim",
-    cmd = {
-      "ToggleCommentDebugPrints",
-      "DeleteDebugPrints",
-    },
-    keys = {
-      { "g?", mode = { "n", "x" } },
-    },
-    opts = {},
-  },
-  {
     "Vigemus/iron.nvim",
     config = function()
       local lowlevel = require("iron.lowlevel")
@@ -138,17 +127,6 @@ return {
     },
   },
   {
-    "chrisgrieser/nvim-chainsaw",
-    cmd = "Chainsaw",
-    opts = {},
-  },
-  {
-    "rafcamlet/nvim-luapad",
-    keys = {
-      { "<leader>cL", "<cmd>Luapad<cr>", desc = "Luapad" },
-    },
-  },
-  {
     "chrisgrieser/nvim-rulebook",
     keys = {
       {
@@ -193,26 +171,6 @@ return {
     end,
     opts = {
       enable_autosnippets = true,
-    },
-  },
-  {
-    "chrisgrieser/nvim-scissors",
-    keys = {
-      {
-        "<leader>ce",
-        function()
-          require("scissors").editSnippet()
-        end,
-        desc = "Edit Snippet",
-      },
-      {
-        "<leader>cn",
-        function()
-          require("scissors").addNewSnippet()
-        end,
-        desc = "New Snippet",
-        mode = { "n", "x" },
-      },
     },
   },
   {
@@ -348,40 +306,6 @@ return {
       max_join_length = 1000,
       use_default_keymaps = false,
     },
-    vscode = true,
-  },
-  {
-    "tpope/vim-dadbod",
-    keys = {
-      {
-        "<leader>cq",
-        function()
-          local node = vim.treesitter.get_node()
-
-          while node and node:type() ~= "statement" do
-            node = node:parent()
-          end
-
-          if node then
-            local start_row, _, end_row, _ = node:range()
-            vim.cmd.DB({ range = { start_row + 1, end_row + 1 } })
-          end
-        end,
-        desc = "Query DB",
-        ft = "sql",
-      },
-      {
-        "<leader>cq",
-        ":DB<cr>",
-        desc = "Query DB",
-        ft = "sql",
-        mode = "x",
-      },
-    },
-  },
-  {
-    "andymass/vim-matchup",
-    event = "LazyFile",
     vscode = true,
   },
 }

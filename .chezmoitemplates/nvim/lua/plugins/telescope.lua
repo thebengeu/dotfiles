@@ -460,22 +460,6 @@ return {
     },
   },
   {
-    "nvim-telescope/telescope-file-browser.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
-    keys = {
-      {
-        "<leader>fB",
-        function()
-          require("telescope").extensions.file_browser.file_browser()
-        end,
-        desc = "File Browser",
-      },
-    },
-  },
-  {
     "debugloop/telescope-undo.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
