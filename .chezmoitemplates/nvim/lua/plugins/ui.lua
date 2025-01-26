@@ -164,18 +164,21 @@ return {
   },
   {
     "kevinhwang91/nvim-hlslens",
-    keys = util.map({ "n", "N", "*", "#", "g*", "g#" }, function(key)
-      return {
-        key,
-        function()
-          vim.cmd.normal({
-            ((key == "n" or key == "N") and vim.v.count1 or "") .. key,
-            bang = true,
-          })
-          require("hlslens").start()
-        end,
-      }
-    end),
+    keys = vim.list_extend(
+      { "/" },
+      util.map({ "n", "N", "*", "#", "g*", "g#" }, function(key)
+        return {
+          key,
+          function()
+            vim.cmd.normal({
+              ((key == "n" or key == "N") and vim.v.count1 or "") .. key,
+              bang = true,
+            })
+            require("hlslens").start()
+          end,
+        }
+      end)
+    ),
     opts = {
       calm_down = true,
     },
