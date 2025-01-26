@@ -80,6 +80,7 @@ return {
       linters_by_ft = {
         go = { "golangcilint" },
         python = { "mypy" },
+        sql = { "sqlfluff" },
         yaml = { "yamllint" },
       },
     },
@@ -94,6 +95,7 @@ return {
         "prettierd",
         "shellharden",
         "sql-formatter",
+        "sqlfluff",
         "taplo",
         "typos",
         "yamllint",

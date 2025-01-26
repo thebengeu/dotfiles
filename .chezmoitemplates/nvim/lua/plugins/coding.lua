@@ -187,6 +187,7 @@ return {
         "make",
         "pem",
         "ssh_config",
+        "sql",
         "toml",
       },
       highlight = {
