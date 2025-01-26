@@ -52,6 +52,9 @@ return {
           )
         end,
       },
+      wo = {
+        winbar = false,
+      },
     },
   },
   {
