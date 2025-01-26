@@ -133,7 +133,7 @@ return {
           vim.api.nvim_win_set_cursor(0, cursor)
         end,
       },
-      { "<leader>cR", "<Cmd>IronRepl<CR>", desc = "REPL" },
+      { "<leader>cR", "<cmd>IronRepl<cr>", desc = "REPL" },
       { "<leader>cz", desc = "Send to REPL" },
     },
   },
@@ -145,7 +145,7 @@ return {
   {
     "rafcamlet/nvim-luapad",
     keys = {
-      { "<leader>cL", "<Cmd>Luapad<CR>", desc = "Luapad" },
+      { "<leader>cL", "<cmd>Luapad<cr>", desc = "Luapad" },
     },
   },
   {
@@ -286,11 +286,11 @@ return {
     }, function(textobj, lhs)
       return {
         lhs,
-        "<Cmd>lua require('various-textobjs')."
+        "<cmd>lua require('various-textobjs')."
           .. textobj[#textobj]
           .. "("
           .. (#textobj == 2 and "'" .. textobj[1] .. "'" or "")
-          .. ")<CR>",
+          .. ")<cr>",
         desc = table.concat(textobj, " "),
         mode = { "o", "x" },
       }
@@ -342,7 +342,7 @@ return {
   {
     "Wansmer/treesj",
     keys = {
-      { "J", "<Cmd>TSJToggle<CR>" },
+      { "J", "<cmd>TSJToggle<cr>" },
     },
     opts = {
       max_join_length = 1000,
@@ -372,7 +372,7 @@ return {
       },
       {
         "<leader>cq",
-        ":DB<CR>",
+        ":DB<cr>",
         desc = "Query DB",
         ft = "sql",
         mode = "x",

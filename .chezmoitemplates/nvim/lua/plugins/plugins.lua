@@ -30,7 +30,7 @@ return {
   {
     "rmagatti/auto-session",
     keys = {
-      { "<leader>ql", "<Cmd>SessionSearch<CR>", desc = "List Sessions" },
+      { "<leader>ql", "<cmd>SessionSearch<cr>", desc = "List Sessions" },
     },
     lazy = false,
     opts = {
@@ -125,7 +125,7 @@ return {
   {
     "chrishrb/gx.nvim",
     keys = {
-      { "gX", "<Cmd>Browse<CR>", mode = { "n", "x" } },
+      { "gX", "<cmd>Browse<cr>", mode = { "n", "x" } },
     },
     opts = {},
   },
@@ -187,8 +187,8 @@ return {
     dependencies = "nvim-lua/plenary.nvim",
     event = "BufReadPre **/Obsidian/**.md",
     keys = {
-      { "<leader>fv", "<Cmd>ObsidianQuickSwitch<CR>", desc = "Obsidian" },
-      { "<leader>sv", "<Cmd>ObsidianSearch<CR>", desc = "Obsidian" },
+      { "<leader>fv", "<cmd>ObsidianQuickSwitch<cr>", desc = "Obsidian" },
+      { "<leader>sv", "<cmd>ObsidianSearch<cr>", desc = "Obsidian" },
     },
     opts = {
       workspaces = {

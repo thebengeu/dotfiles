@@ -111,7 +111,7 @@ return {
     keys = {
       {
         "gM",
-        "<Cmd>MCstart<CR>",
+        "<cmd>MCstart<cr>",
         desc = "Multicursor",
         mode = { "n", "x" },
       },
@@ -151,7 +151,7 @@ return {
     keys = map({ "b", "e", "ge", "w" }, function(key)
       return {
         key,
-        "<Cmd>lua require('spider').motion('" .. key .. "')<CR>",
+        "<cmd>lua require('spider').motion('" .. key .. "')<cr>",
         mode = { "n", "o", "x" },
       }
     end),

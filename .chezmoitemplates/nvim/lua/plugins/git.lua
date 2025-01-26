@@ -4,7 +4,7 @@ return {
   {
     "FabijanZulj/blame.nvim",
     keys = {
-      { "<leader>gM", "<Cmd>BlameToggle<CR>", desc = "Blame" },
+      { "<leader>gM", "<cmd>BlameToggle<cr>", desc = "Blame" },
     },
     opts = function()
       return {
@@ -22,28 +22,28 @@ return {
     keys = {
       {
         "<leader>gd",
-        "<Cmd>DiffviewOpen<CR>",
+        "<cmd>DiffviewOpen<cr>",
         desc = "Diffview",
       },
       {
         "<leader>gH",
-        "<Cmd>DiffviewFileHistory<CR>",
+        "<cmd>DiffviewFileHistory<cr>",
         desc = "Diffview History",
       },
       {
         "<leader>gh",
-        "<Cmd>DiffviewFileHistory %<CR>",
+        "<cmd>DiffviewFileHistory %<cr>",
         desc = "Diffview File History",
       },
       {
         "<leader>gh",
-        ":DiffviewFileHistory<CR>",
+        ":DiffviewFileHistory<cr>",
         desc = "Diffview Range History",
         mode = "x",
       },
       {
         "<leader>gD",
-        "<Cmd>DiffviewFileHistory --walk-reflogs --range=stash<CR>",
+        "<cmd>DiffviewFileHistory --walk-reflogs --range=stash<cr>",
         desc = "Diffview Stash",
       },
     },
@@ -70,7 +70,7 @@ return {
     },
     enabled = jit.os ~= "Windows",
     keys = {
-      { "<leader>gF", "<Cmd>Fugit2<CR>", desc = "Fugit2" },
+      { "<leader>gF", "<cmd>Fugit2<cr>", desc = "Fugit2" },
     },
     opts = {
       libgit2_path = jit.os == "OSX" and "/opt/homebrew/lib/libgit2.dylib"
@@ -226,7 +226,7 @@ return {
         map(
           { "o", "x" },
           "ih",
-          ":<C-U>Gitsigns select_hunk<CR>",
+          ":<C-U>Gitsigns select_hunk<cr>",
           "GitSigns Select Hunk"
         )
         map("x", "<leader>hs", gs_visual("stage_hunk"), "Stage Hunk")
@@ -241,7 +241,7 @@ return {
     keys = {
       {
         "<leader>gw",
-        "<Cmd>lua MiniGit.show_at_cursor()<CR>",
+        "<cmd>lua MiniGit.show_at_cursor()<cr>",
         desc = "Show at cursor",
         mode = { "n", "x" },
       },
@@ -253,7 +253,7 @@ return {
     "NeogitOrg/neogit",
     dependencies = "nvim-lua/plenary.nvim",
     keys = {
-      { "<leader>gN", "<Cmd>Neogit cwd=%:p:h<CR>", desc = "Neogit" },
+      { "<leader>gN", "<cmd>Neogit cwd=%:p:h<cr>", desc = "Neogit" },
     },
     opts = {},
   },
