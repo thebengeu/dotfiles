@@ -208,6 +208,7 @@ return {
       { "<leader>sG", false },
       { "<leader>sg", false },
       { "<leader>sl", false },
+      { "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
     },
     opts = {
       picker = {
