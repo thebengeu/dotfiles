@@ -3,6 +3,7 @@
 options=(
 	active_color=0xfff38ba8
 	ax_focus=on
+	blacklist='iPhone Mirroring'
 	hidpi=on
 	inactive_color=0x00000000
 	style=round
