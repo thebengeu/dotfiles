@@ -161,10 +161,8 @@ return {
       { "<leader>/", false },
       {
         "<leader><space>",
-        function()
-          util.smart_files({ cwd = LazyVim.root() })()
-        end,
-        desc = "Find Files (Root Dir)",
+        util.smart_files(),
+        desc = "Find Files (cwd)",
       },
       {
         "<leader>fc",
@@ -180,8 +178,10 @@ return {
       },
       {
         "<leader>ff",
-        util.smart_files(),
-        desc = "Find Files (cwd)",
+        function()
+          util.smart_files({ cwd = LazyVim.root() })()
+        end,
+        desc = "Find Files (Root Dir)",
       },
       {
         "<leader>fi",
@@ -419,8 +419,8 @@ return {
     keys = {
       {
         "<leader>/",
-        egrepify(),
-        desc = "Grep (root dir)",
+        egrepify(false),
+        desc = "Grep (cwd)",
       },
       {
         "<leader>sG",
@@ -429,18 +429,13 @@ return {
       },
       {
         "<leader>sg",
-        egrepify(false),
-        desc = "Grep (cwd)",
+        egrepify(),
+        desc = "Grep (Root Dir)",
       },
       {
         "<leader>si",
         egrepify(nil, { "--no-ignore" }),
-        desc = "Grep (root dir ignored)",
-      },
-      {
-        "<leader>sI",
-        egrepify(false, { "--no-ignore" }),
-        desc = "Grep (cwd ignored)",
+        desc = "Grep (ignored)",
       },
       {
         "<leader>sl",
