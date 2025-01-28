@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+eksctl get nodegroup --cluster $(eks-cluster-name) --output json | jq -r '.[].Name' | fzf
