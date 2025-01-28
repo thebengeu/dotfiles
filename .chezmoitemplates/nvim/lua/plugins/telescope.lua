@@ -161,7 +161,9 @@ return {
       { "<leader>/", false },
       {
         "<leader><space>",
-        util.smart_files(),
+        util.smart_files({
+          finders = { "buffers", "files" },
+        }),
         desc = "Find Files (cwd)",
       },
       {
