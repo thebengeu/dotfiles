@@ -90,7 +90,7 @@ vim.keymap.set("n", "<leader>gt", function()
   )
 end, { desc = "Create Draft PR" })
 
-vim.keymap.set("n", "<leader>gv", function()
+vim.keymap.set("n", "<leader>gV", function()
   util.async_run_sh("gh pr view --web")
 end, { desc = "View PR" })
 

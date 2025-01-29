@@ -21,11 +21,6 @@ return {
     cmd = { "DiffviewOpen" },
     keys = {
       {
-        "<leader>gd",
-        "<cmd>DiffviewOpen<cr>",
-        desc = "Diffview",
-      },
-      {
         "<leader>gH",
         "<cmd>DiffviewFileHistory<cr>",
         desc = "Diffview History",
@@ -42,9 +37,14 @@ return {
         mode = "x",
       },
       {
-        "<leader>gD",
+        "<leader>gS",
         "<cmd>DiffviewFileHistory --walk-reflogs --range=stash<cr>",
         desc = "Diffview Stash",
+      },
+      {
+        "<leader>gv",
+        "<cmd>DiffviewOpen<cr>",
+        desc = "Diffview",
       },
     },
     opts = {
