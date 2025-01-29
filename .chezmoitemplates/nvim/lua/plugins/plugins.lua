@@ -73,7 +73,7 @@ return {
   {
     "chrishrb/gx.nvim",
     keys = {
-      { "gX", "<cmd>Browse<cr>", mode = { "n", "x" } },
+      { "gX", "<cmd>Browse<cr>", desc = "Browse", mode = { "n", "x" } },
     },
     opts = {},
   },
@@ -238,7 +238,7 @@ return {
     "folke/which-key.nvim",
     config = function(_, opts)
       opts.spec[1] = util.filter(opts.spec[1], function(spec)
-        return spec[1] ~= "<leader>gh"
+        return spec[1] ~= "<leader>gh" and spec[1] ~= "gx"
       end)
       require("which-key").setup(opts)
     end,
