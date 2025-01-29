@@ -226,10 +226,7 @@ return {
             },
           },
           preview = {
-            wo = {
-              number = false,
-              signcolumn = "no",
-            },
+            minimal = true,
           },
         },
       },
