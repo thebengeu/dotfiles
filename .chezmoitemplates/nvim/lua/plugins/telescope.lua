@@ -76,10 +76,15 @@ local delta_diffview_git_picker = function(picker)
   end
 end
 
-local egrepify = function(cwd, vimgrep_arguments)
+local egrepify = function(cwd, grep_word, vimgrep_arguments)
   return function()
+    local visual = Snacks.picker.util.visual()
+    local default_text = visual and visual.text
+      or (grep_word and vim.fn.expand("<cword>"))
+
     require("telescope").extensions.egrepify.egrepify({
       cwd = cwd == nil and LazyVim.root() or cwd,
+      default_text = default_text,
       vimgrep_arguments = vimgrep_arguments
           and vim.list_extend(
             vim.fn.copy(require("telescope.config").values.vimgrep_arguments),
@@ -93,6 +98,7 @@ end
 local get_directory = function(picker_name, cwd)
   return function()
     cwd = cwd or vim.uv.cwd()
+    local visual = Snacks.picker.util.visual()
 
     require("telescope.pickers")
       .new({}, {
@@ -124,12 +130,9 @@ local get_directory = function(picker_name, cwd)
               end
             end
 
-            (
-              picker_name == "egrepify"
-                and require("telescope").extensions.egrepify.egrepify
-              or require("telescope.builtin")[picker_name]
-            )({
+            require("telescope").extensions.egrepify.egrepify({
               cwd = cwd,
+              default_text = visual and visual.text,
               search_dirs = search_dirs,
             })
           end)
@@ -224,6 +227,8 @@ return {
       { "<leader>sg", false },
       { "<leader>sl", false },
       { "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
+      { "<leader>sW", false },
+      { "<leader>sw", false },
     },
     opts = {
       picker = {
@@ -433,41 +438,61 @@ return {
         "<leader>/",
         egrepify(false),
         desc = "Grep (cwd)",
+        mode = { "n", "x" },
       },
       {
         "<leader>sa",
         egrepify(lazy_root .. "/snacks.nvim"),
         desc = "Grep snacks.nvim",
+        mode = { "n", "x" },
       },
       {
         "<leader>sG",
         get_directory("egrepify"),
         desc = "Grep (subdirs)",
+        mode = { "n", "x" },
       },
       {
         "<leader>sg",
         egrepify(),
         desc = "Grep (Root Dir)",
+        mode = { "n", "x" },
       },
       {
         "<leader>si",
-        egrepify(nil, { "--no-ignore" }),
+        egrepify(nil, nil, { "--no-ignore" }),
         desc = "Grep (ignored)",
+        mode = { "n", "x" },
       },
       {
         "<leader>sl",
         egrepify(lazy_root .. "/LazyVim"),
         desc = "Grep LazyVim",
+        mode = { "n", "x" },
       },
       {
         "<leader>sP",
         egrepify(lazy_root),
         desc = "Grep Plugins",
+        mode = { "n", "x" },
       },
       {
         "<leader>sp",
         get_directory("egrepify", lazy_root),
         desc = "Grep Plugin",
+        mode = { "n", "x" },
+      },
+      {
+        "<leader>sW",
+        egrepify(false, true),
+        desc = "Visual selection or word (cwd)",
+        mode = { "n", "x" },
+      },
+      {
+        "<leader>sw",
+        egrepify(nil, true),
+        desc = "Visual selection or word (Root Dir)",
+        mode = { "n", "x" },
       },
     },
   },
