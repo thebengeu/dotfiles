@@ -162,7 +162,7 @@ return {
       {
         "<leader><space>",
         util.smart_files({
-          finders = { "buffers", "files" },
+          multi = { "buffers", "files" },
         }),
         desc = "Find Files (cwd)",
       },
