@@ -151,6 +151,20 @@ local get_directory = function(picker_name, cwd)
             cwd = cwd,
           }),
         }),
+        previewer = require("telescope.previewers").new_termopen_previewer({
+          get_command = function(entry)
+            return {
+              "eza",
+              "--all",
+              "--git",
+              "--group-directories-first",
+              "--icons",
+              "--long",
+              "--no-user",
+              cwd .. "/" .. entry.value,
+            }
+          end,
+        }),
         sorter = require("telescope.config").values.file_sorter(),
       })
       :find()
