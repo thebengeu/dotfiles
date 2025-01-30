@@ -167,6 +167,11 @@ return {
         desc = "Find Files (cwd)",
       },
       {
+        "<leader>fa",
+        util.smart_files({ cwd = lazy_root .. "/snacks.nvim" }),
+        desc = "Find snacks.nvim Files",
+      },
+      {
         "<leader>fc",
         util.smart_files({
           cwd = "~/.local/share/chezmoi/.chezmoitemplates/nvim",
@@ -207,6 +212,14 @@ return {
       },
       { "<leader>gc", false },
       { "<leader>gs", false },
+      {
+        "<leader>sA",
+        function()
+          Snacks.picker.autocmds()
+        end,
+        desc = "Autocmds",
+      },
+      { "<leader>sa", false },
       { "<leader>sG", false },
       { "<leader>sg", false },
       { "<leader>sl", false },
@@ -420,6 +433,11 @@ return {
         "<leader>/",
         egrepify(false),
         desc = "Grep (cwd)",
+      },
+      {
+        "<leader>sa",
+        egrepify(lazy_root .. "/snacks.nvim"),
+        desc = "Grep snacks.nvim",
       },
       {
         "<leader>sG",
