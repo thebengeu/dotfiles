@@ -473,7 +473,7 @@ return {
         mode = { "n", "x" },
       },
       {
-        "<leader>si",
+        "<leader>sI",
         egrepify(nil, nil, { "--no-ignore" }),
         desc = "Grep (ignored)",
         mode = { "n", "x" },
@@ -518,7 +518,7 @@ return {
     },
     keys = {
       {
-        "<leader>su",
+        "<leader>sU",
         function()
           require("telescope").extensions.undo.undo()
         end,
