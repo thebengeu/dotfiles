@@ -250,7 +250,6 @@ return util.map({
         "gitsigns",
         "indent-blankline",
         "mini",
-        "neo-tree",
         "neogit",
         "noice",
         "nvim-cmp",

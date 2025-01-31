@@ -43,7 +43,6 @@ return {
       log_level = "error",
       pre_save_cmds = {
         function()
-          require("neo-tree.sources.manager").close_all()
           for _, win in ipairs(vim.api.nvim_list_wins()) do
             local buf = vim.api.nvim_win_get_buf(win)
             local filetype = vim.bo[buf].filetype
@@ -91,21 +90,6 @@ return {
       file = { suffix = "g" },
       window = { suffix = "" },
       yank = { suffix = "" },
-    },
-  },
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    opts = {
-      filesystem = {
-        filtered_items = {
-          hide_by_name = {
-            "node_modules",
-          },
-          hide_dotfiles = false,
-          hide_gitignored = false,
-        },
-      },
-      sources = { "filesystem" },
     },
   },
   {
