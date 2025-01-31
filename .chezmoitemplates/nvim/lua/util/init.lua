@@ -171,7 +171,6 @@ end)
 M.smart_files = function(opts)
   return function()
     Snacks.picker.smart(vim.tbl_extend("force", {
-      hidden = true,
       multi = { "files" },
     }, opts or {}))
   end
