@@ -183,21 +183,30 @@ return {
   },
   {
     "kevinhwang91/nvim-hlslens",
-    keys = vim.list_extend(
+    keys = {
       { "/" },
-      util.map({ "n", "N", "*", "#", "g*", "g#" }, function(key)
-        return {
-          key,
-          function()
-            vim.cmd.normal({
-              ((key == "n" or key == "N") and vim.v.count1 or "") .. key,
-              bang = true,
-            })
-            require("hlslens").start()
-          end,
-        }
-      end)
-    ),
+      { "?" },
+      {
+        "n",
+        "<cmd>execute('normal! ' . v:count1 . 'n')<cr><cmd>lua require('hlslens').start()<cr>",
+      },
+      {
+        "N",
+        "<cmd>execute('normal! ' . v:count1 . 'N')<cr><cmd>lua require('hlslens').start()<cr>",
+      },
+      { "*", "*<cmd>lua require('hlslens').start()<cr>" },
+      { "#", "#<cmd>lua require('hlslens').start()<cr>" },
+      {
+        "g*",
+        "g*<cmd>lua require('hlslens').start()<cr>",
+        desc = "Search word forward",
+      },
+      {
+        "g#",
+        "g#<cmd>lua require('hlslens').start()<cr>",
+        desc = "Search word backward",
+      },
+    },
     opts = {
       calm_down = true,
     },
