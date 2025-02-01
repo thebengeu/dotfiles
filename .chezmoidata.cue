@@ -95,19 +95,19 @@ aliases: {
 	nrm:             "npm remove"
 	ops:             #"export COMMAND="$(op signin)"; test -n "$COMMAND" && eval $COMMAND && export OP_TIME=$(date +%s)"#
 	p:               "pnpm"
-	pR:              "git push && gh pr create --fill-first && gh pr view --web"
 	pc:              "supa-admin-cli"
 	pd:              "PULUMI_K8S_DELETE_UNREACHABLE=true pulumi destroy --continue-on-error --remove --skip-preview --stack $(select-supabase-stack)"
 	ph:              "supa-admin-cli ssh -p"
 	pi:              "pnpm install"
 	pid:             "pnpm install --save-dev"
 	pp:              "supa-admin-cli psql --disable-statement-tracking -p"
-	pr:              "git push && gh pr create --draft --fill-first && gh pr view --web"
+	_prCreate:       #"gh pr create --body "$(git lm $(git default-branch)..)" --editor --title "$(git log --pretty=%s | head -n 1)""#
+	pr:              "git push && \(_prCreate) && gh pr view --web"
+	prd:             "git push && \(_prCreate) --draft && gh pr view --web"
 	prm:             "pnpm remove"
-	prv:             "git push && gh pr create --draft --fill-verbose --title"
 	prw:             "gh pr view --web"
-	psi:             'pulumi stack init'
-	psic:            'pulumi stack init --copy-config-from'
+	psi:             "pulumi stack init"
+	psic:            "pulumi stack init --copy-config-from"
 	psr:             "pulumi stack rm --force"
 	pss:             "pulumi stack select $(select-supabase-stack)"
 	pu:              "pulumi up"
