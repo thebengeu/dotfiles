@@ -37,6 +37,9 @@ return {
             exclude = "acdghijklrx",
           },
         },
+        search = {
+          enabled = true,
+        },
       },
     },
     vscode = true,
