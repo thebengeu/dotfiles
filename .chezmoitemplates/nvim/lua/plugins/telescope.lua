@@ -67,7 +67,7 @@ local delta_diffview_git_picker = function(picker)
           return vim.list_extend({
             "git",
             "show",
-            "--pretty=format:%Cgreen%ah%Creset %aN%n%n%B",
+            "--pretty=%Cgreen%ah%Creset %aN%n%n%B",
             entry.value,
           }, is_bcommits and { "--", entry.current_file } or {})
         end,
