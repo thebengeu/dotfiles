@@ -205,9 +205,9 @@ return {
   },
   {
     "abecodes/tabout.nvim",
-    event = "InsertEnter",
+    event = "InsertCharPre",
     opts = {
-      completion = false,
+      act_as_shift_tab = true,
     },
   },
   {
