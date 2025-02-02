@@ -230,6 +230,8 @@ return {
   {
     "mg979/vim-visual-multi",
     config = function()
+      vim.g.VM_show_warnings = false
+
       local overrideLens = function(render, posList, nearest, idx, relIdx)
         local _ = relIdx
         local lnum, col = unpack(posList[idx])
@@ -244,9 +246,11 @@ return {
         end
         render.setVirt(0, lnum - 1, col - 1, chunks, nearest)
       end
+
       local lensBak
       local config = require("hlslens.config")
       local gid = vim.api.nvim_create_augroup("VMlens", {})
+
       vim.api.nvim_create_autocmd("User", {
         pattern = { "visual_multi_start", "visual_multi_exit" },
         group = gid,
