@@ -251,6 +251,7 @@ return {
             filename_first = true,
           },
         },
+        follow = true,
         hidden = true,
         win = {
           input = {
