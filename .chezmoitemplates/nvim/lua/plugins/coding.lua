@@ -255,7 +255,7 @@ return {
       }
     end),
     opts = {
-      useDefaultKeymaps = false,
+      useDefaults = false,
     },
     vscode = true,
   },
