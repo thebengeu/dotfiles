@@ -313,24 +313,25 @@ aliases: {
 	}
 }
 environmentVariables: {
-	BAT_THEME:                  "Catppuccin-mocha"
-	DIRENV_LOG_FORMAT:          ""
-	DOCKER_CLI_HINTS:           false
-	EDITOR:                     "nvim"
-	EJSON_KEYDIR:               "$HOME/.config/ejson/keys"
-	FNM_COREPACK_ENABLED:       true
-	FNM_LOGLEVEL:               "error"
-	FNM_VERSION_FILE_STRATEGY:  "recursive"
-	FZF_DEFAULT_OPTS:           "--color=spinner:#f5e0dc,hl:#f38ba8,fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc,marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8,selected-bg:#45475a"
-	GH_USERNAME:                "thebengeu"
-	GITLINT_CONFIG:             "$HOME/.config/gitlint/gitlint.ini"
-	LESS:                       "--quit-if-one-screen --RAW-CONTROL-CHARS"
-	MICRO_TRUECOLOR:            1
-	PIP_REQUIRE_VIRTUALENV:     true
-	PULUMI_SKIP_UPDATE_CHECK:   true
-	PYENV_ROOT:                 "$HOME/.pyenv"
-	RIPGREP_CONFIG_PATH:        "$HOME/.config/ripgrep/config"
-	USQL_SHOW_HOST_INFORMATION: false
+	BAT_THEME:                     "Catppuccin-mocha"
+	DIRENV_LOG_FORMAT:             ""
+	DOCKER_CLI_HINTS:              false
+	EDITOR:                        "nvim"
+	EJSON_KEYDIR:                  "$HOME/.config/ejson/keys"
+	FNM_COREPACK_ENABLED:          true
+	FNM_LOGLEVEL:                  "error"
+	FNM_VERSION_FILE_STRATEGY:     "recursive"
+	FZF_DEFAULT_OPTS:              "--color=spinner:#f5e0dc,hl:#f38ba8,fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc,marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8,selected-bg:#45475a"
+	GH_USERNAME:                   "thebengeu"
+	GITLINT_CONFIG:                "$HOME/.config/gitlint/gitlint.ini"
+	HOMEBREW_CLEANUP_MAX_AGE_DAYS: 0
+	LESS:                          "--quit-if-one-screen --RAW-CONTROL-CHARS"
+	MICRO_TRUECOLOR:               1
+	PIP_REQUIRE_VIRTUALENV:        true
+	PULUMI_SKIP_UPDATE_CHECK:      true
+	PYENV_ROOT:                    "$HOME/.pyenv"
+	RIPGREP_CONFIG_PATH:           "$HOME/.config/ripgrep/config"
+	USQL_SHOW_HOST_INFORMATION:    false
 
 	{
 		_common: {
