@@ -185,69 +185,67 @@ return {
     end,
   },
   {
-    "nvim-telescope/telescope.nvim",
-    keys = function(_, keys)
-      vim.list_extend(keys, {
-        {
-          "<leader>uC",
-          function()
-            local actions = require("telescope.actions")
-            local action_set = require("telescope.actions.set")
-            local actions_state = require("telescope.actions.state")
+    "folke/snacks.nvim",
+    keys = {
+      {
+        "<leader>uC",
+        function()
+          local actions = require("telescope.actions")
+          local action_set = require("telescope.actions.set")
+          local actions_state = require("telescope.actions.state")
 
-            require("telescope.pickers")
-              .new({ sorting_strategy = "ascending" }, {
-                attach_mappings = function(prompt_bufnr)
-                  local selected_index = colorscheme_index
+          require("telescope.pickers")
+            .new({ sorting_strategy = "ascending" }, {
+              attach_mappings = function(prompt_bufnr)
+                local selected_index = colorscheme_index
 
-                  ---@diagnostic disable-next-line: undefined-field
-                  action_set.shift_selection:enhance({
-                    post = function()
-                      refresh_colorscheme(
-                        actions_state.get_selected_entry().index
-                      )
-                    end,
-                  })
-
-                  actions.select_default:replace(function()
-                    selected_index = actions_state.get_selected_entry().index
-                    actions.close(prompt_bufnr)
-                  end)
-
-                  ---@diagnostic disable-next-line: undefined-field
-                  actions.close:enhance({
-                    post = function()
-                      refresh_colorscheme(selected_index)
-                    end,
-                  })
-
-                  return true
-                end,
-                finder = require("telescope.finders").new_table({
-                  results = colorschemes,
-                  entry_maker = function(entry)
-                    local colorscheme_name = get_colorscheme_name(entry)
-
-                    return {
-                      display = colorscheme_name,
-                      ordinal = colorscheme_name,
-                      value = entry,
-                    }
+                ---@diagnostic disable-next-line: undefined-field
+                action_set.shift_selection:enhance({
+                  post = function()
+                    refresh_colorscheme(
+                      actions_state.get_selected_entry().index
+                    )
                   end,
-                }),
-                layout_config = {
-                  anchor = "E",
-                  height = #colorschemes + 5,
-                  width = max_colorscheme_name_length + 6,
-                },
-                prompt_title = "Colorschemes",
-                sorter = require("telescope.config").values.generic_sorter(),
-              })
-              :find()
-          end,
-          desc = "Colorschemes",
-        },
-      })
-    end,
+                })
+
+                actions.select_default:replace(function()
+                  selected_index = actions_state.get_selected_entry().index
+                  actions.close(prompt_bufnr)
+                end)
+
+                ---@diagnostic disable-next-line: undefined-field
+                actions.close:enhance({
+                  post = function()
+                    refresh_colorscheme(selected_index)
+                  end,
+                })
+
+                return true
+              end,
+              finder = require("telescope.finders").new_table({
+                results = colorschemes,
+                entry_maker = function(entry)
+                  local colorscheme_name = get_colorscheme_name(entry)
+
+                  return {
+                    display = colorscheme_name,
+                    ordinal = colorscheme_name,
+                    value = entry,
+                  }
+                end,
+              }),
+              layout_config = {
+                anchor = "E",
+                height = #colorschemes + 5,
+                width = max_colorscheme_name_length + 6,
+              },
+              prompt_title = "Colorschemes",
+              sorter = require("telescope.config").values.generic_sorter(),
+            })
+            :find()
+        end,
+        desc = "Colorschemes",
+      },
+    },
   },
 }
