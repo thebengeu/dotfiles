@@ -443,6 +443,7 @@ return util.map({
       end,
     },
   },
+  { "dgox16/oldworld.nvim" },
   { "cpea2506/one_monokai.nvim" },
   {
     "olimorris/onedarkpro.nvim",
