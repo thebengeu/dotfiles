@@ -195,9 +195,69 @@ return {
   },
   {
     "folke/snacks.nvim",
+    init = function()
+      local ts_rainbow_2_hl = util.map(
+        util.rainbow_colors,
+        function(rainbow_color)
+          return "TSRainbow" .. rainbow_color
+        end
+      )
+
+      local ts_rainbow_hl = {}
+
+      for i = 1, 7 do
+        table.insert(ts_rainbow_hl, "rainbowcol" .. i)
+      end
+
+      local rainbow_hl_if_exists = function(rainbow_hl)
+        for i = 1, 7 do
+          local hl = vim.api.nvim_get_hl(0, { name = rainbow_hl[i] })
+
+          if next(hl) == nil or hl.default then
+            return false
+          end
+        end
+
+        return rainbow_hl
+      end
+
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        callback = function()
+          util.set_highlights()
+
+          local rainbow_hl = rainbow_hl_if_exists(util.rainbow_delimiters_hl)
+            or rainbow_hl_if_exists(ts_rainbow_2_hl)
+            or rainbow_hl_if_exists(ts_rainbow_hl)
+
+          if not rainbow_hl then
+            error("No rainbow highlight groups found")
+          end
+
+          for i, hl_name in ipairs(rainbow_hl) do
+            vim.api.nvim_set_hl(
+              0,
+              util.rainbow_delimiters_hl[i],
+              {
+                fg = vim.api.nvim_get_hl(0, { link = false, name = hl_name }).fg,
+              }
+            )
+          end
+        end,
+      })
+    end,
     opts = {
       dashboard = {
         enabled = false,
+      },
+      indent = {
+        indent = {
+          hl = util.rainbow_delimiters_hl,
+        },
+        scope = {
+          char = "┃",
+          underline = true,
+          hl = util.rainbow_delimiters_hl,
+        },
       },
     },
   },
