@@ -180,6 +180,7 @@ aliases: {
 			meb: #"/usr/bin/open -a /Applications/Microsoft\ Edge\ Beta.app --args --proxy-server=in.he.sg:8888"#
 			med: #"/usr/bin/open -a /Applications/Microsoft\ Edge\ Dev.app --args --proxy-server=id.he.sg:8888"#
 			tg:  "brew update && brew unlink moreutils parallel && brew upgrade moreutils parallel && brew link --overwrite moreutils parallel && genv --chdir ~ PIP_REQUIRE_VIRTUALENV=false topgrade"
+			te:  "find ~/.Trash -mindepth 1 -delete"
 			wsk: "wezterm show-keys --lua"
 		}
 		linux: _non_darwin & _non_windows & {
