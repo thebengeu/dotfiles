@@ -79,17 +79,16 @@ return {
   },
   {
     "ldelossa/gh.nvim",
+    cmd = "GHOpenPR",
     dependencies = {
       {
         "ldelossa/litee.nvim",
-        config = function()
-          require("litee.lib").setup()
-        end,
+        main = "litee.lib",
+        opts = {},
       },
     },
-    config = function()
-      require("litee.gh").setup()
-    end,
+    main = "litee.gh",
+    opts = {},
   },
   {
     "linrongbin16/gitlinker.nvim",

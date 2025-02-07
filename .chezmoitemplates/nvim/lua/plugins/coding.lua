@@ -3,7 +3,7 @@ local util = require("util")
 return {
   {
     "Vigemus/iron.nvim",
-    config = function()
+    opts = function()
       local lowlevel = require("iron.lowlevel")
 
       local create_repl_on_current_window =
@@ -52,7 +52,7 @@ return {
         end,
       })
 
-      require("iron.core").setup({
+      return {
         config = {
           repl_definition = {
             ["lua.chezmoitmpl"] = require("iron.fts.lua").lua,
@@ -82,7 +82,7 @@ return {
           send_motion = "<leader>cz",
           visual_send = "<C-z>",
         },
-      })
+      }
     end,
     keys = {
       { "<C-z>", mode = "x" },
@@ -125,6 +125,7 @@ return {
       { "<leader>cR", "<cmd>IronRepl<cr>", desc = "REPL" },
       { "<leader>cz", desc = "Send to REPL" },
     },
+    main = "iron.core",
   },
   {
     "chrisgrieser/nvim-rulebook",
