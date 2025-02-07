@@ -55,9 +55,7 @@ return util.map({
     "scottmckendry/cyberdream.nvim",
     opts = {
       italic_comments = true,
-      theme = {
-        variant = "auto",
-      },
+      variant = "auto",
     },
     supports_light_background = true,
   },
