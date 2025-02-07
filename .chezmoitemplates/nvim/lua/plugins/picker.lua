@@ -255,7 +255,6 @@ return {
       { "<leader>sG", false },
       { "<leader>sg", false },
       { "<leader>sl", false },
-      { "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
       { "<leader>sW", false },
       { "<leader>sw", false },
     },
@@ -264,10 +263,19 @@ return {
         formatters = {
           file = {
             filename_first = true,
+            truncate = 100,
           },
         },
         follow = true,
         hidden = true,
+        layouts = {
+          default = {
+            layout = {
+              width = 0.95,
+              height = 0.95,
+            },
+          },
+        },
         win = {
           input = {
             keys = {
@@ -300,6 +308,7 @@ return {
         delta_diffview_git_picker("commits"),
         desc = "Git Log",
       },
+      { "<leader>se", "<cmd>Telescope resume<cr>", desc = "Resume" },
       {
         "<leader>gm",
         function()
@@ -409,6 +418,33 @@ return {
         end,
       })
 
+      local flash = function(prompt_bufnr)
+        require("flash").jump({
+          pattern = "^",
+          label = { after = { 0, 0 } },
+          search = {
+            mode = "search",
+            exclude = {
+              function(win)
+                return vim.bo[vim.api.nvim_win_get_buf(win)].filetype
+                  ~= "TelescopeResults"
+              end,
+            },
+          },
+          action = function(match)
+            local picker =
+              require("telescope.actions.state").get_current_picker(
+                prompt_bufnr
+              )
+            picker:set_selection(match.pos[1] - 1)
+          end,
+        })
+      end
+
+      local open_with_trouble = function(...)
+        return require("trouble.sources.telescope").open(...)
+      end
+
       opts.defaults = vim.tbl_deep_extend("force", opts.defaults, {
         layout_config = {
           flex = {
@@ -419,6 +455,7 @@ return {
             width = 0.95,
             preview_width = 0.5,
           },
+          prompt_position = "top",
           vertical = {
             height = 0.95,
             width = 0.95,
@@ -427,20 +464,29 @@ return {
         layout_strategy = "flex",
         mappings = {
           i = {
-            ["<C-a>"] = actions.cycle_previewers_prev,
-            ["<C-s>"] = actions.cycle_previewers_next,
-            ["<Esc>"] = actions.close,
+            ["<A-t>"] = open_with_trouble,
+            ["<C-Down>"] = actions.cycle_history_next,
+            ["<C-Left>"] = actions.cycle_previewers_prev,
+            ["<C-Right>"] = actions.cycle_previewers_next,
+            ["<C-Up>"] = actions.cycle_history_prev,
+            ["<C-b>"] = actions.preview_scrolling_up,
+            ["<C-f>"] = actions.preview_scrolling_down,
+            ["<C-s>"] = flash,
+            ["<C-t>"] = open_with_trouble,
+          },
+          n = {
+            s = flash,
           },
         },
+        prompt_prefix = " ",
+        selection_caret = " ",
+        sorting_strategy = "ascending",
         winblend = 5,
       })
 
       local vertical_undo = vim.o.columns > 160
 
       opts.extensions = {
-        file_browser = {
-          follow_symlinks = true,
-        },
         undo = vim.tbl_extend("force", {
           diff_context_lines = 5,
           use_custom_command = {
