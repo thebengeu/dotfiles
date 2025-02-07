@@ -256,7 +256,7 @@ return {
         win = {
           input = {
             keys = {
-              ["<Esc>"] = { "close", mode = { "n", "i" } },
+              ["<C-/>"] = { "toggle_help_list", mode = { "i", "n" } },
             },
           },
           preview = {
