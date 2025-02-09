@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>local.jupyter</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/Users/beng/.local/bin/jupyter-notebook</string>
+		<string>--NotebookApp.allow_origin=https://colab.research.google.com</string>
+		<string>--no-browser</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>StandardErrorPath</key>
+	<string>/tmp/jupyter.log</string>
+	<key>StandardOutPath</key>
+	<string>/tmp/jupyter.log</string>
+	<key>WorkingDirectory</key>
+	<string>/Users/beng</string>
+</dict>
+</plist>
