@@ -37,7 +37,7 @@ return {
         mode = "x",
       },
       {
-        "<leader>gS",
+        "<leader>gV",
         "<cmd>DiffviewFileHistory --walk-reflogs --range=stash<cr>",
         desc = "Diffview Stash",
       },
@@ -268,7 +268,6 @@ return {
       { "<leader>gI", false },
       { "<leader>gP", false },
       { "<leader>gr", false },
-      { "<leader>gS", false },
     },
   },
   {
