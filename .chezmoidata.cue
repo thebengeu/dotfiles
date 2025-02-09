@@ -292,8 +292,10 @@ aliases: {
 		"g\(gitAlias)": "git \(command)"
 	}
 	for prefix, directory in _gitAliasDirectories {
-		"\(prefix)g":  "git -C \(directory)"
-		"\(prefix)lg": "lazygit --path \(directory)"
+		"\(prefix)g":   "git -C \(directory)"
+		"\(prefix)lg":  "lazygit --path \(directory)"
+		"\(prefix)pr":  "cd \(directory); \(pr)"
+		"\(prefix)prd": "cd \(directory); \(prd)"
 		for directoryGitAlias, command in _directoryGitAliases {
 			"\(prefix)g\(directoryGitAlias)": "git -C \(directory) \(command)"
 		}
