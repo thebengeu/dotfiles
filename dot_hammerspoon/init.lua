@@ -264,6 +264,18 @@ hs.hotkey.bind({ "ctrl", "option", "shift" }, "b", function()
   hs.eventtap.keyStrokes("#@title ")
 end)
 
+hs.hotkey.bind({ "ctrl", "shift", "cmd" }, "l", function()
+  hs.eventtap.keyStroke({ "cmd" }, "a")
+  local output = hs.execute(
+    "grep --only-matching 'http://127.0.0.1:8888/?token=\\S*' /tmp/jupyter.log | tail -n 1"
+  )
+  hs.eventtap.keyStrokes(output)
+  hs.timer.usleep(10000)
+  hs.eventtap.keyStroke({}, "tab")
+  hs.eventtap.keyStroke({}, "tab")
+  hs.eventtap.keyStroke({}, "return")
+end)
+
 hs.window.animationDuration = 0
 hs.window.switcher.ui.showSelectedTitle = false
 hs.window.switcher.ui.showTitles = false
