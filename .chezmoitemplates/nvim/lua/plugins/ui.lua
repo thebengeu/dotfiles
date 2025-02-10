@@ -1,5 +1,3 @@
-local util = require("util")
-
 return {
   {
     "akinsho/bufferline.nvim",
@@ -85,6 +83,7 @@ return {
         "copilot-chat",
         "help",
         "lazy",
+        "minifiles",
         "qf",
         "snacks_picker_list",
         "snacks_terminal",
