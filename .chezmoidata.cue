@@ -111,8 +111,6 @@ aliases: {
 	pss:             "pulumi stack select $(select-supabase-stack)"
 	pu:              "pulumi up"
 	pus:             "pulumi up --skip-preview"
-	pxi:             "pipx install"
-	pxu:             "pipx uninstall"
 	rgb:             "batgrep"
 	rm:              "trash"
 	scc:             #"scc --not-match "package-lock.json|pnpm-lock.yaml""#

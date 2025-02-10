@@ -8,8 +8,6 @@ README.md
 
 .chezmoiscripts/non-windows/*
 .config/{bat,broot,btop,fd,ghostty,gitui,glow,gup,helix,lazygit,msmtp,nushell,nvim,sqlfluff,tealdeer,tmux}/
-.config/fish/completions/pipx.fish
-.config/fish/completions/qmk.fish
 .config/topgrade.toml
 .hushlogin
 .local/bin/build-and-install-nvim

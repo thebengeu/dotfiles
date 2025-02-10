@@ -56,8 +56,6 @@ if [ ! "${CHEZMOI}" = 1 ]; then
 
   cargo install --locked cargo-binstall
 
-  PIP_REQUIRE_VIRTUALENV=false pip3 install --upgrade --user \
-    pipx
   uv tool install poetry
 
   brew_prefix=$(brew --prefix)
