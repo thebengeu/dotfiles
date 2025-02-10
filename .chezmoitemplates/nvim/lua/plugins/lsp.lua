@@ -26,9 +26,9 @@ return {
           prepend_args = {
             "--config",
             vim.fn.json_encode({
-              dataTypeCase = "upper",
-              functionCase = "upper",
-              keywordCase = "upper",
+              dataTypeCase = "lower",
+              functionCase = "lower",
+              keywordCase = "lower",
               language = "bigquery",
             }),
           },
@@ -46,7 +46,7 @@ return {
         python = { "ruff_fix", "ruff_format" },
         toml = { "taplo" },
         sh = { "shellharden", "shellcheck", "shfmt" },
-        sql = { "sql_formatter" },
+        sql = { "sqlfmt", "trim_newlines" },
         ["_"] = { "trim_newlines", "trim_whitespace" },
       })
 
@@ -96,6 +96,7 @@ return {
         "shellharden",
         "sql-formatter",
         "sqlfluff",
+        "sqlfmt",
         "taplo",
         "typos",
         "yamllint",

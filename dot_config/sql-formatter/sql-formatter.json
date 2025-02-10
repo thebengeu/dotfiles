@@ -1,7 +1,7 @@
 {
-  "dataTypeCase": "upper",
-  "functionCase": "upper",
-  "keywordCase": "upper",
+  "dataTypeCase": "lower",
+  "functionCase": "lower",
+  "keywordCase": "lower",
   "language": "bigquery",
   "paramTypes": {
     "named": ["$", "@"]
