@@ -2,6 +2,14 @@ local util = require("util")
 
 return {
   {
+    "saghen/blink.cmp",
+    opts = {
+      appearance = {
+        use_nvim_cmp_as_default = true,
+      },
+    },
+  },
+  {
     "Vigemus/iron.nvim",
     opts = function()
       local lowlevel = require("iron.lowlevel")
