@@ -246,7 +246,6 @@ return util.map({
         "eyeliner",
         "flash",
         "gitsigns",
-        "indent-blankline",
         "mini",
         "neogit",
         "noice",
