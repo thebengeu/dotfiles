@@ -84,10 +84,12 @@ for key, bundle_id_and_args in pairs({
 end
 
 for key, bundle_id_and_args in pairs({
-  c = "com.openai.chat",
+  a = "com.openai.chat",
+  c = "com.apple.podcasts",
   d = "com.hnc.Discord",
   e = "com.endel.endel",
   f = "com.apple.finder",
+  h = "org.hammerspoon.Hammerspoon",
   k = "org.pqrs.Karabiner-EventViewer",
   o = "com.bloombuilt.dayone-mac",
   p = "com.apple.Preview",
