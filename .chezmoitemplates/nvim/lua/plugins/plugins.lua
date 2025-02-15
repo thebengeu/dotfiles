@@ -262,10 +262,6 @@ return {
     lazy = true,
     vscode = true,
   },
-  {
-    "mbbill/undotree",
-    cmd = "UndotreeToggle",
-  },
   { "wakatime/vim-wakatime" },
   {
     "folke/which-key.nvim",

@@ -483,25 +483,6 @@ return {
         sorting_strategy = "ascending",
         winblend = 5,
       })
-
-      local vertical_undo = vim.o.columns > 160
-
-      opts.extensions = {
-        undo = vim.tbl_extend("force", {
-          diff_context_lines = 5,
-          use_custom_command = {
-            "sh",
-            "-c",
-            "echo '$DIFF' | delta"
-              .. (vertical_undo and " --side-by-side" or ""),
-          },
-        }, vertical_undo and {
-          layout_config = {
-            preview_height = 0.7,
-          },
-          layout_strategy = "vertical",
-        } or {}),
-      }
     end,
   },
   {
@@ -570,22 +551,6 @@ return {
         egrepify(nil, true),
         desc = "Visual selection or word (Root Dir)",
         mode = { "n", "x" },
-      },
-    },
-  },
-  {
-    "debugloop/telescope-undo.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
-    keys = {
-      {
-        "<leader>sU",
-        function()
-          require("telescope").extensions.undo.undo()
-        end,
-        desc = "Undo",
       },
     },
   },
