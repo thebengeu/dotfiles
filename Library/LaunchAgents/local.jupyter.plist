@@ -6,9 +6,7 @@
 	<string>local.jupyter</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/Users/beng/.local/bin/jupyter-notebook</string>
-		<string>--NotebookApp.allow_origin=https://colab.research.google.com</string>
-		<string>--no-browser</string>
+		<string>/Users/beng/.local/bin/jn</string>
 	</array>
 	<key>RunAtLoad</key>
 	<true/>
