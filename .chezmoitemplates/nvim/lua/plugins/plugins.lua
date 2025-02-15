@@ -118,13 +118,6 @@ return {
     },
   },
   {
-    "stevearc/oil.nvim",
-    dependencies = "echasnovski/mini.icons",
-    ---@module 'oil'
-    ---@type oil.SetupOpts
-    opts = {},
-  },
-  {
     "folke/persistence.nvim",
     enabled = false,
   },
@@ -234,13 +227,9 @@ return {
           end
 
           for i, hl_name in ipairs(rainbow_hl) do
-            vim.api.nvim_set_hl(
-              0,
-              util.rainbow_delimiters_hl[i],
-              {
-                fg = vim.api.nvim_get_hl(0, { link = false, name = hl_name }).fg,
-              }
-            )
+            vim.api.nvim_set_hl(0, util.rainbow_delimiters_hl[i], {
+              fg = vim.api.nvim_get_hl(0, { link = false, name = hl_name }).fg,
+            })
           end
         end,
       })
