@@ -254,9 +254,9 @@ aliases: {
 	}
 
 	_directoryGitAliases: {
+		b:   "branch --show-current"
 		cam: "commit -a -m"
 		d:   "diff"
-		ghp: "gh poi"
 		l:   "lg"
 		lm:  "lm"
 		lp:  "log --ext-diff --patch"
