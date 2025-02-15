@@ -26,7 +26,6 @@ uv tool install khal
 uv tool install kube-shell
 uv tool install neovim-remote
 uv tool install \
-  --overrides "$(echo notebook==6.5.7 | psub)" \
   --upgrade \
   --with 'bigquery-magics,git+https://github.com/thebengeu/colabtools.git,httplib2,jupysql,pgspecial<2,pillow,plotly,psycopg2-binary,rich' \
   notebook
