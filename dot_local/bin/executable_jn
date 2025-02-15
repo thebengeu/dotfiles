@@ -2,4 +2,5 @@
 jupyter-notebook \
 	--NotebookApp.allow_origin=https://colab.research.google.com \
 	--NotebookApp.show_banner=False \
-	--no-browser
+	--no-browser |
+	tee /tmp/jupyter.log

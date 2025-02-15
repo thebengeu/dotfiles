@@ -10,10 +10,6 @@
 	</array>
 	<key>RunAtLoad</key>
 	<true/>
-	<key>StandardErrorPath</key>
-	<string>/tmp/jupyter.log</string>
-	<key>StandardOutPath</key>
-	<string>/tmp/jupyter.log</string>
 	<key>WorkingDirectory</key>
 	<string>/Users/beng</string>
 </dict>

@@ -10,7 +10,7 @@ README.md
 .config/{bat,broot,btop,fd,ghostty,gitui,glow,gup,helix,lazygit,msmtp,nushell,nvim,sqlfluff,tealdeer,tmux}/
 .config/topgrade.toml
 .hushlogin
-.local/bin/build-and-install-nvim
+.local/bin/{build-and-install-nvim,jn}
 .ssh/control-master.conf
 .inputrc
 sb/
