@@ -128,6 +128,7 @@ return {
       disable_filetype = {
         "TelescopePrompt",
         "snacks_picker_input",
+        "snacks_picker_list",
       },
       map_c_h = true,
       map_c_w = true,
