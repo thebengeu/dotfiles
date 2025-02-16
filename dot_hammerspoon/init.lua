@@ -269,12 +269,12 @@ hs.hotkey.bind({ "ctrl", "option", "shift" }, "b", function()
 end)
 
 for key, command in pairs({
-  j = "cat /tmp/jupyter.log | jn-url",
+  j = "cat /tmp/jupyter.log | ~/.local/bin/jn-url",
   l = "ssh hc -C 'cat /tmp/jupyter.log | jn-url 8888 8889'",
 }) do
   hs.hotkey.bind({ "ctrl", "shift", "cmd" }, key, function()
     hs.eventtap.keyStroke({ "cmd" }, "a")
-    local output = hs.execute(command, true)
+    local output = hs.execute(command)
     hs.eventtap.keyStrokes(output)
     hs.timer.usleep(10000)
     hs.eventtap.keyStroke({}, "tab")
