@@ -34,7 +34,7 @@ local refresh_colorschemes = function()
             if vim.o.background == "light" then
               table.insert(colorschemes, { name, colorscheme_style })
             end
-          elseif insert_non_light or colorscheme_style == "mellifluous" then
+          elseif insert_non_light then
             table.insert(colorschemes, { name, colorscheme_style })
           end
         end
@@ -72,9 +72,7 @@ local refresh_colorscheme = function(index)
 
   vim.cmd.colorscheme(colorscheme[1])
 
-  if colorscheme[1] == "mellifluous" then
-    vim.cmd.Mellifluous(style)
-  elseif colorscheme[1] == "newpaper" then
+  if colorscheme[1] == "newpaper" then
     vim.cmd["Newpaper" .. (style == "light" and "Light" or "Dark")]()
   end
 
