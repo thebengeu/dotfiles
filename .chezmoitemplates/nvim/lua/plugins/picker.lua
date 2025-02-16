@@ -529,13 +529,13 @@ return {
         mode = { "n", "x" },
       },
       {
-        "<leader>sP",
+        "<leader>sL",
         egrepify(lazy_root),
         desc = "Grep Plugins",
         mode = { "n", "x" },
       },
       {
-        "<leader>sp",
+        "<leader>sP",
         get_directory("egrepify", lazy_root),
         desc = "Grep Plugin",
         mode = { "n", "x" },
