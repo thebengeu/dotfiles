@@ -116,21 +116,21 @@ return {
 
       return {
         {
-          "<up>",
+          "<C-Up>",
           function()
             mc.lineAddCursor(-1)
           end,
           mode = { "n", "x" },
         },
         {
-          "<down>",
+          "<C-Down>",
           function()
             mc.lineAddCursor(1)
           end,
           mode = { "n", "x" },
         },
-        { "<c-leftmouse>", mc.handleMouse },
-        { "<c-leftdrag>", mc.handleMouseDrag },
+        { "<C-LeftMouse>", mc.handleMouse },
+        { "<C-LeftDrag>", mc.handleMouseDrag },
         {
           "<esc>",
           function()
