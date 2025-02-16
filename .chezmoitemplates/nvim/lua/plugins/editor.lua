@@ -103,6 +103,7 @@ return {
         prefix = "gS",
       },
     },
+    vscode = true,
   },
   {
     "echasnovski/mini.pairs",
@@ -143,6 +144,7 @@ return {
       }
     end,
     opts = {},
+    vscode = true,
   },
   {
     "windwp/nvim-autopairs",

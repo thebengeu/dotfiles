@@ -140,6 +140,7 @@ return {
     opts = {
       calm_down = true,
     },
+    vscode = true,
   },
   {
     "HiPhish/rainbow-delimiters.nvim",
