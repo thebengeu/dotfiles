@@ -45,7 +45,7 @@ aliases: {
 	cat:             "bat"
 	ci:              "cargo binstall --locked --no-confirm"
 	cl:              "docker compose logs --follow"
-	clc:             "docker start colab && sleep 3 && docker logs colab | grep --only-matching 'http://127.0.0.1:9000/?token=\\S*' | tail -n 1 | sed s/9000/\(_colabPort)/ | osc copy"
+	clc:             "docker start colab && sleep 3 && docker logs colab | jn-url 9000 \(_colabPort) | osc copy"
 	clr:             "docker run --detach --name colab --publish 127.0.0.1:9000:8080 asia-docker.pkg.dev/colab-images/public/runtime"
 	cpd:             "docker compose --profile '*' down"
 	cr:              "docker compose restart --no-deps"

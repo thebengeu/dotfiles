@@ -90,7 +90,9 @@ for key, bundle_id_and_args in pairs({
   e = "com.endel.endel",
   f = "com.apple.finder",
   h = "org.hammerspoon.Hammerspoon",
+  -- j = "Colab local URL",
   k = "org.pqrs.Karabiner-EventViewer",
+  -- l = "Colab remote URL",
   o = "com.bloombuilt.dayone-mac",
   p = "com.apple.Preview",
   r = "com.microsoft.edgemac.app.bndmnggfngpgmmijcogkkgglhalbpomk",
@@ -266,17 +268,20 @@ hs.hotkey.bind({ "ctrl", "option", "shift" }, "b", function()
   hs.eventtap.keyStrokes("#@title ")
 end)
 
-hs.hotkey.bind({ "ctrl", "shift", "cmd" }, "l", function()
-  hs.eventtap.keyStroke({ "cmd" }, "a")
-  local output = hs.execute(
-    "grep --only-matching 'http://127.0.0.1:8888/?token=\\S*' /tmp/jupyter.log | tail -n 1"
-  )
-  hs.eventtap.keyStrokes(output)
-  hs.timer.usleep(10000)
-  hs.eventtap.keyStroke({}, "tab")
-  hs.eventtap.keyStroke({}, "tab")
-  hs.eventtap.keyStroke({}, "return")
-end)
+for key, command in pairs({
+  j = "cat /tmp/jupyter.log | jn-url",
+  l = "ssh hc -C 'cat /tmp/jupyter.log | jn-url 8888 8889'",
+}) do
+  hs.hotkey.bind({ "ctrl", "shift", "cmd" }, key, function()
+    hs.eventtap.keyStroke({ "cmd" }, "a")
+    local output = hs.execute(command, true)
+    hs.eventtap.keyStrokes(output)
+    hs.timer.usleep(10000)
+    hs.eventtap.keyStroke({}, "tab")
+    hs.eventtap.keyStroke({}, "tab")
+    hs.eventtap.keyStroke({}, "return")
+  end)
+end
 
 hs.window.animationDuration = 0
 hs.window.switcher.ui.showSelectedTitle = false
