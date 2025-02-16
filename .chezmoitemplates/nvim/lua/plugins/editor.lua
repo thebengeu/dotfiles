@@ -202,11 +202,7 @@ return {
       },
     },
     opts = {
-      highlight_substituted_text = {
-        enabled = false,
-      },
       on_substitute = function(param)
-        require("tiny-glimmer.support.substitute").substitute_cb(param)
         require("yanky.integration").substitute()(param)
       end,
     },
@@ -235,33 +231,6 @@ return {
     },
     opts = {},
     vscode = true,
-  },
-  {
-    "rachartier/tiny-glimmer.nvim",
-    event = "LazyFile",
-    opts = {
-      overwrite = {
-        search = {
-          enabled = true,
-        },
-        undo = {
-          enabled = true,
-        },
-        redo = {
-          enabled = true,
-        },
-      },
-      support = {
-        substitute = {
-          enabled = true,
-        },
-      },
-      presets = {
-        pulsar = {
-          enabled = true,
-        },
-      },
-    },
   },
   {
     "mg979/vim-visual-multi",
