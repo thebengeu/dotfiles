@@ -1,6 +1,74 @@
 return {
   {
     "akinsho/bufferline.nvim",
+    keys = {
+      {
+        "<A-w>",
+        function()
+          Snacks.bufdelete()
+        end,
+      },
+      {
+        "<C-1>",
+        function()
+          require("bufferline").go_to(1, true)
+        end,
+      },
+      {
+        "<C-2>",
+        function()
+          require("bufferline").go_to(2, true)
+        end,
+      },
+      {
+        "<C-3>",
+        function()
+          require("bufferline").go_to(3, true)
+        end,
+      },
+      {
+        "<C-4>",
+        function()
+          require("bufferline").go_to(4, true)
+        end,
+      },
+      {
+        "<C-5>",
+        function()
+          require("bufferline").go_to(5, true)
+        end,
+      },
+      {
+        "<C-6>",
+        function()
+          require("bufferline").go_to(6, true)
+        end,
+      },
+      {
+        "<C-7>",
+        function()
+          require("bufferline").go_to(7, true)
+        end,
+      },
+      {
+        "<C-8>",
+        function()
+          require("bufferline").go_to(8, true)
+        end,
+      },
+      {
+        "<C-9>",
+        function()
+          require("bufferline").go_to(9, true)
+        end,
+      },
+      {
+        "<C-0>",
+        function()
+          require("bufferline").go_to(10, true)
+        end,
+      },
+    },
     opts = function(_, opts)
       local Offset = require("bufferline.offset")
       local get = Offset.get
@@ -20,10 +88,17 @@ return {
         return ret
       end
 
-      opts.options.always_show_bufferline = true
       opts.options.offsets = {}
-      opts.options.show_buffer_close_icons = false
-      opts.options.show_close_icon = false
+
+      return {
+        options = {
+          always_show_bufferline = true,
+          numbers = "ordinal",
+          show_buffer_close_icons = false,
+          show_close_icon = false,
+          tab_size = 1,
+        },
+      }
     end,
   },
   {
