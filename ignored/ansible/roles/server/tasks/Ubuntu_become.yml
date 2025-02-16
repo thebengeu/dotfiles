@@ -97,6 +97,7 @@
       - gh
       - golang-go
       - jq
+      - libffi-dev
       - libssl-dev
       - mosquitto
       - ninja-build
