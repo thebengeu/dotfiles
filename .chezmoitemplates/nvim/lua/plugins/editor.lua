@@ -109,16 +109,39 @@ return {
     enabled = false,
   },
   {
-    "smoka7/multicursors.nvim",
-    dependencies = "cathyprime/hydra.nvim",
-    keys = {
-      {
-        "gM",
-        "<cmd>MCstart<cr>",
-        desc = "Multicursor",
-        mode = { "n", "x" },
-      },
-    },
+    "jake-stewart/multicursor.nvim",
+    keys = function()
+      local mc = require("multicursor-nvim")
+
+      return {
+        {
+          "<up>",
+          function()
+            mc.lineAddCursor(-1)
+          end,
+          mode = { "n", "x" },
+        },
+        {
+          "<down>",
+          function()
+            mc.lineAddCursor(1)
+          end,
+          mode = { "n", "x" },
+        },
+        { "<c-leftmouse>", mc.handleMouse },
+        { "<c-leftdrag>", mc.handleMouseDrag },
+        {
+          "<esc>",
+          function()
+            if not mc.cursorsEnabled() then
+              mc.enableCursors()
+            elseif mc.hasCursors() then
+              mc.clearCursors()
+            end
+          end,
+        },
+      }
+    end,
     opts = {},
   },
   {
@@ -231,52 +254,6 @@ return {
     },
     opts = {},
     vscode = true,
-  },
-  {
-    "mg979/vim-visual-multi",
-    config = function()
-      vim.g.VM_show_warnings = false
-
-      local overrideLens = function(render, posList, nearest, idx, relIdx)
-        local _ = relIdx
-        local lnum, col = unpack(posList[idx])
-
-        local text, chunks
-        if nearest then
-          text = ("[%d/%d]"):format(idx, #posList)
-          chunks = { { " ", "Ignore" }, { text, "VM_Extend" } }
-        else
-          text = ("[%d]"):format(idx)
-          chunks = { { " ", "Ignore" }, { text, "HlSearchLens" } }
-        end
-        render.setVirt(0, lnum - 1, col - 1, chunks, nearest)
-      end
-
-      local lensBak
-      local config = require("hlslens.config")
-      local gid = vim.api.nvim_create_augroup("VMlens", {})
-
-      vim.api.nvim_create_autocmd("User", {
-        pattern = { "visual_multi_start", "visual_multi_exit" },
-        group = gid,
-        callback = function(ev)
-          if ev.match == "visual_multi_start" then
-            lensBak = config.override_lens
-            config.override_lens = overrideLens
-          else
-            config.override_lens = lensBak
-          end
-          require("hlslens").start()
-        end,
-      })
-    end,
-    keys = {
-      "<C-n>",
-      "<C-Down>",
-      "<C-Up>",
-      "\\\\",
-      "\\\\A",
-    },
   },
   {
     "vscode-neovim/vscode-multi-cursor.nvim",
