@@ -99,6 +99,7 @@
       - jq
       - libffi-dev
       - libssl-dev
+      - luarocks
       - mosquitto
       - ninja-build
       - nodejs
