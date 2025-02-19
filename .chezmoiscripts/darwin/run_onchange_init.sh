@@ -60,7 +60,7 @@ if [ ! "${CHEZMOI}" = 1 ]; then
 
   brew_prefix=$(brew --prefix)
 
-  sed -i '' 's/#port = 5432/port = 5434/' "${brew_prefix}/var/postgresql@15/postgresql.conf"
+  sed -i '' 's/#port = 5432/port = 5434/' "${brew_prefix}/var/postgresql@17/postgresql.conf"
   sudo sh -c "echo ${brew_prefix}/bin/fish >> /etc/shells"
   chsh -s "${brew_prefix}/bin/fish"
 
