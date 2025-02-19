@@ -151,18 +151,27 @@ local get_directory = function(picker_name, cwd)
             cwd = cwd,
           }),
         }),
+        layout_config = {
+          horizontal = {
+            preview_width = 122,
+          },
+        },
         previewer = require("telescope.previewers").new_termopen_previewer({
           get_command = function(entry)
-            return {
-              "eza",
-              "--all",
-              "--git",
-              "--group-directories-first",
-              "--icons",
-              "--long",
-              "--no-user",
-              cwd .. "/" .. entry.value,
-            }
+            local directory = cwd .. "/" .. entry.value
+            local readme = directory .. "/README.md"
+
+            return vim.fn.filereadable(readme) == 1 and { "glow", readme }
+              or {
+                "eza",
+                "--all",
+                "--git",
+                "--group-directories-first",
+                "--icons",
+                "--long",
+                "--no-user",
+                directory,
+              }
           end,
         }),
         sorter = require("telescope.config").values.file_sorter(),
