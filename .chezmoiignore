@@ -59,3 +59,7 @@ AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/kmonad.vbs
 {{ else }}
 AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/wsl.vbs
 {{ end }}
+
+{{ if eq .chezmoi.hostname "primary" }}
+.ssh/authorized_keys
+{{ end }}
