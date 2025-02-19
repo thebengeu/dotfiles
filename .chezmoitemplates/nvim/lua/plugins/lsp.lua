@@ -98,14 +98,17 @@ return {
         "sqlfluff",
         "sqlfmt",
         "taplo",
-        "typos",
         "yamllint",
       })
       if jit.os == "Linux" then
         vim.list_extend(opts.ensure_installed, { "ansible-lint" })
       end
-      if jit.os ~= "Windows" then
-        vim.list_extend(opts.ensure_installed, { "zprint" })
+      if not (jit.os == "Linux" and jit.arch == "arm64") then
+        vim.list_extend(opts.ensure_installed, { "typos" })
+
+        if jit.os ~= "Windows" then
+          vim.list_extend(opts.ensure_installed, { "zprint" })
+        end
       end
     end,
   },
