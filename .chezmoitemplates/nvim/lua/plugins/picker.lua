@@ -276,6 +276,14 @@ return {
             },
           },
         },
+        previewers = {
+          diff = {
+            native = true,
+          },
+          git = {
+            native = true,
+          },
+        },
         win = {
           input = {
             keys = {
