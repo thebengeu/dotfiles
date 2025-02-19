@@ -40,7 +40,7 @@ return {
 
       local ts = require("iron.fts.typescript").ts
       local typescript = vim.tbl_extend("force", ts, {
-        command = { "tsx" },
+        command = { "pnpm", "dlx", "tsx" },
         format = function(lines)
           return require("iron.fts.common").format(
             ts,

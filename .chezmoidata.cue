@@ -117,7 +117,7 @@ aliases: {
 	sn:              "eksctl scale nodegroup --cluster $(eks-cluster-name) --name $(nodegroup-name) --nodes"
 	ss:              "aws ssm start-session --target"
 	st:              "speedtest"
-	t:               "tsx"
+	t:               "pnpm dlx tsx"
 	tb:              "time bash -i -c exit"
 	tbn:             "time bash --noprofile --norc -i -c exit"
 	uc:              "git -C ~/thebengeu/qmk_firmware sw sofleplus2 && qmk userspace-compile"
@@ -304,7 +304,7 @@ aliases: {
 
 	for shAlias, command in {
 		jsr: #"printf "\e[6 q"; node"#
-		tsr: #"printf "\e[6 q"; tsx"#
+		tsr: #"printf "\e[6 q"; pnpm dlx tsx"#
 	} {
 		"\(shAlias)": "sh -c '\(command)'"
 	}
