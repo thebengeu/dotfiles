@@ -1,5 +1,4 @@
 #!/usr/bin/env sh
-{{ range joinPath .chezmoi.sourceDir "ignored/ansible/**/*.*" | glob }}
-# {{ include . | sha1sum }}
-{{ end}}
-ansible-playbook "$CHEZMOI_SOURCE_DIR"/ignored/ansible/site.yml
+# {{ include "ignored/ansible/roles/server/tasks/Ubuntu.yml" | sha1sum }}
+# {{ include "ignored/ansible/roles/server/tasks/Ubuntu_become.yml" | sha1sum }}
+ansible-playbook "${CHEZMOI_SOURCE_DIR}"/ignored/ansible/site.yml
