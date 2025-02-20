@@ -31,7 +31,7 @@ if vim.g.vscode then
     require("vscode-neovim").action("vspacecode.space")
   end)
 
-  vim.keymap.set("n", "<c-/>", function()
+  vim.keymap.set("n", "<C-/>", function()
     require("vscode-neovim").action("workbench.action.terminal.toggleTerminal")
   end)
 

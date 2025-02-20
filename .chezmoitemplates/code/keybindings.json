@@ -25,6 +25,10 @@
     "when": "!codeActionMenuVisible && !inQuickOpen && !suggestWidgetVisible && !parameterHintsVisible && !isInDiffEditor"
   },
   {
+    "key": "ctrl+s",
+    "command": "workbench.action.files.save"
+  },
+  {
     "key": "ctrl+/",
     "command": "workbench.action.terminal.toggleTerminal",
     "when": "terminalFocus"
