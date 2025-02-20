@@ -287,10 +287,10 @@ return {
         },
         previewers = {
           diff = {
-            native = true,
+            builtin = false,
           },
           git = {
-            native = true,
+            builtin = false,
           },
         },
         win = {
