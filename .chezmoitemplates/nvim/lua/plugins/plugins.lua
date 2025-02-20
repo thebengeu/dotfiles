@@ -236,11 +236,14 @@ return {
         table.insert(ts_rainbow_hl, "rainbowcol" .. i)
       end
 
+      local hl_not_exists = function(hl_name)
+        local hl = vim.api.nvim_get_hl(0, { name = hl_name })
+        return next(hl) == nil or hl.default
+      end
+
       local rainbow_hl_if_exists = function(rainbow_hl)
         for i = 1, 7 do
-          local hl = vim.api.nvim_get_hl(0, { name = rainbow_hl[i] })
-
-          if next(hl) == nil or hl.default then
+          if hl_not_exists(rainbow_hl[i]) then
             return false
           end
         end
@@ -264,6 +267,16 @@ return {
             vim.api.nvim_set_hl(0, util.rainbow_delimiters_hl[i], {
               fg = vim.api.nvim_get_hl(0, { link = false, name = hl_name }).fg,
             })
+          end
+
+          for _, hl_suffix in ipairs({ "Dir", "PathHidden" }) do
+            local hl_name = "SnacksPicker" .. hl_suffix
+            if hl_not_exists(hl_name) then
+              local comment_hl = vim.api.nvim_get_hl(0, { name = "Comment" })
+              local hl = vim.tbl_extend("force", comment_hl, { italic = false })
+
+              vim.api.nvim_set_hl(0, hl_name, hl)
+            end
           end
         end,
       })
