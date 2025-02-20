@@ -70,13 +70,6 @@ return {
     end,
   },
   {
-    "chrishrb/gx.nvim",
-    keys = {
-      { "gX", "<cmd>Browse<cr>", desc = "Browse", mode = { "n", "x" } },
-    },
-    opts = {},
-  },
-  {
     "chentoast/marks.nvim",
     event = "LazyFile",
     opts = {
