@@ -54,6 +54,7 @@ packages=(
   speedtest-cli
   shfmt
   sq
+  ssm-session-manager-plugin
   tealdeer
   tere
   tokei
