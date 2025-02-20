@@ -54,7 +54,7 @@ vim.keymap.set("n", "<leader>fC", function()
   vim.cmd.edit("~/thebengeu/cheatsheet/README.md")
 end, { desc = "Cheatsheet" })
 
-vim.keymap.set("n", "<leader>gn", function()
+vim.keymap.set("n", "<leader>gW", function()
   local new_branch_name = vim.fn.input("New branch name: ", "beng/")
 
   if new_branch_name ~= "" then
@@ -64,39 +64,40 @@ end, { desc = "New branch" })
 
 vim.keymap.set(
   "n",
-  "<leader>gU",
+  "<leader>gP",
   util.async_run_git({ "push" }),
   { desc = "Push" }
 )
 
 vim.keymap.set(
   "n",
-  "<leader>gu",
+  "<leader>gp",
   util.async_run_git({ "pull" }),
   { desc = "Pull" }
 )
 
-vim.keymap.set("n", "<leader>gT", function()
+vim.keymap.set("n", "<leader>gr", function()
   util.async_run_sh(
     "git push && gh pr create --fill-first && gh pr view --web",
     { cwd = LazyVim.root() }
   )
 end, { desc = "Create PR" })
 
-vim.keymap.set("n", "<leader>gt", function()
+vim.keymap.set("n", "<leader>gR", function()
   util.async_run_sh(
     "git push && gh pr create --draft --fill-first && gh pr view --web",
     { cwd = LazyVim.root() }
   )
 end, { desc = "Create Draft PR" })
 
-vim.keymap.set("n", "<leader>gP", function()
+vim.keymap.del({ "n", "x" }, "<leader>gB")
+vim.keymap.set("n", "<leader>gB", function()
   util.async_run_sh("gh pr view --web")
-end, { desc = "View PR" })
+end, { desc = "View PR in browser" })
 
 vim.keymap.set(
   "n",
-  "<leader>gW",
+  "<leader>gC",
   util.async_run_git({ "wip" }),
   { desc = "Commit WIP" }
 )

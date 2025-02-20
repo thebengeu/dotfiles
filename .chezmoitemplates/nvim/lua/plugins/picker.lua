@@ -275,8 +275,6 @@ return {
             truncate = 100,
           },
         },
-        follow = true,
-        hidden = true,
         layouts = {
           default = {
             layout = {
@@ -386,7 +384,7 @@ return {
         desc = "Changed Files",
       },
       {
-        "<leader>gr",
+        "<leader>gw",
         function()
           require("telescope.builtin").git_branches({
             show_remote_tracking_branches = false,

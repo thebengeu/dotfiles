@@ -120,13 +120,13 @@ return {
 
       return {
         {
-          "<leader>gb",
+          "<leader>gk",
           link_using_default_branch("system"),
           mode = { "n", "x" },
           desc = "Open permalink (default branch)",
         },
         {
-          "<leader>gB",
+          "<leader>gK",
           "<cmd>GitLink!<cr>",
           mode = { "n", "x" },
           desc = "Open permalink (current branch)",
@@ -239,7 +239,7 @@ return {
     event = "LazyFile",
     keys = {
       {
-        "<leader>gw",
+        "<leader>go",
         "<cmd>lua MiniGit.show_at_cursor()<cr>",
         desc = "Show at cursor",
         mode = { "n", "x" },
@@ -252,7 +252,7 @@ return {
     "NeogitOrg/neogit",
     dependencies = "nvim-lua/plenary.nvim",
     keys = {
-      { "<leader>gN", "<cmd>Neogit cwd=%:p:h<cr>", desc = "Neogit" },
+      { "<leader>gn", "<cmd>Neogit cwd=%:p:h<cr>", desc = "Neogit" },
     },
     opts = {},
   },
@@ -266,8 +266,13 @@ return {
     keys = {
       { "<leader>gi", false },
       { "<leader>gI", false },
+      { "<leader>gp", false },
       { "<leader>gP", false },
       { "<leader>gr", false },
+      { "<leader>gS", false },
+    },
+    opts = {
+      picker = "snacks",
     },
   },
   {
