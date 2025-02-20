@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-jupyter-notebook \
+~/.local/bin/jupyter-notebook \
 	--NotebookApp.allow_origin=https://colab.research.google.com \
 	--NotebookApp.show_banner=False \
 	--no-browser 2>&1 |
