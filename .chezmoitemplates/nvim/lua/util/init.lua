@@ -168,18 +168,9 @@ M.rainbow_delimiters_hl = map(M.rainbow_colors, function(color)
   return "RainbowDelimiter" .. color
 end)
 
-M.smart_files = function(opts)
+M.smart = function(opts)
   return function()
-    Snacks.picker.smart(vim.tbl_extend(
-      "force",
-      {
-        multi = { "files" },
-      },
-      vim.tbl_extend("force", {
-        follow = true,
-        hidden = true,
-      }, opts)
-    ))
+    Snacks.picker.smart(opts)
   end
 end
 

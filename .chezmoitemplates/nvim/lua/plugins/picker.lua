@@ -116,8 +116,8 @@ local get_directory = function(picker_name, cwd)
             actions.close(prompt_bufnr)
 
             if vim.tbl_isempty(multi_selection) then
-              if picker_name == "smart_files" then
-                util.smart_files({
+              if picker_name == "smart" then
+                util.smart({
                   cwd = cwd .. "/" .. selected_entry_value,
                 })()
                 return
@@ -202,53 +202,49 @@ return {
       { "<leader>/", false },
       {
         "<leader><space>",
-        util.smart_files({
-          multi = { "buffers", "files" },
-        }),
+        util.smart({ multi = { "buffers", "files" } }),
         desc = "Find Files (cwd)",
       },
       {
         "<leader>fa",
-        util.smart_files({ cwd = lazy_root .. "/snacks.nvim" }),
+        util.smart({ cwd = lazy_root .. "/snacks.nvim" }),
         desc = "Find snacks.nvim Files",
       },
       {
         "<leader>fc",
-        util.smart_files({
-          cwd = "~/.local/share/chezmoi/.chezmoitemplates/nvim",
-        }),
+        util.smart({ cwd = "~/.local/share/chezmoi/.chezmoitemplates/nvim" }),
         desc = "Find Config File",
       },
       {
         "<leader>fF",
-        get_directory("smart_files"),
+        get_directory("smart"),
         desc = "Find Files (subdirs)",
       },
       {
         "<leader>ff",
         function()
-          util.smart_files({ cwd = LazyVim.root() })()
+          util.smart({ cwd = LazyVim.root() })()
         end,
         desc = "Find Files (Root Dir)",
       },
       {
         "<leader>fi",
-        util.smart_files({ ignored = true }),
+        util.smart({ ignored = true }),
         desc = "Find Files (ignored)",
       },
       {
         "<leader>fl",
-        util.smart_files({ cwd = lazy_root .. "/LazyVim" }),
+        util.smart({ cwd = lazy_root .. "/LazyVim" }),
         desc = "Find LazyVim Files",
       },
       {
         "<leader>fP",
-        util.smart_files({ cwd = lazy_root }),
+        util.smart({ cwd = lazy_root }),
         desc = "Find Plugin Files",
       },
       {
         "<leader>fp",
-        get_directory("smart_files", lazy_root),
+        get_directory("smart", lazy_root),
         desc = "Find Plugin's Files",
       },
       { "<leader>gc", false },
@@ -289,6 +285,16 @@ return {
           },
           git = {
             builtin = false,
+          },
+        },
+        sources = {
+          explorer = {
+            hidden = true,
+          },
+          smart = {
+            follow = true,
+            hidden = true,
+            multi = { "files" },
           },
         },
         win = {
