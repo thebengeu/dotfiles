@@ -133,43 +133,6 @@ return {
     },
   },
   {
-    "jinh0/eyeliner.nvim",
-    init = function()
-      local add_bold_and_underline = function(name)
-        vim.api.nvim_set_hl(0, name, {
-          bold = true,
-          fg = vim.api.nvim_get_hl(0, { name = name }).fg,
-          underline = true,
-        })
-      end
-
-      local callback = function()
-        add_bold_and_underline("EyelinerPrimary")
-        add_bold_and_underline("EyelinerSecondary")
-      end
-
-      callback()
-
-      vim.api.nvim_create_autocmd("ColorScheme", {
-        callback = callback,
-      })
-    end,
-    event = "LazyFile",
-    opts = {
-      disabled_filetypes = {
-        "copilot-chat",
-        "help",
-        "lazy",
-        "minifiles",
-        "qf",
-        "snacks_picker_list",
-        "snacks_terminal",
-        "trouble",
-      },
-    },
-    vscode = true,
-  },
-  {
     "folke/noice.nvim",
     opts = {
       routes = {
@@ -189,35 +152,17 @@ return {
     },
   },
   {
-    "kevinhwang91/nvim-hlslens",
+    "chrisgrieser/nvim-rip-substitute",
     keys = {
-      { "/" },
-      { "?" },
       {
-        "n",
-        "<cmd>execute('normal! ' . v:count1 . 'n')<cr><cmd>lua require('hlslens').start()<cr>",
-      },
-      {
-        "N",
-        "<cmd>execute('normal! ' . v:count1 . 'N')<cr><cmd>lua require('hlslens').start()<cr>",
-      },
-      { "*", "*<cmd>lua require('hlslens').start()<cr>" },
-      { "#", "#<cmd>lua require('hlslens').start()<cr>" },
-      {
-        "g*",
-        "g*<cmd>lua require('hlslens').start()<cr>",
-        desc = "Search word forward",
-      },
-      {
-        "g#",
-        "g#<cmd>lua require('hlslens').start()<cr>",
-        desc = "Search word backward",
+        "<leader>fs",
+        function()
+          require("rip-substitute").sub()
+        end,
+        desc = "Rip Substitute",
+        mode = { "n", "x" },
       },
     },
-    opts = {
-      calm_down = true,
-    },
-    vscode = true,
   },
   {
     "HiPhish/rainbow-delimiters.nvim",

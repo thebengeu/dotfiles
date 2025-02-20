@@ -1,6 +1,42 @@
 local map = require("util").map
 
-return {
+return map({
+  {
+    "jinh0/eyeliner.nvim",
+    init = function()
+      local add_bold_and_underline = function(name)
+        vim.api.nvim_set_hl(0, name, {
+          bold = true,
+          fg = vim.api.nvim_get_hl(0, { name = name }).fg,
+          underline = true,
+        })
+      end
+
+      local callback = function()
+        add_bold_and_underline("EyelinerPrimary")
+        add_bold_and_underline("EyelinerSecondary")
+      end
+
+      callback()
+
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        callback = callback,
+      })
+    end,
+    event = "LazyFile",
+    opts = {
+      disabled_filetypes = {
+        "copilot-chat",
+        "help",
+        "lazy",
+        "minifiles",
+        "qf",
+        "snacks_picker_list",
+        "snacks_terminal",
+        "trouble",
+      },
+    },
+  },
   {
     "folke/flash.nvim",
     init = function()
@@ -42,14 +78,6 @@ return {
         },
       },
     },
-    vscode = true,
-  },
-  {
-    "chentoast/marks.nvim",
-    event = "LazyFile",
-    opts = {
-      sign_priority = 13,
-    },
   },
   {
     "echasnovski/mini.move",
@@ -87,7 +115,6 @@ return {
         reindent_linewise = false,
       },
     },
-    vscode = true,
   },
   {
     "echasnovski/mini.operators",
@@ -103,7 +130,6 @@ return {
         prefix = "gS",
       },
     },
-    vscode = true,
   },
   {
     "echasnovski/mini.pairs",
@@ -144,34 +170,36 @@ return {
       }
     end,
     opts = {},
-    vscode = true,
   },
   {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    opts = {
-      disable_filetype = {
-        "TelescopePrompt",
-        "snacks_picker_input",
-        "snacks_picker_list",
+    "kevinhwang91/nvim-hlslens",
+    keys = {
+      { "/" },
+      { "?" },
+      {
+        "n",
+        "<cmd>execute('normal! ' . v:count1 . 'n')<cr><cmd>lua require('hlslens').start()<cr>",
       },
-      map_c_h = true,
-      map_c_w = true,
+      {
+        "N",
+        "<cmd>execute('normal! ' . v:count1 . 'N')<cr><cmd>lua require('hlslens').start()<cr>",
+      },
+      { "*", "*<cmd>lua require('hlslens').start()<cr>" },
+      { "#", "#<cmd>lua require('hlslens').start()<cr>" },
+      {
+        "g*",
+        "g*<cmd>lua require('hlslens').start()<cr>",
+        desc = "Search word forward",
+      },
+      {
+        "g#",
+        "g#<cmd>lua require('hlslens').start()<cr>",
+        desc = "Search word backward",
+      },
     },
-  },
-  {
-    "kevinhwang91/nvim-bqf",
-    dependencies = "junegunn/fzf",
-    ft = "qf",
-  },
-  {
-    "kevinhwang91/nvim-fundo",
-    dependencies = "kevinhwang91/promise-async",
-    event = "LazyFile",
-    make = function()
-      require("fundo").install()
-    end,
-    opts = {},
+    opts = {
+      calm_down = true,
+    },
   },
   {
     "chrisgrieser/nvim-spider",
@@ -182,20 +210,47 @@ return {
         mode = { "n", "o", "x" },
       }
     end),
-    vscode = true,
   },
   {
-    "chrisgrieser/nvim-rip-substitute",
-    keys = {
-      {
-        "<leader>fs",
-        function()
-          require("rip-substitute").sub()
-        end,
-        desc = "Rip Substitute",
-        mode = { "n", "x" },
-      },
+    "chrisgrieser/nvim-various-textobjs",
+    keys = map({
+      iS = { "inner", "subword" },
+      aS = { "outer", "subword" },
+      C = { "toNextClosingBracket" },
+      Q = { "toNextQuotationMark" },
+      gG = { "entireBuffer" },
+      i_ = { "inner", "lineCharacterwise" },
+      a_ = { "outer", "lineCharacterwise" },
+      iv = { "inner", "value" },
+      av = { "outer", "value" },
+      ik = { "inner", "key" },
+      ak = { "outer", "key" },
+    }, function(textobj, lhs)
+      return {
+        lhs,
+        "<cmd>lua require('various-textobjs')."
+          .. textobj[#textobj]
+          .. "("
+          .. (#textobj == 2 and "'" .. textobj[1] .. "'" or "")
+          .. ")<cr>",
+        desc = table.concat(textobj, " "),
+        mode = { "o", "x" },
+      }
+    end),
+    opts = {
+      useDefaults = false,
     },
+  },
+  {
+    "kkharji/sqlite.lua",
+    config = function()
+      if jit.os == "Windows" then
+        vim.g.sqlite_clib_path = vim.env.ChocolateyInstall
+          .. "/lib/SQLite/tools/sqlite3.dll"
+      end
+    end,
+    enabled = true,
+    lazy = true,
   },
   {
     "gbprod/substitute.nvim",
@@ -231,14 +286,6 @@ return {
         require("yanky.integration").substitute()(param)
       end,
     },
-    vscode = true,
-  },
-  {
-    "abecodes/tabout.nvim",
-    event = "InsertCharPre",
-    opts = {
-      act_as_shift_tab = true,
-    },
   },
   {
     "johmsalas/text-case.nvim",
@@ -255,7 +302,16 @@ return {
       },
     },
     opts = {},
-    vscode = true,
+  },
+  {
+    "Wansmer/treesj",
+    keys = {
+      { "J", "<cmd>TSJToggle<cr>" },
+    },
+    opts = {
+      max_join_length = 1000,
+      use_default_keymaps = false,
+    },
   },
   {
     "vscode-neovim/vscode-multi-cursor.nvim",
@@ -265,7 +321,6 @@ return {
   {
     "svban/YankAssassin.vim",
     event = "LazyFile",
-    vscode = true,
   },
   {
     "gbprod/yanky.nvim",
@@ -277,6 +332,8 @@ return {
         sync_with_ring = false,
       },
     },
-    vscode = true,
   },
-}
+}, function(spec)
+  spec.vscode = true
+  return spec
+end)

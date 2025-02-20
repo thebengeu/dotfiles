@@ -77,6 +77,13 @@ return {
     opts = {},
   },
   {
+    "chentoast/marks.nvim",
+    event = "LazyFile",
+    opts = {
+      sign_priority = 13,
+    },
+  },
+  {
     "echasnovski/mini.bracketed",
     event = "LazyFile",
     keys = {
@@ -93,12 +100,39 @@ return {
     },
   },
   {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    opts = {
+      disable_filetype = {
+        "TelescopePrompt",
+        "snacks_picker_input",
+        "snacks_picker_list",
+      },
+      map_c_h = true,
+      map_c_w = true,
+    },
+  },
+  {
+    "kevinhwang91/nvim-bqf",
+    dependencies = "junegunn/fzf",
+    ft = "qf",
+  },
+  {
     "chrisgrieser/nvim-early-retirement",
     event = "VeryLazy",
     opts = {
       minimumBufferNum = 5,
       retirementAgeMins = 60,
     },
+  },
+  {
+    "kevinhwang91/nvim-fundo",
+    dependencies = "kevinhwang91/promise-async",
+    event = "LazyFile",
+    make = function()
+      require("fundo").install()
+    end,
+    opts = {},
   },
   {
     "epwalsh/obsidian.nvim",
@@ -251,16 +285,11 @@ return {
     },
   },
   {
-    "kkharji/sqlite.lua",
-    config = function()
-      if jit.os == "Windows" then
-        vim.g.sqlite_clib_path = vim.env.ChocolateyInstall
-          .. "/lib/SQLite/tools/sqlite3.dll"
-      end
-    end,
-    enabled = true,
-    lazy = true,
-    vscode = true,
+    "abecodes/tabout.nvim",
+    event = "InsertCharPre",
+    opts = {
+      act_as_shift_tab = true,
+    },
   },
   { "wakatime/vim-wakatime" },
   {

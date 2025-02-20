@@ -238,37 +238,6 @@ return {
     },
   },
   {
-    "chrisgrieser/nvim-various-textobjs",
-    keys = util.map({
-      iS = { "inner", "subword" },
-      aS = { "outer", "subword" },
-      C = { "toNextClosingBracket" },
-      Q = { "toNextQuotationMark" },
-      gG = { "entireBuffer" },
-      i_ = { "inner", "lineCharacterwise" },
-      a_ = { "outer", "lineCharacterwise" },
-      iv = { "inner", "value" },
-      av = { "outer", "value" },
-      ik = { "inner", "key" },
-      ak = { "outer", "key" },
-    }, function(textobj, lhs)
-      return {
-        lhs,
-        "<cmd>lua require('various-textobjs')."
-          .. textobj[#textobj]
-          .. "("
-          .. (#textobj == 2 and "'" .. textobj[1] .. "'" or "")
-          .. ")<cr>",
-        desc = table.concat(textobj, " "),
-        mode = { "o", "x" },
-      }
-    end),
-    opts = {
-      useDefaults = false,
-    },
-    vscode = true,
-  },
-  {
     "vuki656/package-info.nvim",
     event = "BufReadPre package.json",
     keys = {
@@ -306,16 +275,5 @@ return {
       "typescriptreact",
     },
     opts = {},
-  },
-  {
-    "Wansmer/treesj",
-    keys = {
-      { "J", "<cmd>TSJToggle<cr>" },
-    },
-    opts = {
-      max_join_length = 1000,
-      use_default_keymaps = false,
-    },
-    vscode = true,
   },
 }
