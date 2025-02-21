@@ -300,15 +300,14 @@ return {
     opts = {},
   },
   {
-    "rachartier/tiny-inline-diagnostic.nvim",
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     event = "LspAttach",
     init = function()
-      vim.diagnostic.config({ virtual_text = false })
+      vim.diagnostic.config({
+        virtual_lines = true,
+        virtual_text = false,
+      })
     end,
-    opts = {
-      options = {
-        show_source = true,
-      },
-    },
+    opts = {},
   },
 }
