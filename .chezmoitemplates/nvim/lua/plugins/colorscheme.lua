@@ -1,7 +1,7 @@
 local util = require("util")
 
-local rainbow_delimiter_highlights = function(colors)
-  local highlights = {}
+local rainbow_delimiter_highlights = function(colors, highlights)
+  highlights = highlights or {}
 
   for i, color in ipairs(colors) do
     highlights[util.rainbow_delimiters_hl[i]] = { fg = color }
@@ -208,7 +208,19 @@ return util.map({
   },
   {
     "wtfox/jellybeans.nvim",
-    opts = {},
+    opts = {
+      on_highlights = function(hl, palette)
+        rainbow_delimiter_highlights({
+          palette.raw_sienna,
+          palette.brandy,
+          palette.perano,
+          palette.koromiko,
+          palette.green_smoke,
+          palette.biloba_flower,
+          palette.calypso,
+        }, hl)
+      end,
+    },
     supports_light_background = true,
   },
   {
