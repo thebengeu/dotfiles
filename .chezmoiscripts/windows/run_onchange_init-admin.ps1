@@ -52,7 +52,7 @@ $wingetPackageIds = @(
   'Microsoft.OpenSSH.Beta'
   'Microsoft.PowerShell'
   'Pulumi.Pulumi'
-  'Python.Python.3.12'
+  'Python.Python.3.13'
   'BurntSushi.ripgrep.MSVC'
   'Rustlang.Rustup'
   'Starship.Starship'
@@ -162,7 +162,7 @@ $paths = @(
   [System.Environment]::GetEnvironmentVariable("Path", "User")
   "$Env:USERPROFILE\.cargo\bin"
   "$PNPM_HOME"
-  "$Env:APPDATA\Python\Python312\Scripts"
+  "$Env:APPDATA\Python\Python313\Scripts"
 )
 
 $Env:PATH = $paths -join [IO.Path]::PathSeparator

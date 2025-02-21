@@ -416,7 +416,7 @@ paths: list.Concat([{
 		"$PYENV_ROOT/bin",
 	]])
 	windows: [
-		"~/AppData/Roaming/Python/Python312/Scripts",
+		"~/AppData/Roaming/Python/Python313/Scripts",
 		"/usr/bin",
 	]
 }[_os], [
