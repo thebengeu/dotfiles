@@ -299,4 +299,16 @@ return {
     },
     opts = {},
   },
+  {
+    "rachartier/tiny-inline-diagnostic.nvim",
+    event = "LspAttach",
+    init = function()
+      vim.diagnostic.config({ virtual_text = false })
+    end,
+    opts = {
+      options = {
+        show_source = true,
+      },
+    },
+  },
 }

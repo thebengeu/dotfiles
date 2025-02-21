@@ -128,6 +128,7 @@ return {
       table.insert(keys, { "gt", false })
     end,
     opts = function(_, opts)
+      opts.diagnostics.virtual_text = false
       opts.servers.clangd.mason = false
       opts.servers.lua_ls.settings.Lua =
         vim.tbl_extend("error", opts.servers.lua_ls.settings.Lua, {
