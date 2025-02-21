@@ -276,6 +276,24 @@ return {
     },
   },
   {
+    "tanvirtin/vgit.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+    },
+    event = "VimEnter",
+    opts = {
+      settings = {
+        live_blame = {
+          enabled = false,
+        },
+        live_gutter = {
+          enabled = false,
+        },
+      },
+    },
+  },
+  {
     "tpope/vim-fugitive",
     cmd = { "G", "Gclog" },
   },
