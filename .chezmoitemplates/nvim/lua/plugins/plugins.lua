@@ -223,9 +223,11 @@ return {
         end
       )
 
+      local snacks_indent_hl = {}
       local ts_rainbow_hl = {}
 
       for i = 1, 7 do
+        table.insert(snacks_indent_hl, "SnacksIndent" .. i)
         table.insert(ts_rainbow_hl, "rainbowcol" .. i)
       end
 
@@ -251,7 +253,7 @@ return {
           local rainbow_hl = rainbow_hl_if_exists(util.rainbow_delimiters_hl)
             or rainbow_hl_if_exists(ts_rainbow_2_hl)
             or rainbow_hl_if_exists(ts_rainbow_hl)
-
+            or rainbow_hl_if_exists(snacks_indent_hl)
           if not rainbow_hl then
             error("No rainbow highlight groups found")
           end

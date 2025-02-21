@@ -207,6 +207,11 @@ return util.map({
     supports_light_background = true,
   },
   {
+    "wtfox/jellybeans.nvim",
+    opts = {},
+    supports_light_background = true,
+  },
+  {
     "rebelot/kanagawa.nvim",
     colors_names = {
       "kanagawa-dragon",
