@@ -45,7 +45,7 @@ Library/
 .ansible.cfg
 .chezmoiscripts/linux/*
 .gnupg/
-.local/share/
+.local/share/fonts
 .password-store/
 {{ end }}
 

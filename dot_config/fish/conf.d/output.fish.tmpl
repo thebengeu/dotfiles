@@ -1,12 +1,12 @@
 {{- if lookPath "atuin" }}
-{{output "atuin" "init" "fish" "--disable-ctrl-r" "--disable-up-arrow"}}
+{{output "atuin" "init" "fish"}}
 {{end -}}
 {{output "direnv" "hook" "fish"}}
 {{output "fish" "-c" "starship init fish --print-full-init"}}
 {{- if lookPath "switcher" }}
 {{output "switcher" "init" "fish" | replace "\\rm" "command rm"}}
 function s --wraps switcher
-    kubeswitch $argv;
+    kubeswitch $argv
 end
 {{end -}}
 {{- if lookPath "zoxide" }}

@@ -6,7 +6,7 @@
 {{output "supa-admin-cli" "completion" "zsh"}}
 {{end -}}
 {{- if lookPath "atuin" }}
-{{output "atuin" "init" "zsh" "--disable-ctrl-r" "--disable-up-arrow"}}
+{{output "atuin" "init" "zsh"}}
 {{end -}}
 {{- if lookPath "zoxide" }}
 {{output "zoxide" "init" "--cmd" "cd" "zsh"}}

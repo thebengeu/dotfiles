@@ -1,0 +1,41 @@
+dialect = "uk"
+enter_accept = true
+exit_mode = "return-query"
+filter_mode = "host"
+filter_mode_shell_up_key_binding = "session"
+inline_height = 0
+style = "auto"
+workspaces = true
+
+[stats]
+common_subcommands = [
+  "./snapshot.sh",
+  "apt",
+  "aws",
+  "aws-vault",
+  "bq",
+  "brew",
+  "cargo",
+  "chezmoi",
+  "docker",
+  "docker compose",
+  "eksctl",
+  "gh",
+  "git",
+  "go",
+  "helm",
+  "kubectl",
+  "make",
+  "nix",
+  "npm",
+  "npx",
+  "orb",
+  "pnpm",
+  "pulumi",
+  "supa-admin-cli",
+  "systemctl",
+  "tmux",
+]
+
+[sync]
+records = true

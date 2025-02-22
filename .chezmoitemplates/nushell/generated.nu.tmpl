@@ -17,7 +17,7 @@ def {{$name}} [{{$lines_and_parameters.parameters | join ", "}}] {
   {{- end}}
 alias {{$alias}} = {{$command | replace "$HOME" "~"}}
 {{- end -}}
-{{output "atuin" "init" "nu" "--disable-ctrl-r" "--disable-up-arrow"}}
+{{output "atuin" "init" "nu"}}
 {{output "broot" "--print-shell-function" "nushell"}}
 {{output "starship" "init" "nu"}}
 {{output "zoxide" "init" "--no-cmd" "nushell" | replace "def-env __zoxide_z" "def --env z"}}
