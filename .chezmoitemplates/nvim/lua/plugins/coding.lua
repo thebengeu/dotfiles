@@ -189,13 +189,13 @@ return {
       {
         "rafamadriz/friendly-snippets",
         enabled = false,
+        name = "rafamadriz-friendly-snippets",
       },
       {
         "thebengeu/friendly-snippets",
         config = function()
           require("luasnip.loaders.from_vscode").lazy_load()
         end,
-        name = "my-friendly-snippets",
       },
     },
     keys = function()
