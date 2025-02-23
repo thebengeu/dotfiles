@@ -295,6 +295,13 @@ return {
           hl = util.rainbow_delimiters_hl,
         },
       },
+      styles = {
+        lazygit = {
+          wo = {
+            winblend = 0,
+          },
+        },
+      },
     },
   },
   {
