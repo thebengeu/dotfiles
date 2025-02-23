@@ -84,6 +84,7 @@ aliases: {
 	n:               "nvim"
 	nd:              "npm run dev"
 	ni:              "npm install"
+	npr:             "nix profile remove"
 	nr:              "npm run"
 	nrm:             "npm remove"
 	ops:             #"export COMMAND="$(op signin)"; test -n "$COMMAND" && eval $COMMAND && export OP_TIME=$(date +%s)"#
@@ -356,44 +357,6 @@ functions: {
 		]
 		parameters: ["directory"]
 	}
-	nz: {
-		lines: [
-			"cd $directory; nvim",
-		]
-		parameters: ["directory"]
-	}
-	pp: {
-		lines: [
-			"tac $log_file | pino-pretty --colorize --translateTime 'yyyy-mm-dd HH:MM:ss' | less",
-		]
-		parameters: ["log_file"]
-	}
-
-	{
-		darwin: {}
-		linux: {
-			npi: {
-				lines: [
-					"nix profile install nixpkgs#$package",
-				]
-				parameters: ["package"]
-			}
-			npr: {
-				lines: [
-					"nix profile remove $package",
-				]
-				parameters: ["package"]
-			}
-		}
-		windows: {
-			pks: {
-				lines: [
-					"parallel {} search $package ::: choco scoop winget",
-				]
-				parameters: ["package"]
-			}
-		}
-	}[_os]
 }
 _wsl_paths: [...string]
 if strings.HasSuffix(_hostname, "-wsl") {
