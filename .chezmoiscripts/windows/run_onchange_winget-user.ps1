@@ -49,7 +49,6 @@ $wingetPackageIds = @(
   'Valve.Steam'
   'XAMPPRocky.Tokei'
   'Transmission.Transmission'
-  'VirtualDesktop.Streamer'
   'Microsoft.VisualStudioCode'
   'VideoLAN.VLC'
   'JernejSimoncic.Wget'
