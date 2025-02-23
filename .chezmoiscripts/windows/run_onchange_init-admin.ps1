@@ -56,6 +56,7 @@ $wingetPackageIds = @(
   'BurntSushi.ripgrep.MSVC'
   'Rustlang.Rustup'
   'Starship.Starship'
+  'astral-sh.uv'
   'wez.wezterm'
   'ajeetdsouza.zoxide'
 )
@@ -65,10 +66,6 @@ winget install --exact --no-upgrade --silent $wingetPackageIds
 $override = '--add Microsoft.VisualStudio.Workload.NativeDesktop --includeRecommended --quiet --wait'
 winget install --exact --no-upgrade --override $override --silent Microsoft.VisualStudio.2022.Community
 
-$Env:PIP_REQUIRE_VIRTUALENV = false
-pip3 install --upgrade --user pipx
-
-pipx install uv
 uv tool install poetry
 
 if (!(Get-Command choco))
