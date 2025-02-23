@@ -218,19 +218,19 @@ return {
         desc = "Find Files (ignored)",
       },
       {
-        "<leader>fl",
-        util.smart({ cwd = lazy_root .. "/LazyVim" }),
-        desc = "Find LazyVim Files",
-      },
-      {
-        "<leader>fP",
+        "<leader>fL",
         util.smart({ cwd = lazy_root }),
         desc = "Find Plugin Files",
       },
       {
-        "<leader>fp",
+        "<leader>fl",
         get_directory("smart", lazy_root),
         desc = "Find Plugin's Files",
+      },
+      {
+        "<leader>fv",
+        util.smart({ cwd = lazy_root .. "/LazyVim" }),
+        desc = "Find LazyVim Files",
       },
       { "<leader>gc", false },
       { "<leader>gs", false },
@@ -529,21 +529,21 @@ return {
         mode = { "n", "x" },
       },
       {
-        "<leader>sl",
-        egrepify(lazy_root .. "/LazyVim"),
-        desc = "Grep LazyVim",
-        mode = { "n", "x" },
-      },
-      {
         "<leader>sL",
         egrepify(lazy_root),
         desc = "Grep Plugins",
         mode = { "n", "x" },
       },
       {
-        "<leader>sP",
+        "<leader>sl",
         get_directory("egrepify", lazy_root),
         desc = "Grep Plugin",
+        mode = { "n", "x" },
+      },
+      {
+        "<leader>sv",
+        egrepify(lazy_root .. "/LazyVim"),
+        desc = "Grep LazyVim",
         mode = { "n", "x" },
       },
       {
