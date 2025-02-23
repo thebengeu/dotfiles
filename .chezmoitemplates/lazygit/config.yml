@@ -5,21 +5,24 @@ git:
   parseEmoji: true
 gui:
   authorColors:
-    Angelico: green
+    Angelico: magenta
     Beng Eu: red
-    Crispy1975: blue
-    Crispy: blue
-    Div Arora: yellow
-    Jose Ledesma: blue
-    Kamil Ogórek: magenta
-    Kevin Grüneberg: magenta
-    Paul Cioanca: blue
-    Tom Gallacher: cyan
-    angelico: green
-    delgado3d: blue
+    Crispy1975: cyan
+    Crispy: cyan
+    Div Arora: magenta
+    Hieu: blue
+    Jose Ledesma: cyan
+    Kamil Ogórek: blue
+    Kevin Grüneberg: blue
+    Paul Cioanca: cyan
+    Pham Hieu: blue
+    Tom Gallacher: magenta
+    angelico: magenta
+    delgado3d: cyan
     dependabot[bot]: black
-    divit: blue
-    jose-ledesma: blue
+    divit: cyan
+    jose-ledesma: cyan
+    phamhieu: blue
     renovate[bot]: black
   branchColorPatterns:
     ^beng/: red
