@@ -31,6 +31,8 @@ scoop/
 .config/fish/completions/{chezmoi,fnm,just,pulumi,rg}.fish
 {{ else }}
 .chezmoiscripts/darwin/*
+.config/fish/completions/nix.fish
+.config/fish/conf.d/nix-daemon.fish
 .config/karabiner.edn
 .config/{borders,kitty}/
 .hammerspoon/
