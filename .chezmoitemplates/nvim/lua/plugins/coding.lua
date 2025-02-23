@@ -207,6 +207,18 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    init = function()
+      local parser_configs =
+        require("nvim-treesitter.parsers").get_parser_configs()
+
+      parser_configs.lua_patterns = {
+        install_info = {
+          branch = "main",
+          files = { "src/parser.c" },
+          url = "https://github.com/OXY2DEV/tree-sitter-lua_patterns",
+        },
+      }
+    end,
     opts = {
       auto_install = true,
       ensure_installed = {
@@ -216,6 +228,7 @@ return {
         "hcl",
         "hjson",
         "just",
+        "lua_patterns",
         "make",
         "pem",
         "ssh_config",
@@ -276,6 +289,10 @@ return {
     opts = {
       hide_up_to_date = true,
     },
+  },
+  {
+    "OXY2DEV/patterns.nvim",
+    cmd = "Patterns",
   },
   {
     "cenk1cenk2/schema-companion.nvim",
