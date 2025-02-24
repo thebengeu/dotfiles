@@ -65,6 +65,6 @@ if vim.g.vscode then
 
     table.sort(plugins)
 
-    print(table.concat(plugins, ", "))
+    print(table.concat(plugins, "\n"))
   end, {})
 end
