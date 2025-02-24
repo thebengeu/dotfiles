@@ -273,7 +273,7 @@ return {
             })
           end
 
-          for _, hl_suffix in ipairs({ "Dir", "PathHidden" }) do
+          for _, hl_suffix in ipairs({ "Dir", "PathHidden", "PathIgnored" }) do
             local hl_name = "SnacksPicker" .. hl_suffix
             if hl_not_exists(hl_name) then
               local comment_hl = vim.api.nvim_get_hl(0, { name = "Comment" })

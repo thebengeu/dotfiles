@@ -275,6 +275,7 @@ return {
         sources = {
           explorer = {
             hidden = true,
+            ignored = true,
           },
           smart = {
             follow = true,
