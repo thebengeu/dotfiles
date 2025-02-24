@@ -9,6 +9,7 @@ rm /tmp/run_onchange_init.sh
 ```
 
 - Install [Amphetamine Power Protect](https://x74353.github.io/Amphetamine-Power-Protect/)
+- Install [Determinate Nix](https://docs.determinate.systems/getting-started/individuals#install)
 - Install [Homerow](https://install.appcenter.ms/users/dexterleng/apps/homerow-redux/distribution_groups/production)
 - Install [Open In native client](https://github.com/andy-portmen/native-client/releases)
 
