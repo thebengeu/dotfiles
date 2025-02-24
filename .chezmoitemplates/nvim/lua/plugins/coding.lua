@@ -189,7 +189,7 @@ return {
       {
         "rafamadriz/friendly-snippets",
         enabled = false,
-        name = "rafamadriz-friendly-snippets",
+        name = "rafamadriz/friendly-snippets",
       },
       {
         "thebengeu/friendly-snippets",
