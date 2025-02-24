@@ -63,6 +63,10 @@ return {
     },
   },
   {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    build = "luarocks install tiktoken_core",
+  },
+  {
     "direnv/direnv.vim",
     cond = vim.uv.cwd():match("thebengeu") ~= nil,
     config = function()

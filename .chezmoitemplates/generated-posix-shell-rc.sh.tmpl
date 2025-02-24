@@ -52,6 +52,9 @@ function br {
     fi
 }
 
+{{- if lookPath "luarocks" }}
+{{output "luarocks" "path" }}
+{{end -}}
 {{- if lookPath "vivid" }}
 export LS_COLORS='{{ output "vivid" "generate" "catppuccin-mocha" | trim }}'
 {{end -}}
