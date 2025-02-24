@@ -8,9 +8,12 @@ return {
     },
     opts = function()
       return {
-        colors = util.map(util.rainbow_delimiters_hl, function(hl_name)
-          return vim.api.nvim_get_hl(0, { link = false, name = hl_name }).fg
-        end),
+        colors = vim
+          .iter(util.rainbow_delimiters_hl)
+          :map(function(hl_name)
+            return vim.api.nvim_get_hl(0, { link = false, name = hl_name }).fg
+          end)
+          :totable(),
         date_format = "%Y-%m-%d",
         format_fn = require("blame.formats.default_formats").date_message,
       }

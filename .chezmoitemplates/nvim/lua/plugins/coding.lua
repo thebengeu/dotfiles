@@ -1,5 +1,3 @@
-local util = require("util")
-
 return {
   {
     "saghen/blink.cmp",
@@ -67,18 +65,24 @@ return {
         format = function(lines)
           return require("iron.fts.common").format(
             ts,
-            util.map(lines, function(line)
-              return (
-                line
-                  :gsub("const ", "var ")
-                  :gsub("import 'dotenv/config'", "require('dotenv').config()")
-                  :gsub("^import ", "var ")
-                  :gsub("( from '%S+)%.js'$", "%1'")
-                  :gsub("(, {.+} from '(%S+)')$", " = require('%2')%1")
-                  :gsub(" from '(%S+)'$", " = require('%1')")
-                  :gsub(" type ", " ")
-              )
-            end)
+            vim
+              .iter(lines)
+              :map(function(line)
+                return (
+                  line
+                    :gsub("const ", "var ")
+                    :gsub(
+                      "import 'dotenv/config'",
+                      "require('dotenv').config()"
+                    )
+                    :gsub("^import ", "var ")
+                    :gsub("( from '%S+)%.js'$", "%1'")
+                    :gsub("(, {.+} from '(%S+)')$", " = require('%2')%1")
+                    :gsub(" from '(%S+)'$", " = require('%1')")
+                    :gsub(" type ", " ")
+                )
+              end)
+              :totable()
           )
         end,
       })

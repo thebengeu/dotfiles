@@ -1,5 +1,4 @@
 local LazyVim = require("lazyvim.util")
-local util = require("util")
 
 return {
   {
@@ -51,9 +50,12 @@ return {
       })
 
       for ft, formatters in pairs(formatters_by_ft) do
-        opts.formatters_by_ft[ft] = util.map(formatters, function(formatter)
-          return formatter == "prettier" and "prettierd" or formatter
-        end)
+        opts.formatters_by_ft[ft] = vim
+          .iter(formatters)
+          :map(function(formatter)
+            return formatter == "prettier" and "prettierd" or formatter
+          end)
+          :totable()
       end
     end,
   },

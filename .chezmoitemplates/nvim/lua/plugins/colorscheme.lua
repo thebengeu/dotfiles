@@ -10,7 +10,7 @@ local rainbow_delimiter_highlights = function(colors, highlights)
   return highlights
 end
 
-return util.map({
+local specs = {
   {
     "ribru17/bamboo.nvim",
     colors_names = {
@@ -609,25 +609,31 @@ return util.map({
       })
     end,
   },
-}, function(colorscheme_spec)
-  local extra_spec = {}
+}
 
-  for _, key in ipairs({
-    "colors_names",
-    "colors_names_light",
-    "colorscheme_styles",
-    "highlights",
-    "supports_light_background",
-  }) do
-    extra_spec[key] = colorscheme_spec[key]
-    colorscheme_spec[key] = nil
-  end
+return vim
+  .iter(specs)
+  :map(function(colorscheme_spec)
+    local extra_spec = {}
 
-  if next(extra_spec) then
-    util.extra_specs[colorscheme_spec[1] or colorscheme_spec.url] = extra_spec
-  end
+    for _, key in ipairs({
+      "colors_names",
+      "colors_names_light",
+      "colorscheme_styles",
+      "highlights",
+      "supports_light_background",
+    }) do
+      extra_spec[key] = colorscheme_spec[key]
+      colorscheme_spec[key] = nil
+    end
 
-  colorscheme_spec.lazy = true
-  colorscheme_spec.priority = 1000
-  return colorscheme_spec
-end)
+    if next(extra_spec) then
+      util.extra_specs[colorscheme_spec[1] or colorscheme_spec.url] = extra_spec
+    end
+
+    colorscheme_spec.lazy = true
+    colorscheme_spec.priority = 1000
+
+    return colorscheme_spec
+  end)
+  :totable()

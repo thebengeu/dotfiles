@@ -59,9 +59,12 @@ end
 
 if vim.g.vscode then
   vim.api.nvim_create_user_command("LazyPlugins", function()
-    local plugins = util.map(require("lazy").plugins(), function(plugin)
-      return plugin.name
-    end)
+    local plugins = vim
+      .iter(require("lazy").plugins())
+      :map(function(plugin)
+        return plugin.name
+      end)
+      :totable()
 
     table.sort(plugins)
 

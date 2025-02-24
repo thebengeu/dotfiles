@@ -227,12 +227,12 @@ return {
   {
     "folke/snacks.nvim",
     init = function()
-      local ts_rainbow_2_hl = util.map(
-        util.rainbow_colors,
-        function(rainbow_color)
+      local ts_rainbow_2_hl = vim
+        .iter(util.rainbow_colors)
+        :map(function(rainbow_color)
           return "TSRainbow" .. rainbow_color
-        end
-      )
+        end)
+        :totable()
 
       local ts_rainbow_hl = {}
 

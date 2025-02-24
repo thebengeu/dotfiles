@@ -1,6 +1,4 @@
-local map = require("util").map
-
-return map({
+local specs = {
   {
     "jinh0/eyeliner.nvim",
     init = function()
@@ -228,40 +226,46 @@ return map({
   },
   {
     "chrisgrieser/nvim-spider",
-    keys = map({ "b", "e", "ge", "w" }, function(key)
-      return {
-        key,
-        "<cmd>lua require('spider').motion('" .. key .. "')<cr>",
-        mode = { "n", "o", "x" },
-      }
-    end),
+    keys = vim
+      .iter({ "b", "e", "ge", "w" })
+      :map(function(key)
+        return {
+          key,
+          "<cmd>lua require('spider').motion('" .. key .. "')<cr>",
+          mode = { "n", "o", "x" },
+        }
+      end)
+      :totable(),
   },
   {
     "chrisgrieser/nvim-various-textobjs",
-    keys = map({
-      iS = { "inner", "subword" },
-      aS = { "outer", "subword" },
-      C = { "toNextClosingBracket" },
-      Q = { "toNextQuotationMark" },
-      gG = { "entireBuffer" },
-      i_ = { "inner", "lineCharacterwise" },
-      a_ = { "outer", "lineCharacterwise" },
-      iv = { "inner", "value" },
-      av = { "outer", "value" },
-      ik = { "inner", "key" },
-      ak = { "outer", "key" },
-    }, function(textobj, lhs)
-      return {
-        lhs,
-        "<cmd>lua require('various-textobjs')."
-          .. textobj[#textobj]
-          .. "("
-          .. (#textobj == 2 and "'" .. textobj[1] .. "'" or "")
-          .. ")<cr>",
-        desc = table.concat(textobj, " "),
-        mode = { "o", "x" },
-      }
-    end),
+    keys = vim
+      .iter({
+        iS = { "inner", "subword" },
+        aS = { "outer", "subword" },
+        C = { "toNextClosingBracket" },
+        Q = { "toNextQuotationMark" },
+        gG = { "entireBuffer" },
+        i_ = { "inner", "lineCharacterwise" },
+        a_ = { "outer", "lineCharacterwise" },
+        iv = { "inner", "value" },
+        av = { "outer", "value" },
+        ik = { "inner", "key" },
+        ak = { "outer", "key" },
+      })
+      :map(function(lhs, textobj)
+        return {
+          lhs,
+          "<cmd>lua require('various-textobjs')."
+            .. textobj[#textobj]
+            .. "("
+            .. (#textobj == 2 and "'" .. textobj[1] .. "'" or "")
+            .. ")<cr>",
+          desc = table.concat(textobj, " "),
+          mode = { "o", "x" },
+        }
+      end)
+      :totable(),
     opts = {
       useDefaults = false,
     },
@@ -358,7 +362,12 @@ return map({
       },
     },
   },
-}, function(spec)
-  spec.vscode = true
-  return spec
-end)
+}
+
+return vim
+  .iter(specs)
+  :map(function(spec)
+    spec.vscode = true
+    return spec
+  end)
+  :totable()

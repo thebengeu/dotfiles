@@ -16,39 +16,16 @@ M.filter = function(input, callback)
   return output
 end
 
-M.find = function(input, callback)
-  for _, value in ipairs(input) do
-    if callback(value) then
-      return value
-    end
-  end
-end
-
-local map = function(input, callback)
-  local output = {}
-
-  if type(input) == "table" then
-    for key, value in pairs(input) do
-      table.insert(output, callback(value, key))
-    end
-  else
-    for value in input do
-      table.insert(output, callback(value))
-    end
-  end
-
-  return output
-end
-
-M.map = map
-
 local add_lines_to_qf = function(lines, qf_item)
   vim.fn.setqflist(
-    map(lines:gmatch("[^%c]+"), function(line)
-      return vim.tbl_extend("error", qf_item, {
-        text = line,
-      })
-    end),
+    vim
+      .iter(lines:gmatch("[^%c]+"))
+      :map(function(line)
+        return vim.tbl_extend("error", qf_item, {
+          text = line,
+        })
+      end)
+      :totable(),
     "a"
   )
 end
@@ -164,9 +141,12 @@ M.rainbow_colors = {
   "Cyan",
 }
 
-M.rainbow_delimiters_hl = map(M.rainbow_colors, function(color)
-  return "RainbowDelimiter" .. color
-end)
+M.rainbow_delimiters_hl = vim
+  .iter(M.rainbow_colors)
+  :map(function(color)
+    return "RainbowDelimiter" .. color
+  end)
+  :totable()
 
 M.smart = function(opts)
   return function()
