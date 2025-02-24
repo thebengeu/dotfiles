@@ -25,6 +25,7 @@ require("lazy").setup({
   install = { colorscheme = { "catppuccin" } },
   checker = { enabled = false },
   dev = {
+    fallback = true,
     path = "~/thebengeu",
     patterns = { "friendly-snippets" },
   },
