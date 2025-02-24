@@ -277,11 +277,11 @@ return {
   },
   {
     "tanvirtin/vgit.nvim",
+    cmd = "VGit",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons",
     },
-    event = "VimEnter",
     opts = {
       settings = {
         live_blame = {

@@ -125,7 +125,17 @@ return map({
   },
   {
     "echasnovski/mini.operators",
-    event = "LazyFile",
+    keys = {
+      { "gR", desc = "Replace operator" },
+      { "gR", desc = "Replace selection", mode = "x" },
+      { "gRR", desc = "Replace line" },
+      { "gS", desc = "Sort operator" },
+      { "gS", desc = "Sort selection", mode = "x" },
+      { "gSS", desc = "Sort line" },
+      { "gx", desc = "Exchange operator" },
+      { "gx", desc = "Exchange selection", mode = "x" },
+      { "gxx", desc = "Exchange line" },
+    },
     opts = {
       exchange = {
         prefix = "gx",
@@ -144,38 +154,46 @@ return map({
   },
   {
     "jake-stewart/multicursor.nvim",
-    keys = function()
-      local mc = require("multicursor-nvim")
+    keys = {
+      {
+        "<C-Up>",
+        function()
+          require("multicursor-nvim").lineAddCursor(-1)
+        end,
+        mode = { "n", "x" },
+      },
+      {
+        "<C-Down>",
+        function()
+          require("multicursor-nvim").lineAddCursor(1)
+        end,
+        mode = { "n", "x" },
+      },
+      {
+        "<C-LeftMouse>",
+        function()
+          require("multicursor-nvim").handleMouse()
+        end,
+      },
+      {
+        "<C-LeftDrag>",
+        function()
+          require("multicursor-nvim").handleMouseDrag()
+        end,
+      },
+      {
+        "<esc>",
+        function()
+          local mc = require("multicursor-nvim")
 
-      return {
-        {
-          "<C-Up>",
-          function()
-            mc.lineAddCursor(-1)
-          end,
-          mode = { "n", "x" },
-        },
-        {
-          "<C-Down>",
-          function()
-            mc.lineAddCursor(1)
-          end,
-          mode = { "n", "x" },
-        },
-        { "<C-LeftMouse>", mc.handleMouse },
-        { "<C-LeftDrag>", mc.handleMouseDrag },
-        {
-          "<esc>",
-          function()
-            if not mc.cursorsEnabled() then
-              mc.enableCursors()
-            elseif mc.hasCursors() then
-              mc.clearCursors()
-            end
-          end,
-        },
-      }
-    end,
+          if not mc.cursorsEnabled() then
+            mc.enableCursors()
+          elseif mc.hasCursors() then
+            mc.clearCursors()
+          end
+        end,
+      },
+    },
     opts = {},
   },
   {
