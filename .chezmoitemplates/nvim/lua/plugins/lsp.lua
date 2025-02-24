@@ -129,6 +129,20 @@ return {
     end,
     opts = function(_, opts)
       opts.diagnostics.virtual_text = false
+      opts.servers.bashls = vim.tbl_deep_extend("error", opts.servers.bashls, {
+        handlers = {
+          ["textDocument/publishDiagnostics"] = function(_, result, ...)
+            local filename =
+              vim.fn.fnamemodify(vim.uri_to_fname(result.uri), ":t")
+
+            if string.match(filename, ".env$") then
+              return
+            end
+
+            vim.lsp.diagnostic.on_publish_diagnostics(_, result, ...)
+          end,
+        },
+      })
       opts.servers.clangd.mason = false
       opts.servers.lua_ls.settings.Lua =
         vim.tbl_extend("error", opts.servers.lua_ls.settings.Lua, {
@@ -141,8 +155,7 @@ return {
           client.handlers["textDocument/publishDiagnostics"] = function(
             _,
             result,
-            context,
-            config
+            ...
           )
             local diagnostics = {}
 
@@ -156,12 +169,7 @@ return {
 
             result.diagnostics = diagnostics
 
-            vim.lsp.diagnostic.on_publish_diagnostics(
-              _,
-              result,
-              context,
-              config
-            )
+            vim.lsp.diagnostic.on_publish_diagnostics(_, result, ...)
           end
         end,
       })
