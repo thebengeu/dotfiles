@@ -80,6 +80,7 @@ aliases: {
 	m:               "\(_env) --chdir ~/supabase/infrastructure make"
 	man:             "batman"
 	mf:              "\(m) fullstack"
+	mps:             "ssh ubuntu@$(multipass info --format json primary | jq -r .info.primary.ipv4[0])"
 	ms:              "\(m) start"
 	n:               "nvim"
 	nd:              "npm run dev"
