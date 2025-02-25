@@ -183,12 +183,6 @@ return {
   },
   {
     "L3MON4D3/LuaSnip",
-    config = function(_, opts)
-      require("luasnip").setup(opts)
-      require("luasnip.loaders.from_vscode").lazy_load({
-        paths = "./snippets",
-      })
-    end,
     dependencies = {
       {
         "rafamadriz/friendly-snippets",
@@ -199,6 +193,9 @@ return {
         "thebengeu/friendly-snippets",
         config = function()
           require("luasnip.loaders.from_vscode").lazy_load()
+          require("luasnip.loaders.from_vscode").lazy_load({
+            paths = { vim.fn.stdpath("config") .. "/snippets" },
+          })
         end,
       },
     },
