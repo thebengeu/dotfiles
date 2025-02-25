@@ -311,20 +311,15 @@ return {
   { "wakatime/vim-wakatime" },
   {
     "folke/which-key.nvim",
-    config = function(_, opts)
+    opts = function(_, opts)
+      opts.icons = { mappings = false }
       opts.spec[1] = util.filter(opts.spec[1], function(spec)
-        return spec[1] ~= "<leader>gh" and spec[1] ~= "gx"
+        if spec[1] == "<leader>gh" then
+          spec[1] = "<leader>h"
+        end
+
+        return spec[1] ~= "gx"
       end)
-      require("which-key").setup(opts)
     end,
-    opts = {
-      icons = {
-        mappings = false,
-      },
-      spec = {
-        { "<leader>cz", desc = "Send to REPL" },
-        { "<leader>h", group = "hunks", mode = { "n", "x" } },
-      },
-    },
   },
 }
