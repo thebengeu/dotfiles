@@ -279,6 +279,12 @@ return {
     },
   },
   {
+    "ThePrimeagen/refactoring.nvim",
+    event = function()
+      return {}
+    end,
+  },
+  {
     "cenk1cenk2/schema-companion.nvim",
     dependencies = "nvim-lua/plenary.nvim",
     ft = "yaml",
