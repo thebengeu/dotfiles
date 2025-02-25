@@ -88,19 +88,16 @@ return {
         return ret
       end
 
-      opts.options.offsets = {}
-
-      return {
-        options = {
-          always_show_bufferline = true,
-          numbers = function(params)
-            return params.ordinal
-          end,
-          show_buffer_close_icons = false,
-          show_close_icon = false,
-          tab_size = 1,
-        },
-      }
+      opts.options = vim.tbl_deep_extend("force", opts.options, {
+        always_show_bufferline = true,
+        numbers = function(params)
+          return params.ordinal
+        end,
+        offsets = {},
+        show_buffer_close_icons = false,
+        show_close_icon = false,
+        tab_size = 1,
+      })
     end,
   },
   {
