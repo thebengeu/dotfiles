@@ -186,17 +186,7 @@ return {
     dependencies = {
       {
         "rafamadriz/friendly-snippets",
-        enabled = false,
-        name = "rafamadriz/friendly-snippets",
-      },
-      {
-        "thebengeu/friendly-snippets",
-        config = function()
-          require("luasnip.loaders.from_vscode").lazy_load()
-          require("luasnip.loaders.from_vscode").lazy_load({
-            paths = { vim.fn.stdpath("config") .. "/snippets" },
-          })
-        end,
+        url = "git@github.com:thebengeu/friendly-snippets.git",
       },
     },
     keys = function()
