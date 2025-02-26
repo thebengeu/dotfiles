@@ -147,10 +147,6 @@ local specs = {
     },
   },
   {
-    "echasnovski/mini.pairs",
-    enabled = false,
-  },
-  {
     "jake-stewart/multicursor.nvim",
     keys = {
       {
@@ -269,17 +265,6 @@ local specs = {
     opts = {
       useDefaults = false,
     },
-  },
-  {
-    "kkharji/sqlite.lua",
-    config = function()
-      if jit.os == "Windows" then
-        vim.g.sqlite_clib_path = vim.env.ChocolateyInstall
-          .. "/lib/SQLite/tools/sqlite3.dll"
-      end
-    end,
-    enabled = true,
-    lazy = true,
   },
   {
     "gbprod/substitute.nvim",

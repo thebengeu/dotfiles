@@ -1,6 +1,13 @@
 return {
   {
     "saghen/blink.cmp",
+    dependencies = {
+      "xzbdmw/colorful-menu.nvim",
+      {
+        "rafamadriz/friendly-snippets",
+        url = "git@github.com:thebengeu/friendly-snippets.git",
+      },
+    },
     opts = {
       appearance = {
         use_nvim_cmp_as_default = true,
@@ -25,10 +32,6 @@ return {
         },
       },
     },
-  },
-  {
-    "xzbdmw/colorful-menu.nvim",
-    lazy = true,
   },
   {
     "Vigemus/iron.nvim",
@@ -183,12 +186,6 @@ return {
   },
   {
     "L3MON4D3/LuaSnip",
-    dependencies = {
-      {
-        "rafamadriz/friendly-snippets",
-        url = "git@github.com:thebengeu/friendly-snippets.git",
-      },
-    },
     keys = function()
       return {}
     end,
