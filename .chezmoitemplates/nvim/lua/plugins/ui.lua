@@ -8,66 +8,17 @@ return {
           Snacks.bufdelete()
         end,
       },
-      {
-        "<C-1>",
-        function()
-          require("bufferline").go_to(1, true)
-        end,
-      },
-      {
-        "<C-2>",
-        function()
-          require("bufferline").go_to(2, true)
-        end,
-      },
-      {
-        "<C-3>",
-        function()
-          require("bufferline").go_to(3, true)
-        end,
-      },
-      {
-        "<C-4>",
-        function()
-          require("bufferline").go_to(4, true)
-        end,
-      },
-      {
-        "<C-5>",
-        function()
-          require("bufferline").go_to(5, true)
-        end,
-      },
-      {
-        "<C-6>",
-        function()
-          require("bufferline").go_to(6, true)
-        end,
-      },
-      {
-        "<C-7>",
-        function()
-          require("bufferline").go_to(7, true)
-        end,
-      },
-      {
-        "<C-8>",
-        function()
-          require("bufferline").go_to(8, true)
-        end,
-      },
-      {
-        "<C-9>",
-        function()
-          require("bufferline").go_to(9, true)
-        end,
-      },
-      {
-        "<C-0>",
-        function()
-          require("bufferline").go_to(10, true)
-        end,
-      },
+      unpack(vim
+        .iter({ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 })
+        :map(function(i)
+          return {
+            "<C-" .. i % 10 .. ">",
+            function()
+              require("bufferline").go_to(i, true)
+            end,
+          }
+        end)
+        :totable()),
     },
     opts = function(_, opts)
       local Offset = require("bufferline.offset")
