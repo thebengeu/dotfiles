@@ -11,10 +11,16 @@
 	s = status --short
 	sw = "!git switch ${1:-$(git default-branch)} #"
 	wip = !git add --all && git commit -m 'WIP' -m 'gitlint-ignore: all' && git push
+[branch]
+	sort = -committerdate
+[column]
+	ui = auto
 [commit]
 	verbose = true
 [core]
+	fsmonitor = true
 	pager = delta
+	untrackedCache = true
 [delta]
 	navigate = true
 	minus-emph-style = normal "#3E4B6B"
@@ -23,8 +29,16 @@
 	plus-style = syntax "#364143"
 [diff]
 	algorithm = histogram
-	colorMoved = default
+	colorMoved = dimmed-zebra
 	external = difft --color=always
+	mnemonicPrefix = true
+	renames = true
+[fetch]
+	all = true
+	prune = true
+	pruneTags = true
+[help]
+	autocorrect = prompt
 [includeIf "gitdir:~/AppData/Roaming/wezterm/plugins"]
 	path = ~/.config/wezterm/.gitconfig
 [includeIf "gitdir:~/Library/Application Support/wezterm/plugins"]
@@ -40,13 +54,18 @@
 	rebase = true
 [push]
 	autoSetupRemote = true
+	followTags = true
 [rebase]
+	autoSquash = true
 	autoStash = true
 	updateRefs = true
 [rerere]
+	autoupdate = true
 	enabled = true
 [safe]
 	directory = *
+[tag]
+	sort = version:refname
 [url "git@github.com:"]
 	insteadOf = https://github.com/
 [user]
