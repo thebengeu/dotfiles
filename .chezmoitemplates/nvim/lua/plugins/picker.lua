@@ -46,30 +46,31 @@ local delta_diffview_git_picker = function(picker)
           return make_display, true
         end,
       },
-      git_command = vim.list_extend(
-        {
-          "git",
-          "log",
-          "--pretty=%h %ah|%s",
-        },
-        picker == "bcommits" and { "--follow" }
-          or (
-            picker == "bcommits_range" and { "--no-patch", "-L" }
-            or {
-              "--",
-              ".",
-            }
-          )
-      ),
+      git_command = {
+        "git",
+        "log",
+        "--pretty=%h %ah|%s",
+        unpack(
+          picker == "bcommits" and { "--follow" }
+            or (
+              picker == "bcommits_range" and { "--no-patch", "-L" }
+              or {
+                "--",
+                ".",
+              }
+            )
+        ),
+      },
       previewer = require("telescope.previewers").new_termopen_previewer({
         cwd = root,
         get_command = function(entry)
-          return vim.list_extend({
+          return {
             "git",
             "show",
             "--pretty=%Cgreen%ah%Creset %aN%n%n%B",
             entry.value,
-          }, is_bcommits and { "--", entry.current_file } or {})
+            unpack(is_bcommits and { "--", entry.current_file } or {}),
+          }
         end,
       }),
     })
@@ -85,12 +86,10 @@ local egrepify = function(cwd, grep_word, vimgrep_arguments)
     require("telescope").extensions.egrepify.egrepify({
       cwd = cwd == nil and LazyVim.root() or cwd,
       default_text = default_text,
-      vimgrep_arguments = vimgrep_arguments
-          and vim.list_extend(
-            vim.fn.copy(require("telescope.config").values.vimgrep_arguments),
-            vimgrep_arguments
-          )
-        or nil,
+      vimgrep_arguments = {
+        unpack(require("telescope.config").values.vimgrep_arguments),
+        unpack(vimgrep_arguments or {}),
+      },
     })
   end
 end

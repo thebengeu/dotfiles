@@ -75,10 +75,7 @@ end
 
 M.async_run_git = function(sub_command)
   return function()
-    M.async_run(
-      vim.list_extend({ "git" }, sub_command),
-      { cwd = LazyVim.root() }
-    )
+    M.async_run({ "git", unpack(sub_command) }, { cwd = LazyVim.root() })
   end
 end
 
@@ -87,7 +84,7 @@ M.async_run_sh = function(command, opts, callback)
 end
 
 M.git_stdout = function(sub_command)
-  return M.stdout_without_newline(vim.list_extend({ "git" }, sub_command))
+  return M.stdout_without_newline({ "git", unpack(sub_command) })
 end
 
 M.colorscheme_style = nil
@@ -111,8 +108,8 @@ end
 M.open_url = function(url)
   local edge_path = "/Microsoft/Edge/Application/msedge.exe"
 
-  vim.system(
-    vim.list_extend(
+  vim.system({
+    unpack(
       jit.os == "OSX" and { "open" }
         or (
           vim.env.TITLE_PREFIX == "wsl:"
@@ -125,10 +122,11 @@ M.open_url = function(url)
               vim.env["ProgramFiles(x86)"] .. edge_path,
             }
           )
-        ),
-      { url }
-    )
-  )
+        )
+    ),
+    url,
+  }
+)
 end
 
 M.rainbow_colors = {

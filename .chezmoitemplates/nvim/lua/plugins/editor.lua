@@ -338,9 +338,10 @@ local specs = {
   },
   {
     "gbprod/yanky.nvim",
-    keys = vim.list_extend({
+    keys = {
       { "y", false, mode = { "n", "x" } },
-    }, vim.g.vscode and { { "<leader>p", false } } or {}),
+      unpack(vim.g.vscode and { { "<leader>p", false } } or {}),
+    },
     opts = {
       system_clipboard = {
         sync_with_ring = false,
