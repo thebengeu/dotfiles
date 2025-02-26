@@ -206,12 +206,8 @@ for _, mods_and_key in ipairs({
   { WEZTERM_BUNDLE_ID, { "ctrl", "option", "shift" }, "8" },
   { WEZTERM_BUNDLE_ID, { "ctrl", "option", "shift" }, "9" },
 }) do
-  local bundle_id = mods_and_key[1]
-  local mods = mods_and_key[2]
-  local key = mods_and_key[3]
-  local set_frontmost = not mods_and_key[4]
-  local after_launch = mods_and_key[5]
-
+  local bundle_id, mods, key, skip_set_frontmost, after_launch =
+    table.unpack(mods_and_key)
   local hotkey
   hotkey = hs.hotkey.bind(mods, key, function()
     hotkey:disable()
@@ -225,7 +221,7 @@ for _, mods_and_key in ipairs({
         after_launch(hotkey)
         return
       end
-    elseif set_frontmost then
+    elseif not skip_set_frontmost then
       app:setFrontmost()
     end
 

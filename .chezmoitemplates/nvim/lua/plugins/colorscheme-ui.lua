@@ -60,19 +60,18 @@ local refresh_colorscheme = function(index)
   colorscheme_index = (index and index >= 1 and index <= #colorschemes)
       and index
     or math.random(#colorschemes)
-  local colorscheme = colorschemes[colorscheme_index]
-  local style = colorscheme[2]
+  local name, style = unpack(colorschemes[colorscheme_index])
 
   util.colorscheme_style = style
 
   if style then
-    vim.g[colorscheme[1] == "gruvbox-material" and "gruvbox_material_foreground" or (colorscheme[1] .. "_" .. (colorscheme[1] == "tundra" and "biome" or "style"))] =
+    vim.g[name == "gruvbox-material" and "gruvbox_material_foreground" or (name .. "_" .. (name == "tundra" and "biome" or "style"))] =
       style
   end
 
-  vim.cmd.colorscheme(colorscheme[1])
+  vim.cmd.colorscheme(name)
 
-  if colorscheme[1] == "newpaper" then
+  if name == "newpaper" then
     vim.cmd["Newpaper" .. (style == "light" and "Light" or "Dark")]()
   end
 

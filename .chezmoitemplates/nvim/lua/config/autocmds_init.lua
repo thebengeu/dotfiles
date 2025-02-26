@@ -38,7 +38,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
         load(
           table.concat(
             (
-              vim.fn.getline(lines[1], lines[2]) --[=[@as string[]]=]
+              vim.fn.getline(unpack(lines)) --[=[@as string[]]=]
             ),
             "\n"
           )
