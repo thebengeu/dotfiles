@@ -152,4 +152,8 @@ return {
     end,
     opts = {},
   },
+  {
+    "m4xshen/smartcolumn.nvim",
+    opts = {},
+  },
 }
