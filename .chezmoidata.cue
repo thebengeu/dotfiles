@@ -97,10 +97,8 @@ aliases: {
 	pid:             "pnpm install --save-dev"
 	poi:             "gh poi"
 	pp:              "supa-admin-cli psql --disable-statement-tracking -p"
-	_prCreate:       #"gh pr create --body "$(git lm $(git default-branch)..)" --editor --title "$(git log --pretty=%s | head -n 1)""#
-	pr:              "git push && \(_prCreate) && gh pr view --web"
 	prc:             "gh pr checkout"
-	prd:             "git push && \(_prCreate) --draft && gh pr view --web"
+	prd:             "pr --draft"
 	prm:             "pnpm remove"
 	prw:             "gh pr view --web"
 	psi:             "pulumi stack init"
@@ -290,7 +288,7 @@ aliases: {
 	for prefix, directory in _gitAliasDirectories {
 		"\(prefix)g":   "git -C \(directory)"
 		"\(prefix)lg":  "lazygit --path \(directory)"
-		"\(prefix)pr":  "cd \(directory); \(pr)"
+		"\(prefix)pr":  "cd \(directory); pr"
 		"\(prefix)prd": "cd \(directory); \(prd)"
 		for directoryGitAlias, command in _directoryGitAliases {
 			"\(prefix)g\(directoryGitAlias)": "git -C \(directory) \(command)"
