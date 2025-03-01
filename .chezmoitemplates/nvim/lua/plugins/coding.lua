@@ -210,13 +210,6 @@ return {
         "sql",
         "toml",
       },
-      highlight = {
-        disable = function()
-          if string.find(vim.bo.filetype, "chezmoitmpl") then
-            return true
-          end
-        end,
-      },
       indent = {
         disable = { "yaml" },
       },
