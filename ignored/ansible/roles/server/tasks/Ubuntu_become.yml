@@ -22,11 +22,11 @@
     filename: jgmath2000-ubuntu-et-{{ ansible_distribution_release }}
     repo: ppa:jgmath2000/et
 - ansible.builtin.apt_key:
-    keyring: /etc/apt/trusted.gpg.d/fish-shell-ubuntu-release-3.gpg
-    url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x59fda1ce1b84b3fad89366c027557f056dc33ca5
+    keyring: /etc/apt/trusted.gpg.d/fish-shell-ubuntu-release-4.gpg
+    url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x88421e703edc7af54967ded473c9fcc9e2bb48da
 - ansible.builtin.apt_repository:
-    filename: fish-shell-ubuntu-release-3-{{ ansible_distribution_release }}
-    repo: ppa:fish-shell/release-3
+    filename: fish-shell-ubuntu-release-4-{{ ansible_distribution_release }}
+    repo: ppa:fish-shell/release-4
 - ansible.builtin.apt_key:
     keyring: /usr/share/keyrings/githubcli-archive-keyring.gpg
     url: https://cli.github.com/packages/githubcli-archive-keyring.gpg
@@ -35,7 +35,7 @@
     repo: deb [arch={{ arch.stdout }} signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main
 - ansible.builtin.apt_key:
     keyring: /etc/apt/trusted.gpg.d/longsleep-ubuntu-golang-backports.gpg
-    url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x52b59b1571a79dbc054901c0f6bc817356a3d45e
+    url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x876b22ba887ca91614b5323fc631127f87fa12d1
 - ansible.builtin.apt_repository:
     filename: longsleep-ubuntu-golang-backports-{{ ansible_distribution_release }}
     repo: ppa:longsleep/golang-backports
