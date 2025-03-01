@@ -154,6 +154,13 @@ return {
   },
   {
     "m4xshen/smartcolumn.nvim",
-    opts = {},
+    opts = {
+      disabled_filetypes = {
+        "help",
+        "lazy",
+        "markdown",
+        "text",
+      },
+    },
   },
 }
