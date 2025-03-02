@@ -3,10 +3,8 @@ local util = require("util")
 local WSL_WINDOWS_HOMEDIR = "/mnt/c/Users/beng"
 
 local cwd = vim.uv.cwd()
----@diagnostic disable-next-line: need-check-nil
-local auto_restore_last_session = cwd:match("\\scoop\\apps\\")
-  or cwd == vim.env.windir
-  or cwd == "/"
+local auto_restore_last_session = cwd
+  and (cwd:match("\\scoop\\apps\\") or cwd == vim.env.windir or cwd == "/")
 local homedir = vim.uv.os_homedir()
 local path_sep = package.config:sub(1, 1)
 local obsidian_vault_path = (
@@ -49,13 +47,10 @@ return {
       continue_restore_on_error = true,
       cwd_change_handling = true,
       log_level = "error",
-      no_restore_cmds = {
-        function()
-          if auto_restore_last_session then
-            vim.cmd.cd(vim.fn.expand("~/.local/share/chezmoi"))
-          end
-        end,
-      },
+      lsp_stop_on_restore = true,
+      no_restore_cmds = auto_restore_last_session and {
+        "cd ~/.local/share/chezmoi",
+      } or nil,
       session_lens = {
         load_on_setup = false,
         previewer = true,
@@ -68,7 +63,7 @@ return {
   },
   {
     "direnv/direnv.vim",
-    cond = vim.uv.cwd():match("thebengeu") ~= nil,
+    cond = cwd and cwd:match("thebengeu") ~= nil,
     config = function()
       vim.g.direnv_silent_load = 1
     end,

@@ -118,23 +118,26 @@ for key, path in pairs({
   z = "~/thebengeu/zmk-config",
 }) do
   vim.keymap.set("n", "<leader>q" .. key, function()
-    local auto_session = require("auto-session")
-    local lib = require("auto-session.lib")
+    local AutoSession = require("auto-session")
+    local Config = require("auto-session.config")
+    local Lib = require("auto-session.lib")
+
+    AutoSession.AutoSaveSession()
 
     local expanded_path = vim.fn.expand(path)
-    local sessions = lib.get_session_list(auto_session.get_root_dir())
+    local sessions = Lib.get_session_list(AutoSession.get_root_dir())
 
     for _, session in ipairs(sessions) do
       if session.session_name == expanded_path then
-        vim.cmd.SessionRestore(expanded_path)
+        AutoSession.RestoreSession(expanded_path, { show_message = false })
         return
       end
     end
 
-    if not vim.g.goneovim and not vim.g.neovide then
-      os.execute("nvim --cmd 'cd " .. expanded_path .. "'")
-      vim.cmd.quit()
-    end
+    Config.auto_save = false
+    Snacks.bufdelete.all()
+    vim.cmd.cd(expanded_path)
+    Config.auto_save = true
   end, { desc = path:match("[^/]+$") })
 end
 
