@@ -138,6 +138,7 @@ return {
   {
     "subnut/nvim-ghost.nvim",
     cond = vim.g.neovide,
+    priority = 1001,
   },
   {
     "epwalsh/obsidian.nvim",
