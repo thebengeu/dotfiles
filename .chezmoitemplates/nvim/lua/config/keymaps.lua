@@ -102,45 +102,6 @@ vim.keymap.set(
   { desc = "Commit WIP" }
 )
 
-for key, path in pairs({
-  a = "~/supabase/supabase-admin-api",
-  b = "~/sb",
-  c = "~/.local/share/chezmoi",
-  e = "~/supabase/data-engineering",
-  f = "~/thebengeu/qmk_firmware",
-  h = "~/supabase/helper-scripts",
-  i = "~/supabase/infrastructure",
-  k = "~/thebengeu/drakon",
-  p = "~/supabase/postgres",
-  u = "~/thebengeu/qmk_userspace",
-  w = "~/supabase/supabase",
-  x = "~/supabase/infrastructure-external",
-  z = "~/thebengeu/zmk-config",
-}) do
-  vim.keymap.set("n", "<leader>q" .. key, function()
-    local AutoSession = require("auto-session")
-    local Config = require("auto-session.config")
-    local Lib = require("auto-session.lib")
-
-    AutoSession.AutoSaveSession()
-
-    local expanded_path = vim.fn.expand(path)
-    local sessions = Lib.get_session_list(AutoSession.get_root_dir())
-
-    for _, session in ipairs(sessions) do
-      if session.session_name == expanded_path then
-        AutoSession.RestoreSession(expanded_path, { show_message = false })
-        return
-      end
-    end
-
-    Config.auto_save = false
-    Snacks.bufdelete.all()
-    vim.cmd.cd(expanded_path)
-    Config.auto_save = true
-  end, { desc = path:match("[^/]+$") })
-end
-
 vim.keymap.set("n", "<leader>um", function()
   ---@diagnostic disable-next-line: undefined-field
   vim.opt.mouse = vim.opt.mouse:get().a and "" or "a"

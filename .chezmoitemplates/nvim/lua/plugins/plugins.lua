@@ -14,6 +14,25 @@ local obsidian_vault_path = (
   .. path_sep
   .. "Obsidian"
 
+local autosave_and_restore = function(session, path)
+  local AutoSession = require("auto-session")
+  local Config = require("auto-session.config")
+
+  AutoSession.AutoSaveSession()
+  vim.diagnostic.config({ virtual_lines = false })
+
+  if session then
+    AutoSession.RestoreSession(session.session_name, { show_message = false })
+  else
+    Config.auto_save = false
+    Snacks.bufdelete.all()
+    vim.cmd.cd(path)
+    Config.auto_save = true
+  end
+
+  vim.diagnostic.config({ virtual_lines = true })
+end
+
 return {
   {
     "otavioschwanck/arrow.nvim",
@@ -35,27 +54,58 @@ return {
       {
         "<leader>ql",
         function()
-          local AutoSession = require("auto-session")
           local Config = require("auto-session.config")
           local Lib = require("auto-session.lib")
 
           local alternate_session_name =
             Lib.get_alternate_session_name(Config.session_lens.session_control)
 
-          if not alternate_session_name then
+          if alternate_session_name then
+            autosave_and_restore({ session_name = alternate_session_name })
+          else
             vim.cmd.SessionSearch()
-            return
           end
-
-          AutoSession.AutoSaveSession()
-          AutoSession.RestoreSession(
-            alternate_session_name,
-            { show_message = false }
-          )
         end,
         desc = "Alternate Session",
       },
       { "<leader>qs", "<cmd>SessionSearch<cr>", desc = "Sessions" },
+      unpack(vim
+        .iter({
+          a = "~/supabase/supabase-admin-api",
+          b = "~/sb",
+          c = "~/.local/share/chezmoi",
+          e = "~/supabase/data-engineering",
+          f = "~/thebengeu/qmk_firmware",
+          h = "~/supabase/helper-scripts",
+          i = "~/supabase/infrastructure",
+          k = "~/thebengeu/drakon",
+          p = "~/supabase/postgres",
+          u = "~/thebengeu/qmk_userspace",
+          w = "~/supabase/supabase",
+          x = "~/supabase/infrastructure-external",
+          z = "~/thebengeu/zmk-config",
+        })
+        :map(function(key, path)
+          return {
+            "<leader>q" .. key,
+            function()
+              local AutoSession = require("auto-session")
+              local Lib = require("auto-session.lib")
+
+              local expanded_path = vim.fn.expand(path)
+              local sessions = Lib.get_session_list(AutoSession.get_root_dir())
+
+              autosave_and_restore(
+                vim.iter(sessions):find(function(session)
+                  return session.session_name == expanded_path
+                end),
+                expanded_path
+              )
+            end,
+            desc = path:match("[^/]+$"),
+          }
+        end)
+        :totable()),
     },
     lazy = false,
     opts = {
