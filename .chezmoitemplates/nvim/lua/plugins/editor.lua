@@ -175,20 +175,20 @@ local specs = {
           require("multicursor-nvim").handleMouseDrag()
         end,
       },
-      {
-        "<esc>",
-        function()
-          local mc = require("multicursor-nvim")
-
-          if not mc.cursorsEnabled() then
-            mc.enableCursors()
-          elseif mc.hasCursors() then
-            mc.clearCursors()
-          end
-        end,
-      },
     },
-    opts = {},
+    config = function()
+      local mc = require("multicursor-nvim")
+
+      mc.setup()
+
+      vim.keymap.set("n", "<esc>", function()
+        if not mc.cursorsEnabled() then
+          mc.enableCursors()
+        elseif mc.hasCursors() then
+          mc.clearCursors()
+        end
+      end)
+    end,
   },
   {
     "kevinhwang91/nvim-hlslens",
