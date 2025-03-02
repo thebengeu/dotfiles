@@ -1,0 +1,11 @@
+frame = "buttonless"
+mouse-cursor-icon = "i-beam"
+srgb = true
+title-hidden = true
+
+[font]
+normal = ["MonoLisa Variable"]
+size = 17
+
+[font.features]
+"MonoLisa Variable" = ["+ss02"]
