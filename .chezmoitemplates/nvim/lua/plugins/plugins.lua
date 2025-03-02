@@ -14,16 +14,21 @@ local obsidian_vault_path = (
   .. path_sep
   .. "Obsidian"
 
-local autosave_and_restore = function(session, path)
+local autosave_and_restore = function(path, fallback_to_cd)
+  if not path then
+    return false
+  end
+
   local AutoSession = require("auto-session")
   local Config = require("auto-session.config")
 
   AutoSession.AutoSaveSession()
   vim.diagnostic.config({ virtual_lines = false })
 
-  if session then
-    AutoSession.RestoreSession(session.session_name, { show_message = false })
-  else
+  local session_restored =
+    AutoSession.RestoreSession(path, { show_message = false })
+
+  if not session_restored and fallback_to_cd then
     Config.auto_save = false
     Snacks.bufdelete.all()
     vim.cmd.cd(path)
@@ -31,6 +36,8 @@ local autosave_and_restore = function(session, path)
   end
 
   vim.diagnostic.config({ virtual_lines = true })
+
+  return session_restored
 end
 
 return {
@@ -60,9 +67,7 @@ return {
           local alternate_session_name =
             Lib.get_alternate_session_name(Config.session_lens.session_control)
 
-          if alternate_session_name then
-            autosave_and_restore({ session_name = alternate_session_name })
-          else
+          if not autosave_and_restore(alternate_session_name) then
             vim.cmd.SessionSearch()
           end
         end,
@@ -89,18 +94,7 @@ return {
           return {
             "<leader>q" .. key,
             function()
-              local AutoSession = require("auto-session")
-              local Lib = require("auto-session.lib")
-
-              local expanded_path = vim.fn.expand(path)
-              local sessions = Lib.get_session_list(AutoSession.get_root_dir())
-
-              autosave_and_restore(
-                vim.iter(sessions):find(function(session)
-                  return session.session_name == expanded_path
-                end),
-                expanded_path
-              )
+              autosave_and_restore(vim.fn.expand(path), true)
             end,
             desc = path:match("[^/]+$"),
           }

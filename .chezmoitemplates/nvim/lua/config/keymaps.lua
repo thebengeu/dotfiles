@@ -40,7 +40,7 @@ if vim.g.vscode then
       for _, keymap in ipairs(vim.api.nvim_get_keymap(mode)) do
         local lhs = keymap.lhs
 
-        if lhs:match("^ .+") then
+        if lhs and lhs:match("^ .+") then
           vim.keymap.del(mode, lhs)
         end
       end
