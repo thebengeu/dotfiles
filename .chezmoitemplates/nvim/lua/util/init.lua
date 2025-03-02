@@ -89,6 +89,94 @@ end
 
 M.colorscheme_style = nil
 
+M.get_directory = function(picker_name_or_callback, cwd)
+  return function()
+    cwd = cwd or vim.uv.cwd()
+    local visual = Snacks.picker.util.visual()
+
+    require("telescope.pickers")
+      .new({}, {
+        attach_mappings = function(prompt_bufnr)
+          local actions = require("telescope.actions")
+          local action_state = require("telescope.actions.state")
+
+          actions.select_default:replace(function()
+            local selected_entry_value = action_state.get_selected_entry().value
+            local multi_selection = action_state
+              .get_current_picker(prompt_bufnr)
+              :get_multi_selection()
+            local search_dirs = {}
+
+            actions.close(prompt_bufnr)
+
+            if vim.tbl_isempty(multi_selection) then
+              local selected_path = cwd .. "/" .. selected_entry_value
+
+              if type(picker_name_or_callback) == "function" then
+                picker_name_or_callback(selected_path)
+                return
+              elseif picker_name_or_callback == "smart" then
+                M.smart({ cwd = selected_path })()
+                return
+              end
+
+              table.insert(search_dirs, selected_entry_value)
+            else
+              for _, selection in ipairs(multi_selection) do
+                table.insert(search_dirs, selection.value)
+              end
+            end
+
+            require("telescope").extensions.egrepify.egrepify({
+              cwd = cwd,
+              default_text = visual and visual.text,
+              search_dirs = search_dirs,
+            })
+          end)
+          return true
+        end,
+        finder = require("telescope.finders").new_oneshot_job({
+          "fd",
+          "--follow",
+          "--max-depth",
+          "1",
+          "--type",
+          "directory",
+        }, {
+          cwd = cwd,
+          entry_maker = require("telescope.make_entry").gen_from_file({
+            cwd = cwd,
+          }),
+        }),
+        layout_config = {
+          horizontal = {
+            preview_width = 122,
+          },
+        },
+        previewer = require("telescope.previewers").new_termopen_previewer({
+          get_command = function(entry)
+            local directory = cwd .. "/" .. entry.value
+            local readme = directory .. "/README.md"
+
+            return vim.fn.filereadable(readme) == 1 and { "glow", readme }
+              or {
+                "eza",
+                "--all",
+                "--git",
+                "--group-directories-first",
+                "--icons",
+                "--long",
+                "--no-user",
+                directory,
+              }
+          end,
+        }),
+        sorter = require("telescope.config").values.file_sorter(),
+      })
+      :find()
+  end
+end
+
 M.highlights = {}
 
 M.set_highlights = function()
@@ -125,8 +213,7 @@ M.open_url = function(url)
         )
     ),
     url,
-  }
-)
+  })
 end
 
 M.rainbow_colors = {

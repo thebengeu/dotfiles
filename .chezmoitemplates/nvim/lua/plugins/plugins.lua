@@ -73,7 +73,7 @@ return {
         end,
         desc = "Alternate Session",
       },
-      { "<leader>qs", "<cmd>SessionSearch<cr>", desc = "Sessions" },
+      { "<leader>qo", "<cmd>SessionSearch<cr>", desc = "Sessions" },
       unpack(vim
         .iter({
           a = "~/supabase/supabase-admin-api",
@@ -81,22 +81,32 @@ return {
           c = "~/.local/share/chezmoi",
           e = "~/supabase/data-engineering",
           f = "~/thebengeu/qmk_firmware",
+          g = "~/thebengeu",
           h = "~/supabase/helper-scripts",
           i = "~/supabase/infrastructure",
           k = "~/thebengeu/drakon",
           p = "~/supabase/postgres",
+          r = "~/repos",
+          s = "~/supabase",
           u = "~/thebengeu/qmk_userspace",
           w = "~/supabase/supabase",
           x = "~/supabase/infrastructure-external",
           z = "~/thebengeu/zmk-config",
         })
         :map(function(key, path)
+          local get_directory = key == "g" or key == "r" or key == "s"
+
           return {
             "<leader>q" .. key,
-            function()
-              autosave_and_restore(vim.fn.expand(path), true)
-            end,
-            desc = path:match("[^/]+$"),
+            get_directory
+                and util.get_directory(function(selected_path)
+                  autosave_and_restore(selected_path, true)
+                end, vim.fn.expand(path))
+              or function()
+                autosave_and_restore(vim.fn.expand(path), true)
+              end,
+            desc = path:match("[^/]+$")
+              .. (get_directory and " subdirectory" or ""),
           }
         end)
         :totable()),

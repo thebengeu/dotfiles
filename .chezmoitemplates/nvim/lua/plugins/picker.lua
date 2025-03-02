@@ -3,6 +3,8 @@ local util = require("util")
 
 local lazy_root = require("lazy.core.config").options.root
 
+local M = {}
+
 local delta_diffview_git_picker = function(picker)
   return function()
     local is_bcommits = picker:match("bcommits")
@@ -94,91 +96,6 @@ local egrepify = function(cwd, grep_word, vimgrep_arguments)
   end
 end
 
-local get_directory = function(picker_name, cwd)
-  return function()
-    cwd = cwd or vim.uv.cwd()
-    local visual = Snacks.picker.util.visual()
-
-    require("telescope.pickers")
-      .new({}, {
-        attach_mappings = function(prompt_bufnr)
-          local actions = require("telescope.actions")
-          local action_state = require("telescope.actions.state")
-
-          actions.select_default:replace(function()
-            local selected_entry_value = action_state.get_selected_entry().value
-            local multi_selection = action_state
-              .get_current_picker(prompt_bufnr)
-              :get_multi_selection()
-            local search_dirs = {}
-
-            actions.close(prompt_bufnr)
-
-            if vim.tbl_isempty(multi_selection) then
-              if picker_name == "smart" then
-                util.smart({
-                  cwd = cwd .. "/" .. selected_entry_value,
-                })()
-                return
-              end
-
-              table.insert(search_dirs, selected_entry_value)
-            else
-              for _, selection in ipairs(multi_selection) do
-                table.insert(search_dirs, selection.value)
-              end
-            end
-
-            require("telescope").extensions.egrepify.egrepify({
-              cwd = cwd,
-              default_text = visual and visual.text,
-              search_dirs = search_dirs,
-            })
-          end)
-          return true
-        end,
-        finder = require("telescope.finders").new_oneshot_job({
-          "fd",
-          "--follow",
-          "--max-depth",
-          "1",
-          "--type",
-          "directory",
-        }, {
-          cwd = cwd,
-          entry_maker = require("telescope.make_entry").gen_from_file({
-            cwd = cwd,
-          }),
-        }),
-        layout_config = {
-          horizontal = {
-            preview_width = 122,
-          },
-        },
-        previewer = require("telescope.previewers").new_termopen_previewer({
-          get_command = function(entry)
-            local directory = cwd .. "/" .. entry.value
-            local readme = directory .. "/README.md"
-
-            return vim.fn.filereadable(readme) == 1 and { "glow", readme }
-              or {
-                "eza",
-                "--all",
-                "--git",
-                "--group-directories-first",
-                "--icons",
-                "--long",
-                "--no-user",
-                directory,
-              }
-          end,
-        }),
-        sorter = require("telescope.config").values.file_sorter(),
-      })
-      :find()
-  end
-end
-
 return {
   {
     "folke/snacks.nvim",
@@ -201,7 +118,7 @@ return {
       },
       {
         "<leader>fF",
-        get_directory("smart"),
+        util.get_directory("smart"),
         desc = "Find Files (subdirs)",
       },
       {
@@ -223,7 +140,7 @@ return {
       },
       {
         "<leader>fl",
-        get_directory("smart", lazy_root),
+        util.get_directory("smart", lazy_root),
         desc = "Find Plugin's Files",
       },
       {
@@ -512,7 +429,7 @@ return {
       },
       {
         "<leader>sG",
-        get_directory("egrepify"),
+        util.get_directory("egrepify"),
         desc = "Grep (subdirs)",
         mode = { "n", "x" },
       },
@@ -536,7 +453,7 @@ return {
       },
       {
         "<leader>sl",
-        get_directory("egrepify", lazy_root),
+        util.get_directory("egrepify", lazy_root),
         desc = "Grep Plugin",
         mode = { "n", "x" },
       },
