@@ -136,6 +136,10 @@ return {
     opts = {},
   },
   {
+    "subnut/nvim-ghost.nvim",
+    cond = vim.g.neovide,
+  },
+  {
     "epwalsh/obsidian.nvim",
     dependencies = "nvim-lua/plenary.nvim",
     event = "BufReadPre **/Obsidian/**.md",
