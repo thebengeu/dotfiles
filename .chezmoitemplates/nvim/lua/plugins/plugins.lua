@@ -32,7 +32,30 @@ return {
   {
     "rmagatti/auto-session",
     keys = {
-      { "<leader>ql", "<cmd>SessionSearch<cr>", desc = "List Sessions" },
+      {
+        "<leader>ql",
+        function()
+          local AutoSession = require("auto-session")
+          local Config = require("auto-session.config")
+          local Lib = require("auto-session.lib")
+
+          local alternate_session_name =
+            Lib.get_alternate_session_name(Config.session_lens.session_control)
+
+          if not alternate_session_name then
+            vim.cmd.SessionSearch()
+            return
+          end
+
+          AutoSession.AutoSaveSession()
+          AutoSession.RestoreSession(
+            alternate_session_name,
+            { show_message = false }
+          )
+        end,
+        desc = "Alternate Session",
+      },
+      { "<leader>qs", "<cmd>SessionSearch<cr>", desc = "Sessions" },
     },
     lazy = false,
     opts = {
