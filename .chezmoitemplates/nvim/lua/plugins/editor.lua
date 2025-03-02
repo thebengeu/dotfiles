@@ -303,8 +303,8 @@ local specs = {
   },
   {
     "johmsalas/text-case.nvim",
+    event = "LazyFile",
     keys = {
-      { "ga", group = "text-case" },
       {
         "ga.",
         function()
