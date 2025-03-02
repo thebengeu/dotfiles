@@ -89,6 +89,7 @@ for key, bundle_id_and_args in pairs({
   d = "com.hnc.Discord",
   e = "com.endel.endel",
   f = "com.apple.finder",
+  -- g = "GhostText",
   h = "org.hammerspoon.Hammerspoon",
   -- j = "Colab local URL",
   k = "org.pqrs.Karabiner-EventViewer",
@@ -262,6 +263,19 @@ hs.hotkey.bind({ "ctrl", "option", "shift" }, "b", function()
   hs.timer.usleep(10000)
   hs.eventtap.keyStroke({}, "return")
   hs.eventtap.keyStrokes("#@title ")
+end)
+
+hs.hotkey.bind({ "ctrl", "shift", "cmd" }, "g", function()
+  hs.eventtap.keyStroke({ "cmd", "shift" }, "k")
+
+  local bundle_id = "com.neovide.neovide"
+  local app = hs.application(bundle_id)
+
+  if app then
+    app:setFrontmost(true)
+  else
+    hs.application.open(bundle_id)
+  end
 end)
 
 for key, command in pairs({
