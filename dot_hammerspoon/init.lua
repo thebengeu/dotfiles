@@ -266,16 +266,20 @@ hs.hotkey.bind({ "ctrl", "option", "shift" }, "b", function()
 end)
 
 hs.hotkey.bind({ "ctrl", "shift", "cmd" }, "g", function()
-  hs.eventtap.keyStroke({ "cmd", "shift" }, "k")
-
   local bundle_id = "com.neovide.neovide"
-  local app = hs.application(bundle_id)
 
-  if app then
-    app:setFrontmost(true)
-  else
-    hs.application.open(bundle_id)
+  if not hs.application(bundle_id) then
+    os.execute(
+      "open -g -b " .. bundle_id .. " --args -- ~/.local/share/chezmoi"
+    )
   end
+
+  local window_filter = wf.new({ "Neovide" })
+  window_filter:subscribe(wf.windowCreated, function()
+    window_filter:unsubscribeAll()
+    hs.eventtap.keyStroke({ "cmd", "shift" }, "k")
+    hs.application(bundle_id):setFrontmost(true)
+  end, true)
 end)
 
 for key, command in pairs({
