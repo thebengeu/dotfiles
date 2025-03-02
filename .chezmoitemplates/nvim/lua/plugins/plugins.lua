@@ -3,6 +3,10 @@ local util = require("util")
 local WSL_WINDOWS_HOMEDIR = "/mnt/c/Users/beng"
 
 local cwd = vim.uv.cwd()
+---@diagnostic disable-next-line: need-check-nil
+local auto_restore_last_session = cwd:match("\\scoop\\apps\\")
+  or cwd == vim.env.windir
+  or cwd == "/"
 local homedir = vim.uv.os_homedir()
 local path_sep = package.config:sub(1, 1)
 local obsidian_vault_path = (
@@ -34,25 +38,21 @@ return {
     },
     lazy = false,
     opts = {
-      ---@diagnostic disable-next-line: need-check-nil
-      auto_restore_last_session = cwd:match("\\scoop\\apps\\")
-        or cwd == vim.env.windir
-        or cwd == "/",
+      allowed_dirs = {
+        "~/.local/share/chezmoi",
+        "~/repos/*",
+        "~/sb",
+        "~/supabase/*",
+        "~/thebengeu/*",
+      },
+      auto_restore_last_session = auto_restore_last_session,
       continue_restore_on_error = true,
       cwd_change_handling = true,
       log_level = "error",
-      pre_save_cmds = {
+      no_restore_cmds = {
         function()
-          for _, win in ipairs(vim.api.nvim_list_wins()) do
-            local buf = vim.api.nvim_win_get_buf(win)
-            local filetype = vim.bo[buf].filetype
-            if
-              filetype == "blame"
-              or filetype == "noice"
-              or filetype == "qf"
-            then
-              vim.api.nvim_win_close(win, true)
-            end
+          if auto_restore_last_session then
+            vim.cmd.cd(vim.fn.expand("~/.local/share/chezmoi"))
           end
         end,
       },
