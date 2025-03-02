@@ -318,6 +318,22 @@ local specs = {
     opts = {},
   },
   {
+    "Goose97/timber.nvim",
+    ft = {
+      "lua",
+      "typescript",
+    },
+    init = function()
+      require("lazyvim.util").on_load("which-key.nvim", function()
+        require("which-key").add({
+          { "gL", group = "Insert log operator" },
+          { "gl", group = "Insert log" },
+        })
+      end)
+    end,
+    opts = {},
+  },
+  {
     "Wansmer/treesj",
     keys = {
       { "J", "<cmd>TSJToggle<cr>" },
