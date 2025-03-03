@@ -209,7 +209,7 @@ return {
   },
   {
     "subnut/nvim-ghost.nvim",
-    cond = vim.g.neovide,
+    cond = not not vim.g.neovide,
     priority = 1001,
   },
   {
