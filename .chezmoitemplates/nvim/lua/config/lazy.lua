@@ -18,6 +18,9 @@ require("lazy").setup({
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     { import = "plugins" },
   },
+  concurrency = jit.os == "Windows" and (vim.uv.available_parallelism() * 2)
+    or (jit.os == "OSX" and vim.fn.has("gui_running") == 1) and 111
+    or nil,
   defaults = {
     lazy = false,
     version = false,

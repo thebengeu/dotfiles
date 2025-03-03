@@ -115,7 +115,7 @@ end, { desc = "Chezmoi update" })
 
 vim.keymap.set({ "i", "n" }, "<C-_>", "<C-/>", { remap = true })
 
-if vim.g.goneovim or vim.g.neovide then
+if vim.fn.has("gui_running") == 1 then
   if jit.os == "Windows" then
     vim.keymap.set("n", "<C-v>", "a<C-r>+<Esc>")
     vim.keymap.set({ "c", "i" }, "<C-v>", "<C-r>+")
