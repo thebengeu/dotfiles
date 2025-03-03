@@ -9,7 +9,7 @@
 	pu = !git pull upstream $(git branch --show-current)
 	rau = !~/.config/git/template/hooks/add-upstream-auto-detected-url.sh
 	s = status --short
-	sw = "!git switch ${1:-$(git default-branch)} #"
+	sw = "!git switch --recurse-submodules ${1:-$(git default-branch)} #"
 	wip = !git add --all && git commit -m 'WIP' -m 'gitlint-ignore: all' && git push
 [branch]
 	sort = -committerdate
