@@ -38,7 +38,7 @@ uv tool install tox
 uv tool install virtualenv
 uv tool install visidata
 
-COREPACK_ENABLE_DOWNLOAD_PROMPT=0 pnpm add --global \
+pnpm add --global \
   npm-check-updates \
   pino-pretty \
   pm2 \

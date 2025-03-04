@@ -160,9 +160,6 @@
 - ansible.builtin.service:
     name: ssh
     state: reloaded
-- ansible.builtin.command:
-    cmd: corepack enable
-    creates: /usr/bin/pnpm
 - ansible.builtin.get_url:
     dest: /tmp/nix-installer
     mode: "755"

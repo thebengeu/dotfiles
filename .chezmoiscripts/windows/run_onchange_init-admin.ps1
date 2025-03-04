@@ -181,8 +181,6 @@ foreach ($pacmanPackage in $pacmanPackages)
   }
 }
 
-corepack enable
-
 $ejsonPublicKey = "5df4cad7a4c3a2937a863ecf18c56c23274cb048624bc9581ecaac56f2813107"
 $ejsonKeyPath = "$Env:USERPROFILE\.config\ejson\keys\$ejsonPublicKey"
 $sshKeyPath = "$Env:USERPROFILE\.ssh\id_ed25519"
