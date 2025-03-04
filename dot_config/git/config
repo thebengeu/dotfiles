@@ -67,6 +67,7 @@
 [tag]
 	sort = version:refname
 [url "git@github.com:"]
+	insteadOf = g:
 	insteadOf = https://github.com/
 [user]
 	email = beng@bengeu.com
