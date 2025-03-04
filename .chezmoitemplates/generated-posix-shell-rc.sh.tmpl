@@ -53,7 +53,7 @@ function br {
 }
 
 {{- if lookPath "luarocks" }}
-{{output "luarocks" "path" }}
+export PATH=$(cygpath $(luarocks path --lr-bin)):$PATH
 {{end -}}
 {{- if lookPath "vivid" }}
 export LS_COLORS='{{ output "vivid" "generate" "catppuccin-mocha" | trim }}'

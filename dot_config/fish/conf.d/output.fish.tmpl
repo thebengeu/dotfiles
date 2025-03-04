@@ -4,7 +4,7 @@
 {{output "direnv" "hook" "fish"}}
 {{output "fish" "-c" "starship init fish --print-full-init"}}
 {{- if lookPath "luarocks" }}
-{{output "luarocks" "path" }}
+fish_add_path --global '{{output "luarocks" "path" "--lr-bin" }}'
 {{end -}}
 {{- if lookPath "switcher" }}
 {{output "switcher" "init" "fish" | replace "\\rm" "command rm"}}
