@@ -253,7 +253,9 @@ cask "microsoft-edge-dev"
 cask "microsoft-excel"
 cask "microsoft-word"
 cask "mimestream"
+cask "msty"
 cask "multipass"
+cask "neovide"
 cask "ngrok"
 cask "notion"
 cask "obsidian"
@@ -278,6 +280,7 @@ cask "timeular"
 cask "todoist"
 cask "tower"
 cask "transmission"
+cask "via"
 cask "visual-studio-code"
 cask "vlc"
 cask "vmware-fusion"
@@ -296,6 +299,7 @@ mas "Day One", id: 1055511498
 mas "Drafts", id: 1435957248
 mas "Endel", id: 1346247457
 mas "Gapplin", id: 768053424
+mas "GhostText", id: 1552641506
 mas "iA Writer", id: 775737590
 mas "Kindle", id: 302584613
 mas "Magic Window 4K", id: 689569987
