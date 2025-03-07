@@ -108,7 +108,14 @@ local specs = {
     end,
     supports_light_background = true,
   },
-  { "comfysage/evergarden" },
+  {
+    "comfysage/evergarden",
+    colorscheme_styles = {
+      "fall",
+      "spring",
+      "winter",
+    },
+  },
   {
     "0xstepit/flow.nvim",
     highlights = function()

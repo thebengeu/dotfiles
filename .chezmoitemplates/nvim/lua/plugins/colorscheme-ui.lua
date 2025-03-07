@@ -65,8 +65,12 @@ local refresh_colorscheme = function(index)
   util.colorscheme_style = style
 
   if style then
-    vim.g[name == "gruvbox-material" and "gruvbox_material_foreground" or (name .. "_" .. (name == "tundra" and "biome" or "style"))] =
-      style
+    if name == "evergarden" then
+      require("evergarden").setup({ variant = style })
+    else
+      vim.g[name == "gruvbox-material" and "gruvbox_material_foreground" or (name .. "_" .. (name == "tundra" and "biome" or "style"))] =
+        style
+    end
   end
 
   vim.cmd.colorscheme(name)
