@@ -14,7 +14,7 @@ local refresh_colorschemes = function()
 
   for _, spec in ipairs(colorscheme_specs) do
     local name = util.normname(spec.name or spec[1])
-    local extra_spec = util.extra_specs[spec[1] or spec.url] or {}
+    local extra_spec = util.extra_specs[name] or {}
     local insert_non_light = extra_spec.supports_light_background
       or vim.o.background ~= "light"
     local colors_names =
@@ -68,7 +68,7 @@ local refresh_colorscheme = function(index)
     if name == "evergarden" then
       require("evergarden").setup({ variant = style })
     else
-      vim.g[name == "gruvbox-material" and "gruvbox_material_foreground" or (name .. "_" .. (name == "tundra" and "biome" or "style"))] =
+      vim.g[name:gsub("-", "_") .. "_" .. (util.extra_specs[name].colorscheme_style_suffix or "style")] =
         style
     end
   end

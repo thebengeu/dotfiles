@@ -198,9 +198,19 @@ local specs = {
     "ellisonleao/gruvbox.nvim",
     supports_light_background = true,
   },
-  { "luisiacc/gruvbox-baby" },
+  {
+    "luisiacc/gruvbox-baby",
+    colorscheme_style_suffix = "background_color",
+    colorscheme_styles = {
+      "dark",
+      "medium",
+      "soft",
+      "soft_flat",
+    },
+  },
   {
     "sainnhe/gruvbox-material",
+    colorscheme_style_suffix = "foreground",
     colorscheme_styles = {
       "material",
       "mix",
@@ -548,6 +558,7 @@ local specs = {
   },
   {
     "sam4llis/nvim-tundra",
+    colorscheme_style_suffix = "biome",
     colorscheme_styles = {
       "arctic",
       "jungle",
@@ -620,27 +631,28 @@ local specs = {
 
 return vim
   .iter(specs)
-  :map(function(colorscheme_spec)
+  :map(function(spec)
     local extra_spec = {}
 
     for _, key in ipairs({
       "colors_names",
       "colors_names_light",
+      "colorscheme_style_suffix",
       "colorscheme_styles",
       "highlights",
       "supports_light_background",
     }) do
-      extra_spec[key] = colorscheme_spec[key]
-      colorscheme_spec[key] = nil
+      extra_spec[key] = spec[key]
+      spec[key] = nil
     end
 
     if next(extra_spec) then
-      util.extra_specs[colorscheme_spec[1] or colorscheme_spec.url] = extra_spec
+      util.extra_specs[util.normname(spec.name or spec[1])] = extra_spec
     end
 
-    colorscheme_spec.lazy = true
-    colorscheme_spec.priority = 1000
+    spec.lazy = true
+    spec.priority = 1000
 
-    return colorscheme_spec
+    return spec
   end)
   :totable()
