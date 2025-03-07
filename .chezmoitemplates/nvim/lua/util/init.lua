@@ -89,7 +89,7 @@ end
 
 M.colorscheme_style = nil
 
-M.get_directory = function(picker_name_or_callback, cwd)
+M.get_directory = function(picker_name_or_callback, cwd, exclude, include)
   return function()
     cwd = cwd or vim.uv.cwd()
     local visual = Snacks.picker.util.visual()
@@ -142,6 +142,10 @@ M.get_directory = function(picker_name_or_callback, cwd)
           "1",
           "--type",
           "directory",
+          exclude and "--exclude" or "--glob",
+          (exclude or include)
+              and "{" .. table.concat(exclude or include, ",") .. "}"
+            or "*",
         }, {
           cwd = cwd,
           entry_maker = require("telescope.make_entry").gen_from_file({
@@ -190,7 +194,7 @@ M.set_highlights = function()
 end
 
 M.normname = function(name)
-  return (name:gsub("^.*/", ""):gsub("[%.%-]?nvim%-?", ""))
+  return name:gsub("^.*/", ""):gsub("[%.%-]?nvim%-?", "")
 end
 
 M.open_url = function(url)

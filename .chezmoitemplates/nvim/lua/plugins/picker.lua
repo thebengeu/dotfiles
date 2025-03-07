@@ -96,6 +96,14 @@ local egrepify = function(cwd, grep_word, vimgrep_arguments)
   end
 end
 
+local colorscheme_dirs = vim
+  .iter(require("plugins.colorscheme"))
+  :map(function(spec)
+    local suffix = (spec.name or spec[1]):gsub("^.*/", "")
+    return suffix
+  end)
+  :totable()
+
 return {
   {
     "folke/snacks.nvim",
@@ -140,8 +148,13 @@ return {
       },
       {
         "<leader>fl",
-        util.get_directory("smart", lazy_root),
+        util.get_directory("smart", lazy_root, colorscheme_dirs),
         desc = "Find Plugin's Files",
+      },
+      {
+        "<leader>fS",
+        util.get_directory("smart", lazy_root, nil, colorscheme_dirs),
+        desc = "Find Colorscheme's Files",
       },
       {
         "<leader>fv",
