@@ -486,6 +486,7 @@ local specs = {
         oxocarbon.base15,
       })
     end,
+    supports_light_background = true,
   },
   {
     "rose-pine/neovim",
