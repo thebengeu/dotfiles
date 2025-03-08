@@ -102,10 +102,16 @@ vim.keymap.set(
   { desc = "Commit WIP" }
 )
 
-vim.keymap.set("n", "<leader>um", function()
-  ---@diagnostic disable-next-line: undefined-field
-  vim.opt.mouse = vim.opt.mouse:get().a and "" or "a"
-end, { desc = "Toggle Mouse" })
+Snacks.toggle({
+  name = "Mouse",
+  get = function()
+    ---@diagnostic disable-next-line: undefined-field
+    return vim.opt.mouse:get().a
+  end,
+  set = function(state)
+    vim.opt.mouse = state and "a" or ""
+  end,
+}):map("<leader>um")
 
 vim.keymap.set("n", "<leader>cU", function()
   util.async_run_sh(
