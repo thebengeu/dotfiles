@@ -65,10 +65,14 @@ local refresh_colorscheme = function(index)
   util.colorscheme_style = style
 
   if style then
-    if name == "evergarden" then
-      require("evergarden").setup({ variant = style })
+    local extra_spec = util.extra_specs[name]
+
+    if extra_spec.colorscheme_style_key then
+      require(name).setup(vim.tbl_extend("error", extra_spec.opts or {}, {
+        [extra_spec.colorscheme_style_key] = style,
+      }))
     else
-      vim.g[name:gsub("-", "_") .. "_" .. (util.extra_specs[name].colorscheme_style_suffix or "style")] =
+      vim.g[name:gsub("-", "_") .. "_" .. (extra_spec.colorscheme_style_suffix or "style")] =
         style
     end
   end

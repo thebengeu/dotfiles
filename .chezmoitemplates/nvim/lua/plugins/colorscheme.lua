@@ -110,6 +110,7 @@ local specs = {
   },
   {
     "comfysage/evergarden",
+    colorscheme_style_key = "variant",
     colorscheme_styles = {
       "fall",
       "spring",
@@ -135,29 +136,30 @@ local specs = {
   },
   {
     "maxmx03/fluoromachine.nvim",
-    opts = function()
-      local themes = { "delta", "fluoromachine", "retrowave" }
-
-      return {
-        overrides = function(colors)
-          return rainbow_delimiter_highlights({
-            colors.red,
-            colors.yellow,
-            colors.pink,
-            colors.orange,
-            colors.green,
-            colors.purple,
-            colors.cyan,
-          })
-        end,
-        styles = {
-          comments = {
-            italic = true,
-          },
+    colorscheme_style_key = "theme",
+    colorscheme_styles = {
+      "delta",
+      "fluoromachine",
+      "retrowave",
+    },
+    opts = {
+      overrides = function(colors)
+        return rainbow_delimiter_highlights({
+          colors.red,
+          colors.yellow,
+          colors.pink,
+          colors.orange,
+          colors.green,
+          colors.purple,
+          colors.cyan,
+        })
+      end,
+      styles = {
+        comments = {
+          italic = true,
         },
-        theme = themes[math.random(#themes)],
-      }
-    end,
+      },
+    },
   },
   {
     "projekt0n/github-nvim-theme",
@@ -637,6 +639,7 @@ return vim
     for _, key in ipairs({
       "colors_names",
       "colors_names_light",
+      "colorscheme_style_key",
       "colorscheme_style_suffix",
       "colorscheme_styles",
       "highlights",
@@ -647,6 +650,10 @@ return vim
     end
 
     if next(extra_spec) then
+      if extra_spec.colorscheme_style_key then
+        extra_spec.opts = spec.opts
+      end
+
       util.extra_specs[util.normname(spec.name or spec[1])] = extra_spec
     end
 
