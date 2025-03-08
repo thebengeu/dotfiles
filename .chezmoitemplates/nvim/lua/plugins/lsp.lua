@@ -146,17 +146,15 @@ return {
             result,
             ...
           )
-            local diagnostics = {}
-
-            for _, diagnostic in ipairs(result.diagnostics) do
-              if
-                not string.match(diagnostic.message, '"_.+" is not accessed')
-              then
-                table.insert(diagnostics, diagnostic)
-              end
-            end
-
-            result.diagnostics = diagnostics
+            result.diagnostics = vim
+              .iter(result.diagnostics)
+              :filter(function(diagnostic)
+                return not string.match(
+                  diagnostic.message,
+                  '"_.+" is not accessed'
+                )
+              end)
+              :totable()
 
             vim.lsp.diagnostic.on_publish_diagnostics(_, result, ...)
           end
