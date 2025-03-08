@@ -1,3 +1,5 @@
+local util = require("util")
+
 return {
   {
     "saghen/blink.cmp",
@@ -289,15 +291,17 @@ return {
   {
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     event = "LspAttach",
-    init = function()
-      vim.diagnostic.config({
-        virtual_lines = true,
-        virtual_text = false,
-      })
-      vim.diagnostic.config({
-        virtual_lines = false,
-      }, require("lazy.core.config").ns)
+    opts = function()
+      util.set_virtual_lines(true)
+      util.set_virtual_lines(false, require("lazy.core.config").ns)
+
+      Snacks.toggle({
+        name = "Virtual Lines",
+        get = function()
+          return not not vim.diagnostic.config().virtual_lines
+        end,
+        set = util.set_virtual_lines,
+      }):map("<leader>uv")
     end,
-    opts = {},
   },
 }

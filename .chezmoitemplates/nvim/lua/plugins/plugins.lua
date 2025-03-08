@@ -23,7 +23,7 @@ local autosave_and_restore = function(path, fallback_to_cd)
   local Config = require("auto-session.config")
 
   AutoSession.AutoSaveSession()
-  vim.diagnostic.config({ virtual_lines = false })
+  util.set_virtual_lines(false)
 
   local session_restored =
     AutoSession.RestoreSession(path, { show_message = false })
@@ -35,7 +35,7 @@ local autosave_and_restore = function(path, fallback_to_cd)
     Config.auto_save = true
   end
 
-  vim.diagnostic.config({ virtual_lines = true })
+  util.set_virtual_lines(true)
 
   return session_restored
 end

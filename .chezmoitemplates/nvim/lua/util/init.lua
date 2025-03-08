@@ -237,6 +237,13 @@ M.rainbow_delimiters_hl = vim
   end)
   :totable()
 
+M.set_virtual_lines = function(state, namespace)
+  vim.diagnostic.config({
+    virtual_lines = state,
+    virtual_text = not state,
+  }, namespace)
+end
+
 M.smart = function(opts)
   return function()
     Snacks.picker.smart(opts)
