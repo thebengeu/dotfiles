@@ -109,6 +109,7 @@ aliases: {
 	pu:              "pulumi up"
 	pus:             "pulumi up --skip-preview"
 	rgb:             "batgrep"
+	rgc:             "cd ~/repos && gc"
 	rm:              "trash"
 	scc:             #"scc --not-match "package-lock.json|pnpm-lock.yaml""#
 	sn:              "eksctl scale nodegroup --cluster $(eks-cluster-name) --name $(nodegroup-name) --nodes"
@@ -267,7 +268,6 @@ aliases: {
 	}
 	_gitAliases: {
 		aa:  "add -A"
-		c:   "clone --recursive"
 		ca:  "commit --amend"
 		cm:  "commit -m"
 		pf:  "pf"
@@ -349,6 +349,14 @@ environmentVariables: {
 	}[_os]
 }
 functions: {
+	gc: {
+		lines: [
+			#"git clone --recursive "$repo""#,
+			#"cd "$(basename "$repo" .git)""#,
+			"glow README.md",
+		]
+		parameters: ["repo"]
+	}
 	md: {
 		lines: [
 			"mkdir -p \"$directory\"",
