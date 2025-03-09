@@ -268,7 +268,13 @@ local specs = {
       end,
     },
   },
-  { "sho-87/kanagawa-paper.nvim" },
+  {
+    "sho-87/kanagawa-paper.nvim",
+    opts = {
+      cache = true,
+    },
+    supports_light_background = true,
+  },
   {
     "marko-cerovac/material.nvim",
     colorscheme_styles = {
