@@ -227,19 +227,22 @@ local specs = {
   },
   {
     "wtfox/jellybeans.nvim",
-    opts = {
-      on_highlights = function(hl, palette)
-        rainbow_delimiter_highlights({
-          palette.raw_sienna,
-          palette.brandy,
-          palette.perano,
-          palette.koromiko,
-          palette.green_smoke,
-          palette.biloba_flower,
-          palette.calypso,
-        }, hl)
-      end,
-    },
+    opts = function()
+      return {
+        on_highlights = function(hl, palette)
+          rainbow_delimiter_highlights({
+            palette.raw_sienna,
+            palette.brandy,
+            palette.perano,
+            palette.koromiko,
+            palette.green_smoke,
+            palette.biloba_flower,
+            palette.calypso,
+          }, hl)
+        end,
+        style = vim.o.background,
+      }
+    end,
     supports_light_background = true,
   },
   {
