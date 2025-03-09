@@ -36,6 +36,7 @@ aliases: {
 	as5:             "export AWS_REGION=ap-southeast-5;"
 	b:               "bat"
 	bf:              "\(_env) --chdir ~/thebengeu/qmk_userspace make hazel/bad_wings:thebengeu:flash"
+	bm:              "batman"
 	c:               "docker compose"
 	ca:              "chezmoi apply --keep-going --exclude scripts; chezmoi apply --keep-going --include scripts"
 	cad:             "chezmoi add"
@@ -79,7 +80,6 @@ aliases: {
 	lh:              "\(lc) ssh -p"
 	lp:              "\(lc) psql --disable-statement-tracking -p"
 	m:               "\(_env) --chdir ~/supabase/infrastructure make"
-	man:             "batman"
 	mf:              "\(m) fullstack"
 	mps:             "ssh ubuntu@$(multipass info --format json primary | jq -r .info.primary.ipv4[0])"
 	ms:              "\(m) start"
@@ -323,6 +323,7 @@ environmentVariables: {
 	GITLINT_CONFIG:                "$HOME/.config/gitlint/gitlint.ini"
 	HOMEBREW_CLEANUP_MAX_AGE_DAYS: 0
 	LESS:                          "--quit-if-one-screen --RAW-CONTROL-CHARS"
+	MANPAGER:                      "nvim +Man!"
 	MICRO_TRUECOLOR:               1
 	PIP_REQUIRE_VIRTUALENV:        true
 	PULUMI_SKIP_UPDATE_CHECK:      true

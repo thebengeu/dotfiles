@@ -90,6 +90,13 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  callback = function()
+    vim.opt_local.keywordprg = ":Man"
+  end,
+  pattern = "man",
+})
+
 if vim.env.TMUX then
   vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained" }, {
     callback = function()
