@@ -1,5 +1,6 @@
 [sqlfluff]
 dialect = bigquery
+exclude_rules = structure.using
 large_file_skip_byte_limit = 100000
 processes = 0
 
