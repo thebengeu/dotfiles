@@ -9,7 +9,7 @@ Python)
 	command="ruff check --fix-only --select I - | ruff format -"
 	;;
 SQL)
-	command="sql-formatter --config ~/.config/sql-formatter/sql-formatter.json"
+	command="sqlfluff format -"
 	;;
 esac
 

@@ -20,19 +20,10 @@ return {
       },
     },
     opts = function(_, opts)
-      opts.formatters = vim.tbl_extend("force", opts.formatters, {
-        sql_formatter = {
-          prepend_args = {
-            "--config",
-            vim.fn.json_encode({
-              dataTypeCase = "lower",
-              functionCase = "lower",
-              keywordCase = "lower",
-              language = "bigquery",
-            }),
-          },
-        },
-      })
+      opts.formatters.sqlfluff = {
+        args = { "format", "-" },
+        require_cwd = false,
+      }
 
       local formatters_by_ft = vim.tbl_extend("force", opts.formatters_by_ft, {
         c = { "clang_format" },
@@ -45,7 +36,7 @@ return {
         python = { "ruff_fix", "ruff_format" },
         toml = { "taplo" },
         sh = { "shellharden", "shellcheck", "shfmt" },
-        sql = { "sqlfmt", "trim_newlines" },
+        sql = { "sqlfluff" },
         ["_"] = { "trim_newlines", "trim_whitespace" },
       })
 
@@ -96,9 +87,7 @@ return {
         "mypy",
         "prettierd",
         "shellharden",
-        "sql-formatter",
         "sqlfluff",
-        "sqlfmt",
         "taplo",
         "yamllint",
       })
