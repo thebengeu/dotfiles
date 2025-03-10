@@ -44,8 +44,8 @@ vim.filetype.add({
   extension = {
     mdx = "markdown",
   },
-  filename = {
-    [".sqlfluff"] = "cfg",
+  pattern = {
+    [".*sqlfluff"] = "cfg",
   },
 })
 
