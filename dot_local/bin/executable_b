@@ -1,0 +1,7 @@
+#!/bin/sh
+extension="${1##*.}"
+case "${extension}" in
+json) fx "${1}" ;;
+md) glow "${1}" ;;
+*) bat "${1}" ;;
+esac
