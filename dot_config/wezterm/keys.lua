@@ -94,6 +94,31 @@ function M.apply_to_config(config)
       mods = "SHIFT|CTRL",
       action = act.MoveTabRelative(1),
     },
+    {
+      key = "h",
+      mods = "SHIFT|CTRL",
+      action = wezterm.action.DisableDefaultAssignment,
+    },
+    {
+      key = "k",
+      mods = "SHIFT|CTRL",
+      action = wezterm.action.DisableDefaultAssignment,
+    },
+    {
+      key = "l",
+      mods = "SHIFT|CTRL",
+      action = wezterm.action.DisableDefaultAssignment,
+    },
+    {
+      key = "d",
+      mods = "SHIFT|CTRL",
+      action = act.ShowDebugOverlay,
+    },
+    {
+      key = "b",
+      mods = "SHIFT|CTRL",
+      action = act.ClearScrollback("ScrollbackOnly"),
+    },
   }
 
   keys_nvim.apply_to_config(config)

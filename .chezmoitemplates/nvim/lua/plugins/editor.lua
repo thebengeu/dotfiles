@@ -344,6 +344,19 @@ local specs = {
     },
   },
   {
+    "aaronik/treewalker.nvim",
+    keys = {
+      { "<C-A-h>", "<cmd>Treewalker SwapLeft<cr>" },
+      { "<C-A-j>", "<cmd>Treewalker SwapDown<cr>" },
+      { "<C-A-k>", "<cmd>Treewalker SwapUp<cr>" },
+      { "<C-A-l>", "<cmd>Treewalker SwapRight<cr>" },
+      { "<C-S-h>", "<cmd>Treewalker Left<cr>", mode = { "n", "x" } },
+      { "<C-S-j>", "<cmd>Treewalker Down<cr>", mode = { "n", "x" } },
+      { "<C-S-k>", "<cmd>Treewalker Up<cr>", mode = { "n", "x" } },
+      { "<C-S-l>", "<cmd>Treewalker Right<cr>", mode = { "n", "x" } },
+    },
+  },
+  {
     "vscode-neovim/vscode-multi-cursor.nvim",
     cond = not not vim.g.vscode,
     event = "LazyFile",
