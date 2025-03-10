@@ -1,6 +1,6 @@
 --credential_file=~/.config/gcloud/legacy_credentials/beng@supabase.io/singlestore_bq.json
 --format=csv
---project_id=supabase-analytics-internal-eu
+--project_id=supabase-etl-prod-eu
 
 [query]
 --max_rows=1000000
