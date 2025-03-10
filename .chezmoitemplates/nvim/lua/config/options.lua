@@ -44,6 +44,9 @@ vim.filetype.add({
   extension = {
     mdx = "markdown",
   },
+  filename = {
+    [".sqlfluff"] = "cfg",
+  },
 })
 
 if vim.g.neovide then
