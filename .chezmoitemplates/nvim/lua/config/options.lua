@@ -45,7 +45,9 @@ vim.filetype.add({
     mdx = "markdown",
   },
   pattern = {
+    [".*bigqueryrc"] = "dosini",
     [".*sqlfluff"] = "cfg",
+    [".*wslconfig"] = "dosini",
   },
 })
 
