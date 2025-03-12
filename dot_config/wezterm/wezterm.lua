@@ -130,11 +130,12 @@ config.skip_close_confirmation_for_processes_named = {
   "wslhost.exe",
   "zsh.exe",
 }
+config.text_background_opacity = 0
 config.underline_position = (is_windows and "-0.2" or "-0.175") .. "cell"
 config.underline_thickness = "0.05cell"
 config.warn_about_missing_glyphs = false
 config.webgpu_power_preference = "HighPerformance"
-config.window_background_opacity = 0.95
+config.window_background_opacity = 0.98
 config.window_close_confirmation = "NeverPrompt"
 config.window_decorations = "RESIZE"
 config.window_frame = {
