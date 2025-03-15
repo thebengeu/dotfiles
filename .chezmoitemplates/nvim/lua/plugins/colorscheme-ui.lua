@@ -55,6 +55,12 @@ end
 local bg
 local colorscheme_index
 
+local wezterm_set_background = function()
+  if bg then
+    util.wezterm_set_user_var("BACKGROUND", string.format("%06x", bg))
+  end
+end
+
 math.randomseed(os.time())
 
 local refresh_colorscheme = function(index)
@@ -87,8 +93,7 @@ local refresh_colorscheme = function(index)
 
   bg = vim.api.nvim_get_hl(0, { name = "Normal" }).bg
 
-  util.wezterm_set_user_var("BACKGROUND", string.format("%06x", bg))
-
+  wezterm_set_background()
   require("transparent").toggle(true)
 
   vim.schedule(function()
@@ -97,9 +102,7 @@ local refresh_colorscheme = function(index)
 end
 
 vim.api.nvim_create_autocmd("FocusGained", {
-  callback = function()
-    util.wezterm_set_user_var("BACKGROUND", string.format("%06x", bg))
-  end,
+  callback = wezterm_set_background,
 })
 
 vim.api.nvim_create_autocmd("FocusLost", {
