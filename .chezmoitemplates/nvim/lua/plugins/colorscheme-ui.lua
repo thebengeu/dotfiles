@@ -52,6 +52,7 @@ local refresh_colorschemes = function()
   end
 end
 
+local bg
 local colorscheme_index
 
 math.randomseed(os.time())
@@ -77,16 +78,35 @@ local refresh_colorscheme = function(index)
     end
   end
 
+  vim.g.transparent_enabled = false
   vim.cmd.colorscheme(name)
 
   if name == "newpaper" then
     vim.cmd["Newpaper" .. (style == "light" and "Light" or "Dark")]()
   end
 
+  bg = vim.api.nvim_get_hl(0, { name = "Normal" }).bg
+
+  util.wezterm_set_user_var("BACKGROUND", string.format("%06x", bg))
+
+  require("transparent").toggle(true)
+
   vim.schedule(function()
     require("lualine").refresh()
   end)
 end
+
+vim.api.nvim_create_autocmd("FocusGained", {
+  callback = function()
+    util.wezterm_set_user_var("BACKGROUND", string.format("%06x", bg))
+  end,
+})
+
+vim.api.nvim_create_autocmd("FocusLost", {
+  callback = function()
+    util.wezterm_set_user_var("BACKGROUND", "")
+  end,
+})
 
 local background_path = vim.fn.stdpath("data") .. "/background"
 local colorscheme_index_path = vim.fn.stdpath("data") .. "/colorscheme_index"

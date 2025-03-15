@@ -163,4 +163,5 @@ return {
       },
     },
   },
+  { "xiyaowong/transparent.nvim" },
 }

@@ -41,6 +41,36 @@ function M.apply_to_config(config)
     return tab.active_pane.title:gsub("%.exe$", "")
   end)
 
+  wezterm.on("user-var-changed", function(window, _, name, value)
+    if name == "BACKGROUND" then
+      if value == "" then
+        wezterm.time.call_after(0.1, function()
+          local user_vars = window:active_pane():get_user_vars()
+          local focused_nvim_time = tonumber(user_vars.FOCUSED_NVIM_TIME)
+
+          if not focused_nvim_time then
+            window:set_config_overrides({
+              background = nil,
+            })
+          end
+        end)
+      else
+        window:set_config_overrides({
+          background = {
+            {
+              opacity = 0.98,
+              height = "100%",
+              width = "100%",
+              source = {
+                Color = value,
+              },
+            },
+          },
+        })
+      end
+    end
+  end)
+
   if wezterm.target_triple:match("%%-pc%-windows%-msvc$") then
     wezterm.on("gui-startup", function()
       wezterm.run_child_process({

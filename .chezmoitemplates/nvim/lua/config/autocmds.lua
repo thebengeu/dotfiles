@@ -175,20 +175,6 @@ vim.api.nvim_create_autocmd("TextChanged", {
   pattern = "*.lua",
 })
 
-local wezterm_set_user_var = function(name, value)
-  local set_user_var = "\x1b]1337;SetUserVar="
-    .. name
-    .. "="
-    .. vim.base64.encode(tostring(value))
-    .. "\x07"
-
-  vim.fn.chansend(
-    vim.v.stderr,
-    vim.env.TMUX and "\x1bPtmux;\x1b" .. set_user_var .. "\x1b\\"
-      or set_user_var
-  )
-end
-
 if vim.env.TITLE_PREFIX == "wsl:" then
   vim.schedule(function()
     vim.opt.clipboard = "unnamedplus"
@@ -257,18 +243,18 @@ serverstart_unused_port = function(port)
       else
         vim.schedule(function()
           vim.fn.serverstart("127.0.0.1:" .. port)
-          wezterm_set_user_var("NVIM_PORT", port)
+          util.wezterm_set_user_var("NVIM_PORT", port)
 
           vim.api.nvim_create_autocmd("FocusGained", {
             callback = function()
-              wezterm_set_user_var("FOCUSED_NVIM_TIME", os.time())
+              util.wezterm_set_user_var("FOCUSED_NVIM_TIME", os.time())
             end,
           })
 
           vim.api.nvim_create_autocmd("VimLeave", {
             callback = function()
-              wezterm_set_user_var("NVIM_PORT", "")
-              wezterm_set_user_var("FOCUSED_NVIM_TIME", "")
+              util.wezterm_set_user_var("NVIM_PORT", "")
+              util.wezterm_set_user_var("FOCUSED_NVIM_TIME", "")
             end,
           })
         end)
@@ -277,5 +263,5 @@ serverstart_unused_port = function(port)
   )
 end
 
-wezterm_set_user_var("FOCUSED_NVIM_TIME", os.time())
+util.wezterm_set_user_var("FOCUSED_NVIM_TIME", os.time())
 serverstart_unused_port(6789)
