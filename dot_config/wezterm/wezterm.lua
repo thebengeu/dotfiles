@@ -26,7 +26,6 @@ tabline.setup({
 local is_windows = wezterm.target_triple:match("%%-pc%-windows%-msvc$")
 
 config.adjust_window_size_when_changing_font_size = false
-config.color_scheme = "Catppuccin Mocha"
 config.colors = {
   tab_bar = {
     active_tab = {

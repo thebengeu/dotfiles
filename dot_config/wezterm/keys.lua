@@ -1,3 +1,4 @@
+local keys_color_scheme = require("keys_color_scheme")
 local keys_nvim = require("keys_nvim")
 local keys_pane = require("keys_pane")
 local keys_split_nav = require("keys_split_nav")
@@ -114,13 +115,9 @@ function M.apply_to_config(config)
       mods = "SHIFT|CTRL",
       action = act.ShowDebugOverlay,
     },
-    {
-      key = "b",
-      mods = "SHIFT|CTRL",
-      action = act.ClearScrollback("ScrollbackOnly"),
-    },
   }
 
+  keys_color_scheme.apply_to_config(config)
   keys_nvim.apply_to_config(config)
   keys_pane.apply_to_config(config)
   keys_split_nav.apply_to_config(config)
