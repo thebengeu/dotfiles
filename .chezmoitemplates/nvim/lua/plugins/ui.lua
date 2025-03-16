@@ -158,10 +158,18 @@ return {
       disabled_filetypes = {
         "help",
         "lazy",
+        "mason",
         "markdown",
         "text",
       },
     },
   },
-  { "xiyaowong/transparent.nvim" },
+  {
+    "xiyaowong/transparent.nvim",
+    opts = {
+      extra_groups = {
+        "NormalFloat",
+      },
+    },
+  },
 }
