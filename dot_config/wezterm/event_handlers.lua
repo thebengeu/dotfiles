@@ -41,6 +41,12 @@ function M.apply_to_config(config)
     return tab.active_pane.title:gsub("%.exe$", "")
   end)
 
+  local function override_background(window, background)
+    local overrides = window:get_config_overrides() or {}
+    overrides.background = background
+    window:set_config_overrides(overrides)
+  end
+
   wezterm.on("user-var-changed", function(window, _, name, value)
     if name == "BACKGROUND" then
       if value == "" then
@@ -49,21 +55,17 @@ function M.apply_to_config(config)
           local focused_nvim_time = tonumber(user_vars.FOCUSED_NVIM_TIME)
 
           if not focused_nvim_time then
-            window:set_config_overrides({
-              background = nil,
-            })
+            override_background(window, nil)
           end
         end)
       else
-        window:set_config_overrides({
-          background = {
-            {
-              opacity = 0.98,
-              height = "100%",
-              width = "100%",
-              source = {
-                Color = value,
-              },
+        override_background(window, {
+          {
+            opacity = 0.95,
+            height = "100%",
+            width = "100%",
+            source = {
+              Color = value,
             },
           },
         })

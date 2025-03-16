@@ -35,9 +35,9 @@ local set_color_scheme = function(window, color_scheme_index)
   color_scheme_index = color_scheme_index or math.random(#color_schemes)
   wezterm.GLOBAL.color_scheme_index = color_scheme_index
 
-  window:set_config_overrides({
-    color_scheme = color_schemes[color_scheme_index],
-  })
+  local overrides = window:get_config_overrides() or {}
+  overrides.color_scheme = color_schemes[color_scheme_index]
+  window:set_config_overrides(overrides)
 end
 
 wezterm.on("window-config-reloaded", function(window)
