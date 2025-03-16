@@ -50,7 +50,7 @@ function M.apply_to_config(config)
   wezterm.on("user-var-changed", function(window, _, name, value)
     if name == "BACKGROUND" then
       if value == "" then
-        wezterm.time.call_after(0.1, function()
+        wezterm.time.call_after(0.01, function()
           local user_vars = window:active_pane():get_user_vars()
           local focused_nvim_time = tonumber(user_vars.FOCUSED_NVIM_TIME)
 
