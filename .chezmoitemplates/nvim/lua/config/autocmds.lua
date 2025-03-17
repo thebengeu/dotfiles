@@ -253,6 +253,10 @@ serverstart_unused_port = function(port)
 
           vim.api.nvim_create_autocmd("VimLeave", {
             callback = function()
+              if vim.env.KITTY_WINDOW_ID then
+                vim.system({ "kitten", "@", "set-colors", "--reset" })
+              end
+
               util.wezterm_set_user_var("NVIM_PORT", "")
               util.wezterm_set_user_var("FOCUSED_NVIM_TIME", "")
             end,

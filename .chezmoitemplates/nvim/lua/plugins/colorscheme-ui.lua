@@ -55,9 +55,13 @@ end
 local bg
 local colorscheme_index
 
-local wezterm_set_background = function()
+local set_background = function()
   if bg then
-    util.wezterm_set_user_var("BACKGROUND", string.format("%06x", bg))
+    if vim.env.KITTY_WINDOW_ID then
+      vim.system({ "kitten", "@", "set-colors", "background=#" .. bg })
+    else
+      util.wezterm_set_user_var("BACKGROUND", bg)
+    end
   end
 end
 
@@ -91,9 +95,9 @@ local refresh_colorscheme = function(index)
     vim.cmd["Newpaper" .. (style == "light" and "Light" or "Dark")]()
   end
 
-  bg = vim.api.nvim_get_hl(0, { name = "Normal" }).bg
+  bg = string.format("%06x", vim.api.nvim_get_hl(0, { name = "Normal" }).bg)
 
-  wezterm_set_background()
+  set_background()
   require("transparent").toggle(true)
 
   vim.schedule(function()
@@ -102,7 +106,7 @@ local refresh_colorscheme = function(index)
 end
 
 vim.api.nvim_create_autocmd("FocusGained", {
-  callback = wezterm_set_background,
+  callback = set_background,
 })
 
 vim.api.nvim_create_autocmd("FocusLost", {
