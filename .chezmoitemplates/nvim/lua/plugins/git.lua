@@ -109,14 +109,21 @@ return {
       },
     },
     keys = function()
+      local link = function(action)
+        return function()
+          require("gitlinker").link({
+            action = require("gitlinker.actions")[action],
+            remote = "origin",
+          })
+        end
+      end
+
       local link_using_default_branch = function(action)
         return function()
           local current_branch = util.git_stdout({ "branch", "--show-current" })
 
           util.git_stdout({ "sw" })
-          require("gitlinker").link({
-            action = require("gitlinker.actions")[action],
-          })
+          link(action)()
           util.git_stdout({ "sw", current_branch })
         end
       end
@@ -130,7 +137,7 @@ return {
         },
         {
           "<leader>gK",
-          "<cmd>GitLink!<cr>",
+          link("system"),
           mode = { "n", "x" },
           desc = "Open permalink (current branch)",
         },
@@ -142,7 +149,7 @@ return {
         },
         {
           "<leader>gY",
-          "<cmd>GitLink<cr>",
+          link("clipboard"),
           mode = { "n", "x" },
           desc = "Yank permalink (current branch)",
         },
