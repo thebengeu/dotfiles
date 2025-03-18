@@ -2,7 +2,15 @@
 yazi = "ya pack --upgrade"
 [misc]
 assume_yes = true
-disable = ["chezmoi", "containers", "vim", "wsl"]
+disable = [
+  "chezmoi",
+  "containers",
+{{- if eq .chezmoi.os "linux"}}
+  "gcloud",
+{{- end}}
+  "vim",
+  "wsl",
+]
 no_retry = true
 [npm]
 use_sudo = true
