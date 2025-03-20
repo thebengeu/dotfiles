@@ -153,18 +153,6 @@ return {
     opts = {},
   },
   {
-    "m4xshen/smartcolumn.nvim",
-    opts = {
-      disabled_filetypes = {
-        "help",
-        "lazy",
-        "mason",
-        "markdown",
-        "text",
-      },
-    },
-  },
-  {
     "xiyaowong/transparent.nvim",
     opts = {
       extra_groups = {
