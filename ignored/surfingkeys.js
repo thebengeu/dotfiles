@@ -1,2 +1,2 @@
-api.map("<Ctrl-i>", "<Alt-s>");
-settings.blocklistPattern = /app.hex.tech|mail.google.com/;
+// ~/.local/share/chezmoi/ignored/surfingkeys.js
+settings.blocklistPattern = ["app.hex.tech", "mail.google.com"].join("|");
