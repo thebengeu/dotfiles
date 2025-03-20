@@ -47,33 +47,30 @@ for key, bundle_id_and_args in pairs({
   },
   -- ["."] = "unwrap-clipboard",
   ["/"] = "com.flexibits.fantastical2.mac",
-  a = "net.whatsapp.WhatsApp",
-  -- b = "BigQuery cell",
+  a = "com.aptakube.Aptakube",
+  b = "md.obsidian",
   c = "Google Chrome",
   d = "com.kapeli.dash-setapp",
   e = "com.microsoft.edgemac",
   f = "com.microsoft.edgemac.app.nkbljeindhmekmppbpgebpjebkjbmfaj",
-  g = "ru.keepcoder.Telegram",
-  -- h = "format-clipboard Python",
-  i = "org.mozilla.firefox",
+  g = "com.hahainteractive.GoodTask3Mac",
+  h = "net.whatsapp.WhatsApp",
+  i = "com.openai.chat",
   j = "com.jetbrains.pycharm",
   k = KITTY_BUNDLE_ID,
   l = "com.linear",
   m = "com.mimestream.Mimestream",
   n = "notion.id",
-  o = "md.obsidian",
-  p = "com.readdle.SparkDesktop-setapp",
-  -- q = "format-clipboard SQL",
-  r = "com.apple.reminders",
+  o = "com.microsoft.edgemac.app.knaiokfnmjjldlfhlioejgcompgenfhb",
+  p = "co.noteplan.NotePlan-setapp",
+  q = "com.readdle.SparkDesktop-setapp",
+  r = "com.microsoft.edgemac.app.bndmnggfngpgmmijcogkkgglhalbpomk",
   s = "com.tinyspeck.slackmacgap",
-  t = "com.microsoft.edgemac.app.knaiokfnmjjldlfhlioejgcompgenfhb",
-  u = "com.aptakube.Aptakube",
+  t = "ru.keepcoder.Telegram",
+  u = "com.todesktop.230313mzl4w4u92",
   v = "com.neovide.neovide",
   w = WEZTERM_BUNDLE_ID,
-  x = {
-    args = "~/thebengeu/cheatsheet/README.md",
-    bundle_id = "com.brettterpstra.marked2",
-  },
+  x = "org.mozilla.firefox",
   y = "com.spotify.client",
   z = {
     args = "~/thebengeu/qmk_userspace/keymap.svg",
@@ -84,7 +81,6 @@ for key, bundle_id_and_args in pairs({
 end
 
 for key, bundle_id_and_args in pairs({
-  a = "com.openai.chat",
   c = "com.apple.podcasts",
   d = "com.hnc.Discord",
   e = "com.endel.endel",
@@ -94,9 +90,12 @@ for key, bundle_id_and_args in pairs({
   -- j = "Colab local URL",
   k = "org.pqrs.Karabiner-EventViewer",
   -- l = "Colab remote URL",
+  m = {
+    args = "~/thebengeu/cheatsheet/README.md",
+    bundle_id = "com.brettterpstra.marked2",
+  },
   o = "com.bloombuilt.dayone-mac",
   p = "com.apple.Preview",
-  r = "com.microsoft.edgemac.app.bndmnggfngpgmmijcogkkgglhalbpomk",
   s = "dev.kdrag0n.MacVirt",
   v = "com.microsoft.VSCode",
 }) do
@@ -109,29 +108,29 @@ for key, bundle_id_and_args in pairs({
     open = "/System/Library/PreferencePanes/Displays.prefPane",
   },
   ["/"] = { "com.flexibits.fantastical2.mac" },
-  a = { "net.whatsapp.WhatsApp" },
+  a = { "com.aptakube.Aptakube" },
+  b = { "md.obsidian", "p", { "cmd", "shift" } },
   c = { "Google Chrome", "l" },
   e = { "com.microsoft.edgemac", "l" },
   f = { "com.microsoft.edgemac.app.nkbljeindhmekmppbpgebpjebkjbmfaj", "/", {} },
-  g = { "ru.keepcoder.Telegram", "k" },
-  i = { "org.mozilla.firefox", "l" },
+  g = { "com.hahainteractive.GoodTask3Mac" },
+  h = { "net.whatsapp.WhatsApp" },
+  i = { "com.openai.chat" },
   j = { "com.jetbrains.pycharm", "o", { "cmd", "shift" } },
   k = { KITTY_BUNDLE_ID, "h", { "ctrl", "shift" } },
   l = { "com.linear", "/", {} },
   m = { "com.mimestream.Mimestream", "f", { "cmd", "option" } },
   n = { "notion.id", "k" },
-  o = { "md.obsidian", "p", { "cmd", "shift" } },
-  p = { "com.readdle.SparkDesktop-setapp" },
-  r = { "com.apple.reminders" },
+  o = { "com.microsoft.edgemac.app.knaiokfnmjjldlfhlioejgcompgenfhb", "k" },
+  p = { "co.noteplan.NotePlan-setapp", "f", { "cmd", "shift" } },
+  q = { "com.readdle.SparkDesktop-setapp" },
+  r = { "com.microsoft.edgemac.app.bndmnggfngpgmmijcogkkgglhalbpomk" },
   s = { "com.tinyspeck.slackmacgap", "k" },
-  t = { "com.microsoft.edgemac.app.knaiokfnmjjldlfhlioejgcompgenfhb", "k" },
-  u = { "com.aptakube.Aptakube" },
+  t = { "ru.keepcoder.Telegram", "k" },
+  u = { "com.todesktop.230313mzl4w4u92", "p" },
   v = { "com.neovide.neovide", "p" },
   w = { WEZTERM_BUNDLE_ID },
-  x = {
-    args = "~/thebengeu/cheatsheet/README.md",
-    bundle_id = "com.brettterpstra.marked2",
-  },
+  x = { "org.mozilla.firefox", "l" },
   y = { "com.spotify.client", "k" },
 }) do
   local bundle_id = bundle_id_and_args.bundle_id or bundle_id_and_args[1]
@@ -242,8 +241,6 @@ end)
 
 for key, command in pairs({
   ["."] = "unwrap-clipboard",
-  h = "format-clipboard Python",
-  q = "format-clipboard SQL",
 }) do
   hs.hotkey.bind({ "ctrl", "option", "shift" }, key, function()
     local clipboardContents = hs.pasteboard.getContents()
@@ -256,14 +253,6 @@ for key, command in pairs({
     print(output)
   end)
 end
-
-hs.hotkey.bind({ "ctrl", "option", "shift" }, "b", function()
-  hs.eventtap.keyStroke({ "cmd" }, "m")
-  hs.eventtap.keyStrokes("b%%bigquery")
-  hs.timer.usleep(10000)
-  hs.eventtap.keyStroke({}, "return")
-  hs.eventtap.keyStrokes("#@title ")
-end)
 
 hs.hotkey.bind({ "ctrl", "shift", "cmd" }, "g", function()
   local bundle_id = "com.neovide.neovide"
