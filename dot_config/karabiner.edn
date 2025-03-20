@@ -26,10 +26,8 @@
      :rules [[:##caps_lock {:key :left_control, :lazy true}
               :built-in
               {:alone :escape, :held :left_control}]]}
-    {:des "left_control to control and escape",
-     :rules [[:##left_control {:key :left_control, :lazy true}
-              :built-in
-              {:alone :escape, :held :left_control}]]}
+    {:des "left_control to control-shift-cmd",
+     :rules [[:##left_control :!TCright_shift :built-in]]}
     {:des "right_command to control-option-shift",
      :rules [[:##right_command :!TOright_shift :built-in]]}
     {:des "right_control to fn", :rules [[:##right_control :fn]]}
