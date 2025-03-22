@@ -30,7 +30,9 @@ local refresh_colorschemes = function()
 
       if extra_spec.colorscheme_styles then
         for _, colorscheme_style in ipairs(extra_spec.colorscheme_styles) do
-          if colorscheme_style:match("light") then
+          if
+            colorscheme_style:match("light") or colorscheme_style == "summer"
+          then
             if vim.o.background == "light" then
               table.insert(colorschemes, { name, colorscheme_style })
             end
@@ -79,9 +81,17 @@ local refresh_colorscheme = function(index)
     local extra_spec = util.extra_specs[name]
 
     if extra_spec.colorscheme_style_key then
-      require(name).setup(vim.tbl_extend("error", extra_spec.opts or {}, {
+      local theme = {
         [extra_spec.colorscheme_style_key] = style,
-      }))
+      }
+
+      require(name).setup(
+        vim.tbl_extend(
+          "error",
+          extra_spec.opts or {},
+          name == "evergarden" and { theme = theme } or theme
+        )
+      )
     else
       vim.g[name:gsub("-", "_") .. "_" .. (extra_spec.colorscheme_style_suffix or "style")] =
         style

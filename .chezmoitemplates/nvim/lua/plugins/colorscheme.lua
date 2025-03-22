@@ -114,6 +114,7 @@ local specs = {
     colorscheme_styles = {
       "fall",
       "spring",
+      "summer",
       "winter",
     },
   },
@@ -175,26 +176,24 @@ local specs = {
       "github_light_high_contrast",
     },
     name = "github-theme",
-    opts = function()
-      return {
-        groups = {
-          all = rainbow_delimiter_highlights({
-            "palette.red",
-            "palette.yellow",
-            "palette.blue",
-            "palette.orange",
-            "palette.green",
-            "palette.magenta",
-            "palette.cyan",
-          }),
+    opts = {
+      groups = {
+        all = rainbow_delimiter_highlights({
+          "palette.red",
+          "palette.yellow",
+          "palette.blue",
+          "palette.orange",
+          "palette.green",
+          "palette.magenta",
+          "palette.cyan",
+        }),
+      },
+      options = {
+        styles = {
+          comments = "italic",
         },
-        options = {
-          styles = {
-            comments = "italic",
-          },
-        },
-      }
-    end,
+      },
+    },
   },
   {
     "ellisonleao/gruvbox.nvim",
