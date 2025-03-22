@@ -26,7 +26,6 @@ local specs = {
     "uloco/bluloco.nvim",
     dependencies = "rktjmp/lush.nvim",
     opts = {
-      italics = true,
       terminal = true,
     },
     supports_light_background = true,
@@ -54,7 +53,6 @@ local specs = {
   {
     "scottmckendry/cyberdream.nvim",
     opts = {
-      italic_comments = true,
       variant = "auto",
     },
     supports_light_background = true,
@@ -64,9 +62,6 @@ local specs = {
     colors_names = {
       "dracula",
       "dracula-soft",
-    },
-    opts = {
-      italic_comment = true,
     },
   },
   {
@@ -155,11 +150,6 @@ local specs = {
           colors.cyan,
         })
       end,
-      styles = {
-        comments = {
-          italic = true,
-        },
-      },
     },
   },
   {
@@ -187,11 +177,6 @@ local specs = {
           "palette.magenta",
           "palette.cyan",
         }),
-      },
-      options = {
-        styles = {
-          comments = "italic",
-        },
       },
     },
   },
@@ -300,9 +285,6 @@ local specs = {
         "telescope",
         "trouble",
         "which-key",
-      },
-      styles = {
-        comments = { italic = true },
       },
     },
   },
@@ -417,13 +399,6 @@ local specs = {
       "dawnfox",
       "dayfox",
     },
-    opts = {
-      options = {
-        styles = {
-          comments = "italic",
-        },
-      },
-    },
   },
   {
     "oxfist/night-owl.nvim",
@@ -464,19 +439,9 @@ local specs = {
     colors_names_light = {
       "onelight",
     },
-    opts = {
-      styles = {
-        comments = "italic",
-      },
-    },
   },
   {
     "rmehri01/onenord.nvim",
-    opts = {
-      styles = {
-        comments = "italic",
-      },
-    },
     supports_light_background = true,
   },
   {
@@ -582,9 +547,6 @@ local specs = {
         neogit = true,
         telescope = true,
       },
-      syntax = {
-        comments = { italic = true },
-      },
     },
     highlights = function(style)
       local colors = require("nvim-tundra.palette." .. style)
@@ -614,9 +576,6 @@ local specs = {
         RainbowDelimiterBlue = { fg = colors.vscMediumBlue or colors.vscBlue },
       }
     end,
-    opts = {
-      italic_comments = true,
-    },
     supports_light_background = true,
   },
   {
