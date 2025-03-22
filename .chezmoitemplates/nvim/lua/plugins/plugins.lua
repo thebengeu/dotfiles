@@ -296,7 +296,7 @@ return {
         end,
       },
     },
-    lazy = false,
+    lazy = vim.env.WEZTERM_UNIX_SOCKET ~= nil,
   },
   {
     "folke/snacks.nvim",
