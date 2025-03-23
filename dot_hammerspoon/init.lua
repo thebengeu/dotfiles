@@ -45,7 +45,7 @@ for key, bundle_id_and_args in pairs({
     bundle_id = "com.apple.systempreferences",
     open = "/System/Library/PreferencePanes/Displays.prefPane",
   },
-  -- ["."] = "unwrap-clipboard",
+  -- ["."] = "",
   ["/"] = "com.flexibits.fantastical2.mac",
   a = "com.aptakube.Aptakube",
   b = "md.obsidian",
@@ -81,6 +81,7 @@ for key, bundle_id_and_args in pairs({
 end
 
 for key, bundle_id_and_args in pairs({
+  -- ["."] = "unwrap-clipboard",
   c = "com.apple.podcasts",
   d = "com.hnc.Discord",
   e = "com.endel.endel",
@@ -96,8 +97,10 @@ for key, bundle_id_and_args in pairs({
   },
   o = "com.bloombuilt.dayone-mac",
   p = "com.apple.Preview",
+  -- q = "format-clipboard SQL",
   s = "dev.kdrag0n.MacVirt",
   v = "com.microsoft.VSCode",
+  -- w = "format-clipboard Python",
 }) do
   setup_app_hotkey(bundle_id_and_args, key, { "ctrl", "shift", "cmd" })
 end
@@ -241,8 +244,10 @@ end)
 
 for key, command in pairs({
   ["."] = "unwrap-clipboard",
+  q = "format-clipboard SQL",
+  w = "format-clipboard Python",
 }) do
-  hs.hotkey.bind({ "ctrl", "option", "shift" }, key, function()
+  hs.hotkey.bind({ "ctrl", "cmd", "shift" }, key, function()
     local clipboardContents = hs.pasteboard.getContents()
     hs.eventtap.keyStroke({ "cmd" }, "a")
     hs.eventtap.keyStroke({ "cmd" }, "c")
