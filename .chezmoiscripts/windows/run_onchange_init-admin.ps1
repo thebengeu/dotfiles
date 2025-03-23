@@ -91,7 +91,6 @@ if ($Env:PROCESSOR_ARCHITECTURE -ne 'ARM64')
 }
 
 $unnecessaryApps = @(
-  'Clipchamp.Clipchamp'
   'Microsoft.549981C3F5F10' # Cortana
   'Microsoft.BingNews'
   'Microsoft.BingWeather'
