@@ -9,15 +9,6 @@ vim.keymap.del("n", "<leader>gL")
 vim.keymap.set("n", "<C-r>", "<cmd>silent redo<cr>")
 vim.keymap.set("n", "u", "<cmd>silent undo<cr>")
 
-vim.keymap.set("n", "[<Space>", function()
-  vim.fn.append(vim.fn.line(".") - 1, "")
-end, { desc = "Add blank line above" })
-
-vim.keymap.set("n", "]<Space>", function()
-  ---@diagnostic disable-next-line: param-type-mismatch
-  vim.fn.append(vim.fn.line("."), "")
-end, { desc = "Add blank line below" })
-
 -- https://nanotipsforvim.prose.sh/keeping-your-register-clean-from-dd
 vim.keymap.set("n", "dd", function()
   return vim.fn.getline(".") == "" and '"_dd' or "dd"
@@ -112,6 +103,17 @@ Snacks.toggle({
     vim.opt.mouse = state and "a" or ""
   end,
 }):map("<leader>um")
+
+util.set_virtual_lines(true)
+util.set_virtual_lines(false, require("lazy.core.config").ns)
+
+Snacks.toggle({
+  name = "Virtual Lines",
+  get = function()
+    return not not vim.diagnostic.config().virtual_lines
+  end,
+  set = util.set_virtual_lines,
+}):map("<leader>uv")
 
 vim.keymap.set("n", "<leader>cU", function()
   util.async_run_sh(
