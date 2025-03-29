@@ -353,7 +353,7 @@ functions: {
 	gc: {
 		lines: [
 			#"git clone --recursive "$repo""#,
-			#"cd "$(basename "$repo" .git)""#,
+			#"cd "$(echo "$repo" | sed s/\.git\$// | grep -oE '([^:/]+)$')""#,
 			"glow README.md",
 		]
 		parameters: ["repo"]
