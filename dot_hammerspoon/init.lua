@@ -101,6 +101,7 @@ for key, bundle_id_and_args in pairs({
   s = "dev.kdrag0n.MacVirt",
   v = "com.microsoft.VSCode",
   -- w = "format-clipboard Python",
+  x = "com.microsoft.Excel",
 }) do
   setup_app_hotkey(bundle_id_and_args, key, { "ctrl", "shift", "cmd" })
 end
