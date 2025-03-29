@@ -69,6 +69,10 @@
 [url "git@github.com:"]
 	insteadOf = g:
 	insteadOf = https://github.com/
+[url "git@github.com:supabase/"]
+	insteadOf = s:
+[url "git@github.com:thebengeu/"]
+	insteadOf = t:
 [user]
 	email = beng@bengeu.com
 	name = Beng Eu
