@@ -83,6 +83,7 @@ return {
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
         "fixjson",
+        "gh-actions-language-server",
         "golangci-lint",
         "mypy",
         "prettierd",
@@ -158,6 +159,7 @@ return {
 
       opts.servers = vim.tbl_extend("error", opts.servers, {
         dagger = {},
+        gh_actions_ls = {},
         graphql = {},
         powershell_es = {
           enabled = vim.fn.executable("pwsh") == 1,
