@@ -18,6 +18,7 @@
       "editorIndentGuide.background6": "mauve"
     }
   },
+  "chat.editor.fontSize": 14,
   "cSpell.includeRegExpList": ["CStyleComment"],
   "cSpell.userWords": [
     "autoapi",
@@ -41,11 +42,13 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.fontFamily": "MonoLisa Variable",
   "editor.fontLigatures": true,
-  "editor.fontSize": 16,
+  "editor.fontSize": 14,
   "editor.formatOnSave": true,
   "editor.lineNumbers": "relative",
   "editor.minimap.autohide": true,
+  "editor.mouseWheelZoom": true,
   "editor.wordWrap": "on",
+  "explorer.confirmDelete": false,
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
   },
@@ -56,6 +59,8 @@
   },
   "remote.SSH.useLocalServer": false,
   "settingsSync.keybindingsPerPlatform": false,
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.mouseWheelZoom": true,
   "vscode-neovim.useWSL": true,
   "vspacecode.bindingOverrides": [
     {
@@ -83,6 +88,7 @@
     }
   ],
   "whichkey.delay": 300,
+  "window.zoomLevel": 1.1,
   "workbench.colorCustomizations": {
     "[Gruvbox Material Dark]": {
       "editorIndentGuide.activeBackground1": "#ea6962",
