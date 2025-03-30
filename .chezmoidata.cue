@@ -55,6 +55,7 @@ aliases: {
 	cu:              "cargo uninstall"
 	cup:             "chezmoi update --apply=false; chezmoi init; \(ca)"
 	cx:              "chmod +x"
+	d:               "devspace"
 	da:              "direnv allow"
 	dc:              "supa-admin-cli --config ~/.supa-admin-cli.dev"
 	dh:              "\(dc) ssh -p"
