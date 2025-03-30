@@ -41,10 +41,7 @@ end
 
 for key, bundle_id_and_args in pairs({
   -- ["'"] = "Rectangle Pro Layout 0",
-  [","] = {
-    bundle_id = "com.apple.systempreferences",
-    open = "/System/Library/PreferencePanes/Displays.prefPane",
-  },
+  [","] = "com.neovide.neovide",
   -- ["."] = "",
   ["/"] = "com.flexibits.fantastical2.mac",
   a = "com.aptakube.Aptakube",
@@ -68,7 +65,7 @@ for key, bundle_id_and_args in pairs({
   s = "com.tinyspeck.slackmacgap",
   t = "ru.keepcoder.Telegram",
   u = "com.todesktop.230313mzl4w4u92",
-  v = "com.neovide.neovide",
+  v = "com.microsoft.VSCode",
   w = WEZTERM_BUNDLE_ID,
   x = "org.mozilla.firefox",
   y = "com.spotify.client",
@@ -82,7 +79,7 @@ end
 
 for key, bundle_id_and_args in pairs({
   -- ["."] = "unwrap-clipboard",
-  c = "com.apple.podcasts",
+  c = "io.coressh.tunnel-direct",
   d = "com.hnc.Discord",
   e = "com.endel.endel",
   f = "com.apple.finder",
@@ -96,10 +93,11 @@ for key, bundle_id_and_args in pairs({
     bundle_id = "com.brettterpstra.marked2",
   },
   o = "com.bloombuilt.dayone-mac",
-  p = "com.apple.Preview",
+  p = "com.apple.podcasts",
   -- q = "format-clipboard SQL",
   s = "dev.kdrag0n.MacVirt",
-  v = "com.microsoft.VSCode",
+  t = "info.eurocomp.Timing-setapp",
+  v = "com.apple.Preview",
   -- w = "format-clipboard Python",
   x = "com.microsoft.Excel",
 }) do
@@ -107,10 +105,7 @@ for key, bundle_id_and_args in pairs({
 end
 
 for key, bundle_id_and_args in pairs({
-  [","] = {
-    bundle_id = "com.apple.systempreferences",
-    open = "/System/Library/PreferencePanes/Displays.prefPane",
-  },
+  [","] = { "com.neovide.neovide", "p" },
   ["/"] = { "com.flexibits.fantastical2.mac" },
   a = { "com.aptakube.Aptakube" },
   b = { "md.obsidian", "p", { "cmd", "shift" } },
@@ -132,7 +127,7 @@ for key, bundle_id_and_args in pairs({
   s = { "com.tinyspeck.slackmacgap", "k" },
   t = { "ru.keepcoder.Telegram", "k" },
   u = { "com.todesktop.230313mzl4w4u92", "p" },
-  v = { "com.neovide.neovide", "p" },
+  v = { "com.microsoft.VSCode", "p" },
   w = { WEZTERM_BUNDLE_ID },
   x = { "org.mozilla.firefox", "l" },
   y = { "com.spotify.client", "k" },
