@@ -64,6 +64,13 @@
   "vscode-neovim.useWSL": true,
   "vspacecode.bindingOverrides": [
     {
+      "command": "lazygit-vscode.toggle",
+      "icon": "git-branch",
+      "keys": "g.g",
+      "name": "Lazygit",
+      "type": "command"
+    },
+    {
       "command": "workbench.action.quickOpen",
       "icon": "file",
       "keys": " ",
