@@ -35,6 +35,7 @@ aliases: {
 	as4:             "export AWS_REGION=ap-southeast-4;"
 	as5:             "export AWS_REGION=ap-southeast-5;"
 	bf:              "\(_env) --chdir ~/thebengeu/qmk_userspace make hazel/bad_wings:thebengeu:flash"
+	cf:              "\(_env) --chdir ~/thebengeu/qmk_userspace make bastardkb/charybdis/4x6:thebengeu:flash"
 	bm:              "batman"
 	c:               "docker compose"
 	ca:              "chezmoi apply --keep-going --exclude scripts; chezmoi apply --keep-going --include scripts"
