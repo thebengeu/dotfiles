@@ -403,4 +403,19 @@ return {
       end)
     end,
   },
+  {
+    "mikavilpas/yazi.nvim",
+    keys = {
+      {
+        "<leader>fy",
+        "<cmd>Yazi<cr>",
+        desc = "Open Yazi (Directory of Current File)",
+      },
+      {
+        "<leader>fY",
+        "<cmd>Yazi cwd<cr>",
+        desc = "Open Yazi (cwd)",
+      },
+    },
+  },
 }
