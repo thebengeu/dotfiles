@@ -376,7 +376,7 @@ return {
       styles = {
         lazygit = {
           wo = {
-            winblend = 0,
+            winblend = 10,
           },
         },
       },
@@ -416,6 +416,9 @@ return {
         "<cmd>Yazi cwd<cr>",
         desc = "Open Yazi (cwd)",
       },
+    },
+    opts = {
+      yazi_floating_window_winblend = 10,
     },
   },
 }

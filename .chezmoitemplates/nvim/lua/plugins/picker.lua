@@ -417,7 +417,7 @@ return {
         prompt_prefix = " ",
         selection_caret = " ",
         sorting_strategy = "ascending",
-        winblend = 5,
+        winblend = 10,
       })
     end,
   },

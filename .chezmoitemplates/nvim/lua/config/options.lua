@@ -19,6 +19,7 @@ vim.opt.gdefault = true
 vim.opt.guifont = "MonoLisa Variable:h" .. (jit.os == "OSX" and "17" or "13")
 vim.opt.keywordprg = ":Search"
 vim.opt.linebreak = true
+vim.opt.pumblend = 10
 vim.opt.report = 999
 vim.opt.sessionoptions = {
   "buffers",
@@ -37,7 +38,7 @@ end
 
 vim.opt.title = true
 vim.opt.titlestring = (vim.env.TITLE_PREFIX or "") .. "%F"
-vim.opt.winblend = 5
+vim.opt.winblend = 10
 vim.opt.wrap = true
 
 vim.filetype.add({
