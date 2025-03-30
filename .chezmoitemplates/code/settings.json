@@ -40,7 +40,7 @@
   },
   "editor.cursorSurroundingLines": 999,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.fontFamily": "MonoLisa Variable",
+  "editor.fontFamily": "MonoLisaVariable Nerd Font",
   "editor.fontLigatures": true,
   "editor.fontSize": 14,
   "editor.formatOnSave": true,
