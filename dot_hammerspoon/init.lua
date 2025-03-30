@@ -42,7 +42,7 @@ end
 for key, bundle_id_and_args in pairs({
   -- ["'"] = "Rectangle Pro Layout 0",
   [","] = "com.neovide.neovide",
-  -- ["."] = "",
+  ["."] = "com.apple.finder",
   ["/"] = "com.flexibits.fantastical2.mac",
   a = "com.aptakube.Aptakube",
   b = "md.obsidian",
@@ -82,7 +82,6 @@ for key, bundle_id_and_args in pairs({
   c = "io.coressh.tunnel-direct",
   d = "com.hnc.Discord",
   e = "com.endel.endel",
-  f = "com.apple.finder",
   -- g = "GhostText",
   h = "org.hammerspoon.Hammerspoon",
   -- j = "Colab local URL",
