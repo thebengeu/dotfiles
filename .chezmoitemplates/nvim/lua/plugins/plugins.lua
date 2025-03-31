@@ -301,6 +301,13 @@ return {
   {
     "folke/snacks.nvim",
     init = function()
+      local mini_icons_hl = vim
+        .iter(util.rainbow_colors)
+        :map(function(rainbow_color)
+          return "MiniIcons" .. rainbow_color:gsub("Violet", "Purple")
+        end)
+        :totable()
+
       local ts_rainbow_2_hl = vim
         .iter(util.rainbow_colors)
         :map(function(rainbow_color)
@@ -336,6 +343,7 @@ return {
           local rainbow_hl = rainbow_hl_if_exists(util.rainbow_delimiters_hl)
             or rainbow_hl_if_exists(ts_rainbow_2_hl)
             or rainbow_hl_if_exists(ts_rainbow_hl)
+            or rainbow_hl_if_exists(mini_icons_hl)
 
           if not rainbow_hl then
             error("No rainbow highlight groups found")

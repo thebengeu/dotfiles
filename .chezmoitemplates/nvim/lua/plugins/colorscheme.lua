@@ -12,6 +12,16 @@ end
 
 local specs = {
   {
+    "Shatur/neovim-ayu",
+    colors_names = {
+      "ayu-dark",
+      "ayu-mirage",
+    },
+    colors_names_light = {
+      "ayu-light",
+    },
+  },
+  {
     "ribru17/bamboo.nvim",
     colors_names = {
       "bamboo-multiplex",
@@ -166,19 +176,6 @@ local specs = {
       "github_light_high_contrast",
     },
     name = "github-theme",
-    opts = {
-      groups = {
-        all = rainbow_delimiter_highlights({
-          "palette.red",
-          "palette.yellow",
-          "palette.blue",
-          "palette.orange",
-          "palette.green",
-          "palette.magenta",
-          "palette.cyan",
-        }),
-      },
-    },
   },
   {
     "ellisonleao/gruvbox.nvim",
@@ -238,19 +235,6 @@ local specs = {
     colors_names_light = {
       "kanagawa-lotus",
     },
-    opts = {
-      overrides = function(colors)
-        return rainbow_delimiter_highlights({
-          colors.palette.peachRed,
-          colors.palette.carpYellow,
-          colors.palette.crystalBlue,
-          colors.palette.surimiOrange,
-          colors.palette.springGreen,
-          colors.palette.oniViolet,
-          colors.palette.waveAqua2,
-        })
-      end,
-    },
   },
   {
     "sho-87/kanagawa-paper.nvim",
@@ -290,19 +274,6 @@ local specs = {
   },
   {
     "savq/melange-nvim",
-    highlights = function()
-      local palette = require("melange.palettes." .. vim.o.background)
-
-      return rainbow_delimiter_highlights({
-        palette.b.red,
-        palette.b.yellow,
-        palette.b.blue,
-        palette.c.yellow,
-        palette.b.green,
-        palette.b.magenta,
-        palette.b.cyan,
-      })
-    end,
     supports_light_background = true,
   },
   {
@@ -569,13 +540,6 @@ local specs = {
   },
   {
     "Mofiqul/vscode.nvim",
-    highlights = function()
-      local colors = require("vscode.colors").get_colors()
-
-      return {
-        RainbowDelimiterBlue = { fg = colors.vscMediumBlue or colors.vscBlue },
-      }
-    end,
     supports_light_background = true,
   },
   {
