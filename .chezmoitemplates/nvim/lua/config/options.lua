@@ -57,7 +57,7 @@ if vim.g.neovide then
   vim.g.neovide_cursor_vfx_particle_density = 50
   vim.g.neovide_cursor_vfx_particle_lifetime = 2
   vim.g.neovide_input_macos_option_key_is_meta = "both"
-  vim.g.neovide_transparency = 0.95
+  vim.g.neovide_opacity = 0.95
   vim.g.neovide_underline_stroke_scale = 2.5
 end
 
