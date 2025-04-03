@@ -320,6 +320,7 @@ local specs = {
   {
     "Goose97/timber.nvim",
     ft = {
+      "go",
       "lua",
       "typescript",
     },
