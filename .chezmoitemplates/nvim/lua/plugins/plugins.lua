@@ -3,9 +3,14 @@ local util = require("util")
 local WSL_WINDOWS_HOMEDIR = "/mnt/c/Users/beng"
 
 local cwd = vim.uv.cwd()
-local auto_restore_last_session = cwd
-  and (cwd:match("\\scoop\\apps\\") or cwd == vim.env.windir or cwd == "/")
 local homedir = vim.uv.os_homedir()
+local auto_restore_last_session = cwd
+  and (
+    cwd:match("\\scoop\\apps\\")
+    or cwd == vim.env.windir
+    or cwd == "/"
+    or cwd == homedir
+  )
 local path_sep = package.config:sub(1, 1)
 local obsidian_vault_path = (
   vim.fn.isdirectory(WSL_WINDOWS_HOMEDIR) == 1 and WSL_WINDOWS_HOMEDIR
