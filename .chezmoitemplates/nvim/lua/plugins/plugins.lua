@@ -140,6 +140,12 @@ return {
     },
   },
   {
+    "zbirenbaum/copilot.lua",
+    opts = function()
+      require("copilot.api").status = require("copilot.status")
+    end,
+  },
+  {
     "CopilotC-Nvim/CopilotChat.nvim",
     build = "luarocks install tiktoken_core",
   },
