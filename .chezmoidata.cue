@@ -115,6 +115,7 @@ aliases: {
 	rm:              "trash"
 	scc:             #"scc --not-match "package-lock.json|pnpm-lock.yaml""#
 	sn:              "eksctl scale nodegroup --cluster $(eks-cluster-name) --name $(nodegroup-name) --nodes"
+	sp:              "git -C ~/supabase all pull"
 	ss:              "aws ssm start-session --target"
 	st:              "speedtest"
 	t:               "pnpm dlx tsx"
