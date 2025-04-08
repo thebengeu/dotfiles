@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>build</key>
-	<string>2199</string>
+	<string>2250</string>
 	<key>preferences</key>
 	<dict>
 		<key>Battery.Menu.State</key>
@@ -92,6 +92,8 @@
 				<string>cpu-launcher</string>
 			</dict>
 		</array>
+		<key>Combined.Menubar.Items</key>
+		<array/>
 		<key>Device.Auth-Identifier</key>
 		<string>8634F7E3-86BF-4162-B69C-80DF69860387</string>
 		<key>Device.Device</key>
@@ -188,6 +190,8 @@
 		<string>system</string>
 		<key>Menubar.Global.ReducePadding</key>
 		<integer>1</integer>
+		<key>Migration.CombinedPowerItems</key>
+		<true/>
 		<key>Migration.Profiles</key>
 		<true/>
 		<key>Network.Menu.Processes.Count</key>
@@ -326,9 +330,9 @@
 		<key>Profiles.Settings.default.Time.Menubar.Enabled</key>
 		<integer>1</integer>
 		<key>Status.Build.Last</key>
-		<real>2199</real>
+		<real>2250</real>
 		<key>Status.Version.Last</key>
-		<real>7.0100002288818359</real>
+		<real>7.0999999046325684</real>
 		<key>Time.Global.Events</key>
 		<integer>0</integer>
 		<key>Time.Menu.Calendar.ShowWeeks</key>
@@ -375,6 +379,26 @@
 				<string></string>
 				<key>timezone</key>
 				<string>America/Los_Angeles</string>
+			</dict>
+			<dict>
+				<key>city</key>
+				<string>Central Time</string>
+				<key>country</key>
+				<string>United States</string>
+				<key>countrycode</key>
+				<string>US</string>
+				<key>identifier</key>
+				<integer>-2</integer>
+				<key>latitude</key>
+				<real>41.850029999999997</real>
+				<key>longitude</key>
+				<real>-87.650049999999993</real>
+				<key>region</key>
+				<string></string>
+				<key>state</key>
+				<string></string>
+				<key>timezone</key>
+				<string>America/Chicago</string>
 			</dict>
 			<dict>
 				<key>city</key>
