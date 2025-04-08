@@ -70,7 +70,7 @@ aliases: {
 	grm:             "glow README.md"
 	hb:              "hyperfine 'bash -i -c exit'"
 	hbn:             "hyperfine 'bash --noprofile --norc -i -c exit'"
-	ic:              "TERM=xterm-256color aws ec2-instance-connect ssh --os-user ec2-user --instance-id"
+	ic:              "TERM=xterm-256color aws ec2-instance-connect ssh --os-user ubuntu --instance-id"
 	j:               "just"
 	jd:              "just dev"
 	k:               "kubectl"
@@ -116,6 +116,9 @@ aliases: {
 	scc:             #"scc --not-match "package-lock.json|pnpm-lock.yaml""#
 	sn:              "eksctl scale nodegroup --cluster $(eks-cluster-name) --name $(nodegroup-name) --nodes"
 	sp:              "git -C ~/supabase all pull"
+	sr:              "\(_env) --chdir ~/supabase/infrastructure ./snapshot.sh remove-projects"
+	sri:             "\(_env) --chdir ~/supabase/infrastructure ./snapshot.sh restore init"
+	ssi:             "\(_env) --chdir ~/supabase/infrastructure sh -c './snapshot.sh delete init && ./snapshot.sh save init'"
 	ss:              "aws ssm start-session --target"
 	st:              "speedtest"
 	t:               "pnpm dlx tsx"
