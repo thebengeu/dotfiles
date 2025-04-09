@@ -27,6 +27,9 @@ disabled = true
 [container]
 disabled = true
 
+[deno]
+disabled = true
+
 [docker_context]
 disabled = true
 
