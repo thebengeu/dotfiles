@@ -18,7 +18,6 @@ $scoopPackages = @(
   'krew'
   'kubecolor'
   'make'
-  'mdcat'
   'miller'
   'miniserve'
   'nasm'

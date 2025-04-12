@@ -39,7 +39,6 @@ packages=(
   ledger
   less
   lf
-  mdcat
   miller
   miniserve
   navi
