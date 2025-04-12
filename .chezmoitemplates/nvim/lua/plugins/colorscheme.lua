@@ -36,6 +36,7 @@ local specs = {
     "uloco/bluloco.nvim",
     dependencies = "rktjmp/lush.nvim",
     opts = {
+      rainbow_headings = true,
       terminal = true,
     },
     supports_light_background = true,
