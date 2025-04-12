@@ -34,6 +34,7 @@ aliases: {
 	as3:             "export AWS_REGION=ap-southeast-3;"
 	as4:             "export AWS_REGION=ap-southeast-4;"
 	as5:             "export AWS_REGION=ap-southeast-5;"
+	bd:              "brew doctor"
 	bf:              "\(_env) --chdir ~/thebengeu/qmk_userspace make hazel/bad_wings:thebengeu:flash"
 	cf:              "\(_env) --chdir ~/thebengeu/qmk_userspace make bastardkb/charybdis/4x6:thebengeu:flash"
 	bm:              "batman"
