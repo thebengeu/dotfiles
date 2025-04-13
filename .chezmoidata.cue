@@ -79,6 +79,7 @@ aliases: {
 	kc:              "kubectl create -f"
 	kf:              "\(_env) --chdir ~/thebengeu/qmk_userspace make keyball/keyball44:thebengeu:flash"
 	lc:              "supa-admin-cli --config ~/.supa-admin-cli.local"
+	lcd:             "cd $(nvim-stdpath data)/lazy"
 	lg:              "lazygit"
 	lh:              "\(lc) ssh -p"
 	lp:              "\(lc) psql --disable-statement-tracking -p"
