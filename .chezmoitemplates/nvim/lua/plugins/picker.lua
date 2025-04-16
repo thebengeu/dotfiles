@@ -182,6 +182,7 @@ return {
         formatters = {
           file = {
             filename_first = true,
+            icon_width = 2,
             truncate = 100,
           },
         },

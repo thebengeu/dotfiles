@@ -44,15 +44,15 @@ config.colors = {
 }
 config.default_cursor_style = "SteadyBar"
 
-local FONT_NAME = "MonoLisa Variable"
-local HARFBUZZ_FEATURES = { "ss02" }
-local WINDOWS_FONT_SIZE = 13
-local NON_WINDOWS_FONT_SIZE = 17
+-- local FONT_NAME = "MonoLisa Variable"
+-- local HARFBUZZ_FEATURES = { "ss02" }
+-- local WINDOWS_FONT_SIZE = 13
+-- local NON_WINDOWS_FONT_SIZE = 17
 
--- local FONT_NAME = "PragmataPro Mono Liga"
--- local HARFBUZZ_FEATURES = { "ss09" }
--- local WINDOWS_FONT_SIZE = 16
--- local NON_WINDOWS_FONT_SIZE = 20
+local FONT_NAME = "PragmataPro Mono Liga"
+local HARFBUZZ_FEATURES = { "ss09" }
+local WINDOWS_FONT_SIZE = 16
+local NON_WINDOWS_FONT_SIZE = 20
 
 config.font = wezterm.font(FONT_NAME)
 config.font_rules = {
