@@ -403,6 +403,7 @@ paths: list.Concat([{
 }[_os], [
 	"$PNPM_HOME",
 	"~/.cargo/bin",
+	"~/.config/emacs/bin",
 	"~/.krew/bin",
 	"~/.local/bin",
 	"~/go/bin",
