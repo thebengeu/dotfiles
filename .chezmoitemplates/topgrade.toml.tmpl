@@ -1,4 +1,5 @@
 [commands]
+uv = "uv tool upgrade --all"
 yazi = "ya pack --upgrade"
 [misc]
 assume_yes = true
@@ -8,6 +9,7 @@ disable = [
 {{- if eq .chezmoi.os "linux"}}
   "gcloud",
 {{- end}}
+  "uv",
   "vim",
   "wsl",
 ]
