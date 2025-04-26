@@ -266,6 +266,7 @@ cask "microsoft-powerpoint"
 cask "microsoft-teams"
 cask "microsoft-word"
 cask "mimestream"
+cask "modern-csv"
 cask "msty"
 cask "multipass"
 cask "neovide"
@@ -311,6 +312,7 @@ mas "Amphetamine", id: 937984704
 mas "Calca", id: 635758264
 mas "Day One", id: 1055511498
 mas "Drafts", id: 1435957248
+mas "Easy CSV Editor", id: 1171346381
 mas "Endel", id: 1346247457
 mas "Gapplin", id: 768053424
 mas "GhostText", id: 1552641506
