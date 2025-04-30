@@ -407,6 +407,7 @@ local specs = {
       "onedark",
       "onedark_dark",
       "onedark_vivid",
+      "vaporwave",
     },
     colors_names_light = {
       "onelight",
