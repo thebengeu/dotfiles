@@ -39,7 +39,8 @@ uv tool install virtualenv
 uv tool install visidata
 
 npm install --global pnpm
-pnpm add --global \
+pnpm add --dangerously-allow-all-builds --global \
+  codebuff \
   npm-check-updates \
   pino-pretty \
   pm2 \
