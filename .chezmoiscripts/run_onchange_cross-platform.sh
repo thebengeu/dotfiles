@@ -39,7 +39,8 @@ uv tool install virtualenv
 uv tool install visidata
 
 npm install --global pnpm
-pnpm add --dangerously-allow-all-builds --global \
+pnpm add --global \
+  @anthropic-ai/claude-code \
   codebuff \
   npm-check-updates \
   pino-pretty \
