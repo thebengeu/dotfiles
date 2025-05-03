@@ -320,7 +320,9 @@ aliases: {
 	}
 }
 environmentVariables: {
+	ANTHROPIC_MODEL:               "us.anthropic.claude-3-7-sonnet-20250219-v1:0"
 	BAT_THEME:                     "Catppuccin-mocha"
+	CLAUDE_CODE_USE_BEDROCK:       true
 	DIRENV_LOG_FORMAT:             ""
 	DOCKER_CLI_HINTS:              false
 	EDITOR:                        "nvim"
