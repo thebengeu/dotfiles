@@ -38,6 +38,7 @@ aliases: {
 	bf:              "\(_env) --chdir ~/thebengeu/qmk_userspace make hazel/bad_wings:thebengeu:flash"
 	cf:              "\(_env) --chdir ~/thebengeu/qmk_userspace make bastardkb/charybdis/4x6:thebengeu:flash"
 	bm:              "batman"
+	bgw:             "aws-vault exec --no-session bedrock -- docker run --detach --env AWS_REGION=us-east-1 --env AWS_ACCESS_KEY_ID --env AWS_SECRET_ACCESS_KEY --name bedrock-gateway --publish 2337:80 --restart unless-stopped ibehren1/bedrock-gateway"
 	c:               "docker compose"
 	ca:              "chezmoi apply --keep-going --exclude scripts; chezmoi apply --keep-going --include scripts"
 	cad:             "chezmoi add"
