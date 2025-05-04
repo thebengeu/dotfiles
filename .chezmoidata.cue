@@ -65,6 +65,8 @@ aliases: {
 	ds:              "docker stats"
 	dsp:             "docker system prune --force --volumes"
 	dspa:            "\(dsp) --all"
+	e:               "echo"
+	ep:              "echo $PATH"
 	g:               "git"
 	gap:             "git all pull"
 	ghd:             "gh dash"
