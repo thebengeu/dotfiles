@@ -29,6 +29,7 @@ $wingetPackageIds = @(
   'DEVCOM.Lua'
   'ManicTime.ManicTime'
   'zyedidia.micro'
+  'CloudStack.Msty'
   'Notion.Notion'
   'Nushell.Nushell'
   'Obsidian.Obsidian'

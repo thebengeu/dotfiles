@@ -8,7 +8,9 @@ $storeApps = @(
   'iCloud'
   'Netflix'
   '9NRX63209R7B' # Outlook for Windows
+  'Perplexity'
   'Sysinternals Suite'
+  '9NT1R1C2HH7J' # ChatGPT
   'Unigram—Telegram for Windows'
   'WhatsApp'
   'Windows Terminal Preview'
