@@ -11,6 +11,11 @@ local M = {}
 function M.apply_to_config(config)
   config.keys = {
     {
+      key = "Enter",
+      mods = "ALT",
+      action = act.DisableDefaultAssignment,
+    },
+    {
       key = "phys:Space",
       mods = "SHIFT|ALT",
       action = act.QuickSelect,

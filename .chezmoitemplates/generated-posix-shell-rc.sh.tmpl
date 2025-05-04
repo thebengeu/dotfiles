@@ -39,7 +39,8 @@ function br {
     cmd_file=$(mktemp)
     if broot --outcmd "$cmd_file" "$@"; then
 {{- if eq .chezmoi.os "windows" }}
-        eval $(cat $cmd_file | sd 'cd (.+)' 'cd $(cygpath "$1")')
+        eval $(cat $cmd_file | sed -E 's/cd "?([^"]+)"?/builtin cd (cygpath "\1")/')
+
 {{- else }}
         cmd=$(<"$cmd_file")
         eval "$cmd"
@@ -54,7 +55,7 @@ function br {
 
 {{- if lookPath "luarocks" }}
 {{ $lrBin := output "luarocks" "path" "--lr-bin" | trim }}
-export PATH={{- if eq .chezmoi.os "windows"}}{{ output "cygpath" $lrBin}}{{else}}{{ $lrBin }}{{end -}}:$PATH
+export PATH={{- if eq .chezmoi.os "windows"}}{{ output "cygpath" $lrBin | trim }}{{else}}{{ $lrBin }}{{end -}}:$PATH
 {{end -}}
 {{- if lookPath "vivid" }}
 export LS_COLORS='{{ output "vivid" "generate" "catppuccin-mocha" | trim }}'

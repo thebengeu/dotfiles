@@ -53,7 +53,7 @@ function br --wraps=broot
         read --local --null cmd <$cmd_file
         rm -f $cmd_file
         {{- if eq .chezmoi.os "windows" }}
-        eval (echo $cmd | sd 'cd (.+)' 'cd (cygpath "$1")')
+        eval (echo $cmd | sed -E 's/cd "?([^"]+)"?/builtin cd (cygpath "\1")/')
         {{- else }}
         eval $cmd
         {{- end }}
