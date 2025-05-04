@@ -14,6 +14,7 @@ gup import
 PIP_REQUIRE_VIRTUALENV=false pip3 install --break-system-packages --upgrade --user \
   pynvim
 
+uv tool install --python python3.12 aider-chat
 uv tool install beancount
 uv tool install fava
 uv tool install git-revise
