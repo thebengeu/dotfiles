@@ -224,7 +224,7 @@ return {
     priority = 1001,
   },
   {
-    "epwalsh/obsidian.nvim",
+    "obsidian-nvim/obsidian.nvim",
     dependencies = "nvim-lua/plenary.nvim",
     event = "BufReadPre **/Obsidian/**.md",
     keys = {
