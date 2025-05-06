@@ -209,6 +209,14 @@ local specs = {
   },
   {
     "wtfox/jellybeans.nvim",
+    colors_names = {
+      "jellybeans",
+      "jellybeans-muted",
+    },
+    colors_names_light = {
+      "jellybeans-light",
+      "jellybeans-muted-light",
+    },
     opts = function()
       return {
         on_highlights = function(hl, palette)
@@ -225,7 +233,6 @@ local specs = {
         style = vim.o.background,
       }
     end,
-    supports_light_background = true,
   },
   {
     "rebelot/kanagawa.nvim",

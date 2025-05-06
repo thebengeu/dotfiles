@@ -99,6 +99,7 @@ local refresh_colorscheme = function(index)
   end
 
   vim.g.transparent_enabled = false
+  vim.g.colors_name = name
   vim.cmd.colorscheme(name)
 
   if name == "newpaper" then
