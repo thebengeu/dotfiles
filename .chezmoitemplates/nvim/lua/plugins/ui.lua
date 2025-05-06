@@ -163,6 +163,5 @@ return {
   {
     "mcauley-penney/visual-whitespace.nvim",
     keys = { "v", "V", "<C-v>" },
-    opts = {},
   },
 }
