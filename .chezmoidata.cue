@@ -115,6 +115,7 @@ aliases: {
 	pss:             "pulumi stack select $(select-supabase-stack)"
 	pu:              "pulumi up"
 	pus:             "pulumi up --skip-preview"
+	rd:              "git rebase-default"
 	rgb:             "batgrep"
 	rgc:             "cd ~/repos && gc"
 	rm:              "trash"
@@ -366,7 +367,7 @@ environmentVariables: {
 functions: {
 	gc: {
 		lines: [
-			#"git clone --recursive "$repo""#,
+			#"git clone --recurse-submodules "$repo""#,
 			#"cd "$(echo "$repo" | sed s/\.git\$// | grep -oE '([^:/]+)$')""#,
 			"glow README.md",
 		]

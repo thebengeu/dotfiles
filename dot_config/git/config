@@ -8,6 +8,7 @@
 	pf = push --force-if-includes --force-with-lease
 	pu = !git pull upstream $(git branch --show-current)
 	rau = !~/.config/git/template/hooks/add-upstream-auto-detected-url.sh
+	rebase-default = !git fetch origin && git rebase origin/$(git default-branch)
 	s = status --short
 	sw = "!git switch --recurse-submodules ${1:-$(git default-branch)} #"
 	wip = !git add --all && git commit -m 'WIP' -m 'gitlint-ignore: all' && git push
