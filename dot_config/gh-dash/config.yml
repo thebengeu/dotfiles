@@ -1,6 +1,8 @@
 prSections:
-  - title: Backend Review Requested
-    filters: -author:@me is:open team-review-requested:supabase/backend
+  - title: v3
+    filters: is:open author:cioban author:darora author:dragarcia author:tgallacher
+  # - title: Backend Review Requested
+  #   filters: -author:@me is:open team-review-requested:supabase/backend
   - title: Open
     filters: is:open author:@me user:supabase
   - title: Involved
