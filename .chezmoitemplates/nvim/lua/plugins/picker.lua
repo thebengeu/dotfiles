@@ -161,7 +161,6 @@ return {
         util.smart({ cwd = lazy_root .. "/LazyVim" }),
         desc = "Find LazyVim Files",
       },
-      { "<leader>gc", false },
       { "<leader>gs", false },
       {
         "<leader>sA",
