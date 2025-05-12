@@ -25,7 +25,6 @@ aliases: {
 	apne1:           "export AWS_REGION=ap-northeast-1;"
 	apne2:           "export AWS_REGION=ap-northeast-2;"
 	apne3:           "export AWS_REGION=ap-northeast-3;"
-	apd:             "export AWS_PROFILE=supabase-dev;"
 	ape1:            "export AWS_REGION=ap-east-1;"
 	aps1:            "export AWS_REGION=ap-south-1;"
 	aps2:            "export AWS_REGION=ap-south-2;"
