@@ -210,11 +210,13 @@ local specs = {
   {
     "wtfox/jellybeans.nvim",
     colors_names = {
-      "jellybeans",
+      "jellybeans-default",
+      "jellybeans-mono",
       "jellybeans-muted",
     },
     colors_names_light = {
       "jellybeans-light",
+      "jellybeans-mono-light",
       "jellybeans-muted-light",
     },
     opts = function()
@@ -230,7 +232,6 @@ local specs = {
             palette.calypso,
           }, hl)
         end,
-        style = vim.o.background,
       }
     end,
   },
@@ -250,6 +251,16 @@ local specs = {
       cache = true,
     },
     supports_light_background = true,
+  },
+  {
+    "webhooked/kanso.nvim",
+    colors_names = {
+      "kanso-ink",
+      "kanso-zen",
+    },
+    colors_names_light = {
+      "kanso-pearl",
+    },
   },
   {
     "marko-cerovac/material.nvim",
