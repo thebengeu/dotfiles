@@ -1,5 +1,5 @@
 [alias]
-	all = "!find . -maxdepth 2 -name .git -type d | parallel --jobs 5 git -C {}/.. $@ #"
+  all = "!find . -maxdepth 2 -name .git -type d | sed -e 's|^\\./||' -e 's|/\\.git$||' | parallel --jobs 5 --tag git -C {} $@ #"
 	default-branch = !git rev-parse --abbrev-ref origin/HEAD | cut -c 8-
 	delete-remote-branches-except = "!git branch --remotes | grep origin/ | grep -E -v \"(HEAD|develop|main|master|$(echo $@ | tr ' ' '|'))$\" | cut -d / -f 2- | xargs git push origin --delete #"
 	grep-all = !git rev-list --all | xargs git grep
