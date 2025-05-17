@@ -36,6 +36,7 @@
 	renames = true
 [fetch]
 	all = true
+	parallel = 0
 	prune = true
 	pruneTags = true
 [help]
