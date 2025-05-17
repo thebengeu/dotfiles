@@ -219,21 +219,19 @@ local specs = {
       "jellybeans-mono-light",
       "jellybeans-muted-light",
     },
-    opts = function()
-      return {
-        on_highlights = function(hl, palette)
-          rainbow_delimiter_highlights({
-            palette.raw_sienna,
-            palette.brandy,
-            palette.perano,
-            palette.koromiko,
-            palette.green_smoke,
-            palette.biloba_flower,
-            palette.calypso,
-          }, hl)
-        end,
-      }
-    end,
+    opts = {
+      on_highlights = function(hl, palette)
+        rainbow_delimiter_highlights({
+          palette.raw_sienna,
+          palette.brandy,
+          palette.perano,
+          palette.koromiko,
+          palette.green_smoke,
+          palette.biloba_flower,
+          palette.calypso,
+        }, hl)
+      end,
+    },
   },
   {
     "rebelot/kanagawa.nvim",
@@ -560,6 +558,11 @@ local specs = {
   },
   {
     "Mofiqul/vscode.nvim",
+    opts = {
+      color_overrides = {
+        vscMediumBlue = "#18a2fe",
+      },
+    },
     supports_light_background = true,
   },
   {
