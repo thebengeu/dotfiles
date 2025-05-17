@@ -47,6 +47,7 @@ pnpm add --global \
   pino-pretty \
   pm2 \
   prettier \
+  sort-json \
   sql-formatter \
   trash-cli
 
