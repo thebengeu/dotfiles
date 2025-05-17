@@ -27,7 +27,7 @@ function {{$name}} () {
 {{- end}}
 }
 {{end}}
-{{range $alias, $command := .nonExpandedAliases | merge .aliases -}}
+{{range $alias, $command := .nonExpandedAliases -}}
 function {{$alias}} () {
   {{$command | replace "$HOME" "~"}} $@
 }
