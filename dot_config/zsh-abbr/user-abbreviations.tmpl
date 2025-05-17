@@ -1,3 +1,0 @@
-{{range $alias, $command := .aliases -}}
-abbr "{{$alias}}"="{{$command | replace "$HOME" "~" | replace "\\" "\\\\" | replace "$" "\\$" | replace "\"" "\\\"" }}"
-{{end -}}

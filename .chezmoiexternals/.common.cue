@@ -32,8 +32,7 @@ package dotfiles
 
 #GitRepo: {
 	#External
-	_gitRepo: string
-	"clone.args": ["--recurse"]
+	_gitRepo:      string
 	refreshPeriod: "168h"
 	type:          "git-repo"
 	url:           "https://github.com/\(_gitRepo)"

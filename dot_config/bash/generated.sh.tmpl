@@ -1,9 +1,4 @@
 {{- template "generated-posix-shell-rc.sh.tmpl" . -}}
-{{range $alias, $command := .aliases -}}
-function {{$alias}} () {
-  {{$command | replace "$HOME" "~"}} $@
-}
-{{end -}}
 {{- if lookPath "supa-admin-cli" }}
 {{output "supa-admin-cli" "completion" "bash"}}
 {{end -}}

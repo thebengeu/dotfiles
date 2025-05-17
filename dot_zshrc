@@ -11,10 +11,6 @@ setopt SHARE_HISTORY
 
 fpath+=~/.config/zsh/zsh-completions/src
 
-ABBR_AUTOLOAD=0
-ABBR_DEBUG=1
-source ~/.config/zsh/zsh-abbr/zsh-abbr.plugin.zsh
-
 source ~/.config/zsh/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 source ~/.config/zsh/history-search-multi-word/history-search-multi-word.plugin.zsh
 source ~/.config/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
