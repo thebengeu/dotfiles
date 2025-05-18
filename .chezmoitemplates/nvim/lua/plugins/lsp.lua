@@ -39,15 +39,6 @@ return {
         sql = { "sqlfluff" },
         ["_"] = { "trim_newlines", "trim_whitespace" },
       })
-
-      for ft, formatters in pairs(formatters_by_ft) do
-        opts.formatters_by_ft[ft] = vim
-          .iter(formatters)
-          :map(function(formatter)
-            return formatter == "prettier" and "prettierd" or formatter
-          end)
-          :totable()
-      end
     end,
   },
   {
@@ -86,7 +77,6 @@ return {
         "gh-actions-language-server",
         "golangci-lint",
         "mypy",
-        "prettierd",
         "shellharden",
         "sqlfluff",
         "taplo",
