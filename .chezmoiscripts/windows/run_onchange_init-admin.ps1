@@ -57,7 +57,6 @@ $wingetPackageIds = @(
   'Rustlang.Rustup'
   'Starship.Starship'
   'astral-sh.uv'
-  'wez.wezterm'
   'ajeetdsouza.zoxide'
 )
 
