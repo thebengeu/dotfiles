@@ -54,6 +54,7 @@ packages=(
   shfmt
   sq
   ssm-session-manager-plugin
+  steampipe
   tealdeer
   tere
   tokei
@@ -75,3 +76,4 @@ for package in "${packages[@]}"; do
 done
 
 krew install krew
+steampipe plugin install --progress=false aws
