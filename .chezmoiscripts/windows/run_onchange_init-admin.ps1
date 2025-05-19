@@ -49,7 +49,7 @@ $wingetPackageIds = @(
   'Casey.Just'
   'MSYS2.MSYS2'
   'OpenJS.NodeJS'
-  'Microsoft.OpenSSH.Beta'
+  'Microsoft.OpenSSH.Preview'
   'Microsoft.PowerShell'
   'Pulumi.Pulumi'
   'Python.Python.3.13'
