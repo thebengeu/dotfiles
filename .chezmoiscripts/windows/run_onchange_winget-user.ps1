@@ -7,7 +7,6 @@ $wingetPackageIds = @(
   'Clement.bottom'
   'Amazon.Chime'
   'AutoHotkey.AutoHotkey'
-  'Google.Chrome'
   'schollz.croc'
   'dandavison.delta'
   'Wilfred.difftastic'
@@ -16,18 +15,15 @@ $wingetPackageIds = @(
   'muesli.duf'
   'Element.Element'
   'flux.flux'
-  'Mozilla.Firefox'
   'Flow-Launcher.Flow-Launcher'
   'junegunn.fzf'
   'charmbracelet.glow'
   'Helix.Helix'
   'sharkdp.hyperfine'
-  'k6.k6'
   'jftuga.less'
   'gokcehan.lf'
   'LinearOrbit.Linear'
   'DEVCOM.Lua'
-  'ManicTime.ManicTime'
   'zyedidia.micro'
   'CloudStack.Msty'
   'Notion.Notion'
@@ -49,25 +45,18 @@ $wingetPackageIds = @(
   'commercialhaskell.stack'
   'Valve.Steam'
   'XAMPPRocky.Tokei'
-  'Transmission.Transmission'
   'Microsoft.VisualStudioCode'
-  'VideoLAN.VLC'
   'JernejSimoncic.Wget'
   'Microsoft.WingetCreate'
   'Highresolution.X-MouseButtonControl'
   'ducaale.xh'
   'sxyazi.yazi'
   'th-ch.YouTubeMusic'
-  'OlegShparber.Zeal'
-  'Zoom.Zoom'
 )
 
 if (!$isMobile)
 {
   $wingetPackageIds += @(
-    'BinaryFortress.DisplayFusion'
-    'Kensington.KensingtonWorks'
-    'EclipseFoundation.Mosquitto'
     'xanderfrangos.twinkletray'
   )
 }
@@ -85,7 +74,6 @@ $ignoreSecurityHashWingetPackageIds = @(
 if (!$isMobile)
 {
   $ignoreSecurityHashWingetPackageIds += @(
-    'Logitech.LogiTune'
     'VirtualDesktop.Streamer'
   )
 }

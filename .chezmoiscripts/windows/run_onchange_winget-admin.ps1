@@ -14,15 +14,41 @@ if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
 $isMobile = (Get-CimInstance -Class Win32_ComputerSystem -Property PCSystemType).PCSystemType -eq 2
 
 $wingetPackageIds = @(
+  'Google.Chrome'
   'Microsoft.Edge.Beta'
   'Microsoft.Edge.Dev'
   'EpicGames.EpicGamesLauncher'
   'ExpressVPN.ExpressVPN'
+  'Mozilla.Firefox'
+  'k6.k6'
   'LLVM.LLVM'
+  'ManicTime.ManicTime'
+  'Transmission.Transmission'
+  'VideoLAN.VLC'
   'equalsraf.win32yank'
+  'OlegShparber.Zeal'
+  'Zoom.Zoom'
 )
 
+if (!$isMobile)
+{
+  $wingetPackageIds += @(
+    'BinaryFortress.DisplayFusion'
+    'Kensington.KensingtonWorks'
+    'EclipseFoundation.Mosquitto'
+  )
+}
+
 winget install --exact --no-upgrade --silent $wingetPackageIds
+
+if (!$isMobile)
+{
+  $ignoreSecurityHashWingetPackageIds += @(
+    'Logitech.LogiTune'
+  )
+}
+
+winget install --exact --ignore-security-hash --no-upgrade --silent $ignoreSecurityHashWingetPackageIds
 
 $idProxyServerArgument = '--proxy-server=id.he.sg:8888'
 $inProxyServerArgument = '--proxy-server=in.he.sg:8888'
