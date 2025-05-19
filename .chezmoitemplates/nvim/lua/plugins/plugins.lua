@@ -147,7 +147,7 @@ return {
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
-    build = "luarocks install tiktoken_core",
+    build = "luarocks --local install tiktoken_core",
   },
   {
     "direnv/direnv.vim",

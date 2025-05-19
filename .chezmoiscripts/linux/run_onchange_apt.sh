@@ -12,7 +12,7 @@ sudo apt --assume-yes install \
   libxcb-render0-dev \
   libxcb-shape0-dev \
   libxcb-xfixes0-dev \
-  lua5.4 \
+  liblua5.1-0-dev \
   make \
   moreutils \
   mosh \
