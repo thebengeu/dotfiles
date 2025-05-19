@@ -41,10 +41,6 @@
 	pruneTags = true
 [help]
 	autocorrect = prompt
-[includeIf "gitdir:~/AppData/Roaming/wezterm/plugins"]
-	path = ~/.config/wezterm/.gitconfig
-[includeIf "gitdir:~/Library/Application Support/wezterm/plugins"]
-	path = ~/.config/wezterm/.gitconfig
 [init]
 	defaultBranch = master
 	templateDir = ~/.config/git/template
