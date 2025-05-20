@@ -23,9 +23,13 @@ $wingetPackageIds = @(
   'k6.k6'
   'LLVM.LLVM'
   'ManicTime.ManicTime'
+  'Microsoft.Office'
+  'o2sh.onefetch'
+  'QMK.QMKToolbox'
   'Transmission.Transmission'
   'VideoLAN.VLC'
   'equalsraf.win32yank'
+  'Highresolution.X-MouseButtonControl'
   'OlegShparber.Zeal'
   'Zoom.Zoom'
 )
@@ -35,20 +39,14 @@ if (!$isMobile)
   $wingetPackageIds += @(
     'BinaryFortress.DisplayFusion'
     'Kensington.KensingtonWorks'
+    'Logitech.OptionsPlus'
+    'Logitech.LogiTune'
     'EclipseFoundation.Mosquitto'
+    'VirtualDesktop.Streamer'
   )
 }
 
 winget install --exact --no-upgrade --silent $wingetPackageIds
-
-if (!$isMobile)
-{
-  $ignoreSecurityHashWingetPackageIds += @(
-    'Logitech.LogiTune'
-  )
-}
-
-winget install --exact --ignore-security-hash --no-upgrade --silent $ignoreSecurityHashWingetPackageIds
 
 $idProxyServerArgument = '--proxy-server=id.he.sg:8888'
 $inProxyServerArgument = '--proxy-server=in.he.sg:8888'

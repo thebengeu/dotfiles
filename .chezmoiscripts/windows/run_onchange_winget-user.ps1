@@ -29,12 +29,10 @@ $wingetPackageIds = @(
   'Notion.Notion'
   'Nushell.Nushell'
   'Obsidian.Obsidian'
-  'o2sh.onefetch'
   'Playnite.Playnite'
   'Microsoft.PowerToys'
   'Microsoft.Sysinternals.ProcessMonitor'
   'JetBrains.PyCharm.Professional'
-  'QMK.QMKToolbox'
   'BenBoyter.scc'
   'chmln.sd'
   'SideQuestVR.SideQuest'
@@ -48,7 +46,6 @@ $wingetPackageIds = @(
   'Microsoft.VisualStudioCode'
   'JernejSimoncic.Wget'
   'Microsoft.WingetCreate'
-  'Highresolution.X-MouseButtonControl'
   'ducaale.xh'
   'sxyazi.yazi'
   'th-ch.YouTubeMusic'
@@ -66,16 +63,3 @@ foreach ($wingetPackageId in $wingetPackageIds)
   $wingetPackageId
   winget install --exact --no-upgrade --silent $wingetPackageId
 }
-
-$ignoreSecurityHashWingetPackageIds = @(
-  'Microsoft.Office'
-)
-
-if (!$isMobile)
-{
-  $ignoreSecurityHashWingetPackageIds += @(
-    'VirtualDesktop.Streamer'
-  )
-}
-
-winget install --exact --ignore-security-hash --no-upgrade --silent $ignoreSecurityHashWingetPackageIds
