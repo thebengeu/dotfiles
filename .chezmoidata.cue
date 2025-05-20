@@ -145,10 +145,8 @@ aliases: {
 		p: "supabase-prototype"
 		s: "supabase"
 	} {
-		let _exportAWSProfile = "export AWS_PROFILE=\(awsProfile);"
-
-		"ap\(suffix)": _exportAWSProfile
-		"o\(suffix)":  "\(_exportAWSProfile) \(ops) && eval $(aws configure export-credentials --format env)"
+		"ap\(suffix)": "export AWS_PROFILE=\(awsProfile);"
+		"o\(suffix)":  "\(ops) && eval $(aws configure export-credentials --format env --profile \(awsProfile))"
 	}
 
 	for shellAndFlags, noConfigFlag in {
