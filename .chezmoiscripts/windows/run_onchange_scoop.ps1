@@ -34,7 +34,6 @@ $scoopPackages = @(
   'unar'
   'usql'
   'walk'
-  'wezterm-nightly'
 )
 
 scoop install $scoopPackages
