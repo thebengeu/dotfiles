@@ -2,12 +2,13 @@ $isMobile = (Get-CimInstance -Class Win32_ComputerSystem -Property PCSystemType)
 
 $wingetPackageIds = @(
   '7zip.7zip'
+  'AutoHotkey.AutoHotkey'
   'Armin2208.WindowsAutoNightMode'
   'Amazon.AWSCLI'
   'Clement.bottom'
   'Amazon.Chime'
-  'AutoHotkey.AutoHotkey'
   'schollz.croc'
+  'Anysphere.Cursor'
   'dandavison.delta'
   'Wilfred.difftastic'
   'Discord.Discord'
