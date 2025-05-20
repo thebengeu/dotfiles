@@ -207,6 +207,7 @@ aliases: {
 			rns: #"rm -r "$(nvim-stdpath data)\sessions""#
 			tg:  "scoop update topgrade; winget upgrade spotify; PIP_REQUIRE_VIRTUALENV=false sudo topgrade"
 			wi:  "winget install"
+			ws:  "winget search"
 			wsk: "wezterm show-keys --lua"
 			wu:  "winget uninstall"
 		}
