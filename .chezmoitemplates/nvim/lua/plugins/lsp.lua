@@ -19,13 +19,16 @@ return {
         desc = "Toggle auto format (buffer)",
       },
     },
-    opts = function(_, opts)
-      opts.formatters.sqlfluff = {
-        args = { "format", "-" },
-        require_cwd = false,
-      }
-
-      local formatters_by_ft = vim.tbl_extend("force", opts.formatters_by_ft, {
+    opts = {
+      formatters = {
+        ["biome-check"] = {
+          require_cwd = true,
+        },
+        sqlfluff = {
+          require_cwd = false,
+        },
+      },
+      formatters_by_ft = {
         c = { "clang_format" },
         clojure = { "zprint" },
         cue = { "cue_fmt" },
@@ -37,9 +40,10 @@ return {
         toml = { "taplo" },
         sh = { "shellharden", "shellcheck", "shfmt" },
         sql = { "sqlfluff" },
+        typescript = { "biome-check" },
         ["_"] = { "trim_newlines", "trim_whitespace" },
-      })
-    end,
+      },
+    },
   },
   {
     "mfussenegger/nvim-lint",
