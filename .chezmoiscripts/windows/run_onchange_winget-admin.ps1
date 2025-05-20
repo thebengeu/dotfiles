@@ -40,7 +40,6 @@ if (!$isMobile)
     'BinaryFortress.DisplayFusion'
     'Kensington.KensingtonWorks'
     'Logitech.OptionsPlus'
-    'Logitech.LogiTune'
     'EclipseFoundation.Mosquitto'
     'VirtualDesktop.Streamer'
   )
