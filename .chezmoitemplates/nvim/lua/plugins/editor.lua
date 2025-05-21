@@ -142,6 +142,13 @@ local specs = {
         prefix = "gR",
       },
       sort = {
+        func = function(content)
+          return MiniOperators.default_sort_func(content, {
+            compare_fun = function(a, b)
+              return vim.fn.tolower(a) < vim.fn.tolower(b)
+            end,
+          })
+        end,
         prefix = "gS",
       },
     },
