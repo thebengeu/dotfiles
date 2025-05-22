@@ -272,6 +272,7 @@ local specs = {
     opts = {
       async_loading = false,
       plugins = {
+        "blink",
         "dap",
         "eyeliner",
         "flash",
@@ -279,7 +280,6 @@ local specs = {
         "mini",
         "neogit",
         "noice",
-        "nvim-cmp",
         "nvim-notify",
         "nvim-web-devicons",
         "rainbow-delimiters",
