@@ -1,6 +1,8 @@
 [commands]
+{{- if ne .chezmoi.os "windows"}}
 steampipe = "steampipe plugin update --all"
-supabase = "git -C ~/supabase all pull"
+{{- end}}
+supabase = "git -C $HOME/supabase all pull"
 uv = "uv tool upgrade --all"
 yazi = "ya pack --upgrade"
 [misc]
