@@ -67,7 +67,7 @@ for key, bundle_id_and_args in pairs({
   u = "com.todesktop.230313mzl4w4u92",
   v = "com.microsoft.VSCode",
   w = WEZTERM_BUNDLE_ID,
-  x = "org.mozilla.firefox",
+  -- x = "Perplexity",
   y = "com.spotify.client",
   z = {
     args = "~/thebengeu/qmk_userspace/keymap.svg",
@@ -82,6 +82,7 @@ for key, bundle_id_and_args in pairs({
   c = "io.coressh.tunnel-direct",
   d = "com.hnc.Discord",
   e = "com.endel.endel",
+  f = "org.mozilla.firefox",
   -- g = "GhostText",
   h = "org.hammerspoon.Hammerspoon",
   -- j = "Colab local URL",
