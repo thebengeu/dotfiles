@@ -19,20 +19,19 @@ return {
         desc = "Toggle auto format (buffer)",
       },
     },
-    opts = {
-      formatters = {
-        ["biome-check"] = {
-          require_cwd = true,
-        },
-        sqlfluff = {
-          require_cwd = false,
-        },
-      },
-      formatters_by_ft = {
+    opts = function(_, opts)
+      opts.formatters["biome-check"] = {
+        require_cwd = true,
+      }
+      opts.formatters.sqlfluff = {
+        require_cwd = false,
+      }
+
+      local formatters_by_ft = vim.tbl_extend("force", opts.formatters_by_ft, {
         c = { "clang_format" },
         clojure = { "zprint" },
         cue = { "cue_fmt" },
-        json = { "fixjson", "prettier" },
+        json = { "fixjson", "biome-check", "prettier" },
         just = { "just" },
         markdown = { "markdownlint", "prettier" },
         prisma = { "prettier" },
@@ -40,10 +39,18 @@ return {
         toml = { "taplo" },
         sh = { "shellharden", "shellcheck", "shfmt" },
         sql = { "sqlfluff" },
-        typescript = { "biome-check" },
         ["_"] = { "trim_newlines", "trim_whitespace" },
-      },
-    },
+      })
+
+      for ft, formatters in pairs(formatters_by_ft) do
+        opts.formatters_by_ft[ft] = vim
+          .iter(formatters)
+          :map(function(formatter)
+            return formatter == "biome" and "biome-check" or formatter
+          end)
+          :totable()
+      end
+    end,
   },
   {
     "mfussenegger/nvim-lint",
