@@ -44,23 +44,40 @@ config.colors = {
 }
 config.default_cursor_style = "SteadyBar"
 
+local FONT_NAME = "Berkeley Mono"
+local HARFBUZZ_FEATURES = {
+  -- "ss01", -- Zero (Slash)
+  "ss02", -- Zero (Dot)
+  -- "ss03", -- Zero (Cut)
+  "ss04", -- Seven (Cross stem)
+}
+local WINDOWS_FONT_SIZE = 15
+local NON_WINDOWS_FONT_SIZE = 19
+
 -- local FONT_NAME = "MonoLisa Variable"
--- local HARFBUZZ_FEATURES = { "ss02" }
+-- local HARFBUZZ_FEATURES = {
+--   "ss02", -- Script Variant
+-- }
 -- local WINDOWS_FONT_SIZE = 13
 -- local NON_WINDOWS_FONT_SIZE = 17
 
-local FONT_NAME = "PragmataPro Mono Liga"
-local HARFBUZZ_FEATURES = { "ss09" }
-local WINDOWS_FONT_SIZE = 16
-local NON_WINDOWS_FONT_SIZE = 20
+-- local FONT_NAME = "PragmataPro Mono Liga"
+-- local HARFBUZZ_FEATURES = {
+--   "ss09", -- Serif Italic
+-- }
+-- local WINDOWS_FONT_SIZE = 16
+-- local NON_WINDOWS_FONT_SIZE = 20
 
-config.font = wezterm.font(FONT_NAME)
+config.font = wezterm.font({
+  family = FONT_NAME,
+  harfbuzz_features = "Berkeley Mono" and HARFBUZZ_FEATURES or nil,
+})
 config.font_rules = {
   {
     font = wezterm.font({
       family = FONT_NAME,
       harfbuzz_features = HARFBUZZ_FEATURES,
-      style = "Italic",
+      style = FONT_NAME == "Berkeley Mono" and "Oblique" or "Italic",
     }),
     italic = true,
   },
