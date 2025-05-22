@@ -95,7 +95,7 @@ aliases: {
 	npr:             "nix profile remove"
 	nr:              "npm run"
 	nrm:             "npm remove"
-	ops:             #"export COMMAND="$(op signin)"; test -n "$COMMAND" && eval $COMMAND && export OP_TIME=$(date +%s)"#
+	os:              #"export COMMAND="$(op signin)"; test -n "$COMMAND" && eval $COMMAND && export OP_TIME=$(date +%s)"#
 	p:               "pnpm"
 	pc:              "supa-admin-cli"
 	pd:              "PULUMI_K8S_DELETE_UNREACHABLE=true pulumi destroy --continue-on-error --remove --skip-preview --stack $(select-supabase-stack)"
@@ -146,7 +146,6 @@ aliases: {
 		s: "supabase"
 	} {
 		"ap\(suffix)": "export AWS_PROFILE=\(awsProfile);"
-		"o\(suffix)":  "\(ops) && eval $(aws configure export-credentials --format env --profile \(awsProfile))"
 	}
 
 	for shellAndFlags, noConfigFlag in {
