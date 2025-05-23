@@ -211,7 +211,7 @@ aliases: {
 	}[_os]
 
 	v:        string | *"neovide"
-	_neovide: string | *"\(v) -- --cmd"
+	_neovide: string | *"neovide -- --cmd"
 
 	if _os == "darwin" {
 		_neovide: "open -b com.neovide.neovide --args -- --cmd"
@@ -219,7 +219,8 @@ aliases: {
 	}
 
 	if strings.HasSuffix(_hostname, "-wsl") {
-		v: "/mnt/c/Users/beng/scoop/shims/neovide.exe --wsl"
+		v:        "/mnt/c/Users/beng/scoop/shims/neovide.exe --wsl"
+		_neovide: "\(v) -- --cmd"
 	}
 
 	csv: "\(_neovide) 'cd ~/thebengeu/cheatsheet' ~/thebengeu/cheatsheet/README.md"
