@@ -36,6 +36,7 @@ $wingetPackageIds = @(
   'JetBrains.PyCharm.Professional'
   'BenBoyter.scc'
   'chmln.sd'
+  'Amazon.SessionManagerPlugin'
   'SideQuestVR.SideQuest'
   'SlackTechnologies.Slack'
   'Readdle.Spark'
