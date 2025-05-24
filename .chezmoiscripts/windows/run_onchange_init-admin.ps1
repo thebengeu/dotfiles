@@ -167,6 +167,7 @@ $pacmanPackages = @(
   'fish'
   'nnn'
   'parallel'
+  'unzip'
   'vifm'
   'zsh'
 )
