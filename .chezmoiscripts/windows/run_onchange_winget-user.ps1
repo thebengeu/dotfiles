@@ -21,6 +21,8 @@ $wingetPackageIds = @(
   'charmbracelet.glow'
   'Helix.Helix'
   'sharkdp.hyperfine'
+  'JesseDuffield.Lazydocker'
+  'JesseDuffield.lazygit'
   'jftuga.less'
   'gokcehan.lf'
   'LinearOrbit.Linear'

@@ -13,8 +13,6 @@ $scoopPackages = @(
   'git-filter-repo'
   'goneovim'
   'jwt-cli'
-  'lazydocker'
-  'lazygit'
   'krew'
   'kubecolor'
   'make'
