@@ -44,45 +44,59 @@ config.colors = {
 }
 config.default_cursor_style = "SteadyBar"
 
-local FONT_NAME = "Berkeley Mono"
-local HARFBUZZ_FEATURES = {
-  -- "ss01", -- Zero (Slash)
-  "ss02", -- Zero (Dot)
-  -- "ss03", -- Zero (Cut)
-  "ss04", -- Seven (Cross stem)
+local fonts = {
+  {
+    family = "Berkeley Mono",
+    harfbuzz_features = {
+      -- "ss01", -- Zero (Slash)
+      "ss02", -- Zero (Dot)
+      -- "ss03", -- Zero (Cut)
+      "ss04", -- Seven (Cross stem)
+    },
+    stretch = "Condensed",
+    style = "Normal",
+    weight = "Medium",
+  },
+  { family = "MonoLisa Variable" },
+  { family = "PragmataPro Mono Liga" },
 }
-local WINDOWS_FONT_SIZE = 15
-local NON_WINDOWS_FONT_SIZE = 19
+local font_rules = {
+  {
+    font_size = 19,
+    style = "Oblique",
+  },
+  {
+    font_size = 17,
+    harfbuzz_features = {
+      "ss02", -- Script Variant
+    },
+  },
+  {
+    font_size = 20,
+    harfbuzz_features = {
+      "ss09", -- Serif Italic
+    },
+  },
+}
+local font_index = 1
+local font = fonts[font_index]
+local font_rule = font_rules[font_index]
 
--- local FONT_NAME = "MonoLisa Variable"
--- local HARFBUZZ_FEATURES = {
---   "ss02", -- Script Variant
--- }
--- local WINDOWS_FONT_SIZE = 13
--- local NON_WINDOWS_FONT_SIZE = 17
-
--- local FONT_NAME = "PragmataPro Mono Liga"
--- local HARFBUZZ_FEATURES = {
---   "ss09", -- Serif Italic
--- }
--- local WINDOWS_FONT_SIZE = 16
--- local NON_WINDOWS_FONT_SIZE = 20
-
-config.font = wezterm.font({
-  family = FONT_NAME,
-  harfbuzz_features = "Berkeley Mono" and HARFBUZZ_FEATURES or nil,
-})
+config.font = wezterm.font(font)
 config.font_rules = {
   {
     font = wezterm.font({
-      family = FONT_NAME,
-      harfbuzz_features = HARFBUZZ_FEATURES,
-      style = FONT_NAME == "Berkeley Mono" and "Oblique" or "Italic",
+      family = font.family,
+      harfbuzz_features = font_rule.harfbuzz_features or font.harbuzz_features,
+      stretch = font.stretch,
+      style = font_rule.style or "Italic",
+      weight = font.weight,
     }),
     italic = true,
   },
 }
-config.font_size = is_windows and WINDOWS_FONT_SIZE or NON_WINDOWS_FONT_SIZE
+config.font_size = is_windows and (font_rule.font_size - 4)
+  or font_rule.font_size
 
 config.inactive_pane_hsb = {
   saturation = 0.75,
