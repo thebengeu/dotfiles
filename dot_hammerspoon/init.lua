@@ -8,15 +8,33 @@ spoon.ReloadConfiguration:start()
 
 hs.application.enableSpotlightForNameSearches(true)
 
-local switcher_window_filter = hs.window.filter.new()
-switcher_window_filter:rejectApp("1Password")
-switcher_window_filter:rejectApp("Microsoft Edge")
+local app_names = {
+  ["1Password"] = true,
+  ["Microsoft Edge"] = true,
+}
+local switcher_window_filter = hs.window.filter.new(function(window)
+  local allow = not app_names[window:application():name()]
+    and window:subrole() == "AXStandardWindow"
+    and window:frame().area > 30
+
+  -- if allow then
+  --   print(
+  --     window:application():name(),
+  --     window:frame().area,
+  --     window:role(),
+  --     window:size(),
+  --     window:subrole(),
+  --     window:title()
+  --   )
+  -- end
+
+  return allow
+end)
 
 local function setup_app_hotkey(bundle_id_and_args, key, modifiers)
   local bundle_id = bundle_id_and_args.bundle_id or bundle_id_and_args
 
-  local app_name = hs.application.nameForBundleID(bundle_id) or bundle_id
-  switcher_window_filter:rejectApp(app_name)
+  app_names[hs.application.nameForBundleID(bundle_id) or bundle_id] = true
 
   hs.hotkey.bind(modifiers, key, function()
     local app = hs.application(bundle_id)
@@ -67,7 +85,7 @@ for key, bundle_id_and_args in pairs({
   u = "com.todesktop.230313mzl4w4u92",
   v = "com.microsoft.VSCode",
   w = WEZTERM_BUNDLE_ID,
-  -- x = "Perplexity",
+  x = "ai.perplexity.mac",
   y = "com.spotify.client",
   z = {
     args = "~/thebengeu/qmk_userspace/keymap.svg",
@@ -83,7 +101,7 @@ for key, bundle_id_and_args in pairs({
   d = "com.hnc.Discord",
   e = "com.endel.endel",
   f = "org.mozilla.firefox",
-  -- g = "GhostText",
+  g = "com.granola.app",
   h = "org.hammerspoon.Hammerspoon",
   -- j = "Colab local URL",
   k = "org.pqrs.Karabiner-EventViewer",
@@ -92,6 +110,7 @@ for key, bundle_id_and_args in pairs({
     args = "~/thebengeu/cheatsheet/README.md",
     bundle_id = "com.brettterpstra.marked2",
   },
+  -- n = "GhostText",
   o = "com.bloombuilt.dayone-mac",
   p = "com.apple.podcasts",
   -- q = "format-clipboard SQL",
@@ -114,7 +133,7 @@ for key, bundle_id_and_args in pairs({
   e = { "com.microsoft.edgemac", "l" },
   f = { "com.microsoft.edgemac.app.nkbljeindhmekmppbpgebpjebkjbmfaj", "/", {} },
   h = { "net.whatsapp.WhatsApp" },
-  i = { "com.openai.chat" },
+  -- i = { "com.openai.chat" },
   j = { "com.jetbrains.pycharm", "o", { "cmd", "shift" } },
   k = { KITTY_BUNDLE_ID, "h", { "ctrl", "shift" } },
   l = { "com.linear", "/", {} },
@@ -129,7 +148,7 @@ for key, bundle_id_and_args in pairs({
   u = { "com.todesktop.230313mzl4w4u92", "p" },
   v = { "com.microsoft.VSCode", "p" },
   w = { WEZTERM_BUNDLE_ID },
-  x = { "org.mozilla.firefox", "l" },
+  -- x = { "ai.perplexity.mac" },
   y = { "com.spotify.client", "k" },
 }) do
   local bundle_id = bundle_id_and_args.bundle_id or bundle_id_and_args[1]
@@ -255,7 +274,7 @@ for key, command in pairs({
   end)
 end
 
-hs.hotkey.bind({ "ctrl", "shift", "cmd" }, "g", function()
+hs.hotkey.bind({ "ctrl", "shift", "cmd" }, "n", function()
   local bundle_id = "com.neovide.neovide"
 
   if not hs.application(bundle_id) then
