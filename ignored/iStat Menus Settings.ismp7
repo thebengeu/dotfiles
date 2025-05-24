@@ -256,7 +256,7 @@
 		<key>Profiles.Available.identifier</key>
 		<string>default</string>
 		<key>Profiles.Settings.default.Battery.Menubar.Enabled</key>
-		<integer>1</integer>
+		<integer>0</integer>
 		<key>Profiles.Settings.default.Battery.Menubar.Items.Draining</key>
 		<array>
 			<dict>
@@ -313,7 +313,7 @@
 			</dict>
 		</array>
 		<key>Profiles.Settings.default.Network.Menubar.Enabled</key>
-		<integer>0</integer>
+		<integer>1</integer>
 		<key>Profiles.Settings.default.Network.Menubar.Items</key>
 		<array>
 			<dict>
@@ -329,6 +329,26 @@
 		<integer>0</integer>
 		<key>Profiles.Settings.default.Time.Menubar.Enabled</key>
 		<integer>1</integer>
+		<key>Profiles.Settings.default.Weather.Menubar.Enabled</key>
+		<integer>1</integer>
+		<key>Profiles.Settings.default.Weather.Menubar.Items</key>
+		<array>
+			<dict>
+				<key>source</key>
+				<integer>11</integer>
+				<key>subtype</key>
+				<integer>7</integer>
+				<key>type</key>
+				<integer>7</integer>
+				<key>useroptions</key>
+				<dict>
+					<key>value1</key>
+					<string>temperature</string>
+					<key>value2</key>
+					<string>precipitation-probibility</string>
+				</dict>
+			</dict>
+		</array>
 		<key>Status.Build.Last</key>
 		<real>2250</real>
 		<key>Status.Version.Last</key>
@@ -553,6 +573,45 @@
 				<string>willyweather</string>
 				<key>name</key>
 				<string>🇦🇺 WillyWeather (BoM)</string>
+			</dict>
+			<dict>
+				<key>key</key>
+				<string>dwd</string>
+				<key>name</key>
+				<string>🇩🇪 DWD</string>
+			</dict>
+			<dict>
+				<key>key</key>
+				<string>meteofrance</string>
+				<key>name</key>
+				<string>🇫🇷 Meteo France</string>
+			</dict>
+		</array>
+		<key>Weather.Menu.State</key>
+		<array>
+			<dict>
+				<key>enabled</key>
+				<true/>
+				<key>key</key>
+				<string>weather-conditions</string>
+			</dict>
+			<dict>
+				<key>enabled</key>
+				<true/>
+				<key>key</key>
+				<string>weather-hourly</string>
+			</dict>
+			<dict>
+				<key>enabled</key>
+				<true/>
+				<key>key</key>
+				<string>weather-forecast</string>
+			</dict>
+			<dict>
+				<key>enabled</key>
+				<false/>
+				<key>key</key>
+				<string>weather-launcher</string>
 			</dict>
 		</array>
 	</dict>
