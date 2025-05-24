@@ -64,6 +64,11 @@ disabled = true
 
 [kubernetes]
 disabled = false
+format = '[$symbol$context]($style) '
+
+[[kubernetes.contexts]]
+context_pattern = ".*@(.*)-eksCluster-.*"
+context_alias = "$1"
 
 [lua]
 disabled = true
