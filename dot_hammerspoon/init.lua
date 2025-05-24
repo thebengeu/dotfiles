@@ -8,18 +8,18 @@ spoon.ReloadConfiguration:start()
 
 hs.application.enableSpotlightForNameSearches(true)
 
-local app_names = {
-  ["1Password"] = true,
-  ["Microsoft Edge"] = true,
+local bundle_ids = {
+  ["com.1password.1password"] = true,
 }
 local switcher_window_filter = hs.window.filter.new(function(window)
-  local allow = not app_names[window:application():name()]
+  local allow = not bundle_ids[window:application():bundleID()]
     and window:subrole() == "AXStandardWindow"
     and window:frame().area > 30
 
   -- if allow then
   --   print(
   --     window:application():name(),
+  --     window:application():bundleID(),
   --     window:frame().area,
   --     window:role(),
   --     window:size(),
@@ -34,7 +34,7 @@ end)
 local function setup_app_hotkey(bundle_id_and_args, key, modifiers)
   local bundle_id = bundle_id_and_args.bundle_id or bundle_id_and_args
 
-  app_names[hs.application.nameForBundleID(bundle_id) or bundle_id] = true
+  bundle_ids[bundle_id] = true
 
   hs.hotkey.bind(modifiers, key, function()
     local app = hs.application(bundle_id)
@@ -64,7 +64,7 @@ for key, bundle_id_and_args in pairs({
   ["/"] = "com.flexibits.fantastical2.mac",
   a = "com.aptakube.Aptakube",
   b = "md.obsidian",
-  c = "Google Chrome",
+  c = "com.google.Chrome",
   d = "com.kapeli.dash-setapp",
   e = "com.microsoft.edgemac",
   f = "com.microsoft.edgemac.app.nkbljeindhmekmppbpgebpjebkjbmfaj",
@@ -129,7 +129,7 @@ for key, bundle_id_and_args in pairs({
   ["/"] = { "com.flexibits.fantastical2.mac" },
   a = { "com.aptakube.Aptakube" },
   b = { "md.obsidian", "p", { "cmd", "shift" } },
-  c = { "Google Chrome", "l" },
+  c = { "com.google.Chrome", "l" },
   e = { "com.microsoft.edgemac", "l" },
   f = { "com.microsoft.edgemac.app.nkbljeindhmekmppbpgebpjebkjbmfaj", "/", {} },
   h = { "net.whatsapp.WhatsApp" },
