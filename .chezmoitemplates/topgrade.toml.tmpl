@@ -1,5 +1,4 @@
 [commands]
-spicetify = "spicetify update"
 {{- if ne .chezmoi.os "windows"}}
 steampipe = "steampipe plugin update --all"
 {{- end}}
@@ -13,6 +12,9 @@ disable = [
   "containers",
 {{- if eq .chezmoi.os "linux"}}
   "gcloud",
+{{- end}}
+{{- if eq .chezmoi.os "windows"}}
+  "spicetify",
 {{- end}}
   "uv",
   "vim",

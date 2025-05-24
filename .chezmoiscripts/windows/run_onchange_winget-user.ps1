@@ -39,6 +39,7 @@ $wingetPackageIds = @(
   'Amazon.SessionManagerPlugin'
   'SideQuestVR.SideQuest'
   'SlackTechnologies.Slack'
+  'Spicetify.Spicetify'
   'Readdle.Spark'
   'Ookla.Speedtest.CLI'
   'Spotify.Spotify'
