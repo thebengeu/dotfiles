@@ -4,7 +4,8 @@ local WSL_WINDOWS_HOMEDIR = "/mnt/c/Users/beng"
 
 local cwd = vim.uv.cwd()
 local homedir = vim.uv.os_homedir()
-local auto_restore_last_session = cwd
+local auto_restore_last_session = vim.fn.argv(0) == ""
+  and cwd
   and (
     cwd:match("\\scoop\\apps\\")
     or cwd == vim.env.windir
