@@ -58,8 +58,8 @@ local function setup_app_hotkey(bundle_id_and_args, key, modifiers)
 end
 
 for key, bundle_id_and_args in pairs({
-  -- ["'"] = "Rectangle Pro Layout 0",
-  [","] = "com.neovide.neovide",
+  ["'"] = "ai.perplexity.mac",
+  -- [","] = "Rectangle Pro Layout 0",
   ["."] = "com.apple.finder",
   ["/"] = "com.flexibits.fantastical2.mac",
   a = "com.aptakube.Aptakube",
@@ -85,12 +85,9 @@ for key, bundle_id_and_args in pairs({
   u = "com.todesktop.230313mzl4w4u92",
   v = "com.microsoft.VSCode",
   w = WEZTERM_BUNDLE_ID,
-  x = "ai.perplexity.mac",
+  x = "org.mozilla.firefox",
   y = "com.spotify.client",
-  z = {
-    args = "~/thebengeu/qmk_userspace/keymap.svg",
-    bundle_id = "com.wolfrosch.Gapplin",
-  },
+  z = "com.neovide.neovide",
 }) do
   setup_app_hotkey(bundle_id_and_args, key, { "ctrl", "option", "shift" })
 end
@@ -100,7 +97,6 @@ for key, bundle_id_and_args in pairs({
   c = "io.coressh.tunnel-direct",
   d = "com.hnc.Discord",
   e = "com.endel.endel",
-  f = "org.mozilla.firefox",
   g = "com.granola.app",
   h = "org.hammerspoon.Hammerspoon",
   -- j = "Colab local URL",
@@ -117,6 +113,10 @@ for key, bundle_id_and_args in pairs({
   r = "com.microsoft.edgemac.app.bndmnggfngpgmmijcogkkgglhalbpomk",
   s = "dev.kdrag0n.MacVirt",
   t = "info.eurocomp.Timing-setapp",
+  u = {
+    args = "~/thebengeu/qmk_userspace/keymap.svg",
+    bundle_id = "com.wolfrosch.Gapplin",
+  },
   v = "com.apple.Preview",
   -- w = "format-clipboard Python",
   x = "com.microsoft.Excel",
@@ -125,13 +125,14 @@ for key, bundle_id_and_args in pairs({
 end
 
 for key, bundle_id_and_args in pairs({
-  [","] = { "com.neovide.neovide", "p" },
+  -- ["'"] = { "ai.perplexity.mac" },
   ["/"] = { "com.flexibits.fantastical2.mac" },
   a = { "com.aptakube.Aptakube" },
   b = { "md.obsidian", "p", { "cmd", "shift" } },
   c = { "com.google.Chrome", "l" },
   e = { "com.microsoft.edgemac", "l" },
   f = { "com.microsoft.edgemac.app.nkbljeindhmekmppbpgebpjebkjbmfaj", "/", {} },
+  g = { "com.mitchellh.ghostty" },
   h = { "net.whatsapp.WhatsApp" },
   -- i = { "com.openai.chat" },
   j = { "com.jetbrains.pycharm", "o", { "cmd", "shift" } },
@@ -148,8 +149,9 @@ for key, bundle_id_and_args in pairs({
   u = { "com.todesktop.230313mzl4w4u92", "p" },
   v = { "com.microsoft.VSCode", "p" },
   w = { WEZTERM_BUNDLE_ID },
-  -- x = { "ai.perplexity.mac" },
+  x = { "org.mozilla.firefox", "l" },
   y = { "com.spotify.client", "k" },
+  z = { "com.neovide.neovide", "p" },
 }) do
   local bundle_id = bundle_id_and_args.bundle_id or bundle_id_and_args[1]
   local key_on_focus = bundle_id_and_args.key_on_focus
