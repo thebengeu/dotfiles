@@ -556,6 +556,7 @@ local specs = {
       })
     end,
   },
+  { "vague2k/vague.nvim" },
   {
     "Mofiqul/vscode.nvim",
     opts = {
