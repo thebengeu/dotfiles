@@ -1,5 +1,5 @@
 github.com:
-    git_protocol: ssh
+    git_protocol: https
     users:
         thebengeu:
             oauth_token: {{ (joinPath .chezmoi.sourceDir ".secrets.ejson" | ejsonDecrypt).github_oauth_token }}

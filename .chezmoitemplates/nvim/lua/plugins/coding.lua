@@ -7,7 +7,7 @@ return {
       "xzbdmw/colorful-menu.nvim",
       {
         "rafamadriz/friendly-snippets",
-        url = "git@github.com:thebengeu/friendly-snippets.git",
+        url = "https://github.com/thebengeu/friendly-snippets.git",
       },
     },
     opts = {

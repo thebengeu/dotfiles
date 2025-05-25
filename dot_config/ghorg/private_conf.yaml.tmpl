@@ -1,5 +1,4 @@
 GHORG_ABSOLUTE_PATH_TO_CLONE_TO: {{ .chezmoi.homeDir }}
-GHORG_CLONE_PROTOCOL: ssh
 GHORG_COLOR: enabled
 GHORG_GITHUB_TOKEN: {{ (joinPath .chezmoi.sourceDir ".secrets.ejson" | ejsonDecrypt).github_token_repo }}
 GHORG_INCLUDE_SUBMODULES: true
