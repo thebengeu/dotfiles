@@ -7,7 +7,7 @@ README.md
 {{ end }}
 
 .chezmoiscripts/non-windows/*
-.config/{bat,broot,btop,fd,ghostty,gitui,glow,gup,helix,lazygit,msmtp,nushell,nvim,sqlfluff,tealdeer,tmux}/
+.config/{bat,broot,btop,fd,ghostty,gitui,glow,gup,helix,lazygit,msmtp,neovide,nushell,nvim,sqlfluff,tealdeer,tmux}/
 .config/topgrade.toml
 .hushlogin
 .local/bin/{build-and-install-nvim,jn}

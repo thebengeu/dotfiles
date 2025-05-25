@@ -16,7 +16,8 @@ vim.g.snacks_animate = false
 
 vim.opt.fillchars = { eob = " " }
 vim.opt.gdefault = true
-vim.opt.guifont = "MonoLisa Variable:h" .. (jit.os == "OSX" and "17" or "13")
+vim.opt.guifont = "MonoLisaVariable Nerd Font:h"
+  .. (jit.os == "OSX" and "17" or "13")
 vim.opt.keywordprg = ":Search"
 vim.opt.linebreak = true
 vim.opt.pumblend = 10

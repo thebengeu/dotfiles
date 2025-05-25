@@ -4,8 +4,8 @@ srgb = true
 title-hidden = true
 
 [font]
-normal = ["MonoLisa Variable"]
+normal = ["MonoLisaVariable Nerd Font"]
 size = 17
 
 [font.features]
-"MonoLisa Variable" = ["+ss02"]
+"MonoLisaVariable Nerd Font" = ["+ss02"]
