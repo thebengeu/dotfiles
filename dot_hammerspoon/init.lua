@@ -12,14 +12,16 @@ local bundle_ids = {
   ["com.1password.1password"] = true,
 }
 local switcher_window_filter = hs.window.filter.new(function(window)
-  local allow = not bundle_ids[window:application():bundleID()]
+  local app = window:application()
+  local allow = app
+    and not bundle_ids[app:bundleID()]
     and window:subrole() == "AXStandardWindow"
     and window:frame().area > 30
 
   -- if allow then
   --   print(
-  --     window:application():name(),
-  --     window:application():bundleID(),
+  --     app:name(),
+  --     app:bundleID(),
   --     window:frame().area,
   --     window:role(),
   --     window:size(),
