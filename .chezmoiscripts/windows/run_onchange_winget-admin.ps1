@@ -26,6 +26,7 @@ $wingetPackageIds = @(
   'Microsoft.Office'
   'o2sh.onefetch'
   'QMK.QMKToolbox'
+  'Amazon.SessionManagerPlugin'
   'Transmission.Transmission'
   'VideoLAN.VLC'
   'equalsraf.win32yank'
