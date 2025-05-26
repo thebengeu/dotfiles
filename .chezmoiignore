@@ -42,6 +42,7 @@ Library/
 {{ end }}
 
 {{ if eq .chezmoi.os "linux" }}
+.chezmoiscripts/non-linux/*
 .config/wezterm/
 {{ else }}
 .ansible.cfg

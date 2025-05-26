@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+# {{ include "ignored/Brewfile" | sha1sum }}
+grep ^vscode "${CHEZMOI_SOURCE_DIR}/ignored/Brewfile" | grep -v ms-vscode-remote.remote-wsl | cut -d'"' -f2 | xargs -n1 cursor --install-extension
