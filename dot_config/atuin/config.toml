@@ -6,6 +6,9 @@ inline_height = 0
 style = "auto"
 workspaces = true
 
+[daemon]
+enabled = true
+
 [stats]
 common_subcommands = [
   "./snapshot.sh",
@@ -41,3 +44,6 @@ common_subcommands = [
 
 [sync]
 records = true
+
+[theme]
+name = "catppuccin-mocha-lavender"
