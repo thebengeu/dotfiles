@@ -61,6 +61,7 @@ aliases: {
 	dc:              "supa-admin-cli --config ~/.supa-admin-cli.dev"
 	dh:              "\(dc) ssh -p"
 	dp:              "\(dc) psql --disable-statement-tracking -p"
+	dpu:             "AWS_PROFILE=supabase-dev pulumi up --stack supabase/staging"
 	ds:              "docker stats"
 	dsp:             "docker system prune --force --volumes"
 	dspa:            "\(dsp) --all"
@@ -104,6 +105,7 @@ aliases: {
 	pid:             "pnpm install --save-dev"
 	poi:             "gh poi"
 	pp:              "supa-admin-cli psql --disable-statement-tracking -p"
+	ppu:             "AWS_PROFILE=supabase pulumi up --stack supabase/prod"
 	prc:             "gh pr checkout"
 	prd:             "pr --draft"
 	prm:             "pnpm remove"
@@ -139,11 +141,9 @@ aliases: {
 	x:               "docker compose exec"
 
 	for suffix, awsProfile in {
-		b: "supabase-dev-beng"
 		d: "supabase-dev"
 		o: "own"
-		p: "supabase-prototype"
-		s: "supabase"
+		p: "supabase"
 	} {
 		"ap\(suffix)": "export AWS_PROFILE=\(awsProfile);"
 	}
@@ -181,8 +181,6 @@ aliases: {
 			bu:  "brew uninstall --zap"
 			but: "brew untap"
 			crv: #"cp ~/Library/Application\ Support/Code/User/keybindings.json ~/.local/share/chezmoi/.chezmoitemplates/code; sed -E "s/(Theme.*\").+(\",)/\1\2/g" ~/Library/Application\ Support/Code/User/settings.json > ~/.local/share/chezmoi/.chezmoitemplates/code/settings.json"#
-			meb: #"/usr/bin/open -a /Applications/Microsoft\ Edge\ Beta.app --args --proxy-server=in.he.sg:8888"#
-			med: #"/usr/bin/open -a /Applications/Microsoft\ Edge\ Dev.app --args --proxy-server=id.he.sg:8888"#
 			tg:  "brew update && brew unlink moreutils parallel && brew upgrade moreutils parallel && brew link --overwrite moreutils parallel && genv --chdir ~ PIP_REQUIRE_VIRTUALENV=false topgrade"
 			te:  "fd . ~/.Trash --max-depth 1 --exec rm -rf"
 			wsk: "wezterm show-keys --lua"
@@ -321,9 +319,7 @@ aliases: {
 	}
 }
 environmentVariables: {
-	ANTHROPIC_MODEL:               "us.anthropic.claude-3-7-sonnet-20250219-v1:0"
 	BAT_THEME:                     "Catppuccin-mocha"
-	CLAUDE_CODE_USE_BEDROCK:       true
 	DIRENV_LOG_FORMAT:             ""
 	DOCKER_CLI_HINTS:              false
 	EDITOR:                        "nvim"
