@@ -66,11 +66,11 @@ for key, bundle_id_and_args in pairs({
   ["/"] = "com.flexibits.fantastical2.mac",
   a = "com.aptakube.Aptakube",
   b = "md.obsidian",
-  c = "com.google.Chrome",
+  c = "com.anthropic.claudefordesktop",
   d = "com.kapeli.dash-setapp",
   e = "com.microsoft.edgemac",
   f = "com.microsoft.edgemac.app.nkbljeindhmekmppbpgebpjebkjbmfaj",
-  g = "com.mitchellh.ghostty",
+  g = "com.google.Chrome",
   h = "net.whatsapp.WhatsApp",
   i = "com.openai.chat",
   j = "com.jetbrains.pycharm",
@@ -95,15 +95,16 @@ for key, bundle_id_and_args in pairs({
 end
 
 for key, bundle_id_and_args in pairs({
+  -- [","] = "Colab local URL",
   -- ["."] = "unwrap-clipboard",
+  -- ["/"] = "Colab remote URL",
   c = "io.coressh.tunnel-direct",
   d = "com.hnc.Discord",
   e = "com.endel.endel",
-  g = "com.granola.app",
+  g = "com.mitchellh.ghostty",
   h = "org.hammerspoon.Hammerspoon",
-  -- j = "Colab local URL",
   k = "org.pqrs.Karabiner-EventViewer",
-  -- l = "Colab remote URL",
+  l = "com.granola.app",
   m = {
     args = "~/thebengeu/cheatsheet/README.md",
     bundle_id = "com.brettterpstra.marked2",
@@ -131,10 +132,10 @@ for key, bundle_id_and_args in pairs({
   ["/"] = { "com.flexibits.fantastical2.mac" },
   a = { "com.aptakube.Aptakube" },
   b = { "md.obsidian", "p", { "cmd", "shift" } },
-  c = { "com.google.Chrome", "l" },
+  -- c = { "com.anthropic.claudefordesktop" },
   e = { "com.microsoft.edgemac", "l" },
   f = { "com.microsoft.edgemac.app.nkbljeindhmekmppbpgebpjebkjbmfaj", "/", {} },
-  g = { "com.mitchellh.ghostty" },
+  g = { "com.google.Chrome", "l" },
   h = { "net.whatsapp.WhatsApp" },
   -- i = { "com.openai.chat" },
   j = { "com.jetbrains.pycharm", "o", { "cmd", "shift" } },
@@ -296,8 +297,8 @@ hs.hotkey.bind({ "ctrl", "shift", "cmd" }, "n", function()
 end)
 
 for key, command in pairs({
-  j = "cat /tmp/jupyter.log | ~/.local/bin/jn-url",
-  l = "ssh hc -C 'cat /tmp/jupyter.log | jn-url 8888 8889'",
+  [","] = "cat /tmp/jupyter.log | ~/.local/bin/jn-url",
+  ["/"] = "ssh hc -C 'cat /tmp/jupyter.log | jn-url 8888 8889'",
 }) do
   hs.hotkey.bind({ "ctrl", "shift", "cmd" }, key, function()
     hs.eventtap.keyStroke({ "cmd" }, "a")
