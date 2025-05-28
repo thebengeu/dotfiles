@@ -5,10 +5,10 @@ filter_mode_shell_up_key_binding = "session"
 inline_height = 0
 style = "auto"
 workspaces = true
-
+{{if eq .chezmoi.os "darwin"}}
 [daemon]
 enabled = true
-
+{{end}}
 [stats]
 common_subcommands = [
   "./snapshot.sh",
