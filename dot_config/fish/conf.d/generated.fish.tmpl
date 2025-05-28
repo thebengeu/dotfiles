@@ -2,6 +2,7 @@
 set --export {{$environmentVariable}} "{{$value}}"
 {{end -}}
 
+set --export CLOUDFLARE_API_TOKEN {{ (joinPath .chezmoi.sourceDir ".secrets.ejson" | ejsonDecrypt).cloudflare_api_token }}
 set --export HOMEBREW_GITHUB_API_TOKEN {{ (joinPath .chezmoi.sourceDir ".secrets.ejson" | ejsonDecrypt).github_token_repo }}
 {{- if eq .chezmoi.os "darwin" }}
 {{if eq .chezmoi.arch "arm64" }}
