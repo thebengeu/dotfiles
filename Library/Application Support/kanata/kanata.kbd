@@ -1,0 +1,9 @@
+;; https://jtroo.github.io/config.html
+;; https://github.com/jtroo/kanata/blob/main/parser/src/keys/mod.rs
+(defcfg process-unmapped-keys yes)
+(defsrc)
+(deflayermap (base-layer)
+  caps (tap-hold 150 150 esc lctl)
+  rctl fn
+  rmet (multi alt ctl rsft)
+  tab (tap-hold 150 150 tab (multi ctl met rsft)))
