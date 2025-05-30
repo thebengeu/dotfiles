@@ -7,6 +7,7 @@ $wingetPackageIds = @(
   'Amazon.AWSCLI'
   'Clement.bottom'
   'Amazon.Chime'
+  'Anthropic.Claude'
   'schollz.croc'
   'Anysphere.Cursor'
   'dandavison.delta'
