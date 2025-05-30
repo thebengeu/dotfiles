@@ -48,6 +48,7 @@ local fonts = {
   {
     family = "Berkeley Mono",
     harfbuzz_features = {
+      "calt=0",
       -- "ss01", -- Zero (Slash)
       "ss02", -- Zero (Dot)
       -- "ss03", -- Zero (Cut)
