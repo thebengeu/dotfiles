@@ -32,5 +32,13 @@
     "key": "ctrl+/",
     "command": "workbench.action.terminal.toggleTerminal",
     "when": "terminalFocus"
+  },
+  {
+    "key": "shift+enter",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": {
+      "text": "\\\r\n"
+    },
+    "when": "terminalFocus"
   }
 ]
