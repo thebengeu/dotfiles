@@ -4,6 +4,19 @@
 (defsrc)
 (deflayermap (base-layer)
   caps (tap-hold 150 150 esc lctl)
+  f1 brdn
+  f2 bru
+  f3 mctl
+  f4 sls
+  f5 dtn
+  f6 dnd
+  f7 prev
+  f8 pp
+  f9 next
+  f10 mute
+  f11 vold
+  f12 volu
   rctl fn
   rmet (multi alt ctl rsft)
-  tab (tap-hold 150 150 tab (multi ctl met rsft)))
+  tab (tap-hold 150 150 tab (multi ctl met rsft))
+)
