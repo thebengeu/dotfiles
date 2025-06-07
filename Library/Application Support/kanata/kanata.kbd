@@ -16,7 +16,15 @@
   f10 mute
   f11 vold
   f12 volu
+  lctl ralt
+  ralt (layer-while-held 1)
   rctl fn
   rmet (multi alt ctl rsft)
   tab (tap-hold 150 150 tab (multi ctl met rsft))
+)
+(deflayermap (1)
+  e up
+  s lft
+  d down
+  f rght
 )
