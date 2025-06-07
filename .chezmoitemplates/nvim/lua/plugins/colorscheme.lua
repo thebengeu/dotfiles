@@ -256,6 +256,7 @@ local specs = {
     "webhooked/kanso.nvim",
     colors_names = {
       "kanso-ink",
+      "kanso-mist",
       "kanso-zen",
     },
     colors_names_light = {
