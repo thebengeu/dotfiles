@@ -2,11 +2,16 @@ local LazyVim = require("lazyvim.util")
 local colorscheme_specs = require("plugins.colorscheme")
 local util = require("util")
 
+local bg
+local colorscheme_index
 local colorschemes
 local max_colorscheme_name_length
 
 local get_colorscheme_name = function(colorscheme)
-  return table.concat(colorscheme, "-"):gsub(" ", "_"):gsub("-lighte?r?", "")
+  return table
+    .concat(colorscheme or colorschemes[colorscheme_index], "-")
+    :gsub(" ", "_")
+    :gsub("-lighte?r?", "")
 end
 
 local refresh_colorschemes = function()
@@ -54,9 +59,6 @@ local refresh_colorschemes = function()
   end
 end
 
-local bg
-local colorscheme_index
-
 local set_background = function()
   if bg then
     if vim.env.KITTY_WINDOW_ID then
@@ -65,6 +67,41 @@ local set_background = function()
       util.wezterm_set_user_var("BACKGROUND", bg)
     end
   end
+end
+
+local mini_icons_hl = vim
+  .iter(util.rainbow_colors)
+  :map(function(rainbow_color)
+    return "MiniIcons" .. rainbow_color:gsub("Violet", "Purple")
+  end)
+  :totable()
+
+local ts_rainbow_2_hl = vim
+  .iter(util.rainbow_colors)
+  :map(function(rainbow_color)
+    return "TSRainbow" .. rainbow_color
+  end)
+  :totable()
+
+local ts_rainbow_hl = {}
+
+for i = 1, 7 do
+  table.insert(ts_rainbow_hl, "rainbowcol" .. i)
+end
+
+local hl_not_exists = function(hl_name)
+  local hl = vim.api.nvim_get_hl(0, { name = hl_name })
+  return next(hl) == nil or hl.default
+end
+
+local rainbow_hl_if_exists = function(rainbow_hl)
+  for i = 1, 7 do
+    if hl_not_exists(rainbow_hl[i]) then
+      return false
+    end
+  end
+
+  return rainbow_hl
 end
 
 math.randomseed(os.time())
@@ -110,6 +147,33 @@ local refresh_colorscheme = function(index)
 
   set_background()
   require("transparent").toggle(true)
+
+  util.set_highlights()
+
+  local rainbow_hl = rainbow_hl_if_exists(util.rainbow_delimiters_hl)
+    or rainbow_hl_if_exists(ts_rainbow_2_hl)
+    or rainbow_hl_if_exists(ts_rainbow_hl)
+    or rainbow_hl_if_exists(mini_icons_hl)
+
+  if not rainbow_hl then
+    error("No rainbow highlight groups found for " .. get_colorscheme_name())
+  end
+
+  for i, hl_name in ipairs(rainbow_hl) do
+    vim.api.nvim_set_hl(0, util.rainbow_delimiters_hl[i], {
+      fg = vim.api.nvim_get_hl(0, { link = false, name = hl_name }).fg,
+    })
+  end
+
+  for _, hl_suffix in ipairs({ "Dir", "PathHidden", "PathIgnored" }) do
+    local hl_name = "SnacksPicker" .. hl_suffix
+    if hl_not_exists(hl_name) then
+      local comment_hl = vim.api.nvim_get_hl(0, { name = "Comment" })
+      local hl = vim.tbl_extend("force", comment_hl, { italic = false })
+
+      vim.api.nvim_set_hl(0, hl_name, hl)
+    end
+  end
 
   vim.schedule(function()
     require("lualine").refresh()
@@ -222,7 +286,7 @@ return {
         { LazyVim.lualine.pretty_path({ length = 4 }) }
       opts.sections.lualine_z = {
         function()
-          return get_colorscheme_name(colorschemes[colorscheme_index])
+          return get_colorscheme_name()
         end,
       }
     end,
