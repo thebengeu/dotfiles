@@ -57,6 +57,8 @@ if [ ! "${CHEZMOI}" = 1 ]; then
   brew unlink parallel
   brew link --overwrite parallel
 
+  echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 "$(command -v kanata)" | cut -d " " -f 1) $(command -v kanata)" | sudo tee /private/etc/sudoers.d/kanata
+
   cargo install --locked cargo-binstall
 
   uv tool install poetry
