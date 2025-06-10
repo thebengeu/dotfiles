@@ -97,6 +97,9 @@ disabled = true
 [vagrant]
 disabled = true
 
+[zig]
+disabled = true
+
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
 flamingo = "#f2cdcd"
