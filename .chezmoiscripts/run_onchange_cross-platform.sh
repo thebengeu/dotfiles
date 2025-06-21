@@ -43,6 +43,7 @@ npm install --global pnpm
 pnpm add --global \
   @anthropic-ai/claude-code \
   codebuff \
+  codemod \
   npm-check-updates \
   pino-pretty \
   pm2 \
