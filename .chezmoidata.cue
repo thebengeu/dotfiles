@@ -109,7 +109,7 @@ aliases: {
 	prc:             "gh pr checkout"
 	prd:             "pr --draft"
 	prm:             "pnpm remove"
-	prune:           "\(dspa); go clean -modcache; pnpm store prune --force; rm -rf ~/.cache ~/.minikube ~/.npm ~/.pulumi ~/.rustup"
+	prune:           "\(dspa); go clean -modcache; pnpm store prune --force; rm -rf ~/.cache ~/.minikube ~/.npm ~/.pulumi ~/.rustup; bat cache --build"
 	prw:             "gh pr view --web"
 	psi:             "pulumi stack init"
 	psic:            "pulumi stack init --copy-config-from"
