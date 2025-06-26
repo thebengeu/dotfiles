@@ -122,8 +122,24 @@
 			<string>memory-memory</string>
 			<string>disks-physical</string>
 			<string>network-ping</string>
+			<string>sensors-sensors</string>
 			<string>battery-combined</string>
 			<string>time-cities</string>
+		</array>
+		<key>Combined.Menu.Sensors.Items</key>
+		<array>
+			<dict>
+				<key>ShowUnits</key>
+				<true/>
+				<key>key</key>
+				<string>25e6feb8fe29932722939756bbe7874504c80bb0</string>
+				<key>name</key>
+				<string>Palm Rest</string>
+				<key>source</key>
+				<integer>2</integer>
+				<key>type</key>
+				<integer>1</integer>
+			</dict>
 		</array>
 		<key>Combined.Menubar.Items</key>
 		<array/>
