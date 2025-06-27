@@ -20,11 +20,15 @@ vim.keymap.set("x", "V", "j")
 
 if vim.g.vscode then
   vim.keymap.set({ "n", "x" }, "<leader>", function()
-    require("vscode-neovim").action("vspacecode.space")
+    require("vscode").action("vspacecode.space")
   end)
 
   vim.keymap.set("n", "<C-/>", function()
-    require("vscode-neovim").action("workbench.action.terminal.toggleTerminal")
+    require("vscode").action("workbench.action.terminal.toggleTerminal")
+  end)
+
+  vim.keymap.set("n", "gr", function()
+    require("vscode").action("editor.action.goToReferences")
   end)
 
   vim.schedule(function()
