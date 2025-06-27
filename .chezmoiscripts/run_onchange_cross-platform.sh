@@ -42,6 +42,7 @@ uv tool install visidata
 npm install --global pnpm
 pnpm add --global \
   @anthropic-ai/claude-code \
+  ccmanager \
   codebuff \
   codemod \
   npm-check-updates \

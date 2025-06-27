@@ -3,3 +3,4 @@ onlyBuiltDependencies:
   - '@ast-grep/cli'
   - esbuild
   - keytar
+  - node-pty
