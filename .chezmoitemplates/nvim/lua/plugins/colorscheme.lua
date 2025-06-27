@@ -11,6 +11,7 @@ local rainbow_delimiter_highlights = function(colors, highlights)
 end
 
 -- Check rainbow delimiter support:
+-- cd $(nvim-stdpath data)/lazy
 -- rg 'miniicons|rainbow' Everblush flow.nvim fluoromachine.nvim jellybeans.nvim mellow.nvim midnight.nvim night-owl.nvim nordic.nvim oxocarbon.nvim nvim-tundra zenbones.nvim
 local specs = {
   {
