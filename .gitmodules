@@ -1,0 +1,3 @@
+[submodule "dot_local/share/fonts"]
+	path = dot_local/share/fonts
+	url = https://github.com/thebengeu/fonts.git
