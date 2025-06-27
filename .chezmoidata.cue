@@ -235,7 +235,6 @@ aliases: {
 		p: "$HOME/supabase/postgres"
 		u: "$HOME/thebengeu/qmk_userspace"
 		w: "$HOME/supabase/supabase"
-		x: "$HOME/supabase/infrastructure-external"
 		z: "$HOME/thebengeu/zmk-config"
 	}
 	_nvimAliasDirectories: _gitAliasDirectories & {

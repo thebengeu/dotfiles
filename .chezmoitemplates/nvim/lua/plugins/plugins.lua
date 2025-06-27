@@ -96,7 +96,6 @@ return {
           s = "~/supabase",
           u = "~/thebengeu/qmk_userspace",
           w = "~/supabase/supabase",
-          x = "~/supabase/infrastructure-external",
           z = "~/thebengeu/zmk-config",
         })
         :map(function(key, path)
