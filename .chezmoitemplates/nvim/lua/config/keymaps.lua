@@ -3,8 +3,9 @@ local util = require("util")
 
 vim.keymap.del({ "n", "x" }, "j")
 vim.keymap.del({ "n", "x" }, "k")
-vim.keymap.del("n", "<leader>gl")
-vim.keymap.del("n", "<leader>gL")
+
+pcall(vim.keymap.del, "n", "<leader>gl")
+pcall(vim.keymap.del, "n", "<leader>gL")
 
 vim.keymap.set("n", "<C-r>", "<cmd>silent redo<cr>")
 vim.keymap.set("n", "u", "<cmd>silent undo<cr>")
