@@ -117,6 +117,7 @@ aliases: {
 	pss:             "pulumi stack select $(select-supabase-stack)"
 	pu:              "pulumi up"
 	pus:             "pulumi up --skip-preview"
+	rc:              "mv ~/supabase/*.worktrees /tmp; ghorg reclone; mv /tmp/*.worktrees ~/supabase"
 	rd:              "git rebase-default"
 	rgb:             "batgrep"
 	rgc:             "cd ~/repos && gc"
