@@ -6,11 +6,12 @@
       "Bash(grep:*)",
       "Bash(ls:*)",
       "Bash(mkdir:*)",
-      "Bash(pnpm build:*)",
-      "Bash(pnpm install:*)",
+      "Bash(pnpm:*)",
       "Bash(rg:*)",
       "Edit",
-      "Read(~/supabase/**)"
+      "Read(~/repos/**)",
+      "Read(~/supabase/**)",
+      "Read(~/thebengeu/**)"
     ]
   }
 }
