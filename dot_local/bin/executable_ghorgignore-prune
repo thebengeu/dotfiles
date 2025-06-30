@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+while read -r url; do
+	repo=$(echo "${url}" | sed 's|https://github.com/||; s|\.git||')
+	if [ "$(gh repo view "${repo}" --jq .isArchived --json isArchived)" = "false" ]; then
+		echo "${url}"
+	fi
+done <~/.config/ghorg/ghorgignore >~/.local/share/chezmoi/dot_config/ghorg/ghorgignore
