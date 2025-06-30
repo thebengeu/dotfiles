@@ -19,7 +19,9 @@
     }
   },
   "chat.editor.fontSize": 14,
-  "cSpell.includeRegExpList": ["CStyleComment"],
+  "cSpell.includeRegExpList": [
+    "CStyleComment"
+  ],
   "cSpell.userWords": [
     "autoapi",
     "awalias",
@@ -35,8 +37,8 @@
   "editor.accessibilitySupport": "off",
   "editor.codeActionsOnSave": {
     "source.addMissingImports": "explicit",
-    "source.organizeImports": "explicit",
-    "source.fixAll": "explicit"
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit"
   },
   "editor.cursorSurroundingLines": 999,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -53,6 +55,20 @@
     "asvetliakov.vscode-neovim": 1
   },
   "git.autofetch": true,
+  "gitlens.ai.model": "vscode",
+  "gitlens.views.scm.grouped.views": {
+    "branches": true,
+    "commits": true,
+    "contributors": true,
+    "fileHistory": false,
+    "launchpad": false,
+    "remotes": true,
+    "repositories": true,
+    "searchAndCompare": false,
+    "stashes": true,
+    "tags": true,
+    "worktrees": false
+  },
   "remote.autoForwardPorts": false,
   "remote.SSH.remotePlatform": {
     "dev-wsl": "linux"
