@@ -49,7 +49,6 @@
     - cue
     - direnv
     - fd
-    - fnm
     - git
     - just
     - kubectl

@@ -22,8 +22,6 @@ else if test -n "$SSH_CONNECTION"
     set --export TITLE_PREFIX $(prompt_hostname):
 end
 
-fnm env --use-on-cd | source
-
 function fish_title
     if test -n "$WEZTERM_UNIX_SOCKET" -a -n "$WSL_HOSTNAME_PREFIX"
         if test "$WSL_HOSTNAME_PREFIX" = "$(wezterm cli list-clients --format json | jq -r 'min_by(.idle_time.secs + .idle_time.nanos / 1e9).hostname')"
