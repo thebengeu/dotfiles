@@ -376,11 +376,7 @@
 		<array>
 			<dict>
 				<key>source</key>
-				<integer>9</integer>
-				<key>subtype</key>
-				<integer>6</integer>
-				<key>type</key>
-				<integer>7</integer>
+				<integer>21</integer>
 			</dict>
 		</array>
 		<key>Profiles.Settings.default.Disks.Menubar.Enabled</key>
