@@ -1,16 +1,5 @@
 - ansible.builtin.file:
     mode: "755"
-    path: ~/.pulumi/bin
-    state: directory
-- ansible.builtin.unarchive:
-    creates: ~/.pulumi/bin/pulumi
-    dest: ~/.pulumi/bin
-    extra_opts:
-      - --strip-components=1
-    remote_src: true
-    src: https://get.pulumi.com/releases/sdk/pulumi-v3.134.1-linux-{{ (arch.stdout == 'amd64') | ternary('x64', arch.stdout) }}.tar.gz
-- ansible.builtin.file:
-    mode: "755"
     path: ~/.temporalio/bin
     state: directory
 - ansible.builtin.unarchive:

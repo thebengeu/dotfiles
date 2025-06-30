@@ -45,7 +45,9 @@ packages=(
   nushell
   onefetch
   peco
+  pnpm
   pspg
+  pulumi
   scc
   sd
   speedtest-cli

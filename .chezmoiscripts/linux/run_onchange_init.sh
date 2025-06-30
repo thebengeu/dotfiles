@@ -67,7 +67,7 @@ if [[ ! "${CHEZMOI}" = 1 ]]; then
 
   export PNPM_HOME=~/.local/share/pnpm
   export PYENV_ROOT=~/.pyenv
-  export PATH="${PYENV_ROOT}/bin:~/.nix-profile/bin:~/.cargo/bin:~/.local/bin:~/.pulumi/bin:~/go/bin:${PNPM_HOME}:${PATH}"
+  export PATH="${PYENV_ROOT}/bin:~/.nix-profile/bin:~/.cargo/bin:~/.local/bin:~/go/bin:${PNPM_HOME}:${PATH}"
 
   pipx install uv
   uv tool install poetry

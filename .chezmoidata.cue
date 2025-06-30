@@ -390,7 +390,6 @@ paths: list.Concat([{
 		"/usr/local/bin",
 	]
 	linux: list.Concat([_wsl_paths, [
-		"~/.pulumi/bin",
 		"~/.temporalio/bin",
 		"$FLYCTL_INSTALL/bin",
 		"$PYENV_ROOT/bin",
