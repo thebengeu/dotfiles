@@ -78,7 +78,7 @@ for key, bundle_id_and_args in pairs({
   l = "com.linear",
   m = "com.mimestream.Mimestream",
   n = "notion.id",
-  o = "com.microsoft.edgemac.app.knaiokfnmjjldlfhlioejgcompgenfhb",
+  o = "com.todoist.mac.Todoist",
   p = "co.noteplan.NotePlan-setapp",
   q = "com.readdle.SparkDesktop-setapp",
   r = "com.hahainteractive.GoodTask3Mac",
@@ -143,7 +143,7 @@ for key, bundle_id_and_args in pairs({
   l = { "com.linear", "/", {} },
   m = { "com.mimestream.Mimestream", "f", { "cmd", "option" } },
   n = { "notion.id", "k" },
-  o = { "com.microsoft.edgemac.app.knaiokfnmjjldlfhlioejgcompgenfhb", "k" },
+  o = { "com.todoist.mac.Todoist", "k" },
   p = { "co.noteplan.NotePlan-setapp", "f", { "cmd", "shift" } },
   q = { "com.readdle.SparkDesktop-setapp" },
   r = { "com.hahainteractive.GoodTask3Mac" },
@@ -252,15 +252,6 @@ for _, mods_and_key in ipairs({
     hotkey:enable()
   end)
 end
-
-hs.hotkey.bind({ "cmd", "ctrl" }, "a", function()
-  hs.application.open(
-    "com.microsoft.edgemac.app.knaiokfnmjjldlfhlioejgcompgenfhb",
-    10,
-    true
-  )
-  hs.eventtap.keyStroke({}, "q")
-end)
 
 for key, command in pairs({
   ["."] = "unwrap-clipboard",
