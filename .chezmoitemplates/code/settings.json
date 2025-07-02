@@ -69,6 +69,7 @@
     "tags": true,
     "worktrees": false
   },
+  "mise.binPath": "/opt/homebrew/bin/mise",
   "remote.autoForwardPorts": false,
   "remote.SSH.remotePlatform": {
     "dev-wsl": "linux"
