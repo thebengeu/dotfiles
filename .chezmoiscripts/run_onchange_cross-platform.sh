@@ -39,14 +39,14 @@ uv tool install tox
 uv tool install virtualenv
 uv tool install visidata
 
-npm install --global pnpm
-pnpm add --global \
+npm install --global \
   @anthropic-ai/claude-code \
   ccmanager \
   codebuff \
   codemod \
   npm-check-updates \
   pino-pretty \
+  pnpm \
   pm2 \
   prettier \
   sort-json \

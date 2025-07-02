@@ -1,6 +1,0 @@
-onlyBuiltDependencies:
-  - '@anthropic-ai/claude-code'
-  - '@ast-grep/cli'
-  - esbuild
-  - keytar
-  - node-pty
