@@ -54,13 +54,6 @@
   environment:
     PATH: /usr/bin:/home/{{ ansible_user_id }}/.cargo/bin
 - ansible.builtin.get_url:
-    dest: /tmp/pyenv-installer
-    mode: "755"
-    url: https://pyenv.run
-- ansible.builtin.command:
-    cmd: /tmp/pyenv-installer
-    creates: ~/.pyenv
-- ansible.builtin.get_url:
     dest: /tmp/kitty-installer
     mode: "755"
     url: https://sw.kovidgoyal.net/kitty/installer.sh

@@ -18,7 +18,3 @@ end
 {{- if lookPath "vivid" }}
 set --export LS_COLORS '{{ output "vivid" "generate" "catppuccin-mocha" | trim }}'
 {{end -}}
-
-{{- if ne .chezmoi.os "windows" }}
-{{output "fish" "-c" "pyenv init -"}}
-{{- end }}

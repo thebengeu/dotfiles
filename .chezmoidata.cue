@@ -335,7 +335,6 @@ environmentVariables: {
 	MICRO_TRUECOLOR:               1
 	PIP_REQUIRE_VIRTUALENV:        true
 	PULUMI_SKIP_UPDATE_CHECK:      true
-	PYENV_ROOT:                    "$HOME/.pyenv"
 	RIPGREP_CONFIG_PATH:           "$HOME/.config/ripgrep/config"
 	USQL_SHOW_HOST_INFORMATION:    false
 
@@ -392,7 +391,6 @@ paths: list.Concat([{
 	linux: list.Concat([_wsl_paths, [
 		"~/.temporalio/bin",
 		"$FLYCTL_INSTALL/bin",
-		"$PYENV_ROOT/bin",
 	]])
 	windows: [
 		"~/AppData/Roaming/Python/Python313/Scripts",
