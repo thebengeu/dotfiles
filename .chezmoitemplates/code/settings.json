@@ -19,18 +19,18 @@
     }
   },
   "chat.editor.fontSize": 14,
-  "cSpell.includeRegExpList": [
-    "CStyleComment"
-  ],
+  "cSpell.includeRegExpList": ["CStyleComment"],
   "cSpell.userWords": [
     "autoapi",
     "awalias",
     "codegen",
+    "creds",
     "darora",
     "kamil",
     "kevcodez",
     "pgboss",
     "pino",
+    "pulumi",
     "supabase",
     "thebengeu"
   ],
@@ -55,6 +55,7 @@
     "asvetliakov.vscode-neovim": 1
   },
   "git.autofetch": true,
+  "git.enableSmartCommit": true,
   "gitlens.ai.model": "vscode",
   "gitlens.views.scm.grouped.views": {
     "branches": true,
@@ -69,6 +70,7 @@
     "tags": true,
     "worktrees": false
   },
+  "lazygit-vscode.autoMaximizeWindow": true,
   "mise.binPath": "/opt/homebrew/bin/mise",
   "remote.autoForwardPorts": false,
   "remote.SSH.remotePlatform": {
