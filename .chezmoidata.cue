@@ -183,6 +183,7 @@ aliases: {
 			bu:  "brew uninstall --zap"
 			but: "brew untap"
 			crv: #"cp ~/Library/Application\ Support/Code/User/keybindings.json ~/.local/share/chezmoi/.chezmoitemplates/code; sed -E "s/(Theme.*\").+(\",)/\1\2/g" ~/Library/Application\ Support/Code/User/settings.json > ~/.local/share/chezmoi/.chezmoitemplates/code/settings.json"#
+			cru: #"cp ~/Library/Application\ Support/Cursor/User/keybindings.json ~/.local/share/chezmoi/.chezmoitemplates/code; sed -E "s/(Theme.*\").+(\",)/\1\2/g" ~/Library/Application\ Support/Cursor/User/settings.json > ~/.local/share/chezmoi/.chezmoitemplates/code/settings.json"#
 			tg:  "brew update && brew unlink moreutils parallel && brew upgrade moreutils parallel && brew link --overwrite moreutils parallel && genv --chdir ~ PIP_REQUIRE_VIRTUALENV=false topgrade"
 			te:  "fd . ~/.Trash --max-depth 1 --exec rm -rf"
 			wsk: "wezterm show-keys --lua"
