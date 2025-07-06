@@ -61,8 +61,6 @@ if [ ! "${CHEZMOI}" = 1 ]; then
 
   cargo install --locked cargo-binstall
 
-  uv tool install poetry
-
   brew_prefix=$(brew --prefix)
 
   sed -i '' 's/#port = 5432/port = 5434/' "${brew_prefix}/var/postgresql@17/postgresql.conf"

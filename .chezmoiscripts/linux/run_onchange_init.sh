@@ -69,7 +69,6 @@ if [[ ! "${CHEZMOI}" = 1 ]]; then
   export PATH="~/.nix-profile/bin:~/.cargo/bin:~/.local/bin:~/go/bin:${PNPM_HOME}:${PATH}"
 
   pipx install uv
-  uv tool install poetry
 
   chezmoi init
   chezmoi apply --keep-going --exclude scripts
