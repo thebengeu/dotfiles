@@ -1,7 +1,6 @@
 {{- if lookPath "atuin" }}
 {{output "atuin" "init" "fish"}}
 {{end -}}
-{{output "direnv" "hook" "fish"}}
 {{output "fish" "-c" "starship init fish --print-full-init"}}
 {{- if lookPath "luarocks" }}
 fish_add_path --global '{{output "luarocks" "path" "--lr-bin" }}'

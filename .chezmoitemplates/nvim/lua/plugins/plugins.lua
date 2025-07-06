@@ -150,13 +150,6 @@ return {
     build = "luarocks --local install tiktoken_core",
   },
   {
-    "direnv/direnv.vim",
-    cond = cwd and cwd:match("thebengeu") ~= nil,
-    config = function()
-      vim.g.direnv_silent_load = 1
-    end,
-  },
-  {
     "chentoast/marks.nvim",
     event = "LazyFile",
     opts = {

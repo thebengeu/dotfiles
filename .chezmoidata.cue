@@ -57,7 +57,6 @@ aliases: {
 	cup:             "chezmoi update --apply=false; chezmoi init; \(ca)"
 	cx:              "chmod +x"
 	d:               "devspace"
-	da:              "direnv allow"
 	dc:              "supa-admin-cli --config ~/.supa-admin-cli.dev"
 	dh:              "\(dc) ssh -p"
 	dp:              "\(dc) psql --disable-statement-tracking -p"
@@ -322,7 +321,6 @@ aliases: {
 }
 environmentVariables: {
 	BAT_THEME:                     "Catppuccin-mocha"
-	DIRENV_LOG_FORMAT:             ""
 	DOCKER_CLI_HINTS:              false
 	EDITOR:                        "nvim"
 	EJSON_KEYDIR:                  "$HOME/.config/ejson/keys"

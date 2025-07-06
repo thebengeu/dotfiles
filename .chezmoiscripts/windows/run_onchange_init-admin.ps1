@@ -37,7 +37,6 @@ $wingetPackageIds = @(
   'rsteube.Carapace'
   'twpayne.chezmoi'
   'Kitware.CMake'
-  'direnv.direnv'
   'Ditto.Ditto'
   'sharkdp.fd'
   'GitHub.cli'
