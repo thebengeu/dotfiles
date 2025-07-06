@@ -14,6 +14,7 @@ if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
 $isMobile = (Get-CimInstance -Class Win32_ComputerSystem -Property PCSystemType).PCSystemType -eq 2
 
 $wingetPackageIds = @(
+  'Clement.bottom'
   'Google.Chrome'
   'Microsoft.Edge.Beta'
   'Microsoft.Edge.Dev'

@@ -5,7 +5,6 @@ $wingetPackageIds = @(
   'AutoHotkey.AutoHotkey'
   'Armin2208.WindowsAutoNightMode'
   'Amazon.AWSCLI'
-  'Clement.bottom'
   'Amazon.Chime'
   'Anthropic.Claude'
   'schollz.croc'
