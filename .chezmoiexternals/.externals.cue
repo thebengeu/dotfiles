@@ -59,6 +59,9 @@ for gitRepo in _zshGitRepos {
 		".config/kitty/relative_resize.py": #File & {
 			url: "https://raw.githubusercontent.com/mrjones2014/smart-splits.nvim/master/kitty/relative_resize.py"
 		}
+		".warp/themes/catppuccin-mocha.yml": #File & {
+			url: "https://raw.githubusercontent.com/catppuccin/warp/refs/heads/main/themes/catppuccin_mocha.yml"
+		}
 	}
 	linux: darwin & {
 		".local/bin/lmn": #ArchiveFile & {
