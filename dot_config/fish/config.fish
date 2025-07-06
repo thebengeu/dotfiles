@@ -54,7 +54,9 @@ function fish_hybrid_key_bindings
     bind \cl true
 end
 
-set --global fish_key_bindings fish_hybrid_key_bindings
+if test "$TERM_PROGRAM" != WarpTerminal
+    set --global fish_key_bindings fish_hybrid_key_bindings
+end
 
 function __mark_prompt_start --on-event fish_prompt --on-event fish_cancel --on-event fish_posterror
     test "$__prompt_state" != prompt-start
