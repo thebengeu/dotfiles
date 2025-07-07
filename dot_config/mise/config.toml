@@ -1,19 +1,2 @@
 [settings]
 idiomatic_version_file_enable_tools = ["node"]
-
-[settings.npm]
-bun = true
-
-[tools]
-bun = "latest"
-"npm:@anthropic-ai/claude-code" = "latest"
-"npm:ccmanager" = "latest"
-"npm:codebuff" = "latest"
-"npm:codemod" = "latest"
-"npm:npm-check-updates" = "latest"
-"npm:pino-pretty" = "latest"
-"npm:pm2" = "latest"
-"npm:prettier" = "latest"
-"npm:sort-json" = "latest"
-"npm:sql-formatter" = "latest"
-"npm:trash-cli" = "latest"

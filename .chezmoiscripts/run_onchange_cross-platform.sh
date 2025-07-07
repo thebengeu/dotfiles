@@ -39,6 +39,20 @@ uv tool install tox
 uv tool install virtualenv
 uv tool install visidata
 
+npm install --global \
+  @anthropic-ai/claude-code \
+  ccmanager \
+  codebuff \
+  codemod \
+  npm-check-updates \
+  pino-pretty \
+  pnpm \
+  pm2 \
+  prettier \
+  sort-json \
+  sql-formatter \
+  trash-cli
+
 if hash ya 2>/dev/null; then
   ya pkg add yazi-rs/flavors:catppuccin-mocha 2>/dev/null || true
 fi
