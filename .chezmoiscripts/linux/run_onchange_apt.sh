@@ -13,6 +13,7 @@ sudo apt --assume-yes install \
   libxcb-shape0-dev \
   libxcb-xfixes0-dev \
   liblua5.1-0-dev \
+  libsecret-1-dev \
   make \
   moreutils \
   mosh \
