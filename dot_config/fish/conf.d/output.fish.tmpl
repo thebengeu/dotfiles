@@ -2,7 +2,7 @@
 {{output "atuin" "init" "fish"}}
 {{end -}}
 {{- if lookPath "mise" }}
-{{output "mise" "activate" "fish"}}
+{{output "mise" "activate" "fish" | replaceAllRegex "\\S+mise.exe" "mise"}}
 {{end -}}
 {{- if lookPath "starship" }}
 {{output "fish" "-c" "starship init fish --print-full-init"}}

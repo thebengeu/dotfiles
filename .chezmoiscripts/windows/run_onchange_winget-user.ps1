@@ -28,6 +28,7 @@ $wingetPackageIds = @(
   'LinearOrbit.Linear'
   'DEVCOM.Lua'
   'zyedidia.micro'
+  'jdx.mise'
   'CloudStack.Msty'
   'Notion.Notion'
   'Nushell.Nushell'
