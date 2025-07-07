@@ -46,7 +46,6 @@ npm install --global \
   codemod \
   npm-check-updates \
   pino-pretty \
-  pnpm \
   pm2 \
   prettier \
   sort-json \
