@@ -39,6 +39,7 @@ packages=(
   lf
   miller
   miniserve
+  mise
   navi
   nethogs
   nnn
