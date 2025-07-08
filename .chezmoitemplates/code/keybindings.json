@@ -2,7 +2,7 @@
   {
     "key": "space",
     "command": "vspacecode.space",
-    "when": "activeEditorGroupEmpty && focusedView == '' && !whichkeyActive && !inputFocus"
+    "when": "editorTextFocus && neovim.mode == normal"
   },
   {
     "key": "ctrl+h",

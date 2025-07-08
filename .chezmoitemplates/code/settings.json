@@ -34,6 +34,7 @@
     "supabase",
     "thebengeu"
   ],
+  "docker.extension.enableComposeLanguageServer": false,
   "editor.accessibilitySupport": "off",
   "editor.codeActionsOnSave": {
     "source.addMissingImports": "explicit",
@@ -80,6 +81,7 @@
   "settingsSync.keybindingsPerPlatform": false,
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.mouseWheelZoom": true,
+  "vscode-neovim.editorLangIdExclusions": ["magit"],
   "vscode-neovim.useWSL": true,
   "vspacecode.bindingOverrides": [
     {
@@ -90,7 +92,7 @@
       "type": "command"
     },
     {
-      "command": "workbench.action.quickOpen",
+      "command": "television.ToggleFileFinder",
       "icon": "file",
       "keys": " ",
       "name": "Go to File...",
