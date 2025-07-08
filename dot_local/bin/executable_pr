@@ -8,7 +8,7 @@ default_branch=$(git default-branch)
 if [ "$(git rev-list --count HEAD "^${default_branch}")" -eq 1 ]; then
 	gh pr create --fill-first --editor "$@"
 else
-	gh pr create --body "$(git lm --reverse "${default_branch}"..)" --editor --title "$(git log --pretty=%s | head -n 1)" "$@"
+	gh pr create --body "$(git log-markdown --reverse "${default_branch}"..)" --editor --title "$(git log --pretty=%s | head -n 1)" "$@"
 fi
 
 gh pr view --web

@@ -5,7 +5,8 @@
 	delete-remote-branches-except = "!git branch --remotes | grep origin/ | grep -E -v \"(HEAD|develop|main|master|$(echo $@ | tr ' ' '|'))$\" | cut -d / -f 2- | xargs git push origin --delete #"
 	grep-all = !git rev-list --all | xargs git grep
 	lg = log --pretty='%Cgreen%ah%Creset %s'
-	lm = log --pretty='- **%s**%n  %b'
+	log-markdown = log --pretty='- **%s**%n  %b'
+	lmr = !git log-markdown --reverse "$(git default-branch).."
 	pf = push --force-if-includes --force-with-lease
   poi = !gh poi
 	pu = !git pull upstream $(git branch --show-current)
