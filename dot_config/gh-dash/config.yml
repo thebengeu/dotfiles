@@ -1,6 +1,17 @@
 prSections:
-  - title: v3
-    filters: is:open author:cioban author:darora author:dragarcia author:tgallacher
+  - title: v3 Label
+    filters: >-
+      is:open
+      label:infra-v3
+  - title: v3 Team
+    filters: >-
+      is:open
+      author:cioban
+      author:darora
+      author:delgado3d
+      author:dragarcia
+      author:kangmingtay
+      author:tgallacher
   # - title: Backend Review Requested
   #   filters: -author:@me is:open team-review-requested:supabase/backend
   - title: Open
