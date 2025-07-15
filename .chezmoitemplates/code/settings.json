@@ -117,6 +117,8 @@
   ],
   "whichkey.delay": 300,
   "window.zoomLevel": 1.1,
+  "windsurf.marketplaceExtensionGalleryServiceURL": "https://marketplace.visualstudio.com/_apis/public/gallery",
+  "windsurf.marketplaceGalleryItemURL": "https://marketplace.visualstudio.com/items",
   "workbench.colorCustomizations": {
     "[Gruvbox Material Dark]": {
       "editorIndentGuide.activeBackground1": "#ea6962",

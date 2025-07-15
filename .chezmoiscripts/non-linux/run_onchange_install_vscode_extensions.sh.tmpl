@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
 # {{ include "ignored/Brewfile" | sha1sum }}
-extensions=$(grep ^vscode "${CHEZMOI_SOURCE_DIR}/ignored/Brewfile" | grep -Ev 'github.copilot|ms-python.vscode-pylance|ms-vscode' | cut -d'"' -f2)
+extensions=$(grep ^vscode "${CHEZMOI_SOURCE_DIR}/ignored/Brewfile" | grep -Ev 'alexpasmantier.television|github.copilot|ms-python.vscode-pylance|ms-vscode' | cut -d'"' -f2)
 echo "${extensions}" | xargs -n1 cursor --install-extension
 echo "${extensions}" | xargs -n1 windsurf --install-extension
