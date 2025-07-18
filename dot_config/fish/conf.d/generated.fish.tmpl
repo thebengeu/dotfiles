@@ -7,6 +7,7 @@ set --export HOMEBREW_GITHUB_API_TOKEN {{ (joinPath .chezmoi.sourceDir ".secrets
 {{- if eq .chezmoi.os "darwin" }}
 {{if eq .chezmoi.arch "arm64" }}
 {{output "/opt/homebrew/bin/brew" "shellenv" "fish"}}
+alias assume 'source /opt/homebrew/bin/assume.fish'
 {{else}}
 {{output "/usr/local/bin/brew" "shellenv" "fish"}}
 {{end}}
