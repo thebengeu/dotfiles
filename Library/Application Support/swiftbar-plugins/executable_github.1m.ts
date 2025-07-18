@@ -15,7 +15,7 @@ const main = async () => {
       {
         search(
           first: 100
-          query: "-author:@me -author:app/dependabot -author:app/renovate is:open team-review-requested:supabase/backend type:pr"
+          query: "-author:@me -author:app/dependabot -author:app/renovate is:open team-review-requested:supabase/infra-v3 type:pr"
           type: ISSUE
         ) {
           edges {
