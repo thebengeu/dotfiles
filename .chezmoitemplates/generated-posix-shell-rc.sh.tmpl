@@ -36,22 +36,34 @@ function {{$alias}} () {
 alias kubectl=kubecolor
 
 function br {
-    local cmd cmd_file code
-    cmd_file=$(mktemp)
-    if broot --outcmd "$cmd_file" "$@"; then
+  local cmd cmd_file code
+  cmd_file=$(mktemp)
+  if broot --outcmd "$cmd_file" "$@"; then
 {{- if eq .chezmoi.os "windows" }}
-        eval $(cat $cmd_file | sed -E 's/cd "?([^"]+)"?/builtin cd (cygpath "\1")/')
+    eval $(cat $cmd_file | sed -E 's/cd "?([^"]+)"?/builtin cd (cygpath "\1")/')
 
 {{- else }}
-        cmd=$(<"$cmd_file")
-        eval "$cmd"
+    cmd=$(<"$cmd_file")
+    eval "$cmd"
 {{- end }}
-        command rm -f "$cmd_file"
-    else
-        code=$?
-        command rm -f "$cmd_file"
-        return "$code"
-    fi
+    command rm -f "$cmd_file"
+  else
+    code=$?
+    command rm -f "$cmd_file"
+    return "$code"
+  fi
+}
+
+lg()
+{
+  export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
+
+  lazygit "$@"
+
+  if [ -f $LAZYGIT_NEW_DIR_FILE ]; then
+    cd "$(cat $LAZYGIT_NEW_DIR_FILE)"
+    rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
+  fi
 }
 
 {{- if lookPath "luarocks" }}

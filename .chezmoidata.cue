@@ -82,7 +82,6 @@ aliases: {
 	kf:              "\(_env) --chdir ~/thebengeu/qmk_userspace make keyball/keyball44:thebengeu:flash"
 	lc:              "supa-admin-cli --config ~/.supa-admin-cli.local"
 	lcd:             "cd $(nvim-stdpath data)/lazy"
-	lg:              "lazygit"
 	lh:              "\(lc) ssh -p"
 	lp:              "\(lc) psql --disable-statement-tracking -p"
 	m:               "\(_env) --chdir ~/supabase/infrastructure mise"
@@ -299,7 +298,7 @@ aliases: {
 	}
 	for prefix, directory in _gitAliasDirectories {
 		"\(prefix)g":   "git -C \(directory)"
-		"\(prefix)lg":  "lazygit --path \(directory)"
+		"\(prefix)lg":  "lg --path \(directory)"
 		"\(prefix)pr":  "cd \(directory); pr"
 		"\(prefix)prd": "cd \(directory); \(prd)"
 		for directoryGitAlias, command in _directoryGitAliases {
