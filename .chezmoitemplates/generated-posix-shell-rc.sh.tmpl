@@ -61,7 +61,12 @@ lg()
   lazygit "$@"
 
   if [ -f $LAZYGIT_NEW_DIR_FILE ]; then
-    cd "$(cat $LAZYGIT_NEW_DIR_FILE)"
+    new_dir=$(cat "$LAZYGIT_NEW_DIR_FILE")
+
+    if [[ "$PWD" != "$new_dir"* ]]; then
+      cd "$new_dir"
+    fi
+
     rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
   fi
 }

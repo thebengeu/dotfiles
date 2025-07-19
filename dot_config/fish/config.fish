@@ -120,7 +120,12 @@ function lg
     lazygit $argv
 
     if test -f $LAZYGIT_NEW_DIR_FILE
-        cd (cat $LAZYGIT_NEW_DIR_FILE)
+        set new_dir (cat $LAZYGIT_NEW_DIR_FILE)
+
+        if not string match -q "$new_dir*" $PWD
+            cd $new_dir
+        end
+
         rm -f $LAZYGIT_NEW_DIR_FILE >/dev/null
     end
 end
