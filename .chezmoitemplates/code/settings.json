@@ -58,6 +58,7 @@
   "git.autofetch": true,
   "git.enableSmartCommit": true,
   "gitlens.ai.model": "vscode",
+  "gitlens.gitCommands.skipConfirmations": ["switch:command"],
   "gitlens.views.scm.grouped.views": {
     "branches": true,
     "commits": true,
@@ -89,6 +90,13 @@
       "icon": "git-branch",
       "keys": "g.g",
       "name": "Lazygit",
+      "type": "command"
+    },
+    {
+      "command": "gitlens.gitCommands.switch",
+      "icon": "git-branch",
+      "keys": "g.w",
+      "name": "Switch",
       "type": "command"
     },
     {
