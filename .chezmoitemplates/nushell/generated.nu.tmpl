@@ -4,7 +4,7 @@ def {{$name}} [{{$lines_and_parameters.parameters | join ", "}}] {
   {{- range $i, $parameter := $lines_and_parameters.parameters}}
     {{- $line = $line | replaceAllRegex (print "(\\$" $parameter ")") "(${1})"}}
   {{- end}}
-    {{$line | replace "cd " "z " | replace "mkdir -p" "mkdir" | replace "$(" "("}}
+    {{$line | replace "cd " "z " | replace "mkdir -p" "mkdir" | replace "$(" "(" | replace "\\." "."}}
 {{- end}}
 }
 {{end}}

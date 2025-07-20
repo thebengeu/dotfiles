@@ -65,7 +65,7 @@ aliases: {
 	dsp:             "docker system prune --force --volumes"
 	dspa:            "\(dsp) --all"
 	e:               "echo"
-	ep:              "echo $PATH"
+	ep:              "echo ${PATH}"
 	g:               "git"
 	gap:             "git all pull"
 	ghd:             "gh dash"
@@ -126,7 +126,7 @@ aliases: {
 	sp:              "git -C ~/supabase all pull --quiet"
 	sr:              "\(_env) --chdir ~/supabase/infrastructure ./snapshot.sh remove-projects"
 	sri:             "\(_env) --chdir ~/supabase/infrastructure ./snapshot.sh restore init"
-	ssi:             "\(_env) --chdir ~/supabase/infrastructure sh -c './snapshot.sh delete init && ./snapshot.sh save init'"
+	ssi:             #"\(_env) --chdir ~/supabase/infrastructure sh -c "./snapshot.sh delete init && ./snapshot.sh save init""#
 	ss:              "aws ssm start-session --target"
 	st:              "speedtest"
 	t:               "pnpm dlx tsx"
