@@ -67,7 +67,7 @@ aliases: {
 	e:               "echo"
 	ep:              "echo $PATH"
 	g:               "git"
-	gap:             "git all pull --no-stat"
+	gap:             "git all pull"
 	ghd:             "gh dash"
 	gn:              "eksctl get nodegroup --cluster $(eks-cluster-name)"
 	grm:             "glow README.md"
@@ -123,7 +123,7 @@ aliases: {
 	rm:              "trash"
 	scc:             #"scc --not-match "package-lock.json|pnpm-lock.yaml""#
 	sn:              "eksctl scale nodegroup --cluster $(eks-cluster-name) --name $(nodegroup-name) --nodes"
-	sp:              "git -C ~/supabase all pull --no-stat"
+	sp:              "git -C ~/supabase all pull --quiet"
 	sr:              "\(_env) --chdir ~/supabase/infrastructure ./snapshot.sh remove-projects"
 	sri:             "\(_env) --chdir ~/supabase/infrastructure ./snapshot.sh restore init"
 	ssi:             "\(_env) --chdir ~/supabase/infrastructure sh -c './snapshot.sh delete init && ./snapshot.sh save init'"

@@ -2,7 +2,7 @@
 {{- if ne .chezmoi.os "windows"}}
 steampipe = "steampipe plugin update --all"
 {{- end}}
-supabase = "git -C $HOME/supabase all pull --no-stat"
+supabase = "git -C $HOME/supabase all pull --quiet"
 tv = "tv update-channels"
 uv = "uv tool upgrade --all"
 yazi = "ya pkg upgrade"
