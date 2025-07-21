@@ -1,3 +1,15 @@
+[submodule "dot_aws"]
+	path = dot_aws
+	url = https://github.com/thebengeu/dot_aws.git
 [submodule "dot_local/share/fonts"]
 	path = dot_local/share/fonts
 	url = https://github.com/thebengeu/fonts.git
+[submodule "private_dot_gnupg"]
+	path = private_dot_gnupg
+	url = https://github.com/thebengeu/private_dot_gnupg.git
+[submodule "private_dot_password-store"]
+	path = private_dot_password-store
+	url = https://github.com/thebengeu/private_dot_password-store.git
+[submodule "private_dot_ssh"]
+	path = private_dot_ssh
+	url = https://github.com/thebengeu/private_dot_ssh.git
