@@ -18,7 +18,7 @@ rm /tmp/run_onchange_init.sh
 ```console
 useradd --create-home --groups sudo --shell /bin/bash beng
 passwd beng
-curl -s 'https://github.com/thebengeu/dotfiles/raw/master/.chezmoiscripts/linux/run_onchange_init.sh' > /tmp/run_onchange_init.sh
+curl -s 'https://raw.githubusercontent.com/thebengeu/dotfiles/refs/heads/master/.chezmoiscripts/linux/run_onchange_init.sh' > /tmp/run_onchange_init.sh
 bash /tmp/run_onchange_init.sh
 rm /tmp/run_onchange_init.sh
 ```
@@ -32,7 +32,7 @@ rm /tmp/run_onchange_init.sh
 
 ```powershell
 Set-ExecutionPolicy Unrestricted
-irm https://github.com/thebengeu/dotfiles/raw/master/.chezmoiscripts/windows/run_onchange_init-admin.ps1 | iex
+irm https://raw.githubusercontent.com/thebengeu/dotfiles/refs/heads/master/.chezmoiscripts/windows/run_onchange_init-admin.ps1 | iex
 ```
 
 ## Common
