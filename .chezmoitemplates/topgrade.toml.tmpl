@@ -1,10 +1,13 @@
 [commands]
+cursor = "cursor --update-extensions"
+kiro = "kiro --update-extensions"
 {{- if ne .chezmoi.os "windows"}}
 steampipe = "steampipe plugin update --all"
 {{- end}}
 supabase = "git -C $HOME/supabase all pull --quiet"
 tv = "tv update-channels"
 uv = "uv tool upgrade --all"
+windsurf = "windsurf --update-extensions"
 yazi = "ya pkg upgrade"
 [misc]
 assume_yes = true
