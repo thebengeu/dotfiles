@@ -38,8 +38,8 @@
   "editor.accessibilitySupport": "off",
   "editor.codeActionsOnSave": {
     "source.addMissingImports": "explicit",
-    "source.fixAll": "explicit",
-    "source.organizeImports": "explicit"
+    "source.fixAll.biome": "explicit",
+    "source.organizeImports.biome": "explicit"
   },
   "editor.cursorSurroundingLines": 999,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
