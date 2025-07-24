@@ -33,6 +33,9 @@ disabled = true
 [docker_context]
 disabled = true
 
+[dotnet]
+disabled = true
+
 [elixir]
 disabled = true
 
