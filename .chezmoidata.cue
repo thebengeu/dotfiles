@@ -260,40 +260,38 @@ aliases: {
 		"\(prefix)rg": "\(_env) --chdir \(strings.Replace(directory, "$HOME", "~", -1)) rg"
 	}
 
-	_directoryGitAliases: {
+	_gitAliases: {
+		aa:  "add -A"
 		b:   "branch --show-current"
+		ca:  "commit --amend"
 		cam: "commit -a -m"
+		cm:  "commit -m"
 		d:   "diff"
 		l:   "lg"
 		lm:  "log-markdown"
 		lmr: "lmr"
 		lp:  "log --ext-diff --patch"
-		P:   "push"
 		p:   "pull"
+		P:   "push"
 		pf:  "pf"
-		rh:  "reset --hard HEAD"
-		s:   "s"
-		sw:  "sw"
-		w:   "wip"
-	}
-	_gitAliases: {
-		aa:  "add -A"
-		ca:  "commit --amend"
-		cm:  "commit -m"
 		pf:  "pf"
 		pu:  "pu"
 		r:   "rebase"
 		rc:  "rebase --continue"
+		rh:  "reset --hard HEAD"
 		rru: "remote remove upstream"
 		rv:  "remote -v"
+		s:   "s"
 		sa:  "stash apply"
-		sP:  "stash push"
 		sp:  "stash pop"
+		sP:  "stash push"
+		sw:  "sw"
+		w:   "wip"
 		wa:  "worktree add"
 		wr:  "worktree remove"
 	}
 
-	for gitAlias, command in _directoryGitAliases & _gitAliases {
+	for gitAlias, command in _gitAliases {
 		"g\(gitAlias)": "git \(command)"
 	}
 	for prefix, directory in _gitAliasDirectories {
@@ -301,9 +299,6 @@ aliases: {
 		"\(prefix)lg":  "lg --path \(directory)"
 		"\(prefix)pr":  "cd \(directory); pr"
 		"\(prefix)prd": "cd \(directory); \(prd)"
-		for directoryGitAlias, command in _directoryGitAliases {
-			"\(prefix)g\(directoryGitAlias)": "git -C \(directory) \(command)"
-		}
 	}
 	for prefix, directory in _nvimAliasDirectories {
 		"\(prefix)n": "nvim --cmd 'cd \(strings.Replace(directory, "$HOME", "~", -1))'"
