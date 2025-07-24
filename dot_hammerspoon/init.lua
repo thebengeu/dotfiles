@@ -8,6 +8,10 @@ spoon.ReloadConfiguration:start()
 
 hs.application.enableSpotlightForNameSearches(true)
 
+-- wf.new(true):subscribe(wf.windowFocused, function(focusedWindow)
+--   print(focusedWindow:application():name())
+-- end)
+
 local bundle_ids = {
   ["com.1password.1password"] = true,
 }
@@ -76,7 +80,7 @@ for key, bundle_id_and_args in pairs({
   j = "com.jetbrains.pycharm",
   k = KITTY_BUNDLE_ID,
   l = "com.linear",
-  m = "com.google.Chrome.app.dalnipikedocgldffaecnjjccgiipfhi",
+  m = "com.google.Chrome.beta",
   n = "notion.id",
   o = "com.todoist.mac.Todoist",
   p = "co.noteplan.NotePlan-setapp",
@@ -142,7 +146,7 @@ for key, bundle_id_and_args in pairs({
   j = { "com.jetbrains.pycharm", "o", { "cmd", "shift" } },
   k = { KITTY_BUNDLE_ID, "h", { "ctrl", "shift" } },
   l = { "com.linear", "/", {} },
-  m = { "com.google.Chrome.app.dalnipikedocgldffaecnjjccgiipfhi", "d" },
+  m = { "com.google.Chrome.beta", "d" },
   n = { "notion.id", "k" },
   o = { "com.todoist.mac.Todoist", "k" },
   p = { "co.noteplan.NotePlan-setapp", "f", { "cmd", "shift" } },
@@ -165,7 +169,11 @@ for key, bundle_id_and_args in pairs({
     or bundle_id_and_args[3]
     or { "cmd" }
 
-  local app_name = hs.application.nameForBundleID(bundle_id) or bundle_id
+  local app_name = bundle_id == "com.google.Chrome" and "Google Chrome"
+    or bundle_id == "com.google.Chrome.beta" and "Google Chrome Beta"
+    or bundle_id == "com.microsoft.edgemac" and "Microsoft Edge"
+    or hs.application.nameForBundleID(bundle_id)
+    or bundle_id
   local on_window_focused_enabled = false
 
   local on_window_focused = function()
