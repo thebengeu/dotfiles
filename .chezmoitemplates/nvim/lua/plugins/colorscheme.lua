@@ -55,13 +55,7 @@ local specs = {
       "catppuccin-latte",
     },
     opts = {
-      integrations = {
-        dap = {
-          enable_ui = true,
-          enabled = true,
-        },
-        rainbow_delimiters = true,
-      },
+      auto_integrations = true,
     },
   },
   {
