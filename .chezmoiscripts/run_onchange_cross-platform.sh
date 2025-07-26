@@ -16,6 +16,7 @@ PIP_REQUIRE_VIRTUALENV=false pip3 install --break-system-packages --upgrade --us
 
 uv tool install --python python3.12 aider-chat
 uv tool install beancount
+uv tool install csv2md
 uv tool install fava
 uv tool install git-revise
 uv tool install gitlint-core
