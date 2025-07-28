@@ -50,6 +50,7 @@ npm install --global \
   pm2 \
   prettier \
   sort-json \
+  sort-package-json \
   sql-formatter \
   trash-cli
 
