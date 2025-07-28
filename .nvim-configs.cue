@@ -9,6 +9,7 @@ _nvimConfigs: {
 	"AstroNvim/template": "astronvim"
 	"ecosse3/nvim":       "ecovim"
 	"LazyVim/starter":    "lazyvim"
+	"jellydn/tiny-nvim":  "tiny-nvim"
 	"NvChad/starter":     "nvchad"
 
 	for gitRepo in [
