@@ -72,11 +72,11 @@ packages=(
 nix profile upgrade --all
 
 for package in "${packages[@]}"; do
-  nix profile install "nixpkgs#${package}"
+  nix profile add "nixpkgs#${package}"
 done
 
-nix profile install nixpkgs#hledger-ui --priority 4
-nix profile install nixpkgs#hledger-web --priority 4
+nix profile add nixpkgs#hledger-ui --priority 4
+nix profile add nixpkgs#hledger-web --priority 4
 
 krew install krew
 steampipe plugin install --progress=false aws

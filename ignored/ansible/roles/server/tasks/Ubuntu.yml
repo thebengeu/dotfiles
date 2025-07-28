@@ -23,10 +23,10 @@
     cmd: /tmp/rustup-init --no-modify-path --profile minimal -y
     creates: ~/.cargo/env
 - ansible.builtin.command:
-    cmd: /nix/var/nix/profiles/default/bin/nix profile install nixpkgs#ripgrep
+    cmd: /nix/var/nix/profiles/default/bin/nix profile add nixpkgs#ripgrep
     creates: ~/.nix-profile/bin/rg
 - ansible.builtin.command:
-    cmd: /nix/var/nix/profiles/default/bin/nix profile install nixpkgs#{{ item }}
+    cmd: /nix/var/nix/profiles/default/bin/nix profile add nixpkgs#{{ item }}
     creates: ~/.nix-profile/bin/{{ item }}
   loop:
     - age

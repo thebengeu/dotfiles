@@ -43,7 +43,7 @@ function __select_supabase_stack
 end
 
 abbr --add gcm --set-cursor "git commit -m '%'"
-abbr --add npi --set-cursor nix profile install nixpkgs#%
+abbr --add npa --set-cursor nix profile add nixpkgs#%
 abbr --add nz --set-cursor 'nvim $(zoxide query --interactive %)'
 abbr --add pnp --set-cursor "tac % | pino-pretty --colorize --translateTime 'yyyy-mm-dd HH:MM:ss' | less"
 abbr --add psp --set-cursor parallel {} search % ::: choco scoop winget
