@@ -18,6 +18,9 @@ export HOMEBREW_GITHUB_API_TOKEN={{ (joinPath .chezmoi.sourceDir ".secrets.ejson
 {{range $path := .paths -}}
 export PATH={{$path}}:$PATH
 {{end -}}
+
+[[ -n "${CLAUDECODE}" ]] && return
+
 {{range $name, $lines_and_parameters := .functions -}}
 function {{$name}} () {
 {{- range $line := $lines_and_parameters.lines}}
