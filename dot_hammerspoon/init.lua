@@ -99,9 +99,9 @@ for key, bundle_id_and_args in pairs({
 end
 
 for key, bundle_id_and_args in pairs({
-  -- [","] = "Colab local URL",
+  -- [","] = "",
   -- ["."] = "unwrap-clipboard",
-  -- ["/"] = "Colab remote URL",
+  -- ["/"] = "",
   c = "io.coressh.tunnel-direct",
   d = "com.hnc.Discord",
   e = "com.endel.endel",
@@ -294,21 +294,6 @@ hs.hotkey.bind({ "ctrl", "shift", "cmd" }, "n", function()
     hs.application(bundle_id):setFrontmost(true)
   end, true)
 end)
-
-for key, command in pairs({
-  [","] = "cat /tmp/jupyter.log | ~/.local/bin/jn-url",
-  ["/"] = "ssh hc -C 'cat /tmp/jupyter.log | jn-url 8888 8889'",
-}) do
-  hs.hotkey.bind({ "ctrl", "shift", "cmd" }, key, function()
-    hs.eventtap.keyStroke({ "cmd" }, "a")
-    local output = hs.execute(command)
-    hs.eventtap.keyStrokes(output)
-    hs.timer.usleep(10000)
-    hs.eventtap.keyStroke({}, "tab")
-    hs.eventtap.keyStroke({}, "tab")
-    hs.eventtap.keyStroke({}, "return")
-  end)
-end
 
 hs.window.animationDuration = 0
 hs.window.switcher.ui.showSelectedTitle = false

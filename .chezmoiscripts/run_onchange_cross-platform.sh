@@ -27,15 +27,10 @@ uv tool install keymap-drawer
 uv tool install khal
 uv tool install kube-shell
 uv tool install neovim-remote
-uv tool install \
-  --upgrade \
-  --with 'bigquery-magics,git+https://github.com/thebengeu/colabtools.git,httplib2,jupysql,pgspecial<2,pillow,plotly,psycopg2-binary,rich' \
-  notebook
 uv tool install pip-upgrader
 uv tool install shell-gpt
 uv tool install sqlfluff
 uv tool install thefuck
-uv tool install tmuxp
 uv tool install tox
 uv tool install virtualenv
 uv tool install visidata

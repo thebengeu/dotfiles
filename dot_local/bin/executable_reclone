@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+mv ~/supabase/*.worktrees /tmp
+ghorg reclone
+mv /tmp/*.worktrees ~/supabase

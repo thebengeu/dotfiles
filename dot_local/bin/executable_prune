@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -x
+
+duf /
+docker system prune --all --force --volumes
+brew cleanup
+go clean -modcache
+pnpm store prune --force
+rm -rf ~/.cache/uv ~/.minikube ~/.npm ~/.pulumi/plugins ~/.rustup
+rustup default stable
+duf /

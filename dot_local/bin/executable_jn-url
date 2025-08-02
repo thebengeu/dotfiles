@@ -1,4 +1,0 @@
-#!/usr/bin/env sh
-from_port="${1:-8888}"
-to_port="${2:-8888}"
-grep --only-matching "http://127.0.0.1:${from_port}/?token=\\S*" | tail -n 1 | sed "s/${from_port}/${to_port}/"
