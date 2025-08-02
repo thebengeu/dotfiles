@@ -1,12 +1,15 @@
 {{- template "generated-posix-shell-rc.sh.tmpl" . -}}
+{{- if lookPath "atuin" }}
+{{output "atuin" "init" "zsh"}}
+{{end -}}
+{{- if lookPath "mise" }}
+{{output "mise" "activate" "zsh"}}
+{{end -}}
 {{- if lookPath "starship" }}
 {{output "starship" "init" "zsh" "--print-full-init"}}
 {{end -}}
 {{- if lookPath "supa-admin-cli" }}
 {{output "supa-admin-cli" "completion" "zsh"}}
-{{end -}}
-{{- if lookPath "atuin" }}
-{{output "atuin" "init" "zsh"}}
 {{end -}}
 {{- if lookPath "zoxide" }}
 {{output "zoxide" "init" "--cmd" "cd" "zsh"}}
