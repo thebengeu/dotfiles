@@ -17,6 +17,9 @@ source ~/.config/zsh/zsh-abbr/zsh-abbr.plugin.zsh
 
 source ~/.config/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
+ZSH_WINDOW_TITLE_DIRECTORY_DEPTH=0
+source ~/.config/zsh/zsh-window-title/zsh-window-title.zsh
+
 autoload -U compinit
 if [ "$(find ~/.zcompdump -mtime 1)" ] ; then
   compinit
