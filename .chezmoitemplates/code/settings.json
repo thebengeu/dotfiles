@@ -1,4 +1,8 @@
 {
+  "[jsonc]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2
+  },
   "[lua]": {
     "editor.defaultFormatter": "yinfei.luahelper"
   },
@@ -38,8 +42,9 @@
   "editor.accessibilitySupport": "off",
   "editor.codeActionsOnSave": {
     "source.addMissingImports": "explicit",
-    "source.fixAll.biome": "explicit",
-    "source.organizeImports.biome": "explicit"
+    "source.fixAll": "explicit",
+    "source.organizeImports.biome": "explicit",
+    "source.removeUnusedImports": "explicit"
   },
   "editor.cursorSurroundingLines": 999,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -55,6 +60,8 @@
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
   },
+  "files.autoSave": "onFocusChange",
+  "files.autoSaveWhenNoErrors": true,
   "git.autofetch": true,
   "git.enableSmartCommit": true,
   "gitlens.ai.model": "vscode",
