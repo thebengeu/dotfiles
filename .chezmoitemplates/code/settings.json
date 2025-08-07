@@ -57,6 +57,7 @@
   "editor.mouseWheelZoom": true,
   "editor.wordWrap": "on",
   "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
   },
@@ -89,6 +90,7 @@
   "settingsSync.keybindingsPerPlatform": false,
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.mouseWheelZoom": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
   "vscode-neovim.editorLangIdExclusions": ["magit"],
   "vscode-neovim.useWSL": true,
   "vspacecode.bindingOverrides": [
